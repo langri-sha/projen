@@ -1,0 +1,17 @@
+# @langri-sha/projen-project
+
+Collection of [projen] templates for bootstraping monorepos and workspace
+projects.
+
+## Usage
+
+### Defaults
+
+- configures extensive list of Git ignore patterns
+
+### TypeScript monorepo
+
+- configures [`@langri-sha/tsconfig`]
+
+[projen]: https://projen.dev/
+[`@langri-sha/tsconfig`]: https://github.com/langri-sha/tsconfig
