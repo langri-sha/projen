@@ -9,5 +9,4 @@ node_modules/
 !/license
 !/.npmignore
 !/tsconfig.build.json
-renovate.d.ts
 !/.projenrc.ts
