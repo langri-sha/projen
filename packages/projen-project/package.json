@@ -2,11 +2,11 @@
   "name": "@langri-sha/projen-project",
   "version": "0.17.0",
   "bugs": {
-    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+    "url": "https://github.com/langri-sha/projen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "url": "git+https://github.com/langri-sha/projen.git",
     "directory": "packages/projen-project"
   },
   "license": "MIT",
@@ -41,8 +41,8 @@
     "ramda": "0.32.0"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "workspace:*",
-    "@langri-sha/vitest": "workspace:*",
+    "@langri-sha/tsconfig": "^0.10.1",
+    "@langri-sha/vitest": "^0.1.1",
     "@types/ramda": "0.31.1"
   },
   "peerDependencies": {

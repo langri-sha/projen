@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/schemastore-to-typescript",
-      "version": "workspace:*",
+      "version": "^0.2.0",
       "type": "build"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "name": "@langri-sha/vitest",
-      "version": "workspace:*",
+      "version": "^0.1.1",
       "type": "build"
     },
     {
