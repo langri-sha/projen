@@ -19,7 +19,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts swcrc src/swcrc.d.ts",
+    "prepare": "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache swcrc src/swcrc.d.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "devDependencies": {

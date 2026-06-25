@@ -539,7 +539,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts renovate src/renovate.d.ts',
+      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache renovate src/renovate.d.ts',
     )
   },
 )
@@ -569,7 +569,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts swcrc src/swcrc.d.ts',
+      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache swcrc src/swcrc.d.ts',
     )
   },
 )
