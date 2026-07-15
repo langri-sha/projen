@@ -8,6 +8,8 @@ on:
 
 jobs:
   check:
+    permissions:
+      contents: write
     uses: langri-sha/github/.github/workflows/check.yml@v0.10.2
     with:
       beachball: true
