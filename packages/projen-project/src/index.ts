@@ -700,7 +700,7 @@ export class Project extends BaseProject {
         }
       : {
           config: {
-            extends: '@langri-sha/tsconfig',
+            extends: '@langri-sha/tsconfig/base',
           },
         }
 

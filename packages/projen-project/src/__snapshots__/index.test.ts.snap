@@ -529,7 +529,7 @@ node_modules/
     ",
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "lint-staged.config.mjs",
@@ -695,7 +695,7 @@ node_modules/
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.ts",
       "lint-staged.config.js",
@@ -788,7 +788,7 @@ export default config
 ",
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "babel.config.mjs",
@@ -954,7 +954,7 @@ export default config
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.ts",
       "babel.config.js",
@@ -1160,7 +1160,7 @@ module.exports = {
     ",
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "beachball.config.js",
@@ -1368,7 +1368,7 @@ module.exports = {
     ",
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.ts",
       "beachball.config.cjs",
@@ -1528,7 +1528,7 @@ export default [...defaults, {"ignores":["**/.*","**/dist/","!.projenrc.mts"]}]"
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "eslint.config.mjs",
@@ -2002,7 +2002,7 @@ tsconfig*.json
     ",
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "jest.config.ts",
@@ -2212,7 +2212,7 @@ dist/
     ",
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "prettier.config.mjs",
@@ -2960,7 +2960,7 @@ node_modules/
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
     ],
@@ -3120,7 +3120,7 @@ node_modules/
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
       "bar.js",
@@ -3297,7 +3297,7 @@ node_modules/
   },
   "tsconfig.json": {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "extends": "@langri-sha/tsconfig",
+    "extends": "@langri-sha/tsconfig/base",
     "files": [
       ".projenrc.mts",
     ],
