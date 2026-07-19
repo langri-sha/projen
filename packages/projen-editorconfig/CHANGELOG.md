@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-editorconfig
 
-This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 21:22:53 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.1
+
+Sun, 19 Jul 2026 21:22:53 GMT
+
+### Patches
+
+- chore: publish the projen ^0.86.0 peer range (in source since 2024-08-31, never released) (filip.dupanovic@gmail.com)
 
 ## 0.6.0
 

@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-lint-staged",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },

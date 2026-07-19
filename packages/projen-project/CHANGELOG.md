@@ -1,8 +1,23 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 19 Jul 2026 21:22:53 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.17.2
+
+Sun, 19 Jul 2026 21:22:53 GMT
+
+### Patches
+
+- Bump @langri-sha/projen-babel to v0.4.1
+- Bump @langri-sha/projen-beachball to v0.5.1
+- Bump @langri-sha/projen-codeowners to v0.5.1
+- Bump @langri-sha/projen-editorconfig to v0.6.1
+- Bump @langri-sha/projen-jest-config to v0.4.1
+- Bump @langri-sha/projen-license to v0.3.4
+- Bump @langri-sha/projen-lint-staged to v0.3.1
+- Bump @langri-sha/projen-readme to v0.1.1
 
 ## 0.17.1
 
