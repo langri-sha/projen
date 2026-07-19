@@ -89,11 +89,6 @@ project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.15.9')
 project.package?.addEngine('pnpm', '>=9.0.0')
 
-project.package?.setScript(
-  'check:published-peers',
-  'node scripts/check-published-peers.mjs',
-)
-
 project.gitattributes.addAttributes(
   'readme',
   'text=auto',
