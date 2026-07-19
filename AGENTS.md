@@ -10,7 +10,6 @@ This monorepo holds the custom **projen components** authored under
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 17 component packages, each Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
-scripts/                # repo checks that run outside the reusable workflows
 ```
 
 Auxiliary support packages (`@langri-sha/babel-preset`, `babel-test`,
@@ -40,14 +39,8 @@ Releasing publishes **only** packages that have a change file. A package whose
 source you edit without one keeps its version number, so `beachball check` —
 which only demands change files for packages touched in a PR — goes quiet the
 moment that PR lands, and npm serves the stale tarball indefinitely. Eight
-packages sat that way for two years across three releases.
-
-`pnpm run check:published-peers` guards against exactly that, diffing each
-package's `peerDependencies` against what npm serves at the same version. It
-runs in CI as the `Published Peers` job. Peers are the field worth diffing:
-Beachball rewrites `workspace:*` to an exact pin at publish, so `dependencies`
-legitimately differ between source and tarball, while peers pass through
-untouched.
+packages sat that way for two years across three releases. Nothing detects this
+automatically; when you edit a package, write the change file in the same PR.
 
 Note also that `projen`'s peer range is declared **once**, in the `projenPeer`
 constant at the top of `.projenrc.ts`, and spread into each subproject. The
