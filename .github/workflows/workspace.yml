@@ -20,3 +20,17 @@ jobs:
       typescript: true
       vitest: true
     secrets: inherit
+
+  # Catches source edits that were never released: the version number stays
+  # put, so `beachball check` goes quiet once the editing PR lands and npm
+  # keeps serving the old peer range forever. Runs on Node alone — no install
+  # — so it stays fast and can't be skewed by the lockfile.
+  published-peers:
+    name: Published Peers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/check-published-peers.mjs
