@@ -2,11 +2,11 @@
   "name": "@langri-sha/eslint-config",
   "version": "0.8.1",
   "bugs": {
-    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+    "url": "https://github.com/langri-sha/projen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "url": "git+https://github.com/langri-sha/projen.git",
     "directory": "packages/eslint-config"
   },
   "license": "MIT",

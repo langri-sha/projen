@@ -2,17 +2,17 @@
   "dependencies": [
     {
       "name": "@langri-sha/eslint-config",
-      "version": "^0.8.0",
+      "version": "workspace:*",
       "type": "build"
     },
     {
       "name": "@langri-sha/lint-staged",
-      "version": "^0.9.0",
+      "version": "workspace:*",
       "type": "build"
     },
     {
       "name": "@langri-sha/prettier",
-      "version": "^0.4.0",
+      "version": "workspace:*",
       "type": "build"
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "name": "@langri-sha/schemastore-to-typescript",
-      "version": "^0.2.0",
+      "version": "workspace:*",
       "type": "build"
     },
     {
@@ -57,7 +57,7 @@
     },
     {
       "name": "eslint",
-      "version": "9.9.1",
+      "version": "10.4.1",
       "type": "build"
     },
     {

@@ -23,9 +23,9 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
-    "@langri-sha/schemastore-to-typescript": "^0.2.0",
-    "@langri-sha/tsconfig": "^0.10.1",
-    "@langri-sha/vitest": "^0.1.1",
+    "@langri-sha/schemastore-to-typescript": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/vitest": "workspace:*",
     "tsx": "4.22.4"
   },
   "peerDependencies": {

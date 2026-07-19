@@ -11,6 +11,15 @@
   ],
   "references": [
     {
+      "path": "packages/eslint-config"
+    },
+    {
+      "path": "packages/lint-staged"
+    },
+    {
+      "path": "packages/prettier"
+    },
+    {
       "path": "packages/projen-babel"
     },
     {
@@ -60,6 +69,12 @@
     },
     {
       "path": "packages/projen-typescript-config"
+    },
+    {
+      "path": "packages/schemastore-to-typescript"
+    },
+    {
+      "path": "packages/vitest"
     }
   ]
 }
