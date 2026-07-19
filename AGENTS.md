@@ -70,6 +70,12 @@ its full history — `git log -- packages/eslint-config` reaches back to
 and version numbers carry over unbroken, so releases continue from where
 `langri-sha.com` left off.
 
+Their pending `change/*.json` entries came across too, by the same filtered
+merge — unlike the `projen-*` migration, which dropped them. That matters: the
+source carried an unreleased **minor** for `eslint-config` (the eslint-10
+upgrade), so discarding those files would have released it as a patch and
+silently dropped a dozen changelog entries describing real work.
+
 That migration also retired the eslint `^9` pin: the workspace `eslint-config`
 bundles eslint-10 plugins, so the root now tracks eslint 10, matching the source
 repo. Note `eslint-plugin-react@7.37.5` peers `<= ^9.7` and warns under eslint
