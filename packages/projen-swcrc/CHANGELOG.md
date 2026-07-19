@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-swcrc
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.6
+
+Sun, 19 Jul 2026 09:49:58 GMT
+
+### Patches
+
+- Migrate from the deprecated ts-node ESM loader to tsx for Node 24 compatibility (filip.dupanovic@gmail.com)
 
 ## 0.1.5
 

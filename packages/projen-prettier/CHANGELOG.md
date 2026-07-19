@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-prettier
 
-This log was last generated on Fri, 26 Jul 2024 21:00:28 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.1
+
+Sun, 19 Jul 2026 09:49:58 GMT
+
+### Patches
+
+- fix(deps): align prettier package dev dependencies (filip.dupanovic@gmail.com)
 
 ## 0.4.0
 

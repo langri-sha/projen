@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-eslint
 
-This log was last generated on Fri, 26 Jul 2024 21:00:29 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.1
+
+Sun, 19 Jul 2026 09:49:58 GMT
+
+### Patches
+
+- chore: widen eslint peer dependency range to ^9.0.0 || ^10.0.0 (filip.dupanovic@gmail.com)
 
 ## 0.3.0
 

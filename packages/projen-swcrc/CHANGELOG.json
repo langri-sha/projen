@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Sun, 19 Jul 2026 09:49:58 GMT",
+      "version": "0.1.6",
+      "tag": "@langri-sha/projen-swcrc_v0.1.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "Migrate from the deprecated ts-node ESM loader to tsx for Node 24 compatibility"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.1.5",
       "tag": "@langri-sha/projen-swcrc_v0.1.5",

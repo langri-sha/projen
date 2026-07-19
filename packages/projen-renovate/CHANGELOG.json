@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Sun, 19 Jul 2026 09:49:58 GMT",
+      "version": "0.4.6",
+      "tag": "@langri-sha/projen-renovate_v0.4.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "Migrate from the deprecated ts-node ESM loader to tsx for Node 24 compatibility"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.4.5",
       "tag": "@langri-sha/projen-renovate_v0.4.5",

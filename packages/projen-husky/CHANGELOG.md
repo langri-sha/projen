@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-husky
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.7
+
+Sun, 19 Jul 2026 09:49:58 GMT
+
+### Patches
+
+- chore(deps): update dependency @types/node to v20.19.41 (email not defined)
+- Update @types/node to 24.13.2 (filip.dupanovic@gmail.com)
 
 ## 0.3.6
 

@@ -2,6 +2,117 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 19 Jul 2026 09:49:58 GMT",
+      "version": "0.17.1",
+      "tag": "@langri-sha/projen-project_v0.17.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "Migrate from the deprecated ts-node ESM loader to tsx for Node 24 compatibility"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "fix(deps): update dependency ramda to v0.32.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "chore(deps): update dependency typescript to v5.9.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "chore(deps): update dependency beachball to v2.65.4"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "chore: widen eslint peer dependency range to ^9.0.0 || ^10.0.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "chore(deps): update dependency prettier to v3.8.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "chore(deps): update dependency beachball to v2.65.5"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "chore(deps): update swc monorepo"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "aba78d67f7644a3646ef775e93c468a954a94382",
+            "comment": "Extend the root tsconfig from the concrete '@langri-sha/tsconfig/base' subpath so TypeScript resolves the base config and applies allowJs"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-eslint to v0.3.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-husky to v0.3.7",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-lint-synthesized to v0.5.3",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-pnpm-workspace to v0.3.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-prettier to v0.4.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-renovate to v0.4.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-swcrc to v0.1.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-typescript-config to v0.5.5",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.17.0",
       "tag": "@langri-sha/projen-project_v0.17.0",

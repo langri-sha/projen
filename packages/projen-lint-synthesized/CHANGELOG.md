@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.3
+
+Sun, 19 Jul 2026 09:49:58 GMT
+
+### Patches
+
+- fix(deps): update dependency debug to v4.4.3 (email not defined)
+- chore(deps): update dependency prettier to v3.8.3 (email not defined)
+- fix(deps): update dependency minimatch to v10.2.5 (email not defined)
 
 ## 0.5.2
 

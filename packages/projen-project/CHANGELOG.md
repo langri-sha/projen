@@ -1,8 +1,32 @@
 # Change Log - @langri-sha/projen-project
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.17.1
+
+Sun, 19 Jul 2026 09:49:58 GMT
+
+### Patches
+
+- Migrate from the deprecated ts-node ESM loader to tsx for Node 24 compatibility (filip.dupanovic@gmail.com)
+- fix(deps): update dependency ramda to v0.32.0 (email not defined)
+- chore(deps): update dependency typescript to v5.9.3 (email not defined)
+- chore(deps): update dependency beachball to v2.65.4 (email not defined)
+- chore: widen eslint peer dependency range to ^9.0.0 || ^10.0.0 (filip.dupanovic@gmail.com)
+- chore(deps): update dependency prettier to v3.8.3 (email not defined)
+- chore(deps): update dependency beachball to v2.65.5 (email not defined)
+- chore(deps): update swc monorepo (email not defined)
+- Extend the root tsconfig from the concrete '@langri-sha/tsconfig/base' subpath so TypeScript resolves the base config and applies allowJs (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-eslint to v0.3.1
+- Bump @langri-sha/projen-husky to v0.3.7
+- Bump @langri-sha/projen-lint-synthesized to v0.5.3
+- Bump @langri-sha/projen-pnpm-workspace to v0.3.2
+- Bump @langri-sha/projen-prettier to v0.4.1
+- Bump @langri-sha/projen-renovate to v0.4.6
+- Bump @langri-sha/projen-swcrc to v0.1.6
+- Bump @langri-sha/projen-typescript-config to v0.5.5
 
 ## 0.17.0
 
