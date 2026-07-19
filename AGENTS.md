@@ -9,13 +9,21 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 17 component packages, each Beachball-versioned
+packages/<aux>/         # 6 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
-Auxiliary support packages (`@langri-sha/babel-preset`, `babel-test`,
-`eslint-config`, `jest-config`, `jest-test`, `lint-staged`, `monorepo`,
-`prettier`, `schemastore-to-typescript`, `tsconfig`, `vitest`, `webpack`) are
-**published from `langri-sha/langri-sha.com`** and consumed here from npm.
+The support packages — `@langri-sha/eslint-config`, `lint-staged`, `prettier`,
+`schemastore-to-typescript`, `tsconfig` and `vitest` — live here and publish
+from this repo. Everything the workspace needs is wired `workspace:*`; no
+`@langri-sha/*` dependency is consumed from npm.
+
+`langri-sha/langri-sha.com` still owns the packages its apps build on
+(`babel-preset`, `babel-test`, `jest-config`, `jest-test`, `monorepo`,
+`webpack`). Nothing here depends on them — the `@langri-sha/babel-preset` and
+`@langri-sha/jest-config` strings you'll find in `projen-project` and
+`projen-jest-config` are default values written into _synthesized_ configs of
+consuming projects, not dependencies of this repo.
 
 ## Common tasks
 
@@ -53,8 +61,16 @@ Extracted from `langri-sha/langri-sha.com` via `git filter-repo`, preserving
 per-package commit history (`git log -- packages/<name>` shows pre-bootstrap
 commits). Re-synced 2026-06-23 against the source's canonical `main` to pull the
 latest per-package changes (Node 24, tsx-based projenrc, dependency bumps).
-Auxiliary packages are consumed from npm and therefore track the **published**
-versions, which can lag the source workspace — notably eslint stays `^9` until
-`@langri-sha/eslint-config` ships its eslint-10 release. Pending Beachball
-`change/*.json` entries from the source repo were intentionally dropped; the
-next `beachball change` here emits its own.
+
+The six support packages arrived the same way on 2026-07-20, from
+`langri-sha.com@bde65b48`: a second `git filter-repo` pass keeping only their
+`packages/` paths, merged in with `--allow-unrelated-histories`. Each retains
+its full history — `git log -- packages/eslint-config` reaches back to
+2021-07-11, five years before this repo's bootstrap commit. Their `CHANGELOG.md`
+and version numbers carry over unbroken, so releases continue from where
+`langri-sha.com` left off.
+
+That migration also retired the eslint `^9` pin: the workspace `eslint-config`
+bundles eslint-10 plugins, so the root now tracks eslint 10, matching the source
+repo. Note `eslint-plugin-react@7.37.5` peers `<= ^9.7` and warns under eslint
+10 — that warning predates the migration and is present upstream too.
