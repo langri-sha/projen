@@ -21,6 +21,7 @@
   "main": "src/index.ts",
   "scripts": {
     "change": "npx projen change",
+    "check:published-peers": "node scripts/check-published-peers.mjs",
     "default": "npx projen default",
     "prepare": "husky",
     "renovate": "npx projen renovate"

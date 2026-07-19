@@ -17,6 +17,14 @@ const pkg = {
   },
 }
 
+// ponytail: projen's peer range lives here so a bump is one edit rather than
+// seventeen. The `peerDeps:` key is load-bearing — Renovate's projenrc
+// customManager keys off that literal to locate and widen the range, so
+// renaming it silently stops Renovate from updating projen's peer anywhere.
+const projenPeer = {
+  peerDeps: ['projen@^0.86.0'],
+}
+
 const project = new Project({
   name: 'projen',
   package: {
@@ -80,6 +88,11 @@ const project = new Project({
 project.package?.addField('private', true)
 project.package?.addField('packageManager', 'pnpm@9.15.9')
 project.package?.addEngine('pnpm', '>=9.0.0')
+
+project.package?.setScript(
+  'check:published-peers',
+  'node scripts/check-published-peers.mjs',
+)
 
 project.gitattributes.addAttributes(
   'readme',
@@ -145,7 +158,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -171,7 +184,7 @@ project.addSubproject(
       peerDeps: [
         '@babel/core@^7.8.0',
         '@types/babel__core@^7.8.0',
-        'projen@^0.86.0',
+        ...projenPeer.peerDeps,
       ],
     },
   },
@@ -193,7 +206,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      peerDeps: ['beachball@^2.0.0', 'projen@^0.86.0'],
+      peerDeps: ['beachball@^2.0.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -214,7 +227,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -237,7 +250,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['eslint@^9.0.0 || ^10.0.0', 'projen@^0.86.0'],
+      peerDeps: ['eslint@^9.0.0 || ^10.0.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -259,7 +272,7 @@ project.addSubproject(
       type: 'module',
       copyrightYear: '2024',
       devDeps: ['@types/node@24.13.2'],
-      peerDeps: ['husky@^9.0.1', 'projen@^0.86.0'],
+      peerDeps: ['husky@^9.0.1', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -282,7 +295,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['jest@^28.00 || ^29.00', 'projen@^0.86.0'],
+      peerDeps: ['jest@^28.00 || ^29.00', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -305,7 +318,7 @@ project.addSubproject(
       type: 'module',
       deps: ['debug@4.4.3', 'execa@8.0.1', 'minimatch@10.2.5'],
       devDeps: ['@types/debug@4.1.13', 'prettier@3.8.3', 'projen@0.86.5'],
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -328,7 +341,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['lint-staged@^15.0.0', 'projen@^0.86.0'],
+      peerDeps: ['lint-staged@^15.0.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -350,7 +363,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['license-o-matic@^1.2.0'],
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -372,7 +385,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['yaml@2.9.0'],
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -395,7 +408,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.8.3'],
-      peerDeps: ['prettier@^3.0.0', 'projen@^0.86.0'],
+      peerDeps: ['prettier@^3.0.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -447,7 +460,7 @@ project.addSubproject(
         'jest@^28.0.0 || ^29.0.0',
         'lint-staged@^15.0.0',
         'prettier@^3.0.0',
-        'projen@^0.86.0',
+        ...projenPeer.peerDeps,
         'tsx@^4.0.0',
         'typescript@^5.5.0',
       ],
@@ -506,7 +519,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -528,7 +541,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       devDeps: ['@langri-sha/schemastore-to-typescript@^0.2.0', 'tsx@4.22.4'],
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -558,7 +571,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       devDeps: ['@langri-sha/schemastore-to-typescript@^0.2.0', 'tsx@4.22.4'],
-      peerDeps: ['projen@^0.86.0', '@swc/core@^1.6.0'],
+      peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -589,7 +602,7 @@ project.addSubproject(
       type: 'module',
       deps: ['@schemastore/tsconfig@0.0.12'],
       devDeps: ['@types/node@24.13.2'],
-      peerDeps: ['projen@^0.86.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,

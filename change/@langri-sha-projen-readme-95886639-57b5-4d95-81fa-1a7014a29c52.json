@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore: publish the projen ^0.86.0 peer range (in source since 2024-08-31, never released)",
+  "packageName": "@langri-sha/projen-readme",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
