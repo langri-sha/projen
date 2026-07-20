@@ -2,6 +2,101 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Mon, 20 Jul 2026 10:17:52 GMT",
+      "version": "0.9.0",
+      "tag": "@langri-sha/eslint-config_v0.9.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: publish from langri-sha/projen, which now owns this package and its history"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency eslint-plugin-prettier to v5.5.6"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency eslint-plugin-import to v2.32.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update react monorepo"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update eslint monorepo to v9.39.4"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency eslint-plugin-jsdoc to v50.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update typescript-eslint monorepo to v8.60.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency eslint-plugin-react to v7.37.5"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency globals to v15.15.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency typescript-eslint to v8.59.3"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: pin settings.react.version to 19.2.7 in lockstep with the React 19 upgrade"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency @eslint/compat to v1.4.1"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "feat: upgrade to ESLint 10; migrate to eslint-plugin-import-x, activate eslint-plugin-react-hooks flat.recommended, and pin settings.react.version"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/eslint-config",
+            "comment": "Bump @langri-sha/tsconfig to v0.10.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 17 May 2026 20:22:40 GMT",
       "version": "0.8.1",
       "tag": "@langri-sha/eslint-config_v0.8.1",

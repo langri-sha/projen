@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/vitest
 
-This log was last generated on Wed, 17 Jul 2024 10:48:15 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.2
+
+Mon, 20 Jul 2026 10:17:52 GMT
+
+### Patches
+
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
+- Bump @langri-sha/tsconfig to v0.10.2
 
 ## 0.1.1
 

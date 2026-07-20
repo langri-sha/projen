@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/tsconfig
 
-This log was last generated on Wed, 17 Jul 2024 10:48:15 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.10.2
+
+Mon, 20 Jul 2026 10:17:52 GMT
+
+### Patches
+
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
+- chore(deps): update dependency prettier to v3.8.3 (email not defined)
 
 ## 0.10.1
 

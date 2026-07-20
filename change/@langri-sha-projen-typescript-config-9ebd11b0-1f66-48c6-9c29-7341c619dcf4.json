@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "chore: source @langri-sha/tsconfig and @langri-sha/vitest from the workspace instead of npm",
-  "packageName": "@langri-sha/projen-typescript-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

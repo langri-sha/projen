@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-editorconfig
 
-<!-- This log was last generated on Sun, 19 Jul 2026 21:22:53 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.2
+
+Mon, 20 Jul 2026 10:17:52 GMT
+
+### Patches
+
+- Bump @langri-sha/tsconfig to v0.10.2
+- Bump @langri-sha/vitest to v0.1.2
 
 ## 0.6.1
 

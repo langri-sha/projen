@@ -1,8 +1,32 @@
 # Change Log - @langri-sha/eslint-config
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.0
+
+Mon, 20 Jul 2026 10:17:52 GMT
+
+### Minor changes
+
+- feat: upgrade to ESLint 10; migrate to eslint-plugin-import-x, activate eslint-plugin-react-hooks flat.recommended, and pin settings.react.version (filip.dupanovic@gmail.com)
+- Bump @langri-sha/tsconfig to v0.10.2
+
+### Patches
+
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
+- fix(deps): update dependency eslint-plugin-prettier to v5.5.6 (email not defined)
+- fix(deps): update dependency eslint-plugin-import to v2.32.0 (email not defined)
+- fix(deps): update react monorepo (email not defined)
+- fix(deps): update eslint monorepo to v9.39.4 (email not defined)
+- fix(deps): update dependency eslint-plugin-jsdoc to v50.8.0 (email not defined)
+- fix(deps): update typescript-eslint monorepo to v8.60.1 (email not defined)
+- fix(deps): update dependency eslint-plugin-react to v7.37.5 (email not defined)
+- fix(deps): update dependency globals to v15.15.0 (email not defined)
+- fix(deps): update dependency typescript-eslint to v8.59.3 (email not defined)
+- chore: pin settings.react.version to 19.2.7 in lockstep with the React 19 upgrade (filip.dupanovic@gmail.com)
+- fix(deps): update dependency @eslint/compat to v1.4.1 (email not defined)
 
 ## 0.8.1
 

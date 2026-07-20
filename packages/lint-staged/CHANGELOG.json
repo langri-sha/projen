@@ -2,6 +2,33 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Mon, 20 Jul 2026 10:17:52 GMT",
+      "version": "0.9.1",
+      "tag": "@langri-sha/lint-staged_v0.9.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: publish from langri-sha/projen, which now owns this package and its history"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: widen eslint peer dependency range to ^9.0.0 || ^10.0.0"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/lint-staged",
+            "comment": "Bump @langri-sha/tsconfig to v0.10.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.9.0",
       "tag": "@langri-sha/lint-staged_v0.9.0",

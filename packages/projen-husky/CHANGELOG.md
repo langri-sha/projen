@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-husky
 
-<!-- This log was last generated on Sun, 19 Jul 2026 09:49:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.8
+
+Mon, 20 Jul 2026 10:17:52 GMT
+
+### Patches
+
+- Bump @langri-sha/tsconfig to v0.10.2
+- Bump @langri-sha/vitest to v0.1.2
 
 ## 0.3.7
 

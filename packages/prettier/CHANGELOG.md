@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/prettier
 
-This log was last generated on Sat, 27 Jul 2024 15:50:16 GMT and should not be manually modified.
+<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.1
+
+Mon, 20 Jul 2026 10:17:52 GMT
+
+### Patches
+
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
+- fix(deps): update dependency prettier-plugin-ini to v1.3.0 (email not defined)
+- fix(deps): align prettier package dev dependencies (filip.dupanovic@gmail.com)
+- Bump @langri-sha/tsconfig to v0.10.2
 
 ## 0.4.0
 

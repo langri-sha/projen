@@ -2,6 +2,39 @@
   "name": "@langri-sha/prettier",
   "entries": [
     {
+      "date": "Mon, 20 Jul 2026 10:17:52 GMT",
+      "version": "0.4.1",
+      "tag": "@langri-sha/prettier_v0.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: publish from langri-sha/projen, which now owns this package and its history"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/prettier",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): update dependency prettier-plugin-ini to v1.3.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "fix(deps): align prettier package dev dependencies"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/prettier",
+            "comment": "Bump @langri-sha/tsconfig to v0.10.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/prettier_v0.4.0",

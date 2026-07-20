@@ -2,6 +2,27 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Mon, 20 Jul 2026 10:17:52 GMT",
+      "version": "0.1.2",
+      "tag": "@langri-sha/vitest_v0.1.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: publish from langri-sha/projen, which now owns this package and its history"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/vitest",
+            "comment": "Bump @langri-sha/tsconfig to v0.10.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.1.1",
       "tag": "@langri-sha/vitest_v0.1.1",

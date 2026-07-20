@@ -2,6 +2,27 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Mon, 20 Jul 2026 10:17:52 GMT",
+      "version": "0.10.2",
+      "tag": "@langri-sha/tsconfig_v0.10.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: publish from langri-sha/projen, which now owns this package and its history"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/tsconfig",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore(deps): update dependency prettier to v3.8.3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Sep 2024 10:39:17 GMT",
       "version": "0.10.1",
       "tag": "@langri-sha/tsconfig_v0.10.1",

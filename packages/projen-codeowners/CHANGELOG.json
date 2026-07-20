@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-codeowners",
   "entries": [
     {
+      "date": "Mon, 20 Jul 2026 10:17:52 GMT",
+      "version": "0.5.2",
+      "tag": "@langri-sha/projen-codeowners_v0.5.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-codeowners",
+            "commit": "04adc8ff4c0c712311f9328f89480fedf89bdb36",
+            "comment": "chore: source @langri-sha/tsconfig and @langri-sha/vitest from the workspace instead of npm"
+          }
+        ],
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-codeowners",
+            "comment": "Bump @langri-sha/tsconfig to v0.10.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-codeowners",
+            "comment": "Bump @langri-sha/vitest to v0.1.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 19 Jul 2026 21:22:53 GMT",
       "version": "0.5.1",
       "tag": "@langri-sha/projen-codeowners_v0.5.1",

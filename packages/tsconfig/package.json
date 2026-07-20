@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/tsconfig",
-  "version": "0.10.1",
+  "version": "0.10.2",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },
