@@ -44,7 +44,7 @@ const project = new Project({
       '@langri-sha/tsconfig@workspace:*',
       '@swc-node/register@1.11.1',
       '@swc/core@1.15.40',
-      '@types/lint-staged@13.3.0',
+      '@types/lint-staged@14.0.0',
       '@types/node@24.13.2',
       'eslint@10.4.1',
       'lint-staged@15.5.2',
@@ -192,7 +192,7 @@ project.addSubproject(
       copyrightYear: '2021',
       type: 'module',
       entrypoint: 'src/index.js',
-      devDeps: ['@types/lint-staged@13.3.0'],
+      devDeps: ['@types/lint-staged@14.0.0'],
       peerDeps: [
         'eslint@^9.0.0 || ^10.0.0',
         'lint-staged@^15.0.0',
