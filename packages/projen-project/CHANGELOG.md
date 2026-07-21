@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 21 Jul 2026 22:30:02 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.18.0
+
+Tue, 21 Jul 2026 22:30:02 GMT
+
+### Minor changes
+
+- Ignore Terraform state (`*.tfstate`, `*.tfstate.*`) and variable (`*.tfvars`, `*.auto.tfvars`) files when `withTerraform` is enabled (filip.dupanovic@gmail.com)
 
 ## 0.17.3
 

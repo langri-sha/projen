@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Tue, 21 Jul 2026 22:30:02 GMT",
+      "version": "0.18.0",
+      "tag": "@langri-sha/projen-project_v0.18.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "39e6a9cce447362b16be9c0f61b0ef36856c76c8",
+            "comment": "Ignore Terraform state (`*.tfstate`, `*.tfstate.*`) and variable (`*.tfvars`, `*.auto.tfvars`) files when `withTerraform` is enabled"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.17.3",
       "tag": "@langri-sha/projen-project_v0.17.3",

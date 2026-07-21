@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Ignore Terraform state (`*.tfstate`, `*.tfstate.*`) and variable (`*.tfvars`, `*.auto.tfvars`) files when `withTerraform` is enabled",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
