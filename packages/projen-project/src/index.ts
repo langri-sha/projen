@@ -778,6 +778,10 @@ const getGitIgnoreOptions = ({
     !.openssl
     !.prettierignore
     ${withTerraform ? '!.terraform.lock.hcl' : ''}
+    ${withTerraform ? '*.tfstate' : ''}
+    ${withTerraform ? '*.tfstate.*' : ''}
+    ${withTerraform ? '*.tfvars' : ''}
+    ${withTerraform ? '*.auto.tfvars' : ''}
     *.db
     *.log
     ${typeScriptConfigOptions ? '*.tsbuildinfo' : ''}
