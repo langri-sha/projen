@@ -622,6 +622,26 @@ test('with Terraform enabled', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('with Terraform enabled, a consumer can opt back into terraform.tfvars', () => {
+  const project = new Project({
+    name: 'test-project',
+    withTerraform: true,
+    gitIgnoreOptions: {
+      ignorePatterns: ['!terraform.tfvars'],
+    },
+  })
+
+  const patterns = synthSnapshot(project)
+    ['.gitignore'].split('\n')
+    .map((pattern: string) => pattern.trim())
+
+  // The consumer pattern is appended after the generated defaults, and later
+  // `.gitignore` rules win, so `!terraform.tfvars` un-ignores it from `*.tfvars`.
+  expect(patterns.indexOf('!terraform.tfvars')).toBeGreaterThan(
+    patterns.indexOf('*.tfvars'),
+  )
+})
+
 describe('with TypeScript options', () => {
   test('defaults', () => {
     const project = new Project({

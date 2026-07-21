@@ -2585,6 +2585,10 @@ exports[`with Terraform enabled 1`] = `
 !.openssl
 !.prettierignore
 !.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.auto.tfvars
 *.db
 *.log
 !.github/
