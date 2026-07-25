@@ -17,6 +17,9 @@
       "path": "packages/lint-staged"
     },
     {
+      "path": "packages/monorepo"
+    },
+    {
       "path": "packages/prettier"
     },
     {

@@ -212,6 +212,28 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/monorepo',
+    outdir: path.join('packages', 'monorepo'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['find-up@7.0.0'],
+      devDeps: ['@types/node@24.13.2'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/prettier',
     outdir: path.join('packages', 'prettier'),
     npmIgnore: {},
