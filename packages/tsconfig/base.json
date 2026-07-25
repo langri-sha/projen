@@ -11,7 +11,7 @@
     "isolatedModules": true,
     "lib": ["ESNext"],
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "noEmitOnError": true,
     "noImplicitOverride": true,
     "noImplicitThis": true,
