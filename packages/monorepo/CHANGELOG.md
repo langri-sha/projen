@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/monorepo
 
-This log was last generated on Sun, 17 May 2026 20:22:40 GMT and should not be manually modified.
+<!-- This log was last generated on Sat, 25 Jul 2026 22:26:12 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.7
+
+Sat, 25 Jul 2026 22:26:12 GMT
+
+### Patches
+
+- Update @types/node to 24.13.2 (filip.dupanovic@gmail.com)
+- chore(deps): update dependency @types/node to v20.19.41 (email not defined)
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
 
 ## 0.5.6
 

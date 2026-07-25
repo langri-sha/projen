@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/eslint-config
 
-<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Jul 2026 22:26:12 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.2
+
+Sat, 25 Jul 2026 22:26:12 GMT
+
+### Patches
+
+- fix(deps): update dependency eslint-plugin-import-x to v4.17.1 (email not defined)
+- fix(deps): update dependency globals to v17.7.0 (email not defined)
 
 ## 0.9.1
 
