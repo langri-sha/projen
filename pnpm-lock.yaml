@@ -144,7 +144,7 @@ importers:
   packages/projen-babel:
     dependencies:
       '@babel/core':
-        specifier: ^7.8.0
+        specifier: ^7.8.0 || ^8.0.0
         version: 7.29.7
       '@types/babel__core':
         specifier: ^7.8.0
@@ -378,7 +378,7 @@ importers:
   packages/projen-project:
     dependencies:
       '@babel/core':
-        specifier: ^7.8.0
+        specifier: ^7.8.0 || ^8.0.0
         version: 7.29.7
       '@langri-sha/projen-babel':
         specifier: workspace:*
