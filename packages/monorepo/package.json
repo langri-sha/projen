@@ -2,11 +2,11 @@
   "name": "@langri-sha/monorepo",
   "version": "0.5.6",
   "bugs": {
-    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+    "url": "https://github.com/langri-sha/projen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "url": "git+https://github.com/langri-sha/projen.git",
     "directory": "packages/monorepo"
   },
   "license": "MIT",
@@ -25,8 +25,8 @@
     "find-up": "7.0.0"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "^0.10.2",
-    "@langri-sha/vitest": "^0.1.2",
+    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/vitest": "workspace:*",
     "@types/node": "24.13.2"
   },
   "publishConfig": {
