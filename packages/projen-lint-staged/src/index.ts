@@ -51,7 +51,7 @@ export class LintStaged extends FileBase {
 
     return `${
       this.#extends ? `import defaults from '${this.#extends}'\n\n` : ''
-    }/** @type {import('lint-staged').Config} */
+    }/** @type {import('lint-staged').Configuration} */
     const config = {
       ${this.#extends ? `...defaults,` : ''}
       ${serialized.slice(1)}

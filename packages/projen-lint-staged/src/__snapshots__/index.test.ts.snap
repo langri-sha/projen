@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`defaults 1`] = `
-"/** @type {import('lint-staged').Config} */
+"/** @type {import('lint-staged').Configuration} */
     const config = {
       
       }
@@ -11,7 +11,7 @@ exports[`defaults 1`] = `
 `;
 
 exports[`with config 1`] = `
-"/** @type {import('lint-staged').Config} */
+"/** @type {import('lint-staged').Configuration} */
     const config = {
       
       "*":"prettier"}
@@ -23,7 +23,7 @@ exports[`with config 1`] = `
 exports[`with extends > with config 1`] = `
 "import defaults from '@langri-sha/lint-staged'
 
-/** @type {import('lint-staged').Config} */
+/** @type {import('lint-staged').Configuration} */
     const config = {
       ...defaults,
       "*":"prettier"}
@@ -35,7 +35,7 @@ exports[`with extends > with config 1`] = `
 exports[`with extends > with no config 1`] = `
 "import defaults from '@langri-sha/lint-staged'
 
-/** @type {import('lint-staged').Config} */
+/** @type {import('lint-staged').Configuration} */
     const config = {
       ...defaults,
       }
@@ -45,7 +45,7 @@ exports[`with extends > with no config 1`] = `
 `;
 
 exports[`with filename 1`] = `
-"/** @type {import('lint-staged').Config} */
+"/** @type {import('lint-staged').Configuration} */
     const config = {
       
       }
