@@ -41,11 +41,6 @@
       "type": "build"
     },
     {
-      "name": "@types/lint-staged",
-      "version": "13.3.0",
-      "type": "build"
-    },
-    {
       "name": "@types/node",
       "version": "24.13.3",
       "type": "build"
