@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-editorconfig",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 15:41:25 GMT",
+      "version": "0.6.3",
+      "tag": "@langri-sha/projen-editorconfig_v0.6.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-editorconfig",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-editorconfig",
+            "comment": "Bump @langri-sha/vitest to v0.1.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.6.2",
       "tag": "@langri-sha/projen-editorconfig_v0.6.2",

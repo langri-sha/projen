@@ -2,6 +2,39 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 15:41:25 GMT",
+      "version": "0.1.8",
+      "tag": "@langri-sha/projen-swcrc_v0.1.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "cc77bf3a23e5fcdd7c485421ab14b02ed061ce02",
+            "comment": "chore(deps): update dependency tsx to v4.23.1"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/vitest to v0.1.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.1.7",
       "tag": "@langri-sha/projen-swcrc_v0.1.7",

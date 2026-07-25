@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): update dependency tsx to v4.23.1",
-  "packageName": "@langri-sha/projen-renovate",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

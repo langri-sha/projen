@@ -2,6 +2,27 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 15:41:25 GMT",
+      "version": "0.9.2",
+      "tag": "@langri-sha/lint-staged_v0.9.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "cc77bf3a23e5fcdd7c485421ab14b02ed061ce02",
+            "comment": "Remove redundant @types/lint-staged stub dependency"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/lint-staged",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.9.1",
       "tag": "@langri-sha/lint-staged_v0.9.1",

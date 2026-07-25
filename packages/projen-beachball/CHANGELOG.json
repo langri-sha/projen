@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-beachball",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 15:41:25 GMT",
+      "version": "0.5.3",
+      "tag": "@langri-sha/projen-beachball_v0.5.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-beachball",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-beachball",
+            "comment": "Bump @langri-sha/vitest to v0.1.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.5.2",
       "tag": "@langri-sha/projen-beachball_v0.5.2",

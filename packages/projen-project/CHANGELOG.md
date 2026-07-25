@@ -1,8 +1,37 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 21 Jul 2026 22:30:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.18.1
+
+Sat, 25 Jul 2026 15:41:25 GMT
+
+### Patches
+
+- chore(deps): update dependency eslint to v10.8.0 (email not defined)
+- chore(deps): update dependency tsx to v4.23.1 (email not defined)
+- fix(deps): update dependency keyv-file to v5.3.5 (email not defined)
+- fix(deps): update dependency nock to v13.5.6 (email not defined)
+- Bump @langri-sha/projen-babel to v0.4.3
+- Bump @langri-sha/projen-beachball to v0.5.3
+- Bump @langri-sha/projen-codeowners to v0.5.3
+- Bump @langri-sha/projen-editorconfig to v0.6.3
+- Bump @langri-sha/projen-eslint to v0.3.3
+- Bump @langri-sha/projen-husky to v0.3.9
+- Bump @langri-sha/projen-jest-config to v0.4.3
+- Bump @langri-sha/projen-license to v0.3.6
+- Bump @langri-sha/projen-lint-staged to v0.3.3
+- Bump @langri-sha/projen-lint-synthesized to v0.5.5
+- Bump @langri-sha/projen-pnpm-workspace to v0.3.4
+- Bump @langri-sha/projen-prettier to v0.4.3
+- Bump @langri-sha/projen-readme to v0.1.3
+- Bump @langri-sha/projen-renovate to v0.4.8
+- Bump @langri-sha/projen-swcrc to v0.1.8
+- Bump @langri-sha/projen-typescript-config to v0.5.7
+- Bump @langri-sha/tsconfig to v0.11.0
+- Bump @langri-sha/vitest to v0.1.3
 
 ## 0.18.0
 

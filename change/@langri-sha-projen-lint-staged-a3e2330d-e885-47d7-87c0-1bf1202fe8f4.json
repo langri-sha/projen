@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Use lint-staged's bundled Configuration type instead of the removed @types/lint-staged stub",
-  "packageName": "@langri-sha/projen-lint-staged",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

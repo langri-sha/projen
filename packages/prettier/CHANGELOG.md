@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/prettier
 
-<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.2
+
+Sat, 25 Jul 2026 15:41:25 GMT
+
+### Patches
+
+- Bump @langri-sha/tsconfig to v0.11.0
 
 ## 0.4.1
 

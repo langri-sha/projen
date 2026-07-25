@@ -2,6 +2,21 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 15:41:25 GMT",
+      "version": "0.11.0",
+      "tag": "@langri-sha/tsconfig_v0.11.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "cc77bf3a23e5fcdd7c485421ab14b02ed061ce02",
+            "comment": "Switch to Bundler module resolution so exports-only packages (like lint-staged) resolve"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.10.2",
       "tag": "@langri-sha/tsconfig_v0.10.2",

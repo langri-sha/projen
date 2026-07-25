@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/tsconfig
 
-<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.11.0
+
+Sat, 25 Jul 2026 15:41:25 GMT
+
+### Minor changes
+
+- Switch to Bundler module resolution so exports-only packages (like lint-staged) resolve (filip.dupanovic@gmail.com)
 
 ## 0.10.2
 

@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Switch to Bundler module resolution so exports-only packages (like lint-staged) resolve",
-  "packageName": "@langri-sha/tsconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

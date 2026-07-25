@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/projen-husky
 
-<!-- This log was last generated on Mon, 20 Jul 2026 10:17:52 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.9
+
+Sat, 25 Jul 2026 15:41:25 GMT
+
+### Patches
+
+- chore(deps): update dependency @types/node to v24.13.3 (email not defined)
+- Bump @langri-sha/tsconfig to v0.11.0
+- Bump @langri-sha/vitest to v0.1.3
 
 ## 0.3.8
 

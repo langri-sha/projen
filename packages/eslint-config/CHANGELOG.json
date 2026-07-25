@@ -2,6 +2,21 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Sat, 25 Jul 2026 15:41:25 GMT",
+      "version": "0.9.1",
+      "tag": "@langri-sha/eslint-config_v0.9.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/eslint-config",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 20 Jul 2026 10:17:52 GMT",
       "version": "0.9.0",
       "tag": "@langri-sha/eslint-config_v0.9.0",
