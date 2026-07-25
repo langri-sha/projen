@@ -22,8 +22,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "workspace:*",
-    "@types/lint-staged": "13.3.0"
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "eslint": "^9.0.0 || ^10.0.0",

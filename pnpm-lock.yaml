@@ -32,9 +32,6 @@ importers:
       '@swc/core':
         specifier: 1.15.40
         version: 1.15.40
-      '@types/lint-staged':
-        specifier: 13.3.0
-        version: 13.3.0
       '@types/node':
         specifier: 24.13.3
         version: 24.13.3
@@ -124,9 +121,6 @@ importers:
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
-      '@types/lint-staged':
-        specifier: 13.3.0
-        version: 13.3.0
 
   packages/prettier:
     dependencies:
@@ -1688,9 +1682,6 @@ packages:
 
   '@types/json-schema@7.0.15':
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
-
-  '@types/lint-staged@13.3.0':
-    resolution: {integrity: sha512-WxGjVP+rA4OJlEdbZdT9MS9PFKQ7kVPhLn26gC+2tnBWBEFEj/KW+IbFfz6sxdxY5U6V7BvyF+3BzCGsAMHhNg==}
 
   '@types/lodash@4.17.24':
     resolution: {integrity: sha512-gIW7lQLZbue7lRSWEFql49QJJWThrTFFeIMJdp3eH4tKoxm1OvEPg02rm4wCCSHS0cL3/Fizimb35b7k8atwsQ==}
@@ -5199,8 +5190,6 @@ snapshots:
       '@types/istanbul-lib-report': 3.0.3
 
   '@types/json-schema@7.0.15': {}
-
-  '@types/lint-staged@13.3.0': {}
 
   '@types/lodash@4.17.24': {}
 
