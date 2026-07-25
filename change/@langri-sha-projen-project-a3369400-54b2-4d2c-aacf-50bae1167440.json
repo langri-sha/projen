@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "chore(deps): update dependency @babel/core to v8",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
