@@ -538,7 +538,7 @@ project.addSubproject(
         '@langri-sha/projen-typescript-config@workspace:*',
         'ramda@0.32.0',
       ],
-      devDeps: ['@types/ramda@0.31.1'],
+      devDeps: ['@types/ramda@0.32.0'],
       peerDeps: [
         '@babel/core@^7.8.0',
         '@swc-node/register@^1.0.0',
