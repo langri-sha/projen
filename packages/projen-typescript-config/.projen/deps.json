@@ -22,7 +22,7 @@
     },
     {
       "name": "@schemastore/tsconfig",
-      "version": "0.0.12",
+      "version": "1.0.9",
       "type": "runtime"
     }
   ],
