@@ -794,7 +794,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['nock@13.5.6', 'tempy@1.0.1'],
+      deps: ['nock@14.0.16', 'tempy@1.0.1'],
       peerDeps: ['vitest@^4.0.0'],
     },
   },
