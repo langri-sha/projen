@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "chore(deps): update dependency vitest to v4",
-  "packageName": "@langri-sha/vitest",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

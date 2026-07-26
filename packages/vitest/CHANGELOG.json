@@ -2,6 +2,27 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.1.4",
+      "tag": "@langri-sha/vitest_v0.1.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/vitest",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "chore(deps): update dependency vitest to v4"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/vitest",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "fix(deps): update dependency nock to v14"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.1.3",
       "tag": "@langri-sha/vitest_v0.1.3",

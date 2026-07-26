@@ -2,6 +2,39 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.9.3",
+      "tag": "@langri-sha/eslint-config_v0.9.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "fix(deps): update dependency eslint-plugin-jsdoc to v63"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "fix(deps): update dependency globals to v17.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "fix(deps): update dependency typescript-eslint to v8.65.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "fix(deps): update dependency eslint-plugin-unicorn to v72"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 22:26:12 GMT",
       "version": "0.9.2",
       "tag": "@langri-sha/eslint-config_v0.9.2",

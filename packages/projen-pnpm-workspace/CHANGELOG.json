@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.3.5",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.3.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "comment": "Bump @langri-sha/vitest to v0.1.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.3.4",
       "tag": "@langri-sha/projen-pnpm-workspace_v0.3.4",

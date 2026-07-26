@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-babel",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.5.1",
+      "tag": "@langri-sha/projen-babel_v0.5.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-babel",
+            "comment": "Bump @langri-sha/vitest to v0.1.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 11:26:46 GMT",
       "version": "0.5.0",
       "tag": "@langri-sha/projen-babel_v0.5.0",

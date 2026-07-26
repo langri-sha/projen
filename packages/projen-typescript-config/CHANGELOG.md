@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-typescript-config
 
-<!-- This log was last generated on Sun, 26 Jul 2026 11:43:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 23:32:09 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.10
+
+Sun, 26 Jul 2026 23:32:09 GMT
+
+### Patches
+
+- fix(deps): update dependency @schemastore/tsconfig to v1 (email not defined)
+- Bump @langri-sha/vitest to v0.1.4
 
 ## 0.5.9
 

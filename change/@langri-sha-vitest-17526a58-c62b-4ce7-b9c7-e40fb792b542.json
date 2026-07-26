@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency nock to v14",
-  "packageName": "@langri-sha/vitest",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

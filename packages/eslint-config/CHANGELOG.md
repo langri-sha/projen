@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/eslint-config
 
-<!-- This log was last generated on Sat, 25 Jul 2026 22:26:12 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 23:32:09 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.3
+
+Sun, 26 Jul 2026 23:32:09 GMT
+
+### Patches
+
+- fix(deps): update dependency eslint-plugin-jsdoc to v63 (email not defined)
+- fix(deps): update dependency globals to v17.8.0 (email not defined)
+- fix(deps): update dependency typescript-eslint to v8.65.0 (email not defined)
+- fix(deps): update dependency eslint-plugin-unicorn to v72 (email not defined)
 
 ## 0.9.2
 

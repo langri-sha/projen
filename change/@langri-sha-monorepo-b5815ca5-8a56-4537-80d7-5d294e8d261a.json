@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency find-up to v8",
-  "packageName": "@langri-sha/monorepo",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

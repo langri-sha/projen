@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-husky",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.3.12",
+      "tag": "@langri-sha/projen-husky_v0.3.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-husky",
+            "comment": "Bump @langri-sha/vitest to v0.1.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 11:43:48 GMT",
       "version": "0.3.11",
       "tag": "@langri-sha/projen-husky_v0.3.11",

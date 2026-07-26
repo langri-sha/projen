@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-beachball",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.5.4",
+      "tag": "@langri-sha/projen-beachball_v0.5.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-beachball",
+            "comment": "Bump @langri-sha/vitest to v0.1.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.5.3",
       "tag": "@langri-sha/projen-beachball_v0.5.3",

@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 23:32:09 GMT",
+      "version": "0.5.6",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.5.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "commit": "529c5102882fa0b0952acf9d8dd30f8f06639391",
+            "comment": "fix(deps): update dependency execa to v10"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "comment": "Bump @langri-sha/vitest to v0.1.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.5.5",
       "tag": "@langri-sha/projen-lint-synthesized_v0.5.5",

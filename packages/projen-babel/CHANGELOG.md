@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-babel
 
-<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 23:32:09 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.1
+
+Sun, 26 Jul 2026 23:32:09 GMT
+
+### Patches
+
+- Bump @langri-sha/vitest to v0.1.4
 
 ## 0.5.0
 
