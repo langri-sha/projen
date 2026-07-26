@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-babel",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 11:26:46 GMT",
+      "version": "0.5.0",
+      "tag": "@langri-sha/projen-babel_v0.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-babel",
+            "commit": "9877dd81e6cb187b6ec61c8702bc6e71672c623b",
+            "comment": "Emit the Babel 8 config types and require @babel/core@^8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.4.3",
       "tag": "@langri-sha/projen-babel_v0.4.3",

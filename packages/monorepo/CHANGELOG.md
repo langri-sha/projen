@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/monorepo
 
-<!-- This log was last generated on Sat, 25 Jul 2026 22:26:12 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.8
+
+Sun, 26 Jul 2026 11:26:46 GMT
+
+### Patches
+
+- fix(deps): Align monorepo @types/node with workspace (filip.dupanovic@gmail.com)
+- chore(deps): update dependency @types/node to v24.13.3 (email not defined)
 
 ## 0.5.7
 

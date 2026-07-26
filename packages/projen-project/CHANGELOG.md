@@ -1,8 +1,24 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.19.0
+
+Sun, 26 Jul 2026 11:26:46 GMT
+
+### Minor changes
+
+- Emit the Babel 8 config types and require @babel/core@^8 (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.0
+- Bump @langri-sha/projen-husky to v0.3.10
+- Bump @langri-sha/projen-lint-staged to v0.3.4
+- Bump @langri-sha/projen-typescript-config to v0.5.8
+
+### Patches
+
+- chore(deps): update dependency lint-staged to v17 (email not defined)
 
 ## 0.18.1
 

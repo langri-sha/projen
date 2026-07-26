@@ -2,6 +2,53 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 11:26:46 GMT",
+      "version": "0.19.0",
+      "tag": "@langri-sha/projen-project_v0.19.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "9877dd81e6cb187b6ec61c8702bc6e71672c623b",
+            "comment": "chore(deps): update dependency lint-staged to v17"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "9877dd81e6cb187b6ec61c8702bc6e71672c623b",
+            "comment": "Emit the Babel 8 config types and require @babel/core@^8"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-babel to v0.5.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-husky to v0.3.10",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-lint-staged to v0.3.4",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-typescript-config to v0.5.8",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.18.1",
       "tag": "@langri-sha/projen-project_v0.18.1",

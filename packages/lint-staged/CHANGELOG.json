@@ -2,6 +2,21 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 11:26:46 GMT",
+      "version": "0.9.3",
+      "tag": "@langri-sha/lint-staged_v0.9.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/lint-staged",
+            "commit": "9877dd81e6cb187b6ec61c8702bc6e71672c623b",
+            "comment": "chore(deps): update dependency lint-staged to v17"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.9.2",
       "tag": "@langri-sha/lint-staged_v0.9.2",

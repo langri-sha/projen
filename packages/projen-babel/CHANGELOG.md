@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-babel
 
-<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.0
+
+Sun, 26 Jul 2026 11:26:46 GMT
+
+### Minor changes
+
+- Emit the Babel 8 config types and require @babel/core@^8 (filip.dupanovic@gmail.com)
 
 ## 0.4.3
 

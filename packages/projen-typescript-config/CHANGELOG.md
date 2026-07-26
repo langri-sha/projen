@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-typescript-config
 
-<!-- This log was last generated on Sat, 25 Jul 2026 15:41:25 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.8
+
+Sun, 26 Jul 2026 11:26:46 GMT
+
+### Patches
+
+- chore(deps): update dependency @types/node to v26 (email not defined)
 
 ## 0.5.7
 

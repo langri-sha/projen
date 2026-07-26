@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Emit the Babel 8 config types and require @babel/core@^8",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

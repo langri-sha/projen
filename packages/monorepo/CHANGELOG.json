@@ -2,6 +2,27 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 11:26:46 GMT",
+      "version": "0.5.8",
+      "tag": "@langri-sha/monorepo_v0.5.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "9877dd81e6cb187b6ec61c8702bc6e71672c623b",
+            "comment": "fix(deps): Align monorepo @types/node with workspace"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "9877dd81e6cb187b6ec61c8702bc6e71672c623b",
+            "comment": "chore(deps): update dependency @types/node to v24.13.3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 22:26:12 GMT",
       "version": "0.5.7",
       "tag": "@langri-sha/monorepo_v0.5.7",
