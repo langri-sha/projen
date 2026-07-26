@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Pin @types/node to the Node.js LTS major",
+  "packageName": "@langri-sha/projen-typescript-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
