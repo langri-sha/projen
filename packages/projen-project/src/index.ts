@@ -45,6 +45,11 @@ import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 
 export * from '@langri-sha/projen-typescript-config'
 
+/**
+ * The shell command used to run the projen CLI.
+ */
+const PROJEN_COMMAND = 'pnpm exec projen'
+
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
@@ -170,6 +175,10 @@ export class Project extends BaseProject {
 
   constructor(options: ProjectOptions) {
     super({
+      // Projects generated here are pnpm workspaces, so the synthesis command
+      // written into file headers and `package.json` scripts is pnpm's, not
+      // projen's `npx projen` default.
+      projenCommand: PROJEN_COMMAND,
       ...options,
       gitIgnoreOptions: getGitIgnoreOptions(options),
     })

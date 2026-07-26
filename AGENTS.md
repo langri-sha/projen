@@ -29,7 +29,7 @@ consuming projects, not dependencies of this repo.
 
 ```sh
 pnpm install                     # also runs schema → .d.ts prepare scripts
-npx projen                       # re-synth everything from .projenrc.ts (tsx)
+pnpm exec projen                 # re-synth everything from .projenrc.ts (tsx)
 pnpm exec vitest run             # run all unit tests
 pnpm -r --if-present prepublishOnly  # tsc-build every package
 ```
