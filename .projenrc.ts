@@ -735,7 +735,7 @@ project.addSubproject(
         'schemastore-to-typescript': 'src/cli.ts',
       },
       deps: [
-        'commander@12.1.0',
+        'commander@15.0.0',
         'debug@4.4.3',
         'env-paths@3.0.0',
         'es-main@1.4.0',
