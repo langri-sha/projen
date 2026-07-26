@@ -223,7 +223,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['find-up@7.0.0'],
+      deps: ['find-up@8.0.0'],
       devDeps: ['@types/node@24.13.3'],
     },
   },
