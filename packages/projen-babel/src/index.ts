@@ -1,4 +1,4 @@
-import type { TransformOptions } from '@babel/core'
+import type { InputOptions } from '@babel/core'
 import { FileBase, IResolver, Project } from 'projen'
 import serialize from 'serialize-javascript'
 
@@ -21,12 +21,12 @@ export interface BabelOptions {
   /**
    * Options for transforming Babel.
    */
-  readonly options?: TransformOptions
+  readonly options?: InputOptions
 }
 
 export class Babel extends FileBase {
   #configApiFunction: string | undefined
-  options: TransformOptions
+  options: InputOptions
 
   constructor(project: Project, options: BabelOptions = {}) {
     const filename = options.filename ?? 'babel.config.js'
@@ -45,7 +45,7 @@ export class Babel extends FileBase {
 
     if (this.#configApiFunction !== undefined) {
       lines = [
-        `/** @type {import('@babel/core').ConfigFunction} */`,
+        `/** @type {(api: import('@babel/core').ConfigAPI) => import('@babel/core').InputOptions} */`,
         `const config = (api) => {`,
         this.#configApiFunction ? `${this.#configApiFunction}\n` : '',
         `return ${serialize(this.options, { space: 2, unsafe: true })}`,
@@ -54,7 +54,7 @@ export class Babel extends FileBase {
       ].filter(Boolean)
     } else {
       lines = [
-        `/** @type {import('@babel/core').TransformOptions} */`,
+        `/** @type {import('@babel/core').InputOptions} */`,
         `const config = ${serialize(this.options, { space: 2, unsafe: true })}\n`,
         `export default config\n`,
       ]

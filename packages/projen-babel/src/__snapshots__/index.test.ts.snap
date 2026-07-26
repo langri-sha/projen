@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`defaults 1`] = `
-"/** @type {import('@babel/core').TransformOptions} */
+"/** @type {import('@babel/core').InputOptions} */
 const config = {}
 
 export default config
@@ -9,7 +9,7 @@ export default config
 `;
 
 exports[`with blank config API function 1`] = `
-"/** @type {import('@babel/core').ConfigFunction} */
+"/** @type {(api: import('@babel/core').ConfigAPI) => import('@babel/core').InputOptions} */
 const config = (api) => {
 return {}
 }
@@ -19,7 +19,7 @@ export default config
 `;
 
 exports[`with config API function 1`] = `
-"/** @type {import('@babel/core').ConfigFunction} */
+"/** @type {(api: import('@babel/core').ConfigAPI) => import('@babel/core').InputOptions} */
 const config = (api) => {
 api.cache(true)
 
@@ -31,7 +31,7 @@ export default config
 `;
 
 exports[`with config API function and transform options 1`] = `
-"/** @type {import('@babel/core').ConfigFunction} */
+"/** @type {(api: import('@babel/core').ConfigAPI) => import('@babel/core').InputOptions} */
 const config = (api) => {
 api.cache(true)
 
@@ -47,7 +47,7 @@ export default config
 `;
 
 exports[`with filename 1`] = `
-"/** @type {import('@babel/core').TransformOptions} */
+"/** @type {import('@babel/core').InputOptions} */
 const config = {}
 
 export default config
@@ -55,7 +55,7 @@ export default config
 `;
 
 exports[`with transform options 1`] = `
-"/** @type {import('@babel/core').TransformOptions} */
+"/** @type {import('@babel/core').InputOptions} */
 const config = {
   "presets": [
     "@babel/preset-env"

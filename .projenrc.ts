@@ -291,11 +291,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@6.0.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: [
-        '@babel/core@^7.8.0',
-        '@types/babel__core@^7.8.0',
-        ...projenPeer.peerDeps,
-      ],
+      peerDeps: ['@babel/core@^8.0.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
@@ -560,10 +556,9 @@ project.addSubproject(
       ],
       devDeps: ['@types/ramda@0.32.0'],
       peerDeps: [
-        '@babel/core@^7.8.0',
+        '@babel/core@^8.0.0',
         '@swc-node/register@^1.0.0',
         '@swc/core@^1.6.0',
-        '@types/babel__core@^7.8.0',
         'beachball@^2.0.0',
         'eslint@^9.0.0 || ^10.0.0',
         'husky@^9.0.1',
@@ -582,9 +577,6 @@ project.addSubproject(
           optional: true,
         },
         '@swc/core': {
-          optional: true,
-        },
-        '@types/babel__core': {
           optional: true,
         },
         beachball: {
