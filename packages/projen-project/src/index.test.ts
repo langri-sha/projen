@@ -24,7 +24,7 @@ import {
   expect,
   test,
 } from '@langri-sha/vitest'
-import { Project as BaseProject, IgnoreFile } from 'projen'
+import { Project as BaseProject, IgnoreFile, javascript } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { vi } from 'vitest'
 
@@ -93,13 +93,30 @@ describe('projen command', () => {
     expect(subproject.projenCommand).toBe('pnpm exec projen')
   })
 
+  test.each([
+    [javascript.NodePackageManager.BUN, 'bunx projen'],
+    [javascript.NodePackageManager.NPM, 'npx projen'],
+    [javascript.NodePackageManager.PNPM, 'pnpm exec projen'],
+    [javascript.NodePackageManager.YARN, 'yarn projen'],
+    [javascript.NodePackageManager.YARN2, 'yarn projen'],
+    [javascript.NodePackageManager.YARN_BERRY, 'yarn projen'],
+    [javascript.NodePackageManager.YARN_CLASSIC, 'yarn projen'],
+  ])('follows the %s package manager', (packageManager, expected) => {
+    const project = new Project({
+      name: 'test-project',
+      package: { packageManager },
+    })
+
+    expect(project.projenCommand).toBe(expected)
+  })
+
   test('can be overridden', () => {
     const project = new Project({
       name: 'test-project',
-      projenCommand: 'yarn projen',
+      projenCommand: 'scripts/run-task',
     })
 
-    expect(project.projenCommand).toBe('yarn projen')
+    expect(project.projenCommand).toBe('scripts/run-task')
   })
 })
 

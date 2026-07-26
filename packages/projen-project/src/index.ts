@@ -46,9 +46,24 @@ import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 export * from '@langri-sha/projen-typescript-config'
 
 /**
- * The shell command used to run the projen CLI.
+ * The package manager assumed when a project does not name one.
  */
-const PROJEN_COMMAND = 'pnpm exec projen'
+const DEFAULT_PACKAGE_MANAGER = javascript.NodePackageManager.PNPM
+
+/**
+ * The shell command used to run the projen CLI, per package manager. Projen
+ * itself defaults to `npx projen` regardless of the manager in use; generated
+ * files should name the one the project is actually installed with.
+ */
+const PROJEN_COMMANDS: Record<javascript.NodePackageManager, string> = {
+  [javascript.NodePackageManager.BUN]: 'bunx projen',
+  [javascript.NodePackageManager.NPM]: 'npx projen',
+  [javascript.NodePackageManager.PNPM]: 'pnpm exec projen',
+  [javascript.NodePackageManager.YARN]: 'yarn projen',
+  [javascript.NodePackageManager.YARN2]: 'yarn projen',
+  [javascript.NodePackageManager.YARN_BERRY]: 'yarn projen',
+  [javascript.NodePackageManager.YARN_CLASSIC]: 'yarn projen',
+}
 
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
@@ -175,10 +190,9 @@ export class Project extends BaseProject {
 
   constructor(options: ProjectOptions) {
     super({
-      // Projects generated here are pnpm workspaces, so the synthesis command
-      // written into file headers and `package.json` scripts is pnpm's, not
-      // projen's `npx projen` default.
-      projenCommand: PROJEN_COMMAND,
+      // Resolved from the options rather than `this.package`, which does not
+      // exist until `#configurePackage` runs further down.
+      projenCommand: getProjenCommand(options),
       ...options,
       gitIgnoreOptions: getGitIgnoreOptions(options),
     })
@@ -513,7 +527,7 @@ export class Project extends BaseProject {
 
     const defaults: NodePackageOptions = {
       entrypoint: 'src/index.ts',
-      packageManager: javascript.NodePackageManager.PNPM,
+      packageManager: DEFAULT_PACKAGE_MANAGER,
     }
 
     this.package = new NodePackage(this, deepMerge(defaults, pkg))
@@ -782,6 +796,9 @@ export class Project extends BaseProject {
     }
   }
 }
+
+const getProjenCommand = ({ package: pkg }: ProjectOptions) =>
+  PROJEN_COMMANDS[pkg?.packageManager ?? DEFAULT_PACKAGE_MANAGER]
 
 const getGitIgnoreOptions = ({
   gitIgnoreOptions,
