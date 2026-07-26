@@ -78,6 +78,31 @@ test('defaults', () => {
   expect(project.typeScriptConfig).toBeUndefined()
 })
 
+describe('projen command', () => {
+  test('defaults to pnpm', () => {
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    const subproject = project.addSubproject({
+      name: '@someproject/test',
+      outdir: path.join('sub', '@some', 'test'),
+    })
+
+    expect(project.projenCommand).toBe('pnpm exec projen')
+    expect(subproject.projenCommand).toBe('pnpm exec projen')
+  })
+
+  test('can be overridden', () => {
+    const project = new Project({
+      name: 'test-project',
+      projenCommand: 'yarn projen',
+    })
+
+    expect(project.projenCommand).toBe('yarn projen')
+  })
+})
+
 test('get all subprojects', () => {
   const project = new Project({
     name: 'test-project',

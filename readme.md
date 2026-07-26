@@ -34,7 +34,7 @@ Custom packages used to scaffold, configure and maintain repositories.
 
 ```sh
 pnpm install
-npx projen                       # synth from .projenrc.ts
+pnpm exec projen                 # synth from .projenrc.ts
 pnpm exec vitest run             # tests
 pnpm -r --if-present prepublishOnly  # tsc-build
 ```
