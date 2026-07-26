@@ -567,7 +567,7 @@ project.addSubproject(
         'prettier@^3.0.0',
         ...projenPeer.peerDeps,
         'tsx@^4.0.0',
-        'typescript@^5.5.0',
+        'typescript@^7.0.0',
       ],
       peerDependenciesMeta: {
         '@babel/core': {
@@ -774,7 +774,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       entrypoint: 'base.json',
-      peerDeps: ['typescript@^5.5.0'],
+      peerDeps: ['typescript@^7.0.0'],
     },
   },
   subproject,

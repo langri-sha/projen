@@ -57,7 +57,7 @@
     "prettier": "^3.0.0",
     "projen": "^0.86.0",
     "tsx": "^4.0.0",
-    "typescript": "^5.5.0"
+    "typescript": "^5.5.0 || ^7.0.0"
   },
   "peerDependenciesMeta": {
     "@babel/core": {
