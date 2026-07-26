@@ -135,8 +135,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       '@types/node':
-        specifier: 24.13.3
-        version: 24.13.3
+        specifier: 26.1.1
+        version: 26.1.1
 
   packages/prettier:
     dependencies:
