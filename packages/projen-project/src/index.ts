@@ -573,10 +573,19 @@ export class Project extends BaseProject {
     this.readme = new ReadmeFile(this, readme)
   }
 
-  #configureRenovate({ renovate: renovateOptions }: ProjectOptions) {
+  #configureRenovate({
+    renovate: renovateOptions,
+    package: pkg,
+  }: ProjectOptions) {
     if (!renovateOptions || this.parent) {
       return
     }
+
+    // The `node` datasource below is LTS-gated, but the npm datasource that
+    // manages `@types/node` is not, so the typings otherwise jump to each new
+    // Node major the day DefinitelyTyped publishes it. Constrain them to the
+    // major `minNodeVersion` targets so both pins move together.
+    const nodeTypesMajor = pkg?.minNodeVersion?.match(/^(\d+)\./)?.[1]
 
     const defaults: RenovateOptions = {
       configMigration: true,
@@ -592,6 +601,16 @@ export class Project extends BaseProject {
           matchFileNames: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
           enabled: true,
         },
+        ...(nodeTypesMajor
+          ? [
+              {
+                description:
+                  'Keep Node.js typings on the major supported by the runtime',
+                matchPackageNames: ['@types/node'],
+                allowedVersions: `^${nodeTypesMajor}`,
+              },
+            ]
+          : []),
       ],
       customManagers: [
         {

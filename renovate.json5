@@ -14,6 +14,11 @@
       matchFileNames: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
       enabled: true,
     },
+    {
+      description: 'Keep Node.js typings on the major supported by the runtime',
+      matchPackageNames: ['@types/node'],
+      allowedVersions: '^24',
+    },
   ],
   customManagers: [
     {
