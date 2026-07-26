@@ -96,8 +96,8 @@ importers:
         specifier: 65.0.1
         version: 65.0.1(eslint@10.8.0)
       globals:
-        specifier: 17.7.0
-        version: 17.7.0
+        specifier: 17.8.0
+        version: 17.8.0
       typescript-eslint:
         specifier: 8.65.0
         version: 8.65.0(eslint@10.8.0)(typescript@5.9.3)
@@ -2894,8 +2894,8 @@ packages:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
     deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
-  globals@17.7.0:
-    resolution: {integrity: sha512-Czmyns5dUsq4seFBR/Kdydhmo8y9kC79hiSkPn0YcGtNnYWnrgt0vjrSjx9tspoDGWm2CMarffRuLjM4xUz8xg==}
+  globals@17.8.0:
+    resolution: {integrity: sha512-Zz/LMDZScFmkakeL2cTHzf+PbWKdpU3uclqkZT7TjDG58j5WPt0PpA+n9uPI24fZtlw07q0OtEi84K+umsRzqQ==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -6780,7 +6780,7 @@ snapshots:
       detect-indent: 7.0.2
       eslint: 10.8.0
       find-up-simple: 1.0.1
-      globals: 17.7.0
+      globals: 17.8.0
       indent-string: 5.0.0
       is-builtin-module: 5.0.0
       jsesc: 3.1.0
@@ -7081,7 +7081,7 @@ snapshots:
       once: 1.4.0
       path-is-absolute: 1.0.1
 
-  globals@17.7.0: {}
+  globals@17.8.0: {}
 
   globalthis@1.0.4:
     dependencies:
