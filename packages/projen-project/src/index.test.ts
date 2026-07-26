@@ -589,6 +589,22 @@ test('with Renovate options', () => {
   expect(project.renovate).toBeInstanceOf(Renovate)
 })
 
+test('with Renovate options and a minimum Node.js version', () => {
+  const project = new Project({
+    name: 'test-project',
+    package: {
+      minNodeVersion: '24.16.0',
+    },
+    renovate: {},
+  })
+
+  expect(synthSnapshot(project)['renovate.json5'].packageRules).toContainEqual({
+    description: 'Keep Node.js typings on the major supported by the runtime',
+    matchPackageNames: ['@types/node'],
+    allowedVersions: '^24',
+  })
+})
+
 describe('with SWC options', () => {
   test('defaults', () => {
     const project = new Project({
