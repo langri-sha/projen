@@ -562,7 +562,7 @@ project.addSubproject(
         'beachball@^2.0.0',
         'eslint@^9.0.0 || ^10.0.0',
         'husky@^9.0.1',
-        'jest@^28.0.0 || ^29.0.0',
+        'jest@^30.0.0',
         'lint-staged@^17.0.0',
         'prettier@^3.0.0',
         ...projenPeer.peerDeps,
