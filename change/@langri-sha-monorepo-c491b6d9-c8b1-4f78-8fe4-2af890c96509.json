@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "fix(deps): Align monorepo @types/node with workspace",
+  "packageName": "@langri-sha/monorepo",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
