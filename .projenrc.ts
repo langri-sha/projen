@@ -708,7 +708,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['@schemastore/tsconfig@0.0.12'],
+      deps: ['@schemastore/tsconfig@1.0.9'],
       devDeps: ['@types/node@24.13.3'],
       peerDeps: [...projenPeer.peerDeps],
     },
