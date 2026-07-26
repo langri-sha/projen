@@ -737,7 +737,7 @@ project.addSubproject(
       deps: [
         'commander@12.1.0',
         'debug@4.4.3',
-        'env-paths@3.0.0',
+        'env-paths@4.0.0',
         'es-main@1.4.0',
         'got@14.4.7',
         'json-schema-to-typescript@15.0.4',
