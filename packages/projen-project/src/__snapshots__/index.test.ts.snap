@@ -777,7 +777,7 @@ node_modules/
 
       project.synth()
       ",
-  "babel.config.mjs": "/** @type {import('@babel/core').TransformOptions} */
+  "babel.config.mjs": "/** @type {import('@babel/core').InputOptions} */
 const config = {
   "presets": [
     "@langri-sha/babel-preset"
@@ -921,7 +921,7 @@ node_modules/
 
       project.synth()
       ",
-  "babel.config.js": "/** @type {import('@babel/core').TransformOptions} */
+  "babel.config.js": "/** @type {import('@babel/core').InputOptions} */
 const config = {
   "presets": [
     "@langri-sha/babel-preset"
