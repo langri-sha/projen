@@ -27,7 +27,7 @@
     },
     {
       "name": "serialize-javascript",
-      "version": "6.0.2",
+      "version": "7.0.7",
       "type": "runtime"
     }
   ],
