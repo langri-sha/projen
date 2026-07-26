@@ -224,7 +224,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['find-up@7.0.0'],
-      devDeps: ['@types/node@24.13.3'],
+      devDeps: ['@types/node@26.1.1'],
     },
   },
   subproject,
