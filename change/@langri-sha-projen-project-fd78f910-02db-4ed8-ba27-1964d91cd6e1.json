@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Constrain @types/node updates to the Node.js LTS major that minNodeVersion targets",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 11:43:48 GMT",
+      "version": "0.19.1",
+      "tag": "@langri-sha/projen-project_v0.19.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "0be6bc6bbc927291d9602e6845e5bb9454d599d7",
+            "comment": "Constrain @types/node updates to the Node.js LTS major that minNodeVersion targets"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-husky to v0.3.11",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-typescript-config to v0.5.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 11:26:46 GMT",
       "version": "0.19.0",
       "tag": "@langri-sha/projen-project_v0.19.0",

@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-typescript-config
 
-<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 11:43:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.9
+
+Sun, 26 Jul 2026 11:43:48 GMT
+
+### Patches
+
+- Pin @types/node to the Node.js LTS major (filip.dupanovic@gmail.com)
 
 ## 0.5.8
 

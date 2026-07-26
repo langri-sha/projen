@@ -2,6 +2,21 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Sun, 26 Jul 2026 11:43:48 GMT",
+      "version": "0.5.9",
+      "tag": "@langri-sha/monorepo_v0.5.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "0be6bc6bbc927291d9602e6845e5bb9454d599d7",
+            "comment": "Pin @types/node to the Node.js LTS major"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 11:26:46 GMT",
       "version": "0.5.8",
       "tag": "@langri-sha/monorepo_v0.5.8",

@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 26 Jul 2026 11:26:46 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 26 Jul 2026 11:43:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.19.1
+
+Sun, 26 Jul 2026 11:43:48 GMT
+
+### Patches
+
+- Constrain @types/node updates to the Node.js LTS major that minNodeVersion targets (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-husky to v0.3.11
+- Bump @langri-sha/projen-typescript-config to v0.5.9
 
 ## 0.19.0
 
