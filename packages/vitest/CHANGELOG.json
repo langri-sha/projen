@@ -2,6 +2,21 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 22:24:07 GMT",
+      "version": "0.1.8",
+      "tag": "@langri-sha/vitest_v0.1.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "b8065aa6948f97164ae7feb51dde66a37da01239",
+            "comment": "Migrate Tempy calls to v3 named exports"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:38:48 GMT",
       "version": "0.1.7",
       "tag": "@langri-sha/vitest_v0.1.7",

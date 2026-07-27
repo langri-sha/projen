@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-beachball
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.8
+
+Mon, 27 Jul 2026 22:24:07 GMT
+
+### Patches
+
+- Bump @langri-sha/vitest to v0.1.8
 
 ## 0.5.7
 

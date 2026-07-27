@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix pnpm-workspace.yaml schema types missing from the published package",
-  "packageName": "@langri-sha/projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

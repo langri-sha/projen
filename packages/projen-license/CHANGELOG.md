@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-license
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.11
+
+Mon, 27 Jul 2026 22:24:07 GMT
+
+### Patches
+
+- Bump @langri-sha/vitest to v0.1.8
 
 ## 0.3.10
 

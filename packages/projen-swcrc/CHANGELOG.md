@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/projen-swcrc
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.13
+
+Mon, 27 Jul 2026 22:24:07 GMT
+
+### Patches
+
+- Fix .swcrc schema types missing from the published package (filip.dupanovic@gmail.com)
+- Bump @langri-sha/schemastore-to-typescript to v0.2.7
+- Bump @langri-sha/vitest to v0.1.8
 
 ## 0.1.12
 

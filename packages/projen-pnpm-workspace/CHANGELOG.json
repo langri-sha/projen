@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 22:24:07 GMT",
+      "version": "0.4.1",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.4.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "b8065aa6948f97164ae7feb51dde66a37da01239",
+            "comment": "Fix pnpm-workspace.yaml schema types missing from the published package"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.7",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "comment": "Bump @langri-sha/vitest to v0.1.8",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 13:35:37 GMT",
       "version": "0.4.0",
       "tag": "@langri-sha/projen-pnpm-workspace_v0.4.0",
