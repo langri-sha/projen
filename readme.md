@@ -1,6 +1,12 @@
-# projen
+<p align="center">
+  <img src="docs/assets/projen.svg" width="220" alt="Projen sprouting from a stack of project boxes">
+</p>
 
-Custom packages used to scaffold, configure and maintain repositories.
+<h1 align="center">projen</h1>
+
+<p align="center">
+  Custom packages used to scaffold, configure and maintain repositories.
+</p>
 
 ## Packages
 
