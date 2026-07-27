@@ -47,7 +47,7 @@ For [React] applications:
 ```json
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": ["@langri-sha/tsconfig", "@langri-sha/tsconfig/react.json"]
+  "extends": "@langri-sha/tsconfig/react.json"
 }
 ```
 
@@ -56,9 +56,33 @@ For [Emotion] applications:
 ```json
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": ["@langri-sha/tsconfig", "@langri-sha/tsconfig/emotion.json"]
+  "extends": "@langri-sha/tsconfig/emotion.json"
 }
 ```
+
+`react.json` and `emotion.json` already extend `base.json` themselves, so
+extending from either one on its own is enough — combining them with
+`@langri-sha/tsconfig` in an array only reapplies `base.json`'s settings a
+second time.
+
+For a [React] package inside a monorepo, combine `project.json` with
+`react.json` (or `emotion.json`) instead:
+
+```json
+// /workspace/packages/app/tsconfig.json
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": [
+    "@langri-sha/tsconfig/project.json",
+    "@langri-sha/tsconfig/react.json"
+  ]
+}
+```
+
+When combining configurations this way, list the one whose settings should win
+last. `react.json`/`emotion.json` override `base.json`'s `lib` (to add the DOM
+types), so they must come after `project.json` in the array — reversing the
+order would silently drop the DOM types again.
 
 ## See
 
