@@ -141,6 +141,11 @@ const publishRaw = (project: Project) => {
   project.package?.addField('publishConfig', {
     access: 'public',
   })
+
+  // TypeScript only resolves a bare package-name `extends` target via this
+  // field (or a `tsconfig.json` at the package root, which we deliberately
+  // don't publish) — it does not fall back to `main`.
+  project.package?.addField('tsconfig', 'base.json')
 }
 
 project.addSubproject(
