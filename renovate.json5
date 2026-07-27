@@ -20,6 +20,11 @@
       matchPackageNames: ['@types/node'],
       allowedVersions: '^24',
     },
+    {
+      description: 'Install our own packages without waiting them out',
+      matchPackageNames: ['@langri-sha/**'],
+      minimumReleaseAge: null,
+    },
   ],
   customManagers: [
     {
