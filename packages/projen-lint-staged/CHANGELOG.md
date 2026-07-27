@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-lint-staged
 
-<!-- This log was last generated on Mon, 27 Jul 2026 00:06:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 04:34:55 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.7
+
+Mon, 27 Jul 2026 04:34:55 GMT
+
+### Patches
+
+- fix(deps): update dependency serialize-javascript to v7 (email not defined)
 
 ## 0.3.6
 

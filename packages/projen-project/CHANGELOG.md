@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Mon, 27 Jul 2026 00:06:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 04:34:55 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.21.0
+
+Mon, 27 Jul 2026 04:34:55 GMT
+
+### Minor changes
+
+- Support extending from multiple TypeScript configurations (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.3
+- Bump @langri-sha/projen-eslint to v0.3.6
+- Bump @langri-sha/projen-jest-config to v0.4.6
+- Bump @langri-sha/projen-lint-staged to v0.3.7
+- Bump @langri-sha/projen-prettier to v0.4.6
 
 ## 0.20.0
 

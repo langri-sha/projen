@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-lint-staged",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 04:34:55 GMT",
+      "version": "0.3.7",
+      "tag": "@langri-sha/projen-lint-staged_v0.3.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-lint-staged",
+            "commit": "47cdccea25719da3ac52343f7b7cf6040fa42f0c",
+            "comment": "fix(deps): update dependency serialize-javascript to v7"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.3.6",
       "tag": "@langri-sha/projen-lint-staged_v0.3.6",

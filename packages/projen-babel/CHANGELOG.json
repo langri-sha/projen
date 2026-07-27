@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-babel",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 04:34:55 GMT",
+      "version": "0.5.3",
+      "tag": "@langri-sha/projen-babel_v0.5.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-babel",
+            "commit": "47cdccea25719da3ac52343f7b7cf6040fa42f0c",
+            "comment": "fix(deps): update dependency serialize-javascript to v7"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.5.2",
       "tag": "@langri-sha/projen-babel_v0.5.2",

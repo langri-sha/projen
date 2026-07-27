@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "fix(deps): update dependency serialize-javascript to v7",
-  "packageName": "@langri-sha/projen-eslint",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

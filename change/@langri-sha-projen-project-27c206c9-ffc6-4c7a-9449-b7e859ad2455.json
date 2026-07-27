@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Support extending from multiple TypeScript configurations",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
