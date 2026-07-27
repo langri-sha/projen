@@ -20,7 +20,7 @@
   "main": "src/index.ts",
   "scripts": {
     "prepare": "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache renovate src/renovate.ts",
-    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
+    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/renovate.d.ts"
   },
   "devDependencies": {
     "@langri-sha/schemastore-to-typescript": "workspace:*",
