@@ -88,6 +88,23 @@ exports[`sorts references 1`] = `
 }
 `;
 
+exports[`supports extending from a single configuration 1`] = `
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@langri-sha/tsconfig",
+}
+`;
+
+exports[`supports extending from an array of configurations 1`] = `
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": [
+    "@langri-sha/tsconfig",
+    "@langri-sha/tsconfig/react.json",
+  ],
+}
+`;
+
 exports[`with custom file name 1`] = `
 {
   "$schema": "https://json.schemastore.org/tsconfig",

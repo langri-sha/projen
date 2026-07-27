@@ -746,10 +746,22 @@ export class Project extends BaseProject {
           },
         }
 
-    this.typeScriptConfig = new TypeScriptConfig(
-      this,
-      deepMerge(defaults, typeScriptConfig),
-    )
+    const merged = deepMerge(defaults, typeScriptConfig)
+
+    // `extends` may be a single configuration or an array of configurations
+    // to combine (e.g. `@langri-sha/tsconfig` plus a project-specific
+    // override). An explicit override always replaces the default outright
+    // regardless of its shape, rather than being concatenated with it like
+    // genuinely repeatable arrays (e.g. `exclude`) are elsewhere via
+    // `deepMerge`.
+    if (typeScriptConfig.config?.extends !== undefined) {
+      merged.config = {
+        ...merged.config,
+        extends: typeScriptConfig.config.extends,
+      }
+    }
+
+    this.typeScriptConfig = new TypeScriptConfig(this, merged)
 
     if (!this.parent) {
       this.package?.addDevDeps('typescript@5.9.3')
