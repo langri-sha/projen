@@ -631,6 +631,41 @@ test('with Renovate options', () => {
   expect(project.renovate).toBeInstanceOf(Renovate)
 })
 
+test('with Renovate options, holding releases until pnpm accepts them', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+  })
+
+  expect(synthSnapshot(project)['renovate.json5'].minimumReleaseAge).toBe(
+    '3 days',
+  )
+})
+
+test('with Renovate options overriding the minimum release age', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {
+      minimumReleaseAge: '7 days',
+    },
+  })
+
+  expect(synthSnapshot(project)['renovate.json5'].minimumReleaseAge).toBe(
+    '7 days',
+  )
+})
+
+test('with Renovate options disabling the minimum release age', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {
+      minimumReleaseAge: null,
+    },
+  })
+
+  expect(synthSnapshot(project)['renovate.json5'].minimumReleaseAge).toBeNull()
+})
+
 test('with Renovate options and a minimum Node.js version', () => {
   const project = new Project({
     name: 'test-project',

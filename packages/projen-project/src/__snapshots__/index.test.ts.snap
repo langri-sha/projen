@@ -2521,6 +2521,7 @@ node_modules/
     "lockFileMaintenance": {
       "enabled": true,
     },
+    "minimumReleaseAge": "3 days",
     "packageRules": [
       {
         "description": "Prioritize updates in Projen configurations",
