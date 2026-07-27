@@ -15,6 +15,36 @@ test('defaults', () => {
   expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
 })
 
+test('supports extending from a single configuration', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new TypeScriptConfig(project, {
+    config: {
+      extends: '@langri-sha/tsconfig',
+    },
+  })
+
+  project.synth()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
+})
+
+test('supports extending from an array of configurations', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new TypeScriptConfig(project, {
+    config: {
+      extends: ['@langri-sha/tsconfig', '@langri-sha/tsconfig/react.json'],
+    },
+  })
+
+  project.synth()
+  expect(synthSnapshot(project)['tsconfig.json']).toMatchSnapshot()
+})
+
 test('with custom file name', () => {
   const project = new Project({
     name: 'test-project',

@@ -714,6 +714,64 @@ describe('with TypeScript options', () => {
     expect(project.typeScriptConfig).toBeInstanceOf(TypeScriptConfig)
   })
 
+  test('overrides `extends` with a single string', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {
+        config: {
+          extends: '@langri-sha/tsconfig/react',
+        },
+      },
+    })
+
+    expect(synthSnapshot(project)['tsconfig.json'].extends).toBe(
+      '@langri-sha/tsconfig/react',
+    )
+  })
+
+  test('overrides `extends` with an array of configurations', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {
+        config: {
+          extends: ['@langri-sha/tsconfig/project', './custom.json'],
+        },
+      },
+    })
+
+    expect(synthSnapshot(project)['tsconfig.json'].extends).toStrictEqual([
+      '@langri-sha/tsconfig/project',
+      './custom.json',
+    ])
+  })
+
+  test('overrides `extends` with an array for subprojects', () => {
+    const root = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {},
+    })
+
+    new Project({
+      name: 'child',
+      parent: root,
+      outdir: 'child',
+      package: {},
+      typeScriptConfig: {
+        config: {
+          extends: ['@langri-sha/tsconfig/project', '../shared.json'],
+        },
+      },
+    })
+
+    expect(synthSnapshot(root)['child/tsconfig.json'].extends).toStrictEqual([
+      '@langri-sha/tsconfig/project',
+      '../shared.json',
+    ])
+  })
+
   test('with SWC', () => {
     const project = new Project({
       name: 'test-project',
