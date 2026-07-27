@@ -3,32 +3,35 @@ import * as path from 'node:path'
 import { type IResolver, Project, YamlFile, javascript } from 'projen'
 import YAML from 'yaml'
 
+import { type PnpmWorkspacePnpmWorkspaceYaml as PnpmWorkspaceSchema } from './pnpm-workspace'
+
 /**
  * Options for maintaining a PNPM workspace.
+ *
+ * Every setting `pnpm-workspace.yaml` accepts is inherited from the schema;
+ * `filename` is the only option belonging to the component rather than to pnpm.
  */
-export interface PnpmWorkspaceOptions {
+export interface PnpmWorkspaceOptions extends PnpmWorkspaceSchema {
   /**
    * Name of the workspace configuration file.
    *
    * @default 'pnpm-workspace.yaml'
    */
   readonly filename?: string
-
-  /**
-   * List of package paths.
-   */
-  readonly packages?: string[]
 }
 
 export class PnpmWorkspace extends YamlFile {
   constructor(project: Project, options: PnpmWorkspaceOptions = {}) {
-    const filename = options.filename ?? 'pnpm-workspace.yaml'
+    const { filename = 'pnpm-workspace.yaml', ...settings } = options
 
     super(project, filename, {
       readonly: true,
       marker: true,
       obj: {
-        packages: [...(options.packages ?? [])],
+        ...settings,
+        // Copied rather than passed through, so `addPackages` appends to the
+        // file's own array instead of the caller's.
+        packages: [...(settings.packages ?? [])],
       },
     })
   }
@@ -70,12 +73,12 @@ export class PnpmWorkspace extends YamlFile {
       return
     }
 
-    const parsed: Writable<
-      Required<Exclude<PnpmWorkspaceOptions, 'filename'>>
-    > = YAML.parse(yaml)
+    const parsed: Writable<Omit<PnpmWorkspaceOptions, 'filename'>> =
+      YAML.parse(yaml)
 
-    parsed.packages = [...new Set(parsed.packages)]
-    parsed.packages.sort()
+    if (parsed.packages) {
+      parsed.packages = [...new Set(parsed.packages)].sort()
+    }
 
     return [
       ...(this.marker ? [`# ${this.marker}`, ''] : []),
