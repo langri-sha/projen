@@ -59,11 +59,7 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    ignorePatterns: [
-      '**/pnpm-workspace.d.ts',
-      '**/renovate.d.ts',
-      '**/swcrc.d.ts',
-    ],
+    ignorePatterns: ['**/pnpm-workspace.ts', '**/renovate.ts', '**/swcrc.ts'],
   },
   husky: {
     'pre-commit': 'lint-staged',
@@ -71,12 +67,7 @@ const project = new Project({
   lintStaged: {},
   lintSynthesized: {},
   prettier: {
-    ignorePatterns: [
-      '*.frag',
-      'pnpm-workspace.d.ts',
-      'renovate.d.ts',
-      'swcrc.d.ts',
-    ],
+    ignorePatterns: ['*.frag', 'pnpm-workspace.ts', 'renovate.ts', 'swcrc.ts'],
   },
   pnpmWorkspace: {
     packages: ['packages/*'],
@@ -524,11 +515,11 @@ project.addSubproject(
   test,
   publish,
   (project) => {
-    project.addGitIgnore('pnpm-workspace.d.ts')
+    project.addGitIgnore('pnpm-workspace.ts')
 
     project.package?.setScript(
       'prepare',
-      "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.d.ts",
+      "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     )
   },
 )
@@ -687,11 +678,11 @@ project.addSubproject(
   test,
   publish,
   (project) => {
-    project.addGitIgnore('renovate.d.ts')
+    project.addGitIgnore('renovate.ts')
 
     project.package?.setScript(
       'prepare',
-      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache renovate src/renovate.d.ts',
+      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache renovate src/renovate.ts',
     )
   },
 )
@@ -720,11 +711,11 @@ project.addSubproject(
   test,
   publish,
   (project) => {
-    project.addGitIgnore('swcrc.d.ts')
+    project.addGitIgnore('swcrc.ts')
 
     project.package?.setScript(
       'prepare',
-      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache swcrc src/swcrc.d.ts',
+      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache swcrc src/swcrc.ts',
     )
   },
 )

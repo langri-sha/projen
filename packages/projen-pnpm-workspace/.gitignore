@@ -9,5 +9,5 @@ node_modules/
 !/license
 !/.npmignore
 !/tsconfig.build.json
-pnpm-workspace.d.ts
+pnpm-workspace.ts
 !/.projenrc.ts
