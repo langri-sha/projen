@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:47:16 GMT",
+      "version": "0.22.0",
+      "tag": "@langri-sha/projen-project_v0.22.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "f0d5d06c55bafde9016ec8cef6f8733164a282e0",
+            "comment": "Hold Renovate updates until pnpm will install them"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:38:48 GMT",
       "version": "0.21.2",
       "tag": "@langri-sha/projen-project_v0.21.2",

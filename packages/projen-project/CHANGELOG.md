@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 11:47:16 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.22.0
+
+Mon, 27 Jul 2026 11:47:16 GMT
+
+### Minor changes
+
+- Hold Renovate updates until pnpm will install them (filip.dupanovic@gmail.com)
 
 ## 0.21.2
 
