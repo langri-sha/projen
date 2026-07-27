@@ -522,9 +522,6 @@ project.addSubproject(
       "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     )
 
-    // Guards against #91 regressing: tsc only emits declarations it
-    // compiled from source, so a generated schema module that silently
-    // reverts to a .d.ts input would build without ever landing here.
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pnpm-workspace.d.ts',
@@ -693,9 +690,6 @@ project.addSubproject(
       'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache renovate src/renovate.ts',
     )
 
-    // Guards against #91 regressing: tsc only emits declarations it
-    // compiled from source, so a generated schema module that silently
-    // reverts to a .d.ts input would build without ever landing here.
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/renovate.d.ts',
@@ -734,9 +728,6 @@ project.addSubproject(
       'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache swcrc src/swcrc.ts',
     )
 
-    // Guards against #91 regressing: tsc only emits declarations it
-    // compiled from source, so a generated schema module that silently
-    // reverts to a .d.ts input would build without ever landing here.
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/swcrc.d.ts',
