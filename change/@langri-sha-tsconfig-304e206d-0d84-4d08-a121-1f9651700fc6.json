@@ -1,0 +1,7 @@
+{
+  "type": "major",
+  "comment": "react.json and emotion.json no longer extend base.json; combine them with a complete configuration via an extends array",
+  "packageName": "@langri-sha/tsconfig",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

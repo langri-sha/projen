@@ -42,12 +42,20 @@ For projects in monorepos:
 }
 ```
 
+When combining configurations, list the complete configuration first, then
+aspects in the order they should apply, with later entries winning. `react.json`
+sets `lib` to add the DOM types, so it must come after whichever complete
+configuration you use, or that configuration's plain `lib` silently wins
+instead. `emotion.json` only overrides `jsxImportSource`, and depends on
+`react.json` already having set `jsx` and `lib` — it must come after
+`react.json`, not instead of it.
+
 For [React] applications:
 
 ```json
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@langri-sha/tsconfig/react.json"
+  "extends": ["@langri-sha/tsconfig", "@langri-sha/tsconfig/react.json"]
 }
 ```
 
@@ -56,17 +64,16 @@ For [Emotion] applications:
 ```json
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@langri-sha/tsconfig/emotion.json"
+  "extends": [
+    "@langri-sha/tsconfig",
+    "@langri-sha/tsconfig/react.json",
+    "@langri-sha/tsconfig/emotion.json"
+  ]
 }
 ```
 
-`react.json` and `emotion.json` already extend `base.json` themselves, so
-extending from either one on its own is enough — combining them with
-`@langri-sha/tsconfig` in an array only reapplies `base.json`'s settings a
-second time.
-
-For a [React] package inside a monorepo, combine `project.json` with
-`react.json` (or `emotion.json`) instead:
+For a [React] (or [Emotion]) package inside a monorepo, use `project.json` as
+the complete configuration instead:
 
 ```json
 // /workspace/packages/app/tsconfig.json
@@ -78,11 +85,6 @@ For a [React] package inside a monorepo, combine `project.json` with
   ]
 }
 ```
-
-When combining configurations this way, list the one whose settings should win
-last. `react.json`/`emotion.json` override `base.json`'s `lib` (to add the DOM
-types), so they must come after `project.json` in the array — reversing the
-order would silently drop the DOM types again.
 
 ## See
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix redundant extends recipes and document combining configurations",
-  "packageName": "@langri-sha/tsconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
