@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Accept every pnpm-workspace.yaml setting, not just packages",
-  "packageName": "@langri-sha/projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

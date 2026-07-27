@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 13:35:37 GMT",
+      "version": "0.4.0",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "e83b4545e6ed0e7039bce5784520af48ebc0ed55",
+            "comment": "Accept every pnpm-workspace.yaml setting, not just packages"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:38:48 GMT",
       "version": "0.3.8",
       "tag": "@langri-sha/projen-pnpm-workspace_v0.3.8",

@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 13:35:37 GMT",
+      "version": "0.22.1",
+      "tag": "@langri-sha/projen-project_v0.22.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-pnpm-workspace to v0.4.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:47:16 GMT",
       "version": "0.22.0",
       "tag": "@langri-sha/projen-project_v0.22.0",

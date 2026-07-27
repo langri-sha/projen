@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-pnpm-workspace
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 13:35:37 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.0
+
+Mon, 27 Jul 2026 13:35:37 GMT
+
+### Minor changes
+
+- Accept every pnpm-workspace.yaml setting, not just packages (filip.dupanovic@gmail.com)
 
 ## 0.3.8
 
