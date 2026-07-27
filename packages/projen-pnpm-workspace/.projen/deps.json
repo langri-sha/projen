@@ -1,6 +1,11 @@
 {
   "dependencies": [
     {
+      "name": "@langri-sha/schemastore-to-typescript",
+      "version": "workspace:*",
+      "type": "build"
+    },
+    {
       "name": "@langri-sha/tsconfig",
       "version": "*",
       "type": "build"
@@ -8,6 +13,11 @@
     {
       "name": "@langri-sha/vitest",
       "version": "workspace:*",
+      "type": "build"
+    },
+    {
+      "name": "tsx",
+      "version": "4.23.1",
       "type": "build"
     },
     {
