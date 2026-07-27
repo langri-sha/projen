@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Fix Renovate schema types missing from the published package",
+  "packageName": "@langri-sha/projen-renovate",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
