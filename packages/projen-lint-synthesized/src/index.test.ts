@@ -1,14 +1,14 @@
 import { promises as fs } from 'node:fs'
 import path from 'node:path'
 
-import { expect, tempy, test } from '@langri-sha/vitest'
+import { expect, temporaryDirectory, test } from '@langri-sha/vitest'
 import { Project, TextFile } from 'projen'
 import { directorySnapshot } from 'projen/lib/util/synth'
 
 import { LintSynthesized, type LintSynthesizedOptions } from './index'
 
 const setup = (options?: LintSynthesizedOptions) => {
-  const outdir = tempy.directory()
+  const outdir = temporaryDirectory()
 
   const project = new Project({
     name: 'test-project',
