@@ -2,9 +2,9 @@
 .*
 dist/
 *.frag
-pnpm-workspace.d.ts
-renovate.d.ts
-swcrc.d.ts
+pnpm-workspace.ts
+renovate.ts
+swcrc.ts
 !.projenrc.ts
 pnpm-lock.yaml
 CHANGELOG.md

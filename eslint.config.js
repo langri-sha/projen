@@ -6,9 +6,9 @@ export default [
     ignores: [
       '**/.*',
       '**/dist/',
-      '**/pnpm-workspace.d.ts',
-      '**/renovate.d.ts',
-      '**/swcrc.d.ts',
+      '**/pnpm-workspace.ts',
+      '**/renovate.ts',
+      '**/swcrc.ts',
       '!.projenrc.ts',
     ],
   },
