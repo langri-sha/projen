@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-swcrc",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },

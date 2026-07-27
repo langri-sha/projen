@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Add tsconfig field so bare package extends resolves",
-  "packageName": "@langri-sha/tsconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

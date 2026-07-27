@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:38:48 GMT",
+      "version": "0.5.9",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.5.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "comment": "Bump @langri-sha/vitest to v0.1.7",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:17:23 GMT",
       "version": "0.5.8",
       "tag": "@langri-sha/projen-lint-synthesized_v0.5.8",

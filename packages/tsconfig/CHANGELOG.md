@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/tsconfig
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:17:23 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 1.0.1
+
+Mon, 27 Jul 2026 11:38:48 GMT
+
+### Patches
+
+- Add tsconfig field so bare package extends resolves (filip.dupanovic@gmail.com)
 
 ## 1.0.0
 

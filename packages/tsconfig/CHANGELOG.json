@@ -2,6 +2,21 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:38:48 GMT",
+      "version": "1.0.1",
+      "tag": "@langri-sha/tsconfig_v1.0.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "872008e3dd98711cebf187213842031fc53c5232",
+            "comment": "Add tsconfig field so bare package extends resolves"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:17:23 GMT",
       "version": "1.0.0",
       "tag": "@langri-sha/tsconfig_v1.0.0",

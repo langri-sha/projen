@@ -2,6 +2,21 @@
   "name": "@langri-sha/prettier",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:38:48 GMT",
+      "version": "0.4.5",
+      "tag": "@langri-sha/prettier_v0.4.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/prettier",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:17:23 GMT",
       "version": "0.4.4",
       "tag": "@langri-sha/prettier_v0.4.4",
