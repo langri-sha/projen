@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Migrate Tempy calls to v3 named exports",
+  "packageName": "@langri-sha/vitest",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

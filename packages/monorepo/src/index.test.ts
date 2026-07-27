@@ -1,6 +1,11 @@
 import path from 'node:path'
 
-import { beforeEach, expect, tempy, test } from '@langri-sha/vitest'
+import {
+  beforeEach,
+  expect,
+  temporaryDirectory,
+  test,
+} from '@langri-sha/vitest'
 
 import monorepo from './index'
 
@@ -13,7 +18,7 @@ test('root points to the monorepo root correctly', () => {
 })
 
 test('root can be updated correctly', () => {
-  const newRoot = tempy.directory()
+  const newRoot = temporaryDirectory()
   monorepo.root = newRoot
 
   expect(monorepo.root).toBe(newRoot)

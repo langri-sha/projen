@@ -1,7 +1,7 @@
 import { promises as fs } from 'node:fs'
 import * as path from 'node:path'
 
-import { describe, expect, tempy, test } from '@langri-sha/vitest'
+import { describe, expect, temporaryDirectory, test } from '@langri-sha/vitest'
 import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
@@ -20,7 +20,7 @@ describe('resolves version', () => {
   })
 
   test('with a package set', async () => {
-    const outdir = tempy.directory()
+    const outdir = temporaryDirectory()
 
     await fs.writeFile(
       path.join(outdir, 'package.json'),
