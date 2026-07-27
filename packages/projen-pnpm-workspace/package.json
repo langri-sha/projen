@@ -20,7 +20,7 @@
   "main": "src/index.ts",
   "scripts": {
     "prepare": "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
-    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
+    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pnpm-workspace.d.ts"
   },
   "dependencies": {
     "yaml": "2.9.0"
