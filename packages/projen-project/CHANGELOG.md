@@ -1,8 +1,34 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 26 Jul 2026 23:32:09 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 00:06:02 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.20.0
+
+Mon, 27 Jul 2026 00:06:02 GMT
+
+### Minor changes
+
+- Derive the projen command from the configured package manager (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.2
+- Bump @langri-sha/projen-beachball to v0.5.5
+- Bump @langri-sha/projen-codeowners to v0.5.5
+- Bump @langri-sha/projen-editorconfig to v0.6.5
+- Bump @langri-sha/projen-eslint to v0.3.5
+- Bump @langri-sha/projen-husky to v0.3.13
+- Bump @langri-sha/projen-jest-config to v0.4.5
+- Bump @langri-sha/projen-license to v0.3.8
+- Bump @langri-sha/projen-lint-staged to v0.3.6
+- Bump @langri-sha/projen-lint-synthesized to v0.5.7
+- Bump @langri-sha/projen-pnpm-workspace to v0.3.6
+- Bump @langri-sha/projen-prettier to v0.4.5
+- Bump @langri-sha/projen-readme to v0.1.5
+- Bump @langri-sha/projen-renovate to v0.4.10
+- Bump @langri-sha/projen-swcrc to v0.1.10
+- Bump @langri-sha/projen-typescript-config to v0.5.11
+- Bump @langri-sha/tsconfig to v0.11.1
+- Bump @langri-sha/vitest to v0.1.5
 
 ## 0.19.2
 

@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-beachball",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 00:06:02 GMT",
+      "version": "0.5.5",
+      "tag": "@langri-sha/projen-beachball_v0.5.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-beachball",
+            "commit": "06dbc4ef234068ef7afccface34e681640cf2c25",
+            "comment": "Update the synthesis command in generated file headers"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-beachball",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-beachball",
+            "comment": "Bump @langri-sha/vitest to v0.1.5",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 23:32:09 GMT",
       "version": "0.5.4",
       "tag": "@langri-sha/projen-beachball_v0.5.4",

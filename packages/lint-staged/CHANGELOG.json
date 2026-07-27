@@ -2,6 +2,27 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 00:06:02 GMT",
+      "version": "0.9.4",
+      "tag": "@langri-sha/lint-staged_v0.9.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "06dbc4ef234068ef7afccface34e681640cf2c25",
+            "comment": "Update the synthesis command in generated file headers"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/lint-staged",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 11:26:46 GMT",
       "version": "0.9.3",
       "tag": "@langri-sha/lint-staged_v0.9.3",

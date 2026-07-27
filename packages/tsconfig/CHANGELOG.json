@@ -2,6 +2,21 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 00:06:02 GMT",
+      "version": "0.11.1",
+      "tag": "@langri-sha/tsconfig_v0.11.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "06dbc4ef234068ef7afccface34e681640cf2c25",
+            "comment": "Update the synthesis command in generated file headers"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.11.0",
       "tag": "@langri-sha/tsconfig_v0.11.0",

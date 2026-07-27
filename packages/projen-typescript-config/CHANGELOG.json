@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-typescript-config",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 00:06:02 GMT",
+      "version": "0.5.11",
+      "tag": "@langri-sha/projen-typescript-config_v0.5.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-typescript-config",
+            "commit": "06dbc4ef234068ef7afccface34e681640cf2c25",
+            "comment": "Update the synthesis command in generated file headers"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-typescript-config",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-typescript-config",
+            "comment": "Bump @langri-sha/vitest to v0.1.5",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 26 Jul 2026 23:32:09 GMT",
       "version": "0.5.10",
       "tag": "@langri-sha/projen-typescript-config_v0.5.10",

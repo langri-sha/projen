@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Derive the projen command from the configured package manager",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

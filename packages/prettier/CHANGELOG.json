@@ -2,6 +2,27 @@
   "name": "@langri-sha/prettier",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 00:06:02 GMT",
+      "version": "0.4.3",
+      "tag": "@langri-sha/prettier_v0.4.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "06dbc4ef234068ef7afccface34e681640cf2c25",
+            "comment": "Update the synthesis command in generated file headers"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/prettier",
+            "comment": "Bump @langri-sha/tsconfig to v0.11.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 25 Jul 2026 15:41:25 GMT",
       "version": "0.4.2",
       "tag": "@langri-sha/prettier_v0.4.2",
