@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-license",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "0.3.9",
+      "tag": "@langri-sha/projen-license_v0.3.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-license",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-license",
+            "comment": "Bump @langri-sha/vitest to v0.1.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.3.8",
       "tag": "@langri-sha/projen-license_v0.3.8",

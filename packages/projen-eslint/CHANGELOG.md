@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-eslint
 
-<!-- This log was last generated on Mon, 27 Jul 2026 04:34:55 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 11:17:23 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.7
+
+Mon, 27 Jul 2026 11:17:23 GMT
+
+### Patches
+
+- Bump @langri-sha/tsconfig to v1.0.0
+- Bump @langri-sha/vitest to v0.1.6
 
 ## 0.3.6
 

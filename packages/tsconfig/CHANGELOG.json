@@ -2,6 +2,21 @@
   "name": "@langri-sha/tsconfig",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "1.0.0",
+      "tag": "@langri-sha/tsconfig_v1.0.0",
+      "comments": {
+        "major": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/tsconfig",
+            "commit": "dd31196ac9e275630ef14b78b8e483765ffe937a",
+            "comment": "react.json and emotion.json no longer extend base.json; combine them with a complete configuration via an extends array"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.11.1",
       "tag": "@langri-sha/tsconfig_v0.11.1",

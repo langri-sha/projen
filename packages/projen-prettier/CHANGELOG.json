@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-prettier",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "0.4.7",
+      "tag": "@langri-sha/projen-prettier_v0.4.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-prettier",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-prettier",
+            "comment": "Bump @langri-sha/vitest to v0.1.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 04:34:55 GMT",
       "version": "0.4.6",
       "tag": "@langri-sha/projen-prettier_v0.4.6",

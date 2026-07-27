@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "0.1.11",
+      "tag": "@langri-sha/projen-swcrc_v0.1.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.5",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/vitest to v0.1.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.1.10",
       "tag": "@langri-sha/projen-swcrc_v0.1.10",

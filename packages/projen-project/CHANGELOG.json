@@ -2,6 +2,123 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "0.21.1",
+      "tag": "@langri-sha/projen-project_v0.21.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-babel to v0.5.4",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-beachball to v0.5.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-codeowners to v0.5.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-editorconfig to v0.6.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-eslint to v0.3.7",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-husky to v0.3.14",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-jest-config to v0.4.7",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-license to v0.3.9",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-lint-staged to v0.3.8",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-lint-synthesized to v0.5.8",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-pnpm-workspace to v0.3.7",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-prettier to v0.4.7",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-readme to v0.1.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-renovate to v0.4.11",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-swcrc to v0.1.11",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-typescript-config to v0.5.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/vitest to v0.1.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 04:34:55 GMT",
       "version": "0.21.0",
       "tag": "@langri-sha/projen-project_v0.21.0",

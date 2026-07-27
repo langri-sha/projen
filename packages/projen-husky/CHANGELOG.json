@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-husky",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "0.3.14",
+      "tag": "@langri-sha/projen-husky_v0.3.14",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-husky",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-husky",
+            "comment": "Bump @langri-sha/vitest to v0.1.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.3.13",
       "tag": "@langri-sha/projen-husky_v0.3.13",

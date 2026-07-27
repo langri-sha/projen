@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/eslint-config
 
-<!-- This log was last generated on Mon, 27 Jul 2026 00:06:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 27 Jul 2026 11:17:23 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.5
+
+Mon, 27 Jul 2026 11:17:23 GMT
+
+### Patches
+
+- fix(deps): update dependency eslint-plugin-jsdoc to v63.3.1 (email not defined)
+- Bump @langri-sha/tsconfig to v1.0.0
 
 ## 0.9.4
 

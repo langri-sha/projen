@@ -2,6 +2,27 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Mon, 27 Jul 2026 11:17:23 GMT",
+      "version": "0.9.5",
+      "tag": "@langri-sha/eslint-config_v0.9.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "dd31196ac9e275630ef14b78b8e483765ffe937a",
+            "comment": "fix(deps): update dependency eslint-plugin-jsdoc to v63.3.1"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/eslint-config",
+            "comment": "Bump @langri-sha/tsconfig to v1.0.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 00:06:02 GMT",
       "version": "0.9.4",
       "tag": "@langri-sha/eslint-config_v0.9.4",
