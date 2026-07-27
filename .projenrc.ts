@@ -84,7 +84,15 @@ const project = new Project({
   readme: {
     filename: 'readme.md',
   },
-  renovate: {},
+  renovate: {
+    packageRules: [
+      {
+        description: 'Install our own packages without waiting them out',
+        matchPackageNames: ['@langri-sha/**'],
+        minimumReleaseAge: null,
+      },
+    ],
+  },
   swcrc: {},
   typeScriptConfig: {},
 })
