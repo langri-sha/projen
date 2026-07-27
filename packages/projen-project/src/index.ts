@@ -65,6 +65,24 @@ const PROJEN_COMMANDS: Record<javascript.NodePackageManager, string> = {
   [javascript.NodePackageManager.YARN_CLASSIC]: 'yarn projen',
 }
 
+/**
+ * How long a release must have been published before Renovate proposes it.
+ *
+ * This must stay at or above pnpm's own `minimumReleaseAge`, which has been a
+ * built-in 24 hours since pnpm 11 (`minimum-release-age: 24 * 60` — pnpm counts
+ * minutes, Renovate parses a duration string). pnpm re-verifies every lockfile
+ * entry on install, so anything Renovate proposes below pnpm's cutoff fails
+ * `pnpm install` until the release simply ages out of the window — a red default
+ * branch that heals itself with no human action, which teaches people to re-run
+ * failed jobs instead of reading them.
+ *
+ * Three days rather than a bare day: it leaves headroom should pnpm raise its
+ * built-in, and it clears npm's 72-hour unpublish window, so a version cannot
+ * vanish from under a merged update. That is the same reasoning behind
+ * Renovate's own `npm:unpublishSafe` preset.
+ */
+const RENOVATE_MINIMUM_RELEASE_AGE = '3 days'
+
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
@@ -614,6 +632,7 @@ export class Project extends BaseProject {
       configMigration: true,
       extends: ['config:recommended'],
       labels: ['dependencies'],
+      minimumReleaseAge: RENOVATE_MINIMUM_RELEASE_AGE,
       reviewersFromCodeOwners: true,
       lockFileMaintenance: {
         enabled: true,
