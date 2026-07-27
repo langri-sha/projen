@@ -353,12 +353,18 @@ importers:
         specifier: 2.9.0
         version: 2.9.0
     devDependencies:
+      '@langri-sha/schemastore-to-typescript':
+        specifier: workspace:*
+        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
+      tsx:
+        specifier: 4.23.1
+        version: 4.23.1
 
   packages/projen-prettier:
     dependencies:

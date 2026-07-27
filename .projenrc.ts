@@ -59,7 +59,11 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    ignorePatterns: ['**/renovate.d.ts', '**/swcrc.d.ts'],
+    ignorePatterns: [
+      '**/pnpm-workspace.d.ts',
+      '**/renovate.d.ts',
+      '**/swcrc.d.ts',
+    ],
   },
   husky: {
     'pre-commit': 'lint-staged',
@@ -67,7 +71,12 @@ const project = new Project({
   lintStaged: {},
   lintSynthesized: {},
   prettier: {
-    ignorePatterns: ['*.frag', 'renovate.d.ts', 'swcrc.d.ts'],
+    ignorePatterns: [
+      '*.frag',
+      'pnpm-workspace.d.ts',
+      'renovate.d.ts',
+      'swcrc.d.ts',
+    ],
   },
   pnpmWorkspace: {
     packages: ['packages/*'],
@@ -496,12 +505,24 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['yaml@2.9.0'],
+      devDeps: [
+        '@langri-sha/schemastore-to-typescript@workspace:*',
+        'tsx@4.23.1',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
   publish,
+  (project) => {
+    project.addGitIgnore('pnpm-workspace.d.ts')
+
+    project.package?.setScript(
+      'prepare',
+      "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.d.ts",
+    )
+  },
 )
 
 project.addSubproject(
