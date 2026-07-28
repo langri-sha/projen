@@ -1,7 +1,11 @@
+import { createRequire } from 'node:module'
+
+const requireFrom = createRequire(import.meta.url)
+
 /** @type {import("prettier").Config} */
 const config = {
   iniSpaceAroundEquals: true,
-  plugins: ['prettier-plugin-ini'],
+  plugins: [requireFrom.resolve('prettier-plugin-ini')],
   proseWrap: 'always',
   semi: false,
   singleQuote: true,
