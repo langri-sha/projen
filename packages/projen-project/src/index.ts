@@ -34,6 +34,7 @@ import {
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
+  DependencyType,
   IgnoreFile,
   IgnoreFileOptions,
   javascript,
@@ -321,6 +322,36 @@ export class Project extends BaseProject {
     return this.allSubprojectsKind.find((project) => project.name === name)
   }
 
+  /**
+   * Add development dependencies a feature needs, without overriding versions
+   * the project declared for itself.
+   *
+   * Every `#configure*` hook runs after `#configurePackage` has registered
+   * `package.devDeps`, and Projen's `Dependencies` is last-writer-wins, so an
+   * unconditional `addDevDeps` silently replaces the version the project asked
+   * for. That is invisible until a bot tries to upgrade one of these packages:
+   * the bump is reverted by the next synthesis, the pull request merges as a
+   * no-op, and the dependency is proposed again forever.
+   *
+   * Only `BUILD` declarations are consulted, which is the type `addDevDeps`
+   * writes; a package the project lists as a runtime dependency is still added
+   * here, exactly as before.
+   */
+  #addDefaultDevDeps(...specs: string[]) {
+    for (const spec of specs) {
+      // `MODULE[@VERSION]`, where `MODULE` may itself be scoped and so start
+      // with an `@` of its own.
+      const separator = spec.lastIndexOf('@')
+      const name = separator > 0 ? spec.slice(0, separator) : spec
+
+      if (this.deps.tryGetDependency(name, DependencyType.BUILD)) {
+        continue
+      }
+
+      this.package?.addDevDeps(spec)
+    }
+  }
+
   #configureBabel({ babel, package: pkg }: ProjectOptions) {
     if (!babel) {
       return
@@ -362,7 +393,7 @@ export class Project extends BaseProject {
     this.beachball = new Beachball(this, deepMerge(defaults, beachball))
 
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
-    this.package?.addDevDeps('beachball@2.65.5')
+    this.#addDefaultDevDeps('beachball@2.65.5')
     this.typeScriptConfig?.addFile(this.beachball!.path)
   }
 
@@ -437,7 +468,7 @@ export class Project extends BaseProject {
 
     this.husky = new Husky(this, huskyOptions)
 
-    this.package?.addDevDeps('husky@9.1.7')
+    this.#addDefaultDevDeps('husky@9.1.7')
     this.package?.setScript('prepare', 'husky')
     this.tryFindObjectFile('package.json')?.addDeletionOverride('pnpm')
   }
@@ -551,8 +582,7 @@ export class Project extends BaseProject {
     this.package = new NodePackage(this, deepMerge(defaults, pkg))
 
     if (!this.parent) {
-      this.package.addDevDeps('@langri-sha/projen-project@*')
-      this.package.addDevDeps('projen@0.86.5')
+      this.#addDefaultDevDeps('@langri-sha/projen-project@*', 'projen@0.86.5')
     }
 
     this.package.removeScript('start')
@@ -670,11 +700,19 @@ export class Project extends BaseProject {
           managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
           matchStringsStrategy: 'recursive',
           matchStrings: [
-            '\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)',
+            // `#addDefaultDevDeps` is this package's own private helper, and
+            // the private-name `#` sits between the dot and the method name.
+            // It is matched here so the pins it carries stay upgradable; the
+            // paths of the files declaring them contain `projen`, so they are
+            // covered by `managerFilePatterns` above.
+            '\\.#?(?<depType>addDeps|addDevDeps|addPeerDeps|addDefaultDevDeps)\\([^)]*\\)',
             "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
           ],
+          // Anything that is not explicitly a runtime or peer dependency is a
+          // development dependency, so that every `*DevDeps` spelling maps to
+          // `devDependencies` rather than falling through to peers.
           depTypeTemplate:
-            "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+            "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addPeerDeps')}}peerDependencies{{else}}devDependencies{{/if}}",
         },
         {
           customType: 'regex',
@@ -723,8 +761,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.package?.addDevDeps('@swc/core@1.15.40')
-      this.package?.addDevDeps('@swc-node/register@1.11.1')
+      this.#addDefaultDevDeps('@swc/core@1.15.40', '@swc-node/register@1.11.1')
     }
 
     const defaults: SWCConfigOptions = {
@@ -783,15 +820,15 @@ export class Project extends BaseProject {
     this.typeScriptConfig = new TypeScriptConfig(this, merged)
 
     if (!this.parent) {
-      this.package?.addDevDeps('typescript@5.9.3')
+      this.#addDefaultDevDeps('typescript@5.9.3')
 
       if (!swcrc) {
-        this.package?.addDevDeps('tsx@4.23.1')
+        this.#addDefaultDevDeps('tsx@4.23.1')
       }
     }
 
     if (this.name !== '@langri-sha/tsconfig') {
-      this.package?.addDevDeps('@langri-sha/tsconfig@*')
+      this.#addDefaultDevDeps('@langri-sha/tsconfig@*')
     }
   }
 
