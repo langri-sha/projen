@@ -42,10 +42,10 @@
       managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
       matchStringsStrategy: 'recursive',
       matchStrings: [
-        '\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)',
+        '\\.#?(?<depType>addDeps|addDevDeps|addPeerDeps|addDefaultDevDeps)\\([^)]*\\)',
         "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
       ],
-      depTypeTemplate: "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+      depTypeTemplate: "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addPeerDeps')}}peerDependencies{{else}}devDependencies{{/if}}",
     },
     {
       customType: 'regex',

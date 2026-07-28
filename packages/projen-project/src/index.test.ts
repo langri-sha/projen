@@ -704,6 +704,69 @@ describe('with SWC options', () => {
 
     expect(synthSnapshot(project)['.swcrc']).toMatchSnapshot()
   })
+
+  test('pins SWC when the project does not', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      swcrc: {},
+    })
+
+    const { devDependencies } = synthSnapshot(project)['package.json']
+
+    expect(devDependencies['@swc/core']).toBe('1.15.40')
+    expect(devDependencies['@swc-node/register']).toBe('1.11.1')
+  })
+
+  test('keeps the version the project declared for itself', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        devDeps: ['@swc/core@1.15.46', '@swc-node/register@1.12.1'],
+      },
+      swcrc: {},
+    })
+
+    const { devDependencies } = synthSnapshot(project)['package.json']
+
+    expect(devDependencies['@swc/core']).toBe('1.15.46')
+    expect(devDependencies['@swc-node/register']).toBe('1.12.1')
+  })
+})
+
+describe('default development dependencies', () => {
+  // A feature pin that silently replaced the project's own declaration would
+  // be reverted by the next synthesis, so a bot upgrading it would open the
+  // same no-op pull request forever.
+  test.each([
+    ['beachball', '2.65.5', '2.65.0', { beachball: {} }],
+    ['husky', '9.1.7', '9.1.6', { husky: {} }],
+    ['typescript', '5.9.3', '5.9.2', { typeScriptConfig: {} }],
+    ['tsx', '4.23.1', '4.23.0', { typeScriptConfig: {} }],
+  ])(
+    'defaults %s to %s, but yields to a declared %s',
+    (name, fallback, declared, options) => {
+      const withoutDeclaration = new Project({
+        name: 'test-project',
+        package: {},
+        ...options,
+      })
+
+      expect(
+        synthSnapshot(withoutDeclaration)['package.json'].devDependencies[name],
+      ).toBe(fallback)
+
+      const withDeclaration = new Project({
+        name: 'test-project',
+        package: { devDeps: [`${name}@${declared}`] },
+        ...options,
+      })
+
+      expect(
+        synthSnapshot(withDeclaration)['package.json'].devDependencies[name],
+      ).toBe(declared)
+    },
+  )
 })
 
 test('with Terraform enabled', () => {

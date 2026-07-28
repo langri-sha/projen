@@ -2464,12 +2464,12 @@ node_modules/
       {
         "customType": "regex",
         "datasourceTemplate": "npm",
-        "depTypeTemplate": "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addDevDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+        "depTypeTemplate": "{{#if (equals depType 'addDeps')}}dependencies{{else if (equals depType 'addPeerDeps')}}peerDependencies{{else}}devDependencies{{/if}}",
         "managerFilePatterns": [
           "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
-          "\\.(?<depType>addDeps|addDevDeps|addPeerDeps)\\([^)]*\\)",
+          "\\.#?(?<depType>addDeps|addDevDeps|addPeerDeps|addDefaultDevDeps)\\([^)]*\\)",
           "'(?<depName>@?[\\w-\\/]+)@(?<currentValue>[^']+)'",
         ],
         "matchStringsStrategy": "recursive",

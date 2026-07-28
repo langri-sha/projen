@@ -17,7 +17,7 @@
     },
     {
       "name": "@langri-sha/projen-project",
-      "version": "*",
+      "version": "workspace:*",
       "type": "build"
     },
     {
@@ -27,7 +27,7 @@
     },
     {
       "name": "@langri-sha/tsconfig",
-      "version": "*",
+      "version": "workspace:*",
       "type": "build"
     },
     {
