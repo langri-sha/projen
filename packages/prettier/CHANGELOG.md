@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/prettier
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 28 Jul 2026 01:59:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.6
+
+Tue, 28 Jul 2026 01:59:27 GMT
+
+### Patches
+
+- Resolve prettier-plugin-ini from the config package, not the consumer (filip.dupanovic@gmail.com)
 
 ## 0.4.5
 
