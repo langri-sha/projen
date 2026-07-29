@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "@types/semver",
+      "version": "7.7.1",
+      "type": "build"
+    },
+    {
       "name": "@babel/core",
       "version": "^8.0.0",
       "type": "peer"
@@ -158,6 +163,11 @@
     {
       "name": "ramda",
       "version": "0.32.0",
+      "type": "runtime"
+    },
+    {
+      "name": "semver",
+      "version": "7.8.5",
       "type": "runtime"
     }
   ],

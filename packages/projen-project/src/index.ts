@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
 import { Babel, BabelOptions } from '@langri-sha/projen-babel'
@@ -40,6 +41,7 @@ import {
   javascript,
 } from 'projen'
 import * as R from 'ramda'
+import { satisfies, valid } from 'semver'
 
 import { GitAttributesFile } from './lib/gitattributes.js'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
@@ -83,6 +85,17 @@ const PROJEN_COMMANDS: Record<javascript.NodePackageManager, string> = {
  * Renovate's own `npm:unpublishSafe` preset.
  */
 const RENOVATE_MINIMUM_RELEASE_AGE = '3 days'
+
+/**
+ * The versions of the packages this preset supplies that it can support,
+ * taken from its own `peerDependencies`.
+ *
+ * Read rather than restated so that the range a project is held to is the
+ * same one the package publishes, and widening support stays a single edit
+ * to `peerDeps` in `.projenrc.ts`.
+ */
+const SUPPORTED_VERSIONS: Record<string, string | undefined> =
+  createRequire(import.meta.url)('../package.json').peerDependencies ?? {}
 
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
@@ -352,7 +365,10 @@ export class Project extends BaseProject {
       const name = separator > 0 ? spec.slice(0, separator) : spec
       const version = separator > 0 ? spec.slice(separator + 1) : '*'
 
-      if (this.deps.tryGetDependency(name, DependencyType.BUILD)) {
+      const declared = this.deps.tryGetDependency(name, DependencyType.BUILD)
+
+      if (declared) {
+        this.#assertSupported(name, declared.version)
         continue
       }
 
@@ -366,6 +382,43 @@ export class Project extends BaseProject {
         this.#ownedDevDeps.add(name)
       }
     }
+  }
+
+  /**
+   * Fail synthesis when a project declares a version this preset cannot
+   * support.
+   *
+   * A declared version only began taking effect in 0.23.0 — before that a
+   * feature pin overwrote it, so a declaration could sit stale for a long
+   * time with nothing to show for it. Honouring one of those now would
+   * quietly move the project onto a version this preset was never built
+   * against, and the failure surfaces later as an unexplained diff in a
+   * generated file rather than as the downgrade it is.
+   *
+   * The bound is the preset's own `peerDependencies` entry, so the range is
+   * declared in one reviewable place and widening support is a deliberate
+   * edit rather than a number buried in a hook. Staying behind is fine as
+   * long as the range allows it.
+   *
+   * Only concrete versions are checked. A range or `*` is the project asking
+   * to resolve rather than naming a version, and `workspace:` is not semver
+   * at all.
+   */
+  #assertSupported(name: string, declared: string | undefined) {
+    const supported = SUPPORTED_VERSIONS[name]
+
+    if (!declared || !supported || !valid(declared)) {
+      return
+    }
+
+    if (satisfies(declared, supported)) {
+      return
+    }
+
+    throw new Error(
+      `This project declares ${name}@${declared}, which @langri-sha/projen-project does not support — its peer range is ${supported}.\n\n` +
+        `Raise the declaration to satisfy ${supported}, or remove it from \`package.devDeps\` and take the version the preset supplies.`,
+    )
   }
 
   #configureBabel({ babel, package: pkg }: ProjectOptions) {
