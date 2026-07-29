@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Correct the malformed jest peer range, which pnpm 11 rejects",
+  "packageName": "@langri-sha/projen-jest-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
