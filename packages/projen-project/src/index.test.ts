@@ -705,7 +705,7 @@ describe('with SWC options', () => {
     expect(synthSnapshot(project)['.swcrc']).toMatchSnapshot()
   })
 
-  test('pins SWC when the project does not', () => {
+  test('pins SWC when the project declares no version of its own', () => {
     const project = new Project({
       name: 'test-project',
       package: {},
@@ -718,7 +718,7 @@ describe('with SWC options', () => {
     expect(devDependencies['@swc-node/register']).toBe('1.11.1')
   })
 
-  test('keeps the version the project declared for itself', () => {
+  test('keeps the SWC version the project declared for itself', () => {
     const project = new Project({
       name: 'test-project',
       package: {
@@ -734,39 +734,140 @@ describe('with SWC options', () => {
   })
 })
 
-describe('default development dependencies', () => {
-  // A feature pin that silently replaced the project's own declaration would
-  // be reverted by the next synthesis, so a bot upgrading it would open the
-  // same no-op pull request forever.
-  test.each([
-    ['beachball', '2.65.5', '2.65.0', { beachball: {} }],
-    ['husky', '9.1.7', '9.1.6', { husky: {} }],
-    ['typescript', '5.9.3', '5.9.2', { typeScriptConfig: {} }],
-    ['tsx', '4.23.1', '4.23.0', { typeScriptConfig: {} }],
-  ])(
-    'defaults %s to %s, but yields to a declared %s',
-    (name, fallback, declared, options) => {
-      const withoutDeclaration = new Project({
+/**
+ * Every feature that needs a tool supplies a version for it. The project may
+ * name its own instead, and when it does that version has to survive
+ * synthesis — otherwise a bot upgrading the dependency has its bump undone,
+ * merges a pull request that changed nothing, and opens the same one again.
+ *
+ * The two halves of that contract, one case per tool:
+ *
+ *   - with no declaration, the project gets the version this preset supplies,
+ *     and Renovate is told not to upgrade it (this preset upgrades it instead);
+ *   - with a declaration, the declared version is what synthesis writes, and
+ *     Renovate is left free to upgrade it.
+ */
+describe('supplied development dependency versions', () => {
+  const TOOLS = [
+    {
+      tool: 'beachball',
+      enabledBy: { beachball: {} },
+      supplied: '2.65.5',
+      declared: '2.65.0',
+    },
+    {
+      tool: 'husky',
+      enabledBy: { husky: {} },
+      supplied: '9.1.7',
+      declared: '9.1.6',
+    },
+    {
+      tool: 'typescript',
+      enabledBy: { typeScriptConfig: {} },
+      supplied: '5.9.3',
+      declared: '5.9.2',
+    },
+    {
+      tool: 'tsx',
+      enabledBy: { typeScriptConfig: {} },
+      supplied: '4.23.1',
+      declared: '4.23.0',
+    },
+    {
+      tool: '@swc/core',
+      enabledBy: { swcrc: {} },
+      supplied: '1.15.40',
+      declared: '1.15.46',
+    },
+    // Not a feature — every root project is given Projen itself.
+    {
+      tool: 'projen',
+      enabledBy: {},
+      supplied: '0.86.5',
+      declared: '0.86.4',
+    },
+  ]
+
+  const synthesize = ({ devDeps, ...options }: Record<string, unknown>) =>
+    synthSnapshot(
+      new Project({
         name: 'test-project',
-        package: {},
+        renovate: {},
         ...options,
+        package: { devDeps: devDeps as string[] | undefined },
+      }),
+    )
+
+  type SynthOutput = ReturnType<typeof synthSnapshot>
+
+  const withheldRule = (files: SynthOutput) =>
+    files['renovate.json5'].packageRules.find(
+      (rule: { enabled?: boolean }) => rule.enabled === false,
+    )
+
+  const suppressedPackages = (files: SynthOutput): string[] =>
+    withheldRule(files)?.matchPackageNames ?? []
+
+  describe.each(TOOLS)(
+    '$tool, which the project does not declare',
+    ({ tool, enabledBy, supplied }) => {
+      const files = synthesize(enabledBy)
+
+      test(`is supplied as ${supplied}`, () => {
+        expect(files['package.json'].devDependencies[tool]).toBe(supplied)
       })
 
-      expect(
-        synthSnapshot(withoutDeclaration)['package.json'].devDependencies[name],
-      ).toBe(fallback)
-
-      const withDeclaration = new Project({
-        name: 'test-project',
-        package: { devDeps: [`${name}@${declared}`] },
-        ...options,
+      test('is withheld from Renovate', () => {
+        expect(suppressedPackages(files)).toContain(tool)
       })
-
-      expect(
-        synthSnapshot(withDeclaration)['package.json'].devDependencies[name],
-      ).toBe(declared)
     },
   )
+
+  describe.each(TOOLS)(
+    '$tool, which the project declares as $declared',
+    ({ tool, enabledBy, declared }) => {
+      const files = synthesize({
+        ...enabledBy,
+        devDeps: [`${tool}@${declared}`],
+      })
+
+      test('is left at the declared version', () => {
+        expect(files['package.json'].devDependencies[tool]).toBe(declared)
+      })
+
+      test('is left to Renovate to upgrade', () => {
+        expect(suppressedPackages(files)).not.toContain(tool)
+      })
+    },
+  )
+
+  test('a version that resolves rather than dictates stays upgradable', () => {
+    // `@langri-sha/tsconfig` is supplied as `*`, which takes whatever is
+    // installed and so already follows upgrades. Suppressing it would freeze
+    // a dependency that was never stuck.
+    const files = synthesize({ renovate: {}, typeScriptConfig: {} })
+
+    expect(suppressedPackages(files)).not.toContain('@langri-sha/tsconfig')
+  })
+
+  test('withholds them from the manifest, not from this preset', () => {
+    // The custom managers read `.projenrc` files, and this preset's own
+    // sources are among them — that is where these pins are declared and
+    // upgraded. Disabling a package outright would reach those too and freeze
+    // the version everywhere, forever.
+    const files = synthesize({ beachball: {} })
+
+    expect(withheldRule(files).matchManagers).toEqual(['npm'])
+  })
+
+  test('names only the packages it actually supplied', () => {
+    // A project with no features enabled is still given Projen and
+    // `@langri-sha/projen-project`. Only the first is a literal version, so
+    // only the first is withheld.
+    const files = synthesize({})
+
+    expect(suppressedPackages(files)).toEqual(['projen'])
+  })
 })
 
 test('with Terraform enabled', () => {

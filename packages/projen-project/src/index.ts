@@ -207,6 +207,13 @@ export class Project extends BaseProject {
   swcrc?: SWCConfig
   typeScriptConfig?: TypeScriptConfig
 
+  /**
+   * Packages whose version this preset supplied because the project did not
+   * declare one, collected by `#addDefaultDevDeps` and read by
+   * `#configureRenovate` — which is why that hook runs last.
+   */
+  readonly #ownedDevDeps = new Set<string>()
+
   constructor(options: ProjectOptions) {
     super({
       // Resolved from the options rather than `this.package`, which does not
@@ -343,12 +350,21 @@ export class Project extends BaseProject {
       // with an `@` of its own.
       const separator = spec.lastIndexOf('@')
       const name = separator > 0 ? spec.slice(0, separator) : spec
+      const version = separator > 0 ? spec.slice(separator + 1) : '*'
 
       if (this.deps.tryGetDependency(name, DependencyType.BUILD)) {
         continue
       }
 
       this.package?.addDevDeps(spec)
+
+      // A default that resolves rather than dictates — `*` takes whatever is
+      // installed, `workspace:*` the sibling package — already tracks upgrades,
+      // so leave those to the bot. A literal version is re-asserted on every
+      // synthesis and is what #ownedDevDeps exists to protect.
+      if (version !== '*' && !version.startsWith('workspace:')) {
+        this.#ownedDevDeps.add(name)
+      }
     }
   }
 
@@ -680,6 +696,31 @@ export class Project extends BaseProject {
                   'Keep Node.js typings on the major supported by the runtime',
                 matchPackageNames: ['@types/node'],
                 allowedVersions: `^${nodeTypesMajor}`,
+              },
+            ]
+          : []),
+        // The manifest carries these versions only because this preset put
+        // them there. Left enabled, every upgrade Renovate proposed against it
+        // would be undone by the next synthesis and reopened on the run after
+        // that. They are upgraded where they are written instead, in this
+        // preset, and reach projects with its next release.
+        //
+        // Scoped to the npm manager, which is the one reading the manifest and
+        // the lockfile. The custom managers above read `.projenrc` files —
+        // including this preset's own sources, where these pins are declared —
+        // and must stay enabled or the versions could never move at all.
+        //
+        // Declaring one of these in `.projenrc.ts` takes it off this list, and
+        // `#addDefaultDevDeps` then leaves that version alone — so opting a
+        // package back into upgrades here is a one-line change over there.
+        ...(this.#ownedDevDeps.size
+          ? [
+              {
+                description:
+                  'Versions owned by @langri-sha/projen-project. Declare the dependency in `.projenrc.ts` to manage it here instead',
+                matchManagers: ['npm'],
+                matchPackageNames: [...this.#ownedDevDeps].sort(),
+                enabled: false,
               },
             ]
           : []),

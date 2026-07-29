@@ -21,6 +21,12 @@
       allowedVersions: '^24',
     },
     {
+      description: 'Versions owned by @langri-sha/projen-project. Declare the dependency in `.projenrc.ts` to manage it here instead',
+      matchManagers: ['npm'],
+      matchPackageNames: ['beachball', 'husky', 'typescript'],
+      enabled: false,
+    },
+    {
       description: 'Install our own packages without waiting them out',
       matchPackageNames: ['@langri-sha/**'],
       minimumReleaseAge: null,
