@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Wed, 29 Jul 2026 04:19:48 GMT",
+      "version": "0.23.0",
+      "tag": "@langri-sha/projen-project_v0.23.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7eca758e7ae0393a5841d1b600e19dd4e68c66ac",
+            "comment": "Yield feature dependency pins to the version a project declares for itself"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 22:24:07 GMT",
       "version": "0.22.2",
       "tag": "@langri-sha/projen-project_v0.22.2",

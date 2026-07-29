@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 29 Jul 2026 04:19:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.23.0
+
+Wed, 29 Jul 2026 04:19:48 GMT
+
+### Minor changes
+
+- Yield feature dependency pins to the version a project declares for itself (filip.dupanovic@gmail.com)
 
 ## 0.22.2
 

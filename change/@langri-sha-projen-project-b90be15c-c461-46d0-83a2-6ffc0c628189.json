@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Yield feature dependency pins to the version a project declares for itself",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
