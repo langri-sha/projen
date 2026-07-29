@@ -426,7 +426,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@7.0.7'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['jest@^28.00 || ^29.00', ...projenPeer.peerDeps],
+      peerDeps: ['jest@^28.0.0 || ^29.0.0', ...projenPeer.peerDeps],
     },
   },
   subproject,
