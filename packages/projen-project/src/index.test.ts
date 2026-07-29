@@ -870,6 +870,48 @@ describe('supplied development dependency versions', () => {
   })
 })
 
+describe('declarations this preset cannot support', () => {
+  const declaring =
+    (devDeps: string[], options = {}) =>
+    () =>
+      new Project({ name: 'test-project', package: { devDeps }, ...options })
+
+  test('are rejected, naming the version and the supported range', () => {
+    expect(declaring(['projen@0.84.8'])).toThrowError(
+      /declares projen@0\.84\.8.*does not support.*\^0\.86\.0/s,
+    )
+  })
+
+  test('say how to resolve it', () => {
+    expect(declaring(['projen@0.84.8'])).toThrowError(
+      /Raise the declaration.*or remove it from `package\.devDeps`/s,
+    )
+  })
+
+  test('do not reject a version that is behind but still supported', () => {
+    const project = declaring(['typescript@5.6.0'], { typeScriptConfig: {} })()
+
+    expect(
+      synthSnapshot(project)['package.json'].devDependencies.typescript,
+    ).toBe('5.6.0')
+  })
+
+  test('do not reject a version that runs ahead', () => {
+    const project = declaring(['@swc/core@1.15.46'], { swcrc: {} })()
+
+    expect(
+      synthSnapshot(project)['package.json'].devDependencies['@swc/core'],
+    ).toBe('1.15.46')
+  })
+
+  test.each(['typescript@*', 'typescript@^5.5.0'])(
+    'skip %s, which names a resolution rather than a version',
+    (spec) => {
+      expect(declaring([spec], { typeScriptConfig: {} })).not.toThrow()
+    },
+  )
+})
+
 test('with Terraform enabled', () => {
   const project = new Project({
     name: 'test-project',

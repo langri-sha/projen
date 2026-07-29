@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Reject a declared version outside the preset's supported peer range",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
