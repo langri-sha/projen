@@ -259,7 +259,7 @@ importers:
   packages/projen-jest-config:
     dependencies:
       jest:
-        specifier: ^28.0.0 || ^29.0.0 || ^30.0.0
+        specifier: ^30.0.0
         version: 30.4.2(@types/node@24.13.3)(supports-color@8.1.1)
       projen:
         specifier: ^0.86.0
