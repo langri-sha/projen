@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 29 Jul 2026 04:19:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 31 Jul 2026 20:40:21 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.24.0
+
+Fri, 31 Jul 2026 20:40:21 GMT
+
+### Minor changes
+
+- Reject a declared version outside the preset's supported peer range (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-jest-config to v0.4.10
 
 ## 0.23.0
 

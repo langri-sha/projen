@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-jest-config
 
-<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 31 Jul 2026 20:40:21 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.10
+
+Fri, 31 Jul 2026 20:40:21 GMT
+
+### Patches
+
+- Correct the malformed jest peer range, which pnpm 11 rejects (filip.dupanovic@gmail.com)
 
 ## 0.4.9
 

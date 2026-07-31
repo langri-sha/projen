@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Fri, 31 Jul 2026 20:40:21 GMT",
+      "version": "0.24.0",
+      "tag": "@langri-sha/projen-project_v0.24.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7f19a584c2e426607f1e0ea28eaf450c944899f1",
+            "comment": "Reject a declared version outside the preset's supported peer range"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-jest-config to v0.4.10",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 29 Jul 2026 04:19:48 GMT",
       "version": "0.23.0",
       "tag": "@langri-sha/projen-project_v0.23.0",
