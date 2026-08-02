@@ -714,15 +714,15 @@ describe('with SWC options', () => {
 
     const { devDependencies } = synthSnapshot(project)['package.json']
 
-    expect(devDependencies['@swc/core']).toBe('1.15.40')
-    expect(devDependencies['@swc-node/register']).toBe('1.11.1')
+    expect(devDependencies['@swc/core']).toBe('1.15.47')
+    expect(devDependencies['@swc-node/register']).toBe('1.12.1')
   })
 
   test('keeps the SWC version the project declared for itself', () => {
     const project = new Project({
       name: 'test-project',
       package: {
-        devDeps: ['@swc/core@1.15.46', '@swc-node/register@1.12.1'],
+        devDeps: ['@swc/core@1.15.46', '@swc-node/register@1.12.0'],
       },
       swcrc: {},
     })
@@ -730,7 +730,7 @@ describe('with SWC options', () => {
     const { devDependencies } = synthSnapshot(project)['package.json']
 
     expect(devDependencies['@swc/core']).toBe('1.15.46')
-    expect(devDependencies['@swc-node/register']).toBe('1.12.1')
+    expect(devDependencies['@swc-node/register']).toBe('1.12.0')
   })
 })
 
@@ -776,7 +776,7 @@ describe('supplied development dependency versions', () => {
     {
       tool: '@swc/core',
       enabledBy: { swcrc: {} },
-      supplied: '1.15.40',
+      supplied: '1.15.47',
       declared: '1.15.46',
     },
     // Not a feature — every root project is given Projen itself.
