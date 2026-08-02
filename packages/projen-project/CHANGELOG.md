@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Fri, 31 Jul 2026 20:40:21 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 02 Aug 2026 14:33:38 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.25.0
+
+Sun, 02 Aug 2026 14:33:38 GMT
+
+### Minor changes
+
+- Supply @swc/core 1.15.47 and @swc-node/register 1.12.1 (filip.dupanovic@gmail.com)
 
 ## 0.24.0
 
