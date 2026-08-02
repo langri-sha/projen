@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Supply @swc/core 1.15.47 and @swc-node/register 1.12.1",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
