@@ -25,7 +25,7 @@
     "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
-    "eslint": "^9.0.0 || ^10.0.0",
+    "eslint": "^10.4.0",
     "lint-staged": "^17.0.0",
     "prettier": "^3.0.0"
   },
