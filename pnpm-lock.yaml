@@ -72,7 +72,7 @@ importers:
         specifier: 10.0.1
         version: 10.0.1(eslint@10.8.0(supports-color@8.1.1))
       eslint:
-        specifier: ^9.0.0 || ^10.0.0
+        specifier: ^10.4.0
         version: 10.8.0(supports-color@8.1.1)
       eslint-config-prettier:
         specifier: 10.1.8
@@ -109,7 +109,7 @@ importers:
   packages/lint-staged:
     dependencies:
       eslint:
-        specifier: ^9.0.0 || ^10.0.0
+        specifier: ^10.4.0
         version: 10.8.0(supports-color@8.1.1)
       lint-staged:
         specifier: ^17.0.0
@@ -218,7 +218,7 @@ importers:
   packages/projen-eslint:
     dependencies:
       eslint:
-        specifier: ^9.0.0 || ^10.0.0
+        specifier: ^10.4.0
         version: 10.8.0(supports-color@8.1.1)
       projen:
         specifier: ^0.86.0
@@ -451,7 +451,7 @@ importers:
         specifier: ^2.0.0
         version: 2.65.5(typescript@5.9.3)
       eslint:
-        specifier: ^9.0.0 || ^10.0.0
+        specifier: ^10.4.0
         version: 10.8.0(supports-color@8.1.1)
       husky:
         specifier: ^9.0.1
