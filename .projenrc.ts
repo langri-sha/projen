@@ -791,7 +791,7 @@ project.addSubproject(
         'got@14.4.7',
         'json-schema-to-typescript@15.0.4',
         'keyv-file@5.3.5',
-        'keyv@4.5.4',
+        'keyv@5.6.0',
       ],
       devDeps: ['@types/debug@4.1.13'],
       peerDeps: [...projenPeer.peerDeps],
