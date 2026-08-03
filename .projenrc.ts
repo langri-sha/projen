@@ -788,7 +788,7 @@ project.addSubproject(
         'debug@4.4.3',
         'env-paths@4.0.0',
         'es-main@1.4.0',
-        'got@14.6.6',
+        'got@15.1.0',
         'json-schema-to-typescript@15.0.4',
         'keyv-file@5.3.5',
         'keyv@5.6.0',
