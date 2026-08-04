@@ -91,6 +91,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-cargo",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-codeowners",
       "version": "workspace:*",
       "type": "runtime"

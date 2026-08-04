@@ -418,6 +418,9 @@ importers:
       '@langri-sha/projen-beachball':
         specifier: workspace:*
         version: link:../projen-beachball
+      '@langri-sha/projen-cargo':
+        specifier: workspace:*
+        version: link:../projen-cargo
       '@langri-sha/projen-codeowners':
         specifier: workspace:*
         version: link:../projen-codeowners
