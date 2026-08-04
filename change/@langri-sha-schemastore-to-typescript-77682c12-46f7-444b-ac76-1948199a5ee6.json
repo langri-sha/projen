@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Drop optional members named beside an index signature",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
