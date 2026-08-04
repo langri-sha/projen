@@ -17,6 +17,7 @@
 | `@langri-sha/prettier`                  | Opinionated, shared Prettier configuration                                               |
 | `@langri-sha/projen-babel`              | `babel.config.js` generator                                                              |
 | `@langri-sha/projen-beachball`          | `beachball.config.cjs` generator                                                         |
+| `@langri-sha/projen-cargo`              | Cargo workspace and crate generator                                                      |
 | `@langri-sha/projen-codeowners`         | `CODEOWNERS` generator                                                                   |
 | `@langri-sha/projen-editorconfig`       | `.editorconfig` generator                                                                |
 | `@langri-sha/projen-eslint`             | `eslint.config.js` generator                                                             |
