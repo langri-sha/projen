@@ -521,6 +521,7 @@ export class Project extends BaseProject {
     this.cargo = new CargoPackage(this, {
       ...cargo,
       package: {
+        name: this.name.replace(/^@[^/]+\//, ''),
         ...inherited,
         ...cargo.package,
       },
