@@ -55,6 +55,24 @@ test('workspace', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('workspace root that is also a crate', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new CargoWorkspace(project, {
+    workspace: {
+      members: ['apps/api'],
+    },
+    package: {
+      version: '0.1.0',
+    },
+  })
+
+  project.synth()
+  expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
 test('adds members without repeating one already listed', () => {
   const project = new Project({
     name: 'test-project',
