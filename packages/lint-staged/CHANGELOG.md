@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/lint-staged
 
-<!-- This log was last generated on Mon, 27 Jul 2026 11:38:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.7
+
+Tue, 04 Aug 2026 04:27:48 GMT
+
+### Patches
+
+- Narrow eslint peer range, which advertised eslint 9 support eslint-plugin-unicorn does not have (filip.dupanovic@gmail.com)
 
 ## 0.9.6
 

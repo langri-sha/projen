@@ -2,6 +2,21 @@
   "name": "@langri-sha/lint-staged",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.9.7",
+      "tag": "@langri-sha/lint-staged_v0.9.7",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/lint-staged",
+            "commit": "09b1c40b577b1421312590af0587666cc3897e0b",
+            "comment": "Narrow eslint peer range, which advertised eslint 9 support eslint-plugin-unicorn does not have"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 11:38:48 GMT",
       "version": "0.9.6",
       "tag": "@langri-sha/lint-staged_v0.9.6",

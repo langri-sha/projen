@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency jest to v30",
-  "packageName": "@langri-sha/projen-jest-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

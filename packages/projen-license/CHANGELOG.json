@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-license",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.3.12",
+      "tag": "@langri-sha/projen-license_v0.3.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-license",
+            "comment": "Bump @langri-sha/vitest to v0.1.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 22:24:07 GMT",
       "version": "0.3.11",
       "tag": "@langri-sha/projen-license_v0.3.11",

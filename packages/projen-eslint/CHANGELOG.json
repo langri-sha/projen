@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-eslint",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.3.10",
+      "tag": "@langri-sha/projen-eslint_v0.3.10",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-eslint",
+            "commit": "09b1c40b577b1421312590af0587666cc3897e0b",
+            "comment": "Narrow eslint peer range, which advertised eslint 9 support eslint-plugin-unicorn does not have"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-eslint",
+            "comment": "Bump @langri-sha/vitest to v0.1.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 22:24:07 GMT",
       "version": "0.3.9",
       "tag": "@langri-sha/projen-eslint_v0.3.9",

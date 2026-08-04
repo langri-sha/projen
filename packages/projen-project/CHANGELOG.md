@@ -1,8 +1,34 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 02 Aug 2026 14:33:38 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.25.1
+
+Tue, 04 Aug 2026 04:27:48 GMT
+
+### Patches
+
+- Restrict addDevDeps in package sources to the guarded helper (filip.dupanovic@gmail.com)
+- Narrow eslint peer range, which advertised eslint 9 support eslint-plugin-unicorn does not have (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.7
+- Bump @langri-sha/projen-beachball to v0.5.9
+- Bump @langri-sha/projen-codeowners to v0.5.9
+- Bump @langri-sha/projen-editorconfig to v0.6.9
+- Bump @langri-sha/projen-eslint to v0.3.10
+- Bump @langri-sha/projen-husky to v0.3.17
+- Bump @langri-sha/projen-jest-config to v0.4.11
+- Bump @langri-sha/projen-license to v0.3.12
+- Bump @langri-sha/projen-lint-staged to v0.3.11
+- Bump @langri-sha/projen-lint-synthesized to v0.5.11
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.2
+- Bump @langri-sha/projen-prettier to v0.4.10
+- Bump @langri-sha/projen-readme to v0.1.9
+- Bump @langri-sha/projen-renovate to v0.4.14
+- Bump @langri-sha/projen-swcrc to v0.1.14
+- Bump @langri-sha/projen-typescript-config to v0.5.15
+- Bump @langri-sha/vitest to v0.1.9
 
 ## 0.25.0
 

@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-jest-config",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.4.11",
+      "tag": "@langri-sha/projen-jest-config_v0.4.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-jest-config",
+            "commit": "09b1c40b577b1421312590af0587666cc3897e0b",
+            "comment": "Update dependency jest to v30"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-jest-config",
+            "comment": "Bump @langri-sha/vitest to v0.1.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 31 Jul 2026 20:40:21 GMT",
       "version": "0.4.10",
       "tag": "@langri-sha/projen-jest-config_v0.4.10",

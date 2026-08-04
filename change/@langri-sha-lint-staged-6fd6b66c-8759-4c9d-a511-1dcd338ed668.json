@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Narrow eslint peer range, which advertised eslint 9 support eslint-plugin-unicorn does not have",
-  "packageName": "@langri-sha/lint-staged",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

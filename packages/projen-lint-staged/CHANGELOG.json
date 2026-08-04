@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-lint-staged",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.3.11",
+      "tag": "@langri-sha/projen-lint-staged_v0.3.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-lint-staged",
+            "comment": "Bump @langri-sha/vitest to v0.1.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 22:24:07 GMT",
       "version": "0.3.10",
       "tag": "@langri-sha/projen-lint-staged_v0.3.10",

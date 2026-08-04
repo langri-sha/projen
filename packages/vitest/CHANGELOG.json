@@ -2,6 +2,27 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.1.9",
+      "tag": "@langri-sha/vitest_v0.1.9",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/vitest",
+            "commit": "09b1c40b577b1421312590af0587666cc3897e0b",
+            "comment": "Update dependency nock to v14.0.17"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "09b1c40b577b1421312590af0587666cc3897e0b",
+            "comment": "Document the tempy v3 names in the readme"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 22:24:07 GMT",
       "version": "0.1.8",
       "tag": "@langri-sha/vitest_v0.1.8",

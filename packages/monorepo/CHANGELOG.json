@@ -2,6 +2,27 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 04:27:48 GMT",
+      "version": "0.5.15",
+      "tag": "@langri-sha/monorepo_v0.5.15",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/monorepo",
+            "commit": "09b1c40b577b1421312590af0587666cc3897e0b",
+            "comment": "Document the tempy v3 names in the readme"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/monorepo",
+            "comment": "Bump @langri-sha/vitest to v0.1.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 22:24:07 GMT",
       "version": "0.5.14",
       "tag": "@langri-sha/monorepo_v0.5.14",

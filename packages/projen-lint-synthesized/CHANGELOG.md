@@ -1,8 +1,18 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.11
+
+Tue, 04 Aug 2026 04:27:48 GMT
+
+### Patches
+
+- Update dependency execa to v10.0.1 (email not defined)
+- Update dependency minimatch to v10.2.6 (email not defined)
+- Bump @langri-sha/vitest to v0.1.9
 
 ## 0.5.10
 

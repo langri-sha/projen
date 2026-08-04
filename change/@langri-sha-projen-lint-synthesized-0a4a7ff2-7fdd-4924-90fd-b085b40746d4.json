@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency execa to v10.0.1",
-  "packageName": "@langri-sha/projen-lint-synthesized",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

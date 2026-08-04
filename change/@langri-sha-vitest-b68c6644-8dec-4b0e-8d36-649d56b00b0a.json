@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Document the tempy v3 names in the readme",
-  "packageName": "@langri-sha/vitest",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

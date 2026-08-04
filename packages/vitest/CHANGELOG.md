@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/vitest
 
-<!-- This log was last generated on Mon, 27 Jul 2026 22:24:07 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.9
+
+Tue, 04 Aug 2026 04:27:48 GMT
+
+### Patches
+
+- Update dependency nock to v14.0.17 (email not defined)
+- Document the tempy v3 names in the readme (filip.dupanovic@gmail.com)
 
 ## 0.1.8
 
