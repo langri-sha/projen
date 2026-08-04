@@ -663,12 +663,23 @@ export class Project extends BaseProject {
     }
   }
 
-  #configurePnpmWorkspace({ pnpmWorkspace }: ProjectOptions) {
+  #configurePnpmWorkspace({ pnpmWorkspace, swcrc }: ProjectOptions) {
     if (!pnpmWorkspace) {
       return
     }
 
-    this.pnpmWorkspace = new PnpmWorkspace(this, pnpmWorkspace)
+    const defaults: PnpmWorkspaceOptions = {
+      allowBuilds: {
+        '@swc/core': Boolean(swcrc),
+        esbuild: false,
+        'unrs-resolver': false,
+      },
+    }
+
+    this.pnpmWorkspace = new PnpmWorkspace(
+      this,
+      deepMerge(defaults, pnpmWorkspace),
+    )
   }
 
   #configurePrettier({ prettier, package: pkg }: ProjectOptions) {
@@ -1011,6 +1022,8 @@ const deepMerge = R.mergeDeepWith(
   R.cond([
     // When both arguments are strings, use the right string.
     [R.allPass([R.is(String), R.is(String)]), R.nthArg(1)],
+    // Same for booleans, which cannot be concatenated at all.
+    [R.allPass([R.is(Boolean), R.is(Boolean)]), R.nthArg(1)],
     // Otherwise, concatenate.
     [R.T, R.concat],
   ]),

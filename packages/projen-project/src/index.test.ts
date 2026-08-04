@@ -585,6 +585,51 @@ test('with PNPM workspace', () => {
   expect(project.pnpmWorkspace).toBeInstanceOf(PnpmWorkspace)
 })
 
+describe('PNPM allowed builds', () => {
+  const allowBuilds = (options = {}) => {
+    const workspace = synthSnapshot(
+      new Project({
+        name: 'test-project',
+        pnpmWorkspace: { packages: ['packages/*'] },
+        ...options,
+      }),
+    )['pnpm-workspace.yaml'] as string
+
+    return Object.fromEntries(
+      [...workspace.matchAll(/^ {2}['"]?([\w@/-]+)['"]?: (true|false)$/gm)].map(
+        ([, name, value]) => [name, value === 'true'],
+      ),
+    )
+  }
+
+  test('are declined by default', () => {
+    expect(allowBuilds()).toEqual({
+      '@swc/core': false,
+      esbuild: false,
+      'unrs-resolver': false,
+    })
+  })
+
+  test('allow SWC when the project uses it', () => {
+    expect(allowBuilds({ swcrc: {} })['@swc/core']).toBe(true)
+  })
+
+  test('yield to the value the project sets', () => {
+    expect(
+      allowBuilds({
+        pnpmWorkspace: {
+          packages: ['packages/*'],
+          allowBuilds: { esbuild: true },
+        },
+      }),
+    ).toEqual({
+      '@swc/core': false,
+      esbuild: true,
+      'unrs-resolver': false,
+    })
+  })
+})
+
 describe('with Prettier options', () => {
   test('defaults', () => {
     const project = new Project({
