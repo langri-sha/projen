@@ -27,7 +27,7 @@ If you need to switch the root, for example during tests, you can manually
 configure the resolved root:
 
 ```js
-monorepo.root = tempy.directory()
+monorepo.root = temporaryDirectory()
 
 // ...elsewhere in your codebase
 monorepo.resolve('build', 'myapp') === '/tmp/aa11bb22/build/myapp'
