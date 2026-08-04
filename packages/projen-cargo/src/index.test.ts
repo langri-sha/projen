@@ -1,8 +1,13 @@
 import { expect, test } from '@langri-sha/vitest'
-import { Project } from 'projen'
+import { Project, TomlFile } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
-import { CargoPackage, CargoWorkspace } from './index'
+import {
+  CargoPackage,
+  CargoWorkspace,
+  type Dependency,
+  type Rustfmt,
+} from './index'
 
 test('defaults', () => {
   const project = new Project({
@@ -53,6 +58,24 @@ test('workspace', () => {
 
   project.synth()
   expect(synthSnapshot(project)).toMatchSnapshot()
+})
+
+test('names the types its own options are written in', () => {
+  const rustfmt: Rustfmt = { group_imports: 'StdExternalCrate' }
+  const dependency: Dependency = { version: '1.48.0', features: ['full'] }
+
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const workspace = new CargoWorkspace(project, {
+    rustfmt,
+    workspace: {
+      dependencies: { tokio: dependency },
+    },
+  })
+
+  expect(workspace.rustfmt).toBeInstanceOf(TomlFile)
 })
 
 test('workspace root that is also a crate', () => {
