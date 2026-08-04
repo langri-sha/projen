@@ -895,18 +895,18 @@ export class Project extends BaseProject {
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         },
-        // The crate versions a Cargo workspace declares live here, and the
-        // synthesized `Cargo.toml` repeats them. Renovate's own cargo manager
-        // keeps that manifest and `Cargo.lock` current; left to itself it would
-        // open a pull request the next synthesis reverts. Because both managers
-        // name the same crate at the same version, the two updates land on one
-        // branch and the synthesis check stays green — which is why the cargo
-        // manager is left enabled rather than switched off.
+        // Crate versions live here; the synthesized `Cargo.toml` only repeats
+        // them. Renovate's cargo manager keeps that manifest and `Cargo.lock`
+        // current, so on its own it opens a pull request the next synthesis
+        // reverts. Both name the same crate at the same version, so the two
+        // land on one branch and the synthesis check stays green — which is
+        // why the cargo manager is left enabled.
         //
-        // Read in three passes: the table, its braces without the key that
-        // named them, then each entry. That middle pass is not decoration —
-        // recursion feeds the whole match forward, so without it `dependencies`
-        // is itself read as a crate holding the first version in the table.
+        // Four narrowing passes: the table, its braces, one whole entry, then
+        // the version inside it. Drop the second and `dependencies` is itself
+        // read as a crate, since recursion feeds the whole match forward; drop
+        // the third and a detail key is, turning a pinned `rev` into a proposal
+        // to move onto a crates.io release.
         {
           customType: 'regex',
           datasourceTemplate: 'crate',
@@ -915,13 +915,12 @@ export class Project extends BaseProject {
           matchStrings: [
             "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
             '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
-            // A version, whether the entry is a bare string or a table that
-            // names one. Requiring it to open like a version requirement is
-            // what tells `serde = { features: [...], version: "1" }` apart from
-            // its own feature names, and leaves alone the entries that carry no
-            // version at all — a path, a Git revision, or the `workspace = true`
-            // a member crate inherits with.
-            "'?(?<depName>[\\w-]+)'?:\\s*\\{?[^{}]*?'(?<currentValue>[\\d~^><=*][^']*)'",
+            "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+            // A bare requirement is the only string ahead of a brace that
+            // never opens; in a table, the version is the key that says so.
+            // Entries carrying neither — a path, a revision, the
+            // `workspace = true` a member inherits with — are left alone.
+            "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
           ],
         },
         {

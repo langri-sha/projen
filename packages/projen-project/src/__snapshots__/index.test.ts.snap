@@ -3020,7 +3020,8 @@ node_modules/
         "matchStrings": [
           "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
           "\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
-          "'?(?<depName>[\\w-]+)'?:\\s*\\{?[^{}]*?'(?<currentValue>[\\d~^><=*][^']*)'",
+          "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+          "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
         ],
         "matchStringsStrategy": "recursive",
       },
