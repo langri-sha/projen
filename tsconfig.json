@@ -29,6 +29,9 @@
       "path": "packages/projen-beachball"
     },
     {
+      "path": "packages/projen-cargo"
+    },
+    {
       "path": "packages/projen-codeowners"
     },
     {

@@ -59,7 +59,13 @@ const project = new Project({
   },
   editorConfig: {},
   eslint: {
-    ignorePatterns: ['**/pnpm-workspace.ts', '**/renovate.ts', '**/swcrc.ts'],
+    ignorePatterns: [
+      '**/cargo.ts',
+      '**/pnpm-workspace.ts',
+      '**/renovate.ts',
+      '**/rustfmt.ts',
+      '**/swcrc.ts',
+    ],
     config: [
       {
         files: ['packages/*/src/**/*.ts'],
@@ -82,7 +88,14 @@ const project = new Project({
   lintStaged: {},
   lintSynthesized: {},
   prettier: {
-    ignorePatterns: ['*.frag', 'pnpm-workspace.ts', 'renovate.ts', 'swcrc.ts'],
+    ignorePatterns: [
+      '*.frag',
+      'cargo.ts',
+      'pnpm-workspace.ts',
+      'renovate.ts',
+      'rustfmt.ts',
+      'swcrc.ts',
+    ],
   },
   pnpmWorkspace: {
     packages: ['packages/*'],
@@ -354,6 +367,48 @@ project.addSubproject(
   subproject,
   test,
   publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/projen-cargo',
+    outdir: path.join('packages', 'projen-cargo'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      devDeps: [
+        '@langri-sha/schemastore-to-typescript@workspace:*',
+        'tsx@4.23.5',
+      ],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+  (project) => {
+    project.addGitIgnore('cargo.ts')
+    project.addGitIgnore('rustfmt.ts')
+
+    project.package?.setScript(
+      'prepare',
+      [
+        "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'cargo manifest' src/cargo.ts",
+        'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache rustfmt src/rustfmt.ts',
+      ].join(' && '),
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
+    )
+  },
 )
 
 project.addSubproject(
