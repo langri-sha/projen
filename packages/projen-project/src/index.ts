@@ -527,7 +527,9 @@ export class Project extends BaseProject {
       },
     })
 
-    workspace?.addMember(path.relative(this.root.outdir, this.outdir))
+    workspace?.addMember(
+      path.relative(this.root.outdir, this.outdir).split(path.sep).join('/'),
+    )
   }
 
   #configureCodeowners({ codeowners: codeownersOptions }: ProjectOptions) {
