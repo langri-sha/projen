@@ -71,6 +71,17 @@
     },
     {
       customType: 'regex',
+      datasourceTemplate: 'crate',
+      managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
+      matchStringsStrategy: 'recursive',
+      matchStrings: [
+        "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+        '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
+        "'?(?<depName>[\\w-]+)'?:\\s*\\{?[^{}]*?'(?<currentValue>[\\d~^><=*][^']*)'",
+      ],
+    },
+    {
+      customType: 'regex',
       datasourceTemplate: 'npm',
       managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
       matchStrings: ["pnpm@(?<currentValue>[^']+)"],
