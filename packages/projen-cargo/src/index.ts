@@ -15,8 +15,19 @@ export * from './toolchain'
  * keys, so it lags Cargo by whatever the latest release added — `[hints]`, at
  * the time of writing. Reach for `manifest.addOverride()` on the component for
  * those, rather than waiting on SchemaStore.
+ *
+ * `[package] name` is optional here where the schema requires it, because both
+ * components fall back to the project's own name.
  */
-export type CargoManifestOptions = CargoManifest
+export interface CargoManifestOptions extends Omit<CargoManifest, 'package'> {
+  /**
+   * The `[package]` table. Omit it entirely for a virtual manifest — one that
+   * only opens a workspace.
+   *
+   * @default The project's name, when the table is declared at all
+   */
+  readonly package?: Partial<NonNullable<CargoManifest['package']>>
+}
 
 /**
  * Cargo workspace options.
@@ -92,6 +103,12 @@ export class CargoWorkspace extends Component {
     this.manifest = new TomlFile(project, 'Cargo.toml', {
       obj: {
         ...manifest,
+        ...(manifest.package && {
+          package: {
+            name: project.name,
+            ...manifest.package,
+          },
+        }),
         workspace: {
           ...manifest.workspace,
           members: this.members,
@@ -137,16 +154,7 @@ export class CargoWorkspace extends Component {
 /**
  * Cargo package options.
  */
-export interface CargoPackageOptions extends Omit<
-  CargoManifestOptions,
-  'package'
-> {
-  /**
-   * The crate's `[package]` table. Unlike the schema's, its `name` is
-   * optional — the project's own name stands in.
-   */
-  readonly package?: Partial<NonNullable<CargoManifestOptions['package']>>
-
+export interface CargoPackageOptions extends CargoManifestOptions {
   /**
    * Whether to write a sample `src/main.rs`, so that a freshly scaffolded
    * crate compiles before anything has been written into it.
@@ -155,6 +163,13 @@ export interface CargoPackageOptions extends Omit<
    */
   readonly sampleCode?: boolean
 }
+
+/**
+ * Options for either of the components, for callers that route on
+ * `project.parent` rather than choosing between them up front.
+ */
+export interface CargoOptions
+  extends CargoWorkspaceOptions, CargoPackageOptions {}
 
 /**
  * A component for authoring a Cargo package.
