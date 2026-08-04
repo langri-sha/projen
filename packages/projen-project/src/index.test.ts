@@ -818,6 +818,66 @@ test('with Renovate options and a minimum Node.js version', () => {
   })
 })
 
+test('with Renovate options, reading the crates a workspace declares', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+  })
+
+  const manager = synthSnapshot(project)['renovate.json5'].customManagers.find(
+    ({ datasourceTemplate }: { datasourceTemplate: string }) =>
+      datasourceTemplate === 'crate',
+  )
+
+  // A `.projenrc.ts` holding every shape a crate is declared in, alongside the
+  // npm declarations the crate manager has to leave to the npm ones.
+  const projenrc = `
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        minNodeVersion: '24.16.0',
+        devDeps: ['prettier@3.8.3'],
+        peerDependenciesMeta: { eslint: { optional: true } },
+      },
+      cargo: {
+        workspace: {
+          package: { edition: '2024' },
+          dependencies: {
+            anyhow: '1.0.100',
+            tokio: { version: '1.48.0', features: ['full'] },
+            'tokio-util': '0.7.17',
+            serde: {
+              features: ['derive'],
+              version: '1.0.228',
+            },
+            local: { path: '../local' },
+            forked: { git: 'https://example.com/x.git', tag: 'v1.2.3' },
+          },
+          'dev-dependencies': { insta: '1.44.5' },
+          'build-dependencies': { cc: '1.2.44' },
+        },
+      },
+    })
+
+    project.addSubproject({
+      name: 'api',
+      outdir: 'apps/api',
+      cargo: {
+        dependencies: { anyhow: { workspace: true } },
+      },
+    })
+  `
+
+  expect(extractRecursively(manager.matchStrings, projenrc)).toEqual([
+    { depType: 'dependencies', depName: 'anyhow', currentValue: '1.0.100' },
+    { depType: 'dependencies', depName: 'tokio', currentValue: '1.48.0' },
+    { depType: 'dependencies', depName: 'tokio-util', currentValue: '0.7.17' },
+    { depType: 'dependencies', depName: 'serde', currentValue: '1.0.228' },
+    { depType: 'dev-dependencies', depName: 'insta', currentValue: '1.44.5' },
+    { depType: 'build-dependencies', depName: 'cc', currentValue: '1.2.44' },
+  ])
+})
+
 describe('with SWC options', () => {
   test('defaults', () => {
     const project = new Project({
@@ -1207,3 +1267,23 @@ test('removes .gitattributes for subprojects', () => {
 
   expect(synthSnapshot(project)['sub-project-a/.gitattributes']).toBeUndefined()
 })
+
+/**
+ * Run a custom manager's `matchStrings` the way Renovate's recursive strategy
+ * does: each match feeds the next expression, and the named groups gathered
+ * along the way are merged into whatever the last one extracts.
+ *
+ * @see https://docs.renovatebot.com/configuration-options/#matchstringsstrategy
+ */
+const extractRecursively = (
+  matchStrings: string[],
+  content: string,
+  groups: Record<string, string> = {},
+): Array<Record<string, string>> =>
+  [...content.matchAll(new RegExp(matchStrings[0], 'g'))].flatMap((match) => {
+    const merged = { ...groups, ...match.groups }
+
+    return matchStrings.length > 1
+      ? extractRecursively(matchStrings.slice(1), match[0], merged)
+      : [merged]
+  })

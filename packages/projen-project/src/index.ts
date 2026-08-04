@@ -894,6 +894,35 @@ export class Project extends BaseProject {
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         },
+        // The crate versions a Cargo workspace declares live here, and the
+        // synthesized `Cargo.toml` repeats them. Renovate's own cargo manager
+        // keeps that manifest and `Cargo.lock` current; left to itself it would
+        // open a pull request the next synthesis reverts. Because both managers
+        // name the same crate at the same version, the two updates land on one
+        // branch and the synthesis check stays green — which is why the cargo
+        // manager is left enabled rather than switched off.
+        //
+        // Read in three passes: the table, its braces without the key that
+        // named them, then each entry. That middle pass is not decoration —
+        // recursion feeds the whole match forward, so without it `dependencies`
+        // is itself read as a crate holding the first version in the table.
+        {
+          customType: 'regex',
+          datasourceTemplate: 'crate',
+          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
+          matchStringsStrategy: 'recursive',
+          matchStrings: [
+            "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+            '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
+            // A version, whether the entry is a bare string or a table that
+            // names one. Requiring it to open like a version requirement is
+            // what tells `serde = { features: [...], version: "1" }` apart from
+            // its own feature names, and leaves alone the entries that carry no
+            // version at all — a path, a Git revision, or the `workspace = true`
+            // a member crate inherits with.
+            "'?(?<depName>[\\w-]+)'?:\\s*\\{?[^{}]*?'(?<currentValue>[\\d~^><=*][^']*)'",
+          ],
+        },
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
