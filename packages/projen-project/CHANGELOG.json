@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Tue, 04 Aug 2026 05:37:32 GMT",
+      "version": "0.26.0",
+      "tag": "@langri-sha/projen-project_v0.26.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "e22c8117cc3e9d0542d01bb0cbefddd0eb071ba3",
+            "comment": "Supply allowBuilds defaults so pnpm installs do not fail"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.25.1",
       "tag": "@langri-sha/projen-project_v0.25.1",

@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 04 Aug 2026 05:37:32 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.26.0
+
+Tue, 04 Aug 2026 05:37:32 GMT
+
+### Minor changes
+
+- Supply allowBuilds defaults so pnpm installs do not fail (filip.dupanovic@gmail.com)
 
 ## 0.25.1
 

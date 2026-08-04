@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Supply allowBuilds defaults so pnpm installs do not fail",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
