@@ -10,6 +10,9 @@
       "path": "../projen-beachball"
     },
     {
+      "path": "../projen-cargo"
+    },
+    {
       "path": "../projen-codeowners"
     },
     {
