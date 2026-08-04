@@ -14,7 +14,7 @@ Then import your Vitest dependencies from here:
 
 ```js
 // some.test.js
-import { expect, test, tempy } from '@langri-sha/vitest'
+import { expect, test, temporaryDirectory } from '@langri-sha/vitest'
 
 test(/*...*/)
 ```
