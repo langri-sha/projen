@@ -856,8 +856,10 @@ test('with Renovate options, reading the crates a workspace declares', () => {
       datasourceTemplate === 'crate',
   )
 
-  // A `.projenrc.ts` holding every shape a crate is declared in, alongside the
-  // npm declarations the crate manager has to leave to the npm ones.
+  // A `.projenrc.ts` holding every shape a crate is declared in — including
+  // the ones that carry no version and must be left alone, whose detail keys
+  // would otherwise read as crates of their own — alongside the npm
+  // declarations the crate manager has to leave to the npm ones.
   const projenrc = `
     const project = new Project({
       name: 'test-project',
@@ -879,6 +881,9 @@ test('with Renovate options, reading the crates a workspace declares', () => {
             },
             local: { path: '../local' },
             forked: { git: 'https://example.com/x.git', tag: 'v1.2.3' },
+            pinned: { git: 'https://example.com/w.git', rev: '9d1a2b3c4d' },
+            tracked: { git: 'https://example.com/y.git', branch: '2024-lts' },
+            renamed: { package: 'serde', version: '1.0.228', registry: '2i' },
           },
           'dev-dependencies': { insta: '1.44.5' },
           'build-dependencies': { cc: '1.2.44' },
@@ -900,6 +905,7 @@ test('with Renovate options, reading the crates a workspace declares', () => {
     { depType: 'dependencies', depName: 'tokio', currentValue: '1.48.0' },
     { depType: 'dependencies', depName: 'tokio-util', currentValue: '0.7.17' },
     { depType: 'dependencies', depName: 'serde', currentValue: '1.0.228' },
+    { depType: 'dependencies', depName: 'renamed', currentValue: '1.0.228' },
     { depType: 'dev-dependencies', depName: 'insta', currentValue: '1.44.5' },
     { depType: 'build-dependencies', depName: 'cc', currentValue: '1.2.44' },
   ])
