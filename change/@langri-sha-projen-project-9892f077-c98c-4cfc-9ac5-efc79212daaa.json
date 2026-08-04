@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Restrict addDevDeps in package sources to the guarded helper",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

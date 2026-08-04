@@ -372,6 +372,7 @@ export class Project extends BaseProject {
         continue
       }
 
+      // eslint-disable-next-line no-restricted-syntax
       this.package?.addDevDeps(spec)
 
       // A default that resolves rather than dictates — `*` takes whatever is
