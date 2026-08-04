@@ -5,7 +5,9 @@ import { type CargoDenyOptions } from './deny'
 import { type Rustfmt } from './rustfmt'
 import { type RustToolchainOptions } from './toolchain'
 
+export * from './cargo'
 export * from './deny'
+export * from './rustfmt'
 export * from './toolchain'
 
 /**
