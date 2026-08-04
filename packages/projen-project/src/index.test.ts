@@ -2,6 +2,7 @@ import * as path from 'node:path'
 
 import { Babel } from '@langri-sha/projen-babel'
 import { Beachball } from '@langri-sha/projen-beachball'
+import { CargoPackage, CargoWorkspace } from '@langri-sha/projen-cargo'
 import { Codeowners } from '@langri-sha/projen-codeowners'
 import { EditorConfig } from '@langri-sha/projen-editorconfig'
 import { ESLint } from '@langri-sha/projen-eslint'
@@ -297,6 +298,96 @@ describe('with Beachball configuration', () => {
     })
 
     expect(synthSnapshot(project)).toMatchSnapshot()
+  })
+})
+
+describe('with Cargo configuration', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      cargo: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.cargo).toBeInstanceOf(CargoWorkspace)
+  })
+
+  test('with a crate', () => {
+    const project = new Project({
+      name: 'test-project',
+      cargo: {
+        workspace: {
+          package: {
+            license: 'MIT',
+          },
+          dependencies: {
+            tokio: {
+              version: '1.48.0',
+              features: ['full'],
+            },
+          },
+        },
+      },
+    })
+
+    const subproject = project.addSubproject({
+      name: 'api',
+      outdir: path.join('apps', 'api'),
+      cargo: {
+        dependencies: {
+          tokio: {
+            workspace: true,
+          },
+        },
+      },
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(subproject.cargo).toBeInstanceOf(CargoPackage)
+  })
+
+  test('with a crate declaring what it would otherwise inherit', () => {
+    const project = new Project({
+      name: 'test-project',
+      cargo: {
+        workspace: {
+          package: {
+            edition: '2021',
+          },
+        },
+      },
+    })
+
+    project.addSubproject({
+      name: 'api',
+      outdir: path.join('apps', 'api'),
+      cargo: {
+        package: {
+          edition: '2015',
+        },
+      },
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+  })
+
+  test('with a crate outside of a workspace', () => {
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    const subproject = project.addSubproject({
+      name: 'api',
+      outdir: path.join('apps', 'api'),
+      cargo: {
+        package: {
+          version: '0.1.0',
+        },
+      },
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(subproject.cargo).toBeInstanceOf(CargoPackage)
   })
 })
 

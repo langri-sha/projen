@@ -95,24 +95,33 @@ export class CargoWorkspace extends Component {
   constructor(project: Project, options: CargoWorkspaceOptions = {}) {
     super(project)
 
-    const { deny, rustfmt, toolchain, ...manifest } = options
+    const {
+      deny,
+      package: crate,
+      rustfmt,
+      toolchain,
+      workspace,
+      ...manifest
+    } = options
 
-    this.members = [...(manifest.workspace?.members ?? [])]
-    this.inheritable = Object.keys(manifest.workspace?.package ?? {})
+    this.members = [...(workspace?.members ?? [])]
+    this.inheritable = Object.keys(workspace?.package ?? {})
 
+    // Spelled out in the order a manifest is usually written in, rather than
+    // in whichever order the options happened to arrive in.
     this.manifest = new TomlFile(project, 'Cargo.toml', {
       obj: {
-        ...manifest,
-        ...(manifest.package && {
-          package: {
-            name: project.name,
-            ...manifest.package,
-          },
-        }),
         workspace: {
-          ...manifest.workspace,
+          ...workspace,
           members: this.members,
         },
+        ...(crate && {
+          package: {
+            name: project.name,
+            ...crate,
+          },
+        }),
+        ...manifest,
       },
     })
 
@@ -127,7 +136,7 @@ export class CargoWorkspace extends Component {
 
     this.rustfmt = new TomlFile(project, 'rustfmt.toml', {
       obj: {
-        edition: manifest.workspace?.package?.edition,
+        edition: workspace?.package?.edition,
         ...rustfmt,
       },
     })
@@ -183,15 +192,15 @@ export class CargoPackage extends Component {
   constructor(project: Project, options: CargoPackageOptions = {}) {
     super(project)
 
-    const { sampleCode = true, ...manifest } = options
+    const { package: crate, sampleCode = true, ...manifest } = options
 
     this.manifest = new TomlFile(project, 'Cargo.toml', {
       obj: {
-        ...manifest,
         package: {
           name: project.name,
-          ...manifest.package,
+          ...crate,
         },
+        ...manifest,
       },
     })
 
