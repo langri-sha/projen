@@ -73,6 +73,25 @@ test('workspace root that is also a crate', () => {
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
 
+test('offers nothing inheritable for a key held at undefined', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  const publish = false
+
+  const workspace = new CargoWorkspace(project, {
+    workspace: {
+      package: {
+        edition: '2024',
+        license: publish ? 'MIT' : undefined,
+      },
+    },
+  })
+
+  expect(workspace.inheritable).toEqual(['edition'])
+})
+
 test('adds members without repeating one already listed', () => {
   const project = new Project({
     name: 'test-project',

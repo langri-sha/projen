@@ -105,7 +105,10 @@ export class CargoWorkspace extends Component {
     } = options
 
     this.members = [...(workspace?.members ?? [])]
-    this.inheritable = Object.keys(workspace?.package ?? {})
+
+    this.inheritable = Object.entries(workspace?.package ?? {})
+      .filter(([, value]) => value !== undefined)
+      .map(([key]) => key)
 
     // Spelled out in the order a manifest is usually written in, rather than
     // in whichever order the options happened to arrive in.
