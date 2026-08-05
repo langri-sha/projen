@@ -608,7 +608,7 @@ project.addSubproject(
         'ramda@0.32.0',
         'semver@7.8.5',
       ],
-      devDeps: ['@types/ramda@0.32.0', '@types/semver@7.7.1'],
+      devDeps: ['@types/ramda@0.32.0', '@types/semver@7.8.0'],
       peerDeps: [
         '@babel/core@^8.0.0',
         '@swc-node/register@^1.0.0',
