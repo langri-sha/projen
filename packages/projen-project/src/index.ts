@@ -897,18 +897,6 @@ export class Project extends BaseProject {
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         },
-        // Crate versions live here; the synthesized `Cargo.toml` only repeats
-        // them. Renovate's cargo manager keeps that manifest and `Cargo.lock`
-        // current, so on its own it opens a pull request the next synthesis
-        // reverts. Both name the same crate at the same version, so the two
-        // land on one branch and the synthesis check stays green — which is
-        // why the cargo manager is left enabled.
-        //
-        // Four narrowing passes: the table, its braces, one whole entry, then
-        // the version inside it. Drop the second and `dependencies` is itself
-        // read as a crate, since recursion feeds the whole match forward; drop
-        // the third and a detail key is, turning a pinned `rev` into a proposal
-        // to move onto a crates.io release.
         {
           customType: 'regex',
           datasourceTemplate: 'crate',
@@ -918,10 +906,7 @@ export class Project extends BaseProject {
             "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
             '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
             "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
-            // A bare requirement is the only string ahead of a brace that
-            // never opens; in a table, the version is the key that says so.
-            // Entries carrying neither — a path, a revision, the
-            // `workspace = true` a member inherits with — are left alone.
+            "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
             "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
           ],
         },
