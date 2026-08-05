@@ -17,7 +17,7 @@
     },
     {
       "name": "@types/semver",
-      "version": "7.7.1",
+      "version": "7.8.0",
       "type": "build"
     },
     {
