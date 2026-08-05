@@ -24,6 +24,7 @@
   "dependencies": {
     "@langri-sha/projen-babel": "workspace:*",
     "@langri-sha/projen-beachball": "workspace:*",
+    "@langri-sha/projen-cargo": "workspace:*",
     "@langri-sha/projen-codeowners": "workspace:*",
     "@langri-sha/projen-editorconfig": "workspace:*",
     "@langri-sha/projen-eslint": "workspace:*",
@@ -42,10 +43,12 @@
     "semver": "7.8.5"
   },
   "devDependencies": {
+    "@langri-sha/prettier": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/ramda": "0.32.0",
-    "@types/semver": "7.7.1"
+    "@types/semver": "7.7.1",
+    "prettier": "3.8.3"
   },
   "peerDependencies": {
     "@babel/core": "^8.0.0",

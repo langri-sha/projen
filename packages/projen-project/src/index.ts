@@ -4,6 +4,11 @@ import * as path from 'node:path'
 import { Babel, BabelOptions } from '@langri-sha/projen-babel'
 import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 import {
+  type CargoOptions,
+  CargoPackage,
+  CargoWorkspace,
+} from '@langri-sha/projen-cargo'
+import {
   Codeowners,
   type CodeownersOptions,
 } from '@langri-sha/projen-codeowners'
@@ -112,6 +117,12 @@ export interface ProjectOptions extends Omit<
   beachball?: BeachballOptions
 
   /*
+   * Pass in to set up Cargo. Root projects get a workspace, subprojects a
+   * crate in it.
+   */
+  cargo?: CargoOptions
+
+  /*
    * Pass in to set up Beachball.
    */
   codeowners?: CodeownersOptions
@@ -202,6 +213,7 @@ export interface ProjectOptions extends Omit<
 export class Project extends BaseProject {
   babel?: Babel
   beachball?: Beachball
+  cargo?: CargoPackage | CargoWorkspace
   codeowners?: Codeowners
   editorConfig?: EditorConfig
   eslint?: ESLint
@@ -265,6 +277,7 @@ export class Project extends BaseProject {
 
     this.#configureBabel(options)
     this.#configureBeachball(options)
+    this.#configureCargo(options)
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
     this.#configureGitAttributes()
@@ -465,6 +478,58 @@ export class Project extends BaseProject {
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
     this.#addDefaultDevDeps('beachball@2.65.5')
     this.typeScriptConfig?.addFile(this.beachball!.path)
+  }
+
+  /**
+   * Set up Cargo, as a workspace at the root and as a crate in it below.
+   *
+   * A crate inherits exactly the keys the workspace offers in
+   * `[workspace.package]`, so that the edition, licence and authorship are
+   * declared once and a crate that wants its own still says so. It registers
+   * itself as a member on the way, which is the pairing that otherwise drifts:
+   * a subproject added here and a path forgotten over there.
+   */
+  #configureCargo({ cargo }: ProjectOptions) {
+    if (!cargo) {
+      return
+    }
+
+    if (!this.parent) {
+      const defaults: CargoOptions = {
+        workspace: {
+          resolver: '3',
+          package: {
+            edition: '2024',
+          },
+        },
+      }
+
+      this.cargo = new CargoWorkspace(this, deepMerge(defaults, cargo))
+
+      return
+    }
+
+    const workspace =
+      this.root instanceof Project && this.root.cargo instanceof CargoWorkspace
+        ? this.root.cargo
+        : undefined
+
+    const inherited = Object.fromEntries(
+      (workspace?.inheritable ?? []).map((key) => [key, { workspace: true }]),
+    )
+
+    this.cargo = new CargoPackage(this, {
+      ...cargo,
+      package: {
+        name: this.name.replace(/^@[^/]+\//, ''),
+        ...inherited,
+        ...cargo.package,
+      },
+    })
+
+    workspace?.addMember(
+      path.relative(this.root.outdir, this.outdir).split(path.sep).join('/'),
+    )
   }
 
   #configureCodeowners({ codeowners: codeownersOptions }: ProjectOptions) {
@@ -831,6 +896,19 @@ export class Project extends BaseProject {
           ],
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
+        },
+        {
+          customType: 'regex',
+          datasourceTemplate: 'crate',
+          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
+          matchStringsStrategy: 'recursive',
+          matchStrings: [
+            "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+            '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
+            "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+            "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
+            "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
+          ],
         },
         {
           customType: 'regex',

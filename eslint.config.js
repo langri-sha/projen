@@ -6,8 +6,10 @@ export default [
     ignores: [
       '**/.*',
       '**/dist/',
+      '**/cargo.ts',
       '**/pnpm-workspace.ts',
       '**/renovate.ts',
+      '**/rustfmt.ts',
       '**/swcrc.ts',
       '!.projenrc.ts',
     ],
