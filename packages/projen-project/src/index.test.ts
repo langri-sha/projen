@@ -1,5 +1,6 @@
 import * as path from 'node:path'
 
+import prettier from '@langri-sha/prettier'
 import { Babel } from '@langri-sha/projen-babel'
 import { Beachball } from '@langri-sha/projen-beachball'
 import { CargoPackage, CargoWorkspace } from '@langri-sha/projen-cargo'
@@ -25,6 +26,7 @@ import {
   expect,
   test,
 } from '@langri-sha/vitest'
+import { format } from 'prettier'
 import { Project as BaseProject, IgnoreFile, javascript } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { valid } from 'semver'
@@ -33,7 +35,7 @@ import { vi } from 'vitest'
 import { NodePackage, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
-import { Project } from './index'
+import { Project, type ProjectOptions } from './index'
 
 vi.mock('@langri-sha/projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
@@ -845,7 +847,7 @@ test('with Renovate options and a minimum Node.js version', () => {
   })
 })
 
-test('with Renovate options, reading the crates a workspace declares', () => {
+test('with Renovate options, reading the crates a workspace declares', async () => {
   const project = new Project({
     name: 'test-project',
     renovate: {},
@@ -856,12 +858,11 @@ test('with Renovate options, reading the crates a workspace declares', () => {
       datasourceTemplate === 'crate',
   )
 
-  // A `.projenrc.ts` holding every shape a crate is declared in — including
-  // the ones that carry no version and must be left alone, whose detail keys
-  // would otherwise read as crates of their own — alongside the npm
-  // declarations the crate manager has to leave to the npm ones.
-  const projenrc = `
-    const project = new Project({
+  // Every shape a crate is declared in — including the ones carrying no
+  // version, which must be left alone lest their detail keys read as crates of
+  // their own — alongside the npm declarations to leave to the npm managers.
+  const projenrc = await renderProjenrc(
+    {
       name: 'test-project',
       package: {
         minNodeVersion: '24.16.0',
@@ -875,10 +876,7 @@ test('with Renovate options, reading the crates a workspace declares', () => {
             anyhow: '1.0.100',
             tokio: { version: '1.48.0', features: ['full'] },
             'tokio-util': '0.7.17',
-            serde: {
-              features: ['derive'],
-              version: '1.0.228',
-            },
+            serde: { features: ['derive'], version: '1.0.228' },
             local: { path: '../local' },
             forked: { git: 'https://example.com/x.git', tag: 'v1.2.3' },
             pinned: { git: 'https://example.com/w.git', rev: '9d1a2b3c4d' },
@@ -890,16 +888,15 @@ test('with Renovate options, reading the crates a workspace declares', () => {
           'build-dependencies': { cc: '1.2.44' },
         },
       },
-    })
-
-    project.addSubproject({
+    },
+    {
       name: 'api',
       outdir: 'apps/api',
       cargo: {
         dependencies: { anyhow: { workspace: true } },
       },
-    })
-  `
+    },
+  )
 
   expect(extractRecursively(manager.matchStrings, projenrc)).toEqual([
     { depType: 'dependencies', depName: 'anyhow', currentValue: '1.0.100' },
@@ -1252,6 +1249,30 @@ test('removes .gitattributes for subprojects', () => {
 
   expect(synthSnapshot(project)['sub-project-a/.gitattributes']).toBeUndefined()
 })
+
+/**
+ * Write out the `.projenrc.ts` a set of options would have been declared in.
+ *
+ * Projen never synthesizes one — the file is hand-written and is only ever an
+ * input — so a custom manager reading it can only be tested against a stand-in.
+ * Building that stand-in from typed options and formatting it with the config
+ * the repository actually uses is what keeps the stand-in honest: a renamed
+ * option stops compiling, and the text is spaced and quoted the way a real
+ * projenrc would be rather than the way it was once typed out by hand.
+ */
+const renderProjenrc = (
+  options: ProjectOptions,
+  ...subprojects: ProjectOptions[]
+): Promise<string> =>
+  format(
+    [
+      `const project = new Project(${JSON.stringify(options)})`,
+      ...subprojects.map(
+        (subproject) => `project.addSubproject(${JSON.stringify(subproject)})`,
+      ),
+    ].join('\n\n'),
+    { ...prettier, parser: 'typescript' },
+  )
 
 /**
  * Run a custom manager's `matchStrings` the way Renovate's recursive strategy

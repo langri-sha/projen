@@ -664,7 +664,12 @@ project.addSubproject(
         'ramda@0.32.0',
         'semver@7.8.5',
       ],
-      devDeps: ['@types/ramda@0.32.0', '@types/semver@7.8.0'],
+      devDeps: [
+        '@langri-sha/prettier@workspace:*',
+        '@types/ramda@0.32.0',
+        '@types/semver@7.8.0',
+        'prettier@3.8.3',
+      ],
       peerDeps: [
         '@babel/core@^8.0.0',
         '@swc-node/register@^1.0.0',
