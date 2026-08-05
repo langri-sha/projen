@@ -883,6 +883,7 @@ test('with Renovate options, reading the crates a workspace declares', () => {
             pinned: { git: 'https://example.com/w.git', rev: '9d1a2b3c4d' },
             tracked: { git: 'https://example.com/y.git', branch: '2024-lts' },
             renamed: { package: 'serde', version: '1.0.228', registry: '2i' },
+            reversed: { version: '2.0.16', package: 'thiserror' },
           },
           'dev-dependencies': { insta: '1.44.5' },
           'build-dependencies': { cc: '1.2.44' },
@@ -904,7 +905,22 @@ test('with Renovate options, reading the crates a workspace declares', () => {
     { depType: 'dependencies', depName: 'tokio', currentValue: '1.48.0' },
     { depType: 'dependencies', depName: 'tokio-util', currentValue: '0.7.17' },
     { depType: 'dependencies', depName: 'serde', currentValue: '1.0.228' },
-    { depType: 'dependencies', depName: 'renamed', currentValue: '1.0.228' },
+    // A renamed crate is asked about under the name the registry knows,
+    // whichever side of the version it is declared on, while the key it is
+    // known by here stays the `depName` — the same split Renovate's own cargo
+    // manager makes, and what keeps the two updates on one branch.
+    {
+      depType: 'dependencies',
+      depName: 'renamed',
+      packageName: 'serde',
+      currentValue: '1.0.228',
+    },
+    {
+      depType: 'dependencies',
+      depName: 'reversed',
+      packageName: 'thiserror',
+      currentValue: '2.0.16',
+    },
     { depType: 'dev-dependencies', depName: 'insta', currentValue: '1.44.5' },
     { depType: 'build-dependencies', depName: 'cc', currentValue: '1.2.44' },
   ])

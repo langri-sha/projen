@@ -3021,6 +3021,7 @@ node_modules/
           "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
           "\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
           "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+          "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
           "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
         ],
         "matchStringsStrategy": "recursive",
