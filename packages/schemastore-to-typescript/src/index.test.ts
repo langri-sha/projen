@@ -1,3 +1,4 @@
+import * as fs from 'node:fs/promises'
 import * as path from 'node:path'
 
 import {
@@ -327,11 +328,28 @@ test('persists the schema cache to disk for a fresh instance to reuse', async ()
 
   await compile('foobar')
 
-  await new Promise((resolve) => setTimeout(resolve, 500))
-
   const paths = envPaths('schemastore-to-typescript')
+  const filename = path.join(paths.cache, 'requests.json')
+
+  // The store rewrites the file whole rather than atomically, and keeps
+  // rewriting it as later entries land, so a reader sharing the path catches it
+  // half-written sooner or later — which is the flake a fixed wait was papering
+  // over. Take a complete copy once and read the instance off that, which is
+  // the same claim about what reached the disk without the race.
+  let persisted = ''
+
+  await vi.waitFor(async () => {
+    persisted = await fs.readFile(filename, 'utf8')
+
+    expect(JSON.parse(persisted)).toBeTruthy()
+    expect(persisted).toContain('https://example.com/foobar.json')
+  })
+
+  const copy = path.join(paths.cache, 'persisted.json')
+  await fs.writeFile(copy, persisted)
+
   const freshCache = new Keyv({
-    store: new KeyvFile({ filename: path.join(paths.cache, 'requests.json') }),
+    store: new KeyvFile({ filename: copy }),
   })
 
   const response = await got('https://example.com/foobar.json', {
