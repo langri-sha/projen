@@ -45,7 +45,7 @@
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/ramda": "0.32.0",
-    "@types/semver": "7.7.1"
+    "@types/semver": "7.8.0"
   },
   "peerDependencies": {
     "@babel/core": "^8.0.0",
