@@ -815,7 +815,7 @@ describe('supplied development dependency versions', () => {
     {
       tool: 'tsx',
       enabledBy: { typeScriptConfig: {} },
-      supplied: '4.23.1',
+      supplied: '4.23.5',
       declared: '4.23.0',
     },
     {
