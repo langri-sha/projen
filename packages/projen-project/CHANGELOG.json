@@ -2,6 +2,45 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 08 Aug 2026 22:14:47 GMT",
+      "version": "0.26.1",
+      "tag": "@langri-sha/projen-project_v0.26.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "b87b782146886b248d633386ac4866d5bb072c80",
+            "comment": "Update dependency tsx to v4.23.5"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "b87b782146886b248d633386ac4866d5bb072c80",
+            "comment": "Update dependency @types/semver to v7.8.0"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-pnpm-workspace to v0.4.3",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-renovate to v0.4.15",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-swcrc to v0.1.15",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 05:37:32 GMT",
       "version": "0.26.0",
       "tag": "@langri-sha/projen-project_v0.26.0",

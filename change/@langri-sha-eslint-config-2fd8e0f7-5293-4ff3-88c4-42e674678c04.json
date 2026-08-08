@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency globals to v17.9.0",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

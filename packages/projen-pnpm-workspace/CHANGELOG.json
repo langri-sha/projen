@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Sat, 08 Aug 2026 22:14:47 GMT",
+      "version": "0.4.3",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.4.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "commit": "b87b782146886b248d633386ac4866d5bb072c80",
+            "comment": "Update dependency tsx to v4.23.5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.4.2",
       "tag": "@langri-sha/projen-pnpm-workspace_v0.4.2",

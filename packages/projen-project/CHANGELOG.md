@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 04 Aug 2026 05:37:32 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 08 Aug 2026 22:14:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.26.1
+
+Sat, 08 Aug 2026 22:14:47 GMT
+
+### Patches
+
+- Update dependency tsx to v4.23.5 (filip.dupanovic@gmail.com)
+- Update dependency @types/semver to v7.8.0 (email not defined)
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.3
+- Bump @langri-sha/projen-renovate to v0.4.15
+- Bump @langri-sha/projen-swcrc to v0.1.15
 
 ## 0.26.0
 

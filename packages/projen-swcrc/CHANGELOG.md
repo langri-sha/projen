@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-swcrc
 
-<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 08 Aug 2026 22:14:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.15
+
+Sat, 08 Aug 2026 22:14:47 GMT
+
+### Patches
+
+- Update dependency tsx to v4.23.5 (filip.dupanovic@gmail.com)
 
 ## 0.1.14
 

@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/eslint-config",
-  "version": "0.9.7",
+  "version": "0.9.8",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },
