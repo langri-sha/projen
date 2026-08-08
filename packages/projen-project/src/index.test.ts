@@ -26,6 +26,7 @@ import {
 } from '@langri-sha/vitest'
 import { Project as BaseProject, IgnoreFile, javascript } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
+import { valid } from 'semver'
 import { vi } from 'vitest'
 
 import { NodePackage, ProjenrcFile } from './lib'
@@ -749,34 +750,6 @@ describe('with SWC options', () => {
 
     expect(synthSnapshot(project)['.swcrc']).toMatchSnapshot()
   })
-
-  test('pins SWC when the project declares no version of its own', () => {
-    const project = new Project({
-      name: 'test-project',
-      package: {},
-      swcrc: {},
-    })
-
-    const { devDependencies } = synthSnapshot(project)['package.json']
-
-    expect(devDependencies['@swc/core']).toBe('1.15.47')
-    expect(devDependencies['@swc-node/register']).toBe('1.12.1')
-  })
-
-  test('keeps the SWC version the project declared for itself', () => {
-    const project = new Project({
-      name: 'test-project',
-      package: {
-        devDeps: ['@swc/core@1.15.46', '@swc-node/register@1.12.0'],
-      },
-      swcrc: {},
-    })
-
-    const { devDependencies } = synthSnapshot(project)['package.json']
-
-    expect(devDependencies['@swc/core']).toBe('1.15.46')
-    expect(devDependencies['@swc-node/register']).toBe('1.12.0')
-  })
 })
 
 /**
@@ -793,46 +766,6 @@ describe('with SWC options', () => {
  *     Renovate is left free to upgrade it.
  */
 describe('supplied development dependency versions', () => {
-  const TOOLS = [
-    {
-      tool: 'beachball',
-      enabledBy: { beachball: {} },
-      supplied: '2.65.5',
-      declared: '2.65.0',
-    },
-    {
-      tool: 'husky',
-      enabledBy: { husky: {} },
-      supplied: '9.1.7',
-      declared: '9.1.6',
-    },
-    {
-      tool: 'typescript',
-      enabledBy: { typeScriptConfig: {} },
-      supplied: '5.9.3',
-      declared: '5.9.2',
-    },
-    {
-      tool: 'tsx',
-      enabledBy: { typeScriptConfig: {} },
-      supplied: '4.23.5',
-      declared: '4.23.0',
-    },
-    {
-      tool: '@swc/core',
-      enabledBy: { swcrc: {} },
-      supplied: '1.15.47',
-      declared: '1.15.46',
-    },
-    // Not a feature — every root project is given Projen itself.
-    {
-      tool: 'projen',
-      enabledBy: {},
-      supplied: '0.86.5',
-      declared: '0.86.4',
-    },
-  ]
-
   const synthesize = ({ devDeps, ...options }: Record<string, unknown>) =>
     synthSnapshot(
       new Project({
@@ -853,38 +786,42 @@ describe('supplied development dependency versions', () => {
   const suppressedPackages = (files: SynthOutput): string[] =>
     withheldRule(files)?.matchPackageNames ?? []
 
-  describe.each(TOOLS)(
-    '$tool, which the project does not declare',
-    ({ tool, enabledBy, supplied }) => {
-      const files = synthesize(enabledBy)
+  const TOOLS = [
+    { tool: 'beachball', enabledBy: { beachball: {} } },
+    { tool: 'husky', enabledBy: { husky: {} } },
+    { tool: 'typescript', enabledBy: { typeScriptConfig: {} } },
+    { tool: 'tsx', enabledBy: { typeScriptConfig: {} } },
+    { tool: '@swc/core', enabledBy: { swcrc: {} } },
+    { tool: '@swc-node/register', enabledBy: { swcrc: {} } },
+    // Not a feature — every root project is given Projen itself.
+    { tool: 'projen', enabledBy: {} },
+  ]
 
-      test(`is supplied as ${supplied}`, () => {
-        expect(files['package.json'].devDependencies[tool]).toBe(supplied)
-      })
+  describe.each(TOOLS)('$tool', ({ tool, enabledBy }) => {
+    const supplied = synthesize(enabledBy)
+    const declared = synthesize({
+      ...enabledBy,
+      devDeps: [`${tool}@*`],
+    })
 
-      test('is withheld from Renovate', () => {
-        expect(suppressedPackages(files)).toContain(tool)
-      })
-    },
-  )
+    test('supplies a concrete version by default', () => {
+      const version = supplied['package.json'].devDependencies[tool] as string
 
-  describe.each(TOOLS)(
-    '$tool, which the project declares as $declared',
-    ({ tool, enabledBy, declared }) => {
-      const files = synthesize({
-        ...enabledBy,
-        devDeps: [`${tool}@${declared}`],
-      })
+      expect(valid(version)).toBe(version)
+    })
 
-      test('is left at the declared version', () => {
-        expect(files['package.json'].devDependencies[tool]).toBe(declared)
-      })
+    test('withholds its default from Renovate', () => {
+      expect(suppressedPackages(supplied)).toContain(tool)
+    })
 
-      test('is left to Renovate to upgrade', () => {
-        expect(suppressedPackages(files)).not.toContain(tool)
-      })
-    },
-  )
+    test('preserves a project declaration', () => {
+      expect(declared['package.json'].devDependencies[tool]).toBe('*')
+    })
+
+    test('leaves a project declaration to Renovate', () => {
+      expect(suppressedPackages(declared)).not.toContain(tool)
+    })
+  })
 
   test('a version that resolves rather than dictates stays upgradable', () => {
     // `@langri-sha/tsconfig` is supplied as `*`, which takes whatever is
