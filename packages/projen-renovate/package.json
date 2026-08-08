@@ -26,7 +26,7 @@
     "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "tsx": "4.23.5"
+    "tsx": "4.23.8"
   },
   "peerDependencies": {
     "projen": "^0.86.0"
