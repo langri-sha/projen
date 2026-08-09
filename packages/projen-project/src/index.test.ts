@@ -980,9 +980,24 @@ test('with Renovate options and a minimum Node.js version', () => {
   })
 })
 
+test('with Renovate options and no crates to read', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].customManagers.map(
+      ({ datasourceTemplate }: { datasourceTemplate: string }) =>
+        datasourceTemplate,
+    ),
+  ).not.toContain('crate')
+})
+
 test('with Renovate options, reading the crates a workspace declares', () => {
   const project = new Project({
     name: 'test-project',
+    cargo: {},
     renovate: {},
   })
 

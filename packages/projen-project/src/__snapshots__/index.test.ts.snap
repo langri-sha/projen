@@ -2493,21 +2493,6 @@ node_modules/
       },
       {
         "customType": "regex",
-        "datasourceTemplate": "crate",
-        "managerFilePatterns": [
-          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
-        ],
-        "matchStrings": [
-          "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
-          "\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
-          "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
-          "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
-          "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
-        ],
-        "matchStringsStrategy": "recursive",
-      },
-      {
-        "customType": "regex",
         "datasourceTemplate": "npm",
         "depNameTemplate": "pnpm",
         "depTypeTemplate": "dependencies",
