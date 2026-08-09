@@ -494,6 +494,11 @@ export class Project extends BaseProject {
       return
     }
 
+    // The option is the union of what either component takes, so each branch
+    // has to drop the other's keys. Anything left over is written out as a
+    // manifest key, where Cargo either warns about it or takes it seriously.
+    const { deny, rustfmt, sampleCode, toolchain, ...manifest } = cargo
+
     if (!this.parent) {
       const defaults: CargoOptions = {
         workspace: {
@@ -504,7 +509,10 @@ export class Project extends BaseProject {
         },
       }
 
-      this.cargo = new CargoWorkspace(this, deepMerge(defaults, cargo))
+      this.cargo = new CargoWorkspace(
+        this,
+        deepMerge(defaults, { ...manifest, deny, rustfmt, toolchain }),
+      )
 
       return
     }
@@ -519,7 +527,8 @@ export class Project extends BaseProject {
     )
 
     this.cargo = new CargoPackage(this, {
-      ...cargo,
+      ...manifest,
+      sampleCode,
       package: {
         name: this.name.replace(/^@[^/]+\//, ''),
         ...inherited,
