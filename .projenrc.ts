@@ -384,7 +384,7 @@ project.addSubproject(
       type: 'module',
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.5',
+        'tsx@4.23.9',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
