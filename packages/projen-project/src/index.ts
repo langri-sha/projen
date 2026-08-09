@@ -530,7 +530,6 @@ export class Project extends BaseProject {
       ...manifest,
       sampleCode,
       package: {
-        name: this.name.replace(/^@[^/]+\//, ''),
         ...inherited,
         ...cargo.package,
       },

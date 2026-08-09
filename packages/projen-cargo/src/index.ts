@@ -32,6 +32,14 @@ export interface CargoManifestOptions extends Omit<CargoManifest, 'package'> {
 }
 
 /**
+ * A crate name for a project named for npm.
+ *
+ * A crate name has nowhere to put a scope — Cargo rejects both the `@` and the
+ * slash — so the scope is dropped rather than passed through to be refused.
+ */
+const crateName = (name: string): string => name.replace(/^@[^/]+\//, '')
+
+/**
  * Cargo workspace options.
  */
 export interface CargoWorkspaceOptions extends CargoManifestOptions {
@@ -122,7 +130,7 @@ export class CargoWorkspace extends Component {
         },
         ...(crate && {
           package: {
-            name: project.name,
+            name: crateName(project.name),
             ...crate,
           },
         }),
@@ -202,7 +210,7 @@ export class CargoPackage extends Component {
     this.manifest = new TomlFile(project, 'Cargo.toml', {
       obj: {
         package: {
-          name: project.name,
+          name: crateName(project.name),
           ...crate,
         },
         ...manifest,
