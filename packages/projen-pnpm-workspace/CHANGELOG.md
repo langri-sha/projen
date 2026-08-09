@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-pnpm-workspace
 
-<!-- This log was last generated on Sat, 08 Aug 2026 22:14:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 09 Aug 2026 08:38:21 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.4
+
+Sun, 09 Aug 2026 08:38:21 GMT
+
+### Patches
+
+- Update dependency tsx to v4.23.8 (email not defined)
 
 ## 0.4.3
 

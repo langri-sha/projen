@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Sun, 09 Aug 2026 08:38:21 GMT",
+      "version": "0.4.16",
+      "tag": "@langri-sha/projen-renovate_v0.4.16",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "b584afd89ca69ebc34f7328aec719869be3d11cf",
+            "comment": "Update dependency tsx to v4.23.8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 08 Aug 2026 22:14:47 GMT",
       "version": "0.4.15",
       "tag": "@langri-sha/projen-renovate_v0.4.15",

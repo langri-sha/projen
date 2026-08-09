@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 08 Aug 2026 22:14:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 09 Aug 2026 08:38:21 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.26.2
+
+Sun, 09 Aug 2026 08:38:21 GMT
+
+### Patches
+
+- Update dependency tsx to v4.23.8 (email not defined)
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.4
+- Bump @langri-sha/projen-renovate to v0.4.16
+- Bump @langri-sha/projen-swcrc to v0.1.16
 
 ## 0.26.1
 

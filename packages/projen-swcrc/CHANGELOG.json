@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Sun, 09 Aug 2026 08:38:21 GMT",
+      "version": "0.1.16",
+      "tag": "@langri-sha/projen-swcrc_v0.1.16",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "b584afd89ca69ebc34f7328aec719869be3d11cf",
+            "comment": "Update dependency tsx to v4.23.8"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 08 Aug 2026 22:14:47 GMT",
       "version": "0.1.15",
       "tag": "@langri-sha/projen-swcrc_v0.1.15",
