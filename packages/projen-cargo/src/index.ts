@@ -222,5 +222,7 @@ export class CargoPackage extends Component {
         contents: 'fn main() {\n    println!("Hello, world!");\n}\n',
       })
     }
+
+    project.addGitIgnore('/target/')
   }
 }
