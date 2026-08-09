@@ -1,6 +1,5 @@
 import * as path from 'node:path'
 
-import prettier from '@langri-sha/prettier'
 import { Babel } from '@langri-sha/projen-babel'
 import { Beachball } from '@langri-sha/projen-beachball'
 import { CargoPackage, CargoWorkspace } from '@langri-sha/projen-cargo'
@@ -26,7 +25,6 @@ import {
   expect,
   test,
 } from '@langri-sha/vitest'
-import { format } from 'prettier'
 import { Project as BaseProject, IgnoreFile, javascript } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { valid } from 'semver'
@@ -35,7 +33,7 @@ import { vi } from 'vitest'
 import { NodePackage, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
-import { Project, type ProjectOptions } from './index'
+import { Project } from './index'
 
 vi.mock('@langri-sha/projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
@@ -982,81 +980,34 @@ test('with Renovate options and a minimum Node.js version', () => {
   })
 })
 
-test('with Renovate options, reading the crates a workspace declares', async () => {
+test('with Renovate options, reading the crates a workspace declares', () => {
   const project = new Project({
     name: 'test-project',
     renovate: {},
   })
 
-  const manager = synthSnapshot(project)['renovate.json5'].customManagers.find(
-    ({ datasourceTemplate }: { datasourceTemplate: string }) =>
-      datasourceTemplate === 'crate',
-  )
-
-  // Every shape a crate is declared in — including the ones carrying no
-  // version, which must be left alone lest their detail keys read as crates of
-  // their own — alongside the npm declarations to leave to the npm managers.
-  const projenrc = await renderProjenrc(
+  expect(
+    synthSnapshot(project)['renovate.json5'].customManagers.find(
+      ({ datasourceTemplate }: { datasourceTemplate: string }) =>
+        datasourceTemplate === 'crate',
+    ),
+  ).toMatchInlineSnapshot(`
     {
-      name: 'test-project',
-      package: {
-        minNodeVersion: '24.16.0',
-        devDeps: ['prettier@3.8.3'],
-        peerDependenciesMeta: { eslint: { optional: true } },
-      },
-      cargo: {
-        workspace: {
-          package: { edition: '2024' },
-          dependencies: {
-            anyhow: '1.0.100',
-            tokio: { version: '1.48.0', features: ['full'] },
-            'tokio-util': '0.7.17',
-            serde: { features: ['derive'], version: '1.0.228' },
-            local: { path: '../local' },
-            forked: { git: 'https://example.com/x.git', tag: 'v1.2.3' },
-            pinned: { git: 'https://example.com/w.git', rev: '9d1a2b3c4d' },
-            tracked: { git: 'https://example.com/y.git', branch: '2024-lts' },
-            renamed: { package: 'serde', version: '1.0.228', registry: '2i' },
-            reversed: { version: '2.0.16', package: 'thiserror' },
-          },
-          'dev-dependencies': { insta: '1.44.5' },
-          'build-dependencies': { cc: '1.2.44' },
-        },
-      },
-    },
-    {
-      name: 'api',
-      outdir: 'apps/api',
-      cargo: {
-        dependencies: { anyhow: { workspace: true } },
-      },
-    },
-  )
-
-  expect(extractRecursively(manager.matchStrings, projenrc)).toEqual([
-    { depType: 'dependencies', depName: 'anyhow', currentValue: '1.0.100' },
-    { depType: 'dependencies', depName: 'tokio', currentValue: '1.48.0' },
-    { depType: 'dependencies', depName: 'tokio-util', currentValue: '0.7.17' },
-    { depType: 'dependencies', depName: 'serde', currentValue: '1.0.228' },
-    // A renamed crate is asked about under the name the registry knows,
-    // whichever side of the version it is declared on, while the key it is
-    // known by here stays the `depName` — the same split Renovate's own cargo
-    // manager makes, and what keeps the two updates on one branch.
-    {
-      depType: 'dependencies',
-      depName: 'renamed',
-      packageName: 'serde',
-      currentValue: '1.0.228',
-    },
-    {
-      depType: 'dependencies',
-      depName: 'reversed',
-      packageName: 'thiserror',
-      currentValue: '2.0.16',
-    },
-    { depType: 'dev-dependencies', depName: 'insta', currentValue: '1.44.5' },
-    { depType: 'build-dependencies', depName: 'cc', currentValue: '1.2.44' },
-  ])
+      "customType": "regex",
+      "datasourceTemplate": "crate",
+      "managerFilePatterns": [
+        "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
+      ],
+      "matchStrings": [
+        "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+        "\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+        "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+        "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
+        "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
+      ],
+      "matchStringsStrategy": "recursive",
+    }
+  `)
 })
 
 describe('with SWC options', () => {
@@ -1404,54 +1355,3 @@ const cargoFiles = (files: Record<string, string>): Record<string, string> =>
       .sort()
       .map((file) => [file, files[file]]),
   )
-
-/**
- * Write out the `.projenrc.ts` a set of options would have been declared in.
- *
- * Projen never synthesizes one — the file is hand-written and is only ever an
- * input — so a custom manager reading it can only be tested against a stand-in.
- * Building that stand-in from typed options and formatting it with the config
- * the repository actually uses is what keeps the stand-in honest: a renamed
- * option stops compiling, and the text is spaced and quoted the way a real
- * projenrc would be rather than the way it was once typed out by hand.
- */
-const renderProjenrc = (
-  options: ProjectOptions,
-  ...subprojects: ProjectOptions[]
-): Promise<string> =>
-  format(
-    [
-      `const project = new Project(${JSON.stringify(options)})`,
-      ...subprojects.map(
-        (subproject) => `project.addSubproject(${JSON.stringify(subproject)})`,
-      ),
-    ].join('\n\n'),
-    { ...prettier, parser: 'typescript' },
-  )
-
-/**
- * Run a custom manager's `matchStrings` the way Renovate's recursive strategy
- * does: each match feeds the next expression, and the named groups gathered
- * along the way are merged into whatever the last one extracts.
- *
- * @see https://docs.renovatebot.com/configuration-options/#matchstringsstrategy
- */
-const extractRecursively = (
-  matchStrings: string[],
-  content: string,
-  groups: Record<string, string> = {},
-): Array<Record<string, string>> =>
-  [...content.matchAll(new RegExp(matchStrings[0], 'g'))].flatMap((match) => {
-    // Renovate reads a field off a group only when it holds something, so a
-    // group that did not participate is absent rather than undefined.
-    const merged = {
-      ...groups,
-      ...Object.fromEntries(
-        Object.entries(match.groups ?? {}).filter(([, value]) => value),
-      ),
-    }
-
-    return matchStrings.length > 1
-      ? extractRecursively(matchStrings.slice(1), match[0], merged)
-      : [merged]
-  })

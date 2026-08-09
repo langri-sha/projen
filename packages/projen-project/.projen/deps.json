@@ -1,11 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "@langri-sha/prettier",
-      "version": "workspace:*",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/tsconfig",
       "version": "*",
       "type": "build"
@@ -23,11 +18,6 @@
     {
       "name": "@types/semver",
       "version": "7.8.0",
-      "type": "build"
-    },
-    {
-      "name": "prettier",
-      "version": "3.8.3",
       "type": "build"
     },
     {
