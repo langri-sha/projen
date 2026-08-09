@@ -1003,7 +1003,7 @@ test('with Renovate options, reading the crates a workspace declares', () => {
         "\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
         "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
         "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
-        "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
+        "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
       ],
       "matchStringsStrategy": "recursive",
     }

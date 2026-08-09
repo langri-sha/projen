@@ -907,7 +907,7 @@ export class Project extends BaseProject {
             '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
             "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
             "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
-            "(?:^[^{]*|version:\\s*)'(?<currentValue>[^']+)'",
+            "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
           ],
         },
         {
