@@ -800,6 +800,7 @@ export class Project extends BaseProject {
   }
 
   #configureRenovate({
+    cargo,
     renovate: renovateOptions,
     package: pkg,
   }: ProjectOptions) {
@@ -906,19 +907,25 @@ export class Project extends BaseProject {
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         },
-        {
-          customType: 'regex',
-          datasourceTemplate: 'crate',
-          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
-          matchStringsStrategy: 'recursive',
-          matchStrings: [
-            "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
-            '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
-            "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
-            "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
-            "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
-          ],
-        },
+        ...(cargo
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'crate',
+                managerFilePatterns: [
+                  '/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/',
+                ],
+                matchStringsStrategy: 'recursive' as const,
+                matchStrings: [
+                  "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
+                  '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
+                  "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
+                  "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
+                  "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
+                ],
+              },
+            ]
+          : []),
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
