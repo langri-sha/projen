@@ -78,6 +78,21 @@ test('names the types its own options are written in', () => {
   expect(workspace.rustfmt).toBeInstanceOf(TomlFile)
 })
 
+test('crate named for npm', () => {
+  const workspace = new Project({ name: '@scope/rust-thing' })
+  const crate = new Project({ name: '@scope/api' })
+
+  new CargoWorkspace(workspace, { package: { version: '0.1.0' } })
+  new CargoPackage(crate, {})
+
+  // Cargo rejects both the `@` and the slash, so neither component may pass a
+  // scope through to the manifest.
+  expect(synthSnapshot(workspace)['Cargo.toml']).toContain(
+    'name = "rust-thing"',
+  )
+  expect(synthSnapshot(crate)['Cargo.toml']).toContain('name = "api"')
+})
+
 test('workspace root that is also a crate', () => {
   const project = new Project({
     name: 'test-project',
