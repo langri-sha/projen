@@ -599,7 +599,7 @@ node_modules/
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -677,7 +677,7 @@ node_modules/
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -858,7 +858,7 @@ node_modules/
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -936,7 +936,7 @@ export default config
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -1040,7 +1040,7 @@ CHANGELOG.md
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -1133,7 +1133,7 @@ module.exports = {
       "@langri-sha/tsconfig": "*",
       "beachball": "2.65.5",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -1247,7 +1247,7 @@ CHANGELOG.md
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -1340,7 +1340,7 @@ module.exports = {
       "@langri-sha/tsconfig": "*",
       "beachball": "2.65.5",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -1439,7 +1439,7 @@ node_modules/
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -1511,7 +1511,7 @@ export default [...defaults, {"ignores":["**/.*","**/dist/","!.projenrc.mts"]}]"
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -2720,7 +2720,7 @@ node_modules/
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -2788,7 +2788,7 @@ node_modules/
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -3044,7 +3044,7 @@ node_modules/
       {
         "name": "tsx",
         "type": "build",
-        "version": "4.23.10",
+        "version": "4.23.11",
       },
       {
         "name": "typescript",
@@ -3112,7 +3112,7 @@ node_modules/
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.86.5",
-      "tsx": "4.23.10",
+      "tsx": "4.23.11",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
