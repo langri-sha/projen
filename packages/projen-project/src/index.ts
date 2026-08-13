@@ -1022,7 +1022,7 @@ export class Project extends BaseProject {
       this.#addDefaultDevDeps('typescript@5.9.3')
 
       if (!swcrc) {
-        this.#addDefaultDevDeps('tsx@4.23.11')
+        this.#addDefaultDevDeps('tsx@4.23.12')
       }
     }
 
