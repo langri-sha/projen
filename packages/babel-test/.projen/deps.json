@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/monorepo",
-      "version": "^0.5.7",
+      "version": "workspace:*",
       "type": "build"
     },
     {
@@ -12,12 +12,12 @@
     },
     {
       "name": "@langri-sha/vitest",
-      "version": "^0.1.2",
+      "version": "workspace:*",
       "type": "build"
     },
     {
       "name": "@types/node",
-      "version": "26.1.1",
+      "version": "24.13.3",
       "type": "build"
     },
     {
