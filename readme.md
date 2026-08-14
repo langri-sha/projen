@@ -12,8 +12,13 @@
 
 | Package                                 | Purpose                                                                                  |
 | --------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `@langri-sha/babel-preset`              | Babel preset targeting modern runtimes, with TypeScript, React and Emotion               |
+| `@langri-sha/babel-test`                | Helpers for inspecting and testing a Babel preset's resolved plugins                     |
 | `@langri-sha/eslint-config`             | Shared ESLint flat config (TypeScript, React, import ordering, JSDoc, Unicorn, Prettier) |
+| `@langri-sha/jest-config`               | Basic, reusable Jest configuration                                                       |
+| `@langri-sha/jest-test`                 | Helpers commonly used for authoring Jest tests                                           |
 | `@langri-sha/lint-staged`               | `lint-staged` config running ESLint and Prettier on pre-commit, respecting ignored files |
+| `@langri-sha/monorepo`                  | Resolves paths relative to the workspace root                                            |
 | `@langri-sha/prettier`                  | Opinionated, shared Prettier configuration                                               |
 | `@langri-sha/projen-babel`              | `babel.config.js` generator                                                              |
 | `@langri-sha/projen-beachball`          | `beachball.config.cjs` generator                                                         |
