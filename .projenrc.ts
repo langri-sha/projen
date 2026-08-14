@@ -1022,4 +1022,34 @@ project.addSubproject(
   publish,
 )
 
+project.addSubproject(
+  {
+    name: '@langri-sha/webpack',
+    outdir: path.join('packages', 'webpack'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      deps: [
+        'babel-loader@10.1.1',
+        'clean-webpack-plugin@4.0.0',
+        'copy-webpack-plugin@14.0.0',
+        'html-webpack-plugin@5.6.8',
+        'terser-webpack-plugin@5.6.1',
+        'webpack-bundle-analyzer@5.3.1',
+        'webpack-dev-server@6.0.0',
+        'webpack-subresource-integrity@5.2.0-rc.1',
+      ],
+      devDeps: ['@langri-sha/babel-preset@workspace:*', '@types/node@24.13.3'],
+      peerDeps: ['@babel/register@^8.0.0', 'webpack@^5.0.0'],
+    },
+  },
+  subproject,
+  publish,
+)
+
 project.synth()
