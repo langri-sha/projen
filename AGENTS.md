@@ -9,22 +9,22 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 18 component packages, each Beachball-versioned
-packages/<aux>/         # 11 support packages, likewise Beachball-versioned
+packages/<aux>/         # 12 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
 The support packages — `@langri-sha/babel-preset`, `babel-test`,
 `eslint-config`, `jest-config`, `jest-test`, `lint-staged`, `monorepo`,
-`prettier`, `schemastore-to-typescript`, `tsconfig` and `vitest` — live here and
-publish from this repo. Everything the workspace needs is wired `workspace:*`;
-no `@langri-sha/*` dependency is consumed from npm.
+`prettier`, `schemastore-to-typescript`, `tsconfig`, `vitest` and `webpack` —
+live here and publish from this repo. Everything the workspace needs is wired
+`workspace:*`; no `@langri-sha/*` dependency is consumed from npm.
 
-`langri-sha/langri-sha.com` still owns `webpack` and `fonts`, which its apps
-build on. Nothing here depends on them. The `@langri-sha/babel-preset` and
-`@langri-sha/jest-config` strings you'll find in `projen-project` and
-`projen-jest-config` are still not dependency edges either, even now that both
-packages live here: they are default values written into the _synthesized_
-configs of consuming projects.
+`langri-sha/langri-sha.com` still owns `fonts`, which its site builds on — a
+private, unpublished package that subsets typefaces for that site alone. Nothing
+here depends on it. The `@langri-sha/babel-preset` and `@langri-sha/jest-config`
+strings you'll find in `projen-project` and `projen-jest-config` are still not
+dependency edges either, even now that both packages live here: they are default
+values written into the _synthesized_ configs of consuming projects.
 
 ## Common tasks
 
@@ -94,6 +94,24 @@ with them, all patches. `babel-test` consumed `@langri-sha/monorepo` from npm at
 `^0.5.7` — the last edge that forced the two repositories to release in order —
 and is wired `workspace:*` now.
 
-`langri-sha.com` has not been decommissioned yet: it still carries those four
-packages and its own copies of those thirteen change files. Until that lands,
-only one repository may release them, or the two collide on the same version.
+`webpack` followed on 2026-08-15 from `langri-sha.com@a54efb69`, by the same
+recipe: 161 commits reaching back to 2020-10-24, every one of them under
+`packages/webpack`, so there was no retired path to keep alongside it. Four
+pending change files came with it — three patches and a `none`, that last one
+recording the source switching `@langri-sha/babel-preset` to npm once
+`babel-preset` moved here. Both of webpack's `@langri-sha` dependencies,
+`babel-preset` and `tsconfig`, are wired `workspace:*` again. Its `@types/node`
+dropped from 26 to 24 to match the rest of the workspace, which Renovate caps at
+the major the runtime supports.
+
+`@langri-sha/webpack` publishes ESM from `dist/` while its `package.json`
+declares no `"type"`, so Node reads the published entrypoint as CommonJS and
+`__dirname` in `resolveLoader` has no ESM equivalent. The 0.6.0 tarball on npm
+has the same shape — this predates the migration, and the only consumer,
+`langri-sha.com`'s `apps/web`, imports the TypeScript source through
+`workspace:*` and never exercises `dist/`.
+
+`langri-sha.com` retired its copies of the Babel and Jest packages in
+`a54efb69`, so those no longer double-publish. `webpack` is still there, still
+wired `workspace:*` into its `apps/web`. Until that decommission lands, only one
+repository may release it, or the two collide on the same version.
