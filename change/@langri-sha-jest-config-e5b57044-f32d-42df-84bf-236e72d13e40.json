@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "chore: sync the version field with the registry after a partial release",
+  "packageName": "@langri-sha/jest-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
