@@ -2,11 +2,11 @@
   "name": "@langri-sha/babel-preset",
   "version": "0.6.0",
   "bugs": {
-    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+    "url": "https://github.com/langri-sha/projen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "url": "git+https://github.com/langri-sha/projen.git",
     "directory": "packages/babel-preset"
   },
   "license": "MIT",
@@ -30,9 +30,9 @@
   },
   "devDependencies": {
     "@langri-sha/babel-test": "workspace:*",
-    "@langri-sha/tsconfig": "^1.0.1",
-    "@langri-sha/vitest": "^0.1.2",
-    "@types/node": "26.1.1"
+    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/vitest": "workspace:*",
+    "@types/node": "24.13.3"
   },
   "peerDependencies": {
     "@babel/core": "^8.0.0"

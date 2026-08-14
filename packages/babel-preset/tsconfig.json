@@ -5,6 +5,12 @@
   "references": [
     {
       "path": "../babel-test"
+    },
+    {
+      "path": "../tsconfig"
+    },
+    {
+      "path": "../vitest"
     }
   ]
 }

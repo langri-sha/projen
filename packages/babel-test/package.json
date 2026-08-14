@@ -2,11 +2,11 @@
   "name": "@langri-sha/babel-test",
   "version": "0.7.0",
   "bugs": {
-    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+    "url": "https://github.com/langri-sha/projen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "url": "git+https://github.com/langri-sha/projen.git",
     "directory": "packages/babel-test"
   },
   "license": "MIT",
@@ -25,10 +25,10 @@
     "ramda": "0.32.0"
   },
   "devDependencies": {
-    "@langri-sha/monorepo": "^0.5.7",
-    "@langri-sha/tsconfig": "^1.0.1",
-    "@langri-sha/vitest": "^0.1.2",
-    "@types/node": "26.1.1",
+    "@langri-sha/monorepo": "workspace:*",
+    "@langri-sha/tsconfig": "workspace:*",
+    "@langri-sha/vitest": "workspace:*",
+    "@types/node": "24.13.3",
     "@types/ramda": "0.32.0"
   },
   "peerDependencies": {

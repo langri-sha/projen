@@ -11,7 +11,19 @@
   ],
   "references": [
     {
+      "path": "packages/babel-preset"
+    },
+    {
+      "path": "packages/babel-test"
+    },
+    {
       "path": "packages/eslint-config"
+    },
+    {
+      "path": "packages/jest-config"
+    },
+    {
+      "path": "packages/jest-test"
     },
     {
       "path": "packages/lint-staged"

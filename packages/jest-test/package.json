@@ -2,11 +2,11 @@
   "name": "@langri-sha/jest-test",
   "version": "0.10.0",
   "bugs": {
-    "url": "https://github.com/langri-sha/langri-sha.com/issues"
+    "url": "https://github.com/langri-sha/projen/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/langri-sha/langri-sha.com.git",
+    "url": "git+https://github.com/langri-sha/projen.git",
     "directory": "packages/jest-test"
   },
   "license": "MIT",
@@ -27,7 +27,7 @@
     "tempy": "3.2.0"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "^1.0.1"
+    "@langri-sha/tsconfig": "workspace:*"
   },
   "peerDependencies": {
     "jest": "^30.0.0"

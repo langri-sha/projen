@@ -198,6 +198,65 @@ const publishRaw = (project: Project) => {
 
 project.addSubproject(
   {
+    name: '@langri-sha/babel-preset',
+    outdir: path.join('packages', 'babel-preset'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2021',
+      entrypoint: 'src/index.js',
+      deps: [
+        '@babel/plugin-proposal-export-default-from@8.0.1',
+        '@babel/preset-env@8.0.2',
+        '@babel/preset-react@8.0.1',
+        '@babel/preset-typescript@8.0.1',
+        '@babel/register@8.0.1',
+        '@emotion/babel-plugin@11.13.5',
+      ],
+      devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@24.13.3'],
+      peerDeps: ['@babel/core@^8.0.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/babel-test',
+    outdir: path.join('packages', 'babel-test'),
+    npmIgnore: {
+      ignorePatterns: ['fixtures/'],
+    },
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['ramda@0.32.0'],
+      devDeps: [
+        '@langri-sha/monorepo@workspace:*',
+        '@types/node@24.13.3',
+        '@types/ramda@0.32.0',
+      ],
+      peerDeps: ['@babel/core@^8.0.0'],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/eslint-config',
     outdir: path.join('packages', 'eslint-config'),
     npmIgnore: {},
@@ -224,6 +283,47 @@ project.addSubproject(
         'typescript-eslint@8.67.0',
       ],
       peerDeps: ['eslint@^10.4.0'],
+    },
+  },
+  subproject,
+  publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/jest-config',
+    outdir: path.join('packages', 'jest-config'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      peerDeps: ['jest@^30.0.0'],
+    },
+  },
+  subproject,
+  publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/jest-test',
+    outdir: path.join('packages', 'jest-test'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2024',
+      type: 'module',
+      deps: ['@jest/globals@30.4.1', 'nock@14.0.17', 'tempy@3.2.0'],
+      peerDeps: ['jest@^30.0.0'],
     },
   },
   subproject,
