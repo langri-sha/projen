@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/babel-preset",
-      "version": "^0.6.3",
+      "version": "workspace:*",
       "type": "build"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "name": "@types/node",
-      "version": "26.1.1",
+      "version": "24.13.3",
       "type": "build"
     },
     {
