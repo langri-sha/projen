@@ -279,7 +279,7 @@ project.addSubproject(
         'eslint-plugin-react@7.37.5',
         'eslint-plugin-react-hooks@7.1.1',
         'eslint-plugin-unicorn@73.0.0',
-        'globals@17.9.0',
+        'globals@17.10.0',
         'typescript-eslint@8.67.0',
       ],
       peerDeps: ['eslint@^10.4.0'],
