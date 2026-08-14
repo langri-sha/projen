@@ -41,6 +41,7 @@
 | `@langri-sha/schemastore-to-typescript` | CLI/library that compiles JSON Schema Store schemas to TypeScript typings                |
 | `@langri-sha/tsconfig`                  | Shared TypeScript configs (`base`, `build`, `project`, and more)                         |
 | `@langri-sha/vitest`                    | Helpers commonly used for authoring Vitest tests                                         |
+| `@langri-sha/webpack`                   | Aggregated Webpack plugins and loaders, with shared resolve settings                     |
 
 ## Development
 
