@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add Cargo workspace and package components",
-  "packageName": "@langri-sha/projen-cargo",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

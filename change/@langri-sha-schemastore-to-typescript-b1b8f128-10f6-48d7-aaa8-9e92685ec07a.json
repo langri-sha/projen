@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Flush the request cache to disk so a response cached during an in-flight write is not silently dropped",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

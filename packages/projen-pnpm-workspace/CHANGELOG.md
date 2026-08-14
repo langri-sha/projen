@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-pnpm-workspace
 
-<!-- This log was last generated on Sun, 09 Aug 2026 08:38:21 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.5
+
+Fri, 14 Aug 2026 21:44:42 GMT
+
+### Patches
+
+- Drop the advisory peerDependencyMeta.optional its index signature already accepted (filip.dupanovic@gmail.com)
+- Update dependency tsx to v4.23.11 (email not defined)
+- Update dependency tsx to v4.23.9 (email not defined)
+- Update dependency tsx to v4.23.12 (email not defined)
+- Update dependency tsx to v4.23.10 (email not defined)
+- Bump @langri-sha/schemastore-to-typescript to v0.2.9
 
 ## 0.4.4
 

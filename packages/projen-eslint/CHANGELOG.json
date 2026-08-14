@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-eslint",
   "entries": [
     {
+      "date": "Fri, 14 Aug 2026 21:44:42 GMT",
+      "version": "0.3.11",
+      "tag": "@langri-sha/projen-eslint_v0.3.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-eslint",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency serialize-javascript to v7.1.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.3.10",
       "tag": "@langri-sha/projen-eslint_v0.3.10",

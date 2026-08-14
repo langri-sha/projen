@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency tsx to v4.23.9",
-  "packageName": "@langri-sha/projen-swcrc",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

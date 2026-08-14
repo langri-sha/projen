@@ -2,6 +2,53 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Fri, 14 Aug 2026 21:44:42 GMT",
+      "version": "0.9.11",
+      "tag": "@langri-sha/eslint-config_v0.9.11",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency typescript-eslint to v8.67.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.1.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.0.2"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "chore: sync the version field with the registry after a partial release"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/eslint-config",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "chore: sync the version field with the registry after a partial release"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 08 Aug 2026 22:14:47 GMT",
       "version": "0.9.8",
       "tag": "@langri-sha/eslint-config_v0.9.8",

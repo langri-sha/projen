@@ -2,6 +2,101 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Fri, 14 Aug 2026 21:44:42 GMT",
+      "version": "0.27.0",
+      "tag": "@langri-sha/projen-project_v0.27.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.12"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.10"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.11"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.9"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Add a cargo option, synthesizing a Cargo workspace and its crates"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-babel to v0.5.10",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-cargo to v0.1.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-eslint to v0.3.11",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-jest-config to v0.4.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-lint-staged to v0.3.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-pnpm-workspace to v0.4.5",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-prettier to v0.4.11",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-renovate to v0.4.17",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-swcrc to v0.1.17",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 09 Aug 2026 08:38:21 GMT",
       "version": "0.26.2",
       "tag": "@langri-sha/projen-project_v0.26.2",

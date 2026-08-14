@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-babel
 
-<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.10
+
+Fri, 14 Aug 2026 21:44:42 GMT
+
+### Patches
+
+- Update dependency serialize-javascript to v7.1.0 (email not defined)
 
 ## 0.5.7
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Drop the advisory CallerOptions.name its index signature already accepted",
-  "packageName": "@langri-sha/projen-swcrc",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

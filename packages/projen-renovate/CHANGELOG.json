@@ -2,6 +2,45 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Fri, 14 Aug 2026 21:44:42 GMT",
+      "version": "0.4.17",
+      "tag": "@langri-sha/projen-renovate_v0.4.17",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.12"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.11"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.9"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-renovate",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.10"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-renovate",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 09 Aug 2026 08:38:21 GMT",
       "version": "0.4.16",
       "tag": "@langri-sha/projen-renovate_v0.4.16",

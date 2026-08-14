@@ -2,6 +2,59 @@
   "name": "@langri-sha/babel-preset",
   "entries": [
     {
+      "date": "Fri, 14 Aug 2026 21:44:42 GMT",
+      "version": "0.6.3",
+      "tag": "@langri-sha/babel-preset_v0.6.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency @langri-sha/tsconfig to v1"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Track @langri-sha/tsconfig v1 instead of pinning it via a projen override"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "chore: publish from langri-sha/projen, which now owns this package and its history"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/babel-preset",
+            "comment": "Bump @langri-sha/babel-test to v0.7.3",
+            "commit": "not available"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "chore: sync the version field with the registry after a partial release"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/babel-preset",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "chore: sync the version field with the registry after a partial release"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 27 Jul 2026 19:37:43 GMT",
       "version": "0.6.0",
       "tag": "@langri-sha/babel-preset_v0.6.0",

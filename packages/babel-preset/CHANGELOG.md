@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/babel-preset
 
-<!-- This log was last generated on Mon, 27 Jul 2026 19:37:43 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.3
+
+Fri, 14 Aug 2026 21:44:42 GMT
+
+### Patches
+
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Track @langri-sha/tsconfig v1 instead of pinning it via a projen override (filip.dupanovic@gmail.com)
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
+- Bump @langri-sha/babel-test to v0.7.3
 
 ## 0.6.0
 

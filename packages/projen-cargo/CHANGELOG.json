@@ -1,0 +1,52 @@
+{
+  "name": "@langri-sha/projen-cargo",
+  "entries": [
+    {
+      "date": "Fri, 14 Aug 2026 21:44:42 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-cargo_v0.1.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-cargo",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.11"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-cargo",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.10"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-cargo",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.9"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-cargo",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Update dependency tsx to v4.23.12"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-cargo",
+            "commit": "989def9db328952b5ad9fa0f77108d9f98c601fd",
+            "comment": "Add Cargo workspace and package components"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-cargo",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.9",
+            "commit": "not available"
+          }
+        ]
+      }
+    }
+  ]
+}

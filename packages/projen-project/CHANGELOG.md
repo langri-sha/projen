@@ -1,8 +1,32 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 09 Aug 2026 08:38:21 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.27.0
+
+Fri, 14 Aug 2026 21:44:42 GMT
+
+### Minor changes
+
+- Add a cargo option, synthesizing a Cargo workspace and its crates (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.10
+- Bump @langri-sha/projen-cargo to v0.1.0
+- Bump @langri-sha/projen-eslint to v0.3.11
+- Bump @langri-sha/projen-jest-config to v0.4.12
+- Bump @langri-sha/projen-lint-staged to v0.3.12
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.5
+- Bump @langri-sha/projen-prettier to v0.4.11
+- Bump @langri-sha/projen-renovate to v0.4.17
+- Bump @langri-sha/projen-swcrc to v0.1.17
+
+### Patches
+
+- Update dependency tsx to v4.23.12 (email not defined)
+- Update dependency tsx to v4.23.10 (email not defined)
+- Update dependency tsx to v4.23.11 (email not defined)
+- Update dependency tsx to v4.23.9 (email not defined)
 
 ## 0.26.2
 

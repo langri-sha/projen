@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/jest-test
 
-<!-- This log was last generated on Mon, 27 Jul 2026 19:37:43 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.10.3
+
+Fri, 14 Aug 2026 21:44:42 GMT
+
+### Patches
+
+- Update dependency nock to v14.0.17 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- Update dependency @langri-sha/tsconfig to v1 (email not defined)
+- chore: publish from langri-sha/projen, which now owns this package and its history (filip.dupanovic@gmail.com)
+- Track @langri-sha/tsconfig v1 instead of pinning it via a projen override (filip.dupanovic@gmail.com)
 
 ## 0.10.0
 
