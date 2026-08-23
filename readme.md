@@ -24,6 +24,7 @@
 | `@langri-sha/projen-beachball`          | `beachball.config.cjs` generator                                                         |
 | `@langri-sha/projen-cargo`              | Cargo workspace and crate generator                                                      |
 | `@langri-sha/projen-codeowners`         | `CODEOWNERS` generator                                                                   |
+| `@langri-sha/projen-dagger`             | Dagger module tasks, CI workflow and Renovate rules                                      |
 | `@langri-sha/projen-editorconfig`       | `.editorconfig` generator                                                                |
 | `@langri-sha/projen-eslint`             | `eslint.config.js` generator                                                             |
 | `@langri-sha/projen-husky`              | `.husky/*` Git hook generator                                                            |

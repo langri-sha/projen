@@ -427,6 +427,27 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-dagger',
+    outdir: path.join('packages', 'projen-dagger'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-babel',
     outdir: path.join('packages', 'projen-babel'),
     npmIgnore: {},
