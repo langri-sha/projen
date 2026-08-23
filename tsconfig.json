@@ -47,6 +47,9 @@
       "path": "packages/projen-codeowners"
     },
     {
+      "path": "packages/projen-dagger"
+    },
+    {
       "path": "packages/projen-editorconfig"
     },
     {
