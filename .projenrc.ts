@@ -45,7 +45,7 @@ const project = new Project({
       '@swc-node/register@1.12.1',
       '@swc/core@1.15.47',
       '@types/node@24.13.3',
-      'eslint@10.8.1',
+      'eslint@10.9.0',
       'lint-staged@17.3.0',
       'prettier@3.8.3',
       'projen@0.86.5',
