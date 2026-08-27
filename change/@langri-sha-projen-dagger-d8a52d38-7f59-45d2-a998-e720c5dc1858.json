@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency pnpm to v0.75.0",
+  "packageName": "@langri-sha/projen-dagger",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
