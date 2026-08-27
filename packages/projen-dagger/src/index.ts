@@ -9,7 +9,7 @@ export interface DaggerWorkflowOptions {
 
   /**
    * PNPM setup action reference.
-   * @default 'langri-sha/github/actions/pnpm@v0.14.1'
+   * @default 'langri-sha/github/actions/pnpm@0.75.0'
    */
   readonly pnpmSetupAction?: string
 }
@@ -133,7 +133,7 @@ export class Dagger extends Component {
   #createWorkflow(project: Project, options: DaggerWorkflowOptions) {
     const checkoutAction = options.checkoutAction ?? 'actions/checkout@v7'
     const pnpmSetupAction =
-      options.pnpmSetupAction ?? 'langri-sha/github/actions/pnpm@v0.14.1'
+      options.pnpmSetupAction ?? 'langri-sha/github/actions/pnpm@0.75.0'
 
     const paths = [
       '.github/workflows/modules.yml',
