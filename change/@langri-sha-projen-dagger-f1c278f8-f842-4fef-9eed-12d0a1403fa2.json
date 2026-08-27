@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Synthesize dagger.json module manifests",
+  "packageName": "@langri-sha/projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
