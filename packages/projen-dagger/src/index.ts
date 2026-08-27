@@ -208,8 +208,8 @@ export interface DaggerOptions {
    * Patterns for `.prettierignore` to skip SDK-managed files.
    * Added automatically when a `.prettierignore` file exists on the project.
    *
-   * Defaults to each module's `package.json`, `tsconfig.json` and `sdk/`
-   * directory.
+   * Defaults to each module's `dagger.json`, `package.json`, `tsconfig.json`
+   * and `sdk/` directory.
    */
   readonly prettierIgnorePatterns?: string[]
 
@@ -321,6 +321,7 @@ export class Dagger extends Component {
     project.gitignore.addPatterns(...gitignorePatterns)
 
     const prettierIgnorePatterns = options?.prettierIgnorePatterns ?? [
+      '*/dagger.json',
       '*/package.json',
       '*/tsconfig.json',
       '*/sdk/',
