@@ -254,7 +254,7 @@ export interface DaggerOptions {
  */
 export class Dagger extends Component {
   /**
-   * Renovate custom managers for `dagger.json` engine version tracking.
+   * Renovate custom managers that track the engine version in the projenrc.
    */
   readonly customManagers: object[]
 
@@ -280,20 +280,13 @@ export class Dagger extends Component {
         customType: 'regex',
         datasourceTemplate: 'github-releases',
         depNameTemplate: 'dagger/dagger',
-        managerFilePatterns: ['/(^|/)dagger\\.json$/'],
-        matchStrings: ['"engineVersion":\\s*"v(?<currentValue>[^"]+)"'],
+        managerFilePatterns: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
+        matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
         extractVersionTemplate: '^v(?<version>.+)$',
       },
     ]
 
     this.packageRules = [
-      {
-        description:
-          'Move every module off one engine release at a time, the way dagger develop writes them',
-        groupName: 'Dagger engine',
-        groupSlug: 'dagger-engine',
-        matchDepNames: ['dagger/dagger'],
-      },
       {
         description:
           'The Dagger SDK writes the module manifests, including the TypeScript pin',

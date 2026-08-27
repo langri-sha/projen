@@ -70,15 +70,20 @@ untouched.
 manifest from there. Declaring a module without one is an error — the manifests
 are generated, so there is nowhere else for the pin to live.
 
+Renovate reads it out of the projenrc rather than out of `dagger.json`, the same
+way the preset tracks `minNodeVersion`. An upgrade is then one edit to one file,
+and the post-upgrade job that runs `projen` on dependency PRs propagates it to
+the manifests before the checks run.
+
 Keep it ahead of, or equal to, the engine you develop against locally. The CLI
 stamps the version it ran into `dagger.json`, so an older pin and a newer local
 engine leave synthesis and `dagger develop` rewriting the field past each other.
 
 ### Renovate
 
-The component exposes the configuration that keeps `dagger.json` engine versions
-moving, one release at a time, without letting Renovate fight the module
-manifests the SDK writes. Spread it into your Renovate options:
+The component exposes the configuration that moves the engine pin in the
+projenrc and keeps Renovate off the module manifests the SDK writes. Spread it
+into your Renovate options:
 
 ```js
 import { Renovate } from '@langri-sha/projen-renovate'
