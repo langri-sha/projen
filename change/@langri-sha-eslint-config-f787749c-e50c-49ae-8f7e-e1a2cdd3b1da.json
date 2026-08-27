@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency typescript-eslint to v8.68.0",
+  "packageName": "@langri-sha/eslint-config",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
