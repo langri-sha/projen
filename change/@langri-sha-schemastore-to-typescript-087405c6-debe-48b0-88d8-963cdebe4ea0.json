@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Compile draft 2020-12 schemas with $defs and a root $ref",
+  "packageName": "@langri-sha/schemastore-to-typescript",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
