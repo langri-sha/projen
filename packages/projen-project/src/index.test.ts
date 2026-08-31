@@ -857,6 +857,7 @@ describe('PNPM allowed builds', () => {
 
   test('are declined by default', () => {
     expect(allowBuilds()).toEqual({
+      '@parcel/watcher': false,
       '@swc/core': false,
       esbuild: false,
       'unrs-resolver': false,
@@ -876,6 +877,7 @@ describe('PNPM allowed builds', () => {
         },
       }),
     ).toEqual({
+      '@parcel/watcher': false,
       '@swc/core': false,
       esbuild: true,
       'unrs-resolver': false,
