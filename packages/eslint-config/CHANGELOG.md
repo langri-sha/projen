@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/eslint-config
 
-<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.12
+
+Mon, 31 Aug 2026 21:36:20 GMT
+
+### Patches
+
+- Update dependency eslint-plugin-unicorn to v74
+- Update dependency eslint-plugin-jsdoc to v64.2.0
+- Update dependency eslint-plugin-jsdoc to v64.2.1
+- Update dependency globals to v17.10.0
+- Update dependency globals to v17.11.0
+- Update dependency typescript-eslint to v8.68.0
 
 ## 0.9.11
 

@@ -1,8 +1,24 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.28.0
+
+Mon, 31 Aug 2026 21:36:20 GMT
+
+### Minor changes
+
+- Decline the @parcel/watcher build so pnpm installs do not fail (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-cargo to v0.1.1
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.6
+- Bump @langri-sha/projen-renovate to v0.4.18
+- Bump @langri-sha/projen-swcrc to v0.1.18
+
+### Patches
+
+- Update dependency beachball to v2.65.6
 
 ## 0.27.0
 

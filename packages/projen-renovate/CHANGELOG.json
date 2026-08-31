@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-renovate",
   "entries": [
     {
+      "date": "Mon, 31 Aug 2026 21:36:20 GMT",
+      "version": "0.4.18",
+      "tag": "@langri-sha/projen-renovate_v0.4.18",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-renovate",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.10",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 14 Aug 2026 21:44:42 GMT",
       "version": "0.4.17",
       "tag": "@langri-sha/projen-renovate_v0.4.17",

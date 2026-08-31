@@ -2,6 +2,21 @@
   "name": "@langri-sha/jest-test",
   "entries": [
     {
+      "date": "Mon, 31 Aug 2026 21:36:20 GMT",
+      "version": "0.10.4",
+      "tag": "@langri-sha/jest-test_v0.10.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/jest-test",
+            "commit": "210a6d38c579cf9613a6e8574116c1bffc62cd6b",
+            "comment": "Update dependency @jest/globals to v30.5.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 14 Aug 2026 21:44:42 GMT",
       "version": "0.10.3",
       "tag": "@langri-sha/jest-test_v0.10.3",

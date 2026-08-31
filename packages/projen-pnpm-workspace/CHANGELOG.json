@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Mon, 31 Aug 2026 21:36:20 GMT",
+      "version": "0.4.6",
+      "tag": "@langri-sha/projen-pnpm-workspace_v0.4.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-pnpm-workspace",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.10",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 14 Aug 2026 21:44:42 GMT",
       "version": "0.4.5",
       "tag": "@langri-sha/projen-pnpm-workspace_v0.4.5",

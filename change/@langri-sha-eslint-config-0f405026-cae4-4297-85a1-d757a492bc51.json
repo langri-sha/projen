@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency eslint-plugin-unicorn to v74",
-  "packageName": "@langri-sha/eslint-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Mon, 31 Aug 2026 21:36:20 GMT",
+      "version": "0.1.18",
+      "tag": "@langri-sha/projen-swcrc_v0.1.18",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.10",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 14 Aug 2026 21:44:42 GMT",
       "version": "0.1.17",
       "tag": "@langri-sha/projen-swcrc_v0.1.17",

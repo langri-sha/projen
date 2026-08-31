@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-cargo
 
-<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.1
+
+Mon, 31 Aug 2026 21:36:20 GMT
+
+### Patches
+
+- Bump @langri-sha/schemastore-to-typescript to v0.2.10
 
 ## 0.1.0
 

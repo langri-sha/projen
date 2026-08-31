@@ -1,0 +1,34 @@
+{
+  "name": "@langri-sha/projen-dagger",
+  "entries": [
+    {
+      "date": "Mon, 31 Aug 2026 21:36:20 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-dagger_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "210a6d38c579cf9613a6e8574116c1bffc62cd6b",
+            "comment": "Add a projen component for Dagger TypeScript module repositories"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "210a6d38c579cf9613a6e8574116c1bffc62cd6b",
+            "comment": "Update dependency pnpm to v11"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "210a6d38c579cf9613a6e8574116c1bffc62cd6b",
+            "comment": "Update dependency pnpm to v0.75.0"
+          }
+        ]
+      }
+    }
+  ]
+}
