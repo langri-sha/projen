@@ -981,7 +981,7 @@ project.addSubproject(
         'env-paths@4.0.0',
         'es-main@1.4.0',
         'got@15.1.0',
-        'json-schema-to-typescript@15.0.4',
+        'json-schema-to-typescript@16.0.0',
         'keyv-file@5.3.5',
         'keyv@5.6.0',
       ],
