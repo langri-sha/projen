@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency @jest/globals to v30.5.0",
+  "packageName": "@langri-sha/jest-test",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
