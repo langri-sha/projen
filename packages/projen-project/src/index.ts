@@ -743,6 +743,7 @@ export class Project extends BaseProject {
 
     const defaults: PnpmWorkspaceOptions = {
       allowBuilds: {
+        '@parcel/watcher': false,
         '@swc/core': Boolean(swcrc),
         esbuild: false,
         'unrs-resolver': false,
