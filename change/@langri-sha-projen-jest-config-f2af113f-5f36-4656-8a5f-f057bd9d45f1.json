@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency serialize-javascript to v7.1.1",
+  "packageName": "@langri-sha/projen-jest-config",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
