@@ -251,8 +251,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.0
-        version: 7.1.0
+        specifier: 7.1.1
+        version: 7.1.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -347,8 +347,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.0
-        version: 7.1.0
+        specifier: 7.1.1
+        version: 7.1.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -388,8 +388,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.0
-        version: 7.1.0
+        specifier: 7.1.1
+        version: 7.1.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -426,8 +426,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.0
-        version: 7.1.0
+        specifier: 7.1.1
+        version: 7.1.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -495,8 +495,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.0
-        version: 7.1.0
+        specifier: 7.1.1
+        version: 7.1.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -5753,8 +5753,8 @@ packages:
     resolution: {integrity: sha512-1gnZf7DFcoIcajTjTwjwuDjzuz4PPcY2StKPlsGAQ1+YH20IRVrBaXSWmdjowTJ6u8Rc01PoYOGHXfP1mYcZNQ==}
     engines: {node: '>= 18'}
 
-  serialize-javascript@7.1.0:
-    resolution: {integrity: sha512-RNEqWOyhhUQYN9V1GfHwu9AR/g+NTciH6Z5u3/no6X3/w+04J2lVDL+svFQVXgXrEGBMG2puMVN3gq2SNGuTGw==}
+  serialize-javascript@7.1.1:
+    resolution: {integrity: sha512-k3CMsaIvvdSwm8oLB4MXSl0wH2/cwlH7xGcnRd2DaeRmBkbzYmyT8j0tsX60DwD1eRwHTpNpH8ljKu9oUT1MeQ==}
     engines: {node: '>=20.0.0'}
 
   serve-index@1.9.2:
@@ -9453,7 +9453,7 @@ snapshots:
       glob-parent: 6.0.2
       normalize-path: 3.0.0
       schema-utils: 4.3.3
-      serialize-javascript: 7.1.0
+      serialize-javascript: 7.1.1
       tinyglobby: 0.2.17
       webpack: 5.109.2(@swc/core@1.15.47)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.26)
 
@@ -12084,7 +12084,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  serialize-javascript@7.1.0: {}
+  serialize-javascript@7.1.1: {}
 
   serve-index@1.9.2(supports-color@8.1.1):
     dependencies:
