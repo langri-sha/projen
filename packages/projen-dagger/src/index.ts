@@ -1,4 +1,193 @@
-import { Component, IgnoreFile, type Project, YamlFile } from 'projen'
+import * as path from 'node:path'
+
+import { Component, IgnoreFile, JsonFile, type Project, YamlFile } from 'projen'
+
+/**
+ * Argument override applied by a toolchain dependency.
+ */
+export interface DaggerModuleArgumentOptions {
+  /**
+   * Function chain the override applies to. Omit for the constructor.
+   */
+  readonly function?: string[]
+
+  /**
+   * Name of the argument to override.
+   */
+  readonly argument: string
+
+  /**
+   * Default value for the argument.
+   */
+  readonly default?: string
+
+  /**
+   * Default path for `File` or `Directory` arguments.
+   */
+  readonly defaultPath?: string
+
+  /**
+   * Default address for `Container` arguments.
+   */
+  readonly defaultAddress?: string
+
+  /**
+   * Ignore patterns for `Directory` arguments.
+   */
+  readonly ignore?: string[]
+}
+
+/**
+ * A module referenced by another module, as a dependency, a blueprint or a
+ * toolchain.
+ */
+export interface DaggerModuleDependencyOptions {
+  /**
+   * Name the dependency is addressed by.
+   *
+   * Defaults to the last path segment of the source, which is the name
+   * `dagger install` writes for a sibling module.
+   */
+  readonly name?: string
+
+  /**
+   * Source ref of the dependency, e.g. `../tailscale` or
+   * `github.com/user/repo/module@v1.2.3`.
+   */
+  readonly source: string
+
+  /**
+   * Version the dependency is pinned to. Written by `dagger install` for
+   * remote refs.
+   */
+  readonly pin?: string
+
+  /**
+   * Argument overrides, for toolchains only.
+   */
+  readonly customizations?: DaggerModuleArgumentOptions[]
+
+  /**
+   * Glob patterns of checks to exclude, for toolchains only.
+   */
+  readonly ignoreChecks?: string[]
+
+  /**
+   * Glob patterns of generators to exclude, for toolchains only.
+   */
+  readonly ignoreGenerators?: string[]
+
+  /**
+   * Glob patterns of services to exclude, for toolchains only.
+   */
+  readonly ignoreServices?: string[]
+
+  /**
+   * Port forwarding rules per service name, e.g. `{ web: ['3000:80'] }`. For
+   * toolchains only.
+   */
+  readonly portMappings?: Record<string, string[]>
+}
+
+/**
+ * A source ref, or the full dependency configuration.
+ */
+export type DaggerModuleDependency = string | DaggerModuleDependencyOptions
+
+/**
+ * A client generated for a module.
+ */
+export interface DaggerModuleClientOptions {
+  /**
+   * Generator the client is generated with.
+   */
+  readonly generator: string
+
+  /**
+   * Directory the client is generated into.
+   */
+  readonly directory: string
+}
+
+/**
+ * Codegen configuration for a module.
+ */
+export interface DaggerModuleCodegenOptions {
+  /**
+   * Whether the SDK generates a `.gitignore` for the module.
+   */
+  readonly automaticGitignore?: boolean
+}
+
+export interface DaggerModuleOptions {
+  /**
+   * Name of the module.
+   *
+   * @default - the module directory name
+   */
+  readonly name?: string
+
+  /**
+   * SDK the module is implemented with, or `false` for a module without one.
+   * @default 'typescript'
+   */
+  readonly sdk?: string | false
+
+  /**
+   * Version the SDK is pinned to, for SDKs loaded from a git ref.
+   */
+  readonly sdkPin?: string
+
+  /**
+   * Modules this module depends on.
+   */
+  readonly dependencies?: DaggerModuleDependency[]
+
+  /**
+   * Blueprint module this module is derived from.
+   */
+  readonly blueprint?: DaggerModuleDependency
+
+  /**
+   * Toolchain modules.
+   */
+  readonly toolchains?: DaggerModuleDependency[]
+
+  /**
+   * Paths to include from the module directory. Prefix a pattern with `!` to
+   * exclude it.
+   */
+  readonly include?: string[]
+
+  /**
+   * Subdirectory holding the implementation, relative to `dagger.json`.
+   *
+   * `.` is dropped, the way `dagger init` writes it.
+   */
+  readonly source?: string
+
+  /**
+   * Clients generated for the module.
+   */
+  readonly clients?: DaggerModuleClientOptions[]
+
+  /**
+   * Codegen configuration.
+   */
+  readonly codegen?: DaggerModuleCodegenOptions
+
+  /**
+   * Whether to opt the module out of default function caching.
+   */
+  readonly disableDefaultFunctionCaching?: boolean
+
+  /**
+   * `$schema` to declare in the manifest. Dagger preserves it verbatim.
+   *
+   * @default - omitted
+   */
+  readonly schema?: string
+}
 
 export interface DaggerWorkflowOptions {
   /**
@@ -19,8 +208,8 @@ export interface DaggerOptions {
    * Patterns for `.prettierignore` to skip SDK-managed files.
    * Added automatically when a `.prettierignore` file exists on the project.
    *
-   * Defaults to each module's `package.json`, `tsconfig.json` and `sdk/`
-   * directory.
+   * Defaults to each module's `dagger.json`, `package.json`, `tsconfig.json`
+   * and `sdk/` directory.
    */
   readonly prettierIgnorePatterns?: string[]
 
@@ -36,20 +225,36 @@ export interface DaggerOptions {
    * @default {}
    */
   readonly workflow?: DaggerWorkflowOptions | false
+
+  /**
+   * Module manifests to synthesize, keyed by the module directory.
+   *
+   * @default {}
+   */
+  readonly modules?: Record<string, DaggerModuleOptions>
+
+  /**
+   * Engine version recorded in every module manifest, e.g. `v0.21.7`.
+   *
+   * Required to declare a module. Renovate moves the pin here rather than in
+   * the manifests, so this is the one place the repository names an engine.
+   */
+  readonly engineVersion?: string
 }
 
 /**
  * A component for Dagger TypeScript module repositories.
  *
- * Sets up tasks, gitignore patterns, an optional CI workflow, and exposes
- * Renovate configuration for dagger.json engine version management.
+ * Synthesizes each module's `dagger.json`, sets up tasks, gitignore patterns,
+ * an optional CI workflow, and exposes Renovate configuration for engine
+ * version management.
  *
  * Spread {@link customManagers} and {@link packageRules} into your Renovate
  * options to enable automatic engine upgrades.
  */
 export class Dagger extends Component {
   /**
-   * Renovate custom managers for `dagger.json` engine version tracking.
+   * Renovate custom managers that track the engine version in the projenrc.
    */
   readonly customManagers: object[]
 
@@ -58,28 +263,30 @@ export class Dagger extends Component {
    */
   readonly packageRules: object[]
 
+  /**
+   * Synthesized module manifests, keyed by the module directory.
+   */
+  readonly modules: Record<string, JsonFile> = {}
+
+  readonly #engineVersion?: string
+
   constructor(project: Project, options?: DaggerOptions) {
     super(project)
+
+    this.#engineVersion = options?.engineVersion
 
     this.customManagers = [
       {
         customType: 'regex',
         datasourceTemplate: 'github-releases',
         depNameTemplate: 'dagger/dagger',
-        managerFilePatterns: ['/(^|/)dagger\\.json$/'],
-        matchStrings: ['"engineVersion":\\s*"v(?<currentValue>[^"]+)"'],
+        managerFilePatterns: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
+        matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
         extractVersionTemplate: '^v(?<version>.+)$',
       },
     ]
 
     this.packageRules = [
-      {
-        description:
-          'Move every module off one engine release at a time, the way dagger develop writes them',
-        groupName: 'Dagger engine',
-        groupSlug: 'dagger-engine',
-        matchDepNames: ['dagger/dagger'],
-      },
       {
         description:
           'The Dagger SDK writes the module manifests, including the TypeScript pin',
@@ -114,6 +321,7 @@ export class Dagger extends Component {
     project.gitignore.addPatterns(...gitignorePatterns)
 
     const prettierIgnorePatterns = options?.prettierIgnorePatterns ?? [
+      '*/dagger.json',
       '*/package.json',
       '*/tsconfig.json',
       '*/sdk/',
@@ -128,6 +336,62 @@ export class Dagger extends Component {
         typeof options?.workflow === 'object' ? options.workflow : {}
       this.#createWorkflow(project, workflowOptions)
     }
+
+    for (const [directory, moduleOptions] of Object.entries(
+      options?.modules ?? {},
+    )) {
+      this.addModule(directory, moduleOptions)
+    }
+  }
+
+  /**
+   * Synthesizes a `dagger.json` for a module directory.
+   *
+   * The manifest is written in the field order and formatting the Dagger CLI
+   * marshals, so `dagger develop` leaves it untouched.
+   */
+  addModule(directory: string, options: DaggerModuleOptions = {}): JsonFile {
+    if (!this.#engineVersion) {
+      throw new Error(
+        `Cannot add the Dagger module "${directory}" without an engineVersion. Pass one to the Dagger component.`,
+      )
+    }
+
+    const file = new JsonFile(
+      this.project,
+      path.posix.join(directory, 'dagger.json'),
+      {
+        // The CLI round-trips the manifest through its own struct and drops
+        // every field it does not know, the marker included.
+        marker: false,
+        obj: {
+          $schema: options.schema,
+          name: options.name ?? path.posix.basename(directory),
+          engineVersion: this.#engineVersion,
+          sdk:
+            options.sdk === false
+              ? undefined
+              : {
+                  source: options.sdk ?? 'typescript',
+                  pin: options.sdkPin,
+                },
+          blueprint: options.blueprint && renderDependency(options.blueprint),
+          toolchains: options.toolchains?.map(renderDependency),
+          include: options.include,
+          dependencies: options.dependencies?.map(renderDependency),
+          // `dagger init` writes the implicit root as an absent field.
+          source: options.source === '.' ? undefined : options.source,
+          codegen: options.codegen,
+          clients: options.clients,
+          disableDefaultFunctionCaching: options.disableDefaultFunctionCaching,
+        },
+        omitEmpty: true,
+      },
+    )
+
+    this.modules[directory] = file
+
+    return file
   }
 
   #createWorkflow(project: Project, options: DaggerWorkflowOptions) {
@@ -228,4 +492,30 @@ export class Dagger extends Component {
       },
     })
   }
+}
+
+function renderDependency(dependency: DaggerModuleDependency) {
+  const options =
+    typeof dependency === 'string' ? { source: dependency } : dependency
+
+  return {
+    name: options.name ?? dependencyName(options.source),
+    source: options.source,
+    pin: options.pin,
+    customizations: options.customizations,
+    ignoreChecks: options.ignoreChecks,
+    ignoreGenerators: options.ignoreGenerators,
+    ignoreServices: options.ignoreServices,
+    portMappings: options.portMappings,
+  }
+}
+
+/**
+ * Derives the name `dagger install` records for a source ref, by taking its
+ * last path segment without any version suffix.
+ */
+function dependencyName(source: string): string {
+  const [ref] = source.split('@')
+
+  return path.posix.basename(ref ?? source)
 }
