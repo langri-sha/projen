@@ -22,7 +22,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@jest/globals": "30.5.0",
+    "@jest/globals": "30.5.1",
     "nock": "14.0.17",
     "tempy": "3.2.0"
   },
