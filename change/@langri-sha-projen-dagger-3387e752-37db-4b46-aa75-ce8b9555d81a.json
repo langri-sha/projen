@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Retire the Renovate arrays and the .prettierignore reach-in",
+  "packageName": "@langri-sha/projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
