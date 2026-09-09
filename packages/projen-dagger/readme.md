@@ -7,6 +7,10 @@ It synthesizes each module's `dagger.json`, adds the `dagger:develop` and
 synthesizes a workflow that regenerates every module against its pinned engine
 and fails on drift.
 
+[`@langri-sha/projen-project`] reaches it through its `dagger` option, which
+also keeps Prettier off the SDK-managed files and points Renovate at the engine
+version. Prefer that over constructing the component yourself.
+
 ## Usage
 
 ```sh
@@ -79,20 +83,7 @@ Keep it ahead of, or equal to, the engine you develop against locally. The CLI
 stamps the version it ran into `dagger.json`, so an older pin and a newer local
 engine leave synthesis and `dagger develop` rewriting the field past each other.
 
-### Renovate
-
-The component exposes the configuration that moves the engine pin in the
-projenrc and keeps Renovate off the module manifests the SDK writes. Spread it
-into your Renovate options:
-
-```js
-import { Renovate } from '@langri-sha/projen-renovate'
-
-new Renovate(project, {
-  customManagers: [...dagger.customManagers],
-  packageRules: [...dagger.packageRules],
-})
-```
-
+[`@langri-sha/projen-project`]:
+  https://www.npmjs.com/package/@langri-sha/projen-project
 [projen]: https://projen.io/
 [dagger]: https://dagger.io/

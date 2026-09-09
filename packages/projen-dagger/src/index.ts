@@ -1,6 +1,6 @@
 import * as path from 'node:path'
 
-import { Component, IgnoreFile, JsonFile, type Project, YamlFile } from 'projen'
+import { Component, JsonFile, type Project, YamlFile } from 'projen'
 
 import type { DaggerModule, ModuleConfigDependency } from './dagger'
 
@@ -118,15 +118,6 @@ export interface DaggerWorkflowOptions {
 
 export interface DaggerOptions {
   /**
-   * Patterns for `.prettierignore` to skip SDK-managed files.
-   * Added automatically when a `.prettierignore` file exists on the project.
-   *
-   * Defaults to each module's `dagger.json`, `package.json`, `tsconfig.json`
-   * and `sdk/` directory.
-   */
-  readonly prettierIgnorePatterns?: string[]
-
-  /**
    * Gitignore patterns for SDK-generated output.
    *
    * Defaults to every `sdk/` directory and `*.tsbuildinfo`.
@@ -158,24 +149,14 @@ export interface DaggerOptions {
 /**
  * A component for Dagger TypeScript module repositories.
  *
- * Synthesizes each module's `dagger.json`, sets up tasks, gitignore patterns,
- * an optional CI workflow, and exposes Renovate configuration for engine
- * version management.
+ * Synthesizes each module's `dagger.json`, sets up tasks, gitignore patterns
+ * and an optional CI workflow.
  *
- * Spread {@link customManagers} and {@link packageRules} into your Renovate
- * options to enable automatic engine upgrades.
+ * `@langri-sha/projen-project` reaches it through its `dagger` option, which
+ * also keeps Prettier off the SDK-managed files and points Renovate at the
+ * engine version.
  */
 export class Dagger extends Component {
-  /**
-   * Renovate custom managers that track the engine version in the projenrc.
-   */
-  readonly customManagers: object[]
-
-  /**
-   * Renovate package rules for Dagger module repositories.
-   */
-  readonly packageRules: object[]
-
   /**
    * Synthesized module manifests, keyed by the module directory.
    */
@@ -187,35 +168,6 @@ export class Dagger extends Component {
     super(project)
 
     this.#engineVersion = options?.engineVersion
-
-    this.customManagers = [
-      {
-        customType: 'regex',
-        datasourceTemplate: 'github-releases',
-        depNameTemplate: 'dagger/dagger',
-        managerFilePatterns: ['/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/'],
-        matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
-        extractVersionTemplate: '^v(?<version>.+)$',
-      },
-    ]
-
-    this.packageRules = [
-      {
-        description:
-          'The Dagger SDK writes the module manifests, including the TypeScript pin',
-        matchManagers: ['npm'],
-        matchFileNames: ['*/package.json'],
-        enabled: false,
-      },
-      {
-        description:
-          'Track the TypeScript major the Dagger SDK installs into the modules',
-        matchManagers: ['npm'],
-        matchPackageNames: ['typescript'],
-        allowedVersions: '^5',
-        enabled: true,
-      },
-    ]
 
     project.addTask('dagger:develop', {
       description: 'Regenerate sdk/ for every Dagger module',
@@ -232,17 +184,6 @@ export class Dagger extends Component {
       '*.tsbuildinfo',
     ]
     project.gitignore.addPatterns(...gitignorePatterns)
-
-    const prettierIgnorePatterns = options?.prettierIgnorePatterns ?? [
-      '*/dagger.json',
-      '*/package.json',
-      '*/tsconfig.json',
-      '*/sdk/',
-    ]
-    const prettierIgnore = project.tryFindFile('.prettierignore')
-    if (prettierIgnore instanceof IgnoreFile) {
-      prettierIgnore.addPatterns(...prettierIgnorePatterns)
-    }
 
     if (options?.workflow !== false) {
       const workflowOptions =

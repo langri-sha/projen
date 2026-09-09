@@ -1,5 +1,5 @@
 import { expect, test } from '@langri-sha/vitest'
-import { IgnoreFile, Project } from 'projen'
+import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
 import { Dagger } from './index'
@@ -51,34 +51,6 @@ test('with custom gitignore patterns', () => {
 
   new Dagger(project, {
     gitignorePatterns: ['**/sdk/', '*.tsbuildinfo', 'custom/'],
-  })
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
-test('with a prettierignore file on the project', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new IgnoreFile(project, '.prettierignore')
-
-  new Dagger(project)
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
-test('with custom prettierignore patterns', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new IgnoreFile(project, '.prettierignore')
-
-  new Dagger(project, {
-    prettierIgnorePatterns: ['*/sdk/'],
   })
 
   project.synth()
