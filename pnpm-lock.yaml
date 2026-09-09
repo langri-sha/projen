@@ -419,12 +419,18 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
     devDependencies:
+      '@langri-sha/schemastore-to-typescript':
+        specifier: workspace:*
+        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
+      tsx:
+        specifier: 4.23.13
+        version: 4.23.13
 
   packages/projen-editorconfig:
     dependencies:

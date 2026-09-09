@@ -91,6 +91,7 @@ const project = new Project({
     ignorePatterns: [
       '*.frag',
       'cargo.ts',
+      'dagger.ts',
       'pnpm-workspace.ts',
       'renovate.ts',
       'rustfmt.ts',
@@ -438,12 +439,29 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
+      devDeps: [
+        '@langri-sha/schemastore-to-typescript@workspace:*',
+        'tsx@4.23.13',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
   publish,
+  (project) => {
+    project.addGitIgnore('dagger.ts')
+
+    project.package?.setScript(
+      'prepare',
+      "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'Dagger module' src/dagger.ts",
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger.d.ts',
+    )
+  },
 )
 
 project.addSubproject(
