@@ -2498,22 +2498,22 @@ node_modules/
         "depNameTemplate": "pnpm",
         "depTypeTemplate": "dependencies",
         "managerFilePatterns": [
-          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
+          "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
-          "pnpm@(?<currentValue>[^']+)",
+          "packageManager['"]?[,:]\\s*['"]pnpm@(?<currentValue>[^'"]+)['"]",
         ],
       },
       {
         "customType": "regex",
         "datasourceTemplate": "npm",
-        "depNameTemplate": "pnpm",
         "depTypeTemplate": "dependencies",
         "managerFilePatterns": [
-          "/\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$/",
+          "/^\\.github/workflows/[^/]+\\.ya?ml$/",
+          "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
         ],
         "matchStrings": [
-          "(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)",
+          "(bun|p?np)x (?<depName>@?[\\w.-]+(?:/[\\w.-]+)?)@(?<currentValue>[^\\s'"]+)",
         ],
       },
     ],

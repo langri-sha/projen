@@ -926,22 +926,41 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        // The `packageManager` field is declared in a projenrc and only
+        // reaches the manifest through synthesis, so the npm manager reading
+        // the manifest cannot propose it. Both patterns are held to that one
+        // declaration: an unanchored `pnpm@` also matches the tail of
+        // `langri-sha/github/actions/pnpm@v0.14.1`, and a file pattern that
+        // merely contains `projen` reaches the sources of every package here,
+        // so between them Renovate walked a GitHub Action reference through
+        // four pnpm releases.
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          managerFilePatterns: ['/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/'],
-          matchStrings: ["pnpm@(?<currentValue>[^']+)"],
+          managerFilePatterns: [
+            '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+          ],
+          matchStrings: [
+            'packageManager[\'"]?[,:]\\s*[\'"]pnpm@(?<currentValue>[^\'"]+)[\'"]',
+          ],
           depNameTemplate: 'pnpm',
           depTypeTemplate: 'dependencies',
         },
+        // Package executions pinned to a version, which no built-in manager
+        // reads, in the workflows and the projenrc-side sources that spell
+        // them out. The package is whatever the invocation names — forcing
+        // `depName` to `pnpm` offered pnpm's version for every other tool —
+        // and the version ends at the first space or quote.
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
-          managerFilePatterns: ['/\\.(js|cjs|mjs|ts|mts|cts|ya?ml)$/'],
-          matchStrings: [
-            '(bun|p?np)x (?<depName>[\\w\\-\\/]+)@(?<currentValue>[^s]+)',
+          managerFilePatterns: [
+            '/^\\.github/workflows/[^/]+\\.ya?ml$/',
+            '/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/',
           ],
-          depNameTemplate: 'pnpm',
+          matchStrings: [
+            '(bun|p?np)x (?<depName>@?[\\w.-]+(?:/[\\w.-]+)?)@(?<currentValue>[^\\s\'"]+)',
+          ],
           depTypeTemplate: 'dependencies',
         },
       ],
