@@ -635,6 +635,9 @@ importers:
       '@langri-sha/projen-codeowners':
         specifier: workspace:*
         version: link:../projen-codeowners
+      '@langri-sha/projen-dagger':
+        specifier: workspace:*
+        version: link:../projen-dagger
       '@langri-sha/projen-editorconfig':
         specifier: workspace:*
         version: link:../projen-editorconfig
