@@ -987,6 +987,12 @@ export class Project extends BaseProject {
         // for names it. The `v` prefix sits outside the capture group, and
         // `extractVersionTemplate` strips it off the release tags, so the
         // replacement leaves the prefix in place.
+        //
+        // Held to the projenrc by the anchored file pattern below, for the
+        // reason spelled out under the `packageManager` manager: a pattern
+        // that merely contains `projen` reaches the sources of every package
+        // in a monorepo named after it, and `engineVersion:` appears in this
+        // preset's own tests. A projenrc is the only file that declares one.
         ...(dagger
           ? [
               {
@@ -994,7 +1000,7 @@ export class Project extends BaseProject {
                 datasourceTemplate: 'github-releases',
                 depNameTemplate: 'dagger/dagger',
                 managerFilePatterns: [
-                  '/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/',
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
                 ],
                 matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
                 extractVersionTemplate: '^v(?<version>.+)$',

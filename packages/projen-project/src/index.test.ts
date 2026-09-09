@@ -1149,7 +1149,7 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
       "depNameTemplate": "dagger/dagger",
       "extractVersionTemplate": "^v(?<version>.+)$",
       "managerFilePatterns": [
-        "/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/",
+        "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
       ],
       "matchStrings": [
         "engineVersion:\\s*'v(?<currentValue>[^']+)'",
@@ -1210,12 +1210,13 @@ describe('with Renovate options, the custom managers', () => {
     matchStringsStrategy?: string
   }
 
-  // With Cargo, so that the crate manager is among them.
+  // With Cargo and Dagger, so that their managers are among them.
   const customManagers = (): CustomManager[] =>
     synthSnapshot(
       new Project({
         name: 'test-project',
         cargo: {},
+        dagger: {},
         renovate: {},
       }),
     )['renovate.json5'].customManagers
@@ -1242,6 +1243,27 @@ describe('with Renovate options, the custom managers', () => {
     expect(
       "options.pnpmSetupAction ?? 'langri-sha/github/actions/pnpm@v0.14.1'",
     ).not.toMatch(new RegExp(matchString))
+  })
+
+  test('read the Dagger engine out of a projenrc and nowhere else', () => {
+    const manager = customManagers().find(
+      ({ depNameTemplate }) => depNameTemplate === 'dagger/dagger',
+    )!
+    const [matchString] = manager.matchStrings
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/some/.projenrc.mjs')).toBe(true)
+    // Where this preset declares the option, and where its tests restate an
+    // engine version, are both `.ts` files under a path containing `projen`.
+    expect(covers(manager, 'packages/projen-dagger/src/index.ts')).toBe(false)
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+
+    expect(
+      new RegExp(matchString).exec("    engineVersion: 'v0.20.8',")?.groups
+        ?.currentValue,
+    ).toBe('0.20.8')
   })
 
   test('name the package an execution runs, not the one they were copied from', () => {
