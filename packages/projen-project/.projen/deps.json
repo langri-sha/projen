@@ -101,6 +101,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-dagger",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-editorconfig",
       "version": "workspace:*",
       "type": "runtime"

@@ -16,6 +16,9 @@
       "path": "../projen-codeowners"
     },
     {
+      "path": "../projen-dagger"
+    },
+    {
       "path": "../projen-editorconfig"
     },
     {

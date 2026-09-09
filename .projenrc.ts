@@ -787,6 +787,7 @@ project.addSubproject(
         '@langri-sha/projen-beachball@workspace:*',
         '@langri-sha/projen-cargo@workspace:*',
         '@langri-sha/projen-codeowners@workspace:*',
+        '@langri-sha/projen-dagger@workspace:*',
         '@langri-sha/projen-editorconfig@workspace:*',
         '@langri-sha/projen-eslint@workspace:*',
         '@langri-sha/projen-husky@workspace:*',

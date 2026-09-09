@@ -12,6 +12,7 @@ import {
   Codeowners,
   type CodeownersOptions,
 } from '@langri-sha/projen-codeowners'
+import { Dagger, type DaggerOptions } from '@langri-sha/projen-dagger'
 import {
   EditorConfig,
   type EditorConfigOptions,
@@ -128,6 +129,12 @@ export interface ProjectOptions extends Omit<
   codeowners?: CodeownersOptions
 
   /**
+   * Pass in to set up Dagger modules. Root projects only — modules live in
+   * top-level directories.
+   */
+  dagger?: DaggerOptions
+
+  /**
    * EditorConfig options.
    */
   editorConfig?: EditorConfigOptions
@@ -215,6 +222,7 @@ export class Project extends BaseProject {
   beachball?: Beachball
   cargo?: CargoPackage | CargoWorkspace
   codeowners?: Codeowners
+  dagger?: Dagger
   editorConfig?: EditorConfig
   eslint?: ESLint
   husky?: Husky
@@ -271,6 +279,11 @@ export class Project extends BaseProject {
       this.tasks.tryFind('install')?.reset()
       this.tasks.tryFind('install:ci')?.reset()
     }
+
+    // Ahead of Prettier and Renovate, which both read the option: the SDK
+    // writes files Prettier must not touch, and the engine version is pinned
+    // in the projenrc where only a custom manager can reach it.
+    this.#configureDagger(options)
 
     this.#configureESLint(options)
     this.#configurePrettier(options)
@@ -548,6 +561,14 @@ export class Project extends BaseProject {
     this.codeowners = new Codeowners(this, codeownersOptions)
   }
 
+  #configureDagger({ dagger }: ProjectOptions) {
+    if (!dagger || this.parent) {
+      return
+    }
+
+    this.dagger = new Dagger(this, dagger)
+  }
+
   #configureEditorConfig({
     editorConfig: editorConfigOptions,
   }: ProjectOptions) {
@@ -756,7 +777,7 @@ export class Project extends BaseProject {
     )
   }
 
-  #configurePrettier({ prettier, package: pkg }: ProjectOptions) {
+  #configurePrettier({ dagger, prettier, package: pkg }: ProjectOptions) {
     if (!prettier || this.parent) {
       return
     }
@@ -765,7 +786,16 @@ export class Project extends BaseProject {
       filename:
         pkg?.type === 'module' ? 'prettier.config.js' : 'prettier.config.mjs',
       extends: '@langri-sha/prettier',
-      ignorePatterns: ['.*', 'dist/'],
+      ignorePatterns: [
+        '.*',
+        'dist/',
+        // Everything inside a Dagger module directory is written by the CLI or
+        // by the component, each in its own formatting. Prettier would rewrite
+        // them and `dagger develop` would put them back, on every run.
+        ...(dagger
+          ? ['*/dagger.json', '*/package.json', '*/tsconfig.json', '*/sdk/']
+          : []),
+      ],
     }
 
     this.prettier = new Prettier(this, deepMerge(defaults, prettier))
@@ -801,6 +831,7 @@ export class Project extends BaseProject {
 
   #configureRenovate({
     cargo,
+    dagger,
     renovate: renovateOptions,
     package: pkg,
   }: ProjectOptions) {
@@ -864,6 +895,31 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        ...(dagger
+          ? [
+              {
+                description:
+                  'Move every Dagger module off one engine release at a time, the way `dagger develop` writes them',
+                groupName: 'Dagger engine',
+                groupSlug: 'dagger-engine',
+                matchDepNames: ['dagger/dagger'],
+              },
+              {
+                description:
+                  'The Dagger SDK writes the module manifests, including the TypeScript pin. Upgrades here are reverted by the next `dagger develop`',
+                matchManagers: ['npm'],
+                matchFileNames: ['*/package.json'],
+                enabled: false,
+              },
+              {
+                description:
+                  'Track the TypeScript major the Dagger SDK installs into the modules, so `check:types` keeps using the runtime compiler',
+                matchManagers: ['npm'],
+                matchPackageNames: ['typescript'],
+                allowedVersions: '^5',
+              },
+            ]
+          : []),
       ],
       customManagers: [
         {
@@ -923,6 +979,25 @@ export class Project extends BaseProject {
                   "^[^{]*(?:\\{[^{}]*?package:\\s*'(?<packageName>[^']+)')?[\\s\\S]*",
                   "(?:^'?[\\w-]+'?:\\s*|version:\\s*)'(?<currentValue>[^']+)'",
                 ],
+              },
+            ]
+          : []),
+        // The engine version is declared in the projenrc and written into
+        // every module manifest from there, so nothing Renovate has a manager
+        // for names it. The `v` prefix sits outside the capture group, and
+        // `extractVersionTemplate` strips it off the release tags, so the
+        // replacement leaves the prefix in place.
+        ...(dagger
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'github-releases',
+                depNameTemplate: 'dagger/dagger',
+                managerFilePatterns: [
+                  '/\\.?projen.*\\.(js|cjs|mjs|ts|mts|cts)$/',
+                ],
+                matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
+                extractVersionTemplate: '^v(?<version>.+)$',
               },
             ]
           : []),
