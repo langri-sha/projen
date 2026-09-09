@@ -1027,6 +1027,109 @@ test('with Renovate options, reading the crates a workspace declares', () => {
   `)
 })
 
+/**
+ * A custom manager is two loose patterns away from rewriting something that
+ * only looks like a dependency. `pnpm@` matched the tail of
+ * `langri-sha/github/actions/pnpm@v0.14.1` in a package source, and Renovate
+ * walked that GitHub Action reference through four pnpm releases before anyone
+ * noticed. Assert what the patterns reach, against the strings themselves.
+ */
+describe('with Renovate options, the custom managers', () => {
+  interface CustomManager {
+    depNameTemplate?: string
+    managerFilePatterns: string[]
+    matchStrings: string[]
+    matchStringsStrategy?: string
+  }
+
+  // With Cargo, so that the crate manager is among them.
+  const customManagers = (): CustomManager[] =>
+    synthSnapshot(
+      new Project({
+        name: 'test-project',
+        cargo: {},
+        renovate: {},
+      }),
+    )['renovate.json5'].customManagers
+
+  const covers = ({ managerFilePatterns }: CustomManager, file: string) =>
+    managerFilePatterns.some((pattern) =>
+      new RegExp(pattern.slice(1, -1)).test(file),
+    )
+
+  test('read the package manager out of a projenrc and nowhere else', () => {
+    const manager = customManagers().find(
+      ({ depNameTemplate }) => depNameTemplate === 'pnpm',
+    )!
+    const [matchString] = manager.matchStrings
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/projen-dagger/src/index.ts')).toBe(false)
+
+    expect(
+      new RegExp(matchString).exec(
+        "project.package?.addField('packageManager', 'pnpm@12.3.4')",
+      )?.groups?.currentValue,
+    ).toBe('12.3.4')
+    expect(
+      "options.pnpmSetupAction ?? 'langri-sha/github/actions/pnpm@v0.14.1'",
+    ).not.toMatch(new RegExp(matchString))
+  })
+
+  test('name the package an execution runs, not the one they were copied from', () => {
+    const manager = customManagers().find(({ matchStrings }) =>
+      matchStrings.some((matchString) => matchString.includes('bun')),
+    )!
+    const [matchString] = manager.matchStrings
+
+    expect(manager.depNameTemplate).toBeUndefined()
+
+    expect(
+      new RegExp(matchString).exec("exec: 'pnpx sort-package-json@3.4.0',")
+        ?.groups,
+    ).toMatchObject({
+      depName: 'sort-package-json',
+      currentValue: '3.4.0',
+    })
+    expect(
+      new RegExp(matchString).exec('bunx @langri-sha/monorepo@1.2.3 --check')
+        ?.groups,
+    ).toMatchObject({
+      depName: '@langri-sha/monorepo',
+      currentValue: '1.2.3',
+    })
+  })
+
+  test('leave every GitHub Action reference alone', () => {
+    const source = [
+      "   * @default 'langri-sha/github/actions/pnpm@v0.14.1'",
+      "    const checkoutAction = options.checkoutAction ?? 'actions/checkout@v7'",
+      "      options.pnpmSetupAction ?? 'langri-sha/github/actions/pnpm@v0.14.1'",
+      '        uses: pnpm/action-setup@v4',
+      '    uses: langri-sha/github/.github/workflows/check.yml@v0.14.1',
+    ].join('\n')
+
+    const matches = (text: string, matchString: string) =>
+      [...text.matchAll(new RegExp(matchString, 'gm'))].map(([match]) => match)
+
+    // `recursive` narrows the previous match rather than searching the file
+    // again, so a pattern that would match on its own is only reachable
+    // through the context the pattern before it established.
+    const extract = ({ matchStrings, matchStringsStrategy }: CustomManager) =>
+      matchStringsStrategy === 'recursive'
+        ? matchStrings.reduce(
+            (texts, matchString) =>
+              texts.flatMap((text) => matches(text, matchString)),
+            [source],
+          )
+        : matchStrings.flatMap((matchString) => matches(source, matchString))
+
+    for (const manager of customManagers()) {
+      expect(extract(manager)).toEqual([])
+    }
+  })
+})
+
 describe('with SWC options', () => {
   test('defaults', () => {
     const project = new Project({
