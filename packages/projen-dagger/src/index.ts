@@ -2,46 +2,26 @@ import * as path from 'node:path'
 
 import { Component, IgnoreFile, JsonFile, type Project, YamlFile } from 'projen'
 
-/**
- * Argument override applied by a toolchain dependency.
- */
-export interface DaggerModuleArgumentOptions {
-  /**
-   * Function chain the override applies to. Omit for the constructor.
-   */
-  readonly function?: string[]
+import type { DaggerModule, ModuleConfigDependency } from './dagger'
 
-  /**
-   * Name of the argument to override.
-   */
-  readonly argument: string
-
-  /**
-   * Default value for the argument.
-   */
-  readonly default?: string
-
-  /**
-   * Default path for `File` or `Directory` arguments.
-   */
-  readonly defaultPath?: string
-
-  /**
-   * Default address for `Container` arguments.
-   */
-  readonly defaultAddress?: string
-
-  /**
-   * Ignore patterns for `Directory` arguments.
-   */
-  readonly ignore?: string[]
-}
+export type {
+  DaggerModule,
+  ModuleCodegenConfig,
+  ModuleConfigArgument,
+  ModuleConfigClient,
+  ModuleConfigDependency,
+} from './dagger'
 
 /**
  * A module referenced by another module, as a dependency, a blueprint or a
  * toolchain.
+ *
+ * The manifest requires a name; the component derives one from the source when
+ * it is left out.
  */
-export interface DaggerModuleDependencyOptions {
+export interface DaggerModuleDependencyOptions extends Readonly<
+  Omit<ModuleConfigDependency, 'name'>
+> {
   /**
    * Name the dependency is addressed by.
    *
@@ -49,44 +29,6 @@ export interface DaggerModuleDependencyOptions {
    * `dagger install` writes for a sibling module.
    */
   readonly name?: string
-
-  /**
-   * Source ref of the dependency, e.g. `../tailscale` or
-   * `github.com/user/repo/module@v1.2.3`.
-   */
-  readonly source: string
-
-  /**
-   * Version the dependency is pinned to. Written by `dagger install` for
-   * remote refs.
-   */
-  readonly pin?: string
-
-  /**
-   * Argument overrides, for toolchains only.
-   */
-  readonly customizations?: DaggerModuleArgumentOptions[]
-
-  /**
-   * Glob patterns of checks to exclude, for toolchains only.
-   */
-  readonly ignoreChecks?: string[]
-
-  /**
-   * Glob patterns of generators to exclude, for toolchains only.
-   */
-  readonly ignoreGenerators?: string[]
-
-  /**
-   * Glob patterns of services to exclude, for toolchains only.
-   */
-  readonly ignoreServices?: string[]
-
-  /**
-   * Port forwarding rules per service name, e.g. `{ web: ['3000:80'] }`. For
-   * toolchains only.
-   */
-  readonly portMappings?: Record<string, string[]>
 }
 
 /**
@@ -95,31 +37,30 @@ export interface DaggerModuleDependencyOptions {
 export type DaggerModuleDependency = string | DaggerModuleDependencyOptions
 
 /**
- * A client generated for a module.
+ * Manifest fields the component does not take verbatim: derived from the
+ * module directory, hoisted to the component, replaced by a shorthand, or
+ * deprecated upstream.
  */
-export interface DaggerModuleClientOptions {
-  /**
-   * Generator the client is generated with.
-   */
-  readonly generator: string
-
-  /**
-   * Directory the client is generated into.
-   */
-  readonly directory: string
-}
+type ReshapedFields =
+  | '$schema'
+  | 'blueprint'
+  | 'dependencies'
+  | 'engineVersion'
+  | 'exclude'
+  | 'name'
+  | 'sdk'
+  | 'toolchains'
 
 /**
- * Codegen configuration for a module.
+ * Options for one module manifest.
+ *
+ * Everything the component passes through untouched — `include`, `source`,
+ * `codegen`, `clients`, `disableDefaultFunctionCaching` — is inherited from the
+ * generated schema rather than restated here, so it tracks upstream.
  */
-export interface DaggerModuleCodegenOptions {
-  /**
-   * Whether the SDK generates a `.gitignore` for the module.
-   */
-  readonly automaticGitignore?: boolean
-}
-
-export interface DaggerModuleOptions {
+export interface DaggerModuleOptions extends Readonly<
+  Omit<DaggerModule, ReshapedFields>
+> {
   /**
    * Name of the module.
    *
@@ -139,11 +80,6 @@ export interface DaggerModuleOptions {
   readonly sdkPin?: string
 
   /**
-   * Modules this module depends on.
-   */
-  readonly dependencies?: DaggerModuleDependency[]
-
-  /**
    * Blueprint module this module is derived from.
    */
   readonly blueprint?: DaggerModuleDependency
@@ -154,32 +90,9 @@ export interface DaggerModuleOptions {
   readonly toolchains?: DaggerModuleDependency[]
 
   /**
-   * Paths to include from the module directory. Prefix a pattern with `!` to
-   * exclude it.
+   * Modules this module depends on.
    */
-  readonly include?: string[]
-
-  /**
-   * Subdirectory holding the implementation, relative to `dagger.json`.
-   *
-   * `.` is dropped, the way `dagger init` writes it.
-   */
-  readonly source?: string
-
-  /**
-   * Clients generated for the module.
-   */
-  readonly clients?: DaggerModuleClientOptions[]
-
-  /**
-   * Codegen configuration.
-   */
-  readonly codegen?: DaggerModuleCodegenOptions
-
-  /**
-   * Whether to opt the module out of default function caching.
-   */
-  readonly disableDefaultFunctionCaching?: boolean
+  readonly dependencies?: DaggerModuleDependency[]
 
   /**
    * `$schema` to declare in the manifest. Dagger preserves it verbatim.
@@ -357,6 +270,34 @@ export class Dagger extends Component {
       )
     }
 
+    // Typed against the generated schema, and written in its field order, so an
+    // upstream rename fails the build rather than producing a manifest the CLI
+    // silently rewrites.
+    const manifest: DaggerModule = {
+      $schema: options.schema,
+      name: options.name ?? path.posix.basename(directory),
+      engineVersion: this.#engineVersion,
+      sdk:
+        options.sdk === false
+          ? undefined
+          : {
+              source: options.sdk ?? 'typescript',
+              pin: options.sdkPin,
+            },
+      blueprint:
+        options.blueprint === undefined
+          ? undefined
+          : renderDependency(options.blueprint),
+      toolchains: options.toolchains?.map(renderDependency),
+      include: options.include,
+      dependencies: options.dependencies?.map(renderDependency),
+      // `dagger init` writes the implicit root as an absent field.
+      source: options.source === '.' ? undefined : options.source,
+      codegen: options.codegen,
+      clients: options.clients,
+      disableDefaultFunctionCaching: options.disableDefaultFunctionCaching,
+    }
+
     const file = new JsonFile(
       this.project,
       path.posix.join(directory, 'dagger.json'),
@@ -364,27 +305,7 @@ export class Dagger extends Component {
         // The CLI round-trips the manifest through its own struct and drops
         // every field it does not know, the marker included.
         marker: false,
-        obj: {
-          $schema: options.schema,
-          name: options.name ?? path.posix.basename(directory),
-          engineVersion: this.#engineVersion,
-          sdk:
-            options.sdk === false
-              ? undefined
-              : {
-                  source: options.sdk ?? 'typescript',
-                  pin: options.sdkPin,
-                },
-          blueprint: options.blueprint && renderDependency(options.blueprint),
-          toolchains: options.toolchains?.map(renderDependency),
-          include: options.include,
-          dependencies: options.dependencies?.map(renderDependency),
-          // `dagger init` writes the implicit root as an absent field.
-          source: options.source === '.' ? undefined : options.source,
-          codegen: options.codegen,
-          clients: options.clients,
-          disableDefaultFunctionCaching: options.disableDefaultFunctionCaching,
-        },
+        obj: manifest,
         omitEmpty: true,
       },
     )
