@@ -2,6 +2,65 @@
   "name": "@langri-sha/projen-dagger",
   "entries": [
     {
+      "date": "Thu, 10 Sep 2026 07:59:13 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/projen-dagger_v0.2.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Update dependency pnpm to v11.25.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Update dependency pnpm to v12"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "fix(deps): update dependency pnpm to v12.3.4"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Restore the pnpm setup action reference Renovate rewrote as a pnpm version"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Retire the Renovate arrays and the .prettierignore reach-in"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Synthesize dagger.json module manifests"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Synthesize dagger.json module manifests"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-dagger",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.11",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 31 Aug 2026 21:36:20 GMT",
       "version": "0.1.0",
       "tag": "@langri-sha/projen-dagger_v0.1.0",

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency got to v16",
-  "packageName": "@langri-sha/schemastore-to-typescript",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

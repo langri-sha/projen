@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/jest-test
 
-<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 10 Sep 2026 07:59:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.10.5
+
+Thu, 10 Sep 2026 07:59:13 GMT
+
+### Patches
+
+- Update dependency @jest/globals to v30.5.1
 
 ## 0.10.4
 

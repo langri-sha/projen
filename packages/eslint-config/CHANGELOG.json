@@ -2,6 +2,51 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Thu, 10 Sep 2026 07:59:13 GMT",
+      "version": "0.9.13",
+      "tag": "@langri-sha/eslint-config_v0.9.13",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "fix(deps): update dependency @eslint/compat to v2.1.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "fix(deps): update dependency eslint-plugin-jsdoc to v64.3.5"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.3.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Update dependency typescript-eslint to v8.69.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.3.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "54d9956e10e4517164cc2234d4041c472930a259",
+            "comment": "Update dependency globals to v17.12.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 31 Aug 2026 21:36:20 GMT",
       "version": "0.9.12",
       "tag": "@langri-sha/eslint-config_v0.9.12",

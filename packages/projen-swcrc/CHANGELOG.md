@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-swcrc
 
-<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 10 Sep 2026 07:59:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.19
+
+Thu, 10 Sep 2026 07:59:13 GMT
+
+### Patches
+
+- Update dependency tsx to v4.23.13
+- Bump @langri-sha/schemastore-to-typescript to v0.2.11
 
 ## 0.1.18
 

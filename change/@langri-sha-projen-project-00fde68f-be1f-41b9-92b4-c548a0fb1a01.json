@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Hold the pnpm and package execution custom managers to their intended scope",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

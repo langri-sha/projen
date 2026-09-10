@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Restore the pnpm setup action reference Renovate rewrote as a pnpm version",
-  "packageName": "@langri-sha/projen-dagger",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

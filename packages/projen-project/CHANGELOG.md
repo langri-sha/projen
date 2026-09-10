@@ -1,8 +1,31 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 10 Sep 2026 07:59:13 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.29.0
+
+Thu, 10 Sep 2026 07:59:13 GMT
+
+### Minor changes
+
+- Configure Dagger modules through the dagger option (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.11
+- Bump @langri-sha/projen-cargo to v0.1.2
+- Bump @langri-sha/projen-dagger to v0.2.0
+- Bump @langri-sha/projen-eslint to v0.3.12
+- Bump @langri-sha/projen-jest-config to v0.4.13
+- Bump @langri-sha/projen-lint-staged to v0.3.13
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.7
+- Bump @langri-sha/projen-prettier to v0.4.12
+- Bump @langri-sha/projen-renovate to v0.4.19
+- Bump @langri-sha/projen-swcrc to v0.1.19
+
+### Patches
+
+- Hold the pnpm and package execution custom managers to their intended scope (filip.dupanovic@gmail.com)
+- Update dependency tsx to v4.23.13
 
 ## 0.28.0
 
