@@ -1275,7 +1275,7 @@ describe('with Renovate options, the custom managers', () => {
     expect(manager.depNameTemplate).toBeUndefined()
 
     expect(
-      new RegExp(matchString).exec("exec: 'pnpx sort-package-json@3.4.0',")
+      new RegExp(matchString).exec("exec: 'pnpx sort-package-json@3.7.1',")
         ?.groups,
     ).toMatchObject({
       depName: 'sort-package-json',
