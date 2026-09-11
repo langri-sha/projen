@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Require vitest 5 as the peer dependency",
+  "packageName": "@langri-sha/vitest",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
