@@ -1028,16 +1028,23 @@ export class Project extends BaseProject {
           depTypeTemplate: 'dependencies',
         },
         // Package executions pinned to a version, which no built-in manager
-        // reads, in the workflows and the projenrc-side sources that spell
-        // them out. The package is whatever the invocation names — forcing
-        // `depName` to `pnpm` offered pnpm's version for every other tool —
-        // and the version ends at the first space or quote.
+        // reads, in the workflows and the projenrcs that spell them out. The
+        // package is whatever the invocation names — forcing `depName` to
+        // `pnpm` offered pnpm's version for every other tool — and the version
+        // ends at the first space or quote.
+        //
+        // Anchored to a projenrc for the reason the two managers above are: a
+        // pattern that merely contains `projen` reaches the sources of every
+        // package here, and this preset's own tests exercise this regex
+        // against a literal `pnpx name@version`. Renovate rewrote the fixture
+        // and left the assertion beside it, failing the suite over a package
+        // nothing depends on.
         {
           customType: 'regex',
           datasourceTemplate: 'npm',
           managerFilePatterns: [
             '/^\\.github/workflows/[^/]+\\.ya?ml$/',
-            '/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/',
+            '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
           ],
           matchStrings: [
             '(bun|p?np)x (?<depName>@?[\\w.-]+(?:/[\\w.-]+)?)@(?<currentValue>[^\\s\'"]+)',
