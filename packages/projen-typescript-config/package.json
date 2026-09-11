@@ -22,7 +22,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@schemastore/tsconfig": "1.0.9"
+    "@schemastore/tsconfig": "1.0.10"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
