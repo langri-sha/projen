@@ -1274,6 +1274,15 @@ describe('with Renovate options, the custom managers', () => {
 
     expect(manager.depNameTemplate).toBeUndefined()
 
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/some/.projenrc.mjs')).toBe(true)
+    expect(covers(manager, '.github/workflows/check.yml')).toBe(true)
+    // The fixtures below are themselves a pinned execution, so a pattern
+    // reaching this file walks them forward and leaves the assertions behind.
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+
     expect(
       new RegExp(matchString).exec("exec: 'pnpx sort-package-json@3.4.0',")
         ?.groups,
