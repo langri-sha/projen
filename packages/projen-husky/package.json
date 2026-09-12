@@ -24,7 +24,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "@types/node": "24.13.3"
+    "@types/node": "24.13.4"
   },
   "peerDependencies": {
     "husky": "^9.0.1",
