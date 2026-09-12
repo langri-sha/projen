@@ -489,7 +489,7 @@ export class Project extends BaseProject {
     this.beachball = new Beachball(this, deepMerge(defaults, beachball))
 
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
-    this.#addDefaultDevDeps('beachball@2.65.6')
+    this.#addDefaultDevDeps('beachball@2.66.0')
     this.typeScriptConfig?.addFile(this.beachball!.path)
   }
 
