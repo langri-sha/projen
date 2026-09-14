@@ -212,10 +212,10 @@ project.addSubproject(
       entrypoint: 'src/index.js',
       deps: [
         '@babel/plugin-proposal-export-default-from@8.0.1',
-        '@babel/preset-env@8.0.2',
+        '@babel/preset-env@8.0.5',
         '@babel/preset-react@8.0.1',
         '@babel/preset-typescript@8.0.1',
-        '@babel/register@8.0.1',
+        '@babel/register@8.0.5',
         '@emotion/babel-plugin@11.13.5',
       ],
       devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@24.13.4'],
