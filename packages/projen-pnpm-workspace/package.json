@@ -23,7 +23,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pnpm-workspace.d.ts"
   },
   "dependencies": {
-    "yaml": "2.9.0"
+    "yaml": "2.9.1"
   },
   "devDependencies": {
     "@langri-sha/schemastore-to-typescript": "workspace:*",

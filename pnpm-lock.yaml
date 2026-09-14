@@ -637,8 +637,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       yaml:
-        specifier: 2.9.0
-        version: 2.9.0
+        specifier: 2.9.1
+        version: 2.9.1
     devDependencies:
       '@langri-sha/schemastore-to-typescript':
         specifier: workspace:*
@@ -926,7 +926,7 @@ importers:
     dependencies:
       '@babel/register':
         specifier: ^8.0.0
-        version: 8.0.1(@babel/core@8.0.1)
+        version: 8.0.5(@babel/core@8.0.1)
       babel-loader:
         specifier: 10.1.1
         version: 10.1.1(@babel/core@8.0.1)(webpack@5.109.2(@swc/core@1.15.47)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.26))
@@ -1686,12 +1686,6 @@ packages:
 
   '@babel/preset-typescript@8.0.1':
     resolution: {integrity: sha512-qrPhQIN1NLrPmzgazF9XKQqXrOcp/WJly+K+6ReFonn24FZqRJO7clxOJo6Ni75L+2vAqI3cHVU2OJLBxoPp5A==}
-    engines: {node: ^22.18.0 || >=24.11.0}
-    peerDependencies:
-      '@babel/core': ^8.0.0
-
-  '@babel/register@8.0.1':
-    resolution: {integrity: sha512-cnhRaD7/V44JpWK33A2oPzBj38JJ7oYsEQpuLV9PLZd/5FvfmDbft3UjyqQfUuQ7rMx065uB1sbscqxhUehuNQ==}
     engines: {node: ^22.18.0 || >=24.11.0}
     peerDependencies:
       '@babel/core': ^8.0.0
@@ -6764,6 +6758,11 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
+  yaml@2.9.1:
+    resolution: {integrity: sha512-3NxN8+78OdzbT7C/WjGsyfPAtJaN3FNDsWxv7Y7mcDsT/oOmgW8BpyQQFFBnvZE3j9Y2Sdz1ULFLezL7Eb2yFw==}
+    engines: {node: '>= 14.6'}
+    hasBin: true
+
   yargs-parser@21.1.1:
     resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
     engines: {node: '>=12'}
@@ -7626,15 +7625,6 @@ snapshots:
       '@babel/helper-validator-option': 8.0.0
       '@babel/plugin-transform-modules-commonjs': 8.0.1(@babel/core@8.0.1)
       '@babel/plugin-transform-typescript': 8.0.1(@babel/core@8.0.1)
-
-  '@babel/register@8.0.1(@babel/core@8.0.1)':
-    dependencies:
-      '@babel/core': 8.0.1
-      '@cspotcode/source-map-support': 0.8.1
-      cacache: 20.0.3
-      clone-deep: 4.0.1
-      empathic: 2.0.1
-      pirates: 4.0.7
 
   '@babel/register@8.0.5(@babel/core@8.0.1)':
     dependencies:
@@ -13299,6 +13289,8 @@ snapshots:
   yaml@1.10.3: {}
 
   yaml@2.9.0: {}
+
+  yaml@2.9.1: {}
 
   yargs-parser@21.1.1: {}
 

@@ -720,7 +720,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['yaml@2.9.0'],
+      deps: ['yaml@2.9.1'],
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
         'tsx@4.23.13',
