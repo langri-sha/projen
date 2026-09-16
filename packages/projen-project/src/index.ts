@@ -642,6 +642,7 @@ export class Project extends BaseProject {
       return
     }
 
+    this.#addDefaultDevDeps('jest@30.4.2')
     this.jestConfig = new JestConfig(this, jestConfigOptions)
 
     this.typeScriptConfig?.addFile(this.jestConfig.path)
