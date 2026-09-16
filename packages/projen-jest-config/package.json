@@ -33,6 +33,11 @@
     "jest": "^30.0.0",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "jest": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",

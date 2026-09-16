@@ -1390,6 +1390,7 @@ describe('supplied development dependency versions', () => {
   const TOOLS = [
     { tool: 'beachball', enabledBy: { beachball: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
+    { tool: 'jest', enabledBy: { jestConfig: {} } },
     { tool: 'typescript', enabledBy: { typeScriptConfig: {} } },
     { tool: 'tsx', enabledBy: { typeScriptConfig: {} } },
     { tool: '@swc/core', enabledBy: { swcrc: {} } },
@@ -1468,6 +1469,12 @@ describe('declarations this preset cannot support', () => {
   test('say how to resolve it', () => {
     expect(declaring(['projen@0.84.8'])).toThrowError(
       /Raise the declaration.*or remove it from `package\.devDeps`/s,
+    )
+  })
+
+  test('validate Jest when its configuration is enabled', () => {
+    expect(declaring(['jest@29.7.0'], { jestConfig: {} })).toThrowError(
+      /declares jest@29\.7\.0.*does not support.*\^30\.0\.0/s,
     )
   })
 
