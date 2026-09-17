@@ -844,8 +844,8 @@ importers:
   packages/projen-typescript-config:
     dependencies:
       '@schemastore/tsconfig':
-        specifier: 1.0.10
-        version: 1.0.10
+        specifier: 1.0.11
+        version: 1.0.11
       projen:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
@@ -2797,8 +2797,8 @@ packages:
   '@rolldown/pluginutils@1.0.1':
     resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
-  '@schemastore/tsconfig@1.0.10':
-    resolution: {integrity: sha512-bRNNEZoJNbyfdAzjIkTWx5CjtTokEdj6/5OghLKkoYDbIGxXX65i6cpPf5V3mu2Me394UahfTq+TkueUa8Bk8g==}
+  '@schemastore/tsconfig@1.0.11':
+    resolution: {integrity: sha512-cWpXSUji7Nz/Mhv4e8r6gEolN3d4jnta9HYQdEfl8AyAsFaTTucHrOA0OmQ9mTGsr9ZaXJHyh6YCK4MA7gaGAA==}
 
   '@sec-ant/readable-stream@0.4.1':
     resolution: {integrity: sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==}
@@ -8759,7 +8759,7 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@schemastore/tsconfig@1.0.10': {}
+  '@schemastore/tsconfig@1.0.11': {}
 
   '@sec-ant/readable-stream@0.4.1': {}
 
