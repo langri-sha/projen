@@ -33,6 +33,11 @@
     "lint-staged": "^17.0.0",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "lint-staged": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",

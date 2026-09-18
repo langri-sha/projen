@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Stop requiring consumers to install lint-staged",
+  "packageName": "@langri-sha/projen-lint-staged",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
