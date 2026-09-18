@@ -1395,13 +1395,16 @@ describe('peers the preset requires', () => {
  *     Renovate is left free to upgrade it.
  */
 describe('supplied development dependency versions', () => {
-  const synthesize = ({ devDeps, ...options }: Record<string, unknown>) =>
+  const synthesize = ({ deps, devDeps, ...options }: Record<string, unknown>) =>
     synthSnapshot(
       new Project({
         name: 'test-project',
         renovate: {},
         ...options,
-        package: { devDeps: devDeps as string[] | undefined },
+        package: {
+          deps: deps as string[] | undefined,
+          devDeps: devDeps as string[] | undefined,
+        },
       }),
     )
 
@@ -1436,6 +1439,7 @@ describe('supplied development dependency versions', () => {
       ...enabledBy,
       devDeps: [`${tool}@*`],
     })
+    const runtime = synthesize({ ...enabledBy, deps: [`${tool}@*`] })
 
     test('supplies a concrete version by default', () => {
       const version = supplied['package.json'].devDependencies[tool] as string
@@ -1453,6 +1457,12 @@ describe('supplied development dependency versions', () => {
 
     test('leaves a project declaration to Renovate', () => {
       expect(suppressedPackages(declared)).not.toContain(tool)
+    })
+
+    test('gives way to a runtime declaration', () => {
+      expect(runtime['package.json'].dependencies[tool]).toBe('*')
+      expect(runtime['package.json'].devDependencies).not.toHaveProperty([tool])
+      expect(suppressedPackages(runtime)).not.toContain(tool)
     })
 
     test('withholds it from subprojects', () => {
@@ -1512,6 +1522,14 @@ describe('declarations this preset cannot support', () => {
     expect(declaring(['projen@0.84.8'])).toThrowError(
       /declares projen@0\.84\.8.*does not support.*\^0\.86\.0/s,
     )
+  })
+
+  test('are rejected among runtime dependencies too', () => {
+    const deps = ['projen@0.84.8']
+
+    expect(
+      () => new Project({ name: 'test-project', package: { deps } }),
+    ).toThrowError(/declares projen@0\.84\.8.*remove it from `package\.deps`/s)
   })
 
   test('say how to resolve it', () => {
