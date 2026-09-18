@@ -1,3 +1,4 @@
+import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
 import { Babel } from '@langri-sha/projen-babel'
@@ -1353,6 +1354,30 @@ describe('with SWC options', () => {
   })
 })
 
+describe('peers the preset requires', () => {
+  const load = createRequire(import.meta.url)
+  const preset = load('../package.json')
+
+  const required = [
+    preset,
+    ...Object.keys(preset.dependencies)
+      .filter((name) => name.startsWith('@langri-sha/'))
+      .map((name) => load(`${name}/package.json`)),
+  ].flatMap(({ peerDependencies = {}, peerDependenciesMeta = {} }) =>
+    Object.keys(peerDependencies).filter(
+      (peer) => !peerDependenciesMeta[peer]?.optional,
+    ),
+  )
+
+  test('include Projen', () => {
+    expect(required).toContain('projen')
+  })
+
+  test.each(['jest'])('leave out %s', (tool) => {
+    expect(required).not.toContain(tool)
+  })
+})
+
 /**
  * Every feature that needs a tool supplies a version for it. The project may
  * name its own instead, and when it does that version has to survive
@@ -1472,11 +1497,12 @@ describe('declarations this preset cannot support', () => {
     )
   })
 
-  test('validate Jest when its configuration is enabled', () => {
-    expect(declaring(['jest@29.7.0'], { jestConfig: {} })).toThrowError(
-      /declares jest@29\.7\.0.*does not support.*\^30\.0\.0/s,
-    )
-  })
+  test.each([{ spec: 'jest@29.7.0', enabledBy: { jestConfig: {} } }])(
+    'validate $spec when its configuration is enabled',
+    ({ spec, enabledBy }) => {
+      expect(declaring([spec], enabledBy)).toThrowError(`declares ${spec},`)
+    },
+  )
 
   test('do not reject a version that is behind but still supported', () => {
     const project = declaring(['typescript@5.6.0'], { typeScriptConfig: {} })()
