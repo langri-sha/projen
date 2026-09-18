@@ -34,6 +34,11 @@
     "prettier": "^3.0.0",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",
