@@ -688,6 +688,11 @@ project.addSubproject(
       deps: ['serialize-javascript@7.1.1'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['lint-staged@^17.0.0', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        'lint-staged': {
+          optional: true,
+        },
+      },
     },
   },
   subproject,

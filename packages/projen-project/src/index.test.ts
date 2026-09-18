@@ -1373,9 +1373,12 @@ describe('peers the preset requires', () => {
     expect(required).toContain('projen')
   })
 
-  test.each(['eslint', 'jest', 'prettier'])('leave out %s', (tool) => {
-    expect(required).not.toContain(tool)
-  })
+  test.each(['eslint', 'jest', 'lint-staged', 'prettier'])(
+    'leave out %s',
+    (tool) => {
+      expect(required).not.toContain(tool)
+    },
+  )
 })
 
 /**
@@ -1417,6 +1420,7 @@ describe('supplied development dependency versions', () => {
     { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
     { tool: 'jest', enabledBy: { jestConfig: {} } },
+    { tool: 'lint-staged', enabledBy: { lintStaged: {} } },
     { tool: 'prettier', enabledBy: { prettier: {} } },
     { tool: 'typescript', enabledBy: { typeScriptConfig: {} } },
     { tool: 'tsx', enabledBy: { typeScriptConfig: {} } },
@@ -1519,6 +1523,7 @@ describe('declarations this preset cannot support', () => {
   test.each([
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },
     { spec: 'jest@29.7.0', enabledBy: { jestConfig: {} } },
+    { spec: 'lint-staged@16.4.0', enabledBy: { lintStaged: {} } },
     { spec: 'prettier@2.8.8', enabledBy: { prettier: {} } },
   ])(
     'validate $spec when its configuration is enabled',

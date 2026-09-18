@@ -689,6 +689,10 @@ export class Project extends BaseProject {
       extends: '@langri-sha/lint-staged',
     }
 
+    if (!this.parent) {
+      this.#addDefaultDevDeps('lint-staged@17.5.1')
+    }
+
     this.lintStaged = new LintStaged(this, deepMerge(defaults, lintStaged))
 
     this.typeScriptConfig?.addFile(this.lintStaged!.path)

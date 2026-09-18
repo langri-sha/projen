@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Install lint-staged only when its configuration is enabled",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
