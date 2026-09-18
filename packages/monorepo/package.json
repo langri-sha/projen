@@ -27,7 +27,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "@types/node": "24.13.4"
+    "@types/node": "24.13.5"
   },
   "publishConfig": {
     "access": "public",

@@ -28,7 +28,7 @@
     "@langri-sha/monorepo": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "@types/node": "24.13.4",
+    "@types/node": "24.13.5",
     "@types/ramda": "0.32.0"
   },
   "peerDependencies": {
