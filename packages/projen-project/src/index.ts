@@ -616,6 +616,10 @@ export class Project extends BaseProject {
       extends: '@langri-sha/eslint-config',
     }
 
+    if (!this.parent) {
+      this.#addDefaultDevDeps('eslint@10.10.0')
+    }
+
     this.eslint = new ESLint(this, deepMerge(defaults, eslint))
 
     if (this.projenrc?.filePath) {

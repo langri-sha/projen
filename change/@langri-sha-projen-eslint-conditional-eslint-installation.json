@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Stop requiring consumers to install ESLint",
+  "packageName": "@langri-sha/projen-eslint",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
