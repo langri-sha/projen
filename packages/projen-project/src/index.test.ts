@@ -1375,6 +1375,7 @@ describe('peers the preset requires', () => {
 
   test.each([
     '@babel/core',
+    '@swc/core',
     'beachball',
     'eslint',
     'husky',
@@ -1546,6 +1547,7 @@ describe('declarations this preset cannot support', () => {
 
   test.each([
     { spec: '@babel/core@7.29.7', enabledBy: { babel: {} } },
+    { spec: '@swc/core@1.5.29', enabledBy: { swcrc: {} } },
     { spec: 'beachball@1.53.2', enabledBy: { beachball: {} } },
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },
     { spec: 'husky@8.0.3', enabledBy: { husky: {} } },
