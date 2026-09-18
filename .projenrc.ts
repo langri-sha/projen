@@ -480,6 +480,11 @@ project.addSubproject(
       deps: ['serialize-javascript@7.1.1'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['@babel/core@^8.0.0', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        '@babel/core': {
+          optional: true,
+        },
+      },
     },
   },
   subproject,

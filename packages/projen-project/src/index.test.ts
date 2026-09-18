@@ -1373,7 +1373,7 @@ describe('peers the preset requires', () => {
     expect(required).toContain('projen')
   })
 
-  test.each(['eslint', 'jest', 'lint-staged', 'prettier'])(
+  test.each(['@babel/core', 'eslint', 'jest', 'lint-staged', 'prettier'])(
     'leave out %s',
     (tool) => {
       expect(required).not.toContain(tool)
@@ -1419,6 +1419,7 @@ describe('supplied development dependency versions', () => {
     withheldRule(files)?.matchPackageNames ?? []
 
   const TOOLS = [
+    { tool: '@babel/core', enabledBy: { babel: {} } },
     { tool: 'beachball', enabledBy: { beachball: {} } },
     { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
@@ -1539,6 +1540,7 @@ describe('declarations this preset cannot support', () => {
   })
 
   test.each([
+    { spec: '@babel/core@7.29.7', enabledBy: { babel: {} } },
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },
     { spec: 'jest@29.7.0', enabledBy: { jestConfig: {} } },
     { spec: 'lint-staged@16.4.0', enabledBy: { lintStaged: {} } },

@@ -466,6 +466,10 @@ export class Project extends BaseProject {
       },
     }
 
+    if (!this.parent) {
+      this.#addDefaultDevDeps('@babel/core@8.0.5')
+    }
+
     this.babel = new Babel(this, deepMerge(defaults, babel))
 
     this.typeScriptConfig?.addFile(this.babel.path)
