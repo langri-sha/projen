@@ -506,6 +506,11 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       peerDeps: ['beachball@^2.0.0', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        beachball: {
+          optional: true,
+        },
+      },
     },
   },
   subproject,
