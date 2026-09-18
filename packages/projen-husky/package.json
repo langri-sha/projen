@@ -30,6 +30,11 @@
     "husky": "^9.0.1",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "husky": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",
