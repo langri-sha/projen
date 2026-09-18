@@ -624,6 +624,11 @@ project.addSubproject(
       copyrightYear: '2024',
       devDeps: ['@types/node@24.13.4'],
       peerDeps: ['husky@^9.0.1', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        husky: {
+          optional: true,
+        },
+      },
     },
   },
   subproject,
