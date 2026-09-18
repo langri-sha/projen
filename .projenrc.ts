@@ -970,6 +970,11 @@ project.addSubproject(
         'tsx@4.23.13',
       ],
       peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        '@swc/core': {
+          optional: true,
+        },
+      },
     },
   },
   subproject,

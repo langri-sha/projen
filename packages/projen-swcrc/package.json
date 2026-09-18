@@ -32,6 +32,11 @@
     "@swc/core": "^1.6.0",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "@swc/core": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",
