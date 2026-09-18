@@ -41,6 +41,7 @@ import {
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
+  type Dependency,
   DependencyType,
   IgnoreFile,
   IgnoreFileOptions,
@@ -379,9 +380,9 @@ export class Project extends BaseProject {
    * the bump is reverted by the next synthesis, the pull request merges as a
    * no-op, and the dependency is proposed again forever.
    *
-   * Only `BUILD` declarations are consulted, which is the type `addDevDeps`
-   * writes; a package the project lists as a runtime dependency is still added
-   * here, exactly as before.
+   * A runtime declaration counts as well. The package is installed either way,
+   * and a development pin beside it would only add a second version of it to
+   * the manifest.
    */
   #addDefaultDevDeps(...specs: string[]) {
     for (const spec of specs) {
@@ -391,10 +392,12 @@ export class Project extends BaseProject {
       const name = separator > 0 ? spec.slice(0, separator) : spec
       const version = separator > 0 ? spec.slice(separator + 1) : '*'
 
-      const declared = this.deps.tryGetDependency(name, DependencyType.BUILD)
+      const declared =
+        this.deps.tryGetDependency(name, DependencyType.BUILD) ??
+        this.deps.tryGetDependency(name, DependencyType.RUNTIME)
 
       if (declared) {
-        this.#assertSupported(name, declared.version)
+        this.#assertSupported(declared)
         continue
       }
 
@@ -431,7 +434,7 @@ export class Project extends BaseProject {
    * to resolve rather than naming a version, and `workspace:` is not semver
    * at all.
    */
-  #assertSupported(name: string, declared: string | undefined) {
+  #assertSupported({ name, type, version: declared }: Dependency) {
     const supported = SUPPORTED_VERSIONS[name]
 
     if (!declared || !supported || !valid(declared)) {
@@ -442,9 +445,12 @@ export class Project extends BaseProject {
       return
     }
 
+    const option =
+      type === DependencyType.RUNTIME ? 'package.deps' : 'package.devDeps'
+
     throw new Error(
       `This project declares ${name}@${declared}, which @langri-sha/projen-project does not support — its peer range is ${supported}.\n\n` +
-        `Raise the declaration to satisfy ${supported}, or remove it from \`package.devDeps\` and take the version the preset supplies.`,
+        `Raise the declaration to satisfy ${supported}, or remove it from \`${option}\` and take the version the preset supplies.`,
     )
   }
 
