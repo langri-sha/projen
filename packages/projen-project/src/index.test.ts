@@ -1373,7 +1373,7 @@ describe('peers the preset requires', () => {
     expect(required).toContain('projen')
   })
 
-  test.each(['jest', 'prettier'])('leave out %s', (tool) => {
+  test.each(['eslint', 'jest', 'prettier'])('leave out %s', (tool) => {
     expect(required).not.toContain(tool)
   })
 })
@@ -1414,6 +1414,7 @@ describe('supplied development dependency versions', () => {
 
   const TOOLS = [
     { tool: 'beachball', enabledBy: { beachball: {} } },
+    { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
     { tool: 'jest', enabledBy: { jestConfig: {} } },
     { tool: 'prettier', enabledBy: { prettier: {} } },
@@ -1448,6 +1449,23 @@ describe('supplied development dependency versions', () => {
 
     test('leaves a project declaration to Renovate', () => {
       expect(suppressedPackages(declared)).not.toContain(tool)
+    })
+
+    test('withholds it from subprojects', () => {
+      const project = new Project({ name: 'test-project', package: {} })
+
+      project.addSubproject({
+        name: '@someproject/test',
+        outdir: path.join('packages', 'test'),
+        package: {},
+        ...enabledBy,
+      })
+
+      expect(
+        synthSnapshot(project)['packages/test/package.json'].devDependencies?.[
+          tool
+        ],
+      ).toBeUndefined()
     })
   })
 
@@ -1499,6 +1517,7 @@ describe('declarations this preset cannot support', () => {
   })
 
   test.each([
+    { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },
     { spec: 'jest@29.7.0', enabledBy: { jestConfig: {} } },
     { spec: 'prettier@2.8.8', enabledBy: { prettier: {} } },
   ])(

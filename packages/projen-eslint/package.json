@@ -33,6 +33,11 @@
     "eslint": "^10.4.0",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",

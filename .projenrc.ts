@@ -587,6 +587,11 @@ project.addSubproject(
       deps: ['serialize-javascript@7.1.1'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['eslint@^10.4.0', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        eslint: {
+          optional: true,
+        },
+      },
     },
   },
   subproject,
