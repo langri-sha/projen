@@ -29,6 +29,11 @@
     "beachball": "^2.0.0",
     "projen": "^0.86.0"
   },
+  "peerDependenciesMeta": {
+    "beachball": {
+      "optional": true
+    }
+  },
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",
