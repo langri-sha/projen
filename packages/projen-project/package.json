@@ -93,6 +93,9 @@
     },
     "tsx": {
       "optional": true
+    },
+    "typescript": {
+      "optional": true
     }
   },
   "publishConfig": {

@@ -885,6 +885,9 @@ project.addSubproject(
         tsx: {
           optional: true,
         },
+        typescript: {
+          optional: true,
+        },
       },
     },
   },

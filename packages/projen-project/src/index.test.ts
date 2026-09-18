@@ -1382,6 +1382,7 @@ describe('peers the preset requires', () => {
     'jest',
     'lint-staged',
     'prettier',
+    'typescript',
   ])('leave out %s', (tool) => {
     expect(required).not.toContain(tool)
   })
@@ -1554,6 +1555,7 @@ describe('declarations this preset cannot support', () => {
     { spec: 'jest@29.7.0', enabledBy: { jestConfig: {} } },
     { spec: 'lint-staged@16.4.0', enabledBy: { lintStaged: {} } },
     { spec: 'prettier@2.8.8', enabledBy: { prettier: {} } },
+    { spec: 'typescript@5.4.5', enabledBy: { typeScriptConfig: {} } },
   ])(
     'validate $spec when its configuration is enabled',
     ({ spec, enabledBy }) => {
