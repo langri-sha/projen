@@ -171,6 +171,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-uv",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-worktrunk",
       "version": "workspace:*",
       "type": "runtime"

@@ -38,6 +38,7 @@ import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
 } from '@langri-sha/projen-typescript-config'
+import { type UvOptions, UvPackage, UvWorkspace } from '@langri-sha/projen-uv'
 import { Worktrunk, type WorktrunkOptions } from '@langri-sha/projen-worktrunk'
 import {
   Project as BaseProject,
@@ -213,6 +214,12 @@ export interface ProjectOptions extends Omit<
    */
   typeScriptConfig?: TypeScriptConfigOptions
 
+  /**
+   * Pass in to set up uv. Root projects get a workspace, subprojects a
+   * package in it.
+   */
+  uv?: UvOptions
+
   /*
    * Whether to use Terrafom.
    */
@@ -247,6 +254,7 @@ export class Project extends BaseProject {
   renovate?: Renovate
   swcrc?: SWCConfig
   typeScriptConfig?: TypeScriptConfig
+  uv?: UvPackage | UvWorkspace
   worktrunk?: Worktrunk
 
   /**
@@ -311,6 +319,7 @@ export class Project extends BaseProject {
     this.#configureNpmIgnore(options)
     this.#configurePnpmWorkspace(options)
     this.#configureReadme(options)
+    this.#configureUv(options)
     this.#configureWorktrunk(options)
     this.#configureRenovate(options)
   }
@@ -1166,6 +1175,40 @@ export class Project extends BaseProject {
     if (this.name !== '@langri-sha/tsconfig') {
       this.#addDefaultDevDeps('@langri-sha/tsconfig@*')
     }
+  }
+
+  /**
+   * Set up uv, as a workspace at the root and as a member package below.
+   *
+   * A package registers itself as a workspace member on the way, which is the
+   * pairing that otherwise drifts: a subproject added here and a path forgotten
+   * over there.
+   */
+  #configureUv({ uv }: ProjectOptions) {
+    if (!uv) {
+      return
+    }
+
+    // The option is the union of what either component takes, so each branch
+    // has to drop the other's keys.
+    const { pythonVersion, sampleCode, ...pyproject } = uv
+
+    if (!this.parent) {
+      this.uv = new UvWorkspace(this, { ...pyproject, pythonVersion })
+
+      return
+    }
+
+    const workspace =
+      this.root instanceof Project && this.root.uv instanceof UvWorkspace
+        ? this.root.uv
+        : undefined
+
+    this.uv = new UvPackage(this, { ...pyproject, sampleCode })
+
+    workspace?.addMember(
+      path.relative(this.root.outdir, this.outdir).split(path.sep).join('/'),
+    )
   }
 
   #configureWorktrunk({ worktrunk }: ProjectOptions) {
