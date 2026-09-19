@@ -39,6 +39,7 @@
 | `@langri-sha/projen-renovate`           | `renovate.json5` generator                                                               |
 | `@langri-sha/projen-swcrc`              | `.swcrc` generator                                                                       |
 | `@langri-sha/projen-typescript-config`  | `tsconfig.json` generator                                                                |
+| `@langri-sha/projen-uv`                 | uv workspace and package generator                                                       |
 | `@langri-sha/schemastore-to-typescript` | CLI/library that compiles JSON Schema Store schemas to TypeScript typings                |
 | `@langri-sha/tsconfig`                  | Shared TypeScript configs (`base`, `build`, `project`, and more)                         |
 | `@langri-sha/vitest`                    | Helpers commonly used for authoring Vitest tests                                         |

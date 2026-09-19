@@ -860,6 +860,28 @@ importers:
         specifier: 24.13.4
         version: 24.13.4
 
+  packages/projen-uv:
+    dependencies:
+      projen:
+        specifier: ^0.86.0
+        version: 0.86.5(constructs@10.8.1)
+      smol-toml:
+        specifier: 1.8.0
+        version: 1.8.0
+    devDependencies:
+      '@langri-sha/schemastore-to-typescript':
+        specifier: workspace:*
+        version: link:../schemastore-to-typescript
+      '@langri-sha/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      '@langri-sha/vitest':
+        specifier: workspace:*
+        version: link:../vitest
+      tsx:
+        specifier: 4.23.13
+        version: 4.23.13
+
   packages/schemastore-to-typescript:
     dependencies:
       commander:
@@ -6080,6 +6102,10 @@ packages:
   slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
+
+  smol-toml@1.8.0:
+    resolution: {integrity: sha512-kCZr2V3ch9i00x8zXRhjUNVcjG9ijES5dDudkXvUVCT5QlJNQWElSJdZqyPemffHoLNUYwOcou0Fy+ojN0uHSQ==}
+    engines: {node: '>= 18'}
 
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
@@ -12609,6 +12635,8 @@ snapshots:
   sisteransi@1.0.5: {}
 
   slash@3.0.0: {}
+
+  smol-toml@1.8.0: {}
 
   source-map-js@1.2.1: {}
 
