@@ -171,6 +171,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-uv",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "ramda",
       "version": "0.32.0",
       "type": "runtime"
