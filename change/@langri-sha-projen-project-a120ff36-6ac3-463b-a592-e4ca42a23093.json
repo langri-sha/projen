@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add a uv option, synthesizing a uv workspace and its packages",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
