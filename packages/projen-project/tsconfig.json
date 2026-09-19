@@ -58,6 +58,9 @@
       "path": "../projen-typescript-config"
     },
     {
+      "path": "../projen-uv"
+    },
+    {
       "path": "../tsconfig"
     },
     {

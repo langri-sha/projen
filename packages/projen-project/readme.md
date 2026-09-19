@@ -9,6 +9,7 @@ projects.
 - configures [PNPM] [workspaces]
 - configures [Cargo] workspaces with [`@langri-sha/projen-cargo`]
 - configures [Dagger] modules with [`@langri-sha/projen-dagger`]
+- configures [uv] workspaces with [`@langri-sha/projen-uv`]
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
 - managing Git hooks with [`@langri-sha/projen-husky`]
 - configures extensive list of Git ignore patterns
@@ -21,6 +22,7 @@ projects.
   https://www.npmjs.com/package/@langri-sha/projen-dagger
 [`@langri-sha/projen-husky`]:
   https://www.npmjs.com/package/@langri-sha/projen-husky
+[`@langri-sha/projen-uv`]: https://www.npmjs.com/package/@langri-sha/projen-uv
 [`@langri-sha/tsconfig`]: https://www.npmjs.com/package/@langri-sha/tsconfig
 [beachball]: https://microsoft.github.io/beachball/
 [cargo]: https://doc.rust-lang.org/cargo/
@@ -29,4 +31,5 @@ projects.
 [dagger]: https://dagger.io/
 [pnpm]: https://pnpm.io
 [projen]: https://projen.io/
+[uv]: https://docs.astral.sh/uv/
 [workspaces]: https://pnpm.io/workspaces
