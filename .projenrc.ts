@@ -62,9 +62,11 @@ const project = new Project({
     ignorePatterns: [
       '**/cargo.ts',
       '**/pnpm-workspace.ts',
+      '**/pyproject.ts',
       '**/renovate.ts',
       '**/rustfmt.ts',
       '**/swcrc.ts',
+      '**/uv.ts',
     ],
     config: [
       {
@@ -93,9 +95,11 @@ const project = new Project({
       'cargo.ts',
       'dagger.ts',
       'pnpm-workspace.ts',
+      'pyproject.ts',
       'renovate.ts',
       'rustfmt.ts',
       'swcrc.ts',
+      'uv.ts',
     ],
   },
   pnpmWorkspace: {
@@ -1020,6 +1024,49 @@ project.addSubproject(
   subproject,
   test,
   publish,
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/projen-uv',
+    outdir: path.join('packages', 'projen-uv'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      deps: ['smol-toml@1.8.0'],
+      devDeps: [
+        '@langri-sha/schemastore-to-typescript@workspace:*',
+        'tsx@4.23.13',
+      ],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+  (project) => {
+    project.addGitIgnore('pyproject.ts')
+    project.addGitIgnore('uv.ts')
+
+    project.package?.setScript(
+      'prepare',
+      [
+        'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache PyProject src/pyproject.ts',
+        'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache uv src/uv.ts',
+      ].join(' && '),
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pyproject.d.ts && test -f dist/uv.d.ts',
+    )
+  },
 )
 
 project.addSubproject(
