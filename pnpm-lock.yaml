@@ -734,6 +734,9 @@ importers:
       '@langri-sha/projen-typescript-config':
         specifier: workspace:*
         version: link:../projen-typescript-config
+      '@langri-sha/projen-uv':
+        specifier: workspace:*
+        version: link:../projen-uv
       '@langri-sha/projen-worktrunk':
         specifier: workspace:*
         version: link:../projen-worktrunk
