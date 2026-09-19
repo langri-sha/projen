@@ -5,9 +5,11 @@ dist/
 cargo.ts
 dagger.ts
 pnpm-workspace.ts
+pyproject.ts
 renovate.ts
 rustfmt.ts
 swcrc.ts
+uv.ts
 !.projenrc.ts
 pnpm-lock.yaml
 CHANGELOG.md
