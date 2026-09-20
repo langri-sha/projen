@@ -1034,6 +1034,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
+      devDeps: ['smol-toml@1.8.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },

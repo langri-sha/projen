@@ -1,6 +1,7 @@
 import { describe, expect, test } from '@langri-sha/vitest'
 import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
+import { parse } from 'smol-toml'
 
 import { Worktrunk, type WorktrunkOptions, pipeline } from './index'
 
@@ -148,4 +149,64 @@ test('reaches unmodelled keys through the file', () => {
   }).file.addOverride('list.url', 'http://localhost:3000')
 
   expect(synthSnapshot(project)['.config/wt.toml']).toMatchSnapshot()
+})
+
+describe('serialization', () => {
+  const commands = {
+    filter: 'pnpm dev --port {{ branch | hash_port }}',
+    default: "echo {{ vars.port | default('3000') }}",
+    conditional: '{% if branch %}echo {{ branch }}{% endif %}',
+    'single quotes': "echo 'a b'",
+    'double quotes': 'echo "a b"',
+    'both quotes': `echo 'a' "b"`,
+    backslashes: String.raw`sed 's/\//-/g' C:\Users\wt`,
+    'escaped newline': String.raw`printf 'a\nb'`,
+    substitution: 'echo $(git rev-parse HEAD) `whoami` ${HOME}',
+    operators: 'a && b || c | d > e 2>/dev/null; f &',
+    continuation:
+      'docker run \\\n  --name {{ branch | sanitize }} \\\n  postgres',
+    heredoc: 'cat <<\'EOF\'\n[table]\nkey = "value"\nEOF',
+    'leading newline': '\necho a',
+    'trailing newline': 'echo a\n',
+    'carriage return': 'echo a\r\necho b',
+    comment: 'echo a # not a comment',
+    unicode: 'echo "žluťoučký 🌳 ”quoted”"',
+    tab: 'echo\ta',
+    'triple quotes': 'echo """a"""',
+  }
+
+  test.each(Object.entries(commands))(
+    'a single command survives: %s',
+    (_, command) => {
+      const config = { 'pre-start': command }
+
+      expect(parse(synth({ config })['.config/wt.toml'])).toEqual(config)
+    },
+  )
+
+  test('named commands survive', () => {
+    const config = { 'post-start': commands }
+
+    expect(parse(synth({ config })['.config/wt.toml'])).toEqual(config)
+  })
+
+  test('a pipeline survives', () => {
+    const config = {
+      'pre-merge': pipeline(commands, { last: 'echo done' }),
+      aliases: { all: pipeline(commands), one: commands.filter },
+    }
+
+    expect(parse(synth({ config })['.config/wt.toml'])).toEqual(config)
+  })
+
+  test('sections survive', () => {
+    const config = {
+      commit: { generation: { 'template-append': 'Line one.\nLine "two".' } },
+      forge: { platform: 'gitlab', hostname: 'gitlab.example.com' },
+      list: { url: 'http://localhost:{{ branch | hash_port }}' },
+      step: { 'copy-ignored': { exclude: ['.turbo/', "it's/"] } },
+    } as const
+
+    expect(parse(synth({ config })['.config/wt.toml'])).toEqual(config)
+  })
 })
