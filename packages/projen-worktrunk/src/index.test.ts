@@ -304,3 +304,113 @@ describe('serialization', () => {
     expect(parse(synth({ config })['.config/wt.toml'])).toEqual(config)
   })
 })
+
+describe('validation', () => {
+  const invalid = (config: unknown) => () =>
+    synth({ config: config as WorktrunkOptions['config'] })
+
+  test.each([
+    ['pre-started', /'pre-started' is not a Worktrunk hook event/],
+    ['post-merged', /would never run. Use one of: pre-switch, post-switch/],
+    ['pre-create', /alias Worktrunk keeps for 'pre-start'/],
+    ['post-create', /alias Worktrunk keeps for 'post-start'/],
+    ['hooks', /file\.addOverride\('hooks', …\)/],
+  ])('rejects the unknown key %s', (key, message) => {
+    expect(invalid({ [key]: 'echo a' })).toThrow(message)
+  })
+
+  test.each([
+    ['an empty command', { 'pre-start': '' }, /pre-start is an empty command/],
+    [
+      'a blank command',
+      { 'pre-start': ' \n' },
+      /pre-start is an empty command/,
+    ],
+    [
+      'a blank named command',
+      { 'pre-start': { install: '' } },
+      /pre-start\.install is an empty command/,
+    ],
+    ['no commands', { 'post-start': {} }, /post-start has no commands/],
+    [
+      'no steps',
+      { 'post-start': [] },
+      /post-start is a pipeline with no steps/,
+    ],
+    [
+      'an empty step',
+      { 'post-start': [{ a: 'echo a' }, {}] },
+      /post-start\[1\] has no commands/,
+    ],
+    [
+      'a list of bare strings',
+      { 'post-start': ['echo a', 'echo b'] },
+      /post-start\[0\] must map command names to commands, not "echo a"/,
+    ],
+    [
+      'a command that is not a string',
+      { 'pre-start': { install: ['pnpm', 'install'] } },
+      /pre-start\.install must be a shell command string/,
+    ],
+    ['a hook that is not a form', { 'pre-start': 1 }, /pre-start must map/],
+    [
+      'a name with a colon',
+      { 'pre-merge': { 'test:unit': 'pnpm test' } },
+      /names a command 'test:unit'/,
+    ],
+    ['an empty name', { 'pre-merge': { ' ': 'pnpm test' } }, /an empty name/],
+    [
+      'an unclosed variable',
+      { 'pre-start': 'echo {{ branch ' },
+      /pre-start opens a template tag with `{{` and never closes it/,
+    ],
+    [
+      'an unclosed block',
+      { 'pre-start': '{% if branch echo {{ branch }}' },
+      /opens a template tag with `{%`/,
+    ],
+    [
+      'an unclosed comment',
+      { 'pre-start': 'echo a {# note' },
+      /opens a template tag with `{#`/,
+    ],
+    [
+      'an invalid alias',
+      { aliases: { deploy: { 'a:b': 'make deploy' } } },
+      /aliases\.deploy names a command 'a:b'/,
+    ],
+    [
+      'an empty alias',
+      { aliases: { deploy: '' } },
+      /aliases\.deploy is an empty/,
+    ],
+  ])('rejects %s', (_, config, message) => {
+    expect(invalid(config)).toThrow(message)
+  })
+
+  test.each([
+    ['nested parameter expansion', 'echo ${A:-${B}}'],
+    ['a closer on its own', 'echo {{ branch }} }}'],
+    ['several tags', '{% if branch %}echo {{ branch }}{% endif %} {# note #}'],
+  ])('accepts %s', (_, command) => {
+    expect(invalid({ 'pre-start': command })).not.toThrow()
+  })
+
+  test('rejects a subproject, which Worktrunk never reads', () => {
+    const parent = new Project({ name: 'parent' })
+    const project = new Project({ name: 'child', parent, outdir: 'child' })
+
+    expect(() => new Worktrunk(project)).toThrow(
+      /the subproject 'child' would never be read/,
+    )
+  })
+
+  test('accepts a subproject that names its file', () => {
+    const parent = new Project({ name: 'parent' })
+    const project = new Project({ name: 'child', parent, outdir: 'child' })
+
+    new Worktrunk(project, { filename: '.config/wt.toml' })
+
+    expect(synthSnapshot(parent)).toHaveProperty(['child/.config/wt.toml'])
+  })
+})
