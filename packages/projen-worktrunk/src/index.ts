@@ -97,6 +97,14 @@ export class Worktrunk extends Component {
       readonly: true,
       obj: () => this.#render(),
     })
+
+    // After the file, whose own annotation this has to follow on the line:
+    // the commands run on teammates' machines once approved, so a change to
+    // them must not arrive collapsed in review.
+    project.gitattributes.addAttributes(
+      `/${this.file.path}`,
+      '-linguist-generated',
+    )
   }
 
   /**

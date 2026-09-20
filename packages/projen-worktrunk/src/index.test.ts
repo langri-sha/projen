@@ -478,3 +478,46 @@ describe('approval', () => {
     ).toContain('post-merge = "wt remove --yes"')
   })
 })
+
+describe('attributes', () => {
+  class AnnotatingProject extends Project {
+    override annotateGenerated(glob: string) {
+      this.gitattributes.addAttributes(glob, 'linguist-generated')
+    }
+  }
+
+  test('keeps the config expanded in review', () => {
+    expect(synth()['.gitattributes']).toContain(
+      '/.config/wt.toml -linguist-generated',
+    )
+  })
+
+  test('follows a custom filename', () => {
+    expect(synth({ filename: 'wt.toml' })['.gitattributes']).toContain(
+      '/wt.toml -linguist-generated',
+    )
+  })
+
+  test('overrules a project that annotates generated files', () => {
+    const project = new AnnotatingProject({ name: 'test-project' })
+
+    new Worktrunk(project)
+    project.synth()
+
+    execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+    expect(
+      execFileSync(
+        'git',
+        ['check-attr', 'linguist-generated', '.config/wt.toml', '.gitignore'],
+        { cwd: project.outdir, encoding: 'utf8' },
+      ),
+    ).toBe(
+      [
+        '.config/wt.toml: linguist-generated: unset',
+        '.gitignore: linguist-generated: set',
+        '',
+      ].join('\n'),
+    )
+  })
+})
