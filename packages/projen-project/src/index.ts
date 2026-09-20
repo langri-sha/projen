@@ -38,6 +38,7 @@ import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
 } from '@langri-sha/projen-typescript-config'
+import { Worktrunk, type WorktrunkOptions } from '@langri-sha/projen-worktrunk'
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
@@ -216,6 +217,12 @@ export interface ProjectOptions extends Omit<
    * Whether to use Terrafom.
    */
   withTerraform?: boolean
+
+  /**
+   * Configures Worktrunk, when provided. No hooks are supplied by default:
+   * each one runs on teammates' machines, so a project declares its own.
+   */
+  worktrunk?: WorktrunkOptions
 }
 
 export class Project extends BaseProject {
@@ -240,6 +247,7 @@ export class Project extends BaseProject {
   renovate?: Renovate
   swcrc?: SWCConfig
   typeScriptConfig?: TypeScriptConfig
+  worktrunk?: Worktrunk
 
   /**
    * Packages whose version this preset supplied because the project did not
@@ -303,6 +311,7 @@ export class Project extends BaseProject {
     this.#configureNpmIgnore(options)
     this.#configurePnpmWorkspace(options)
     this.#configureReadme(options)
+    this.#configureWorktrunk(options)
     this.#configureRenovate(options)
   }
 
@@ -1157,6 +1166,14 @@ export class Project extends BaseProject {
     if (this.name !== '@langri-sha/tsconfig') {
       this.#addDefaultDevDeps('@langri-sha/tsconfig@*')
     }
+  }
+
+  #configureWorktrunk({ worktrunk }: ProjectOptions) {
+    if (!worktrunk || this.parent) {
+      return
+    }
+
+    this.worktrunk = new Worktrunk(this, worktrunk)
   }
 
   #populateTypeScriptProjectReferencesFromDependencies() {
