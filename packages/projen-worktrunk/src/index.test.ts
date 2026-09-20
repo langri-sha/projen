@@ -1,3 +1,7 @@
+import { execFileSync } from 'node:child_process'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import * as path from 'node:path'
+
 import { describe, expect, test } from '@langri-sha/vitest'
 import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
@@ -149,6 +153,96 @@ test('reaches unmodelled keys through the file', () => {
   }).file.addOverride('list.url', 'http://localhost:3000')
 
   expect(synthSnapshot(project)['.config/wt.toml']).toMatchSnapshot()
+})
+
+describe('ignore file', () => {
+  const denyByDefault = (options?: WorktrunkOptions) => {
+    const project = new Project({
+      name: 'test-project',
+      gitIgnoreOptions: {
+        ignorePatterns: ['.*', '.config/secret.toml'],
+      },
+    })
+
+    new Worktrunk(project, options)
+
+    return project
+  }
+
+  const patterns = (project: Project): string[] =>
+    synthSnapshot(project)['.gitignore'].split('\n')
+
+  test('re-includes the directory a deny-by-default file excludes', () => {
+    expect(patterns(denyByDefault())).toEqual(
+      expect.arrayContaining(['!/.config', '!/.config/wt.toml']),
+    )
+  })
+
+  test('keeps the patterns a project already has under the directory', () => {
+    expect(patterns(denyByDefault())).toContain('.config/secret.toml')
+  })
+
+  test('re-includes every dot-directory leading to a custom filename', () => {
+    expect(
+      patterns(denyByDefault({ filename: '.tools/nested/.wt/wt.toml' })),
+    ).toEqual(expect.arrayContaining(['!/.tools', '!/.tools/nested/.wt']))
+  })
+
+  test('leaves the ignore file alone without dot-directories', () => {
+    expect(patterns(denyByDefault({ filename: 'config/wt.toml' }))).toEqual(
+      patterns(denyByDefault({ filename: 'config/wt.toml', gitignore: false })),
+    )
+  })
+
+  test('can be disabled', () => {
+    expect(patterns(denyByDefault({ gitignore: false }))).not.toContain(
+      '!/.config',
+    )
+  })
+
+  describe('as git reads it', () => {
+    const ignored = (project: Project, file: string) => {
+      project.synth()
+
+      mkdirSync(path.dirname(path.join(project.outdir, file)), {
+        recursive: true,
+      })
+
+      if (!existsSync(path.join(project.outdir, file))) {
+        writeFileSync(path.join(project.outdir, file), '')
+      }
+
+      execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+      try {
+        execFileSync('git', ['check-ignore', '--quiet', file], {
+          cwd: project.outdir,
+        })
+
+        return true
+      } catch {
+        return false
+      }
+    }
+
+    test('the config is tracked', () => {
+      expect(ignored(denyByDefault(), '.config/wt.toml')).toBe(false)
+    })
+
+    test('the config is ignored when disabled', () => {
+      expect(
+        ignored(denyByDefault({ gitignore: false }), '.config/wt.toml'),
+      ).toBe(true)
+    })
+
+    test.each([
+      '.config/secret.toml',
+      '.config/.hidden',
+      'packages/a/.config/wt.toml',
+    ])('%s stays ignored', (file) => {
+      expect(ignored(denyByDefault(), file)).toBe(true)
+    })
+  })
 })
 
 describe('serialization', () => {

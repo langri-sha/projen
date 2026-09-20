@@ -21,6 +21,7 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
+!/.config
 !/.config/wt.toml
 ",
   ".projen/files.json": {
