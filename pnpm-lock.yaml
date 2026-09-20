@@ -734,6 +734,9 @@ importers:
       '@langri-sha/projen-typescript-config':
         specifier: workspace:*
         version: link:../projen-typescript-config
+      '@langri-sha/projen-worktrunk':
+        specifier: workspace:*
+        version: link:../projen-worktrunk
       '@swc-node/register':
         specifier: ^1.0.0
         version: 1.12.1(@swc/core@1.15.47)(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3)

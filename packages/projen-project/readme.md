@@ -13,6 +13,7 @@ projects.
 - managing Git hooks with [`@langri-sha/projen-husky`]
 - configures extensive list of Git ignore patterns
 - manages [code owners] with [`@langri-sha/projen-codeowners`]
+- configures [Worktrunk] worktree hooks with [`@langri-sha/projen-worktrunk`]
 
 [`@langri-sha/codeowners`]: https://www.npmjs.com/package/@langri-sha/codeowners
 [`@langri-sha/projen-cargo`]:
@@ -21,6 +22,8 @@ projects.
   https://www.npmjs.com/package/@langri-sha/projen-dagger
 [`@langri-sha/projen-husky`]:
   https://www.npmjs.com/package/@langri-sha/projen-husky
+[`@langri-sha/projen-worktrunk`]:
+  https://www.npmjs.com/package/@langri-sha/projen-worktrunk
 [`@langri-sha/tsconfig`]: https://www.npmjs.com/package/@langri-sha/tsconfig
 [beachball]: https://microsoft.github.io/beachball/
 [cargo]: https://doc.rust-lang.org/cargo/
@@ -30,3 +33,4 @@ projects.
 [pnpm]: https://pnpm.io
 [projen]: https://projen.io/
 [workspaces]: https://pnpm.io/workspaces
+[worktrunk]: https://worktrunk.dev

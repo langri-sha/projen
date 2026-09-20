@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
@@ -19,6 +20,7 @@ import { ReadmeFile } from '@langri-sha/projen-readme'
 import { Renovate } from '@langri-sha/projen-renovate'
 import { SWCConfig } from '@langri-sha/projen-swcrc'
 import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
+import { Worktrunk } from '@langri-sha/projen-worktrunk'
 import {
   afterAll,
   afterEach,
@@ -701,6 +703,102 @@ test('with Husky options', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
   expect(project.husky).toBeInstanceOf(Husky)
+})
+
+describe('with Worktrunk options', () => {
+  const worktrunk = {
+    config: {
+      'pre-start': 'pnpm install --frozen-lockfile',
+      'pre-merge': { test: 'pnpm exec vitest run' },
+    },
+  }
+
+  test('synthesizes the config', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      worktrunk,
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.worktrunk).toBeInstanceOf(Worktrunk)
+  })
+
+  test('supplies no hooks of its own', () => {
+    const project = new Project({
+      name: 'test-project',
+      worktrunk: {},
+    })
+
+    expect(project.worktrunk?.config).toEqual({})
+  })
+
+  test('leaves the config trackable under the deny-by-default ignore file', () => {
+    const project = new Project({
+      name: 'test-project',
+      worktrunk,
+    })
+
+    project.synth()
+
+    execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+    expect(synthSnapshot(project)['.gitignore']).toMatch(/^\.\*$/m)
+    expect(() =>
+      execFileSync('git', ['check-ignore', '--quiet', '.config/wt.toml'], {
+        cwd: project.outdir,
+      }),
+    ).toThrow()
+  })
+
+  test('keeps the config expanded in review', () => {
+    const project = new Project({
+      name: 'test-project',
+      worktrunk,
+    })
+
+    expect(synthSnapshot(project)['.gitattributes']).toContain(
+      '/.config/wt.toml linguist-generated -linguist-generated',
+    )
+  })
+
+  test('touches nothing else', () => {
+    const { '.config/wt.toml': _, ...withWorktrunk } = synthSnapshot(
+      new Project({ name: 'test-project', package: {}, worktrunk }),
+    )
+    const without = synthSnapshot(
+      new Project({ name: 'test-project', package: {} }),
+    )
+
+    for (const file of [
+      '.gitattributes',
+      '.gitignore',
+      '.projen/files.json',
+      '.projen/tasks.json',
+    ]) {
+      delete withWorktrunk[file]
+      delete without[file]
+    }
+
+    delete withWorktrunk['package.json'].scripts['worktrunk:dry-run']
+    delete withWorktrunk['package.json'].scripts['worktrunk:show']
+
+    expect(withWorktrunk).toEqual(without)
+  })
+
+  test('is left to the root project', () => {
+    const parent = new Project({
+      name: 'parent',
+    })
+    const project = new Project({
+      name: 'test-project',
+      parent,
+      outdir: 'test-project',
+      worktrunk,
+    })
+
+    expect(project.worktrunk).toBeUndefined()
+  })
 })
 
 describe('with Jest configuration', () => {

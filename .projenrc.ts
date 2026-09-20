@@ -836,6 +836,7 @@ project.addSubproject(
         '@langri-sha/projen-renovate@workspace:*',
         '@langri-sha/projen-swcrc@workspace:*',
         '@langri-sha/projen-typescript-config@workspace:*',
+        '@langri-sha/projen-worktrunk@workspace:*',
         'ramda@0.32.0',
         'semver@7.8.5',
       ],
