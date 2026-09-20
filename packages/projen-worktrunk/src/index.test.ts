@@ -414,3 +414,67 @@ describe('validation', () => {
     expect(synthSnapshot(parent)).toHaveProperty(['child/.config/wt.toml'])
   })
 })
+
+describe('approval', () => {
+  const bypasses = [
+    ['a trailing flag', 'wt merge --yes', '--yes'],
+    ['a leading flag', 'wt --yes merge', '--yes'],
+    ['a short flag', 'wt -y merge', '-y'],
+    ['a short flag cluster', 'wt -vy merge', '-vy'],
+    ['a later command', 'pnpm build && wt merge --yes', '--yes'],
+    ['a piped command', 'echo y | wt merge -y', '-y'],
+    ['a second line', 'pnpm build\nwt merge --yes', '--yes'],
+    ['a continued line', 'wt merge \\\n  --yes', '--yes'],
+    ['a substitution', 'echo $(wt -y list)', '-y'],
+    ['an environment prefix', 'CI=1 wt merge --yes', '--yes'],
+    ['a wrapper', 'exec wt merge --yes', '--yes'],
+    ['a qualified binary', '~/.cargo/bin/wt merge --yes', '--yes'],
+    ['a quoted binary', '"wt" merge --yes', '--yes'],
+    ['a shell string', 'sh -c "wt merge --yes"', '--yes'],
+    ['a nested invocation', 'wt step for-each -- wt merge --yes', '--yes'],
+    ['pre-approval', 'wt config approvals add --yes', '--yes'],
+    [
+      'a relocated approvals file',
+      'WORKTRUNK_APPROVALS_PATH=.config/approvals.toml wt merge',
+      'WORKTRUNK_APPROVALS_PATH',
+    ],
+    [
+      'a written approvals file',
+      'cp approved ~/.config/worktrunk/approvals.toml',
+      'approvals.toml',
+    ],
+  ] as const
+
+  test.each(bypasses)('rejects %s', (_, command, found) => {
+    expect(() => synth({ config: { 'post-start': command } })).toThrow(
+      `post-start uses \`${found}\`, which gets commands past Worktrunk's approval prompt`,
+    )
+  })
+
+  test.each([
+    ['named commands', { 'post-merge': { land: 'wt merge --yes' } }],
+    ['pipelines', { 'post-merge': pipeline({ land: 'wt merge --yes' }) }],
+    ['aliases', { aliases: { land: 'wt merge --yes' } }],
+  ])('rejects a bypass in %s', (_, config) => {
+    expect(() => synth({ config })).toThrow(/approval prompt/)
+  })
+
+  test.each([
+    ['another program', 'gh pr merge --yes'],
+    ['a program Worktrunk runs', 'wt step tether -- npx -y serve'],
+    ['a flag of another command', 'wt list && apt-get install -y jq'],
+    ['Worktrunk without the flag', 'wt step copy-ignored'],
+    ['a word ending in wt', 'newt --yes'],
+  ])('accepts %s', (_, command) => {
+    expect(() => synth({ config: { 'post-start': command } })).not.toThrow()
+  })
+
+  test('can be allowed', () => {
+    expect(
+      synth({
+        allowApprovalBypass: true,
+        config: { 'post-merge': 'wt remove --yes' },
+      })['.config/wt.toml'],
+    ).toContain('post-merge = "wt remove --yes"')
+  })
+})

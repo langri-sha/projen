@@ -36,6 +36,17 @@ export interface WorktrunkOptions {
    * @default true
    */
   readonly gitignore?: boolean
+
+  /**
+   * Permit commands that get past Worktrunk's approval prompt, such as
+   * `wt merge --yes`.
+   *
+   * The file is committed, so such a command, once approved, runs every later
+   * project command unreviewed on each teammate's machine.
+   *
+   * @default false
+   */
+  readonly allowApprovalBypass?: boolean
 }
 
 /**
@@ -62,6 +73,7 @@ export class Worktrunk extends Component {
       filename = '.config/wt.toml',
       config = {},
       gitignore = true,
+      allowApprovalBypass = false,
     } = options
 
     super(project)
@@ -72,7 +84,7 @@ export class Worktrunk extends Component {
       )
     }
 
-    validateConfig(config)
+    validateConfig(config, { allowApprovalBypass })
 
     this.#config = config
 
