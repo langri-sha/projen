@@ -6,11 +6,19 @@ import { Component, type Project, TomlFile } from 'projen'
 import {
   WORKTRUNK_HOOK_EVENTS,
   WORKTRUNK_SECTIONS,
+  type WorktrunkCommand,
   type WorktrunkCommands,
   type WorktrunkConfig,
+  type WorktrunkHook,
+  type WorktrunkHookEvent,
   type WorktrunkPipeline,
 } from './config.js'
-import { validateConfig } from './validate.js'
+import {
+  type ValidateOptions,
+  validateConfig,
+  validateEvent,
+  validateHook,
+} from './validate.js'
 
 export * from './config.js'
 
@@ -78,7 +86,9 @@ export class Worktrunk extends Component {
   readonly file: TomlFile
 
   readonly #config: WorktrunkConfig
+  readonly #hooks = new Map<WorktrunkHookEvent, WorktrunkHook>()
   readonly #overwriteExisting: boolean
+  readonly #validation: ValidateOptions
 
   constructor(project: Project, options: WorktrunkOptions = {}) {
     const {
@@ -97,10 +107,18 @@ export class Worktrunk extends Component {
       )
     }
 
-    validateConfig(config, { allowApprovalBypass })
+    this.#validation = { allowApprovalBypass }
+
+    validateConfig(config, this.#validation)
 
     this.#config = config
     this.#overwriteExisting = overwriteExisting
+
+    for (const event of WORKTRUNK_HOOK_EVENTS) {
+      if (config[event] !== undefined) {
+        this.#hooks.set(event, structuredClone(config[event]))
+      }
+    }
 
     if (gitignore) {
       this.#includeDotDirectories(filename)
@@ -119,6 +137,84 @@ export class Worktrunk extends Component {
       `/${this.file.path}`,
       '-linguist-generated',
     )
+  }
+
+  /**
+   * The configuration as it will be written.
+   */
+  get config(): WorktrunkConfig {
+    return this.#render()
+  }
+
+  /**
+   * Set a hook, in any of the three forms. Throws if the event already has
+   * one: whether the two should run together or in turn is the caller's call.
+   */
+  addHook(event: WorktrunkHookEvent, hook: WorktrunkHook) {
+    validateEvent(event)
+
+    if (this.#hooks.has(event)) {
+      throw new Error(
+        `${event} already has a hook. Add to it with \`addCommand()\` to run alongside it, or \`addStep()\` to run after it.`,
+      )
+    }
+
+    validateHook(event, hook, this.#validation)
+
+    this.#hooks.set(event, structuredClone(hook))
+  }
+
+  /**
+   * Add a named command to run alongside the others of a hook. Throws rather
+   * than change the hook's form, which would rewrite the text teammates have
+   * approved and the names its commands are addressed by.
+   */
+  addCommand(
+    event: WorktrunkHookEvent,
+    name: string,
+    command: WorktrunkCommand,
+  ) {
+    validateEvent(event)
+
+    const hook = this.#hooks.get(event) ?? {}
+
+    if (typeof hook === 'string' || Array.isArray(hook)) {
+      throw new TypeError(
+        `${event} is ${typeof hook === 'string' ? 'a single command' : 'a pipeline'}, so '${name}' cannot be added alongside it. Declare ${event} as named commands${Array.isArray(hook) ? ', or use `addStep()`' : ''}.`,
+      )
+    }
+
+    const commands = hook as WorktrunkCommands
+
+    if (commands[name] !== undefined && commands[name] !== command) {
+      throw new Error(
+        `${event} already has a command named '${name}' that runs something else: ${commands[name]}`,
+      )
+    }
+
+    validateHook(event, { [name]: command }, this.#validation)
+
+    this.#hooks.set(event, { ...commands, [name]: command })
+  }
+
+  /**
+   * Append a step to a pipeline, to run once the steps before it succeed.
+   * Throws on a hook in another form, for the same reason as `addCommand()`.
+   */
+  addStep(event: WorktrunkHookEvent, step: WorktrunkCommands) {
+    validateEvent(event)
+
+    const hook = this.#hooks.get(event) ?? []
+
+    if (!Array.isArray(hook)) {
+      throw new TypeError(
+        `${event} is ${typeof hook === 'string' ? 'a single command' : 'named commands'}, not a pipeline, so a step cannot follow it. Declare ${event} with \`pipeline()\`.`,
+      )
+    }
+
+    validateHook(event, [step], this.#validation)
+
+    this.#hooks.set(event, [...hook, structuredClone(step)])
   }
 
   /**
@@ -162,10 +258,13 @@ export class Worktrunk extends Component {
    * The serializer still hoists string hooks above every table, as TOML needs.
    */
   #render(): WorktrunkConfig {
-    return Object.fromEntries(
-      [...WORKTRUNK_HOOK_EVENTS, ...WORKTRUNK_SECTIONS]
-        .filter((key) => this.#config[key] !== undefined)
-        .map((key) => [key, this.#config[key]]),
-    )
+    return Object.fromEntries([
+      ...WORKTRUNK_HOOK_EVENTS.filter((event) => this.#hooks.has(event)).map(
+        (event) => [event, this.#hooks.get(event)],
+      ),
+      ...WORKTRUNK_SECTIONS.filter(
+        (section) => this.#config[section] !== undefined,
+      ).map((section) => [section, this.#config[section]]),
+    ])
   }
 }

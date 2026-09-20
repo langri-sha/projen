@@ -2,6 +2,7 @@ import {
   WORKTRUNK_HOOK_EVENTS,
   WORKTRUNK_SECTIONS,
   type WorktrunkConfig,
+  type WorktrunkHookEvent,
 } from './config.js'
 
 const TEMPLATE_CLOSERS: Record<string, string> = {
@@ -181,6 +182,29 @@ export const validateHook = (
   }
 }
 
+const isEvent = (key: string): key is WorktrunkHookEvent =>
+  (WORKTRUNK_HOOK_EVENTS as readonly string[]).includes(key)
+
+/**
+ * Rejects an event Worktrunk does not fire. It ignores keys it does not know,
+ * so a hook under a misspelt one would never run.
+ */
+export const validateEvent = (event: string) => {
+  if (isEvent(event)) {
+    return
+  }
+
+  if (event in CREATION_ALIASES) {
+    throw new Error(
+      `'${event}' is an alias Worktrunk keeps for '${CREATION_ALIASES[event]}'. Declare '${CREATION_ALIASES[event]}' so the hook has one spelling.`,
+    )
+  }
+
+  throw new Error(
+    `'${event}' is not a Worktrunk hook event. Worktrunk ignores keys it does not know, so the hook would never run. Use one of: ${WORKTRUNK_HOOK_EVENTS.join(', ')}.`,
+  )
+}
+
 /**
  * Rejects configuration Worktrunk would ignore, fail to load or fail to run,
  * each of which it does quietly enough to go unnoticed until a hook is missed.
@@ -189,26 +213,14 @@ export const validateConfig = (
   config: WorktrunkConfig,
   options: ValidateOptions = {},
 ) => {
-  const known = new Set<string>([
-    ...WORKTRUNK_HOOK_EVENTS,
-    ...WORKTRUNK_SECTIONS,
-  ])
-
   for (const key of Object.keys(config)) {
-    if (known.has(key)) {
+    if ((WORKTRUNK_SECTIONS as readonly string[]).includes(key)) {
       continue
     }
 
-    if (key in CREATION_ALIASES) {
-      throw new Error(
-        `'${key}' is an alias Worktrunk keeps for '${CREATION_ALIASES[key]}'. Declare '${CREATION_ALIASES[key]}' so the hook has one spelling.`,
-      )
-    }
-
-    if (/^(pre|post)-/.test(key)) {
-      throw new Error(
-        `'${key}' is not a Worktrunk hook event. Worktrunk ignores keys it does not know, so the hook would never run. Use one of: ${WORKTRUNK_HOOK_EVENTS.join(', ')}.`,
-      )
+    if (isEvent(key) || key in CREATION_ALIASES || /^(pre|post)-/.test(key)) {
+      validateEvent(key)
+      continue
     }
 
     throw new Error(
