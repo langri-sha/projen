@@ -603,3 +603,150 @@ describe('ownership', () => {
     expect(read()).toBe('\npre-start = "pnpm install"\n')
   })
 })
+
+describe('contributing hooks', () => {
+  const component = (options?: WorktrunkOptions) =>
+    new Worktrunk(new Project({ name: 'test-project' }), options)
+
+  test('adds a hook in any form', () => {
+    const worktrunk = component()
+
+    worktrunk.addHook('pre-start', 'pnpm install')
+    worktrunk.addHook('post-start', { server: 'pnpm dev' })
+    worktrunk.addHook('pre-merge', pipeline({ lint: 'pnpm lint' }))
+
+    expect(worktrunk.config).toEqual({
+      'pre-start': 'pnpm install',
+      'post-start': { server: 'pnpm dev' },
+      'pre-merge': [{ lint: 'pnpm lint' }],
+    })
+  })
+
+  test('writes contributed hooks in lifecycle order', () => {
+    const worktrunk = component({ config: { 'post-remove': { a: 'echo a' } } })
+
+    worktrunk.addCommand('pre-merge', 'test', 'pnpm test')
+    worktrunk.addStep('pre-switch', { fetch: 'git fetch' })
+
+    expect(
+      Object.keys(parse(synthSnapshot(worktrunk.project)['.config/wt.toml'])),
+    ).toEqual(['pre-switch', 'pre-merge', 'post-remove'])
+  })
+
+  test('refuses a second hook for an event', () => {
+    const worktrunk = component({ config: { 'pre-start': 'pnpm install' } })
+
+    expect(() => worktrunk.addHook('pre-start', 'pnpm build')).toThrow(
+      /pre-start already has a hook\. Add to it with `addCommand\(\)`/,
+    )
+  })
+
+  test('adds commands alongside one another', () => {
+    const worktrunk = component({
+      config: { 'pre-merge': { lint: 'pnpm lint' } },
+    })
+
+    worktrunk.addCommand('pre-merge', 'test', 'pnpm test')
+    worktrunk.addCommand('post-start', 'server', 'pnpm dev')
+
+    expect(worktrunk.config).toEqual({
+      'post-start': { server: 'pnpm dev' },
+      'pre-merge': { lint: 'pnpm lint', test: 'pnpm test' },
+    })
+  })
+
+  test('accepts the same command twice', () => {
+    const worktrunk = component()
+
+    worktrunk.addCommand('pre-merge', 'test', 'pnpm test')
+    worktrunk.addCommand('pre-merge', 'test', 'pnpm test')
+
+    expect(worktrunk.config).toEqual({ 'pre-merge': { test: 'pnpm test' } })
+  })
+
+  test('refuses to replace a command', () => {
+    const worktrunk = component({
+      config: { 'pre-merge': { test: 'pnpm test' } },
+    })
+
+    expect(() =>
+      worktrunk.addCommand('pre-merge', 'test', 'cargo test'),
+    ).toThrow(
+      "pre-merge already has a command named 'test' that runs something else: pnpm test",
+    )
+  })
+
+  test.each([
+    [
+      'a single command',
+      'pnpm install',
+      /is a single command, so 'more' cannot/,
+    ],
+    [
+      'a pipeline',
+      pipeline({ a: 'echo a' }),
+      /is a pipeline, so 'more' cannot/,
+    ],
+  ])('refuses to add a command to %s', (_, hook, message) => {
+    const worktrunk = component({ config: { 'pre-start': hook } })
+
+    expect(() =>
+      worktrunk.addCommand('pre-start', 'more', 'echo more'),
+    ).toThrow(message)
+    expect(worktrunk.config).toEqual({ 'pre-start': hook })
+  })
+
+  test('appends steps in turn', () => {
+    const worktrunk = component({
+      config: { 'post-start': pipeline({ install: 'pnpm install' }) },
+    })
+
+    worktrunk.addStep('post-start', { build: 'pnpm build', server: 'pnpm dev' })
+    worktrunk.addStep('pre-merge', { test: 'pnpm test' })
+
+    expect(worktrunk.config).toEqual({
+      'post-start': [
+        { install: 'pnpm install' },
+        { build: 'pnpm build', server: 'pnpm dev' },
+      ],
+      'pre-merge': [{ test: 'pnpm test' }],
+    })
+  })
+
+  test.each([
+    ['a single command', 'pnpm install', /is a single command, not a pipeline/],
+    ['named commands', { a: 'echo a' }, /is named commands, not a pipeline/],
+  ])('refuses to add a step to %s', (_, hook, message) => {
+    const worktrunk = component({ config: { 'pre-start': hook } })
+
+    expect(() => worktrunk.addStep('pre-start', { b: 'echo b' })).toThrow(
+      message,
+    )
+  })
+
+  test('holds contributions to the same rules', () => {
+    const worktrunk = component()
+
+    expect(() => worktrunk.addHook('pre-start', '')).toThrow(/empty command/)
+    expect(() => worktrunk.addCommand('pre-start', 'a:b', 'echo')).toThrow(
+      /names a command 'a:b'/,
+    )
+    expect(() => worktrunk.addStep('pre-start', {})).toThrow(/has no commands/)
+    expect(() =>
+      worktrunk.addStep('post-merge', { land: 'wt merge -y' }),
+    ).toThrow(/approval prompt/)
+    expect(() =>
+      worktrunk.addHook('pre-started' as 'pre-start', 'echo a'),
+    ).toThrow(/not a Worktrunk hook event/)
+    expect(worktrunk.config).toEqual({})
+  })
+
+  test('leaves the options it was given alone', () => {
+    const config = { 'pre-merge': { lint: 'pnpm lint' } }
+    const worktrunk = component({ config })
+
+    worktrunk.addCommand('pre-merge', 'test', 'pnpm test')
+
+    expect(config).toEqual({ 'pre-merge': { lint: 'pnpm lint' } })
+  })
+})
