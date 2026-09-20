@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Synthesize Worktrunk project config from projen",
+  "packageName": "@langri-sha/projen-worktrunk",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

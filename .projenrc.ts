@@ -1023,6 +1023,27 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-worktrunk',
+    outdir: path.join('packages', 'projen-worktrunk'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/schemastore-to-typescript',
     outdir: path.join('packages', 'schemastore-to-typescript'),
     npmIgnore: {},
