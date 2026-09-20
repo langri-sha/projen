@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs'
 import * as path from 'node:path'
 
-import { Component, type Project, TomlFile } from 'projen'
+import { Component, type Project, type Task, TomlFile } from 'projen'
 
 import {
   WORKTRUNK_HOOK_EVENTS,
@@ -66,6 +66,14 @@ export interface WorktrunkOptions {
    * @default false
    */
   readonly overwriteExisting?: boolean
+
+  /**
+   * Add the `worktrunk:show` and `worktrunk:dry-run` tasks. Both need `wt` on
+   * the `PATH`, so neither joins another task.
+   *
+   * @default true
+   */
+  readonly tasks?: boolean
 }
 
 /**
@@ -86,6 +94,7 @@ export class Worktrunk extends Component {
   readonly file: TomlFile
 
   readonly #config: WorktrunkConfig
+  readonly #dryRun?: Task
   readonly #hooks = new Map<WorktrunkHookEvent, WorktrunkHook>()
   readonly #overwriteExisting: boolean
   readonly #validation: ValidateOptions
@@ -97,6 +106,7 @@ export class Worktrunk extends Component {
       gitignore = true,
       allowApprovalBypass = false,
       overwriteExisting = false,
+      tasks = true,
     } = options
 
     super(project)
@@ -129,6 +139,19 @@ export class Worktrunk extends Component {
       readonly: true,
       obj: () => this.#render(),
     })
+
+    if (tasks) {
+      project.addTask('worktrunk:show', {
+        description:
+          'Show the configured Worktrunk hooks, with templates expanded',
+        exec: 'wt hook show --expanded',
+      })
+
+      this.#dryRun = project.addTask('worktrunk:dry-run', {
+        description:
+          'Expand every configured Worktrunk hook without running it, failing on a template Worktrunk cannot expand',
+      })
+    }
 
     // After the file, whose own annotation this has to follow on the line:
     // the commands run on teammates' machines once approved, so a change to
@@ -223,6 +246,12 @@ export class Worktrunk extends Component {
    * written over a generated one, is still told apart correctly.
    */
   override preSynthesize() {
+    for (const event of WORKTRUNK_HOOK_EVENTS) {
+      if (this.#hooks.has(event)) {
+        this.#dryRun?.exec(`wt hook ${event} --dry-run`)
+      }
+    }
+
     const marker = this.file.marker?.split('.')[0]
 
     if (

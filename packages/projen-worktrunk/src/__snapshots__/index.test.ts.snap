@@ -99,6 +99,19 @@ node_modules/
         "description": "Run tests",
         "name": "test",
       },
+      "worktrunk:dry-run": {
+        "description": "Expand every configured Worktrunk hook without running it, failing on a template Worktrunk cannot expand",
+        "name": "worktrunk:dry-run",
+      },
+      "worktrunk:show": {
+        "description": "Show the configured Worktrunk hooks, with templates expanded",
+        "name": "worktrunk:show",
+        "steps": [
+          {
+            "exec": "wt hook show --expanded",
+          },
+        ],
+      },
     },
   },
 }
