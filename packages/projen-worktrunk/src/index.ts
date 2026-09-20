@@ -1,3 +1,5 @@
+import * as path from 'node:path'
+
 import { Component, type Project, TomlFile } from 'projen'
 
 /**
@@ -117,6 +119,17 @@ export interface WorktrunkOptions {
   readonly filename?: string
 
   readonly config?: WorktrunkConfig
+
+  /**
+   * Re-include the dot-directories leading to the config file in `.gitignore`.
+   *
+   * A deny-by-default ignore file (`.*`) excludes `.config/`, and git does not
+   * descend into an excluded directory, so the negation projen adds for the
+   * file is inert on its own: the file would generate and never be committed.
+   *
+   * @default true
+   */
+  readonly gitignore?: boolean
 }
 
 /**
@@ -140,17 +153,39 @@ export class Worktrunk extends Component {
 
   constructor(
     project: Project,
-    { filename = '.config/wt.toml', config = {} }: WorktrunkOptions = {},
+    {
+      filename = '.config/wt.toml',
+      config = {},
+      gitignore = true,
+    }: WorktrunkOptions = {},
   ) {
     super(project)
 
     this.#config = config
+
+    if (gitignore) {
+      this.#includeDotDirectories(filename)
+    }
 
     this.file = new TomlFile(project, filename, {
       marker: true,
       readonly: true,
       obj: () => this.#render(),
     })
+  }
+
+  /**
+   * Written without a trailing slash: given one, projen drops every pattern
+   * already under that directory, un-ignoring whatever the project hid there.
+   */
+  #includeDotDirectories(filename: string) {
+    const segments = path.normalize(filename).split(path.sep).slice(0, -1)
+
+    for (const [index, segment] of segments.entries()) {
+      if (segment.startsWith('.') && segment !== '..') {
+        this.project.addGitIgnore(`!/${segments.slice(0, index + 1).join('/')}`)
+      }
+    }
   }
 
   /**
