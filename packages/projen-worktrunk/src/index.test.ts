@@ -750,3 +750,56 @@ describe('contributing hooks', () => {
     expect(config).toEqual({ 'pre-merge': { lint: 'pnpm lint' } })
   })
 })
+
+describe('tasks', () => {
+  const tasks = (options?: WorktrunkOptions) =>
+    synth(options)['.projen/tasks.json'].tasks
+
+  test('shows the configured hooks', () => {
+    expect(tasks()['worktrunk:show'].steps).toEqual([
+      { exec: 'wt hook show --expanded' },
+    ])
+  })
+
+  test('dry-runs each configured event', () => {
+    const project = new Project({ name: 'test-project' })
+
+    new Worktrunk(project, {
+      config: {
+        'pre-merge': { test: 'pnpm test' },
+        'pre-start': 'pnpm install',
+        aliases: { open: 'open .' },
+      },
+    }).addCommand('post-start', 'server', 'pnpm dev')
+
+    expect(
+      synthSnapshot(project)['.projen/tasks.json'].tasks['worktrunk:dry-run']
+        .steps,
+    ).toEqual([
+      { exec: 'wt hook pre-start --dry-run' },
+      { exec: 'wt hook post-start --dry-run' },
+      { exec: 'wt hook pre-merge --dry-run' },
+    ])
+  })
+
+  test('never skips approval', () => {
+    expect(
+      JSON.stringify(tasks({ config: { 'pre-start': 'pnpm install' } })),
+    ).not.toMatch(/--yes|-y\b/)
+  })
+
+  test('joins no other task', () => {
+    const others = Object.entries(
+      tasks({ config: { 'pre-start': 'pnpm install' } }),
+    ).filter(([name]) => !name.startsWith('worktrunk:'))
+
+    expect(JSON.stringify(others)).not.toContain('worktrunk')
+  })
+
+  test('can be disabled', () => {
+    const disabled = tasks({ tasks: false })
+
+    expect(disabled).not.toHaveProperty(['worktrunk:show'])
+    expect(disabled).not.toHaveProperty(['worktrunk:dry-run'])
+  })
+})
