@@ -1,11 +1,6 @@
 {
   "dependencies": [
     {
-      "name": "@langri-sha/monorepo",
-      "version": "workspace:*",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/tsconfig",
       "version": "*",
       "type": "build"
@@ -29,6 +24,11 @@
       "name": "@babel/core",
       "version": "^8.0.0",
       "type": "peer"
+    },
+    {
+      "name": "@langri-sha/monorepo",
+      "version": "workspace:*",
+      "type": "runtime"
     },
     {
       "name": "ramda",

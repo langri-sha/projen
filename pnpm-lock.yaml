@@ -263,13 +263,13 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.1
+      '@langri-sha/monorepo':
+        specifier: workspace:*
+        version: link:../monorepo
       ramda:
         specifier: 0.32.0
         version: 0.32.0
     devDependencies:
-      '@langri-sha/monorepo':
-        specifier: workspace:*
-        version: link:../monorepo
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig

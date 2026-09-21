@@ -22,10 +22,10 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
+    "@langri-sha/monorepo": "workspace:*",
     "ramda": "0.32.0"
   },
   "devDependencies": {
-    "@langri-sha/monorepo": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
     "@types/node": "24.13.5",
