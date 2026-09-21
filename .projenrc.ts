@@ -50,7 +50,7 @@ const project = new Project({
       'prettier@3.8.3',
       'projen@0.86.5',
       'tsx@4.23.13',
-      'vitest@5.0.0',
+      'vitest@5.0.1',
     ],
   },
   beachball: {},
