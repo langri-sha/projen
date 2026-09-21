@@ -113,6 +113,11 @@ including another looks like, as do uv's overrides, exclusions and cache keys.
 `uv remove` cannot edit them: declare dependencies in `.projenrc`, synthesize,
 and run `uv lock`.
 
+`@langri-sha/projen-project` keeps Renovate to updates within the declared
+ranges, since a range it rewrote in a synthesized manifest would be put back by
+the next synthesis. Those updates move `uv.lock` alone; raising a bound is an
+edit to `.projenrc`.
+
 [projen]: https://projen.io/
 [pyproject]: https://www.schemastore.org/pyproject.json
 [schema]: https://www.schemastore.org/uv.json

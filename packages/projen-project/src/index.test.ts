@@ -1295,6 +1295,44 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
   `)
 })
 
+test('with Renovate options and no uv workspace', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].packageRules.flatMap(
+      ({ matchManagers }: { matchManagers?: string[] }) => matchManagers ?? [],
+    ),
+  ).not.toContain('pep621')
+})
+
+test('with Renovate options, holding uv to the ranges its manifests declare', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+    uv: {},
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].packageRules.filter(
+      ({ matchManagers }: { matchManagers?: string[] }) =>
+        matchManagers?.includes('pep621'),
+    ),
+  ).toMatchInlineSnapshot(`
+    [
+      {
+        "description": "Synthesis writes the pyproject.toml manifests and reverts edits to them. Move only what uv.lock pins, within the ranges they declare",
+        "matchManagers": [
+          "pep621",
+        ],
+        "rangeStrategy": "in-range-only",
+      },
+    ]
+  `)
+})
+
 /**
  * A custom manager is two loose patterns away from rewriting something that
  * only looks like a dependency. `pnpm@` matched the tail of
