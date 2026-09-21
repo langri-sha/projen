@@ -323,7 +323,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['@jest/globals@30.5.1', 'nock@14.0.17', 'tempy@3.2.0'],
+      deps: ['@jest/globals@30.5.2', 'nock@14.0.17', 'tempy@3.2.0'],
       peerDeps: ['jest@^30.0.0'],
     },
   },
