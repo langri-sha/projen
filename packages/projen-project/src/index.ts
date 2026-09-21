@@ -872,6 +872,7 @@ export class Project extends BaseProject {
     dagger,
     renovate: renovateOptions,
     package: pkg,
+    uv,
   }: ProjectOptions) {
     if (!renovateOptions || this.parent) {
       return
@@ -955,6 +956,21 @@ export class Project extends BaseProject {
                 matchManagers: ['npm'],
                 matchPackageNames: ['typescript'],
                 allowedVersions: '^5',
+              },
+            ]
+          : []),
+        // Synthesis writes every requirement into the manifests, so a range
+        // Renovate rewrote there would be put back by its next run. Held to
+        // the declared ranges, pep621 still moves `uv.lock`, by lock-file
+        // updates and maintenance alike; raising a bound is an edit to the
+        // projenrc.
+        ...(uv
+          ? [
+              {
+                description:
+                  'Synthesis writes the pyproject.toml manifests and reverts edits to them. Move only what uv.lock pins, within the ranges they declare',
+                matchManagers: ['pep621'],
+                rangeStrategy: 'in-range-only' as const,
               },
             ]
           : []),
