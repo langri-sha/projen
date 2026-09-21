@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Anchor the pinned-execution Renovate manager to projenrcs",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

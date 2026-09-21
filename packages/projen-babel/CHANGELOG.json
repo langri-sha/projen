@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-babel",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.5.12",
+      "tag": "@langri-sha/projen-babel_v0.5.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-babel",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Stop requiring consumers to install Babel"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-babel",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Sep 2026 07:59:13 GMT",
       "version": "0.5.11",
       "tag": "@langri-sha/projen-babel_v0.5.11",

@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.1.20",
+      "tag": "@langri-sha/projen-swcrc_v0.1.20",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Stop requiring consumers to install SWC"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-swcrc",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Sep 2026 07:59:13 GMT",
       "version": "0.1.19",
       "tag": "@langri-sha/projen-swcrc_v0.1.19",

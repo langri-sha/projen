@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-dagger",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.2.1",
+      "tag": "@langri-sha/projen-dagger_v0.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-dagger",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-dagger",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Sep 2026 07:59:13 GMT",
       "version": "0.2.0",
       "tag": "@langri-sha/projen-dagger_v0.2.0",

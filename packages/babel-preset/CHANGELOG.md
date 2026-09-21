@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/babel-preset
 
-<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.5
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.13.4
+- Update babel monorepo to v8.0.5
+- Update dependency @types/node to v24.13.5
+- Bump @langri-sha/babel-test to v0.7.4
+- Bump @langri-sha/vitest to v0.2.0
 
 ## 0.6.3
 

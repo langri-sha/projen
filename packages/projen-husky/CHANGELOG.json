@@ -2,6 +2,39 @@
   "name": "@langri-sha/projen-husky",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.3.18",
+      "tag": "@langri-sha/projen-husky_v0.3.18",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-husky",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency @types/node to v24.13.5"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-husky",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Stop requiring consumers to install Husky"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-husky",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency @types/node to v24.13.4"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-husky",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.3.17",
       "tag": "@langri-sha/projen-husky_v0.3.17",

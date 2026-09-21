@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Stop requiring consumers to install Babel",
-  "packageName": "@langri-sha/projen-babel",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

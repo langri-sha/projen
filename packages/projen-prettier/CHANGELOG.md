@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-prettier
 
-<!-- This log was last generated on Thu, 10 Sep 2026 07:59:13 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.13
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Patches
+
+- Stop requiring consumers to install Prettier (filip.dupanovic@gmail.com)
+- Bump @langri-sha/vitest to v0.2.0
 
 ## 0.4.12
 

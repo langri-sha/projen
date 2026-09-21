@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-typescript-config
 
-<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.16
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Patches
+
+- Update dependency @schemastore/tsconfig to v1.0.11
+- Update dependency @schemastore/tsconfig to v1.0.10
+- Update dependency @types/node to v24.13.4
+- Update dependency @types/node to v24.13.5
+- Bump @langri-sha/vitest to v0.2.0
 
 ## 0.5.15
 

@@ -1,0 +1,32 @@
+{
+  "name": "@langri-sha/projen-uv",
+  "entries": [
+    {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-uv_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-uv",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Add uv workspace and package components"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-uv",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-uv",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    }
+  ]
+}

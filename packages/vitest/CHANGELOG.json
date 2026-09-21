@@ -2,6 +2,21 @@
   "name": "@langri-sha/vitest",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.2.0",
+      "tag": "@langri-sha/vitest_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/vitest",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Require vitest 5 as the peer dependency"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.1.9",
       "tag": "@langri-sha/vitest_v0.1.9",

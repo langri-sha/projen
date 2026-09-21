@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.5.12",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.5.12",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.5.11",
       "tag": "@langri-sha/projen-lint-synthesized_v0.5.11",

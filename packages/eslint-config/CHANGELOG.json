@@ -2,6 +2,57 @@
   "name": "@langri-sha/eslint-config",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.9.14",
+      "tag": "@langri-sha/eslint-config_v0.9.14",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency eslint-plugin-unicorn to v75"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.5.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.3.9"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency typescript-eslint to v8.70.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.4.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.3.8"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/eslint-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency eslint-plugin-jsdoc to v64.3.10"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Sep 2026 07:59:13 GMT",
       "version": "0.9.13",
       "tag": "@langri-sha/eslint-config_v0.9.13",

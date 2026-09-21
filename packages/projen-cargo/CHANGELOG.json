@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-cargo",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.1.3",
+      "tag": "@langri-sha/projen-cargo_v0.1.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-cargo",
+            "comment": "Bump @langri-sha/schemastore-to-typescript to v0.2.12",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-cargo",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Sep 2026 07:59:13 GMT",
       "version": "0.1.2",
       "tag": "@langri-sha/projen-cargo_v0.1.2",

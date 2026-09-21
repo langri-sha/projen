@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Install Jest only when its configuration is enabled",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

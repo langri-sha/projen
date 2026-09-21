@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Stop requiring consumers to install Husky",
-  "packageName": "@langri-sha/projen-husky",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

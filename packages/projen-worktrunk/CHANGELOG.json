@@ -1,0 +1,26 @@
+{
+  "name": "@langri-sha/projen-worktrunk",
+  "entries": [
+    {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-worktrunk_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-worktrunk",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Synthesize Worktrunk project config from projen"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-worktrunk",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    }
+  ]
+}

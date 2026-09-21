@@ -1,8 +1,51 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 10 Sep 2026 07:59:13 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.30.0
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Minor changes
+
+- Add a uv option, synthesizing a uv workspace and its packages (filip.dupanovic@gmail.com)
+- Configure Worktrunk with the `worktrunk` option (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.12
+- Bump @langri-sha/projen-beachball to v0.5.10
+- Bump @langri-sha/projen-cargo to v0.1.3
+- Bump @langri-sha/projen-codeowners to v0.5.10
+- Bump @langri-sha/projen-dagger to v0.2.1
+- Bump @langri-sha/projen-editorconfig to v0.6.10
+- Bump @langri-sha/projen-eslint to v0.3.13
+- Bump @langri-sha/projen-husky to v0.3.18
+- Bump @langri-sha/projen-jest-config to v0.4.14
+- Bump @langri-sha/projen-license to v0.3.13
+- Bump @langri-sha/projen-lint-staged to v0.3.14
+- Bump @langri-sha/projen-lint-synthesized to v0.5.12
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.8
+- Bump @langri-sha/projen-prettier to v0.4.13
+- Bump @langri-sha/projen-readme to v0.1.10
+- Bump @langri-sha/projen-renovate to v0.4.20
+- Bump @langri-sha/projen-swcrc to v0.1.20
+- Bump @langri-sha/projen-typescript-config to v0.5.16
+- Bump @langri-sha/projen-uv to v0.1.0
+- Bump @langri-sha/projen-worktrunk to v0.1.0
+- Bump @langri-sha/vitest to v0.2.0
+
+### Patches
+
+- Update dependency jest to v30.5.1
+- Anchor the pinned-execution Renovate manager to projenrcs (filip.dupanovic@gmail.com)
+- Install Babel only when its configuration is enabled (filip.dupanovic@gmail.com)
+- Install ESLint only when its configuration is enabled (filip.dupanovic@gmail.com)
+- Install Jest only when its configuration is enabled (filip.dupanovic@gmail.com)
+- Install lint-staged only when its configuration is enabled (filip.dupanovic@gmail.com)
+- Install Prettier only when its configuration is enabled (filip.dupanovic@gmail.com)
+- Stop requiring consumers to install TypeScript (filip.dupanovic@gmail.com)
+- Update dependency beachball to v2.66.0
+- Leave tools declared as runtime dependencies out of devDependencies (filip.dupanovic@gmail.com)
 
 ## 0.29.0
 

@@ -2,6 +2,33 @@
   "name": "@langri-sha/monorepo",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.5.16",
+      "tag": "@langri-sha/monorepo_v0.5.16",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency @types/node to v24.13.4"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/monorepo",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Update dependency @types/node to v24.13.5"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/monorepo",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 04 Aug 2026 04:27:48 GMT",
       "version": "0.5.15",
       "tag": "@langri-sha/monorepo_v0.5.15",

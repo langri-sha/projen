@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/projen-husky
 
-<!-- This log was last generated on Tue, 04 Aug 2026 04:27:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.18
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.13.5
+- Stop requiring consumers to install Husky (filip.dupanovic@gmail.com)
+- Update dependency @types/node to v24.13.4
+- Bump @langri-sha/vitest to v0.2.0
 
 ## 0.3.17
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Leave tools declared as runtime dependencies out of devDependencies",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

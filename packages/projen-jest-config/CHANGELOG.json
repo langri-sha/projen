@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-jest-config",
   "entries": [
     {
+      "date": "Mon, 21 Sep 2026 10:53:40 GMT",
+      "version": "0.4.14",
+      "tag": "@langri-sha/projen-jest-config_v0.4.14",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-jest-config",
+            "commit": "fd9f8f41c007fd5ea787f5d6214395eac88318a4",
+            "comment": "Stop requiring consumers to install Jest"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-jest-config",
+            "comment": "Bump @langri-sha/vitest to v0.2.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 10 Sep 2026 07:59:13 GMT",
       "version": "0.4.13",
       "tag": "@langri-sha/projen-jest-config_v0.4.13",

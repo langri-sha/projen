@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/babel-test
 
-<!-- This log was last generated on Fri, 14 Aug 2026 21:44:42 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.7.4
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.13.4
+- Update dependency @types/node to v24.13.5
+- Declare the runtime dependency on @langri-sha/monorepo (filip.dupanovic@gmail.com)
+- Bump @langri-sha/monorepo to v0.5.16
+- Bump @langri-sha/vitest to v0.2.0
 
 ## 0.7.3
 

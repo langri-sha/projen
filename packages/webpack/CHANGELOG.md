@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/webpack
 
-<!-- This log was last generated on Mon, 31 Aug 2026 21:36:20 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.3
+
+Mon, 21 Sep 2026 10:53:40 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.13.4
+- Update dependency @types/node to v24.13.5
+- Update dependency webpack-bundle-analyzer to v5.4.0
+- Update dependency webpack-bundle-analyzer to v5.3.3
+- Bump @langri-sha/babel-preset to v0.6.5
 
 ## 0.6.2
 
