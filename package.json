@@ -36,7 +36,7 @@
     "@swc/core": "1.15.47",
     "@types/node": "24.13.6",
     "beachball": "2.66.0",
-    "eslint": "10.10.0",
+    "eslint": "10.11.0",
     "husky": "9.1.7",
     "lint-staged": "17.5.1",
     "prettier": "3.8.3",
