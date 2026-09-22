@@ -645,7 +645,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('eslint@10.10.0')
+      this.#addDefaultDevDeps('eslint@10.11.0')
     }
 
     this.eslint = new ESLint(this, deepMerge(defaults, eslint))
