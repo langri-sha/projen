@@ -858,7 +858,7 @@ export class Project extends BaseProject {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
 
       if (this.package) {
-        this.#addDefaultDevDeps('tsx@4.23.13')
+        this.#addDefaultDevDeps('tsx@4.23.15')
       }
     }
   }

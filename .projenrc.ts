@@ -49,7 +49,7 @@ const project = new Project({
       'lint-staged@17.5.1',
       'prettier@3.9.8',
       'projen@0.86.5',
-      'tsx@4.23.13',
+      'tsx@4.23.15',
       'vitest@5.0.1',
     ],
   },
@@ -441,7 +441,7 @@ project.addSubproject(
       type: 'module',
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
+        'tsx@4.23.15',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -533,7 +533,7 @@ project.addSubproject(
       type: 'module',
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
+        'tsx@4.23.15',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -753,7 +753,7 @@ project.addSubproject(
       deps: ['yaml@2.9.1'],
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
+        'tsx@4.23.15',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -934,7 +934,7 @@ project.addSubproject(
       type: 'module',
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
+        'tsx@4.23.15',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -972,7 +972,7 @@ project.addSubproject(
       type: 'module',
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
+        'tsx@4.23.15',
       ],
       peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -1039,7 +1039,7 @@ project.addSubproject(
       deps: ['smol-toml@1.8.0'],
       devDeps: [
         '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
+        'tsx@4.23.15',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
