@@ -30,9 +30,7 @@ export * from './uv.js'
 export interface PyProjectTool {
   readonly uv?: Uv
   readonly [tool: string]:
-    | NonNullable<PyProject['tool']>[string]
-    | Uv
-    | undefined
+    NonNullable<PyProject['tool']>[string] | Uv | undefined
 }
 
 /**

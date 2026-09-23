@@ -45,9 +45,7 @@ export type WorktrunkPipeline = readonly WorktrunkCommands[]
  * a command is addressed by.
  */
 export type WorktrunkHook =
-  | WorktrunkCommand
-  | WorktrunkCommands
-  | WorktrunkPipeline
+  WorktrunkCommand | WorktrunkCommands | WorktrunkPipeline
 
 export interface WorktrunkAliases {
   readonly [name: string]: WorktrunkHook

@@ -835,7 +835,7 @@ export class Project extends BaseProject {
       ],
     }
 
-    this.#addDefaultDevDeps('prettier@3.8.3')
+    this.#addDefaultDevDeps('prettier@3.9.8')
     this.prettier = new Prettier(this, deepMerge(defaults, prettier))
 
     if (this.projenrc?.filePath) {
