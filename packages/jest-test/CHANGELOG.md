@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/jest-test
 
-<!-- This log was last generated on Thu, 10 Sep 2026 07:59:13 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.10.6
+
+Wed, 23 Sep 2026 08:13:02 GMT
+
+### Patches
+
+- Update jest monorepo to v30.5.2
 
 ## 0.10.5
 

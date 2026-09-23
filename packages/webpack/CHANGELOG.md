@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/webpack
 
-<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.4
+
+Wed, 23 Sep 2026 08:13:02 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.13.6
+- Bump @langri-sha/babel-preset to v0.6.6
 
 ## 0.6.3
 

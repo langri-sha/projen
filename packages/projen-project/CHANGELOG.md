@@ -1,8 +1,27 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.31.0
+
+Wed, 23 Sep 2026 08:13:02 GMT
+
+### Minor changes
+
+- Supply tsx to every root project, since the projenrc runs with it (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-husky to v0.3.19
+- Bump @langri-sha/projen-lint-synthesized to v0.5.13
+- Bump @langri-sha/projen-prettier to v0.4.14
+- Bump @langri-sha/projen-typescript-config to v0.5.17
+
+### Patches
+
+- Update jest monorepo to v30.5.2
+- Update dependency eslint to v10.11.0
+- Update babel monorepo to v8.0.6
+- Update dependency prettier to v3.9.8 (filip.dupanovic@gmail.com)
 
 ## 0.30.0
 

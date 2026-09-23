@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Supply tsx to every root project, since the projenrc runs with it",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,33 @@
   "name": "@langri-sha/babel-preset",
   "entries": [
     {
+      "date": "Wed, 23 Sep 2026 08:13:02 GMT",
+      "version": "0.6.6",
+      "tag": "@langri-sha/babel-preset_v0.6.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update babel monorepo to v8.0.6"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-preset",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update dependency @types/node to v24.13.6"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/babel-preset",
+            "comment": "Bump @langri-sha/babel-test to v0.7.5",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 21 Sep 2026 10:53:40 GMT",
       "version": "0.6.5",
       "tag": "@langri-sha/babel-preset_v0.6.5",

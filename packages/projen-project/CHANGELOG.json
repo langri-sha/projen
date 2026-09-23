@@ -2,6 +2,71 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Wed, 23 Sep 2026 08:13:02 GMT",
+      "version": "0.31.0",
+      "tag": "@langri-sha/projen-project_v0.31.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update jest monorepo to v30.5.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update dependency eslint to v10.11.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update babel monorepo to v8.0.6"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update dependency prettier to v3.9.8"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Supply tsx to every root project, since the projenrc runs with it"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-husky to v0.3.19",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-lint-synthesized to v0.5.13",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-prettier to v0.4.14",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-typescript-config to v0.5.17",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 21 Sep 2026 10:53:40 GMT",
       "version": "0.30.0",
       "tag": "@langri-sha/projen-project_v0.30.0",

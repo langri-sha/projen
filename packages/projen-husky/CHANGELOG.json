@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-husky",
   "entries": [
     {
+      "date": "Wed, 23 Sep 2026 08:13:02 GMT",
+      "version": "0.3.19",
+      "tag": "@langri-sha/projen-husky_v0.3.19",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-husky",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Update dependency @types/node to v24.13.6"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 21 Sep 2026 10:53:40 GMT",
       "version": "0.3.18",
       "tag": "@langri-sha/projen-husky_v0.3.18",

@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-worktrunk",
   "entries": [
     {
+      "date": "Wed, 23 Sep 2026 08:13:02 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-worktrunk_v0.1.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-worktrunk",
+            "commit": "c292eff38fa90a99148ed214822dc3d356e0f926",
+            "comment": "Reformat for Prettier 3.9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 21 Sep 2026 10:53:40 GMT",
       "version": "0.1.0",
       "tag": "@langri-sha/projen-worktrunk_v0.1.0",

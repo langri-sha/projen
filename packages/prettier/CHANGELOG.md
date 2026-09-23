@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/prettier
 
-<!-- This log was last generated on Tue, 28 Jul 2026 01:59:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.7
+
+Wed, 23 Sep 2026 08:13:02 GMT
+
+### Patches
+
+- Update dependency prettier to v3.9.8 (filip.dupanovic@gmail.com)
 
 ## 0.4.6
 
