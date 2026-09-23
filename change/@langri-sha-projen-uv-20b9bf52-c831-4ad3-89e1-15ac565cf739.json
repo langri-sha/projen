@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency tsx to v4.23.15",
+  "packageName": "@langri-sha/projen-uv",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
