@@ -30,11 +30,7 @@ export interface EditorConfigOptions {
      */
 
     readonly charset?:
-      | 'latin1'
-      | 'utf-8'
-      | 'utf-8-bom'
-      | 'utf-16be'
-      | 'utf-16le'
+      'latin1' | 'utf-8' | 'utf-8-bom' | 'utf-16be' | 'utf-16le'
 
     /**
      * Trims any whitespace at the end of lines.
