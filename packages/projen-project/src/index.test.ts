@@ -1571,11 +1571,13 @@ describe('supplied development dependency versions', () => {
     { tool: 'lint-staged', enabledBy: { lintStaged: {} } },
     { tool: 'prettier', enabledBy: { prettier: {} } },
     { tool: 'typescript', enabledBy: { typeScriptConfig: {} } },
-    { tool: 'tsx', enabledBy: { typeScriptConfig: {} } },
     { tool: '@swc/core', enabledBy: { swcrc: {} } },
     { tool: '@swc-node/register', enabledBy: { swcrc: {} } },
-    // Not a feature — every root project is given Projen itself.
+    // Not features — every root project is given Projen itself, and `tsx` to
+    // run the projenrc.
     { tool: 'projen', enabledBy: {} },
+    { tool: 'tsx', enabledBy: {} },
+    { tool: 'tsx', enabledBy: { swcrc: {} } },
   ]
 
   describe.each(TOOLS)('$tool', ({ tool, enabledBy }) => {
@@ -1648,12 +1650,12 @@ describe('supplied development dependency versions', () => {
   })
 
   test('names only the packages it actually supplied', () => {
-    // A project with no features enabled is still given Projen and
-    // `@langri-sha/projen-project`. Only the first is a literal version, so
-    // only the first is withheld.
+    // A project with no features enabled is still given Projen, `tsx` and
+    // `@langri-sha/projen-project`. Only the first two are literal versions,
+    // so only those are withheld.
     const files = synthesize({})
 
-    expect(suppressedPackages(files)).toEqual(['projen'])
+    expect(suppressedPackages(files)).toEqual(['projen', 'tsx'])
   })
 })
 

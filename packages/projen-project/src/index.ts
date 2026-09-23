@@ -856,6 +856,10 @@ export class Project extends BaseProject {
 
     if (!this.parent) {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
+
+      if (this.package) {
+        this.#addDefaultDevDeps('tsx@4.23.13')
+      }
     }
   }
 
@@ -1146,7 +1150,7 @@ export class Project extends BaseProject {
     this.swcrc = new SWCConfig(this, deepMerge(defaults, swcrc))
   }
 
-  #configureTypeScript({ parent, typeScriptConfig, swcrc }: ProjectOptions) {
+  #configureTypeScript({ parent, typeScriptConfig }: ProjectOptions) {
     if (!typeScriptConfig) {
       return
     }
@@ -1182,10 +1186,6 @@ export class Project extends BaseProject {
 
     if (!this.parent) {
       this.#addDefaultDevDeps('typescript@5.9.3')
-
-      if (!swcrc) {
-        this.#addDefaultDevDeps('tsx@4.23.13')
-      }
     }
 
     if (this.name !== '@langri-sha/tsconfig') {

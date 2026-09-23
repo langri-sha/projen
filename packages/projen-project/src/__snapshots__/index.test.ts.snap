@@ -231,6 +231,11 @@ node_modules/
         "type": "build",
         "version": "0.86.5",
       },
+      {
+        "name": "tsx",
+        "type": "build",
+        "version": "4.23.13",
+      },
     ],
   },
   ".projen/files.json": {
@@ -290,6 +295,7 @@ node_modules/
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "projen": "0.86.5",
+      "tsx": "4.23.13",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -1622,6 +1628,11 @@ node_modules/
         "type": "build",
         "version": "0.86.5",
       },
+      {
+        "name": "tsx",
+        "type": "build",
+        "version": "4.23.13",
+      },
     ],
   },
   ".projen/files.json": {
@@ -1686,6 +1697,7 @@ export default [...defaults, {"ignores":["**/.*","**/dist/","!.projenrc.ts"]}]",
       "@langri-sha/projen-project": "*",
       "eslint": "10.11.0",
       "projen": "0.86.5",
+      "tsx": "4.23.13",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -1869,6 +1881,11 @@ lint-staged
         "type": "build",
         "version": "0.86.5",
       },
+      {
+        "name": "tsx",
+        "type": "build",
+        "version": "4.23.13",
+      },
     ],
   },
   ".projen/files.json": {
@@ -1930,6 +1947,7 @@ lint-staged
       "@langri-sha/projen-project": "*",
       "husky": "9.1.7",
       "projen": "0.86.5",
+      "tsx": "4.23.13",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -2325,6 +2343,11 @@ pnpm-lock.yaml
         "type": "build",
         "version": "0.86.5",
       },
+      {
+        "name": "tsx",
+        "type": "build",
+        "version": "4.23.13",
+      },
     ],
   },
   ".projen/files.json": {
@@ -2387,6 +2410,7 @@ pnpm-lock.yaml
       "@langri-sha/projen-project": "*",
       "prettier": "3.8.3",
       "projen": "0.86.5",
+      "tsx": "4.23.13",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -3251,6 +3275,11 @@ node_modules/
         "version": "0.86.5",
       },
       {
+        "name": "tsx",
+        "type": "build",
+        "version": "4.23.13",
+      },
+      {
         "name": "typescript",
         "type": "build",
         "version": "5.9.3",
@@ -3333,6 +3362,7 @@ node_modules/
       "@swc-node/register": "1.12.1",
       "@swc/core": "1.15.47",
       "projen": "0.86.5",
+      "tsx": "4.23.13",
       "typescript": "5.9.3",
     },
     "license": "Apache-2.0",
@@ -3415,6 +3445,11 @@ node_modules/
         "type": "build",
         "version": "0.86.5",
       },
+      {
+        "name": "tsx",
+        "type": "build",
+        "version": "4.23.13",
+      },
     ],
   },
   ".projen/files.json": {
@@ -3496,6 +3531,7 @@ node_modules/
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "projen": "0.86.5",
+      "tsx": "4.23.13",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -3651,6 +3687,7 @@ exports[`with package > defaults 1`] = `
   "devDependencies": {
     "@langri-sha/projen-project": "*",
     "projen": "0.86.5",
+    "tsx": "4.23.13",
   },
   "license": "Apache-2.0",
   "main": "src/index.ts",
