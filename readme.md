@@ -15,8 +15,6 @@
 | [babel-preset](https://www.npmjs.com/package/@langri-sha/babel-preset)                         | Babel preset targeting modern runtimes, with TypeScript, React and Emotion               |
 | [babel-test](https://www.npmjs.com/package/@langri-sha/babel-test)                             | Helpers for inspecting and testing a Babel preset's resolved plugins                     |
 | [eslint-config](https://www.npmjs.com/package/@langri-sha/eslint-config)                       | Shared ESLint flat config (TypeScript, React, import ordering, JSDoc, Unicorn, Prettier) |
-| [jest-config](https://www.npmjs.com/package/@langri-sha/jest-config)                           | Basic, reusable Jest configuration                                                       |
-| [jest-test](https://www.npmjs.com/package/@langri-sha/jest-test)                               | Helpers commonly used for authoring Jest tests                                           |
 | [lint-staged](https://www.npmjs.com/package/@langri-sha/lint-staged)                           | `lint-staged` config running ESLint and Prettier on pre-commit, respecting ignored files |
 | [monorepo](https://www.npmjs.com/package/@langri-sha/monorepo)                                 | Resolves paths relative to the workspace root                                            |
 | [prettier](https://www.npmjs.com/package/@langri-sha/prettier)                                 | Opinionated, shared Prettier configuration                                               |

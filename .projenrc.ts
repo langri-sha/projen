@@ -285,47 +285,6 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/jest-config',
-    outdir: path.join('packages', 'jest-config'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      peerDeps: ['jest@^30.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/jest-test',
-    outdir: path.join('packages', 'jest-test'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['@jest/globals@30.5.2', 'nock@14.0.17', 'tempy@3.2.0'],
-      peerDeps: ['jest@^30.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
     name: '@langri-sha/lint-staged',
     outdir: path.join('packages', 'lint-staged'),
     npmIgnore: {},
