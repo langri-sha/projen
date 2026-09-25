@@ -886,46 +886,6 @@ importers:
         specifier: 1.8.0
         version: 1.8.0
 
-  packages/schemastore-to-typescript:
-    dependencies:
-      commander:
-        specifier: 15.0.0
-        version: 15.0.0
-      debug:
-        specifier: 4.4.3
-        version: 4.4.3(supports-color@8.1.1)
-      env-paths:
-        specifier: 4.0.0
-        version: 4.0.0
-      es-main:
-        specifier: 1.4.0
-        version: 1.4.0
-      got:
-        specifier: 16.0.0
-        version: 16.0.0
-      json-schema-to-typescript:
-        specifier: 16.0.0
-        version: 16.0.0
-      keyv:
-        specifier: 5.6.0
-        version: 5.6.0
-      keyv-file:
-        specifier: 5.3.5
-        version: 5.3.5
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
-    devDependencies:
-      '@langri-sha/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@langri-sha/vitest':
-        specifier: workspace:*
-        version: link:../vitest
-      '@types/debug':
-        specifier: 4.1.13
-        version: 4.1.13
-
   packages/tsconfig:
     dependencies:
       typescript:
