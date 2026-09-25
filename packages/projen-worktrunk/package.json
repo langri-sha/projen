@@ -24,7 +24,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "smol-toml": "1.8.0"
+    "smol-toml": "1.9.0"
   },
   "peerDependencies": {
     "projen": "^0.86.0"
