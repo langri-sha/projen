@@ -23,7 +23,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pyproject.d.ts && test -f dist/uv.d.ts"
   },
   "dependencies": {
-    "smol-toml": "1.8.0"
+    "smol-toml": "1.9.0"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
