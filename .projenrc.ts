@@ -97,7 +97,7 @@ const project = new Project({
   },
   pnpmWorkspace: {
     packages: ['packages/*'],
-    minimumReleaseAgeExclude: ['@langri-sha/*'],
+    minimumReleaseAgeExclude: ['@langri-sha/*', 'schemastore-to-typescript'],
     allowBuilds: {
       '@swc/core': true,
       esbuild: true,
@@ -111,7 +111,7 @@ const project = new Project({
     packageRules: [
       {
         description: 'Install our own packages without waiting them out',
-        matchPackageNames: ['@langri-sha/**'],
+        matchPackageNames: ['@langri-sha/**', 'schemastore-to-typescript'],
         minimumReleaseAge: null,
       },
       {

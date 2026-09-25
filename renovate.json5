@@ -39,7 +39,7 @@
     },
     {
       description: 'Install our own packages without waiting them out',
-      matchPackageNames: ['@langri-sha/**'],
+      matchPackageNames: ['@langri-sha/**', 'schemastore-to-typescript'],
       minimumReleaseAge: null,
     },
     {

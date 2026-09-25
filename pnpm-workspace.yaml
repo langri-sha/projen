@@ -9,3 +9,4 @@ packages:
   - packages/*
 minimumReleaseAgeExclude:
   - '@langri-sha/*'
+  - schemastore-to-typescript
