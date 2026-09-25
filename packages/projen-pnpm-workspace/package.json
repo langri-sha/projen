@@ -19,17 +19,16 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
+    "prepare": "schemastore-to-typescript --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pnpm-workspace.d.ts"
   },
   "dependencies": {
     "yaml": "2.9.1"
   },
   "devDependencies": {
-    "@langri-sha/schemastore-to-typescript": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "tsx": "4.23.13"
+    "schemastore-to-typescript": "0.2.13"
   },
   "peerDependencies": {
     "projen": "^0.86.0"

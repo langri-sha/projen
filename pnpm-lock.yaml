@@ -178,9 +178,6 @@ importers:
       '@langri-sha/projen-project':
         specifier: workspace:*
         version: link:packages/projen-project
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:packages/schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:packages/tsconfig
@@ -211,6 +208,9 @@ importers:
       projen:
         specifier: 0.86.5
         version: 0.86.5(constructs@10.8.1)
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
       tsx:
         specifier: 4.23.13
         version: 4.23.13
@@ -444,18 +444,15 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
     devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
-      tsx:
-        specifier: 4.23.13
-        version: 4.23.13
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
 
   packages/projen-codeowners:
     dependencies:
@@ -476,18 +473,15 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
     devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
-      tsx:
-        specifier: 4.23.13
-        version: 4.23.13
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
 
   packages/projen-editorconfig:
     dependencies:
@@ -640,18 +634,15 @@ importers:
         specifier: 2.9.1
         version: 2.9.1
     devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
-      tsx:
-        specifier: 4.23.13
-        version: 4.23.13
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
 
   packages/projen-prettier:
     dependencies:
@@ -812,18 +803,15 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
     devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
-      tsx:
-        specifier: 4.23.13
-        version: 4.23.13
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
 
   packages/projen-swcrc:
     dependencies:
@@ -834,18 +822,15 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
     devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
-      tsx:
-        specifier: 4.23.13
-        version: 4.23.13
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
 
   packages/projen-typescript-config:
     dependencies:
@@ -875,18 +860,15 @@ importers:
         specifier: 1.8.0
         version: 1.8.0
     devDependencies:
-      '@langri-sha/schemastore-to-typescript':
-        specifier: workspace:*
-        version: link:../schemastore-to-typescript
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
       '@langri-sha/vitest':
         specifier: workspace:*
         version: link:../vitest
-      tsx:
-        specifier: 4.23.13
-        version: 4.23.13
+      schemastore-to-typescript:
+        specifier: 0.2.13
+        version: 0.2.13(supports-color@8.1.1)
 
   packages/projen-worktrunk:
     dependencies:
@@ -5562,11 +5544,6 @@ packages:
   prettier-plugin-ini@1.3.0:
     resolution: {integrity: sha512-kX1KnPwITCTtYV0MTBZQKuFLxcNcbHOS9r7Ta1jHLLvRvZRTzHHqX0MEZMrCkedjLuxpQSgzr4aC5IRd+R3FPw==}
 
-  prettier@3.9.6:
-    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
-    engines: {node: '>=14'}
-    hasBin: true
-
   prettier@3.9.8:
     resolution: {integrity: sha512-WRFq3Wn3WId7LLROfMLdH7xaFr2jR62wU8nLO6rQUOLOxNZUviyJQs1M0iIhLexSFy+L+w0ch66wtoO2jRjG0A==}
     engines: {node: '>=14'}
@@ -5798,6 +5775,10 @@ packages:
   schema-utils@4.5.0:
     resolution: {integrity: sha512-zJlMCZ0cAR5p/Y4oVpRoqioDMJcGxaXRrQ/4rP4WyR84vc5z/DolXdbvXeDpTwbtocDFr2rhPqHPErDCUtz2kA==}
     engines: {node: '>= 10.13.0'}
+
+  schemastore-to-typescript@0.2.13:
+    resolution: {integrity: sha512-Yop3yjLbUEnl8IbP/LkoWSt5u9nopW7jEG2assTG9ALMR7ZAeF8Mc0z7/BmthopH8TQ8GxQQXJ2ACCZilr9GBg==}
+    hasBin: true
 
   selfsigned@5.5.0:
     resolution: {integrity: sha512-ftnu3TW4+3eBfLRFnDEkzGxSF/10BJBkaLJuBHZX0kiPS7bRdlpZGu6YGt4KngMkdTwJE6MbjavFpqHvqVt+Ew==}
@@ -11804,6 +11785,19 @@ snapshots:
       ajv: 8.20.0
       ajv-formats: 3.0.1(ajv@8.20.0)
       ajv-keywords: 5.1.0(ajv@8.20.0)
+
+  schemastore-to-typescript@0.2.13(supports-color@8.1.1):
+    dependencies:
+      commander: 15.0.0
+      debug: 4.4.3(supports-color@8.1.1)
+      env-paths: 4.0.0
+      es-main: 1.4.0
+      got: 16.0.0
+      json-schema-to-typescript: 16.0.0
+      keyv: 5.6.0
+      keyv-file: 5.3.5
+    transitivePeerDependencies:
+      - supports-color
 
   selfsigned@5.5.0:
     dependencies:

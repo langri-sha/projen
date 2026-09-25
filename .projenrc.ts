@@ -40,9 +40,9 @@ const project = new Project({
       '@langri-sha/lint-staged@workspace:*',
       '@langri-sha/prettier@workspace:*',
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/schemastore-to-typescript@workspace:*',
       '@langri-sha/tsconfig@workspace:*',
       '@types/node@24.13.6',
+      'schemastore-to-typescript@0.2.13',
       'vitest@5.0.1',
     ],
   },
@@ -432,10 +432,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
-      devDeps: [
-        '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
-      ],
+      devDeps: ['schemastore-to-typescript@0.2.13'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -447,7 +444,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'Dagger module' src/dagger.ts",
+      "schemastore-to-typescript --no-cache 'Dagger module' src/dagger.ts",
     )
 
     project.package?.setScript(
@@ -524,10 +521,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
-      devDeps: [
-        '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
-      ],
+      devDeps: ['schemastore-to-typescript@0.2.13'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -541,8 +535,8 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'cargo manifest' src/cargo.ts",
-        'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache rustfmt src/rustfmt.ts',
+        "schemastore-to-typescript --no-cache 'cargo manifest' src/cargo.ts",
+        'schemastore-to-typescript --no-cache rustfmt src/rustfmt.ts',
       ].join(' && '),
     )
 
@@ -744,10 +738,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['yaml@2.9.1'],
-      devDeps: [
-        '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
-      ],
+      devDeps: ['schemastore-to-typescript@0.2.13'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -759,7 +750,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      "tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
+      "schemastore-to-typescript --no-cache 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     )
 
     project.package?.setScript(
@@ -925,10 +916,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      devDeps: [
-        '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
-      ],
+      devDeps: ['schemastore-to-typescript@0.2.13'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -940,7 +928,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache renovate src/renovate.ts',
+      'schemastore-to-typescript --no-cache renovate src/renovate.ts',
     )
 
     project.package?.setScript(
@@ -963,10 +951,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      devDeps: [
-        '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
-      ],
+      devDeps: ['schemastore-to-typescript@0.2.13'],
       peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
         '@swc/core': {
@@ -983,7 +968,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache swcrc src/swcrc.ts',
+      'schemastore-to-typescript --no-cache swcrc src/swcrc.ts',
     )
 
     project.package?.setScript(
@@ -1030,10 +1015,7 @@ project.addSubproject(
       copyrightYear: '2026',
       type: 'module',
       deps: ['smol-toml@1.8.0'],
-      devDeps: [
-        '@langri-sha/schemastore-to-typescript@workspace:*',
-        'tsx@4.23.13',
-      ],
+      devDeps: ['schemastore-to-typescript@0.2.13'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -1047,8 +1029,8 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache PyProject src/pyproject.ts',
-        'tsx ./node_modules/@langri-sha/schemastore-to-typescript/src/cli.ts --no-cache uv src/uv.ts',
+        'schemastore-to-typescript --no-cache PyProject src/pyproject.ts',
+        'schemastore-to-typescript --no-cache uv src/uv.ts',
       ].join(' && '),
     )
 

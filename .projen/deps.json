@@ -21,11 +21,6 @@
       "type": "build"
     },
     {
-      "name": "@langri-sha/schemastore-to-typescript",
-      "version": "workspace:*",
-      "type": "build"
-    },
-    {
       "name": "@langri-sha/tsconfig",
       "version": "workspace:*",
       "type": "build"
@@ -73,6 +68,11 @@
     {
       "name": "projen",
       "version": "0.86.5",
+      "type": "build"
+    },
+    {
+      "name": "schemastore-to-typescript",
+      "version": "0.2.13",
       "type": "build"
     },
     {
