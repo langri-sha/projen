@@ -98,9 +98,6 @@
       "path": "packages/projen-worktrunk"
     },
     {
-      "path": "packages/schemastore-to-typescript"
-    },
-    {
       "path": "packages/vitest"
     },
     {

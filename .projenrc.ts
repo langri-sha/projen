@@ -1065,49 +1065,6 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/schemastore-to-typescript',
-    outdir: path.join('packages', 'schemastore-to-typescript'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      bin: {
-        'schemastore-to-typescript': 'src/cli.ts',
-      },
-      deps: [
-        'commander@15.0.0',
-        'debug@4.4.3',
-        'env-paths@4.0.0',
-        'es-main@1.4.0',
-        'got@16.0.0',
-        'json-schema-to-typescript@16.0.0',
-        'keyv-file@5.3.5',
-        'keyv@5.6.0',
-      ],
-      devDeps: ['@types/debug@4.1.13'],
-      peerDeps: [...projenPeer.peerDeps],
-    },
-  },
-  subproject,
-  test,
-  publish,
-  (project) => {
-    project
-      .tryFindObjectFile('package.json')
-      ?.addOverride(
-        'publishConfig.bin.schemastore-to-typescript',
-        'dist/cli.js',
-      )
-  },
-)
-
-project.addSubproject(
-  {
     name: '@langri-sha/tsconfig',
     outdir: path.join('packages', 'tsconfig'),
     npmIgnore: {},
