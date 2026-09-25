@@ -2,6 +2,51 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Fri, 25 Sep 2026 19:50:27 GMT",
+      "version": "0.31.1",
+      "tag": "@langri-sha/projen-project_v0.31.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-cargo to v0.1.4",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-dagger to v0.2.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-pnpm-workspace to v0.4.9",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-renovate to v0.4.21",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-swcrc to v0.1.21",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump @langri-sha/projen-uv to v0.1.1",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Sep 2026 08:13:02 GMT",
       "version": "0.31.0",
       "tag": "@langri-sha/projen-project_v0.31.0",

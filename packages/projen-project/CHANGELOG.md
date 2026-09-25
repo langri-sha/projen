@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 25 Sep 2026 19:50:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.31.1
+
+Fri, 25 Sep 2026 19:50:27 GMT
+
+### Patches
+
+- Bump @langri-sha/projen-cargo to v0.1.4
+- Bump @langri-sha/projen-dagger to v0.2.2
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.9
+- Bump @langri-sha/projen-renovate to v0.4.21
+- Bump @langri-sha/projen-swcrc to v0.1.21
+- Bump @langri-sha/projen-uv to v0.1.1
 
 ## 0.31.0
 

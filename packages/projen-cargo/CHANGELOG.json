@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-cargo",
   "entries": [
     {
+      "date": "Fri, 25 Sep 2026 19:50:27 GMT",
+      "version": "0.1.4",
+      "tag": "@langri-sha/projen-cargo_v0.1.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-cargo",
+            "commit": "03aa459996fda63ef761623a22e70198ebb684e2",
+            "comment": "Generate typings with schemastore-to-typescript from npm"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 21 Sep 2026 10:53:40 GMT",
       "version": "0.1.3",
       "tag": "@langri-sha/projen-cargo_v0.1.3",
