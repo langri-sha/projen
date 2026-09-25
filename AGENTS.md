@@ -9,15 +9,22 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 21 component packages, each Beachball-versioned
-packages/<aux>/         # 12 support packages, likewise Beachball-versioned
+packages/<aux>/         # 11 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
 The support packages — `@langri-sha/babel-preset`, `babel-test`,
 `eslint-config`, `jest-config`, `jest-test`, `lint-staged`, `monorepo`,
-`prettier`, `schemastore-to-typescript`, `tsconfig`, `vitest` and `webpack` —
-live here and publish from this repo. Everything the workspace needs is wired
-`workspace:*`; no `@langri-sha/*` dependency is consumed from npm.
+`prettier`, `tsconfig`, `vitest` and `webpack` — live here and publish from this
+repo. Everything the workspace needs is wired `workspace:*`; no `@langri-sha/*`
+dependency is consumed from npm.
+
+`schemastore-to-typescript` moved out to
+[langri-sha/schemastore-to-typescript](https://github.com/langri-sha/schemastore-to-typescript)
+and publishes unscoped from there. The root and the components whose `prepare`
+scripts compile SchemaStore typings take it from npm and call its bin. It sits
+beside `@langri-sha/*` in `minimumReleaseAgeExclude` and in the Renovate rule
+that skips the release-age wait, so a fresh release installs at once.
 
 `langri-sha/langri-sha.com` still owns `fonts`, which its site builds on — a
 private, unpublished package that subsets typefaces for that site alone. Nothing
