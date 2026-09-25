@@ -11561,8 +11561,6 @@ snapshots:
 
   prettier@3.9.8: {}
 
-  prettier@3.9.8: {}
-
   pretty-error@4.0.0:
     dependencies:
       lodash: 4.18.1
