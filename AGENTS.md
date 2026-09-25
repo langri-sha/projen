@@ -9,15 +9,14 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 21 component packages, each Beachball-versioned
-packages/<aux>/         # 11 support packages, likewise Beachball-versioned
+packages/<aux>/         # 9 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
 The support packages — `@langri-sha/babel-preset`, `babel-test`,
-`eslint-config`, `jest-config`, `jest-test`, `lint-staged`, `monorepo`,
-`prettier`, `tsconfig`, `vitest` and `webpack` — live here and publish from this
-repo. Everything the workspace needs is wired `workspace:*`; no `@langri-sha/*`
-dependency is consumed from npm.
+`eslint-config`, `lint-staged`, `monorepo`, `prettier`, `tsconfig`, `vitest` and
+`webpack` — live here and publish from this repo. Everything the workspace needs
+is wired `workspace:*`; no `@langri-sha/*` dependency is consumed from npm.
 
 `schemastore-to-typescript` moved out to
 [langri-sha/schemastore-to-typescript](https://github.com/langri-sha/schemastore-to-typescript)
@@ -28,10 +27,11 @@ that skips the release-age wait, so a fresh release installs at once.
 
 `langri-sha/langri-sha.com` still owns `fonts`, which its site builds on — a
 private, unpublished package that subsets typefaces for that site alone. Nothing
-here depends on it. The `@langri-sha/babel-preset` and `@langri-sha/jest-config`
-strings you'll find in `projen-project` and `projen-jest-config` are still not
-dependency edges either, even now that both packages live here: they are default
-values written into the _synthesized_ configs of consuming projects.
+here depends on it. The `@langri-sha/babel-preset` string you'll find in
+`projen-project` is still not a dependency edge either, even now that the
+package lives here: it is a default value written into the _synthesized_ configs
+of consuming projects. `projen-jest-config` names `@langri-sha/jest-config` only
+as an example.
 
 ## Common tasks
 
@@ -122,3 +122,8 @@ has the same shape — this predates the migration, and the only consumer,
 `a54efb69`, so those no longer double-publish. `webpack` is still there, still
 wired `workspace:*` into its `apps/web`. Until that decommission lands, only one
 repository may release it, or the two collide on the same version.
+
+`jest-config` and `jest-test` were deprecated on npm and dropped from here on
+2026-09-26: nothing used them, and the fleet tests on Vitest. Their sources stay
+in this repository's history, under `packages/jest`, `packages/jest-config` and
+`packages/jest-test`.
