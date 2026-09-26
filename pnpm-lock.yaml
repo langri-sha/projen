@@ -380,8 +380,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.1
-        version: 7.1.1
+        specifier: 7.1.2
+        version: 7.1.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -476,8 +476,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.1
-        version: 7.1.1
+        specifier: 7.1.2
+        version: 7.1.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -517,8 +517,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.1
-        version: 7.1.1
+        specifier: 7.1.2
+        version: 7.1.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -555,8 +555,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.1
-        version: 7.1.1
+        specifier: 7.1.2
+        version: 7.1.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -621,8 +621,8 @@ importers:
         specifier: ^0.86.0
         version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
-        specifier: 7.1.1
-        version: 7.1.1
+        specifier: 7.1.2
+        version: 7.1.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: workspace:*
@@ -5730,6 +5730,10 @@ packages:
 
   serialize-javascript@7.1.1:
     resolution: {integrity: sha512-k3CMsaIvvdSwm8oLB4MXSl0wH2/cwlH7xGcnRd2DaeRmBkbzYmyT8j0tsX60DwD1eRwHTpNpH8ljKu9oUT1MeQ==}
+    engines: {node: '>=20.0.0'}
+
+  serialize-javascript@7.1.2:
+    resolution: {integrity: sha512-GL2BWwVa6JydKO6l/ljVgjAZF4QJ3S7dWDWi53s5GZT8PJzD2fNxi67HANQGKAqPrwEpL5ba7gUBGi0Ls/sEoQ==}
     engines: {node: '>=20.0.0'}
 
   serve-index@1.9.2:
@@ -11743,6 +11747,8 @@ snapshots:
       - supports-color
 
   serialize-javascript@7.1.1: {}
+
+  serialize-javascript@7.1.2: {}
 
   serve-index@1.9.2(supports-color@8.1.1):
     dependencies:
