@@ -426,7 +426,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['serialize-javascript@7.1.1'],
+      deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['@babel/core@^8.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -540,7 +540,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['serialize-javascript@7.1.1'],
+      deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['eslint@^10.4.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -595,7 +595,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['serialize-javascript@7.1.1'],
+      deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['jest@^30.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -646,7 +646,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['serialize-javascript@7.1.1'],
+      deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['lint-staged@^17.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -732,7 +732,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      deps: ['serialize-javascript@7.1.1'],
+      deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.8'],
       peerDeps: ['prettier@^3.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
