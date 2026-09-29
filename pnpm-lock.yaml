@@ -209,8 +209,8 @@ importers:
         specifier: 0.86.5
         version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
       tsx:
         specifier: 4.23.13
         version: 4.23.13
@@ -422,8 +422,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
 
   packages/projen-codeowners:
     dependencies:
@@ -451,8 +451,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
 
   packages/projen-editorconfig:
     dependencies:
@@ -612,8 +612,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
 
   packages/projen-prettier:
     dependencies:
@@ -781,8 +781,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
 
   packages/projen-swcrc:
     dependencies:
@@ -800,8 +800,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
 
   packages/projen-typescript-config:
     dependencies:
@@ -838,8 +838,8 @@ importers:
         specifier: workspace:*
         version: link:../vitest
       schemastore-to-typescript:
-        specifier: 0.2.13
-        version: 0.2.13(supports-color@8.1.1)
+        specifier: 1.0.0
+        version: 1.0.0(supports-color@8.1.1)
 
   packages/projen-worktrunk:
     dependencies:
@@ -5729,8 +5729,8 @@ packages:
     resolution: {integrity: sha512-zJlMCZ0cAR5p/Y4oVpRoqioDMJcGxaXRrQ/4rP4WyR84vc5z/DolXdbvXeDpTwbtocDFr2rhPqHPErDCUtz2kA==}
     engines: {node: '>= 10.13.0'}
 
-  schemastore-to-typescript@0.2.13:
-    resolution: {integrity: sha512-Yop3yjLbUEnl8IbP/LkoWSt5u9nopW7jEG2assTG9ALMR7ZAeF8Mc0z7/BmthopH8TQ8GxQQXJ2ACCZilr9GBg==}
+  schemastore-to-typescript@1.0.0:
+    resolution: {integrity: sha512-fmu66KXVdHun+r5cRjvn5ZqXts+zeSxFnWvIJons6ez7pi1t/htKxplTmJUYFdb/ExYJQQTf/ocwm/T4J/GyuA==}
     hasBin: true
 
   selfsigned@5.5.0:
@@ -11865,7 +11865,7 @@ snapshots:
       ajv-formats: 3.0.1(ajv@8.20.0)
       ajv-keywords: 5.1.0(ajv@8.20.0)
 
-  schemastore-to-typescript@0.2.13(supports-color@8.1.1):
+  schemastore-to-typescript@1.0.0(supports-color@8.1.1):
     dependencies:
       commander: 15.0.0
       debug: 4.4.3(supports-color@8.1.1)
