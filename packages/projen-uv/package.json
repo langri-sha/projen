@@ -28,7 +28,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "workspace:*",
     "@langri-sha/vitest": "workspace:*",
-    "schemastore-to-typescript": "0.2.13"
+    "schemastore-to-typescript": "1.0.0"
   },
   "peerDependencies": {
     "projen": "^0.86.0"
