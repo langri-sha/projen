@@ -718,7 +718,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('lint-staged@17.5.1')
+      this.#addDefaultDevDeps('lint-staged@17.6.0')
     }
 
     this.lintStaged = new LintStaged(this, deepMerge(defaults, lintStaged))
