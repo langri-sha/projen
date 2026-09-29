@@ -600,7 +600,7 @@ node_modules/
       {
         "name": "lint-staged",
         "type": "build",
-        "version": "17.5.1",
+        "version": "17.6.0",
       },
       {
         "name": "projen",
@@ -687,7 +687,7 @@ node_modules/
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "lint-staged": "17.5.1",
+      "lint-staged": "17.6.0",
       "projen": "0.86.5",
       "tsx": "4.23.13",
       "typescript": "5.9.3",
