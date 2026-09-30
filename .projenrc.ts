@@ -349,7 +349,7 @@ project.addSubproject(
       type: 'module',
       entrypoint: 'src/index.js',
       deps: ['prettier-plugin-ini@1.3.0'],
-      devDeps: ['prettier@3.9.8'],
+      devDeps: ['prettier@3.9.9'],
       peerDeps: ['prettier@^3.0.0'],
     },
   },
@@ -624,7 +624,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['debug@4.4.3', 'execa@10.0.1', 'minimatch@10.2.6'],
-      devDeps: ['@types/debug@4.1.13', 'prettier@3.9.8', 'projen@0.86.5'],
+      devDeps: ['@types/debug@4.1.13', 'prettier@3.9.9', 'projen@0.86.5'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -733,7 +733,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['serialize-javascript@7.1.2'],
-      devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.8'],
+      devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.9'],
       peerDeps: ['prettier@^3.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
         prettier: {
