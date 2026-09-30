@@ -110,6 +110,12 @@ const project = new Project({
   renovate: {
     packageRules: [
       {
+        description: 'Update our own packages together',
+        groupName: 'langri-sha projen toolchain',
+        groupSlug: 'langri-sha-projen',
+        matchPackageNames: ['@langri-sha/**', 'schemastore-to-typescript'],
+      },
+      {
         description: 'Install our own packages without waiting them out',
         matchPackageNames: ['@langri-sha/**', 'schemastore-to-typescript'],
         minimumReleaseAge: null,
