@@ -1,8 +1,32 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Fri, 25 Sep 2026 19:50:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.31.2
+
+Wed, 30 Sep 2026 11:26:36 GMT
+
+### Patches
+
+- Update dependency lint-staged to v17.6.0
+- Supply prettier 3.9.9, tsx 4.23.15 and @swc/core 1.16.2 (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.13
+- Bump @langri-sha/projen-cargo to v0.1.5
+- Bump @langri-sha/projen-dagger to v0.2.3
+- Bump @langri-sha/projen-eslint to v0.3.14
+- Bump @langri-sha/projen-husky to v0.3.20
+- Bump @langri-sha/projen-jest-config to v0.4.15
+- Bump @langri-sha/projen-lint-staged to v0.3.15
+- Bump @langri-sha/projen-lint-synthesized to v0.5.14
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.10
+- Bump @langri-sha/projen-prettier to v0.4.15
+- Bump @langri-sha/projen-renovate to v0.4.22
+- Bump @langri-sha/projen-swcrc to v0.1.22
+- Bump @langri-sha/projen-typescript-config to v0.5.18
+- Bump @langri-sha/projen-uv to v0.1.2
+- Bump @langri-sha/projen-worktrunk to v0.1.1
 
 ## 0.31.1
 

@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/eslint-config
 
-<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.9.16
+
+Wed, 30 Sep 2026 11:26:36 GMT
+
+### Patches
+
+- Update dependency typescript-eslint to v8.70.1
 
 ## 0.9.15
 

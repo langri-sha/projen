@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-lint-synthesized
 
-<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.14
+
+Wed, 30 Sep 2026 11:26:36 GMT
+
+### Patches
+
+- Update dependency prettier to v3.9.9 (filip.dupanovic@gmail.com)
 
 ## 0.5.13
 

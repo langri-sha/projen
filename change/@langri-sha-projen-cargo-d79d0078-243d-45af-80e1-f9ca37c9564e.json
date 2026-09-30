@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency schemastore-to-typescript to v1.0.1",
-  "packageName": "@langri-sha/projen-cargo",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

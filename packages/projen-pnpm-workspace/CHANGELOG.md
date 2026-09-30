@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-pnpm-workspace
 
-<!-- This log was last generated on Fri, 25 Sep 2026 19:50:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.10
+
+Wed, 30 Sep 2026 11:26:36 GMT
+
+### Patches
+
+- Update dependency schemastore-to-typescript to v1.0.1
+- Update dependency schemastore-to-typescript to v1
 
 ## 0.4.9
 

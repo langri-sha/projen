@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-dagger",
   "entries": [
     {
+      "date": "Wed, 30 Sep 2026 11:26:36 GMT",
+      "version": "0.2.3",
+      "tag": "@langri-sha/projen-dagger_v0.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency schemastore-to-typescript to v1.0.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-dagger",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency schemastore-to-typescript to v1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 25 Sep 2026 19:50:27 GMT",
       "version": "0.2.2",
       "tag": "@langri-sha/projen-dagger_v0.2.2",

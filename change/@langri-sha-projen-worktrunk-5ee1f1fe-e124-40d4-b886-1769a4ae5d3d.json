@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency smol-toml to v1.9.0",
-  "packageName": "@langri-sha/projen-worktrunk",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

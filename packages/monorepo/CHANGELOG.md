@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/monorepo
 
-<!-- This log was last generated on Wed, 23 Sep 2026 08:13:02 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.18
+
+Wed, 30 Sep 2026 11:26:36 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.19.0
 
 ## 0.5.17
 

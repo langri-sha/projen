@@ -2,6 +2,27 @@
   "name": "@langri-sha/webpack",
   "entries": [
     {
+      "date": "Wed, 30 Sep 2026 11:26:36 GMT",
+      "version": "0.6.5",
+      "tag": "@langri-sha/webpack_v0.6.5",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/webpack",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency @types/node to v24.19.0"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/webpack",
+            "comment": "Bump @langri-sha/babel-preset to v0.6.7",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Sep 2026 08:13:02 GMT",
       "version": "0.6.4",
       "tag": "@langri-sha/webpack_v0.6.4",

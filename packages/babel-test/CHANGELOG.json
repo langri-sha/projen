@@ -2,6 +2,27 @@
   "name": "@langri-sha/babel-test",
   "entries": [
     {
+      "date": "Wed, 30 Sep 2026 11:26:36 GMT",
+      "version": "0.7.6",
+      "tag": "@langri-sha/babel-test_v0.7.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/babel-test",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency @types/node to v24.19.0"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/babel-test",
+            "comment": "Bump @langri-sha/monorepo to v0.5.18",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Sep 2026 08:13:02 GMT",
       "version": "0.7.5",
       "tag": "@langri-sha/babel-test_v0.7.5",

@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-prettier",
   "entries": [
     {
+      "date": "Wed, 30 Sep 2026 11:26:36 GMT",
+      "version": "0.4.15",
+      "tag": "@langri-sha/projen-prettier_v0.4.15",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-prettier",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency prettier to v3.9.9"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-prettier",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency serialize-javascript to v7.1.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Sep 2026 08:13:02 GMT",
       "version": "0.4.14",
       "tag": "@langri-sha/projen-prettier_v0.4.14",

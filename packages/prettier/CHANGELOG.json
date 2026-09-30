@@ -2,6 +2,21 @@
   "name": "@langri-sha/prettier",
   "entries": [
     {
+      "date": "Wed, 30 Sep 2026 11:26:36 GMT",
+      "version": "0.4.8",
+      "tag": "@langri-sha/prettier_v0.4.8",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/prettier",
+            "commit": "cb90692375e0bfa0c2ae039db5f33f3c143b21d9",
+            "comment": "Update dependency prettier to v3.9.9"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Sep 2026 08:13:02 GMT",
       "version": "0.4.7",
       "tag": "@langri-sha/prettier_v0.4.7",

@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-jest-config
 
-<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.15
+
+Wed, 30 Sep 2026 11:26:36 GMT
+
+### Patches
+
+- Update dependency serialize-javascript to v7.1.2
 
 ## 0.4.14
 
