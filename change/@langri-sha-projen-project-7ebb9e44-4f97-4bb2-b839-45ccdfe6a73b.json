@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Supply prettier 3.9.9, tsx 4.23.15 and lint-staged 17.6.0",
+  "comment": "Supply prettier 3.9.9, tsx 4.23.15 and @swc/core 1.16.2",
   "packageName": "@langri-sha/projen-project",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "patch"
