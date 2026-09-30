@@ -835,7 +835,7 @@ export class Project extends BaseProject {
       ],
     }
 
-    this.#addDefaultDevDeps('prettier@3.9.8')
+    this.#addDefaultDevDeps('prettier@3.9.9')
     this.prettier = new Prettier(this, deepMerge(defaults, prettier))
 
     if (this.projenrc?.filePath) {
@@ -858,7 +858,7 @@ export class Project extends BaseProject {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
 
       if (this.package) {
-        this.#addDefaultDevDeps('tsx@4.23.13')
+        this.#addDefaultDevDeps('tsx@4.23.15')
       }
     }
   }
@@ -1126,7 +1126,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('@swc/core@1.15.47', '@swc-node/register@1.12.1')
+      this.#addDefaultDevDeps('@swc/core@1.16.2', '@swc-node/register@1.12.1')
     }
 
     const defaults: SWCConfigOptions = {
