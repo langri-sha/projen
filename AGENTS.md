@@ -105,10 +105,9 @@ source carried an unreleased **minor** for `eslint-config` (the eslint-10
 upgrade), so discarding those files would have released it as a patch and
 silently dropped a dozen changelog entries describing real work.
 
-That migration also retired the eslint `^9` pin: the workspace `eslint-config`
-bundles eslint-10 plugins, so the root now tracks eslint 10, matching the source
-repo. Note `eslint-plugin-react@7.37.5` peers `<= ^9.7` and warns under eslint
-10 — that warning predates the migration and is present upstream too.
+That migration also retired the eslint `^9` pin: `eslint-config` bundles
+eslint-10 plugins, so the root tracks eslint 10. `eslint-plugin-react@7.37.5`
+peers `<= ^9.7` and warns under eslint 10; the warning predates the migration.
 
 `babel-preset`, `babel-test`, `jest-config` and `jest-test` followed on
 2026-08-14 by the same recipe, from `langri-sha.com@5a982677`. That filter also
@@ -120,29 +119,21 @@ detection is a heuristic and the imported commits interleave with this repo's
 own once a migration branch lands. Thirteen pending change files came across
 with them, all patches. `babel-test` consumed `@langri-sha/monorepo` from npm at
 `^0.5.7` — the last edge that forced the two repositories to release in order —
-and is wired `workspace:*` now.
+and was wired `workspace:*` here until both moved out.
 
 `webpack` followed on 2026-08-15 from `langri-sha.com@a54efb69`, by the same
 recipe: 161 commits reaching back to 2020-10-24, every one of them under
 `packages/webpack`, so there was no retired path to keep alongside it. Four
 pending change files came with it — three patches and a `none`, that last one
 recording the source switching `@langri-sha/babel-preset` to npm once
-`babel-preset` moved here. Both of webpack's `@langri-sha` dependencies,
-`babel-preset` and `tsconfig`, are wired `workspace:*` again. Its `@types/node`
-dropped from 26 to 24 to match the rest of the workspace, which Renovate caps at
-the major the runtime supports.
+`babel-preset` moved here. Its `@types/node` dropped from 26 to 24 to match the
+rest of the workspace, which Renovate caps at the major the runtime supports.
+While it lived here, `@langri-sha/webpack` published ESM from `dist/` without
+declaring `"type"`; langri-sha/webpack fixed that in 0.7.0.
 
-`@langri-sha/webpack` publishes ESM from `dist/` while its `package.json`
-declares no `"type"`, so Node reads the published entrypoint as CommonJS and
-`__dirname` in `resolveLoader` has no ESM equivalent. The 0.6.0 tarball on npm
-has the same shape — this predates the migration, and the only consumer,
-`langri-sha.com`'s `apps/web`, imports the TypeScript source through
-`workspace:*` and never exercises `dist/`.
-
-`langri-sha.com` retired its copies of the Babel and Jest packages in
-`a54efb69`, so those no longer double-publish. `webpack` is still there, still
-wired `workspace:*` into its `apps/web`. Until that decommission lands, only one
-repository may release it, or the two collide on the same version.
+`langri-sha.com` retired its copies of the Babel and Jest packages in `a54efb69`
+and of `webpack` in `11352708`, both on 2026-08-15, so none of them
+double-publishes.
 
 `jest-config` and `jest-test` were deprecated on npm and dropped from here on
 2026-09-26: nothing used them, and the fleet tests on Vitest. Their sources stay
