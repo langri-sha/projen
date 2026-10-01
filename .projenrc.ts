@@ -40,7 +40,7 @@ const project = new Project({
       '@langri-sha/lint-staged@0.9.8',
       '@langri-sha/prettier@0.4.9',
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/tsconfig@1.0.1',
+      '@langri-sha/tsconfig@1.0.2',
       '@types/node@24.19.0',
       'schemastore-to-typescript@1.0.1',
       'vitest@5.0.2',
@@ -156,12 +156,12 @@ const subproject = (project: Project) => {
     ),
   })
 
-  project.package?.addDevDeps('@langri-sha/tsconfig@1.0.1')
+  project.package?.addDevDeps('@langri-sha/tsconfig@1.0.2')
 }
 
 const test = (project: Project) => {
   project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/vitest@0.2.0')
+  project.package?.addDevDeps('@langri-sha/vitest@0.2.1')
 }
 
 const publish = (project: Project) => {

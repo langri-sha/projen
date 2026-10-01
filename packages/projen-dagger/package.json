@@ -23,8 +23,8 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger.d.ts"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.0.1",
-    "@langri-sha/vitest": "0.2.0",
+    "@langri-sha/tsconfig": "1.0.2",
+    "@langri-sha/vitest": "0.2.1",
     "schemastore-to-typescript": "1.0.1"
   },
   "peerDependencies": {
