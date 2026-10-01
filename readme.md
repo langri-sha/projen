@@ -32,6 +32,7 @@
 | [projen-swcrc](https://www.npmjs.com/package/@langri-sha/projen-swcrc)                         | `.swcrc` generator                                  |
 | [projen-typescript-config](https://www.npmjs.com/package/@langri-sha/projen-typescript-config) | `tsconfig.json` generator                           |
 | [projen-uv](https://www.npmjs.com/package/@langri-sha/projen-uv)                               | uv workspace and package generator                  |
+| [projen-worktrunk](https://www.npmjs.com/package/@langri-sha/projen-worktrunk)                 | Worktrunk `.config/wt.toml` generator               |
 
 ## Development
 
