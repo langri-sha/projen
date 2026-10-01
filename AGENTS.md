@@ -9,13 +9,11 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 21 component packages, each Beachball-versioned
-packages/<aux>/         # 2 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
-The support packages — `@langri-sha/tsconfig` and `vitest` — live here and
-publish from this repo until #287 moves each to a repository of its own.
-Everything the workspace needs from them is wired `workspace:*`.
+`packages/` holds only projen components: #287 moved the support packages that
+used to publish from here to repositories of their own.
 
 `schemastore-to-typescript` moved out to
 [langri-sha/schemastore-to-typescript](https://github.com/langri-sha/schemastore-to-typescript)
@@ -39,13 +37,22 @@ a private package. `monorepo` went standalone as
 three configs from npm, pinned, and Renovate moves them with the rest of
 `@langri-sha/*`.
 
+`tsconfig` and `vitest` moved out to
+[langri-sha/tsconfig](https://github.com/langri-sha/tsconfig) and
+[langri-sha/vitest](https://github.com/langri-sha/vitest). The root takes
+`tsconfig` from npm and every package takes both, pinned: the `subproject` and
+`test` helpers in `.projenrc.ts` add them with `addDevDeps`, which Renovate's
+projenrc customManager reads, so they move with the rest of `@langri-sha/*` too.
+
 `langri-sha/langri-sha.com` still owns `fonts`, which its site builds on — a
 private, unpublished package that subsets typefaces for that site alone. Nothing
 here depends on it. The `@langri-sha/babel-preset`, `eslint-config`,
 `lint-staged` and `prettier` strings you'll find in `projen-project` are not
 dependency edges either: they are default values written into the _synthesized_
-configs of consuming projects. `projen-jest-config` names
-`@langri-sha/jest-config` only as an example.
+configs of consuming projects. The preset's `@langri-sha/tsconfig` defaults are
+the same kind of value, and the `this.name !== '@langri-sha/tsconfig'` guards
+beside them serve langri-sha/tsconfig, which synthesizes itself with this
+preset. `projen-jest-config` names `@langri-sha/jest-config` only as an example.
 
 ## Common tasks
 
@@ -151,3 +158,7 @@ repository's history too, under `packages/babel-preset`, `packages/babel-test`,
 (#291, #294, #296, #299), each to a repository that carries its history. Their
 sources stay in this repository's history too, under `packages/eslint-config`,
 `packages/lint-staged`, `packages/prettier` and `packages/webpack`.
+
+`tsconfig` and `vitest` moved out on 2026-10-01 (#297, #298), each to a
+repository that carries its history. Their sources stay in this repository's
+history too, under `packages/tsconfig` and `packages/vitest`.
