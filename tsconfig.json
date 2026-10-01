@@ -11,15 +11,6 @@
   ],
   "references": [
     {
-      "path": "packages/eslint-config"
-    },
-    {
-      "path": "packages/lint-staged"
-    },
-    {
-      "path": "packages/prettier"
-    },
-    {
       "path": "packages/projen-babel"
     },
     {
@@ -84,9 +75,6 @@
     },
     {
       "path": "packages/vitest"
-    },
-    {
-      "path": "packages/webpack"
     }
   ]
 }

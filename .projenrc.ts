@@ -202,92 +202,6 @@ const publishRaw = (project: Project) => {
 
 project.addSubproject(
   {
-    name: '@langri-sha/eslint-config',
-    outdir: path.join('packages', 'eslint-config'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2021',
-      type: 'module',
-      entrypoint: 'src/index.js',
-      deps: [
-        '@eslint/compat@2.1.1',
-        '@eslint/js@10.0.1',
-        'eslint-config-prettier@10.1.8',
-        'eslint-plugin-import-x@4.17.1',
-        'eslint-plugin-jsdoc@64.5.4',
-        'eslint-plugin-prettier@5.5.6',
-        'eslint-plugin-react@7.37.5',
-        'eslint-plugin-react-hooks@7.1.1',
-        'eslint-plugin-unicorn@76.0.0',
-        'globals@17.12.0',
-        'typescript-eslint@8.70.1',
-      ],
-      peerDeps: ['eslint@^10.4.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/lint-staged',
-    outdir: path.join('packages', 'lint-staged'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2021',
-      type: 'module',
-      entrypoint: 'src/index.js',
-      peerDeps: ['eslint@^10.4.0', 'lint-staged@^17.0.0', 'prettier@^3.0.0'],
-      peerDependenciesMeta: {
-        eslint: {
-          optional: true,
-        },
-        prettier: {
-          optional: true,
-        },
-      },
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/prettier',
-    outdir: path.join('packages', 'prettier'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      entrypoint: 'src/index.js',
-      deps: ['prettier-plugin-ini@1.3.0'],
-      devDeps: ['prettier@3.9.9'],
-      peerDeps: ['prettier@^3.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
     name: '@langri-sha/projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
     npmIgnore: {},
@@ -986,36 +900,6 @@ project.addSubproject(
       type: 'module',
       deps: ['nock@14.0.17', 'tempy@3.2.0'],
       peerDeps: ['vitest@^5.0.0'],
-    },
-  },
-  subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/webpack',
-    outdir: path.join('packages', 'webpack'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      deps: [
-        'babel-loader@10.1.1',
-        'clean-webpack-plugin@4.0.0',
-        'copy-webpack-plugin@14.0.0',
-        'html-webpack-plugin@5.6.8',
-        'terser-webpack-plugin@5.6.1',
-        'webpack-bundle-analyzer@5.4.0',
-        'webpack-dev-server@6.0.0',
-        'webpack-subresource-integrity@5.2.0-rc.1',
-      ],
-      devDeps: ['@langri-sha/babel-preset@0.6.7', '@types/node@24.19.0'],
-      peerDeps: ['@babel/register@^8.0.0', 'webpack@^5.0.0'],
     },
   },
   subproject,
