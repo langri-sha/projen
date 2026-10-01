@@ -202,61 +202,6 @@ const publishRaw = (project: Project) => {
 
 project.addSubproject(
   {
-    name: '@langri-sha/babel-preset',
-    outdir: path.join('packages', 'babel-preset'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2021',
-      entrypoint: 'src/index.js',
-      deps: [
-        '@babel/plugin-proposal-export-default-from@8.0.1',
-        '@babel/preset-env@8.0.6',
-        '@babel/preset-react@8.0.1',
-        '@babel/preset-typescript@8.0.1',
-        '@babel/register@8.0.6',
-        '@emotion/babel-plugin@11.13.5',
-      ],
-      devDeps: ['@langri-sha/babel-test@workspace:*', '@types/node@24.19.0'],
-      peerDeps: ['@babel/core@^8.0.0'],
-    },
-  },
-  subproject,
-  test,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/babel-test',
-    outdir: path.join('packages', 'babel-test'),
-    npmIgnore: {
-      ignorePatterns: ['fixtures/'],
-    },
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['@langri-sha/monorepo@workspace:*', 'ramda@0.32.0'],
-      devDeps: ['@types/node@24.19.0', '@types/ramda@0.32.0'],
-      peerDeps: ['@babel/core@^8.0.0'],
-    },
-  },
-  subproject,
-  test,
-  publish,
-)
-
-project.addSubproject(
-  {
     name: '@langri-sha/eslint-config',
     outdir: path.join('packages', 'eslint-config'),
     npmIgnore: {},
@@ -315,28 +260,6 @@ project.addSubproject(
     },
   },
   subproject,
-  publish,
-)
-
-project.addSubproject(
-  {
-    name: '@langri-sha/monorepo',
-    outdir: path.join('packages', 'monorepo'),
-    npmIgnore: {},
-    readme: {
-      filename: 'readme.md',
-    },
-    typeScriptConfig: {},
-    package: {
-      ...pkg,
-      copyrightYear: '2024',
-      type: 'module',
-      deps: ['find-up@8.0.0'],
-      devDeps: ['@types/node@24.19.0'],
-    },
-  },
-  subproject,
-  test,
   publish,
 )
 

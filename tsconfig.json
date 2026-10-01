@@ -11,19 +11,10 @@
   ],
   "references": [
     {
-      "path": "packages/babel-preset"
-    },
-    {
-      "path": "packages/babel-test"
-    },
-    {
       "path": "packages/eslint-config"
     },
     {
       "path": "packages/lint-staged"
-    },
-    {
-      "path": "packages/monorepo"
     },
     {
       "path": "packages/prettier"
