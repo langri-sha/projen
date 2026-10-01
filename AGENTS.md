@@ -9,14 +9,14 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 21 component packages, each Beachball-versioned
-packages/<aux>/         # 9 support packages, likewise Beachball-versioned
+packages/<aux>/         # 6 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
-The support packages — `@langri-sha/babel-preset`, `babel-test`,
-`eslint-config`, `lint-staged`, `monorepo`, `prettier`, `tsconfig`, `vitest` and
-`webpack` — live here and publish from this repo. Everything the workspace needs
-is wired `workspace:*`; no `@langri-sha/*` dependency is consumed from npm.
+The support packages — `@langri-sha/eslint-config`, `lint-staged`, `prettier`,
+`tsconfig`, `vitest` and `webpack` — live here and publish from this repo until
+#287 moves each to a repository of its own. Everything the workspace needs from
+them is wired `workspace:*`.
 
 `schemastore-to-typescript` moved out to
 [langri-sha/schemastore-to-typescript](https://github.com/langri-sha/schemastore-to-typescript)
@@ -25,13 +25,20 @@ scripts compile SchemaStore typings take it from npm and call its bin. It sits
 beside `@langri-sha/*` in `minimumReleaseAgeExclude` and in the Renovate rule
 that skips the release-age wait, so a fresh release installs at once.
 
+`babel-preset` and `babel-test` moved out to
+[langri-sha/babel-preset](https://github.com/langri-sha/babel-preset), a
+workspace that publishes only `@langri-sha/babel-preset` and keeps babel-test as
+a private package; `webpack` takes `@langri-sha/babel-preset` from npm.
+`monorepo` went standalone as
+[`monorepo-resolve`](https://github.com/langri-sha/monorepo-resolve), and
+`@langri-sha/monorepo` is deprecated in its favour.
+
 `langri-sha/langri-sha.com` still owns `fonts`, which its site builds on — a
 private, unpublished package that subsets typefaces for that site alone. Nothing
 here depends on it. The `@langri-sha/babel-preset` string you'll find in
-`projen-project` is still not a dependency edge either, even now that the
-package lives here: it is a default value written into the _synthesized_ configs
-of consuming projects. `projen-jest-config` names `@langri-sha/jest-config` only
-as an example.
+`projen-project` is not a dependency edge either: it is a default value written
+into the _synthesized_ configs of consuming projects. `projen-jest-config` names
+`@langri-sha/jest-config` only as an example.
 
 ## Common tasks
 
@@ -127,3 +134,8 @@ repository may release it, or the two collide on the same version.
 2026-09-26: nothing used them, and the fleet tests on Vitest. Their sources stay
 in this repository's history, under `packages/jest`, `packages/jest-config` and
 `packages/jest-test`.
+
+`babel-preset`, `babel-test` and `monorepo` moved out on 2026-10-01 (#289,
+#295), each to a repository that carries its history. Their sources stay in this
+repository's history too, under `packages/babel-preset`, `packages/babel-test`,
+`packages/babel-helpers` and `packages/monorepo`.
