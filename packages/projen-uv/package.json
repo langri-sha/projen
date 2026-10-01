@@ -26,8 +26,8 @@
     "smol-toml": "1.9.0"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "workspace:*",
-    "@langri-sha/vitest": "workspace:*",
+    "@langri-sha/tsconfig": "1.0.1",
+    "@langri-sha/vitest": "0.2.0",
     "schemastore-to-typescript": "1.0.1"
   },
   "peerDependencies": {

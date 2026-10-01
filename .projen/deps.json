@@ -22,7 +22,7 @@
     },
     {
       "name": "@langri-sha/tsconfig",
-      "version": "workspace:*",
+      "version": "1.0.1",
       "type": "build"
     },
     {

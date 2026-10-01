@@ -40,7 +40,7 @@ const project = new Project({
       '@langri-sha/lint-staged@0.9.8',
       '@langri-sha/prettier@0.4.9',
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/tsconfig@workspace:*',
+      '@langri-sha/tsconfig@1.0.1',
       '@types/node@24.19.0',
       'schemastore-to-typescript@1.0.1',
       'vitest@5.0.2',
@@ -157,15 +157,13 @@ const subproject = (project: Project) => {
   })
 
   if (project.name !== '@langri-sha/tsconfig') {
-    project
-      .tryFindObjectFile('package.json')
-      ?.addOverride('devDependencies.@langri-sha/tsconfig', 'workspace:*')
+    project.package?.addDevDeps('@langri-sha/tsconfig@1.0.1')
   }
 }
 
 const test = (project: Project) => {
   project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/vitest@workspace:*')
+  project.package?.addDevDeps('@langri-sha/vitest@0.2.0')
 }
 
 const publish = (project: Project) => {
