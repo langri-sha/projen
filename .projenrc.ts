@@ -1091,7 +1091,7 @@ project.addSubproject(
         'webpack-dev-server@6.0.0',
         'webpack-subresource-integrity@5.2.0-rc.1',
       ],
-      devDeps: ['@langri-sha/babel-preset@workspace:*', '@types/node@24.19.0'],
+      devDeps: ['@langri-sha/babel-preset@0.6.7', '@types/node@24.19.0'],
       peerDeps: ['@babel/register@^8.0.0', 'webpack@^5.0.0'],
     },
   },

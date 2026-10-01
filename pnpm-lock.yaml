@@ -913,8 +913,8 @@ importers:
         version: 5.2.0-rc.1(html-webpack-plugin@5.6.8(webpack@5.111.1(@swc/core@1.16.2)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28)))(webpack@5.111.1(@swc/core@1.16.2)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.28))
     devDependencies:
       '@langri-sha/babel-preset':
-        specifier: workspace:*
-        version: link:../babel-preset
+        specifier: 0.6.7
+        version: 0.6.7(@babel/core@8.0.6)(supports-color@8.1.1)
       '@langri-sha/tsconfig':
         specifier: workspace:*
         version: link:../tsconfig
@@ -2175,6 +2175,11 @@ packages:
 
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
+
+  '@langri-sha/babel-preset@0.6.7':
+    resolution: {integrity: sha512-UhbJ8CAu0djbi2EZNxgjDkTjop8RnKUl0D5B5YM8fDtnpNakMA+9H5GeCo6jt1ELOD0MW5GFD7vESq9EJSj01A==}
+    peerDependencies:
+      '@babel/core': ^8.0.0
 
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
@@ -7926,6 +7931,18 @@ snapshots:
       keyv: 5.6.0
 
   '@keyv/serialize@1.1.1': {}
+
+  '@langri-sha/babel-preset@0.6.7(@babel/core@8.0.6)(supports-color@8.1.1)':
+    dependencies:
+      '@babel/core': 8.0.6
+      '@babel/plugin-proposal-export-default-from': 8.0.1(@babel/core@8.0.6)
+      '@babel/preset-env': 8.0.6(@babel/core@8.0.6)
+      '@babel/preset-react': 8.0.1(@babel/core@8.0.6)
+      '@babel/preset-typescript': 8.0.1(@babel/core@8.0.6)
+      '@babel/register': 8.0.6(@babel/core@8.0.6)
+      '@emotion/babel-plugin': 11.13.5(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - supports-color
 
   '@leichtgewicht/ip-codec@2.0.5': {}
 
