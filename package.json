@@ -26,9 +26,9 @@
     "renovate": "pnpm exec projen renovate"
   },
   "devDependencies": {
-    "@langri-sha/eslint-config": "0.9.16",
-    "@langri-sha/lint-staged": "0.9.7",
-    "@langri-sha/prettier": "0.4.8",
+    "@langri-sha/eslint-config": "0.9.17",
+    "@langri-sha/lint-staged": "0.9.8",
+    "@langri-sha/prettier": "0.4.9",
     "@langri-sha/projen-project": "workspace:*",
     "@langri-sha/tsconfig": "workspace:*",
     "@swc-node/register": "1.12.1",
