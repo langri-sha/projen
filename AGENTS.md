@@ -9,14 +9,13 @@ This monorepo holds the custom **projen components** authored under
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
 packages/projen-*/      # 21 component packages, each Beachball-versioned
-packages/<aux>/         # 6 support packages, likewise Beachball-versioned
+packages/<aux>/         # 2 support packages, likewise Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
-The support packages — `@langri-sha/eslint-config`, `lint-staged`, `prettier`,
-`tsconfig`, `vitest` and `webpack` — live here and publish from this repo until
-#287 moves each to a repository of its own. Everything the workspace needs from
-them is wired `workspace:*`.
+The support packages — `@langri-sha/tsconfig` and `vitest` — live here and
+publish from this repo until #287 moves each to a repository of its own.
+Everything the workspace needs from them is wired `workspace:*`.
 
 `schemastore-to-typescript` moved out to
 [langri-sha/schemastore-to-typescript](https://github.com/langri-sha/schemastore-to-typescript)
@@ -28,16 +27,24 @@ that skips the release-age wait, so a fresh release installs at once.
 `babel-preset` and `babel-test` moved out to
 [langri-sha/babel-preset](https://github.com/langri-sha/babel-preset), a
 workspace that publishes only `@langri-sha/babel-preset` and keeps babel-test as
-a private package; `webpack` takes `@langri-sha/babel-preset` from npm.
-`monorepo` went standalone as
+a private package. `monorepo` went standalone as
 [`monorepo-resolve`](https://github.com/langri-sha/monorepo-resolve), and
 `@langri-sha/monorepo` is deprecated in its favour.
 
+`eslint-config`, `lint-staged` and `prettier` moved out to
+[langri-sha/eslint-config](https://github.com/langri-sha/eslint-config),
+[langri-sha/lint-staged](https://github.com/langri-sha/lint-staged) and
+[langri-sha/prettier](https://github.com/langri-sha/prettier), and `webpack` to
+[langri-sha/webpack](https://github.com/langri-sha/webpack). The root takes the
+three configs from npm, pinned, and Renovate moves them with the rest of
+`@langri-sha/*`.
+
 `langri-sha/langri-sha.com` still owns `fonts`, which its site builds on — a
 private, unpublished package that subsets typefaces for that site alone. Nothing
-here depends on it. The `@langri-sha/babel-preset` string you'll find in
-`projen-project` is not a dependency edge either: it is a default value written
-into the _synthesized_ configs of consuming projects. `projen-jest-config` names
+here depends on it. The `@langri-sha/babel-preset`, `eslint-config`,
+`lint-staged` and `prettier` strings you'll find in `projen-project` are not
+dependency edges either: they are default values written into the _synthesized_
+configs of consuming projects. `projen-jest-config` names
 `@langri-sha/jest-config` only as an example.
 
 ## Common tasks
@@ -139,3 +146,8 @@ in this repository's history, under `packages/jest`, `packages/jest-config` and
 #295), each to a repository that carries its history. Their sources stay in this
 repository's history too, under `packages/babel-preset`, `packages/babel-test`,
 `packages/babel-helpers` and `packages/monorepo`.
+
+`eslint-config`, `lint-staged`, `prettier` and `webpack` moved out on 2026-10-01
+(#291, #294, #296, #299), each to a repository that carries its history. Their
+sources stay in this repository's history too, under `packages/eslint-config`,
+`packages/lint-staged`, `packages/prettier` and `packages/webpack`.
