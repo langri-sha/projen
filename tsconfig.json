@@ -72,9 +72,6 @@
     },
     {
       "path": "packages/projen-worktrunk"
-    },
-    {
-      "path": "packages/vitest"
     }
   ]
 }
