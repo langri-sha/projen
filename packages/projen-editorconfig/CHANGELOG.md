@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-editorconfig
 
-<!-- This log was last generated on Mon, 21 Sep 2026 10:53:40 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 02 Oct 2026 20:07:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.11
+
+Fri, 02 Oct 2026 20:07:58 GMT
+
+### Patches
+
+- Update dependency @langri-sha/tsconfig to v1.1.0
+- Update langri-sha projen toolchain
 
 ## 0.6.10
 

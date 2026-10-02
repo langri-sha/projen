@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-editorconfig",
   "entries": [
     {
+      "date": "Fri, 02 Oct 2026 20:07:58 GMT",
+      "version": "0.6.11",
+      "tag": "@langri-sha/projen-editorconfig_v0.6.11",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "d67bba290e7f36599321b8919cfc4945ee2c3e54",
+            "comment": "Take @langri-sha/tsconfig and @langri-sha/vitest from npm"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "d67bba290e7f36599321b8919cfc4945ee2c3e54",
+            "comment": "Update dependency @langri-sha/tsconfig to v1.1.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-editorconfig",
+            "commit": "d67bba290e7f36599321b8919cfc4945ee2c3e54",
+            "comment": "Update langri-sha projen toolchain"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 23 Sep 2026 08:13:02 GMT",
       "version": "0.6.10",
       "tag": "@langri-sha/projen-editorconfig_v0.6.10",

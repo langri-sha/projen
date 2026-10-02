@@ -1,8 +1,37 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 30 Sep 2026 11:26:36 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 02 Oct 2026 20:07:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.31.3
+
+Fri, 02 Oct 2026 20:07:58 GMT
+
+### Patches
+
+- Update langri-sha projen toolchain
+- Update dependency @langri-sha/tsconfig to v1.1.0
+- Bump @langri-sha/projen-babel to v0.5.14
+- Bump @langri-sha/projen-beachball to v0.5.11
+- Bump @langri-sha/projen-cargo to v0.1.6
+- Bump @langri-sha/projen-codeowners to v0.5.11
+- Bump @langri-sha/projen-dagger to v0.2.4
+- Bump @langri-sha/projen-editorconfig to v0.6.11
+- Bump @langri-sha/projen-eslint to v0.3.15
+- Bump @langri-sha/projen-husky to v0.3.21
+- Bump @langri-sha/projen-jest-config to v0.4.16
+- Bump @langri-sha/projen-license to v0.3.14
+- Bump @langri-sha/projen-lint-staged to v0.3.16
+- Bump @langri-sha/projen-lint-synthesized to v0.5.15
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.11
+- Bump @langri-sha/projen-prettier to v0.4.16
+- Bump @langri-sha/projen-readme to v0.1.11
+- Bump @langri-sha/projen-renovate to v0.4.23
+- Bump @langri-sha/projen-swcrc to v0.1.23
+- Bump @langri-sha/projen-typescript-config to v0.5.19
+- Bump @langri-sha/projen-uv to v0.1.3
+- Bump @langri-sha/projen-worktrunk to v0.1.2
 
 ## 0.31.2
 
