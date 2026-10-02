@@ -8,5 +8,8 @@ module.exports = {
     '__snapshots__/',
     'dist/',
     'node_modules/',
+    '.gitignore',
+    'tsconfig.json',
+    '**/.projen/**',
   ],
 }
