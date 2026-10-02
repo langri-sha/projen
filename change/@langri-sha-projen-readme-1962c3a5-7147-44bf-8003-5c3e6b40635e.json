@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency @langri-sha/tsconfig to v1.1.0",
+  "packageName": "@langri-sha/projen-readme",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
