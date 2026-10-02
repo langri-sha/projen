@@ -25,7 +25,7 @@
     "serialize-javascript": "7.1.2"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.0.2",
+    "@langri-sha/tsconfig": "1.1.0",
     "@langri-sha/vitest": "0.2.1",
     "@types/serialize-javascript": "5.0.4",
     "prettier": "3.9.9"

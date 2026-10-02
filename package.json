@@ -30,7 +30,7 @@
     "@langri-sha/lint-staged": "0.9.8",
     "@langri-sha/prettier": "0.4.9",
     "@langri-sha/projen-project": "workspace:*",
-    "@langri-sha/tsconfig": "1.0.2",
+    "@langri-sha/tsconfig": "1.1.0",
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.16.2",
     "@types/node": "24.19.0",
