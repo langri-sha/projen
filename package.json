@@ -26,9 +26,9 @@
     "renovate": "pnpm exec projen renovate"
   },
   "devDependencies": {
-    "@langri-sha/eslint-config": "0.9.17",
-    "@langri-sha/lint-staged": "0.9.8",
-    "@langri-sha/prettier": "0.4.9",
+    "@langri-sha/eslint-config": "0.9.18",
+    "@langri-sha/lint-staged": "0.9.9",
+    "@langri-sha/prettier": "0.4.10",
     "@langri-sha/projen-project": "workspace:*",
     "@langri-sha/tsconfig": "1.1.0",
     "@swc-node/register": "1.12.1",
@@ -40,7 +40,7 @@
     "lint-staged": "17.6.0",
     "prettier": "3.9.9",
     "projen": "0.86.5",
-    "schemastore-to-typescript": "1.0.1",
+    "schemastore-to-typescript": "1.0.2",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vitest": "5.0.2"

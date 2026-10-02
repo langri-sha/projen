@@ -36,13 +36,13 @@ const project = new Project({
     type: 'module',
 
     devDeps: [
-      '@langri-sha/eslint-config@0.9.17',
-      '@langri-sha/lint-staged@0.9.8',
-      '@langri-sha/prettier@0.4.9',
+      '@langri-sha/eslint-config@0.9.18',
+      '@langri-sha/lint-staged@0.9.9',
+      '@langri-sha/prettier@0.4.10',
       '@langri-sha/projen-project@workspace:*',
       '@langri-sha/tsconfig@1.1.0',
       '@types/node@24.19.0',
-      'schemastore-to-typescript@1.0.1',
+      'schemastore-to-typescript@1.0.2',
       'vitest@5.0.2',
     ],
   },
@@ -165,7 +165,7 @@ const subproject = (project: Project) => {
 
 const test = (project: Project) => {
   project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/vitest@0.2.1')
+  project.package?.addDevDeps('@langri-sha/vitest@0.2.2')
 }
 
 const publish = (project: Project) => {
@@ -223,7 +223,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.1'],
+      devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -312,7 +312,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.1'],
+      devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -529,7 +529,7 @@ project.addSubproject(
       copyrightYear: '2024',
       type: 'module',
       deps: ['yaml@2.9.1'],
-      devDeps: ['schemastore-to-typescript@1.0.1'],
+      devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -707,7 +707,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.1'],
+      devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -742,7 +742,7 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2024',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.1'],
+      devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
         '@swc/core': {
@@ -806,7 +806,7 @@ project.addSubproject(
       copyrightYear: '2026',
       type: 'module',
       deps: ['smol-toml@1.9.0'],
-      devDeps: ['schemastore-to-typescript@1.0.1'],
+      devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
