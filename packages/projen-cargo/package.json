@@ -23,7 +23,7 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.0.2",
+    "@langri-sha/tsconfig": "1.1.0",
     "@langri-sha/vitest": "0.2.1",
     "schemastore-to-typescript": "1.0.1"
   },

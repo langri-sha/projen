@@ -40,7 +40,7 @@ const project = new Project({
       '@langri-sha/lint-staged@0.9.8',
       '@langri-sha/prettier@0.4.9',
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/tsconfig@1.0.2',
+      '@langri-sha/tsconfig@1.1.0',
       '@types/node@24.19.0',
       'schemastore-to-typescript@1.0.1',
       'vitest@5.0.2',
@@ -156,7 +156,7 @@ const subproject = (project: Project) => {
     ),
   })
 
-  project.package?.addDevDeps('@langri-sha/tsconfig@1.0.2')
+  project.package?.addDevDeps('@langri-sha/tsconfig@1.1.0')
 }
 
 const test = (project: Project) => {
