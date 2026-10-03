@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Synthesize Dagger 1.0 dagger-module.toml and dagger.toml in place of dagger.json, the SDK tasks and modules.yml",
+  "packageName": "@langri-sha/projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
