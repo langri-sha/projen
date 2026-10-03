@@ -126,6 +126,87 @@ test('without an engine version', () => {
   expect(() => dagger.addModule('terraform')).toThrow(/engineVersion/)
 })
 
+describe('workspace', () => {
+  const workspace = {
+    ignore: ['**/node_modules'],
+    'check-generated': false,
+    modules: {
+      ci: {
+        source: '.dagger/modules/ci',
+        entrypoint: true,
+      },
+      terraform: {
+        source: 'github.com/langri-sha/dagger/terraform@terraform/v0.1.0',
+        settings: {
+          rootModule: 'terraform/web',
+          sources: ['terraform/**'],
+        },
+        check: { skip: ['fmt'] },
+      },
+      eslint: {
+        source: 'dagger.io/js/eslint',
+        settings: {
+          packageManager: 'pnpm',
+          service: 'dag://ci/serve',
+        },
+      },
+    },
+  } satisfies DaggerOptions['workspace']
+
+  test('with a workspace', () => {
+    expect(synth({ workspace })['dagger.toml']).toMatchSnapshot()
+  })
+
+  test('writes the workspace as given', () => {
+    expect(parse(synth({ workspace })['dagger.toml'])).toEqual(workspace)
+  })
+
+  test('with an empty workspace', () => {
+    expect(synth({ workspace: {} })['dagger.toml']).toBeDefined()
+  })
+
+  test('refuses an SDK scope over a synthesized module', () => {
+    expect(() =>
+      synth({
+        engineVersion: 'v1.0.0-beta.15',
+        modules: { '.dagger/modules/ci': {} },
+        workspace: {
+          sdks: {
+            dang: {
+              module: 'dagger-dang-sdk',
+              scopes: { './.dagger/modules/ci': { 'is-module': true } },
+            },
+          },
+        },
+      }),
+    ).toThrow(/dang SDK/)
+  })
+
+  test('with SDK scopes elsewhere', () => {
+    expect(
+      synth({
+        engineVersion: 'v1.0.0-beta.15',
+        modules: { '.dagger/modules/ci': {} },
+        workspace: {
+          sdks: {
+            go: {
+              module: 'go-sdk',
+              scopes: {
+                '.dagger/modules/go': { 'is-module': true },
+                '.dagger/modules/ci': { clients: ['./api'] },
+              },
+            },
+          },
+        },
+      })['dagger.toml'],
+    ).toBeDefined()
+  })
+
+  test('without a workspace', () => {
+    expect(synth()['dagger.toml']).toBeUndefined()
+  })
+})
+
 describe('ignore file', () => {
   const denyByDefault = (modules: DaggerOptions['modules']) => {
     const project = new Project({
