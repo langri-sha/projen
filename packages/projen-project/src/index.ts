@@ -814,7 +814,7 @@ export class Project extends BaseProject {
     )
   }
 
-  #configurePrettier({ dagger, prettier, package: pkg }: ProjectOptions) {
+  #configurePrettier({ prettier, package: pkg }: ProjectOptions) {
     if (!prettier || this.parent) {
       return
     }
@@ -823,16 +823,7 @@ export class Project extends BaseProject {
       filename:
         pkg?.type === 'module' ? 'prettier.config.js' : 'prettier.config.mjs',
       extends: '@langri-sha/prettier',
-      ignorePatterns: [
-        '.*',
-        'dist/',
-        // Everything inside a Dagger module directory is written by the CLI or
-        // by the component, each in its own formatting. Prettier would rewrite
-        // them and `dagger develop` would put them back, on every run.
-        ...(dagger
-          ? ['*/dagger.json', '*/package.json', '*/tsconfig.json', '*/sdk/']
-          : []),
-      ],
+      ignorePatterns: ['.*', 'dist/'],
     }
 
     this.#addDefaultDevDeps('prettier@3.9.9')
@@ -942,24 +933,10 @@ export class Project extends BaseProject {
           ? [
               {
                 description:
-                  'Move every Dagger module off one engine release at a time, the way `dagger develop` writes them',
+                  'Move every Dagger module off one engine release at a time',
                 groupName: 'Dagger engine',
                 groupSlug: 'dagger-engine',
                 matchDepNames: ['dagger/dagger'],
-              },
-              {
-                description:
-                  'The Dagger SDK writes the module manifests, including the TypeScript pin. Upgrades here are reverted by the next `dagger develop`',
-                matchManagers: ['npm'],
-                matchFileNames: ['*/package.json'],
-                enabled: false,
-              },
-              {
-                description:
-                  'Track the TypeScript major the Dagger SDK installs into the modules, so `check:types` keeps using the runtime compiler',
-                matchManagers: ['npm'],
-                matchPackageNames: ['typescript'],
-                allowedVersions: '^5',
               },
             ]
           : []),

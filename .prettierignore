@@ -3,7 +3,6 @@
 dist/
 *.frag
 cargo.ts
-dagger.ts
 pnpm-workspace.ts
 pyproject.ts
 renovate.ts
