@@ -1020,8 +1020,12 @@ export class Project extends BaseProject {
         // The engine version is declared in the projenrc and written into
         // every module manifest from there, so nothing Renovate has a manager
         // for names it. The `v` prefix sits outside the capture group, and
-        // `extractVersionTemplate` strips it off the release tags, so the
-        // replacement leaves the prefix in place.
+        // `extractVersionTemplate` strips it off the tags, so the replacement
+        // leaves the prefix in place.
+        //
+        // Tags rather than releases, because Dagger publishes its 1.0 betas
+        // as tags alone. Plain semver, because the coerced default reads every
+        // `1.0.0-beta.N` as `1.0.0` and so never proposes the next beta.
         //
         // Held to the projenrc by the anchored file pattern below, for the
         // reason spelled out under the `packageManager` manager: a pattern
@@ -1032,7 +1036,8 @@ export class Project extends BaseProject {
           ? [
               {
                 customType: 'regex' as const,
-                datasourceTemplate: 'github-releases',
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
                 depNameTemplate: 'dagger/dagger',
                 managerFilePatterns: [
                   '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
