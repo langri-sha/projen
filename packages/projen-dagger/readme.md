@@ -61,6 +61,11 @@ new Dagger(project, {
 
 Call `dagger.addModule(directory, options)` to add one after construction.
 
+A module may live under a dot-directory, such as `.dagger/modules/ci`. The
+component re-includes `/.dagger` in `.gitignore`, which a deny-by-default `.*`
+pattern would otherwise keep git from descending into, and leaves the patterns
+the project has under it alone.
+
 Only `dagger module init` and an SDK's generation write a module manifest, so
 nothing rewrites a synthesized one as long as no SDK module manages its
 directory. Dang modules need none.

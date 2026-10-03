@@ -62,7 +62,8 @@ export interface DaggerOptions {
 /**
  * A component for Dagger workspaces.
  *
- * Synthesizes each module's `dagger-module.toml`.
+ * Synthesizes each module's `dagger-module.toml`, and re-includes the
+ * dot-directories modules live in, such as `.dagger/`, in `.gitignore`.
  *
  * `@langri-sha/projen-project` reaches it through its `dagger` option, which
  * also points Renovate at the engine version.
@@ -121,7 +122,26 @@ export class Dagger extends Component {
     )
 
     this.modules[directory] = file
+    this.#includeDotDirectories(directory)
 
     return file
+  }
+
+  /**
+   * A deny-by-default ignore file (`.*`) excludes a directory such as
+   * `.dagger/`, and git does not descend into an excluded directory, so the
+   * negations projen adds for the manifest are inert on their own.
+   *
+   * Written without a trailing slash: given one, projen drops every pattern
+   * already under that directory, un-ignoring whatever the project hid there.
+   */
+  #includeDotDirectories(directory: string) {
+    const segments = path.posix.normalize(directory).split('/')
+
+    for (const [index, segment] of segments.entries()) {
+      if (segment.startsWith('.') && segment !== '.' && segment !== '..') {
+        this.project.addGitIgnore(`!/${segments.slice(0, index + 1).join('/')}`)
+      }
+    }
   }
 }
