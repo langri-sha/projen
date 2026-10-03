@@ -61,6 +61,11 @@ new Dagger(project, {
 
 Call `dagger.addModule(directory, options)` to add one after construction.
 
+A module may live under a dot-directory, such as `.dagger/modules/ci`. The
+component re-includes `/.dagger` in `.gitignore`, which a deny-by-default `.*`
+pattern would otherwise keep git from descending into, and leaves the patterns
+the project has under it alone.
+
 Nothing in the Dagger CLI rewrites a synthesized manifest as long as no SDK
 scope covers its directory, and Dang modules run without one. An `is-module`
 scope under `[sdks]` in `dagger.toml` changes that: `dagger generate` rewrites

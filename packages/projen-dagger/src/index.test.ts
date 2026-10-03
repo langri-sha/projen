@@ -1,4 +1,8 @@
-import { expect, test } from '@langri-sha/vitest'
+import { execFileSync } from 'node:child_process'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import * as path from 'node:path'
+
+import { describe, expect, test } from '@langri-sha/vitest'
 import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { parse } from 'smol-toml'
@@ -120,4 +124,98 @@ test('without an engine version', () => {
   const dagger = new Dagger(project)
 
   expect(() => dagger.addModule('terraform')).toThrow(/engineVersion/)
+})
+
+describe('ignore file', () => {
+  const denyByDefault = (modules: DaggerOptions['modules']) => {
+    const project = new Project({
+      name: 'test-project',
+      gitIgnoreOptions: {
+        ignorePatterns: ['.*', '.dagger/secret.toml'],
+      },
+    })
+
+    new Dagger(project, { engineVersion: 'v1.0.0-beta.15', modules })
+
+    return project
+  }
+
+  const patterns = (project: Project): string[] =>
+    synthSnapshot(project)['.gitignore'].split('\n')
+
+  test('re-includes the dot-directory modules live in, once', () => {
+    expect(
+      patterns(
+        denyByDefault({
+          '.dagger/modules/ci': {},
+          '.dagger/modules/terraform': {},
+        }),
+      ).filter((pattern) => pattern === '!/.dagger'),
+    ).toHaveLength(1)
+  })
+
+  test('re-includes every dot-directory leading to a module', () => {
+    expect(patterns(denyByDefault({ '.ci/nested/.dagger/ci': {} }))).toEqual(
+      expect.arrayContaining(['!/.ci', '!/.ci/nested/.dagger']),
+    )
+  })
+
+  test('keeps the patterns a project already has under the directory', () => {
+    expect(patterns(denyByDefault({ '.dagger/modules/ci': {} }))).toContain(
+      '.dagger/secret.toml',
+    )
+  })
+
+  test('leaves the ignore file alone without dot-directories', () => {
+    const topLevel = (project: Project) =>
+      patterns(project).filter((pattern) => /^!\/\.[^/]+$/.test(pattern))
+
+    expect(
+      topLevel(denyByDefault({ terraform: {}, './terraform/e2e': {} })),
+    ).toEqual(topLevel(denyByDefault({})))
+  })
+
+  describe('as git reads it', () => {
+    const ignored = (project: Project, file: string) => {
+      project.synth()
+
+      mkdirSync(path.dirname(path.join(project.outdir, file)), {
+        recursive: true,
+      })
+
+      if (!existsSync(path.join(project.outdir, file))) {
+        writeFileSync(path.join(project.outdir, file), '')
+      }
+
+      execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+      try {
+        execFileSync('git', ['check-ignore', '--quiet', file], {
+          cwd: project.outdir,
+        })
+
+        return true
+      } catch {
+        return false
+      }
+    }
+
+    test.each([
+      '.dagger/modules/ci/dagger-module.toml',
+      '.dagger/modules/ci/main.dang',
+    ])('%s is tracked', (file) => {
+      expect(ignored(denyByDefault({ '.dagger/modules/ci': {} }), file)).toBe(
+        false,
+      )
+    })
+
+    test.each(['.dagger/secret.toml', '.dagger/modules/ci/.env'])(
+      '%s stays ignored',
+      (file) => {
+        expect(ignored(denyByDefault({ '.dagger/modules/ci': {} }), file)).toBe(
+          true,
+        )
+      },
+    )
+  })
 })
