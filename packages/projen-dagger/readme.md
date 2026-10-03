@@ -2,7 +2,9 @@
 
 A [projen] component for [Dagger] workspaces.
 
-It synthesizes each module's `dagger-module.toml`.
+It synthesizes each module's `dagger-module.toml` and, on request, the
+workspace's `dagger.toml`. `dagger.lock` is left to the Dagger CLI, which may
+update it on any command.
 
 [`@langri-sha/projen-project`] reaches it through its `dagger` option, which
 also points Renovate at the engine version. Prefer that over constructing the
@@ -85,6 +87,29 @@ It is the engine a module requires, not the one it runs on: the CLI starts its
 own engine, and loads a module when the engine's base version is at least the
 declared one's. Every 1.0 prerelease therefore loads a module declaring any
 other, and pinning the CLI in CI is a separate concern.
+
+### Workspace
+
+Pass `workspace` to synthesize `dagger.toml`, written as given:
+
+```js
+new Dagger(project, {
+  workspace: {
+    modules: {
+      ci: { source: '.dagger/modules/ci' },
+      terraform: {
+        source: 'github.com/langri-sha/dagger/terraform@terraform/v0.1.0',
+        settings: { rootModule: 'terraform/web' },
+      },
+    },
+  },
+})
+```
+
+Leave it out to keep the file the CLI's: `dagger install`, `dagger settings` and
+`dagger uninstall` edit it in place. They do the same to a synthesized one, and
+the next synthesis reverts them, so once the projenrc declares the workspace it
+is the only place to change it.
 
 [`@langri-sha/projen-project`]:
   https://www.npmjs.com/package/@langri-sha/projen-project

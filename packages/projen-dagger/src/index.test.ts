@@ -108,6 +108,50 @@ test('without an engine version', () => {
   expect(() => dagger.addModule('terraform')).toThrow(/engineVersion/)
 })
 
+describe('workspace', () => {
+  const workspace = {
+    ignore: ['**/node_modules'],
+    'check-generated': false,
+    modules: {
+      ci: {
+        source: '.dagger/modules/ci',
+        entrypoint: true,
+      },
+      terraform: {
+        source: 'github.com/langri-sha/dagger/terraform@terraform/v0.1.0',
+        settings: {
+          rootModule: 'terraform/web',
+          sources: ['terraform/**'],
+        },
+        check: { skip: ['fmt'] },
+      },
+      eslint: {
+        source: 'dagger.io/js/eslint',
+        settings: {
+          packageManager: 'pnpm',
+          service: 'dag://ci/serve',
+        },
+      },
+    },
+  } satisfies DaggerOptions['workspace']
+
+  test('with a workspace', () => {
+    expect(synth({ workspace })['dagger.toml']).toMatchSnapshot()
+  })
+
+  test('writes the workspace as given', () => {
+    expect(parse(synth({ workspace })['dagger.toml'])).toEqual(workspace)
+  })
+
+  test('with an empty workspace', () => {
+    expect(synth({ workspace: {} })['dagger.toml']).toBeDefined()
+  })
+
+  test('without a workspace', () => {
+    expect(synth()['dagger.toml']).toBeUndefined()
+  })
+})
+
 describe('ignore file', () => {
   const denyByDefault = (modules: DaggerOptions['modules']) => {
     const project = new Project({

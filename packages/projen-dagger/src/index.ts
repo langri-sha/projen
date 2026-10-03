@@ -6,6 +6,7 @@ import type {
   DaggerModuleConfig,
   DaggerModuleDependencyConfig,
   DaggerModuleRuntime,
+  DaggerWorkspaceConfig,
 } from './config.js'
 
 export type * from './config.js'
@@ -57,13 +58,25 @@ export interface DaggerOptions {
    * @default {}
    */
   readonly modules?: Record<string, DaggerModuleOptions>
+
+  /**
+   * Workspace config to synthesize as `dagger.toml`.
+   *
+   * Leave it out to leave the file to the Dagger CLI. Once synthesized, the
+   * projenrc is the only place to edit it: `dagger install`, `dagger settings`
+   * and the like still write to the file, and the next synthesis reverts them.
+   *
+   * @default - not synthesized
+   */
+  readonly workspace?: DaggerWorkspaceConfig
 }
 
 /**
  * A component for Dagger workspaces.
  *
- * Synthesizes each module's `dagger-module.toml`, and re-includes the
- * dot-directories modules live in, such as `.dagger/`, in `.gitignore`.
+ * Synthesizes each module's `dagger-module.toml`, optionally the workspace's
+ * `dagger.toml`, and re-includes the dot-directories modules live in, such as
+ * `.dagger/`, in `.gitignore`. `dagger.lock` is the CLI's alone.
  *
  * `@langri-sha/projen-project` reaches it through its `dagger` option, which
  * also points Renovate at the engine version.
@@ -74,12 +87,23 @@ export class Dagger extends Component {
    */
   readonly modules: Record<string, TomlFile> = {}
 
+  /**
+   * Synthesized workspace config, when one was given.
+   */
+  readonly workspace?: TomlFile
+
   readonly #engineVersion?: string
 
   constructor(project: Project, options: DaggerOptions = {}) {
     super(project)
 
     this.#engineVersion = options.engineVersion
+
+    if (options.workspace) {
+      this.workspace = new TomlFile(project, 'dagger.toml', {
+        obj: options.workspace,
+      })
+    }
 
     for (const [directory, moduleOptions] of Object.entries(
       options.modules ?? {},
