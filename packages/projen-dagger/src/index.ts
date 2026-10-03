@@ -6,6 +6,7 @@ import type {
   DaggerModuleConfig,
   DaggerModuleDependencyConfig,
   DaggerModuleRuntime,
+  DaggerWorkspaceConfig,
 } from './config.js'
 
 export type * from './config.js'
@@ -58,13 +59,25 @@ export interface DaggerOptions {
    * @default {}
    */
   readonly modules?: Record<string, DaggerModuleOptions>
+
+  /**
+   * Workspace config to synthesize as `dagger.toml`.
+   *
+   * Leave it out to leave the file to the Dagger CLI. Once synthesized, the
+   * projenrc is the only place to edit it: `dagger install`, `dagger settings`
+   * and the like still write to the file, and the next synthesis reverts them.
+   *
+   * @default - not synthesized
+   */
+  readonly workspace?: DaggerWorkspaceConfig
 }
 
 /**
  * A component for Dagger workspaces.
  *
- * Synthesizes each module's `dagger-module.toml`, and re-includes the
- * dot-directories modules live in, such as `.dagger/`, in `.gitignore`.
+ * Synthesizes each module's `dagger-module.toml`, optionally the workspace's
+ * `dagger.toml`, and re-includes the dot-directories modules live in, such as
+ * `.dagger/`, in `.gitignore`. `dagger.lock` is the CLI's alone.
  *
  * `@langri-sha/projen-project` reaches it through its `dagger` option, which
  * also points Renovate at the engine version.
@@ -75,12 +88,25 @@ export class Dagger extends Component {
    */
   readonly modules: Record<string, TomlFile> = {}
 
+  /**
+   * Synthesized workspace config, when one was given.
+   */
+  readonly workspace?: TomlFile
+
   readonly #engineVersion?: string
+  readonly #workspace?: DaggerWorkspaceConfig
 
   constructor(project: Project, options: DaggerOptions = {}) {
     super(project)
 
     this.#engineVersion = options.engineVersion
+    this.#workspace = options.workspace
+
+    if (options.workspace) {
+      this.workspace = new TomlFile(project, 'dagger.toml', {
+        obj: options.workspace,
+      })
+    }
 
     for (const [directory, moduleOptions] of Object.entries(
       options.modules ?? {},
@@ -135,6 +161,33 @@ export class Dagger extends Component {
     this.#includeDotDirectories(directory)
 
     return file
+  }
+
+  /**
+   * An SDK's generation rewrites the manifest of every module its scope
+   * covers, so `dagger check` would fail on each one projen writes there.
+   */
+  override preSynthesize() {
+    const synthesized = new Set(
+      Object.keys(this.modules).map((directory) =>
+        path.posix.normalize(directory),
+      ),
+    )
+
+    for (const [sdk, { scopes = {} }] of Object.entries(
+      this.#workspace?.sdks ?? {},
+    )) {
+      for (const [directory, scope] of Object.entries(scopes)) {
+        if (
+          scope['is-module'] &&
+          synthesized.has(path.posix.normalize(directory))
+        ) {
+          throw new Error(
+            `dagger.toml gives the ${sdk} SDK the module "${directory}", whose dagger-module.toml projen synthesizes. The SDK's generation would rewrite the manifest, and \`dagger check\` would fail its staleness check. Drop the scope, or the module from the component.`,
+          )
+        }
+      }
+    }
   }
 
   /**
