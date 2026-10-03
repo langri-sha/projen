@@ -132,8 +132,8 @@ export interface ProjectOptions extends Omit<
   codeowners?: CodeownersOptions
 
   /**
-   * Pass in to set up Dagger modules. Root projects only — modules live in
-   * top-level directories.
+   * Pass in to set up Dagger modules. Root projects only — module
+   * directories are relative to the workspace root.
    */
   dagger?: DaggerOptions
 

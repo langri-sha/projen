@@ -1,23 +1,127 @@
-import { Component, type Project } from 'projen'
+import * as path from 'node:path'
+
+import { Component, type Project, TomlFile } from 'projen'
+
+import type {
+  DaggerModuleConfig,
+  DaggerModuleDependencyConfig,
+  DaggerModuleRuntime,
+} from './config.js'
+
+export type * from './config.js'
+
+/**
+ * A source ref, or the full dependency configuration.
+ */
+export type DaggerModuleDependency = string | DaggerModuleDependencyConfig
+
+/**
+ * Options for one module manifest.
+ */
+export interface DaggerModuleOptions extends Omit<
+  DaggerModuleConfig,
+  'dependencies' | 'engineVersion' | 'name' | 'runtime'
+> {
+  /**
+   * Name of the module.
+   *
+   * @default - the module directory name
+   */
+  readonly name?: string
+
+  /**
+   * Runtime source, or the full runtime configuration.
+   *
+   * @default 'dang'
+   */
+  readonly runtime?: string | DaggerModuleRuntime
+
+  /**
+   * Modules this module depends on.
+   */
+  readonly dependencies?: readonly DaggerModuleDependency[]
+}
 
 export interface DaggerOptions {
   /**
-   * Engine version the project's modules require, e.g. `v1.0.0-beta.15`.
+   * Engine version recorded in every module manifest, e.g. `v1.0.0-beta.15`.
    *
-   * Renovate moves the pin here, in the projenrc, so this is the one place
-   * the repository names an engine.
+   * Required to declare a module. Renovate moves the pin here rather than in
+   * the manifests, so this is the one place the repository names an engine.
    */
   readonly engineVersion?: string
+
+  /**
+   * Module manifests to synthesize, keyed by the module directory.
+   *
+   * @default {}
+   */
+  readonly modules?: Record<string, DaggerModuleOptions>
 }
 
 /**
  * A component for Dagger workspaces.
  *
+ * Synthesizes each module's `dagger-module.toml`.
+ *
  * `@langri-sha/projen-project` reaches it through its `dagger` option, which
  * also points Renovate at the engine version.
  */
 export class Dagger extends Component {
-  constructor(project: Project, _options: DaggerOptions = {}) {
+  /**
+   * Synthesized module manifests, keyed by the module directory.
+   */
+  readonly modules: Record<string, TomlFile> = {}
+
+  readonly #engineVersion?: string
+
+  constructor(project: Project, options: DaggerOptions = {}) {
     super(project)
+
+    this.#engineVersion = options.engineVersion
+
+    for (const [directory, moduleOptions] of Object.entries(
+      options.modules ?? {},
+    )) {
+      this.addModule(directory, moduleOptions)
+    }
+  }
+
+  /**
+   * Synthesizes a `dagger-module.toml` for a module directory.
+   */
+  addModule(directory: string, options: DaggerModuleOptions = {}): TomlFile {
+    if (!this.#engineVersion) {
+      throw new Error(
+        `Cannot add the Dagger module "${directory}" without an engineVersion. Pass one to the Dagger component.`,
+      )
+    }
+
+    const manifest: DaggerModuleConfig = {
+      name: options.name ?? path.posix.basename(directory),
+      engineVersion: this.#engineVersion,
+      include: options.include,
+      source: options.source,
+      disableDefaultFunctionCaching: options.disableDefaultFunctionCaching,
+      runtime:
+        typeof options.runtime === 'object'
+          ? options.runtime
+          : { source: options.runtime ?? 'dang' },
+      dependencies: options.dependencies?.map((dependency) =>
+        typeof dependency === 'string' ? { source: dependency } : dependency,
+      ),
+      codegen: options.codegen,
+      clients: options.clients,
+    }
+
+    const file = new TomlFile(
+      this.project,
+      path.posix.join(directory, 'dagger-module.toml'),
+      { obj: manifest },
+    )
+
+    this.modules[directory] = file
+
+    return file
   }
 }

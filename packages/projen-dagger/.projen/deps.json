@@ -11,6 +11,11 @@
       "type": "build"
     },
     {
+      "name": "smol-toml",
+      "version": "1.9.0",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "version": "^0.86.0",
       "type": "peer"
