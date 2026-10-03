@@ -11,11 +11,6 @@
       "type": "build"
     },
     {
-      "name": "schemastore-to-typescript",
-      "version": "1.0.2",
-      "type": "build"
-    },
-    {
       "name": "projen",
       "version": "^0.86.0",
       "type": "peer"
