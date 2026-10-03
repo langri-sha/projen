@@ -1225,7 +1225,7 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
   ).toMatchInlineSnapshot(`
     {
       "customType": "regex",
-      "datasourceTemplate": "github-releases",
+      "datasourceTemplate": "github-tags",
       "depNameTemplate": "dagger/dagger",
       "extractVersionTemplate": "^v(?<version>.+)$",
       "managerFilePatterns": [
@@ -1234,6 +1234,7 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
       "matchStrings": [
         "engineVersion:\\s*'v(?<currentValue>[^']+)'",
       ],
+      "versioningTemplate": "semver",
     }
   `)
 
