@@ -7,8 +7,8 @@ workspace's `dagger.toml`. `dagger.lock` is left to the Dagger CLI, which may
 update it on any command.
 
 [`@langri-sha/projen-project`] reaches it through its `dagger` option, which
-also points Renovate at the engine version. Prefer that over constructing the
-component yourself.
+also points Renovate at the engine version and at module refs pinned to a GitHub
+tag. Prefer that over constructing the component yourself.
 
 ## Usage
 
@@ -91,6 +91,30 @@ It is the engine a module requires, not the one it runs on: the CLI starts its
 own engine, and loads a module when the engine's base version is at least the
 declared one's. Every 1.0 prerelease therefore loads a module declaring any
 other, and pinning the CLI in CI is a separate concern.
+
+#### Module refs
+
+Through the preset, Renovate moves module refs pinned to a GitHub tag in the
+projenrc, `dagger.toml` and `dagger-module.toml`. Where the component
+synthesizes one of those files, the ref moves there and in the projenrc alike,
+so the next synthesis leaves the bump in place.
+
+A module in a monorepo moves along its own tags. `dagger install` writes
+`github.com/shykes/daggerverse/hello@v0.3.0`, which Dagger resolves to the tag
+`hello/v0.3.0`, and the spelled-out `…/hello@hello/v0.3.0` names that tag
+itself; either moves along `hello/v*`. Dagger falls back to a root tag when a
+module has none of its own, and Renovate cannot: a module nested in a repository
+tagged only at its root, such as
+`github.com/dagger/eslint/.dagger/modules/e2e@v0.2.0`, is not tracked.
+
+Leave out the `pin` beside a tracked ref. `dagger.lock` pins the commit anyway,
+and once Renovate moves the tag, a pin left behind makes a short-form ref fail
+to load.
+
+A ref without a version resolves to the latest release and is pinned in
+`dagger.lock`, which `dagger update` and `dagger lock update` refresh. Renovate
+cannot resolve a vanity ref such as `dagger.io/js/eslint`; write the
+`github.com` form to have it tracked.
 
 ### Workspace
 
