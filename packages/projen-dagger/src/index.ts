@@ -80,7 +80,8 @@ export interface DaggerOptions {
  * `.dagger/`, in `.gitignore`. `dagger.lock` is the CLI's alone.
  *
  * `@langri-sha/projen-project` reaches it through its `dagger` option, which
- * also points Renovate at the engine version.
+ * also points Renovate at the engine version and at module refs pinned to a
+ * GitHub tag.
  */
 export class Dagger extends Component {
   /**

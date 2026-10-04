@@ -1047,6 +1047,41 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        // Module refs pinned to a GitHub tag. `dagger install` writes a module
+        // in a monorepo as `…/hello@v0.3.0`, and Dagger resolves that to the
+        // tag `hello/v0.3.0`, so a bare version is read against the subpath's
+        // tags. The spelled-out `…/hello@hello/v0.3.0` names its tag prefix
+        // itself. Either way the prefix stays out of the captured version, so
+        // the replacement keeps it. Dagger falls back to a root tag when a
+        // module has none of its own, and this cannot.
+        //
+        // The Dagger config files are read whether or not synthesis writes
+        // them: a ref there is the same string as in the projenrc, so both
+        // move in one branch and the next synthesis leaves the bump in place.
+        // A ref has to be a whole quoted string, which keeps out a task's
+        // `go install github.com/…@v1.2.3`.
+        ...(dagger
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                  '/(^|/)dagger\\.toml$/',
+                  '/(^|/)dagger-module\\.toml$/',
+                ],
+                matchStrings: [
+                  `['"]github\\.com/(?<repo>[\\w.-]+/[\\w.-]+)(?:/(?<subdir>[^'"@]+))?@(?<tagDir>[^'"@]+/)?v(?<currentValue>\\d[^'"]*)['"]`,
+                ],
+                depNameTemplate:
+                  'github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}',
+                packageNameTemplate: '{{{repo}}}',
+                extractVersionTemplate:
+                  '^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$',
+              },
+            ]
+          : []),
         // The `packageManager` field is declared in a projenrc and only
         // reaches the manifest through synthesis, so the npm manager reading
         // the manifest cannot propose it. Both patterns are held to that one

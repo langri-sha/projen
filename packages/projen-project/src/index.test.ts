@@ -1256,6 +1256,38 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
   `)
 })
 
+test('with Renovate options, reading Dagger module refs pinned to a tag', () => {
+  const project = new Project({
+    name: 'test-project',
+    dagger: {},
+    renovate: {},
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].customManagers.find(
+      ({ packageNameTemplate }: { packageNameTemplate?: string }) =>
+        packageNameTemplate === '{{{repo}}}',
+    ),
+  ).toMatchInlineSnapshot(`
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}",
+      "extractVersionTemplate": "^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$",
+      "managerFilePatterns": [
+        "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
+        "/(^|/)dagger\\.toml$/",
+        "/(^|/)dagger-module\\.toml$/",
+      ],
+      "matchStrings": [
+        "['"]github\\.com/(?<repo>[\\w.-]+/[\\w.-]+)(?:/(?<subdir>[^'"@]+))?@(?<tagDir>[^'"@]+/)?v(?<currentValue>\\d[^'"]*)['"]",
+      ],
+      "packageNameTemplate": "{{{repo}}}",
+      "versioningTemplate": "semver",
+    }
+  `)
+})
+
 test('with Renovate options and no uv workspace', () => {
   const project = new Project({
     name: 'test-project',
@@ -1363,6 +1395,62 @@ describe('with Renovate options, the custom managers', () => {
       new RegExp(matchString).exec("    engineVersion: 'v0.20.8',")?.groups
         ?.currentValue,
     ).toBe('0.20.8')
+  })
+
+  test('read Dagger module refs pinned to a tag, and nothing else', () => {
+    const manager = customManagers().find(({ depNameTemplate }) =>
+      depNameTemplate?.startsWith('github.com/'),
+    )!
+    const matchString = new RegExp(manager.matchStrings[0]!)
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'dagger.toml')).toBe(true)
+    expect(covers(manager, '.dagger/modules/ci/dagger-module.toml')).toBe(true)
+    expect(covers(manager, 'packages/projen-dagger/src/index.test.ts')).toBe(
+      false,
+    )
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+
+    expect(
+      matchString.exec(
+        "          'github.com/shykes/daggerverse/hello@v0.3.0',",
+      )?.groups,
+    ).toEqual({
+      repo: 'shykes/daggerverse',
+      subdir: 'hello',
+      tagDir: undefined,
+      currentValue: '0.3.0',
+    })
+    expect(
+      matchString.exec(
+        "          'github.com/langri-sha/dagger/terraform@terraform/v0.1.0',",
+      )?.groups,
+    ).toEqual({
+      repo: 'langri-sha/dagger',
+      subdir: 'terraform',
+      tagDir: 'terraform/',
+      currentValue: '0.1.0',
+    })
+    expect(
+      matchString.exec('source = "github.com/dagger/eslint@v0.2.0"')?.groups,
+    ).toEqual({
+      repo: 'dagger/eslint',
+      subdir: undefined,
+      tagDir: undefined,
+      currentValue: '0.2.0',
+    })
+
+    for (const line of [
+      "'../terraform',",
+      "'github.com/dagger/eslint',",
+      "'github.com/dagger/eslint@main',",
+      "'dagger.io/js/eslint@v0.2.0',",
+      "exec: 'go install github.com/vito/dang/cmd/dang@v2.1.4',",
+    ]) {
+      expect(line).not.toMatch(matchString)
+    }
   })
 
   test('name the package an execution runs, not the one they were copied from', () => {
