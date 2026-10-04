@@ -38,7 +38,7 @@ import { vi } from 'vitest'
 import { NodePackage, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
-import { Project } from './index'
+import { Project, type ProjectOptions } from './index'
 
 vi.mock('@langri-sha/projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
@@ -1256,6 +1256,43 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
   `)
 })
 
+test('with Renovate options, reading Dagger module refs out of the files written by hand', () => {
+  const manager = (dagger: ProjectOptions['dagger']) =>
+    synthSnapshot(new Project({ name: 'test-project', dagger, renovate: {} }))[
+      'renovate.json5'
+    ].customManagers.find(
+      ({ packageNameTemplate }: { packageNameTemplate?: string }) =>
+        packageNameTemplate === '{{{repo}}}',
+    )
+
+  expect(manager({})).toMatchInlineSnapshot(`
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "github.com/{{{repo}}}{{{subpath}}}",
+      "extractVersionTemplate": "^{{{tagPrefix}}}(?<version>.+)$",
+      "managerFilePatterns": [
+        "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
+        "/(^|/)dagger\\.toml$/",
+        "/(^|/)dagger-module\\.toml$/",
+      ],
+      "matchStrings": [
+        "['"]github\\.com/(?<repo>[\\w.-]+/[\\w.-]+)(?<subpath>/[^'"@]+)?@(?<tagPrefix>(?:[^'"@]+/)?v)(?<currentValue>\\d[^'"]*)['"]",
+      ],
+      "packageNameTemplate": "{{{repo}}}",
+      "versioningTemplate": "semver",
+    }
+  `)
+
+  expect(
+    manager({
+      engineVersion: 'v1.0.0-beta.15',
+      modules: { ci: {} },
+      workspace: {},
+    }).managerFilePatterns,
+  ).toEqual(['/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/'])
+})
+
 test('with Renovate options and no uv workspace', () => {
   const project = new Project({
     name: 'test-project',
@@ -1363,6 +1400,52 @@ describe('with Renovate options, the custom managers', () => {
       new RegExp(matchString).exec("    engineVersion: 'v0.20.8',")?.groups
         ?.currentValue,
     ).toBe('0.20.8')
+  })
+
+  test('read Dagger module refs pinned to a tag, and nothing else', () => {
+    const manager = customManagers().find(({ depNameTemplate }) =>
+      depNameTemplate?.startsWith('github.com/'),
+    )!
+    const matchString = new RegExp(manager.matchStrings[0]!)
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'dagger.toml')).toBe(true)
+    expect(covers(manager, '.dagger/modules/ci/dagger-module.toml')).toBe(true)
+    expect(covers(manager, 'packages/projen-dagger/src/index.test.ts')).toBe(
+      false,
+    )
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+
+    expect(
+      matchString.exec(
+        "          'github.com/langri-sha/dagger/terraform@terraform/v0.1.0',",
+      )?.groups,
+    ).toEqual({
+      repo: 'langri-sha/dagger',
+      subpath: '/terraform',
+      tagPrefix: 'terraform/v',
+      currentValue: '0.1.0',
+    })
+    expect(
+      matchString.exec('source = "github.com/dagger/eslint@v0.2.0"')?.groups,
+    ).toEqual({
+      repo: 'dagger/eslint',
+      subpath: undefined,
+      tagPrefix: 'v',
+      currentValue: '0.2.0',
+    })
+
+    for (const line of [
+      "'../terraform',",
+      "'github.com/dagger/eslint',",
+      "'github.com/dagger/eslint@main',",
+      "'dagger.io/js/eslint@v0.2.0',",
+      "exec: 'go install github.com/vito/dang/cmd/dang@v2.1.4',",
+    ]) {
+      expect(line).not.toMatch(matchString)
+    }
   })
 
   test('name the package an execution runs, not the one they were copied from', () => {

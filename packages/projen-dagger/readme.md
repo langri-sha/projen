@@ -7,8 +7,8 @@ workspace's `dagger.toml`. `dagger.lock` is left to the Dagger CLI, which may
 update it on any command.
 
 [`@langri-sha/projen-project`] reaches it through its `dagger` option, which
-also points Renovate at the engine version. Prefer that over constructing the
-component yourself.
+also points Renovate at the engine version and at module refs pinned to a GitHub
+tag. Prefer that over constructing the component yourself.
 
 ## Usage
 
@@ -87,6 +87,19 @@ It is the engine a module requires, not the one it runs on: the CLI starts its
 own engine, and loads a module when the engine's base version is at least the
 declared one's. Every 1.0 prerelease therefore loads a module declaring any
 other, and pinning the CLI in CI is a separate concern.
+
+#### Module refs
+
+Through the preset, Renovate moves module refs pinned to a GitHub tag, such as
+`github.com/langri-sha/dagger/terraform@terraform/v0.1.0`, wherever they are
+written by hand: in the projenrc, and in a `dagger.toml` or `dagger-module.toml`
+the component does not synthesize. A module in a monorepo moves along its own
+tags only, `terraform/v*` here.
+
+A ref without a version resolves to the latest release and is pinned in
+`dagger.lock`, which only `dagger lock update` moves. Renovate cannot resolve a
+vanity ref such as `dagger.io/js/eslint`; write the `github.com` form to have it
+tracked.
 
 ### Workspace
 

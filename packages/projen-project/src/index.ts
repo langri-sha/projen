@@ -1047,6 +1047,35 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        // Module refs pinned to a GitHub tag, wherever they are written by
+        // hand: the projenrc, and whichever Dagger config files synthesis
+        // leaves alone. A monorepo prefixes each module's tags with its path
+        // (`terraform/v0.1.0`), so the prefix is captured apart from the
+        // version: the lookup reads only that module's tags, and the
+        // replacement keeps the prefix. A ref has to be a whole quoted string,
+        // which keeps out a task's `go install github.com/…@v1.2.3`.
+        ...(dagger
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                  ...(this.dagger?.workspace ? [] : ['/(^|/)dagger\\.toml$/']),
+                  ...(Object.keys(this.dagger?.modules ?? {}).length
+                    ? []
+                    : ['/(^|/)dagger-module\\.toml$/']),
+                ],
+                matchStrings: [
+                  `['"]github\\.com/(?<repo>[\\w.-]+/[\\w.-]+)(?<subpath>/[^'"@]+)?@(?<tagPrefix>(?:[^'"@]+/)?v)(?<currentValue>\\d[^'"]*)['"]`,
+                ],
+                depNameTemplate: 'github.com/{{{repo}}}{{{subpath}}}',
+                packageNameTemplate: '{{{repo}}}',
+                extractVersionTemplate: '^{{{tagPrefix}}}(?<version>.+)$',
+              },
+            ]
+          : []),
         // The `packageManager` field is declared in a projenrc and only
         // reaches the manifest through synthesis, so the npm manager reading
         // the manifest cannot propose it. Both patterns are held to that one
