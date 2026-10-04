@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-license
 
-<!-- This log was last generated on Fri, 02 Oct 2026 20:07:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.15
+
+Sun, 04 Oct 2026 19:23:27 GMT
+
+### Patches
+
+- Update langri-sha projen toolchain
 
 ## 0.3.14
 

@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-beachball
 
-<!-- This log was last generated on Fri, 02 Oct 2026 20:07:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.12
+
+Sun, 04 Oct 2026 19:23:27 GMT
+
+### Patches
+
+- Update langri-sha projen toolchain
 
 ## 0.5.11
 

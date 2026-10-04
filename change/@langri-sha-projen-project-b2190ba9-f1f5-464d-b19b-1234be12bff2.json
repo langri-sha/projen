@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Track Dagger module refs pinned to GitHub tags",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

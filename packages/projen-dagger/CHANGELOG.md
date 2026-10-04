@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-dagger
 
-<!-- This log was last generated on Fri, 02 Oct 2026 20:07:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.0
+
+Sun, 04 Oct 2026 19:23:27 GMT
+
+### Minor changes
+
+- Synthesize Dagger 1.0 dagger-module.toml and dagger.toml in place of dagger.json, the SDK tasks and modules.yml (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update langri-sha projen toolchain
 
 ## 0.2.4
 

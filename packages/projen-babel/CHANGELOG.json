@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-babel",
   "entries": [
     {
+      "date": "Sun, 04 Oct 2026 19:23:27 GMT",
+      "version": "0.5.15",
+      "tag": "@langri-sha/projen-babel_v0.5.15",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-babel",
+            "commit": "24b7a8d84fff97abf23b5737c684828eeb4e33b3",
+            "comment": "Update langri-sha projen toolchain"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 02 Oct 2026 20:07:58 GMT",
       "version": "0.5.14",
       "tag": "@langri-sha/projen-babel_v0.5.14",

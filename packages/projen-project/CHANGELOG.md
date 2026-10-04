@@ -1,8 +1,42 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Fri, 02 Oct 2026 20:07:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.32.0
+
+Sun, 04 Oct 2026 19:23:27 GMT
+
+### Minor changes
+
+- Configure Dagger 1.0 modules and workspaces through the dagger option (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.15
+- Bump @langri-sha/projen-beachball to v0.5.12
+- Bump @langri-sha/projen-cargo to v0.1.7
+- Bump @langri-sha/projen-codeowners to v0.5.12
+- Bump @langri-sha/projen-dagger to v0.3.0
+- Bump @langri-sha/projen-editorconfig to v0.6.12
+- Bump @langri-sha/projen-eslint to v0.3.16
+- Bump @langri-sha/projen-husky to v0.3.22
+- Bump @langri-sha/projen-jest-config to v0.4.17
+- Bump @langri-sha/projen-license to v0.3.15
+- Bump @langri-sha/projen-lint-staged to v0.3.17
+- Bump @langri-sha/projen-lint-synthesized to v0.5.16
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.12
+- Bump @langri-sha/projen-prettier to v0.4.17
+- Bump @langri-sha/projen-readme to v0.1.12
+- Bump @langri-sha/projen-renovate to v0.4.24
+- Bump @langri-sha/projen-swcrc to v0.1.24
+- Bump @langri-sha/projen-typescript-config to v0.5.20
+- Bump @langri-sha/projen-uv to v0.1.4
+- Bump @langri-sha/projen-worktrunk to v0.1.3
+
+### Patches
+
+- Track Dagger module refs pinned to GitHub tags (filip.dupanovic@gmail.com)
+- Update langri-sha projen toolchain
+- Track Dagger engine prereleases from tags with semver versioning (filip.dupanovic@gmail.com)
 
 ## 0.31.3
 
