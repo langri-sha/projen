@@ -132,8 +132,8 @@ export interface ProjectOptions extends Omit<
   codeowners?: CodeownersOptions
 
   /**
-   * Pass in to set up Dagger modules. Root projects only — modules live in
-   * top-level directories.
+   * Pass in to set up Dagger modules. Root projects only — module
+   * directories are relative to the workspace root.
    */
   dagger?: DaggerOptions
 
@@ -814,7 +814,7 @@ export class Project extends BaseProject {
     )
   }
 
-  #configurePrettier({ dagger, prettier, package: pkg }: ProjectOptions) {
+  #configurePrettier({ prettier, package: pkg }: ProjectOptions) {
     if (!prettier || this.parent) {
       return
     }
@@ -823,16 +823,7 @@ export class Project extends BaseProject {
       filename:
         pkg?.type === 'module' ? 'prettier.config.js' : 'prettier.config.mjs',
       extends: '@langri-sha/prettier',
-      ignorePatterns: [
-        '.*',
-        'dist/',
-        // Everything inside a Dagger module directory is written by the CLI or
-        // by the component, each in its own formatting. Prettier would rewrite
-        // them and `dagger develop` would put them back, on every run.
-        ...(dagger
-          ? ['*/dagger.json', '*/package.json', '*/tsconfig.json', '*/sdk/']
-          : []),
-      ],
+      ignorePatterns: ['.*', 'dist/'],
     }
 
     this.#addDefaultDevDeps('prettier@3.9.9')
@@ -942,24 +933,10 @@ export class Project extends BaseProject {
           ? [
               {
                 description:
-                  'Move every Dagger module off one engine release at a time, the way `dagger develop` writes them',
+                  'Move every Dagger module off one engine release at a time',
                 groupName: 'Dagger engine',
                 groupSlug: 'dagger-engine',
                 matchDepNames: ['dagger/dagger'],
-              },
-              {
-                description:
-                  'The Dagger SDK writes the module manifests, including the TypeScript pin. Upgrades here are reverted by the next `dagger develop`',
-                matchManagers: ['npm'],
-                matchFileNames: ['*/package.json'],
-                enabled: false,
-              },
-              {
-                description:
-                  'Track the TypeScript major the Dagger SDK installs into the modules, so `check:types` keeps using the runtime compiler',
-                matchManagers: ['npm'],
-                matchPackageNames: ['typescript'],
-                allowedVersions: '^5',
               },
             ]
           : []),
@@ -1043,8 +1020,12 @@ export class Project extends BaseProject {
         // The engine version is declared in the projenrc and written into
         // every module manifest from there, so nothing Renovate has a manager
         // for names it. The `v` prefix sits outside the capture group, and
-        // `extractVersionTemplate` strips it off the release tags, so the
-        // replacement leaves the prefix in place.
+        // `extractVersionTemplate` strips it off the tags, so the replacement
+        // leaves the prefix in place.
+        //
+        // Tags rather than releases, because Dagger publishes its 1.0 betas
+        // as tags alone. Plain semver, because the coerced default reads every
+        // `1.0.0-beta.N` as `1.0.0` and so never proposes the next beta.
         //
         // Held to the projenrc by the anchored file pattern below, for the
         // reason spelled out under the `packageManager` manager: a pattern
@@ -1055,13 +1036,43 @@ export class Project extends BaseProject {
           ? [
               {
                 customType: 'regex' as const,
-                datasourceTemplate: 'github-releases',
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
                 depNameTemplate: 'dagger/dagger',
                 managerFilePatterns: [
                   '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
                 ],
                 matchStrings: ["engineVersion:\\s*'v(?<currentValue>[^']+)'"],
                 extractVersionTemplate: '^v(?<version>.+)$',
+              },
+            ]
+          : []),
+        // Module refs pinned to a GitHub tag, wherever they are written by
+        // hand: the projenrc, and whichever Dagger config files synthesis
+        // leaves alone. A monorepo prefixes each module's tags with its path
+        // (`terraform/v0.1.0`), so the prefix is captured apart from the
+        // version: the lookup reads only that module's tags, and the
+        // replacement keeps the prefix. A ref has to be a whole quoted string,
+        // which keeps out a task's `go install github.com/…@v1.2.3`.
+        ...(dagger
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                  ...(this.dagger?.workspace ? [] : ['/(^|/)dagger\\.toml$/']),
+                  ...(Object.keys(this.dagger?.modules ?? {}).length
+                    ? []
+                    : ['/(^|/)dagger-module\\.toml$/']),
+                ],
+                matchStrings: [
+                  `['"]github\\.com/(?<repo>[\\w.-]+/[\\w.-]+)(?<subpath>/[^'"@]+)?@(?<tagPrefix>(?:[^'"@]+/)?v)(?<currentValue>\\d[^'"]*)['"]`,
+                ],
+                depNameTemplate: 'github.com/{{{repo}}}{{{subpath}}}',
+                packageNameTemplate: '{{{repo}}}',
+                extractVersionTemplate: '^{{{tagPrefix}}}(?<version>.+)$',
               },
             ]
           : []),

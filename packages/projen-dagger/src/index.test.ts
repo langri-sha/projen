@@ -1,160 +1,84 @@
-import { expect, test } from '@langri-sha/vitest'
+import { execFileSync } from 'node:child_process'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
+import * as path from 'node:path'
+
+import { describe, expect, test } from '@langri-sha/vitest'
 import { Project } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
+import { parse } from 'smol-toml'
 
-import { Dagger } from './index'
+import { Dagger, type DaggerOptions } from './index'
+
+const synth = (options?: DaggerOptions) => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new Dagger(project, options)
+
+  return synthSnapshot(project)
+}
 
 test('defaults', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project)
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
-test('with workflow disabled', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    workflow: false,
-  })
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
-test('with custom workflow actions', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    workflow: {
-      checkoutAction: 'actions/checkout@v4',
-      pnpmSetupAction: 'pnpm/action-setup@v4',
-    },
-  })
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
-test('with custom gitignore patterns', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    gitignorePatterns: ['**/sdk/', '*.tsbuildinfo', 'custom/'],
-  })
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
-})
-
-/**
- * `owner/repo@ref`, optionally with a path to an action inside the repository.
- */
-const ACTION_REFERENCE = /^[\w.-]+\/[\w.-]+(?:\/[\w.-]+)*@[\w][\w.-]*$/
-
-const workflowActions = (project: Project) =>
-  [
-    ...(
-      synthSnapshot(project)['.github/workflows/modules.yml'] as string
-    ).matchAll(/^\s*uses: (?<reference>\S+)$/gm),
-  ].map(({ groups }) => groups!.reference)
-
-/**
- * Renovate read `langri-sha/github/actions/pnpm@v0.14.1` as a pnpm version and
- * walked it to `12.3.4`, which is not a tag of that repository. The snapshots
- * moved with it, so assert the references themselves.
- */
-test('defaults to the action references it was released with', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project)
-
-  expect(workflowActions(project)).toEqual([
-    'actions/checkout@v7',
-    'langri-sha/github/actions/pnpm@v0.14.1',
-  ])
-})
-
-test('names every action by owner, repository and ref', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    workflow: {
-      checkoutAction: 'actions/checkout@v4',
-      pnpmSetupAction: 'pnpm/action-setup@v4',
-    },
-  })
-
-  for (const reference of workflowActions(project)) {
-    expect(reference).toMatch(ACTION_REFERENCE)
-  }
+  expect(synth()).toMatchSnapshot()
 })
 
 test('with modules', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    engineVersion: 'v0.21.7',
-    modules: {
-      tailscale: {},
-      paperclip: {
-        dependencies: ['../tailscale'],
+  expect(
+    synth({
+      engineVersion: 'v1.0.0-beta.15',
+      modules: {
+        terraform: {},
+        'terraform/e2e': {
+          dependencies: ['..'],
+        },
+        projen: {
+          name: 'ci',
+          include: ['!node_modules'],
+          dependencies: [
+            '../terraform',
+            {
+              name: 'lint',
+              source: 'github.com/langri-sha/dagger/eslint@eslint/v0.1.0',
+              pin: 'abc',
+            },
+          ],
+        },
       },
-      workspace: {
-        name: 'hermes-workspace',
-        dependencies: [
-          '../tailscale',
-          { name: 'store', source: '../tigerfs' },
-          { source: 'github.com/langri-sha/dagger/hermes@v1.2.3', pin: 'abc' },
-        ],
-        include: ['!node_modules'],
-        source: '.',
-      },
-    },
-  })
-
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+    }),
+  ).toMatchSnapshot()
 })
 
-test('with a module that opts out of the SDK', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    engineVersion: 'v0.21.7',
+test('with a runtime other than Dang', () => {
+  const files = synth({
+    engineVersion: 'v1.0.0-beta.15',
     modules: {
-      blueprinted: {
-        sdk: false,
-        blueprint: '../base',
-        toolchains: [{ source: '../lint', ignoreChecks: ['fmt'] }],
-        clients: [{ generator: 'typescript', directory: 'client' }],
+      go: {
+        runtime: 'go',
+        source: 'src',
         codegen: { automaticGitignore: false },
+        clients: [{ generator: 'go', directory: 'client' }],
         disableDefaultFunctionCaching: true,
-        schema: 'https://docs.dagger.io/reference/dagger.schema.json',
+      },
+      typescript: {
+        runtime: { source: 'github.com/dagger/typescript-sdk', pin: 'abc' },
       },
     },
   })
 
-  project.synth()
-  expect(synthSnapshot(project)).toMatchSnapshot()
+  expect(parse(files['go/dagger-module.toml'])).toEqual({
+    name: 'go',
+    engineVersion: 'v1.0.0-beta.15',
+    source: 'src',
+    disableDefaultFunctionCaching: true,
+    runtime: { source: 'go' },
+    codegen: { automaticGitignore: false },
+    clients: [{ generator: 'go', directory: 'client' }],
+  })
+  expect(parse(files['typescript/dagger-module.toml']).runtime).toEqual({
+    source: 'github.com/dagger/typescript-sdk',
+    pin: 'abc',
+  })
 })
 
 test('with a module added after construction', () => {
@@ -162,14 +86,15 @@ test('with a module added after construction', () => {
     name: 'test-project',
   })
 
-  const dagger = new Dagger(project, { engineVersion: 'v0.21.7' })
-  dagger.addModule('tailscale')
+  const dagger = new Dagger(project, { engineVersion: 'v1.0.0-beta.15' })
+  dagger.addModule('.dagger/modules/ci')
 
-  project.synth()
-  expect(synthSnapshot(project)['tailscale/dagger.json']).toEqual({
-    name: 'tailscale',
-    engineVersion: 'v0.21.7',
-    sdk: { source: 'typescript' },
+  expect(
+    parse(synthSnapshot(project)['.dagger/modules/ci/dagger-module.toml']),
+  ).toEqual({
+    name: 'ci',
+    engineVersion: 'v1.0.0-beta.15',
+    runtime: { source: 'dang' },
   })
 })
 
@@ -180,44 +105,143 @@ test('without an engine version', () => {
 
   const dagger = new Dagger(project)
 
-  expect(() => dagger.addModule('tailscale')).toThrow(/engineVersion/)
+  expect(() => dagger.addModule('terraform')).toThrow(/engineVersion/)
 })
 
-test('writes fields in the order the Dagger CLI marshals them', () => {
-  const project = new Project({
-    name: 'test-project',
-  })
-
-  new Dagger(project, {
-    engineVersion: 'v0.21.7',
+describe('workspace', () => {
+  const workspace = {
+    ignore: ['**/node_modules'],
+    'check-generated': false,
     modules: {
-      module: {
-        schema: 'https://docs.dagger.io/reference/dagger.schema.json',
-        blueprint: '../base',
-        toolchains: ['../lint'],
-        include: ['!node_modules'],
-        dependencies: ['../tailscale'],
-        source: 'sub',
-        codegen: { automaticGitignore: true },
-        clients: [{ generator: 'typescript', directory: 'client' }],
-        disableDefaultFunctionCaching: true,
+      ci: {
+        source: '.dagger/modules/ci',
+        entrypoint: true,
+      },
+      terraform: {
+        source: 'github.com/langri-sha/dagger/terraform@terraform/v0.1.0',
+        settings: {
+          rootModule: 'terraform/web',
+          sources: ['terraform/**'],
+        },
+        check: { skip: ['fmt'] },
+      },
+      eslint: {
+        source: 'dagger.io/js/eslint',
+        settings: {
+          packageManager: 'pnpm',
+          service: 'dag://ci/serve',
+        },
       },
     },
+  } satisfies DaggerOptions['workspace']
+
+  test('with a workspace', () => {
+    expect(synth({ workspace })['dagger.toml']).toMatchSnapshot()
   })
 
-  project.synth()
-  expect(Object.keys(synthSnapshot(project)['module/dagger.json'])).toEqual([
-    '$schema',
-    'name',
-    'engineVersion',
-    'sdk',
-    'blueprint',
-    'toolchains',
-    'include',
-    'dependencies',
-    'source',
-    'codegen',
-    'clients',
-    'disableDefaultFunctionCaching',
-  ])
+  test('writes the workspace as given', () => {
+    expect(parse(synth({ workspace })['dagger.toml'])).toEqual(workspace)
+  })
+
+  test('with an empty workspace', () => {
+    expect(synth({ workspace: {} })['dagger.toml']).toBeDefined()
+  })
+
+  test('without a workspace', () => {
+    expect(synth()['dagger.toml']).toBeUndefined()
+  })
+})
+
+describe('ignore file', () => {
+  const denyByDefault = (modules: DaggerOptions['modules']) => {
+    const project = new Project({
+      name: 'test-project',
+      gitIgnoreOptions: {
+        ignorePatterns: ['.*', '.dagger/secret.toml'],
+      },
+    })
+
+    new Dagger(project, { engineVersion: 'v1.0.0-beta.15', modules })
+
+    return project
+  }
+
+  const patterns = (project: Project): string[] =>
+    synthSnapshot(project)['.gitignore'].split('\n')
+
+  test('re-includes the dot-directory modules live in, once', () => {
+    expect(
+      patterns(
+        denyByDefault({
+          '.dagger/modules/ci': {},
+          '.dagger/modules/terraform': {},
+        }),
+      ).filter((pattern) => pattern === '!/.dagger'),
+    ).toHaveLength(1)
+  })
+
+  test('re-includes every dot-directory leading to a module', () => {
+    expect(patterns(denyByDefault({ '.ci/nested/.dagger/ci': {} }))).toEqual(
+      expect.arrayContaining(['!/.ci', '!/.ci/nested/.dagger']),
+    )
+  })
+
+  test('keeps the patterns a project already has under the directory', () => {
+    expect(patterns(denyByDefault({ '.dagger/modules/ci': {} }))).toContain(
+      '.dagger/secret.toml',
+    )
+  })
+
+  test('leaves the ignore file alone without dot-directories', () => {
+    const topLevel = (project: Project) =>
+      patterns(project).filter((pattern) => /^!\/\.[^/]+$/.test(pattern))
+
+    expect(
+      topLevel(denyByDefault({ terraform: {}, './terraform/e2e': {} })),
+    ).toEqual(topLevel(denyByDefault({})))
+  })
+
+  describe('as git reads it', () => {
+    const ignored = (project: Project, file: string) => {
+      project.synth()
+
+      mkdirSync(path.dirname(path.join(project.outdir, file)), {
+        recursive: true,
+      })
+
+      if (!existsSync(path.join(project.outdir, file))) {
+        writeFileSync(path.join(project.outdir, file), '')
+      }
+
+      execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+      try {
+        execFileSync('git', ['check-ignore', '--quiet', file], {
+          cwd: project.outdir,
+        })
+
+        return true
+      } catch {
+        return false
+      }
+    }
+
+    test.each([
+      '.dagger/modules/ci/dagger-module.toml',
+      '.dagger/modules/ci/main.dang',
+    ])('%s is tracked', (file) => {
+      expect(ignored(denyByDefault({ '.dagger/modules/ci': {} }), file)).toBe(
+        false,
+      )
+    })
+
+    test.each(['.dagger/secret.toml', '.dagger/modules/ci/.env'])(
+      '%s stays ignored',
+      (file) => {
+        expect(ignored(denyByDefault({ '.dagger/modules/ci': {} }), file)).toBe(
+          true,
+        )
+      },
+    )
+  })
 })

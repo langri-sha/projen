@@ -90,7 +90,6 @@ const project = new Project({
     ignorePatterns: [
       '*.frag',
       'cargo.ts',
-      'dagger.ts',
       'pnpm-workspace.ts',
       'pyproject.ts',
       'renovate.ts',
@@ -223,26 +222,13 @@ project.addSubproject(
       ...pkg,
       copyrightYear: '2026',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.2'],
+      devDeps: ['smol-toml@1.9.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
   publish,
-  (project) => {
-    project.addGitIgnore('dagger.ts')
-
-    project.package?.setScript(
-      'prepare',
-      "schemastore-to-typescript --no-cache 'Dagger module' src/dagger.ts",
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger.d.ts',
-    )
-  },
 )
 
 project.addSubproject(
