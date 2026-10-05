@@ -388,6 +388,28 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-github-templates',
+    outdir: path.join('packages', 'projen-github-templates'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      type: 'module',
+      deps: ['yaml@2.9.1'],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-husky',
     outdir: path.join('packages', 'projen-husky'),
     npmIgnore: {},

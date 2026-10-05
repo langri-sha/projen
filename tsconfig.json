@@ -32,6 +32,9 @@
       "path": "packages/projen-eslint"
     },
     {
+      "path": "packages/projen-github-templates"
+    },
+    {
       "path": "packages/projen-husky"
     },
     {
