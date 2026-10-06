@@ -1133,6 +1133,30 @@ test('with Renovate options disabling the minimum release age', () => {
   expect(synthSnapshot(project)['renovate.json5'].minimumReleaseAge).toBeNull()
 })
 
+test('with Renovate options, deduping the pnpm lockfile after updates', () => {
+  const project = new Project({
+    name: 'test-project',
+    package: {},
+    renovate: {},
+  })
+
+  expect(synthSnapshot(project)['renovate.json5'].postUpdateOptions).toEqual([
+    'pnpmDedupe',
+  ])
+})
+
+test('with Renovate options and a package manager other than pnpm', () => {
+  const project = new Project({
+    name: 'test-project',
+    package: { packageManager: javascript.NodePackageManager.NPM },
+    renovate: {},
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].postUpdateOptions,
+  ).toBeUndefined()
+})
+
 test('with Renovate options and a minimum Node.js version', () => {
   const project = new Project({
     name: 'test-project',
