@@ -5,7 +5,7 @@ projects.
 
 ## Features
 
-- managing [Beacbhall] configuration for publishing packages
+- managing [Beachball] configuration for publishing packages
 - configures [PNPM] [workspaces]
 - configures [Cargo] workspaces with [`@langri-sha/projen-cargo`]
 - configures [Dagger] modules with [`@langri-sha/projen-dagger`]
@@ -16,9 +16,10 @@ projects.
 - manages [code owners] with [`@langri-sha/projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`@langri-sha/projen-worktrunk`]
 
-[`@langri-sha/codeowners`]: https://www.npmjs.com/package/@langri-sha/codeowners
 [`@langri-sha/projen-cargo`]:
   https://www.npmjs.com/package/@langri-sha/projen-cargo
+[`@langri-sha/projen-codeowners`]:
+  https://www.npmjs.com/package/@langri-sha/projen-codeowners
 [`@langri-sha/projen-dagger`]:
   https://www.npmjs.com/package/@langri-sha/projen-dagger
 [`@langri-sha/projen-husky`]:

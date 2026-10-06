@@ -28,5 +28,5 @@ new License(project, {
 })
 ```
 
-[license-o-matic]: https://www.npmjs.com/package/license-o-matic
+[`license-o-matic`]: https://www.npmjs.com/package/license-o-matic
 [projen]: https://projen.io/
