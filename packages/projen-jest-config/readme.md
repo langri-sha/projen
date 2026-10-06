@@ -51,4 +51,4 @@ export default config
 ```
 
 [projen]: https://projen.io/
-[jest]: https://jestjs.io/docs/
+[jest]: https://jestjs.io/docs/configuration
