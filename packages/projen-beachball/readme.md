@@ -1,4 +1,4 @@
-# @langri-sha/beachball
+# @langri-sha/projen-beachball
 
 A [projen] component for configuring [Beachball].
 
