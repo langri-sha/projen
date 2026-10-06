@@ -41,7 +41,7 @@ const project = new Project({
       '@langri-sha/prettier@0.4.10',
       '@langri-sha/projen-project@workspace:*',
       '@langri-sha/tsconfig@1.1.0',
-      '@types/node@24.19.0',
+      '@types/node@24.19.1',
       'schemastore-to-typescript@1.0.2',
       'vitest@5.0.3',
     ],
@@ -396,7 +396,7 @@ project.addSubproject(
       type: 'module',
       copyrightYear: '2024',
       description: 'A projen component for maintaining Git hooks with Husky.',
-      devDeps: ['@types/node@24.19.0'],
+      devDeps: ['@types/node@24.19.1'],
       peerDeps: ['husky@^9.0.1', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
         husky: {
@@ -794,7 +794,7 @@ project.addSubproject(
         'A projen component for managing TSConfig files for TypeScript projects.',
       type: 'module',
       deps: ['@schemastore/tsconfig@1.0.11'],
-      devDeps: ['@types/node@24.19.0'],
+      devDeps: ['@types/node@24.19.1'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
