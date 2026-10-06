@@ -888,6 +888,9 @@ export class Project extends BaseProject {
       lockFileMaintenance: {
         enabled: true,
       },
+      ...(this.package?.packageManager === javascript.NodePackageManager.PNPM
+        ? { postUpdateOptions: ['pnpmDedupe'] }
+        : {}),
       packageRules: [
         {
           description: 'Prioritize updates in Projen configurations',
