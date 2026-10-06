@@ -14,7 +14,7 @@ Then, create an `License` component for your projects:
 
 ```js
 import { Project } from 'projen'
-import { License } from '@langri-sha/license'
+import { License } from '@langri-sha/projen-license'
 
 const project = new Project({
   name: 'my-project',

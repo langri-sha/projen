@@ -1,4 +1,4 @@
-# @langri-sha/editorconfig
+# @langri-sha/projen-editorconfig
 
 A [projen] component that you can add to your project to author [EditorConfig]
 configurations.
@@ -8,14 +8,14 @@ configurations.
 Install dependencies:
 
 ```sh
-npm install -D @langri-sha/editorconfig
+npm install -D @langri-sha/projen-editorconfig
 ```
 
 Then, create an `EditorConfig` component for your projects:
 
 ```js
 import { Project } from 'projen'
-import { EditorConfig } from '@langri-sha/editorconfig'
+import { EditorConfig } from '@langri-sha/projen-editorconfig'
 
 const project = new Project({
   name: 'my-project',
