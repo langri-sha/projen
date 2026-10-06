@@ -39,7 +39,7 @@ const tsconfigBuild = new TypeScriptConfig(project, {
 project.synth()
 ```
 
-[@schemastore/tsconfig]: https://github.com/schemastore/tsconfig
+[`@schemastore/tsconfig`]: https://github.com/schemastore/tsconfig
 [projen]: https://projen.io/
 [tsconfig]: https://www.typescriptlang.org/tsconfig.
 [typescript]: https://www.typescriptlang.org/
