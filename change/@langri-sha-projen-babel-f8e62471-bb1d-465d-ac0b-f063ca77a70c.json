@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Give the package a plain-text description",
+  "packageName": "@langri-sha/projen-babel",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

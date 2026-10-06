@@ -1,6 +1,7 @@
 {
   "name": "@langri-sha/projen-license",
   "version": "0.3.15",
+  "description": "A projen component for generating license files using license-o-matic.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },
