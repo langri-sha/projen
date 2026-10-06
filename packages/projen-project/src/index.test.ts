@@ -1478,10 +1478,10 @@ describe('with Renovate options, the custom managers', () => {
       currentValue: '3.4.0',
     })
     expect(
-      new RegExp(matchString).exec('bunx @langri-sha/monorepo@1.2.3 --check')
+      new RegExp(matchString).exec('bunx @langri-sha/tsconfig@1.2.3 --check')
         ?.groups,
     ).toMatchObject({
-      depName: '@langri-sha/monorepo',
+      depName: '@langri-sha/tsconfig',
       currentValue: '1.2.3',
     })
   })
