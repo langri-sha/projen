@@ -22,14 +22,14 @@ const project = new Project({
 
 new ESLint(project, {
   ignorePatterns: ['.*'],
-  extends: '@langri-sha/eslint-config'
+  extends: '@langri-sha/eslint-config',
   config: [
     {
       rules: {
-        'unicorn/prefer-node-modules': 'error'
-      }
-    }
-  ]
+        'unicorn/prefer-node-protocol': 'error',
+      },
+    },
+  ],
 })
 ```
 

@@ -14,17 +14,18 @@ Then, create an `Prettier` component for your project:
 
 ```js
 import { Project } from 'projen'
-import { License } from '@langri-sha/projen-prettier'
+import { Prettier } from '@langri-sha/projen-prettier'
 
 const project = new Project({
   name: 'my-project',
 })
 
 new Prettier(project, {
-  filename: '',
-  spdx: 'MIT',
-  copyrightHolder: 'John Smith <john.smith@example.com>',
-  copyrightYear: '2000',
+  ignorePatterns: ['.*'],
+  extends: '@langri-sha/prettier',
+  config: {
+    printWidth: 100,
+  },
 })
 ```
 

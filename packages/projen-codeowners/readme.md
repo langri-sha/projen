@@ -5,14 +5,14 @@ A [projen] component for managing [CODEOWNERS].
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-codeowners`.
+npm install -D projen @langri-sha/projen-codeowners
 ```
 
 Then, create the `Codeowners` component for your root project:
 
 ```js
 import { Project } from 'projen'
-import { Codeowners } from '@langri-sha/projen-codeowners`
+import { Codeowners } from '@langri-sha/projen-codeowners'
 
 const project = new Project({
   name: 'my-project',
@@ -20,8 +20,8 @@ const project = new Project({
 
 new Codeowners(project, {
   '*': '@admins',
-  '*.js': ['@developers', '@frontend']
-}
+  '*.js': ['@developers', '@frontend'],
+})
 ```
 
 [projen]: https://projen.io/
