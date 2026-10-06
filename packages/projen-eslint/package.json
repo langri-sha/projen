@@ -1,6 +1,7 @@
 {
   "name": "@langri-sha/projen-eslint",
   "version": "0.3.16",
+  "description": "A projen component for configuring ESLint.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },

@@ -1,6 +1,7 @@
 {
   "name": "@langri-sha/projen-beachball",
   "version": "0.5.12",
+  "description": "A projen component for configuring Beachball.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
   },

@@ -200,6 +200,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for managing CODEOWNERS.',
       type: 'module',
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -221,6 +222,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2026',
+      description: 'A projen component for Dagger workspaces.',
       type: 'module',
       devDeps: ['smol-toml@1.9.0'],
       peerDeps: [...projenPeer.peerDeps],
@@ -243,6 +245,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for configuring Babel.',
       type: 'module',
       deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
@@ -271,6 +274,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for configuring Beachball.',
       type: 'module',
       peerDeps: ['beachball@^2.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -297,6 +301,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2026',
+      description:
+        'projen components for authoring Cargo workspaces and the crates in them.',
       type: 'module',
       devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
@@ -336,6 +342,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description:
+        'A projen component for authoring EditorConfig configurations.',
       type: 'module',
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -357,6 +365,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for configuring ESLint.',
       type: 'module',
       deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
@@ -386,6 +395,7 @@ project.addSubproject(
       ...pkg,
       type: 'module',
       copyrightYear: '2024',
+      description: 'A projen component for maintaining Git hooks with Husky.',
       devDeps: ['@types/node@24.19.0'],
       peerDeps: ['husky@^9.0.1', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -412,6 +422,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for authoring Jest configurations.',
       type: 'module',
       deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
@@ -440,6 +451,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description:
+        'A projen component for configuring linters for synthesized files.',
       type: 'module',
       deps: ['debug@4.4.3', 'execa@10.0.1', 'minimatch@10.2.6'],
       devDeps: ['@types/debug@4.1.13', 'prettier@3.9.9', 'projen@0.86.5'],
@@ -463,6 +476,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for configuring lint-staged.',
       type: 'module',
       deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
@@ -491,6 +505,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description:
+        'A projen component for generating license files using license-o-matic.',
       type: 'module',
       deps: ['license-o-matic@^1.2.0'],
       peerDeps: [...projenPeer.peerDeps],
@@ -513,6 +529,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for maintaining pnpm workspaces.',
       type: 'module',
       deps: ['yaml@2.9.1'],
       devDeps: ['schemastore-to-typescript@1.0.2'],
@@ -549,6 +566,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for configuring Prettier.',
       type: 'module',
       deps: ['serialize-javascript@7.1.2'],
       devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.9'],
@@ -577,6 +595,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description:
+        'Collection of projen templates for bootstrapping monorepos and workspace projects.',
       type: 'module',
       deps: [
         '@langri-sha/projen-babel@workspace:*',
@@ -671,6 +691,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for creating sample README files.',
       type: 'module',
       peerDeps: [...projenPeer.peerDeps],
     },
@@ -692,6 +713,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for authoring Renovate configurations.',
       type: 'module',
       devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: [...projenPeer.peerDeps],
@@ -727,6 +749,7 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description: 'A projen component for configuring SWC.',
       type: 'module',
       devDeps: ['schemastore-to-typescript@1.0.2'],
       peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
@@ -767,6 +790,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2024',
+      description:
+        'A projen component for managing TSConfig files for TypeScript projects.',
       type: 'module',
       deps: ['@schemastore/tsconfig@1.0.11'],
       devDeps: ['@types/node@24.19.0'],
@@ -790,6 +815,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2026',
+      description:
+        'projen components for authoring uv workspaces and the Python packages in them.',
       type: 'module',
       deps: ['smol-toml@1.9.0'],
       devDeps: ['schemastore-to-typescript@1.0.2'],
@@ -830,6 +857,8 @@ project.addSubproject(
     package: {
       ...pkg,
       copyrightYear: '2026',
+      description:
+        "A projen component for authoring Worktrunk project configuration, so the hooks that run across a worktree's lifecycle are declared in your projenrc along with everything else.",
       type: 'module',
       devDeps: ['smol-toml@1.9.0'],
       peerDeps: [...projenPeer.peerDeps],
