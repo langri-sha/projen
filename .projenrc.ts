@@ -36,13 +36,13 @@ const project = new Project({
     type: 'module',
 
     devDeps: [
-      '@langri-sha/eslint-config@0.9.18',
-      '@langri-sha/lint-staged@0.9.9',
-      '@langri-sha/prettier@0.4.10',
+      '@langri-sha/eslint-config@0.9.19',
+      '@langri-sha/lint-staged@0.9.10',
+      '@langri-sha/prettier@0.4.11',
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/tsconfig@1.1.0',
+      '@langri-sha/tsconfig@1.1.1',
       '@types/node@24.19.1',
-      'schemastore-to-typescript@1.0.2',
+      'schemastore-to-typescript@1.0.3',
       'vitest@5.0.3',
     ],
   },
@@ -159,12 +159,12 @@ const subproject = (project: Project) => {
     ),
   })
 
-  project.package?.addDevDeps('@langri-sha/tsconfig@1.1.0')
+  project.package?.addDevDeps('@langri-sha/tsconfig@1.1.1')
 }
 
 const test = (project: Project) => {
   project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
-  project.package?.addDevDeps('@langri-sha/vitest@0.2.2')
+  project.package?.addDevDeps('@langri-sha/vitest@0.2.3')
 }
 
 const publish = (project: Project) => {
@@ -304,7 +304,7 @@ project.addSubproject(
       description:
         'projen components for authoring Cargo workspaces and the crates in them.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.2'],
+      devDeps: ['schemastore-to-typescript@1.0.3'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -532,7 +532,7 @@ project.addSubproject(
       description: 'A projen component for maintaining pnpm workspaces.',
       type: 'module',
       deps: ['yaml@2.9.1'],
-      devDeps: ['schemastore-to-typescript@1.0.2'],
+      devDeps: ['schemastore-to-typescript@1.0.3'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -715,7 +715,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for authoring Renovate configurations.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.2'],
+      devDeps: ['schemastore-to-typescript@1.0.3'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
@@ -751,7 +751,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring SWC.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.0.2'],
+      devDeps: ['schemastore-to-typescript@1.0.3'],
       peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
         '@swc/core': {
@@ -819,7 +819,7 @@ project.addSubproject(
         'projen components for authoring uv workspaces and the Python packages in them.',
       type: 'module',
       deps: ['smol-toml@1.9.0'],
-      devDeps: ['schemastore-to-typescript@1.0.2'],
+      devDeps: ['schemastore-to-typescript@1.0.3'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },

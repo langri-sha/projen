@@ -28,8 +28,8 @@
     "minimatch": "10.2.6"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.1.0",
-    "@langri-sha/vitest": "0.2.2",
+    "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/vitest": "0.2.3",
     "@types/debug": "4.1.13",
     "prettier": "3.9.9",
     "projen": "0.86.5"
