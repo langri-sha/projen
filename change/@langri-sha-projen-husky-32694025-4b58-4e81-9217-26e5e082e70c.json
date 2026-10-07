@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Document the Husky component in the README",
-  "packageName": "@langri-sha/projen-husky",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

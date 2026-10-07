@@ -2,6 +2,33 @@
   "name": "@langri-sha/projen-license",
   "entries": [
     {
+      "date": "Wed, 07 Oct 2026 10:17:44 GMT",
+      "version": "0.3.16",
+      "tag": "@langri-sha/projen-license_v0.3.16",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "0898a5b634bc0f581029c4ba806c3ebf75143eb7",
+            "comment": "Give the package a plain-text description"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "0898a5b634bc0f581029c4ba806c3ebf75143eb7",
+            "comment": "Fix unresolved reference links in the README"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-license",
+            "commit": "0898a5b634bc0f581029c4ba806c3ebf75143eb7",
+            "comment": "Use the published package name in the README"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 04 Oct 2026 19:23:27 GMT",
       "version": "0.3.15",
       "tag": "@langri-sha/projen-license_v0.3.15",

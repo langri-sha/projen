@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-pnpm-workspace
 
-<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 07 Oct 2026 10:17:44 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.13
+
+Wed, 07 Oct 2026 10:17:44 GMT
+
+### Patches
+
+- Document usage in the readme (filip.dupanovic@gmail.com)
+- Give the package a plain-text description (filip.dupanovic@gmail.com)
 
 ## 0.4.12
 

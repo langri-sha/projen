@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-renovate",
-  "version": "0.4.24",
+  "version": "0.4.25",
   "description": "A projen component for authoring Renovate configurations.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Give the package a plain-text description",
-  "packageName": "@langri-sha/projen-editorconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

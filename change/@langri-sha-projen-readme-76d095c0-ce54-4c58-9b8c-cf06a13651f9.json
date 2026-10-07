@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Use the published package name in the README",
-  "packageName": "@langri-sha/projen-readme",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

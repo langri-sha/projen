@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fix unresolved reference links in the README",
-  "packageName": "@langri-sha/projen-license",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

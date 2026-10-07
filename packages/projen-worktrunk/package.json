@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-worktrunk",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "A projen component for authoring Worktrunk project configuration, so the hooks that run across a worktree's lifecycle are declared in your projenrc along with everything else.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

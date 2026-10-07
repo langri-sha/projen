@@ -1,8 +1,39 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 07 Oct 2026 10:17:44 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.32.1
+
+Wed, 07 Oct 2026 10:17:44 GMT
+
+### Patches
+
+- Give the package a plain-text description (filip.dupanovic@gmail.com)
+- Fix unresolved reference links in the README (filip.dupanovic@gmail.com)
+- Update dependency eslint to v10.12.0
+- Dedupe pnpm lockfiles after Renovate updates (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.16
+- Bump @langri-sha/projen-beachball to v0.5.13
+- Bump @langri-sha/projen-cargo to v0.1.8
+- Bump @langri-sha/projen-codeowners to v0.5.13
+- Bump @langri-sha/projen-dagger to v0.3.1
+- Bump @langri-sha/projen-editorconfig to v0.6.13
+- Bump @langri-sha/projen-eslint to v0.3.17
+- Bump @langri-sha/projen-husky to v0.3.23
+- Bump @langri-sha/projen-jest-config to v0.4.18
+- Bump @langri-sha/projen-license to v0.3.16
+- Bump @langri-sha/projen-lint-staged to v0.3.18
+- Bump @langri-sha/projen-lint-synthesized to v0.5.17
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.13
+- Bump @langri-sha/projen-prettier to v0.4.18
+- Bump @langri-sha/projen-readme to v0.1.13
+- Bump @langri-sha/projen-renovate to v0.4.25
+- Bump @langri-sha/projen-swcrc to v0.1.25
+- Bump @langri-sha/projen-typescript-config to v0.5.21
+- Bump @langri-sha/projen-uv to v0.1.5
+- Bump @langri-sha/projen-worktrunk to v0.1.4
 
 ## 0.32.0
 

@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-swcrc",
   "entries": [
     {
+      "date": "Wed, 07 Oct 2026 10:17:44 GMT",
+      "version": "0.1.25",
+      "tag": "@langri-sha/projen-swcrc_v0.1.25",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-swcrc",
+            "commit": "0898a5b634bc0f581029c4ba806c3ebf75143eb7",
+            "comment": "Give the package a plain-text description"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 04 Oct 2026 19:23:27 GMT",
       "version": "0.1.24",
       "tag": "@langri-sha/projen-swcrc_v0.1.24",

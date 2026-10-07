@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-uv
 
-<!-- This log was last generated on Sun, 04 Oct 2026 19:23:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 07 Oct 2026 10:17:44 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.5
+
+Wed, 07 Oct 2026 10:17:44 GMT
+
+### Patches
+
+- Give the package a plain-text description (filip.dupanovic@gmail.com)
 
 ## 0.1.4
 
