@@ -18,6 +18,46 @@ projects.
 - manages [code owners] with [`@langri-sha/projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`@langri-sha/projen-worktrunk`]
 
+## Worktrunk
+
+Given a `worktrunk` option, the preset supplies a `pre-start` pipeline that
+prepares each new worktree:
+
+1. `sync` fetches the default branch and fast-forwards the new branch to it. It
+   is skipped without a remote, for a branch created from another base, and for
+   a worktree on an existing branch.
+2. Once `sync` succeeds, `env` copies each tracked `.env.example` to a `.env`
+   that is missing, while a command named after the package manager (`pnpm`,
+   `npm`, `yarn` or `bun`) installs dependencies from the lockfile. The install
+   command is left out when the project has no `package`.
+
+The preset's `.gitignore` re-includes `.env.example`, which its deny-by-default
+`.*` would otherwise hide. A step that fails stops the pipeline, so when `sync`
+fails, for example offline, `env` and the installs do not run until
+`wt hook pre-start` runs them.
+
+A `pre-start` in `worktrunk.config`, in any form, replaces the pipeline whole,
+while hooks for other events are written as given:
+
+```ts
+import { Project } from '@langri-sha/projen-project'
+
+new Project({
+  name: 'my-project',
+  worktrunk: {
+    config: { 'pre-start': { install: 'pnpm install --frozen-lockfile' } },
+  },
+})
+```
+
+To add to the pipeline instead, append a step, which runs once the steps before
+it succeed: `project.worktrunk?.addStep('pre-start', { build: 'pnpm build' })`.
+The event is already taken, so `addHook('pre-start', ...)` throws.
+
+Worktrunk asks each teammate to approve a project's commands before it first
+runs them, so no default runs unseen. It remembers approval by the exact text of
+a command.
+
 [`@langri-sha/projen-cargo`]:
   https://www.npmjs.com/package/@langri-sha/projen-cargo
 [`@langri-sha/projen-codeowners`]:
