@@ -1448,6 +1448,7 @@ const getGitIgnoreOptions = ({
   parent,
   typeScriptConfig: typeScriptConfigOptions,
   withTerraform,
+  worktrunk,
 }: ProjectOptions): ProjectOptions['gitIgnoreOptions'] =>
   parent
     ? gitIgnoreOptions
@@ -1458,6 +1459,7 @@ const getGitIgnoreOptions = ({
     !.babelrc
     !.dockerignore
     !.editorconfig
+    ${worktrunk ? '!.env.example' : ''}
     !.gitattributes
     !.gitignore
     !.gitkeep

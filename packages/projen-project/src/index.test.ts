@@ -969,6 +969,26 @@ describe('with Worktrunk options', () => {
     ).toThrow()
   })
 
+  test.each(['.env.example', 'apps/web/.env.example'])(
+    'leaves %s trackable under the deny-by-default ignore file',
+    (template) => {
+      const project = new Project({
+        name: 'test-project',
+        worktrunk,
+      })
+
+      project.synth()
+
+      execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+      expect(() =>
+        execFileSync('git', ['check-ignore', '--quiet', template], {
+          cwd: project.outdir,
+        }),
+      ).toThrow()
+    },
+  )
+
   test('keeps the config expanded in review', () => {
     const project = new Project({
       name: 'test-project',
