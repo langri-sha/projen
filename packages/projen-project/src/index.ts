@@ -1341,6 +1341,8 @@ const deepMerge = R.mergeDeepWith(
     [R.allPass([R.is(String), R.is(String)]), R.nthArg(1)],
     // Same for booleans, which cannot be concatenated at all.
     [R.allPass([R.is(Boolean), R.is(Boolean)]), R.nthArg(1)],
+    // And for numbers.
+    [R.allPass([R.is(Number), R.is(Number)]), R.nthArg(1)],
     // Otherwise, concatenate.
     [R.T, R.concat],
   ]),
