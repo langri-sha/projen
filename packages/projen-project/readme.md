@@ -37,6 +37,11 @@ The preset's `.gitignore` re-includes `.env.example`, which its deny-by-default
 fails, for example offline, `env` and the installs do not run until
 `wt hook pre-start` runs them.
 
+A toolchain gets a command only when the root project configures it, so a crate
+or a Python package in a subproject outside of a workspace gets none. The
+`cargo` and `uv` commands fail rather than create or update a lockfile, so a
+project commits `Cargo.lock` and `uv.lock` first.
+
 A `pre-start` in `worktrunk.config`, in any form, replaces the pipeline whole,
 while hooks for other events are written as given:
 
