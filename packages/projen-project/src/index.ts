@@ -1118,6 +1118,26 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        // `.python-version` is synthesized from the projenrc, so pyenv's update
+        // to the file alone would be put back by the next synthesis. Read with
+        // pyenv's depName, datasource and versioning, the declaration moves on
+        // the same branch as the file. Held to the projenrc for the reason
+        // spelled out under the `packageManager` manager, and because
+        // `pythonVersion:` appears in this preset's tests and projen-uv's.
+        ...(uv?.pythonVersion
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'docker',
+                depNameTemplate: 'python',
+                versioningTemplate: 'docker',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                ],
+                matchStrings: ["pythonVersion:\\s*'(?<currentValue>[^']+)'"],
+              },
+            ]
+          : []),
         // The `packageManager` field is declared in a projenrc and only
         // reaches the manifest through synthesis, so the npm manager reading
         // the manifest cannot propose it. Both patterns are held to that one
@@ -1144,9 +1164,9 @@ export class Project extends BaseProject {
         // `pnpm` offered pnpm's version for every other tool — and the version
         // ends at the first space or quote.
         //
-        // Anchored to a projenrc for the reason the two managers above are: a
-        // pattern that merely contains `projen` reaches the sources of every
-        // package here, and this preset's own tests exercise this regex
+        // Anchored to a projenrc for the reason the anchored managers above
+        // are: a pattern that merely contains `projen` reaches the sources of
+        // every package here, and this preset's own tests exercise this regex
         // against a literal `pnpx name@version`. Renovate rewrote the fixture
         // and left the assertion beside it, failing the suite over a package
         // nothing depends on.

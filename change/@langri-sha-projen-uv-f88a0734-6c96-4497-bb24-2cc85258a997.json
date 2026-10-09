@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Document how the preset has Renovate move pythonVersion",
+  "packageName": "@langri-sha/projen-uv",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

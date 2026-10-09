@@ -1475,6 +1475,52 @@ test('with Renovate options, holding uv to the ranges its manifests declare', ()
   `)
 })
 
+test('with Renovate options and no Python version to read', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+    uv: {},
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].customManagers.map(
+      ({ depNameTemplate }: { depNameTemplate?: string }) => depNameTemplate,
+    ),
+  ).not.toContain('python')
+})
+
+test('with Renovate options, reading the Python version out of the projenrc', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+    uv: {
+      pythonVersion: '3.14',
+    },
+  })
+
+  expect(
+    synthSnapshot(project)['renovate.json5'].customManagers.filter(
+      ({ depNameTemplate }: { depNameTemplate?: string }) =>
+        depNameTemplate === 'python',
+    ),
+  ).toMatchInlineSnapshot(`
+    [
+      {
+        "customType": "regex",
+        "datasourceTemplate": "docker",
+        "depNameTemplate": "python",
+        "managerFilePatterns": [
+          "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
+        ],
+        "matchStrings": [
+          "pythonVersion:\\s*'(?<currentValue>[^']+)'",
+        ],
+        "versioningTemplate": "docker",
+      },
+    ]
+  `)
+})
+
 /**
  * A custom manager is two loose patterns away from rewriting something that
  * only looks like a dependency. `pnpm@` matched the tail of
@@ -1490,7 +1536,8 @@ describe('with Renovate options, the custom managers', () => {
     matchStringsStrategy?: string
   }
 
-  // With Cargo and Dagger, so that their managers are among them.
+  // With Cargo, Dagger and a Python version, so that their managers are
+  // among them.
   const customManagers = (): CustomManager[] =>
     synthSnapshot(
       new Project({
@@ -1498,6 +1545,9 @@ describe('with Renovate options, the custom managers', () => {
         cargo: {},
         dagger: {},
         renovate: {},
+        uv: {
+          pythonVersion: '3.14',
+        },
       }),
     )['renovate.json5'].customManagers
 
@@ -1544,6 +1594,27 @@ describe('with Renovate options, the custom managers', () => {
       new RegExp(matchString).exec("    engineVersion: 'v0.20.8',")?.groups
         ?.currentValue,
     ).toBe('0.20.8')
+  })
+
+  test('read the Python version out of a projenrc and nowhere else', () => {
+    const manager = customManagers().find(
+      ({ depNameTemplate }) => depNameTemplate === 'python',
+    )!
+    const [matchString] = manager.matchStrings
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/some/.projenrc.mjs')).toBe(true)
+    // Both restate a Python version in a `.ts` file under a path containing
+    // `projen`.
+    expect(covers(manager, 'packages/projen-uv/src/index.test.ts')).toBe(false)
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+
+    expect(
+      new RegExp(matchString).exec("    pythonVersion: '3.14',")?.groups
+        ?.currentValue,
+    ).toBe('3.14')
   })
 
   test('read Dagger module refs pinned to a tag, and nothing else', () => {

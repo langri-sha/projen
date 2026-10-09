@@ -118,6 +118,10 @@ ranges, since a range it rewrote in a synthesized manifest would be put back by
 the next synthesis. Those updates move `uv.lock` alone; raising a bound is an
 edit to `.projenrc`.
 
+It also has Renovate read `pythonVersion` out of `.projenrc` the way its pyenv
+manager reads `.python-version`, so a new Python release moves both on one
+branch and the next synthesis keeps it.
+
 [projen]: https://projen.io/
 [pyproject]: https://www.schemastore.org/pyproject.json
 [schema]: https://www.schemastore.org/uv.json
