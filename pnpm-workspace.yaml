@@ -10,3 +10,4 @@ packages:
 minimumReleaseAgeExclude:
   - '@langri-sha/*'
   - schemastore-to-typescript
+  - skills@1.7.2
