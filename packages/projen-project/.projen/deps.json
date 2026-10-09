@@ -171,6 +171,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-ty",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-typescript-config",
       "version": "workspace:*",
       "type": "runtime"

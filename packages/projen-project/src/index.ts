@@ -35,6 +35,7 @@ import { ReadmeFile, type ReadmeFileOptions } from '@langri-sha/projen-readme'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
 import { Ruff, type RuffOptions } from '@langri-sha/projen-ruff'
 import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
+import { Ty, type TyOptions } from '@langri-sha/projen-ty'
 import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
@@ -217,6 +218,11 @@ export interface ProjectOptions extends Omit<
   swcrc?: SWCConfigOptions
 
   /**
+   * Pass in to configure ty. Root projects only, like `ruff`.
+   */
+  ty?: TyOptions
+
+  /**
    * TypeScript configuration options.
    */
   typeScriptConfig?: TypeScriptConfigOptions
@@ -261,6 +267,7 @@ export class Project extends BaseProject {
   renovate?: Renovate
   ruff?: Ruff
   swcrc?: SWCConfig
+  ty?: Ty
   typeScriptConfig?: TypeScriptConfig
   uv?: UvPackage | UvWorkspace
   worktrunk?: Worktrunk
@@ -328,6 +335,7 @@ export class Project extends BaseProject {
     this.#configurePnpmWorkspace(options)
     this.#configureReadme(options)
     this.#configureRuff(options)
+    this.#configureTy(options)
     this.#configureUv(options)
     this.#configureWorktrunk(options)
     this.#configureRenovate(options)
@@ -1194,6 +1202,14 @@ export class Project extends BaseProject {
     }
 
     this.swcrc = new SWCConfig(this, deepMerge(defaults, swcrc))
+  }
+
+  #configureTy({ ty }: ProjectOptions) {
+    if (!ty || this.parent) {
+      return
+    }
+
+    this.ty = new Ty(this, ty)
   }
 
   #configureTypeScript({ parent, typeScriptConfig }: ProjectOptions) {
