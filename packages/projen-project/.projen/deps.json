@@ -161,6 +161,11 @@
       "type": "runtime"
     },
     {
+      "name": "@langri-sha/projen-ruff",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "@langri-sha/projen-swcrc",
       "version": "workspace:*",
       "type": "runtime"
