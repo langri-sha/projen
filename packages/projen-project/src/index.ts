@@ -98,6 +98,12 @@ const WORKTRUNK_SYNC_COMMAND =
   '{% if remote and base and base == default_branch %}git fetch {{ remote }} {{ default_branch }} && git merge --ff-only --quiet {{ remote }}/{{ default_branch }}{% endif %}'
 
 /**
+ * Copies each tracked `.env.example` to a `.env` that is missing.
+ */
+const WORKTRUNK_ENV_COMMAND =
+  'git ls-files -- ":(glob)**/.env.example" | while read -r example; do target=${example%.example}; [ -e "$target" ] || cp "$example" "$target"; done'
+
+/**
  * How long a release must have been published before Renovate proposes it.
  *
  * This must stay at or above pnpm's own `minimumReleaseAge`, which has been a
@@ -1394,7 +1400,10 @@ export class Project extends BaseProject {
   }
 
   #defaultPreStart() {
-    return pipeline({ sync: WORKTRUNK_SYNC_COMMAND })
+    return pipeline(
+      { sync: WORKTRUNK_SYNC_COMMAND },
+      { env: WORKTRUNK_ENV_COMMAND },
+    )
   }
 
   #populateTypeScriptProjectReferencesFromDependencies() {
