@@ -675,6 +675,25 @@ importers:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
 
+  packages/projen-ty:
+    dependencies:
+      projen:
+        specifier: ^0.86.0
+        version: 0.86.5(constructs@10.8.1)
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: 1.1.1
+        version: 1.1.1(typescript@5.9.3)
+      '@langri-sha/vitest':
+        specifier: 0.2.3
+        version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      schemastore-to-typescript:
+        specifier: 1.0.3
+        version: 1.0.3(supports-color@8.1.1)
+      smol-toml:
+        specifier: 1.9.0
+        version: 1.9.0
+
   packages/projen-typescript-config:
     dependencies:
       '@schemastore/tsconfig':
