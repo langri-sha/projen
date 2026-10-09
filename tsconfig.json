@@ -68,6 +68,9 @@
       "path": "packages/projen-ruff"
     },
     {
+      "path": "packages/projen-skills"
+    },
+    {
       "path": "packages/projen-swcrc"
     },
     {
