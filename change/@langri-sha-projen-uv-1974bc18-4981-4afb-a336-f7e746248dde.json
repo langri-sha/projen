@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add `installCommand` to `UvPackage` and `UvWorkspace`, reporting the command that syncs a project's dependencies",
+  "packageName": "@langri-sha/projen-uv",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
