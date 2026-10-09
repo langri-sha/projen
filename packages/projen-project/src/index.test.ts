@@ -1032,6 +1032,103 @@ describe('with `lint-staged`', () => {
     expect(synthSnapshot(project)).toMatchSnapshot()
     expect(project.lintStaged).toBeInstanceOf(LintStaged)
   })
+
+  test('with Ruff, fixing and formatting staged Python', () => {
+    const project = new Project({
+      name: 'test-project',
+      lintStaged: {},
+      ruff: {},
+    })
+
+    expect(synthSnapshot(project)['lint-staged.config.mjs'])
+      .toMatchInlineSnapshot(`
+      "import defaults from '@langri-sha/lint-staged'
+
+      /** @type {import('lint-staged').Configuration} */
+          const config = {
+            ...defaults,
+            "*.{py,pyi}":["ruff check --fix --force-exclude","ruff format --force-exclude"]}
+
+          export default config
+          "
+    `)
+  })
+
+  test('with Ruff and uv, running Ruff out of the uv workspace', () => {
+    const project = new Project({
+      name: 'test-project',
+      lintStaged: {},
+      ruff: {},
+      uv: {},
+    })
+
+    expect(synthSnapshot(project)['lint-staged.config.mjs'])
+      .toMatchInlineSnapshot(`
+      "import defaults from '@langri-sha/lint-staged'
+
+      /** @type {import('lint-staged').Configuration} */
+          const config = {
+            ...defaults,
+            "*.{py,pyi}":["uv run --frozen ruff check --fix --force-exclude","uv run --frozen ruff format --force-exclude"]}
+
+          export default config
+          "
+    `)
+  })
+
+  test("with Ruff, running it from a subproject's configuration too", () => {
+    const project = new Project({
+      name: 'test-project',
+      lintStaged: {},
+      ruff: {},
+      uv: {},
+    })
+
+    project.addSubproject({
+      name: 'subproject',
+      outdir: 'packages/subproject',
+      lintStaged: {},
+      uv: {},
+    })
+
+    expect(synthSnapshot(project)['packages/subproject/lint-staged.config.mjs'])
+      .toMatchInlineSnapshot(`
+      "import defaults from '@langri-sha/lint-staged'
+
+      /** @type {import('lint-staged').Configuration} */
+          const config = {
+            ...defaults,
+            "*.{py,pyi}":["uv run --frozen ruff check --fix --force-exclude","uv run --frozen ruff format --force-exclude"]}
+
+          export default config
+          "
+    `)
+  })
+
+  test('with Ruff and a Python glob of its own, replacing the default', () => {
+    const project = new Project({
+      name: 'test-project',
+      lintStaged: {
+        config: {
+          '*.{py,pyi}': ['ruff check'],
+        },
+      },
+      ruff: {},
+    })
+
+    expect(synthSnapshot(project)['lint-staged.config.mjs'])
+      .toMatchInlineSnapshot(`
+      "import defaults from '@langri-sha/lint-staged'
+
+      /** @type {import('lint-staged').Configuration} */
+          const config = {
+            ...defaults,
+            "*.{py,pyi}":["ruff check"]}
+
+          export default config
+          "
+    `)
+  })
 })
 
 describe('with `lint-synthesized`', () => {

@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Run Ruff on staged Python files with `ruff` and `lintStaged` set",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

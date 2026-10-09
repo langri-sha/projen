@@ -213,6 +213,11 @@ export interface ProjectOptions extends Omit<
   /**
    * Pass in to configure Ruff. Root projects only: Ruff takes the nearest
    * configuration, so one at the root covers the whole workspace.
+   *
+   * With `lintStaged`, staged Python files are fixed and formatted on commit,
+   * through `uv run --frozen` when `uv` is set, so ruff comes from `uv.lock`:
+   * declare it in the workspace's `dev` group, or `uv run` falls back to
+   * whatever ruff is on the `PATH`.
    */
   ruff?: RuffOptions
 
@@ -737,7 +742,7 @@ export class Project extends BaseProject {
     })
   }
 
-  #configureLintStaged({ lintStaged, package: pkg }: ProjectOptions) {
+  #configureLintStaged({ lintStaged, package: pkg, ruff, uv }: ProjectOptions) {
     if (!lintStaged) {
       return
     }
@@ -754,7 +759,34 @@ export class Project extends BaseProject {
       this.#addDefaultDevDeps('lint-staged@17.6.0')
     }
 
-    this.lintStaged = new LintStaged(this, deepMerge(defaults, lintStaged))
+    // ruff is configured at the root alone, but lint-staged runs the nearest
+    // configuration to each staged file, so a subproject's runs ruff as well.
+    const root = this.root instanceof Project ? this.root : undefined
+    const withRuff = this.parent ? root?.ruff : ruff
+    const withUv = uv ?? (this.parent ? root?.uv : undefined)
+
+    // ruff fixes before it formats, so that the formatter has the last word.
+    // lint-staged names the files, which ruff checks even where the project
+    // excludes them unless forced to exclude. Since 17.6 it also stages every
+    // file a task changes, so `uv run` must not re-lock the workspace.
+    const ruffCommand = withUv ? 'uv run --frozen ruff' : 'ruff'
+    const python = withRuff
+      ? {
+          '*.{py,pyi}': [
+            `${ruffCommand} check --fix --force-exclude`,
+            `${ruffCommand} format --force-exclude`,
+          ],
+        }
+      : {}
+
+    const { config, ...options } = deepMerge(defaults, lintStaged)
+
+    // Spread rather than merged, so that a project's own glob replaces these
+    // the way it replaces those of the configuration it extends.
+    this.lintStaged = new LintStaged(this, {
+      ...options,
+      config: { ...python, ...config },
+    })
 
     this.typeScriptConfig?.addFile(this.lintStaged!.path)
   }
