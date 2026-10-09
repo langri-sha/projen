@@ -69,6 +69,11 @@ subprojects that declare a crate:
 workspace.addMember('apps/worker')
 ```
 
+Both components expose the command that fetches the project's dependencies as
+`installCommand`. It is `cargo fetch --locked`, which fails rather than create
+or rewrite `Cargo.lock`, the way pnpm's `--frozen-lockfile` does. Neither
+component writes the lockfile, so generate and commit one first.
+
 ## Manifest typings
 
 Manifest options come from [SchemaStore's Cargo Manifest schema][schema],

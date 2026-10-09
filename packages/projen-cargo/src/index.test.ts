@@ -205,3 +205,11 @@ test('package without sample code', () => {
   project.synth()
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
+
+test('reports the command that fetches dependencies from the lockfile', () => {
+  const workspace = new CargoWorkspace(new Project({ name: 'test-project' }))
+  const crate = new CargoPackage(new Project({ name: 'test-crate' }))
+
+  expect(workspace.installCommand).toBe('cargo fetch --locked')
+  expect(crate.installCommand).toBe('cargo fetch --locked')
+})

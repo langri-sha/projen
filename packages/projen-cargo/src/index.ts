@@ -39,6 +39,8 @@ export interface CargoManifestOptions extends Omit<CargoManifest, 'package'> {
  */
 const crateName = (name: string): string => name.replace(/^@[^/]+\//, '')
 
+const INSTALL_COMMAND = 'cargo fetch --locked'
+
 /**
  * Cargo workspace options.
  */
@@ -162,6 +164,14 @@ export class CargoWorkspace extends Component {
   }
 
   /**
+   * The command that fetches all dependencies, failing rather than creating or
+   * rewriting `Cargo.lock`.
+   */
+  get installCommand(): string {
+    return INSTALL_COMMAND
+  }
+
+  /**
    * Add paths to `[workspace] members`, skipping any already listed.
    */
   addMember(...paths: string[]): void {
@@ -224,5 +234,13 @@ export class CargoPackage extends Component {
     }
 
     project.addGitIgnore('/target/')
+  }
+
+  /**
+   * The command that fetches all dependencies, failing rather than creating or
+   * rewriting `Cargo.lock`.
+   */
+  get installCommand(): string {
+    return INSTALL_COMMAND
   }
 }
