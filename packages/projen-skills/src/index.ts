@@ -1,6 +1,7 @@
 import { Component, type Project, javascript } from 'projen'
 
 import { AGENT_SKILLS_DIRS, SHARED_SKILLS_DIR } from './agents.js'
+import { syncSkills } from './sync.js'
 import {
   type SkillEntry,
   type SkillSource,
@@ -27,6 +28,18 @@ export interface SkillsOptions {
    * @default ['claude-code']
    */
   readonly agents?: string[]
+
+  /**
+   * Install the skills after every synthesis, then check that each declared
+   * one landed in `skills-lock.json` and on disk.
+   *
+   * The lock is the CLI's: the component never writes it, and it is committed.
+   * Running `projen` and failing on any diff, as CI does, therefore doubles as
+   * the check that the lock matches the declaration.
+   *
+   * @default true
+   */
+  readonly sync?: boolean
 }
 
 /**
@@ -36,14 +49,16 @@ export interface SkillsOptions {
 export class Skills extends Component {
   readonly #agents: string[]
   readonly #entries: SkillEntry[]
+  readonly #sync: boolean
 
   constructor(project: Project, options: SkillsOptions) {
     super(project)
 
-    const { skills, agents = ['claude-code'] } = options
+    const { skills, agents = ['claude-code'], sync = true } = options
 
     this.#entries = normalizeSkills(skills)
     this.#agents = validateAgents(agents)
+    this.#sync = sync
 
     const pkg = project.components.find(
       (component): component is javascript.NodePackage =>
@@ -59,6 +74,18 @@ export class Skills extends Component {
     pkg.addField('skills', this.#entries)
 
     project.gitignore.exclude(...this.#installPaths())
+  }
+
+  override postSynthesize(): void {
+    super.postSynthesize()
+
+    if (this.#sync) {
+      syncSkills({
+        cwd: this.project.outdir,
+        agents: this.#agents,
+        entries: this.#entries,
+      })
+    }
   }
 
   /**

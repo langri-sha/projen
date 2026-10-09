@@ -1,8 +1,13 @@
-import { describe, expect, test } from '@langri-sha/vitest'
+import { afterEach, describe, expect, test } from '@langri-sha/vitest'
 import { Project, javascript } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
+import { vi } from 'vitest'
+
+import { syncSkills } from './sync'
 
 import { Skills, type SkillsOptions } from './index'
+
+vi.mock('./sync', () => ({ syncSkills: vi.fn() }))
 
 const SHA = '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8'
 
@@ -100,5 +105,45 @@ describe('.gitignore', () => {
     expect(content).toContain('/.windsurf/skills/a\n')
     expect(content).not.toContain('/.claude/skills/')
     expect(content.match(/\/\.agents\/skills\/a\//g)).toHaveLength(1)
+  })
+})
+
+describe('sync', () => {
+  const skills = [{ source: 'owner/repo', ref: SHA, skills: ['a'] }]
+
+  const component = (options: Partial<SkillsOptions> = {}) => {
+    const project = new Project({ name: 'test-project' })
+
+    new javascript.NodePackage(project, { packageName: 'test-project' })
+
+    return new Skills(project, { skills, ...options })
+  }
+
+  afterEach(() => {
+    vi.clearAllMocks()
+  })
+
+  test('does not run while synthesizing under PROJEN_DISABLE_POST', () => {
+    synth({ skills })
+
+    expect(syncSkills).not.toHaveBeenCalled()
+  })
+
+  test('runs after synthesis', () => {
+    const skillsComponent = component({ agents: ['claude-code', 'cursor'] })
+
+    skillsComponent.postSynthesize()
+
+    expect(syncSkills).toHaveBeenCalledExactlyOnceWith({
+      cwd: skillsComponent.project.outdir,
+      agents: ['claude-code', 'cursor'],
+      entries: [{ source: 'owner/repo', ref: SHA, skills: ['a'] }],
+    })
+  })
+
+  test('can be turned off', () => {
+    component({ sync: false }).postSynthesize()
+
+    expect(syncSkills).not.toHaveBeenCalled()
   })
 })
