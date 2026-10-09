@@ -807,6 +807,35 @@ project.addSubproject(
 
 project.addSubproject(
   {
+    name: '@langri-sha/projen-skills',
+    outdir: path.join('packages', 'projen-skills'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      description:
+        'A projen component for declaring and installing the agent skills a repository uses.',
+      type: 'module',
+      devDeps: ['@types/node@24.19.1'],
+      peerDeps: ['skills@^1.7.2', ...projenPeer.peerDeps],
+      peerDependenciesMeta: {
+        skills: {
+          optional: true,
+        },
+      },
+    },
+  },
+  subproject,
+  test,
+  publish,
+)
+
+project.addSubproject(
+  {
     name: '@langri-sha/projen-swcrc',
     outdir: path.join('packages', 'projen-swcrc'),
     npmIgnore: {},
