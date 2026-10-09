@@ -27,9 +27,10 @@ prepares each new worktree:
    is skipped without a remote, for a branch created from another base, and for
    a worktree on an existing branch.
 2. Once `sync` succeeds, `env` copies each tracked `.env.example` to a `.env`
-   that is missing, while a command named after the package manager (`pnpm`,
-   `npm`, `yarn` or `bun`) installs dependencies from the lockfile. The install
-   command is left out when the project has no `package`.
+   that is missing, alongside a command per toolchain that installs its
+   dependencies from the lockfile: one named after the package manager (`pnpm`,
+   `npm`, `yarn` or `bun`) for `package` and `cargo` for `cargo`, workspace
+   members included.
 
 The preset's `.gitignore` re-includes `.env.example`, which its deny-by-default
 `.*` would otherwise hide. A step that fails stops the pipeline, so when `sync`
