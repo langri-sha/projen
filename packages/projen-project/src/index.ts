@@ -35,7 +35,11 @@ import { ReadmeFile, type ReadmeFileOptions } from '@langri-sha/projen-readme'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
 import { Ruff, type RuffOptions } from '@langri-sha/projen-ruff'
 import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
-import { Ty, type TyOptions } from '@langri-sha/projen-ty'
+import {
+  type SupportedPythonVersion,
+  Ty,
+  type TyOptions,
+} from '@langri-sha/projen-ty'
 import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
@@ -219,6 +223,9 @@ export interface ProjectOptions extends Omit<
 
   /**
    * Pass in to configure ty. Root projects only, like `ruff`.
+   *
+   * With `uv.pythonVersion` set, `environment.python-version` follows it; set
+   * it to `null` to leave the version to ty.
    */
   ty?: TyOptions
 
@@ -1204,12 +1211,27 @@ export class Project extends BaseProject {
     this.swcrc = new SWCConfig(this, deepMerge(defaults, swcrc))
   }
 
-  #configureTy({ ty }: ProjectOptions) {
+  #configureTy({ ty, uv }: ProjectOptions) {
     if (!ty || this.parent) {
       return
     }
 
-    this.ty = new Ty(this, ty)
+    // ty takes `major.minor` alone, so a pinned patch release is cut back to
+    // it and a pinned implementation is left to ty. The schema's type lists
+    // only the versions ty knew when it was published; a newer one is ty's
+    // to refuse.
+    const pythonVersion = uv?.pythonVersion?.match(/^\d+\.\d+/)?.[0] as
+      SupportedPythonVersion | undefined
+
+    const defaults: TyOptions = {
+      ...(pythonVersion && {
+        environment: {
+          'python-version': pythonVersion,
+        },
+      }),
+    }
+
+    this.ty = new Ty(this, deepMerge(defaults, ty))
   }
 
   #configureTypeScript({ parent, typeScriptConfig }: ProjectOptions) {
