@@ -64,3 +64,41 @@ test('rejects a skill without a pinned ref', () => {
     synth({ skills: [{ source: 'owner/repo', skills: ['a'] }] }),
   ).toThrow(/40-character commit SHA/)
 })
+
+describe('.gitignore', () => {
+  const skills = [
+    { source: 'owner/repo', ref: SHA, skills: ['a', 'b'] },
+    { source: 'npm:pkg', skills: ['c'] },
+  ]
+
+  test('ignores the declared skills for Claude Code by default', () => {
+    expect(synth({ skills })['.gitignore']).toMatch(
+      [
+        '/.agents/skills/a/',
+        '/.agents/skills/b/',
+        '/.agents/skills/c/',
+        '/.claude/skills/a',
+        '/.claude/skills/b',
+        '/.claude/skills/c',
+      ].join('\n'),
+    )
+  })
+
+  test('ignores nothing but the declared skills', () => {
+    const lines = synth({ skills })['.gitignore'].split('\n')
+
+    expect(lines).not.toContain('/.agents/skills/')
+    expect(lines).not.toContain('/.claude/skills/')
+    expect(lines).not.toContain('skills-lock.json')
+  })
+
+  test('leaves the shared folder alone for agents that read it', () => {
+    const content = synth({ skills, agents: ['cursor', 'windsurf'] })[
+      '.gitignore'
+    ]
+
+    expect(content).toContain('/.windsurf/skills/a\n')
+    expect(content).not.toContain('/.claude/skills/')
+    expect(content.match(/\/\.agents\/skills\/a\//g)).toHaveLength(1)
+  })
+})
