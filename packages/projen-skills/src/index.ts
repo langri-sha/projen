@@ -1,5 +1,6 @@
 import { Component, type Project, javascript } from 'projen'
 
+import { AGENT_SKILLS_DIRS, SHARED_SKILLS_DIR } from './agents.js'
 import {
   type SkillEntry,
   type SkillSource,
@@ -33,6 +34,7 @@ export interface SkillsOptions {
  * `skills` field of `package.json`, for the `skills` CLI to install and lock.
  */
 export class Skills extends Component {
+  readonly #agents: string[]
   readonly #entries: SkillEntry[]
 
   constructor(project: Project, options: SkillsOptions) {
@@ -41,7 +43,7 @@ export class Skills extends Component {
     const { skills, agents = ['claude-code'] } = options
 
     this.#entries = normalizeSkills(skills)
-    validateAgents(agents)
+    this.#agents = validateAgents(agents)
 
     const pkg = project.components.find(
       (component): component is javascript.NodePackage =>
@@ -55,5 +57,27 @@ export class Skills extends Component {
     }
 
     pkg.addField('skills', this.#entries)
+
+    project.gitignore.exclude(...this.#installPaths())
+  }
+
+  /**
+   * Where the CLI installs the declared skills. Only these are ignored, not the
+   * folders around them, as a repository may commit skills of its own beside
+   * them. Sync rebuilds them from `skills-lock.json` on a fresh clone.
+   */
+  #installPaths(): string[] {
+    const names = this.#entries.flatMap(({ skills }) => skills)
+    const dirs = new Set(
+      this.#agents
+        .map((agent) => AGENT_SKILLS_DIRS[agent])
+        .filter((dir) => dir !== SHARED_SKILLS_DIR),
+    )
+
+    return [
+      ...names.map((name) => `/${SHARED_SKILLS_DIR}/${name}/`),
+      // Links, so no trailing slash: it would not match a symlink.
+      ...[...dirs].flatMap((dir) => names.map((name) => `/${dir}/${name}`)),
+    ]
   }
 }
