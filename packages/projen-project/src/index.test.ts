@@ -653,6 +653,7 @@ test('with EditorConfig options overriding the defaults for all files', () => {
     editorConfig: {
       '*': {
         end_of_line: 'crlf',
+        indent_size: 4,
         trim_trailing_whitespace: false,
       },
     },
@@ -667,7 +668,7 @@ test('with EditorConfig options overriding the defaults for all files', () => {
     charset=utf-8
     end_of_line=crlf
     indent_style=space
-    indent_size=2
+    indent_size=4
     insert_final_newline=true
     trim_trailing_whitespace=false
 
