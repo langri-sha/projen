@@ -88,6 +88,22 @@ const PROJEN_COMMANDS: Record<javascript.NodePackageManager, string> = {
 }
 
 /**
+ * The name of the command that installs dependencies in a worktree hook, per
+ * package manager. The binary rather than the enum value, so that every yarn
+ * version is `yarn`.
+ */
+const PACKAGE_MANAGER_BINARIES: Record<javascript.NodePackageManager, string> =
+  {
+    [javascript.NodePackageManager.BUN]: 'bun',
+    [javascript.NodePackageManager.NPM]: 'npm',
+    [javascript.NodePackageManager.PNPM]: 'pnpm',
+    [javascript.NodePackageManager.YARN]: 'yarn',
+    [javascript.NodePackageManager.YARN2]: 'yarn',
+    [javascript.NodePackageManager.YARN_BERRY]: 'yarn',
+    [javascript.NodePackageManager.YARN_CLASSIC]: 'yarn',
+  }
+
+/**
  * The `sync` command of the default `pre-start` pipeline. Worktrunk fails on
  * undefined variables, and leaves `remote` undefined in a repository with no
  * remote and `base` undefined for a worktree on an existing branch, so the
@@ -1399,10 +1415,19 @@ export class Project extends BaseProject {
     })
   }
 
+  /**
+   * The install command is projen's own text, so a projen upgrade that changes
+   * it asks every teammate to approve the hook again.
+   */
   #defaultPreStart() {
+    const install = this.package && {
+      [PACKAGE_MANAGER_BINARIES[this.package.packageManager]]:
+        this.package.installCommand,
+    }
+
     return pipeline(
       { sync: WORKTRUNK_SYNC_COMMAND },
-      { env: WORKTRUNK_ENV_COMMAND },
+      { env: WORKTRUNK_ENV_COMMAND, ...install },
     )
   }
 
