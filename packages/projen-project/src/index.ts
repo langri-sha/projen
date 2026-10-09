@@ -599,6 +599,7 @@ export class Project extends BaseProject {
 
   #configureEditorConfig({
     editorConfig: editorConfigOptions,
+    uv,
   }: ProjectOptions) {
     if (!editorConfigOptions || this.parent) {
       return
@@ -616,6 +617,14 @@ export class Project extends BaseProject {
       Dockerfile: {
         indent_style: 'tab',
       },
+      // What ruff formats Python to. It ignores EditorConfig, so editors
+      // indenting at anything else are corrected on every format.
+      ...(uv && {
+        '*.{py,pyi}': {
+          indent_style: 'space',
+          indent_size: 4,
+        },
+      }),
     }
 
     this.editorConfig = new EditorConfig(
