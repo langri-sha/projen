@@ -1425,10 +1425,11 @@ export class Project extends BaseProject {
         this.package.installCommand,
     }
     const cargo = this.cargo && { cargo: this.cargo.installCommand }
+    const uv = this.uv && { uv: this.uv.installCommand }
 
     return pipeline(
       { sync: WORKTRUNK_SYNC_COMMAND },
-      { env: WORKTRUNK_ENV_COMMAND, ...install, ...cargo },
+      { env: WORKTRUNK_ENV_COMMAND, ...install, ...cargo, ...uv },
     )
   }
 
