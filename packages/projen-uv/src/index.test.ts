@@ -379,3 +379,11 @@ build-backend = "setuptools.build_meta"
 `),
   )
 })
+
+test('reports the command that syncs dependencies from the lockfile', () => {
+  const workspace = new UvWorkspace(new Project({ name: 'test-project' }))
+  const lib = new UvPackage(new Project({ name: 'test-lib' }))
+
+  expect(workspace.installCommand).toBe('uv sync --locked --all-packages')
+  expect(lib.installCommand).toBe('uv sync --locked')
+})
