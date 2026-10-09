@@ -620,7 +620,7 @@ export class Project extends BaseProject {
 
     this.editorConfig = new EditorConfig(
       this,
-      deepMerge(editorConfigOptions ?? {}, defaults),
+      deepMerge(defaults, editorConfigOptions),
     )
 
     this.prettier?.ignore.addPatterns('!.editorconfig')
