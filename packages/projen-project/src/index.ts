@@ -1416,18 +1416,19 @@ export class Project extends BaseProject {
   }
 
   /**
-   * The install command is projen's own text, so a projen upgrade that changes
-   * it asks every teammate to approve the hook again.
+   * The install commands are the components' own text, so an upgrade that
+   * changes one asks every teammate to approve the hook again.
    */
   #defaultPreStart() {
     const install = this.package && {
       [PACKAGE_MANAGER_BINARIES[this.package.packageManager]]:
         this.package.installCommand,
     }
+    const cargo = this.cargo && { cargo: this.cargo.installCommand }
 
     return pipeline(
       { sync: WORKTRUNK_SYNC_COMMAND },
-      { env: WORKTRUNK_ENV_COMMAND, ...install },
+      { env: WORKTRUNK_ENV_COMMAND, ...install, ...cargo },
     )
   }
 
