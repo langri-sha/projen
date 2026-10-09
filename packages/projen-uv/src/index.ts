@@ -220,6 +220,14 @@ export class UvWorkspace extends Component {
   }
 
   /**
+   * The command that syncs the workspace's dependencies, its members' included,
+   * failing rather than creating or updating `uv.lock`.
+   */
+  get installCommand(): string {
+    return 'uv sync --locked --all-packages'
+  }
+
+  /**
    * Add paths to `[tool.uv.workspace] members`, skipping any already listed.
    */
   addMember(...paths: string[]): void {
@@ -284,5 +292,16 @@ export class UvPackage extends Component {
     }
 
     ignoreBuildOutput(project)
+  }
+
+  /**
+   * The command that syncs the package's dependencies, failing rather than
+   * creating or updating `uv.lock`.
+   *
+   * In a workspace, run `UvWorkspace.installCommand` instead: from a member,
+   * this prunes the shared environment down to that member's dependencies.
+   */
+  get installCommand(): string {
+    return 'uv sync --locked'
   }
 }

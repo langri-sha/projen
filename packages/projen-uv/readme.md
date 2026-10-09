@@ -113,6 +113,13 @@ including another looks like, as do uv's overrides, exclusions and cache keys.
 `uv remove` cannot edit them: declare dependencies in `.projenrc`, synthesize,
 and run `uv lock`.
 
+Both components expose the command that syncs the project's dependencies as
+`installCommand`: `uv sync --locked` for a package, and
+`uv sync --locked --all-packages` for a workspace, which syncs its members too.
+`--locked` fails when `uv.lock` is missing or out of date, the way pnpm's
+`--frozen-lockfile` does; `--frozen` would sync from it without checking it
+against the manifests.
+
 `@langri-sha/projen-project` keeps Renovate to updates within the declared
 ranges, since a range it rewrote in a synthesized manifest would be put back by
 the next synthesis. Those updates move `uv.lock` alone; raising a bound is an
