@@ -1,7 +1,7 @@
 import { Component, type Project, javascript } from 'projen'
 
 import { AGENT_SKILLS_DIRS, SHARED_SKILLS_DIR } from './agents.js'
-import { syncSkills } from './sync.js'
+import { SYNC_ENV, syncArgs, syncSkills } from './sync.js'
 import {
   type SkillEntry,
   type SkillSource,
@@ -74,6 +74,12 @@ export class Skills extends Component {
     pkg.addField('skills', this.#entries)
 
     project.gitignore.exclude(...this.#installPaths())
+
+    project.addTask('skills', {
+      description: 'Install the declared skills with the skills CLI',
+      exec: `skills ${syncArgs(this.#agents).join(' ')}`,
+      env: { ...SYNC_ENV },
+    })
   }
 
   override postSynthesize(): void {
