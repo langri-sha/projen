@@ -842,6 +842,9 @@ describe('with Worktrunk options', () => {
 
       [[pre-start]]
       sync = "{% if remote and base and base == default_branch %}git fetch {{ remote }} {{ default_branch }} && git merge --ff-only --quiet {{ remote }}/{{ default_branch }}{% endif %}"
+
+      [[pre-start]]
+      env = 'git ls-files -- ":(glob)**/.env.example" | while read -r example; do target=\${example%.example}; [ -e "$target" ] || cp "$example" "$target"; done'
       "
     `)
   })
@@ -920,6 +923,9 @@ describe('with Worktrunk options', () => {
       [[pre-start]]
       sync = "{% if remote and base and base == default_branch %}git fetch {{ remote }} {{ default_branch }} && git merge --ff-only --quiet {{ remote }}/{{ default_branch }}{% endif %}"
 
+      [[pre-start]]
+      env = 'git ls-files -- ":(glob)**/.env.example" | while read -r example; do target=\${example%.example}; [ -e "$target" ] || cp "$example" "$target"; done'
+
       [pre-merge]
       test = "pnpm exec vitest run"
       "
@@ -938,6 +944,9 @@ describe('with Worktrunk options', () => {
 
       [[pre-start]]
       sync = "{% if remote and base and base == default_branch %}git fetch {{ remote }} {{ default_branch }} && git merge --ff-only --quiet {{ remote }}/{{ default_branch }}{% endif %}"
+
+      [[pre-start]]
+      env = 'git ls-files -- ":(glob)**/.env.example" | while read -r example; do target=\${example%.example}; [ -e "$target" ] || cp "$example" "$target"; done'
       "
     `)
   })
