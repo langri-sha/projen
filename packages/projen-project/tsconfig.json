@@ -58,6 +58,9 @@
       "path": "../projen-swcrc"
     },
     {
+      "path": "../projen-ty"
+    },
+    {
       "path": "../projen-typescript-config"
     },
     {

@@ -621,6 +621,7 @@ project.addSubproject(
         '@langri-sha/projen-renovate@workspace:*',
         '@langri-sha/projen-ruff@workspace:*',
         '@langri-sha/projen-swcrc@workspace:*',
+        '@langri-sha/projen-ty@workspace:*',
         '@langri-sha/projen-typescript-config@workspace:*',
         '@langri-sha/projen-uv@workspace:*',
         '@langri-sha/projen-worktrunk@workspace:*',

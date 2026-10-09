@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Configure ty with the `ty` option",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
