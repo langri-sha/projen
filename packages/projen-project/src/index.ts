@@ -33,6 +33,7 @@ import {
 import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
 import { ReadmeFile, type ReadmeFileOptions } from '@langri-sha/projen-readme'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
+import { Ruff, type RuffOptions } from '@langri-sha/projen-ruff'
 import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
 import {
   TypeScriptConfig,
@@ -204,6 +205,12 @@ export interface ProjectOptions extends Omit<
    */
   renovate?: RenovateOptions
 
+  /**
+   * Pass in to configure Ruff. Root projects only: Ruff takes the nearest
+   * configuration, so one at the root covers the whole workspace.
+   */
+  ruff?: RuffOptions
+
   /*
    * Pass in to configure SWC.
    */
@@ -252,6 +259,7 @@ export class Project extends BaseProject {
   projenrc?: ProjenrcFile
   readme?: ReadmeFile
   renovate?: Renovate
+  ruff?: Ruff
   swcrc?: SWCConfig
   typeScriptConfig?: TypeScriptConfig
   uv?: UvPackage | UvWorkspace
@@ -319,6 +327,7 @@ export class Project extends BaseProject {
     this.#configureNpmIgnore(options)
     this.#configurePnpmWorkspace(options)
     this.#configureReadme(options)
+    this.#configureRuff(options)
     this.#configureUv(options)
     this.#configureWorktrunk(options)
     this.#configureRenovate(options)
@@ -1147,6 +1156,14 @@ export class Project extends BaseProject {
     })
 
     this.renovate = new Renovate(this, deepMerge(defaults, renovateOptions))
+  }
+
+  #configureRuff({ ruff }: ProjectOptions) {
+    if (!ruff || this.parent) {
+      return
+    }
+
+    this.ruff = new Ruff(this, ruff)
   }
 
   #configureSWC({ swcrc, typeScriptConfig }: ProjectOptions) {
