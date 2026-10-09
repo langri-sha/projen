@@ -3411,6 +3411,7 @@ test = "pnpm exec vitest run"
 !.babelrc
 !.dockerignore
 !.editorconfig
+!.env.example
 !.gitattributes
 !.gitignore
 !.gitkeep
