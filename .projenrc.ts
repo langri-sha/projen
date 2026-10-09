@@ -104,7 +104,11 @@ const project = new Project({
   },
   pnpmWorkspace: {
     packages: ['packages/*'],
-    minimumReleaseAgeExclude: ['@langri-sha/*', 'schemastore-to-typescript'],
+    minimumReleaseAgeExclude: [
+      '@langri-sha/*',
+      'schemastore-to-typescript',
+      'skills@1.7.2',
+    ],
     allowBuilds: {
       '@swc/core': true,
       esbuild: true,
