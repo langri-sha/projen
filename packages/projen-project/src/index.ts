@@ -45,7 +45,11 @@ import {
   type TypeScriptConfigOptions,
 } from '@langri-sha/projen-typescript-config'
 import { type UvOptions, UvPackage, UvWorkspace } from '@langri-sha/projen-uv'
-import { Worktrunk, type WorktrunkOptions } from '@langri-sha/projen-worktrunk'
+import {
+  Worktrunk,
+  type WorktrunkOptions,
+  pipeline,
+} from '@langri-sha/projen-worktrunk'
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
@@ -82,6 +86,16 @@ const PROJEN_COMMANDS: Record<javascript.NodePackageManager, string> = {
   [javascript.NodePackageManager.YARN_BERRY]: 'yarn projen',
   [javascript.NodePackageManager.YARN_CLASSIC]: 'yarn projen',
 }
+
+/**
+ * The `sync` command of the default `pre-start` pipeline. Worktrunk fails on
+ * undefined variables, and leaves `remote` undefined in a repository with no
+ * remote and `base` undefined for a worktree on an existing branch, so the
+ * command is skipped there. Worktrunk approves a command by its exact text, so
+ * editing it asks every teammate to approve it again.
+ */
+const WORKTRUNK_SYNC_COMMAND =
+  '{% if remote and base and base == default_branch %}git fetch {{ remote }} {{ default_branch }} && git merge --ff-only --quiet {{ remote }}/{{ default_branch }}{% endif %}'
 
 /**
  * How long a release must have been published before Renovate proposes it.
@@ -251,8 +265,8 @@ export interface ProjectOptions extends Omit<
   withTerraform?: boolean
 
   /**
-   * Configures Worktrunk, when provided. No hooks are supplied by default:
-   * each one runs on teammates' machines, so a project declares its own.
+   * Configures Worktrunk, when provided. Supplies a default `pre-start`
+   * pipeline, which a `pre-start` in `config`, in any form, replaces whole.
    */
   worktrunk?: WorktrunkOptions
 }
@@ -1368,7 +1382,19 @@ export class Project extends BaseProject {
       return
     }
 
-    this.worktrunk = new Worktrunk(this, worktrunk)
+    // Replaced whole per event, not deep-merged like the other defaults: the
+    // three hook forms cannot be merged into one another.
+    this.worktrunk = new Worktrunk(this, {
+      ...worktrunk,
+      config: {
+        ...worktrunk.config,
+        'pre-start': worktrunk.config?.['pre-start'] ?? this.#defaultPreStart(),
+      },
+    })
+  }
+
+  #defaultPreStart() {
+    return pipeline({ sync: WORKTRUNK_SYNC_COMMAND })
   }
 
   #populateTypeScriptProjectReferencesFromDependencies() {
