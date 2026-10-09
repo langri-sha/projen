@@ -29,6 +29,7 @@
 | [projen-project](https://www.npmjs.com/package/@langri-sha/projen-project)                     | Meta-component bundling the rest                 |
 | [projen-readme](https://www.npmjs.com/package/@langri-sha/projen-readme)                       | `readme.md` stub generator                       |
 | [projen-renovate](https://www.npmjs.com/package/@langri-sha/projen-renovate)                   | `renovate.json5` generator                       |
+| [projen-ruff](https://www.npmjs.com/package/@langri-sha/projen-ruff)                           | `ruff.toml` generator                            |
 | [projen-swcrc](https://www.npmjs.com/package/@langri-sha/projen-swcrc)                         | `.swcrc` generator                               |
 | [projen-typescript-config](https://www.npmjs.com/package/@langri-sha/projen-typescript-config) | `tsconfig.json` generator                        |
 | [projen-uv](https://www.npmjs.com/package/@langri-sha/projen-uv)                               | uv workspace and package generator               |

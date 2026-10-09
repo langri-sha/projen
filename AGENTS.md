@@ -8,7 +8,7 @@ This monorepo holds the custom **projen components** authored under
 
 ```
 .projenrc.ts            # source of truth — every other config is synthesized
-packages/projen-*/      # 21 component packages, each Beachball-versioned
+packages/projen-*/      # 22 component packages, each Beachball-versioned
 .github/workflows/      # workspace CI (check) + manual release (packages)
 ```
 
