@@ -31,6 +31,7 @@
 | [projen-readme](https://www.npmjs.com/package/@langri-sha/projen-readme)                       | `readme.md` stub generator                           |
 | [projen-renovate](https://www.npmjs.com/package/@langri-sha/projen-renovate)                   | `renovate.json5` generator                           |
 | [projen-ruff](https://www.npmjs.com/package/@langri-sha/projen-ruff)                           | `ruff.toml` generator                                |
+| [projen-skills](https://www.npmjs.com/package/@langri-sha/projen-skills)                       | Agent skills declaration and installer               |
 | [projen-swcrc](https://www.npmjs.com/package/@langri-sha/projen-swcrc)                         | `.swcrc` generator                                   |
 | [projen-ty](https://www.npmjs.com/package/@langri-sha/projen-ty)                               | `ty.toml` generator                                  |
 | [projen-typescript-config](https://www.npmjs.com/package/@langri-sha/projen-typescript-config) | `tsconfig.json` generator                            |
