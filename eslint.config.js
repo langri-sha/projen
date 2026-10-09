@@ -13,6 +13,7 @@ export default [
       '**/ruff.ts',
       '**/rustfmt.ts',
       '**/swcrc.ts',
+      '**/ty.ts',
       '**/uv.ts',
       '!.projenrc.ts',
     ],

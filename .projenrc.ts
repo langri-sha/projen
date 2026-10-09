@@ -64,6 +64,7 @@ const project = new Project({
       '**/ruff.ts',
       '**/rustfmt.ts',
       '**/swcrc.ts',
+      '**/ty.ts',
       '**/uv.ts',
     ],
     config: [
@@ -97,6 +98,7 @@ const project = new Project({
       'ruff.ts',
       'rustfmt.ts',
       'swcrc.ts',
+      'ty.ts',
       'uv.ts',
     ],
   },
@@ -813,6 +815,42 @@ project.addSubproject(
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/swcrc.d.ts',
+    )
+  },
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/projen-ty',
+    outdir: path.join('packages', 'projen-ty'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      description: 'A projen component for configuring ty.',
+      type: 'module',
+      devDeps: ['schemastore-to-typescript@1.0.3', 'smol-toml@1.9.0'],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+  (project) => {
+    project.addGitIgnore('ty.ts')
+
+    project.package?.setScript(
+      'prepare',
+      'schemastore-to-typescript --no-cache ty src/ty.ts',
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/ty.d.ts',
     )
   },
 )
