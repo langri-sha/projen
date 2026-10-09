@@ -10,6 +10,7 @@ export default [
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',
       '**/renovate.ts',
+      '**/ruff.ts',
       '**/rustfmt.ts',
       '**/swcrc.ts',
       '**/uv.ts',

@@ -62,6 +62,9 @@
       "path": "packages/projen-renovate"
     },
     {
+      "path": "packages/projen-ruff"
+    },
+    {
       "path": "packages/projen-swcrc"
     },
     {

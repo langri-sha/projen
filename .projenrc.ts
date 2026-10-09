@@ -61,6 +61,7 @@ const project = new Project({
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',
       '**/renovate.ts',
+      '**/ruff.ts',
       '**/rustfmt.ts',
       '**/swcrc.ts',
       '**/uv.ts',
@@ -93,6 +94,7 @@ const project = new Project({
       'pnpm-workspace.ts',
       'pyproject.ts',
       'renovate.ts',
+      'ruff.ts',
       'rustfmt.ts',
       'swcrc.ts',
       'uv.ts',
@@ -733,6 +735,42 @@ project.addSubproject(
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/renovate.d.ts',
+    )
+  },
+)
+
+project.addSubproject(
+  {
+    name: '@langri-sha/projen-ruff',
+    outdir: path.join('packages', 'projen-ruff'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      description: 'A projen component for configuring Ruff.',
+      type: 'module',
+      devDeps: ['schemastore-to-typescript@1.0.3', 'smol-toml@1.9.0'],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+  (project) => {
+    project.addGitIgnore('ruff.ts')
+
+    project.package?.setScript(
+      'prepare',
+      'schemastore-to-typescript --no-cache Ruff src/ruff.ts',
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/ruff.d.ts',
     )
   },
 )
