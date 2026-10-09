@@ -7,7 +7,10 @@ import { syncSkills } from './sync'
 
 import { Skills, type SkillsOptions } from './index'
 
-vi.mock('./sync', () => ({ syncSkills: vi.fn() }))
+vi.mock('./sync', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('./sync')>()),
+  syncSkills: vi.fn(),
+}))
 
 const SHA = '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8'
 
@@ -145,5 +148,20 @@ describe('sync', () => {
     component({ sync: false }).postSynthesize()
 
     expect(syncSkills).not.toHaveBeenCalled()
+  })
+})
+
+describe('skills task', () => {
+  test('runs the same command as the sync', () => {
+    const { tasks } = synth({
+      skills: [{ source: 'owner/repo', ref: SHA, skills: ['a'] }],
+      agents: ['claude-code', 'cursor'],
+    })['.projen/tasks.json']
+
+    expect(tasks.skills).toMatchObject({
+      name: 'skills',
+      env: { DISABLE_TELEMETRY: '1', LC_ALL: 'C' },
+      steps: [{ exec: 'skills experimental_sync -a claude-code cursor -y' }],
+    })
   })
 })
