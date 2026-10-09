@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Let a project override a default number",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

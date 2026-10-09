@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-codeowners",
-  "version": "0.5.13",
+  "version": "0.5.14",
   "description": "A projen component for managing CODEOWNERS.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

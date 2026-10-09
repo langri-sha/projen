@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-readme",
-  "version": "0.1.13",
+  "version": "0.1.14",
   "description": "A projen component for creating sample README files.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

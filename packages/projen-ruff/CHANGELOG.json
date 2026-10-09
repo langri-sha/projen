@@ -1,0 +1,20 @@
+{
+  "name": "@langri-sha/projen-ruff",
+  "entries": [
+    {
+      "date": "Fri, 09 Oct 2026 12:57:46 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-ruff_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-ruff",
+            "commit": "b3791dbf984a73bd55af1490218d6d0a8627049f",
+            "comment": "Add a Ruff component, writing ruff.toml"
+          }
+        ]
+      }
+    }
+  ]
+}

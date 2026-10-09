@@ -1,8 +1,49 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 07 Oct 2026 10:17:44 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 09 Oct 2026 12:57:46 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.33.0
+
+Fri, 09 Oct 2026 12:57:46 GMT
+
+### Minor changes
+
+- Configure ty with the `ty` option (filip.dupanovic@gmail.com)
+- Configure Ruff with the `ruff` option (filip.dupanovic@gmail.com)
+- Bump @langri-sha/projen-babel to v0.5.17
+- Bump @langri-sha/projen-beachball to v0.5.14
+- Bump @langri-sha/projen-cargo to v0.1.9
+- Bump @langri-sha/projen-codeowners to v0.5.14
+- Bump @langri-sha/projen-dagger to v0.3.2
+- Bump @langri-sha/projen-editorconfig to v0.6.14
+- Bump @langri-sha/projen-eslint to v0.3.18
+- Bump @langri-sha/projen-husky to v0.3.24
+- Bump @langri-sha/projen-jest-config to v0.4.19
+- Bump @langri-sha/projen-license to v0.3.17
+- Bump @langri-sha/projen-lint-staged to v0.3.19
+- Bump @langri-sha/projen-lint-synthesized to v0.5.18
+- Bump @langri-sha/projen-pnpm-workspace to v0.4.14
+- Bump @langri-sha/projen-prettier to v0.4.19
+- Bump @langri-sha/projen-readme to v0.1.14
+- Bump @langri-sha/projen-renovate to v0.4.26
+- Bump @langri-sha/projen-ruff to v0.1.0
+- Bump @langri-sha/projen-swcrc to v0.1.26
+- Bump @langri-sha/projen-ty to v0.1.0
+- Bump @langri-sha/projen-typescript-config to v0.5.22
+- Bump @langri-sha/projen-uv to v0.1.6
+- Bump @langri-sha/projen-worktrunk to v0.1.5
+
+### Patches
+
+- Track uv's pythonVersion in the projenrc (filip.dupanovic@gmail.com)
+- Let a project override a default number (filip.dupanovic@gmail.com)
+- Indent Python with four spaces in uv workspaces (filip.dupanovic@gmail.com)
+- Write the EditorConfig defaults first, so a project's sections and values override them (filip.dupanovic@gmail.com)
+- Default ty's python-version to uv's pythonVersion (filip.dupanovic@gmail.com)
+- Update langri-sha projen toolchain
+- Run Ruff on staged Python files with `ruff` and `lintStaged` set (filip.dupanovic@gmail.com)
 
 ## 0.32.1
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Write the EditorConfig defaults first, so a project's sections and values override them",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

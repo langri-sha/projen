@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-prettier",
   "entries": [
     {
+      "date": "Fri, 09 Oct 2026 12:57:46 GMT",
+      "version": "0.4.19",
+      "tag": "@langri-sha/projen-prettier_v0.4.19",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-prettier",
+            "commit": "b3791dbf984a73bd55af1490218d6d0a8627049f",
+            "comment": "Update langri-sha projen toolchain"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 07 Oct 2026 10:17:44 GMT",
       "version": "0.4.18",
       "tag": "@langri-sha/projen-prettier_v0.4.18",

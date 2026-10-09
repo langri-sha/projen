@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-lint-synthesized",
   "entries": [
     {
+      "date": "Fri, 09 Oct 2026 12:57:46 GMT",
+      "version": "0.5.18",
+      "tag": "@langri-sha/projen-lint-synthesized_v0.5.18",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-lint-synthesized",
+            "commit": "b3791dbf984a73bd55af1490218d6d0a8627049f",
+            "comment": "Update langri-sha projen toolchain"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 07 Oct 2026 10:17:44 GMT",
       "version": "0.5.17",
       "tag": "@langri-sha/projen-lint-synthesized_v0.5.17",

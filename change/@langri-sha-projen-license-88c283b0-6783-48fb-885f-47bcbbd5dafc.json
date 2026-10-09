@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update langri-sha projen toolchain",
-  "packageName": "@langri-sha/projen-license",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

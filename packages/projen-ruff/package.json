@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-ruff",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A projen component for configuring Ruff.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
