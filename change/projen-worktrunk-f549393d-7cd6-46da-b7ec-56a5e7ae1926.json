@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Publish as `projen-worktrunk`, without the `@langri-sha` scope",
+  "packageName": "projen-worktrunk",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

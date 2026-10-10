@@ -1,4 +1,4 @@
-# @langri-sha/projen-worktrunk
+# projen-worktrunk
 
 A [projen] component for authoring [Worktrunk] project configuration, so the
 hooks that run across a worktree's lifecycle are declared in your projenrc along
@@ -13,14 +13,14 @@ Checked against Worktrunk `0.72.0`, and its documentation and source at
 Install dependencies:
 
 ```sh
-npm install -D @langri-sha/projen-worktrunk
+npm install -D projen-worktrunk
 ```
 
 Then, create a `Worktrunk` component for your root project:
 
 ```ts
 import { Project } from 'projen'
-import { Worktrunk, pipeline } from '@langri-sha/projen-worktrunk'
+import { Worktrunk, pipeline } from 'projen-worktrunk'
 
 const project = new Project({
   name: 'my-project',

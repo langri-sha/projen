@@ -2,11 +2,6 @@ import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
 import {
-  Worktrunk,
-  type WorktrunkOptions,
-  pipeline,
-} from '@langri-sha/projen-worktrunk'
-import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
   type Dependency,
@@ -42,6 +37,7 @@ import {
   type TypeScriptConfigOptions,
 } from 'projen-typescript-config'
 import { type UvOptions, UvPackage, UvWorkspace } from 'projen-uv'
+import { Worktrunk, type WorktrunkOptions, pipeline } from 'projen-worktrunk'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 

@@ -36,7 +36,7 @@
 | [projen-ty](https://www.npmjs.com/package/projen-ty)                               | `ty.toml` generator                                  |
 | [projen-typescript-config](https://www.npmjs.com/package/projen-typescript-config) | `tsconfig.json` generator                            |
 | [projen-uv](https://www.npmjs.com/package/projen-uv)                               | uv workspace and package generator                   |
-| [projen-worktrunk](https://www.npmjs.com/package/@langri-sha/projen-worktrunk)     | Worktrunk `.config/wt.toml` generator                |
+| [projen-worktrunk](https://www.npmjs.com/package/projen-worktrunk)                 | Worktrunk `.config/wt.toml` generator                |
 
 ## Development
 
