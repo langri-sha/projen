@@ -807,7 +807,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-skills',
+    name: 'projen-skills',
     outdir: path.join('packages', 'projen-skills'),
     npmIgnore: {},
     readme: {

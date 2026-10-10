@@ -1,4 +1,4 @@
-# @langri-sha/projen-skills
+# projen-skills
 
 A [projen] component for the agent skills a repository uses. It declares them in
 the `skills` field of `package.json` and installs them with the [`skills`] CLI,
@@ -17,14 +17,14 @@ Install dependencies. `skills` is an optional peer, because components do not
 install CLIs for you, and it needs Node 22.20 or later:
 
 ```sh
-npm install -D projen @langri-sha/projen-skills skills
+npm install -D projen projen-skills skills
 ```
 
 Then, create a `Skills` component for a Node project:
 
 ```ts
 import { javascript } from 'projen'
-import { Skills } from '@langri-sha/projen-skills'
+import { Skills } from 'projen-skills'
 
 const project = new javascript.NodeProject({
   name: 'my-project',

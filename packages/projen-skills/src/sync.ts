@@ -57,7 +57,7 @@ export const runSkills: SyncRunner = ({ args, cwd, env }) => {
     )
   } catch {
     throw new Error(
-      `Cannot find the skills CLI from ${cwd}. It is an optional peer dependency of @langri-sha/projen-skills: add \`skills\` to the project's devDependencies and install.`,
+      `Cannot find the skills CLI from ${cwd}. It is an optional peer dependency of projen-skills: add \`skills\` to the project's devDependencies and install.`,
     )
   }
 
