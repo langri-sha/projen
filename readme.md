@@ -18,7 +18,7 @@
 | [projen-codeowners](https://www.npmjs.com/package/projen-codeowners)                           | `CODEOWNERS` generator                               |
 | [projen-dagger](https://www.npmjs.com/package/projen-dagger)                                   | `dagger-module.toml` and `dagger.toml` generator     |
 | [projen-editorconfig](https://www.npmjs.com/package/projen-editorconfig)                       | `.editorconfig` generator                            |
-| [projen-eslint](https://www.npmjs.com/package/@langri-sha/projen-eslint)                       | `eslint.config.js` generator                         |
+| [projen-eslint](https://www.npmjs.com/package/projen-eslint)                                   | `eslint.config.js` generator                         |
 | [projen-github-templates](https://www.npmjs.com/package/projen-github-templates)               | `.github/` issue and pull request template generator |
 | [projen-husky](https://www.npmjs.com/package/@langri-sha/projen-husky)                         | `.husky/*` Git hook generator                        |
 | [projen-jest-config](https://www.npmjs.com/package/@langri-sha/projen-jest-config)             | `jest.config.js` generator                           |

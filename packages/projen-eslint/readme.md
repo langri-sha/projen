@@ -1,4 +1,4 @@
-# @langri-sha/projen-eslint
+# projen-eslint
 
 A [projen] component for configuring [ESLint].
 
@@ -7,14 +7,14 @@ A [projen] component for configuring [ESLint].
 Install dependencies:
 
 ```sh
-npm install -D eslint @langri-sha/projen-eslint
+npm install -D eslint projen-eslint
 ```
 
 Then, create an `ESLint` component for your project:
 
 ```js
 import { Project } from 'projen'
-import { ESLint } from '@langri-sha/projen-eslint'
+import { ESLint } from 'projen-eslint'
 
 const project = new Project({
   name: 'my-project',
