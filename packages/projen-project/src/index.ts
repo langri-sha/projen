@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { Babel, BabelOptions } from '@langri-sha/projen-babel'
 import { Beachball, BeachballOptions } from '@langri-sha/projen-beachball'
 import {
   type CargoOptions,
@@ -59,6 +58,7 @@ import {
   IgnoreFileOptions,
   javascript,
 } from 'projen'
+import { Babel, BabelOptions } from 'projen-babel-config'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
