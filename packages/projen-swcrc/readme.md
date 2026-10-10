@@ -12,13 +12,13 @@ Add the SWC configuration:
 
 ```js
 import { Project } from 'projen'
-import { SWCConfiguration } from 'projen-swcrc'
+import { SWCConfig } from 'projen-swcrc'
 
 const project = new Project({
   name: 'test',
 })
 
-new SWCConfiguration(project, {
+new SWCConfig(project, {
   jsc: {
     parser: {
       syntax: 'ecmascript',
