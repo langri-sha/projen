@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-license",
+  "name": "projen-license",
   "version": "0.3.17",
   "description": "A projen component for generating license files using license-o-matic.",
   "bugs": {

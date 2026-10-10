@@ -1,4 +1,4 @@
-# @langri-sha/projen-license
+# projen-license
 
 A [projen] component for generating license files using [`license-o-matic`].
 
@@ -7,14 +7,14 @@ A [projen] component for generating license files using [`license-o-matic`].
 Install dependencies:
 
 ```sh
-npm install -D projen @langri-sha/projen-license
+npm install -D projen projen-license
 ```
 
 Then, create an `License` component for your projects:
 
 ```js
 import { Project } from 'projen'
-import { License } from '@langri-sha/projen-license'
+import { License } from 'projen-license'
 
 const project = new Project({
   name: 'my-project',

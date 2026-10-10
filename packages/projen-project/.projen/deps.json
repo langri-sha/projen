@@ -81,11 +81,6 @@
       "type": "peer"
     },
     {
-      "name": "@langri-sha/projen-license",
-      "version": "workspace:*",
-      "type": "runtime"
-    },
-    {
       "name": "@langri-sha/projen-lint-staged",
       "version": "workspace:*",
       "type": "runtime"
@@ -187,6 +182,11 @@
     },
     {
       "name": "projen-jest-config",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
+      "name": "projen-license",
       "version": "workspace:*",
       "type": "runtime"
     },
