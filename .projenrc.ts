@@ -525,7 +525,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-license',
+    name: 'projen-license',
     outdir: path.join('packages', 'projen-license'),
     npmIgnore: {},
     readme: {
@@ -638,7 +638,7 @@ project.addSubproject(
         'projen-eslint@workspace:*',
         'projen-husky@workspace:*',
         'projen-jest-config@workspace:*',
-        '@langri-sha/projen-license@workspace:*',
+        'projen-license@workspace:*',
         '@langri-sha/projen-lint-staged@workspace:*',
         '@langri-sha/projen-lint-synthesized@workspace:*',
         '@langri-sha/projen-pnpm-workspace@workspace:*',

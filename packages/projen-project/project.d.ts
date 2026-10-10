@@ -1,1 +1,1 @@
-import '@langri-sha/projen-license/license'
+import 'projen-license/license'

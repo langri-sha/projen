@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { License } from '@langri-sha/projen-license'
 import { LintStaged, LintStagedOptions } from '@langri-sha/projen-lint-staged'
 import {
   LintSynthesized,
@@ -49,6 +48,7 @@ import { EditorConfig, type EditorConfigOptions } from 'projen-editorconfig'
 import { ESLint, ESLintOptions } from 'projen-eslint'
 import { Husky, type HuskyOptions } from 'projen-husky'
 import { JestConfig, JestConfigOptions } from 'projen-jest-config'
+import { License } from 'projen-license'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
