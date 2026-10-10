@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-typescript-config':
-        specifier: workspace:*
-        version: link:../projen-typescript-config
       '@langri-sha/projen-uv':
         specifier: workspace:*
         version: link:../projen-uv
@@ -601,6 +598,9 @@ importers:
       projen-ty:
         specifier: workspace:*
         version: link:../projen-ty
+      projen-typescript-config:
+        specifier: workspace:*
+        version: link:../projen-typescript-config
       ramda:
         specifier: 0.32.0
         version: 0.32.0

@@ -1,10 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import {
-  TypeScriptConfig,
-  type TypeScriptConfigOptions,
-} from '@langri-sha/projen-typescript-config'
 import { type UvOptions, UvPackage, UvWorkspace } from '@langri-sha/projen-uv'
 import {
   Worktrunk,
@@ -42,13 +38,17 @@ import { Renovate, type RenovateOptions } from 'projen-renovate'
 import { Ruff, type RuffOptions } from 'projen-ruff'
 import { SWCConfig, type SWCConfigOptions } from 'projen-swcrc'
 import { type SupportedPythonVersion, Ty, type TyOptions } from 'projen-ty'
+import {
+  TypeScriptConfig,
+  type TypeScriptConfigOptions,
+} from 'projen-typescript-config'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
 import { GitAttributesFile } from './lib/gitattributes.js'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 
-export * from '@langri-sha/projen-typescript-config'
+export * from 'projen-typescript-config'
 
 /**
  * The package manager assumed when a project does not name one.

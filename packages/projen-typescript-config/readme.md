@@ -1,4 +1,4 @@
-# @langri-sha/projen-typescript-config
+# projen-typescript-config
 
 A [projen] component for managing [TSConfig] files for [TypeScript] projects.
 
@@ -11,14 +11,14 @@ projects inside a monorepo.
 Install required dependencies:
 
 ```sh
-npm install projen @langri-sha/projen-typescript-config
+npm install projen projen-typescript-config
 ```
 
 Create a TypeScript configuration for your project:
 
 ```sh
 import { Project } from 'projen'
-import { TypeScriptConfig } from '@langri-sha/projen-typescript-config'
+import { TypeScriptConfig } from 'projen-typescript-config'
 
 const project = new Project({
   name: 'test',
