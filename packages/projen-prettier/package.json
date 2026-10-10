@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-prettier",
+  "name": "projen-prettier",
   "version": "0.4.19",
   "description": "A projen component for configuring Prettier.",
   "bugs": {

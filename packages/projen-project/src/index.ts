@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { Prettier, PrettierOptions } from '@langri-sha/projen-prettier'
 import { ReadmeFile, type ReadmeFileOptions } from '@langri-sha/projen-readme'
 import { Renovate, type RenovateOptions } from '@langri-sha/projen-renovate'
 import { Ruff, type RuffOptions } from '@langri-sha/projen-ruff'
@@ -46,6 +45,7 @@ import {
   type LintSynthesizedOptions,
 } from 'projen-lint-synthesized'
 import { PnpmWorkspace, PnpmWorkspaceOptions } from 'projen-pnpm-workspace'
+import { Prettier, PrettierOptions } from 'projen-prettier'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
