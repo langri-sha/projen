@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-husky",
+  "name": "projen-husky",
   "version": "0.3.24",
   "description": "A projen component for maintaining Git hooks with Husky.",
   "bugs": {

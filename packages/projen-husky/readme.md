@@ -1,4 +1,4 @@
-# @langri-sha/projen-husky
+# projen-husky
 
 A [projen] component for managing Git hooks with [Husky].
 
@@ -7,14 +7,14 @@ A [projen] component for managing Git hooks with [Husky].
 Install dependencies:
 
 ```sh
-npm install -D projen husky @langri-sha/projen-husky
+npm install -D projen husky projen-husky
 ```
 
 Then, create a `Husky` component for your root project:
 
 ```js
 import { Project } from 'projen'
-import { Husky } from '@langri-sha/projen-husky'
+import { Husky } from 'projen-husky'
 
 const project = new Project({
   name: 'my-project',
