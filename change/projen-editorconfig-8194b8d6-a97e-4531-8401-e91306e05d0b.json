@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Publish as `projen-editorconfig`, without the `@langri-sha` scope",
+  "packageName": "projen-editorconfig",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

@@ -340,7 +340,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-editorconfig',
+    name: 'projen-editorconfig',
     outdir: path.join('packages', 'projen-editorconfig'),
     npmIgnore: {},
     readme: {
@@ -634,7 +634,7 @@ project.addSubproject(
         'projen-cargo@workspace:*',
         'projen-codeowners@workspace:*',
         'projen-dagger@workspace:*',
-        '@langri-sha/projen-editorconfig@workspace:*',
+        'projen-editorconfig@workspace:*',
         '@langri-sha/projen-eslint@workspace:*',
         '@langri-sha/projen-husky@workspace:*',
         '@langri-sha/projen-jest-config@workspace:*',

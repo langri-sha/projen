@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-editorconfig':
-        specifier: workspace:*
-        version: link:../projen-editorconfig
       '@langri-sha/projen-eslint':
         specifier: workspace:*
         version: link:../projen-eslint
@@ -601,6 +598,9 @@ importers:
       projen-dagger:
         specifier: workspace:*
         version: link:../projen-dagger
+      projen-editorconfig:
+        specifier: workspace:*
+        version: link:../projen-editorconfig
       ramda:
         specifier: 0.32.0
         version: 0.32.0
