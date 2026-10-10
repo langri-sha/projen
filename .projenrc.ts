@@ -667,6 +667,7 @@ project.addSubproject(
         'lint-staged@^17.0.0',
         'prettier@^3.0.0',
         ...projenPeer.peerDeps,
+        'skills@^1.7.2',
         'tsx@^4.0.0',
         'typescript@^5.5.0',
       ],
@@ -696,6 +697,9 @@ project.addSubproject(
           optional: true,
         },
         prettier: {
+          optional: true,
+        },
+        skills: {
           optional: true,
         },
         tsx: {

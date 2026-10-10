@@ -610,6 +610,9 @@ importers:
       semver:
         specifier: 7.8.5
         version: 7.8.5
+      skills:
+        specifier: ^1.7.2
+        version: 1.7.2
       tsx:
         specifier: ^4.0.0
         version: 4.23.15

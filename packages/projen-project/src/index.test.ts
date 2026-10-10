@@ -29,6 +29,7 @@ import { Prettier } from 'projen-prettier'
 import { ReadmeFile } from 'projen-readme'
 import { Renovate } from 'projen-renovate'
 import { Ruff } from 'projen-ruff'
+import { Skills } from 'projen-skills'
 import { SWCConfig } from 'projen-swcrc'
 import { Ty } from 'projen-ty'
 import { TypeScriptConfig } from 'projen-typescript-config'
@@ -41,6 +42,16 @@ import { NodePackage, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
 import { Project } from './index'
+
+const skillsOptions = {
+  skills: [
+    {
+      source: 'vercel-labs/skills',
+      ref: '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8',
+      skills: ['find-skills'],
+    },
+  ],
+}
 
 vi.mock('projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
@@ -1223,6 +1234,62 @@ describe('with Worktrunk options', () => {
   })
 })
 
+describe('with skills options', () => {
+  test('declares the skills in package.json', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      skills: skillsOptions,
+    })
+
+    const { 'package.json': pkg } = synthSnapshot(project)
+
+    expect(project.skills).toBeInstanceOf(Skills)
+    expect(pkg.skills).toEqual(skillsOptions.skills)
+  })
+
+  test('supplies the skills CLI', () => {
+    const { 'package.json': pkg } = synthSnapshot(
+      new Project({
+        name: 'test-project',
+        package: {},
+        skills: skillsOptions,
+      }),
+    )
+
+    expect(pkg.devDependencies.skills).toBe('1.7.2')
+  })
+
+  test('leaves skills-lock.json to the CLI', () => {
+    const files = synthSnapshot(
+      new Project({
+        name: 'test-project',
+        package: {},
+        skills: skillsOptions,
+      }),
+    )
+
+    expect(files['skills-lock.json']).toBeUndefined()
+    expect(files['.gitignore']).not.toMatch(/skills-lock\.json/)
+  })
+
+  test('is left to the root project', () => {
+    const parent = new Project({
+      name: 'parent',
+      package: {},
+    })
+    const project = new Project({
+      name: 'test-project',
+      parent,
+      outdir: 'test-project',
+      package: {},
+      skills: skillsOptions,
+    })
+
+    expect(project.skills).toBeUndefined()
+  })
+})
+
 describe('with Jest configuration', () => {
   test('assigns jestConfig property', () => {
     const project = new Project({
@@ -2242,6 +2309,7 @@ describe('peers the preset requires', () => {
     'jest',
     'lint-staged',
     'prettier',
+    'skills',
     'typescript',
   ])('leave out %s', (tool) => {
     expect(required).not.toContain(tool)
@@ -2293,6 +2361,7 @@ describe('supplied development dependency versions', () => {
     { tool: 'jest', enabledBy: { jestConfig: {} } },
     { tool: 'lint-staged', enabledBy: { lintStaged: {} } },
     { tool: 'prettier', enabledBy: { prettier: {} } },
+    { tool: 'skills', enabledBy: { skills: skillsOptions } },
     { tool: 'typescript', enabledBy: { typeScriptConfig: {} } },
     { tool: '@swc/core', enabledBy: { swcrc: {} } },
     { tool: '@swc-node/register', enabledBy: { swcrc: {} } },
@@ -2417,6 +2486,7 @@ describe('declarations this preset cannot support', () => {
     { spec: 'jest@29.7.0', enabledBy: { jestConfig: {} } },
     { spec: 'lint-staged@16.4.0', enabledBy: { lintStaged: {} } },
     { spec: 'prettier@2.8.8', enabledBy: { prettier: {} } },
+    { spec: 'skills@1.7.1', enabledBy: { skills: skillsOptions } },
     { spec: 'typescript@5.4.5', enabledBy: { typeScriptConfig: {} } },
   ])(
     'validate $spec when its configuration is enabled',
