@@ -1,4 +1,4 @@
-# @langri-sha/projen-jest-config
+# projen-jest-config
 
 A [projen] component for authoring [Jest] configurations. This component is
 suitable for monorepos and offers support for extending from an existing Jest
@@ -9,7 +9,7 @@ configuration.
 Install required dependencies:
 
 ```sh
-npm install -D jest @langri-sha/projen-jest-config
+npm install -D jest projen-jest-config
 ```
 
 Configure Jest for your project:
@@ -17,7 +17,7 @@ Configure Jest for your project:
 ```ts
 // .projenrc.ts
 import { Project } from 'projen'
-import { JestConfig } from '@langri-sha/projen-jest-config'
+import { JestConfig } from 'projen-jest-config'
 
 const project = new Project({
   name: 'my-project',
