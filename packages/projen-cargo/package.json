@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-cargo",
+  "name": "projen-cargo",
   "version": "0.1.9",
   "description": "projen components for authoring Cargo workspaces and the crates in them.",
   "bugs": {
