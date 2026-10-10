@@ -956,6 +956,7 @@ export class Project extends BaseProject {
     dagger,
     renovate: renovateOptions,
     package: pkg,
+    skills,
     uv,
   }: ProjectOptions) {
     if (!renovateOptions || this.parent) {
@@ -1044,6 +1045,20 @@ export class Project extends BaseProject {
                   'Synthesis writes the pyproject.toml manifests and reverts edits to them. Move only what uv.lock pins, within the ranges they declare',
                 matchManagers: ['pep621'],
                 rangeStrategy: 'in-range-only' as const,
+              },
+            ]
+          : []),
+        // git-refs reports no release dates, so under the default
+        // `timestamp-required` the release age above would hold every skill
+        // bump pending for good. Scoped to the skills manager's dep type.
+        ...(skills
+          ? [
+              {
+                description:
+                  'Skill commits carry no release date. Propose them without waiting out the release age',
+                matchManagers: ['custom.regex'],
+                matchDepTypes: ['skills'],
+                minimumReleaseAgeBehaviour: 'timestamp-optional' as const,
               },
             ]
           : []),
@@ -1191,6 +1206,28 @@ export class Project extends BaseProject {
                   '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
                 ],
                 matchStrings: ["pythonVersion:\\s*'(?<currentValue>[^']+)'"],
+              },
+            ]
+          : []),
+        // A skill is pinned to a commit and declares no branch, so only the
+        // digest is captured, and Renovate compares it with the tip of the
+        // repository's default branch. Synthesis carries a bump into
+        // package.json, and the sync after it refreshes skills-lock.json.
+        // Held to the projenrc for the reason spelled out under the
+        // `packageManager` manager.
+        ...(skills
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'git-refs',
+                depTypeTemplate: 'skills',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                ],
+                matchStrings: [
+                  `source:\\s*['"](?<depName>[\\w.-]+/[\\w.-]+)['"],\\s*ref:\\s*['"](?<currentDigest>[0-9a-f]{40})['"]`,
+                ],
+                packageNameTemplate: 'https://github.com/{{{depName}}}',
               },
             ]
           : []),
