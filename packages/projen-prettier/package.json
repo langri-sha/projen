@@ -1,6 +1,6 @@
 {
   "name": "projen-prettier",
-  "version": "0.4.19",
+  "version": "0.4.20",
   "description": "A projen component for configuring Prettier.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

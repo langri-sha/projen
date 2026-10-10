@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add `installCommand` to `CargoPackage` and `CargoWorkspace`, reporting the command that fetches a project's dependencies",
-  "packageName": "projen-cargo",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

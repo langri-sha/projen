@@ -1,6 +1,6 @@
 {
   "name": "@langri-sha/projen-project",
-  "version": "0.33.0",
+  "version": "0.34.0",
   "description": "Collection of projen templates for bootstrapping monorepos and workspace projects.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

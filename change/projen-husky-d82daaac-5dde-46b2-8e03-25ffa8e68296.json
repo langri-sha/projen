@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Publish as `projen-husky`, without the `@langri-sha` scope",
-  "packageName": "projen-husky",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

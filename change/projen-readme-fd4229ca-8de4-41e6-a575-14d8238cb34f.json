@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Publish as `projen-readme`, without the `@langri-sha` scope",
-  "packageName": "projen-readme",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

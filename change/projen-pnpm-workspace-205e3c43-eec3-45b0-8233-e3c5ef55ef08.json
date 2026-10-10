@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Publish as `projen-pnpm-workspace`, without the `@langri-sha` scope",
-  "packageName": "projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

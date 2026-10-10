@@ -1,6 +1,6 @@
 {
   "name": "projen-lint-synthesized",
-  "version": "0.5.18",
+  "version": "0.5.19",
   "description": "A projen component for configuring linters for synthesized files.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

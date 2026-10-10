@@ -1,8 +1,43 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Fri, 09 Oct 2026 12:57:46 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 10 Oct 2026 05:05:17 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.34.0
+
+Sat, 10 Oct 2026 05:05:17 GMT
+
+### Minor changes
+
+- Supply a default Worktrunk `pre-start` hook that syncs the default branch, seeds `.env` files and installs dependencies (filip.dupanovic@gmail.com)
+- Fetch Cargo and sync uv dependencies in the default Worktrunk `pre-start` hook (filip.dupanovic@gmail.com)
+- Bump projen-babel-config to v0.5.18
+- Bump projen-beachball to v0.5.15
+- Bump projen-cargo to v0.2.0
+- Bump projen-codeowners to v0.5.15
+- Bump projen-dagger to v0.3.3
+- Bump projen-editorconfig to v0.6.15
+- Bump projen-eslint to v0.3.19
+- Bump projen-husky to v0.3.25
+- Bump projen-jest-config to v0.4.20
+- Bump projen-license to v0.3.18
+- Bump projen-lint-staged to v0.3.20
+- Bump projen-lint-synthesized to v0.5.19
+- Bump projen-pnpm-workspace to v0.4.15
+- Bump projen-prettier to v0.4.20
+- Bump projen-readme to v0.1.15
+- Bump projen-renovate to v0.4.27
+- Bump projen-ruff to v0.1.1
+- Bump projen-swcrc to v0.1.27
+- Bump projen-ty to v0.1.1
+- Bump projen-typescript-config to v0.5.23
+- Bump projen-uv to v0.2.0
+- Bump projen-worktrunk to v0.1.6
+
+### Patches
+
+- Depend on the component packages by their unscoped names (filip.dupanovic@gmail.com)
 
 ## 0.33.0
 

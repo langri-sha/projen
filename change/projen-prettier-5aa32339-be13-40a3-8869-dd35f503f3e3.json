@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Publish as `projen-prettier`, without the `@langri-sha` scope",
-  "packageName": "projen-prettier",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

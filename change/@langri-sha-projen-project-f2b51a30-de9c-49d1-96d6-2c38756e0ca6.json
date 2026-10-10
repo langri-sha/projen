@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Depend on the component packages by their unscoped names",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

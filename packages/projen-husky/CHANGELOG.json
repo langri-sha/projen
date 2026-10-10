@@ -1,6 +1,21 @@
 {
-  "name": "@langri-sha/projen-husky",
+  "name": "projen-husky",
   "entries": [
+    {
+      "date": "Sat, 10 Oct 2026 05:05:17 GMT",
+      "version": "0.3.25",
+      "tag": "projen-husky_v0.3.25",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-husky",
+            "commit": "dece8e503e9422040b03d48ecae1d7b3817300db",
+            "comment": "Publish as `projen-husky`, without the `@langri-sha` scope"
+          }
+        ]
+      }
+    },
     {
       "date": "Fri, 09 Oct 2026 12:57:46 GMT",
       "version": "0.3.24",

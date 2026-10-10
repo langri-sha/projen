@@ -1,6 +1,6 @@
 {
   "name": "projen-cargo",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "projen components for authoring Cargo workspaces and the crates in them.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

@@ -1,6 +1,6 @@
 {
   "name": "projen-husky",
-  "version": "0.3.24",
+  "version": "0.3.25",
   "description": "A projen component for maintaining Git hooks with Husky.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

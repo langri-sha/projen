@@ -1,8 +1,20 @@
-# Change Log - @langri-sha/projen-cargo
+# Change Log - projen-cargo
 
-<!-- This log was last generated on Fri, 09 Oct 2026 12:57:46 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 10 Oct 2026 05:05:17 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.0
+
+Sat, 10 Oct 2026 05:05:17 GMT
+
+### Minor changes
+
+- Add `installCommand` to `CargoPackage` and `CargoWorkspace`, reporting the command that fetches a project's dependencies (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Publish as `projen-cargo`, without the `@langri-sha` scope (filip.dupanovic@gmail.com)
 
 ## 0.1.9
 

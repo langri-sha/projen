@@ -1,6 +1,29 @@
 {
-  "name": "@langri-sha/projen-cargo",
+  "name": "projen-cargo",
   "entries": [
+    {
+      "date": "Sat, 10 Oct 2026 05:05:17 GMT",
+      "version": "0.2.0",
+      "tag": "projen-cargo_v0.2.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-cargo",
+            "commit": "dece8e503e9422040b03d48ecae1d7b3817300db",
+            "comment": "Publish as `projen-cargo`, without the `@langri-sha` scope"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-cargo",
+            "commit": "dece8e503e9422040b03d48ecae1d7b3817300db",
+            "comment": "Add `installCommand` to `CargoPackage` and `CargoWorkspace`, reporting the command that fetches a project's dependencies"
+          }
+        ]
+      }
+    },
     {
       "date": "Fri, 09 Oct 2026 12:57:46 GMT",
       "version": "0.1.9",

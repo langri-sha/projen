@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Publish as `projen-babel-config`, without the `@langri-sha` scope",
-  "packageName": "projen-babel-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

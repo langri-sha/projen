@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Fetch Cargo and sync uv dependencies in the default Worktrunk `pre-start` hook",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
