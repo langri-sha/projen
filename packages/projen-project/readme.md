@@ -13,7 +13,7 @@ projects.
 - configures [Ruff] with [`@langri-sha/projen-ruff`]
 - configures [ty] with [`@langri-sha/projen-ty`]
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
-- managing Git hooks with [`@langri-sha/projen-husky`]
+- managing Git hooks with [`projen-husky`]
 - configures extensive list of Git ignore patterns
 - manages [code owners] with [`projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`@langri-sha/projen-worktrunk`]
@@ -67,8 +67,7 @@ a command.
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
-[`@langri-sha/projen-husky`]:
-  https://www.npmjs.com/package/@langri-sha/projen-husky
+[`projen-husky`]: https://www.npmjs.com/package/projen-husky
 [`@langri-sha/projen-ruff`]:
   https://www.npmjs.com/package/@langri-sha/projen-ruff
 [`@langri-sha/projen-ty`]: https://www.npmjs.com/package/@langri-sha/projen-ty

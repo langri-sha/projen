@@ -414,7 +414,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-husky',
+    name: 'projen-husky',
     outdir: path.join('packages', 'projen-husky'),
     npmIgnore: {},
     readme: {
@@ -636,7 +636,7 @@ project.addSubproject(
         'projen-dagger@workspace:*',
         'projen-editorconfig@workspace:*',
         'projen-eslint@workspace:*',
-        '@langri-sha/projen-husky@workspace:*',
+        'projen-husky@workspace:*',
         '@langri-sha/projen-jest-config@workspace:*',
         '@langri-sha/projen-license@workspace:*',
         '@langri-sha/projen-lint-staged@workspace:*',

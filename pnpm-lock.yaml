@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-husky':
-        specifier: workspace:*
-        version: link:../projen-husky
       '@langri-sha/projen-jest-config':
         specifier: workspace:*
         version: link:../projen-jest-config
@@ -601,6 +598,9 @@ importers:
       projen-eslint:
         specifier: workspace:*
         version: link:../projen-eslint
+      projen-husky:
+        specifier: workspace:*
+        version: link:../projen-husky
       ramda:
         specifier: 0.32.0
         version: 0.32.0
