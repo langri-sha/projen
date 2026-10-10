@@ -243,7 +243,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-babel',
+    name: 'projen-babel-config',
     outdir: path.join('packages', 'projen-babel'),
     npmIgnore: {},
     readme: {
@@ -629,7 +629,7 @@ project.addSubproject(
         'Collection of projen templates for bootstrapping monorepos and workspace projects.',
       type: 'module',
       deps: [
-        '@langri-sha/projen-babel@workspace:*',
+        'projen-babel-config@workspace:*',
         '@langri-sha/projen-beachball@workspace:*',
         '@langri-sha/projen-cargo@workspace:*',
         '@langri-sha/projen-codeowners@workspace:*',

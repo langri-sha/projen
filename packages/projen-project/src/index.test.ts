@@ -2,7 +2,6 @@ import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { Babel } from '@langri-sha/projen-babel'
 import { Beachball } from '@langri-sha/projen-beachball'
 import { CargoPackage, CargoWorkspace } from '@langri-sha/projen-cargo'
 import { Codeowners } from '@langri-sha/projen-codeowners'
@@ -34,6 +33,7 @@ import {
 } from '@langri-sha/vitest'
 import { Project as BaseProject, IgnoreFile, javascript } from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
+import { Babel } from 'projen-babel-config'
 import { valid } from 'semver'
 import { vi } from 'vitest'
 

@@ -12,7 +12,7 @@
 
 | Package                                                                                        | Purpose                                              |
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [projen-babel](https://www.npmjs.com/package/@langri-sha/projen-babel)                         | `babel.config.js` generator                          |
+| [projen-babel-config](https://www.npmjs.com/package/projen-babel-config)                       | `babel.config.js` generator                          |
 | [projen-beachball](https://www.npmjs.com/package/@langri-sha/projen-beachball)                 | `beachball.config.cjs` generator                     |
 | [projen-cargo](https://www.npmjs.com/package/@langri-sha/projen-cargo)                         | Cargo workspace and crate generator                  |
 | [projen-codeowners](https://www.npmjs.com/package/@langri-sha/projen-codeowners)               | `CODEOWNERS` generator                               |

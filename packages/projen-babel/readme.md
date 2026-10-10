@@ -1,4 +1,4 @@
-# @langri-sha/projen-babel
+# projen-babel-config
 
 A [projen] component for configuring [Babel].
 
@@ -7,14 +7,14 @@ A [projen] component for configuring [Babel].
 Install dependencies:
 
 ```sh
-npm install -D projen @langri-sha/projen-babel
+npm install -D projen projen-babel-config
 ```
 
 Then, create a `Babel` component for your project:
 
 ```js
 import { Project } from 'projen'
-import { Babel } from '@langri-sha/projen-babel'
+import { Babel } from 'projen-babel-config'
 
 const project = new Project({
   name: 'my-project',
