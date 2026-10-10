@@ -272,7 +272,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-beachball',
+    name: 'projen-beachball',
     outdir: path.join('packages', 'projen-beachball'),
     npmIgnore: {},
     readme: {
@@ -630,7 +630,7 @@ project.addSubproject(
       type: 'module',
       deps: [
         'projen-babel-config@workspace:*',
-        '@langri-sha/projen-beachball@workspace:*',
+        'projen-beachball@workspace:*',
         '@langri-sha/projen-cargo@workspace:*',
         '@langri-sha/projen-codeowners@workspace:*',
         '@langri-sha/projen-dagger@workspace:*',
