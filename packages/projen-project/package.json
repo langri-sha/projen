@@ -23,7 +23,6 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@langri-sha/projen-swcrc": "workspace:*",
     "@langri-sha/projen-ty": "workspace:*",
     "@langri-sha/projen-typescript-config": "workspace:*",
     "@langri-sha/projen-uv": "workspace:*",
@@ -45,6 +44,7 @@
     "projen-readme": "workspace:*",
     "projen-renovate": "workspace:*",
     "projen-ruff": "workspace:*",
+    "projen-swcrc": "workspace:*",
     "ramda": "0.32.0",
     "semver": "7.8.5"
   },

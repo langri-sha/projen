@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
 import {
   type SupportedPythonVersion,
   Ty,
@@ -46,6 +45,7 @@ import { Prettier, PrettierOptions } from 'projen-prettier'
 import { ReadmeFile, type ReadmeFileOptions } from 'projen-readme'
 import { Renovate, type RenovateOptions } from 'projen-renovate'
 import { Ruff, type RuffOptions } from 'projen-ruff'
+import { SWCConfig, type SWCConfigOptions } from 'projen-swcrc'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 

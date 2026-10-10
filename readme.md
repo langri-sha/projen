@@ -32,7 +32,7 @@
 | [projen-renovate](https://www.npmjs.com/package/projen-renovate)                               | `renovate.json5` generator                           |
 | [projen-ruff](https://www.npmjs.com/package/projen-ruff)                                       | `ruff.toml` generator                                |
 | [projen-skills](https://www.npmjs.com/package/projen-skills)                                   | Agent skills declaration and installer               |
-| [projen-swcrc](https://www.npmjs.com/package/@langri-sha/projen-swcrc)                         | `.swcrc` generator                                   |
+| [projen-swcrc](https://www.npmjs.com/package/projen-swcrc)                                     | `.swcrc` generator                                   |
 | [projen-ty](https://www.npmjs.com/package/@langri-sha/projen-ty)                               | `ty.toml` generator                                  |
 | [projen-typescript-config](https://www.npmjs.com/package/@langri-sha/projen-typescript-config) | `tsconfig.json` generator                            |
 | [projen-uv](https://www.npmjs.com/package/@langri-sha/projen-uv)                               | uv workspace and package generator                   |

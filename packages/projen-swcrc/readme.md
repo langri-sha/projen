@@ -1,18 +1,18 @@
-# @langri-sha/projen-swcrc
+# projen-swcrc
 
 A [projen] component for [configuring] [SWC].
 
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-swcrc
+npm install -D projen projen-swcrc
 ```
 
 Add the SWC configuration:
 
 ```js
 import { Project } from 'projen'
-import { SWCConfiguration } from '@langri-sha/projen-swcrc'
+import { SWCConfiguration } from 'projen-swcrc'
 
 const project = new Project({
   name: 'test',
