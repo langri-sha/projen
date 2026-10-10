@@ -2,10 +2,6 @@ import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
 import {
-  LintSynthesized,
-  type LintSynthesizedOptions,
-} from '@langri-sha/projen-lint-synthesized'
-import {
   PnpmWorkspace,
   PnpmWorkspaceOptions,
 } from '@langri-sha/projen-pnpm-workspace'
@@ -49,6 +45,10 @@ import { Husky, type HuskyOptions } from 'projen-husky'
 import { JestConfig, JestConfigOptions } from 'projen-jest-config'
 import { License } from 'projen-license'
 import { LintStaged, LintStagedOptions } from 'projen-lint-staged'
+import {
+  LintSynthesized,
+  type LintSynthesizedOptions,
+} from 'projen-lint-synthesized'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 

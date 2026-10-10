@@ -1,4 +1,4 @@
-# @langri-sha/projen-lint-synthesized
+# projen-lint-synthesized
 
 A [projen] component that you can add to your project to configure linters for
 synthesized files.
