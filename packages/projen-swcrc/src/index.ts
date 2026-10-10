@@ -8,7 +8,7 @@ import { type Swcrc } from './swcrc'
 export type SWCConfigOptions = Swcrc
 
 /**
- * A component for managing Renovate configurations.
+ * A component for managing SWC configurations, written to a `.swcrc`.
  */
 export class SWCConfig extends JsonFile {
   constructor(project: Project, options?: SWCConfigOptions) {
