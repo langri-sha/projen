@@ -8,7 +8,7 @@ projects.
 - managing [Beachball] configuration for publishing packages
 - configures [PNPM] [workspaces]
 - configures [Cargo] workspaces with [`projen-cargo`]
-- configures [Dagger] modules with [`@langri-sha/projen-dagger`]
+- configures [Dagger] modules with [`projen-dagger`]
 - configures [uv] workspaces with [`@langri-sha/projen-uv`]
 - configures [Ruff] with [`@langri-sha/projen-ruff`]
 - configures [ty] with [`@langri-sha/projen-ty`]
@@ -66,8 +66,7 @@ a command.
 
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
-[`@langri-sha/projen-dagger`]:
-  https://www.npmjs.com/package/@langri-sha/projen-dagger
+[`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
 [`@langri-sha/projen-husky`]:
   https://www.npmjs.com/package/@langri-sha/projen-husky
 [`@langri-sha/projen-ruff`]:

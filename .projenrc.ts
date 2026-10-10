@@ -220,7 +220,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-dagger',
+    name: 'projen-dagger',
     outdir: path.join('packages', 'projen-dagger'),
     npmIgnore: {},
     readme: {
@@ -633,7 +633,7 @@ project.addSubproject(
         'projen-beachball@workspace:*',
         'projen-cargo@workspace:*',
         'projen-codeowners@workspace:*',
-        '@langri-sha/projen-dagger@workspace:*',
+        'projen-dagger@workspace:*',
         '@langri-sha/projen-editorconfig@workspace:*',
         '@langri-sha/projen-eslint@workspace:*',
         '@langri-sha/projen-husky@workspace:*',
