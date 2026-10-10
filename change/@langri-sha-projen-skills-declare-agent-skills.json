@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Declare agent skills in package.json and install them with the skills CLI",
-  "packageName": "@langri-sha/projen-skills",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

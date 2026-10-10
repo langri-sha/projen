@@ -1,0 +1,20 @@
+{
+  "name": "@langri-sha/projen-skills",
+  "entries": [
+    {
+      "date": "Sat, 10 Oct 2026 04:22:37 GMT",
+      "version": "0.1.0",
+      "tag": "@langri-sha/projen-skills_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-skills",
+            "commit": "6f7ea48832e94ca7d1fd4ca71773db138d4dbd84",
+            "comment": "Declare agent skills in package.json and install them with the skills CLI"
+          }
+        ]
+      }
+    }
+  ]
+}
