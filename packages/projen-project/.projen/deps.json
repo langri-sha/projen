@@ -71,6 +71,11 @@
       "type": "peer"
     },
     {
+      "name": "skills",
+      "version": "^1.7.2",
+      "type": "peer"
+    },
+    {
       "name": "tsx",
       "version": "^4.0.0",
       "type": "peer"

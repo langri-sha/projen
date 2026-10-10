@@ -17,6 +17,7 @@ projects.
 - configures extensive list of Git ignore patterns
 - manages [code owners] with [`projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`projen-worktrunk`]
+- declares and installs agent [skills] with [`projen-skills`]
 
 ## Worktrunk
 
@@ -69,6 +70,7 @@ a command.
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
 [`projen-husky`]: https://www.npmjs.com/package/projen-husky
 [`projen-ruff`]: https://www.npmjs.com/package/projen-ruff
+[`projen-skills`]: https://www.npmjs.com/package/projen-skills
 [`projen-ty`]: https://www.npmjs.com/package/projen-ty
 [`projen-uv`]: https://www.npmjs.com/package/projen-uv
 [`projen-worktrunk`]: https://www.npmjs.com/package/projen-worktrunk
@@ -81,6 +83,7 @@ a command.
 [pnpm]: https://pnpm.io
 [projen]: https://projen.io/
 [ruff]: https://docs.astral.sh/ruff/
+[skills]: https://skills.sh
 [ty]: https://docs.astral.sh/ty/
 [uv]: https://docs.astral.sh/uv/
 [workspaces]: https://pnpm.io/workspaces

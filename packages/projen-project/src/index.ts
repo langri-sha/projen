@@ -30,6 +30,7 @@ import { Prettier, PrettierOptions } from 'projen-prettier'
 import { ReadmeFile, type ReadmeFileOptions } from 'projen-readme'
 import { Renovate, type RenovateOptions } from 'projen-renovate'
 import { Ruff, type RuffOptions } from 'projen-ruff'
+import { Skills, type SkillsOptions } from 'projen-skills'
 import { SWCConfig, type SWCConfigOptions } from 'projen-swcrc'
 import { type SupportedPythonVersion, Ty, type TyOptions } from 'projen-ty'
 import {
@@ -236,6 +237,12 @@ export interface ProjectOptions extends Omit<
    */
   ruff?: RuffOptions
 
+  /**
+   * Pass in to declare the agent skills the repository uses, installed by the
+   * `skills` CLI after every synthesis. Root projects only.
+   */
+  skills?: SkillsOptions
+
   /*
    * Pass in to configure SWC.
    */
@@ -293,6 +300,7 @@ export class Project extends BaseProject {
   readme?: ReadmeFile
   renovate?: Renovate
   ruff?: Ruff
+  skills?: Skills
   swcrc?: SWCConfig
   ty?: Ty
   typeScriptConfig?: TypeScriptConfig
@@ -362,6 +370,7 @@ export class Project extends BaseProject {
     this.#configurePnpmWorkspace(options)
     this.#configureReadme(options)
     this.#configureRuff(options)
+    this.#configureSkills(options)
     this.#configureTy(options)
     this.#configureUv(options)
     this.#configureWorktrunk(options)
@@ -1246,6 +1255,15 @@ export class Project extends BaseProject {
     }
 
     this.ruff = new Ruff(this, ruff)
+  }
+
+  #configureSkills({ skills }: ProjectOptions) {
+    if (!skills || this.parent) {
+      return
+    }
+
+    this.skills = new Skills(this, skills)
+    this.#addDefaultDevDeps('skills@1.7.2')
   }
 
   #configureSWC({ swcrc, typeScriptConfig }: ProjectOptions) {
