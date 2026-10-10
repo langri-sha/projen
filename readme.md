@@ -30,7 +30,7 @@
 | [projen-project](https://www.npmjs.com/package/@langri-sha/projen-project)                     | Meta-component bundling the rest                     |
 | [projen-readme](https://www.npmjs.com/package/projen-readme)                                   | `readme.md` stub generator                           |
 | [projen-renovate](https://www.npmjs.com/package/projen-renovate)                               | `renovate.json5` generator                           |
-| [projen-ruff](https://www.npmjs.com/package/@langri-sha/projen-ruff)                           | `ruff.toml` generator                                |
+| [projen-ruff](https://www.npmjs.com/package/projen-ruff)                                       | `ruff.toml` generator                                |
 | [projen-skills](https://www.npmjs.com/package/@langri-sha/projen-skills)                       | Agent skills declaration and installer               |
 | [projen-swcrc](https://www.npmjs.com/package/@langri-sha/projen-swcrc)                         | `.swcrc` generator                                   |
 | [projen-ty](https://www.npmjs.com/package/@langri-sha/projen-ty)                               | `ty.toml` generator                                  |

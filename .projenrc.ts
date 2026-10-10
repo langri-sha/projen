@@ -645,7 +645,7 @@ project.addSubproject(
         'projen-prettier@workspace:*',
         'projen-readme@workspace:*',
         'projen-renovate@workspace:*',
-        '@langri-sha/projen-ruff@workspace:*',
+        'projen-ruff@workspace:*',
         '@langri-sha/projen-swcrc@workspace:*',
         '@langri-sha/projen-ty@workspace:*',
         '@langri-sha/projen-typescript-config@workspace:*',
@@ -771,7 +771,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-ruff',
+    name: 'projen-ruff',
     outdir: path.join('packages', 'projen-ruff'),
     npmIgnore: {},
     readme: {
