@@ -23,7 +23,6 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@langri-sha/projen-editorconfig": "workspace:*",
     "@langri-sha/projen-eslint": "workspace:*",
     "@langri-sha/projen-husky": "workspace:*",
     "@langri-sha/projen-jest-config": "workspace:*",
@@ -45,6 +44,7 @@
     "projen-cargo": "workspace:*",
     "projen-codeowners": "workspace:*",
     "projen-dagger": "workspace:*",
+    "projen-editorconfig": "workspace:*",
     "ramda": "0.32.0",
     "semver": "7.8.5"
   },

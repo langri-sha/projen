@@ -1,10 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import {
-  EditorConfig,
-  type EditorConfigOptions,
-} from '@langri-sha/projen-editorconfig'
 import { ESLint, ESLintOptions } from '@langri-sha/projen-eslint'
 import { Husky, type HuskyOptions } from '@langri-sha/projen-husky'
 import { JestConfig, JestConfigOptions } from '@langri-sha/projen-jest-config'
@@ -52,6 +48,7 @@ import { Beachball, BeachballOptions } from 'projen-beachball'
 import { type CargoOptions, CargoPackage, CargoWorkspace } from 'projen-cargo'
 import { Codeowners, type CodeownersOptions } from 'projen-codeowners'
 import { Dagger, type DaggerOptions } from 'projen-dagger'
+import { EditorConfig, type EditorConfigOptions } from 'projen-editorconfig'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
