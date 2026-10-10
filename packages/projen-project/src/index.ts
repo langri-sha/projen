@@ -1,10 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import {
-  Codeowners,
-  type CodeownersOptions,
-} from '@langri-sha/projen-codeowners'
 import { Dagger, type DaggerOptions } from '@langri-sha/projen-dagger'
 import {
   EditorConfig,
@@ -55,6 +51,7 @@ import {
 import { Babel, BabelOptions } from 'projen-babel-config'
 import { Beachball, BeachballOptions } from 'projen-beachball'
 import { type CargoOptions, CargoPackage, CargoWorkspace } from 'projen-cargo'
+import { Codeowners, type CodeownersOptions } from 'projen-codeowners'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 

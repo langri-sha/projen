@@ -15,7 +15,7 @@ projects.
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
 - managing Git hooks with [`@langri-sha/projen-husky`]
 - configures extensive list of Git ignore patterns
-- manages [code owners] with [`@langri-sha/projen-codeowners`]
+- manages [code owners] with [`projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`@langri-sha/projen-worktrunk`]
 
 ## Worktrunk
@@ -65,8 +65,7 @@ runs them, so no default runs unseen. It remembers approval by the exact text of
 a command.
 
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
-[`@langri-sha/projen-codeowners`]:
-  https://www.npmjs.com/package/@langri-sha/projen-codeowners
+[`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
 [`@langri-sha/projen-dagger`]:
   https://www.npmjs.com/package/@langri-sha/projen-dagger
 [`@langri-sha/projen-husky`]:

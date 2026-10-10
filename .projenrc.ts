@@ -198,7 +198,7 @@ const publish = (project: Project) => {
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-codeowners',
+    name: 'projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
     npmIgnore: {},
     readme: {
@@ -632,7 +632,7 @@ project.addSubproject(
         'projen-babel-config@workspace:*',
         'projen-beachball@workspace:*',
         'projen-cargo@workspace:*',
-        '@langri-sha/projen-codeowners@workspace:*',
+        'projen-codeowners@workspace:*',
         '@langri-sha/projen-dagger@workspace:*',
         '@langri-sha/projen-editorconfig@workspace:*',
         '@langri-sha/projen-eslint@workspace:*',
