@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-skills",
+  "name": "projen-skills",
   "version": "0.1.0",
   "description": "A projen component for declaring and installing the agent skills a repository uses.",
   "bugs": {
