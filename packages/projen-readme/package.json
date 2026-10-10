@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-readme",
+  "name": "projen-readme",
   "version": "0.1.14",
   "description": "A projen component for creating sample README files.",
   "bugs": {

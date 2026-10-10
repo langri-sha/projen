@@ -28,7 +28,7 @@
 | [projen-pnpm-workspace](https://www.npmjs.com/package/projen-pnpm-workspace)                   | `pnpm-workspace.yaml` generator                      |
 | [projen-prettier](https://www.npmjs.com/package/projen-prettier)                               | `prettier.config.js` generator                       |
 | [projen-project](https://www.npmjs.com/package/@langri-sha/projen-project)                     | Meta-component bundling the rest                     |
-| [projen-readme](https://www.npmjs.com/package/@langri-sha/projen-readme)                       | `readme.md` stub generator                           |
+| [projen-readme](https://www.npmjs.com/package/projen-readme)                                   | `readme.md` stub generator                           |
 | [projen-renovate](https://www.npmjs.com/package/@langri-sha/projen-renovate)                   | `renovate.json5` generator                           |
 | [projen-ruff](https://www.npmjs.com/package/@langri-sha/projen-ruff)                           | `ruff.toml` generator                                |
 | [projen-skills](https://www.npmjs.com/package/@langri-sha/projen-skills)                       | Agent skills declaration and installer               |

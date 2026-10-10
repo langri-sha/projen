@@ -1,4 +1,4 @@
-# @langri-sha/projen-readme
+# projen-readme
 
 A [projen] component for creating sample [`README` files].
 
@@ -7,14 +7,14 @@ A [projen] component for creating sample [`README` files].
 Install dependencies:
 
 ```sh
-npm install -D @langri-sha/projen-readme
+npm install -D projen-readme
 ```
 
 Then, create a `README` component for your projects:
 
 ```js
 import { Project } from 'projen'
-import { ReadmeFile } from '@langri-sha/projen-readme'
+import { ReadmeFile } from 'projen-readme'
 
 const project = new Project({
   name: 'my-project',
