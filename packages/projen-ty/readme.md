@@ -1,11 +1,11 @@
-# @langri-sha/projen-ty
+# projen-ty
 
 A [projen] component for configuring [ty].
 
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-ty
+npm install -D projen projen-ty
 ```
 
 `Ty` writes a `ty.toml`, which needs no `pyproject.toml` or [uv] workspace and
@@ -13,7 +13,7 @@ takes precedence over a `[tool.ty]` table beside it:
 
 ```js
 import { Project } from 'projen'
-import { Ty } from '@langri-sha/projen-ty'
+import { Ty } from 'projen-ty'
 
 const project = new Project({
   name: 'my-project',
