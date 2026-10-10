@@ -11,7 +11,7 @@ projects.
 - configures [Dagger] modules with [`projen-dagger`]
 - configures [uv] workspaces with [`@langri-sha/projen-uv`]
 - configures [Ruff] with [`projen-ruff`]
-- configures [ty] with [`@langri-sha/projen-ty`]
+- configures [ty] with [`projen-ty`]
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
 - managing Git hooks with [`projen-husky`]
 - configures extensive list of Git ignore patterns
@@ -69,7 +69,7 @@ a command.
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
 [`projen-husky`]: https://www.npmjs.com/package/projen-husky
 [`projen-ruff`]: https://www.npmjs.com/package/projen-ruff
-[`@langri-sha/projen-ty`]: https://www.npmjs.com/package/@langri-sha/projen-ty
+[`projen-ty`]: https://www.npmjs.com/package/projen-ty
 [`@langri-sha/projen-uv`]: https://www.npmjs.com/package/@langri-sha/projen-uv
 [`@langri-sha/projen-worktrunk`]:
   https://www.npmjs.com/package/@langri-sha/projen-worktrunk

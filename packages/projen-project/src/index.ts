@@ -2,11 +2,6 @@ import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
 import {
-  type SupportedPythonVersion,
-  Ty,
-  type TyOptions,
-} from '@langri-sha/projen-ty'
-import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
 } from '@langri-sha/projen-typescript-config'
@@ -46,6 +41,7 @@ import { ReadmeFile, type ReadmeFileOptions } from 'projen-readme'
 import { Renovate, type RenovateOptions } from 'projen-renovate'
 import { Ruff, type RuffOptions } from 'projen-ruff'
 import { SWCConfig, type SWCConfigOptions } from 'projen-swcrc'
+import { type SupportedPythonVersion, Ty, type TyOptions } from 'projen-ty'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
