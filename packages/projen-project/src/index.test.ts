@@ -2001,6 +2001,71 @@ test('with Renovate options, reading the Python version out of the projenrc', ()
   `)
 })
 
+describe('with Renovate and skills options', () => {
+  const renovate = (options = {}) =>
+    synthSnapshot(
+      new Project({
+        name: 'test-project',
+        package: {},
+        renovate: {},
+        ...options,
+      }),
+    )['renovate.json5']
+
+  test('reads skill commits out of the projenrc', () => {
+    expect(
+      renovate({ skills: skillsOptions }).customManagers.filter(
+        ({ depTypeTemplate }: { depTypeTemplate?: string }) =>
+          depTypeTemplate === 'skills',
+      ),
+    ).toMatchInlineSnapshot(`
+      [
+        {
+          "customType": "regex",
+          "datasourceTemplate": "git-refs",
+          "depTypeTemplate": "skills",
+          "managerFilePatterns": [
+            "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
+          ],
+          "matchStrings": [
+            "source:\\s*['"](?<depName>[\\w.-]+/[\\w.-]+)['"],\\s*ref:\\s*['"](?<currentDigest>[0-9a-f]{40})['"]",
+          ],
+          "packageNameTemplate": "https://github.com/{{{depName}}}",
+        },
+      ]
+    `)
+  })
+
+  test('lets skill commits past the release age', () => {
+    expect(
+      renovate({ skills: skillsOptions }).packageRules.filter(
+        ({ matchDepTypes }: { matchDepTypes?: string[] }) =>
+          matchDepTypes?.includes('skills'),
+      ),
+    ).toMatchInlineSnapshot(`
+      [
+        {
+          "description": "Skill commits carry no release date. Propose them without waiting out the release age",
+          "matchDepTypes": [
+            "skills",
+          ],
+          "matchManagers": [
+            "custom.regex",
+          ],
+          "minimumReleaseAgeBehaviour": "timestamp-optional",
+        },
+      ]
+    `)
+  })
+
+  test('reads nothing without skills', () => {
+    const { customManagers, packageRules } = renovate()
+
+    expect(JSON.stringify(customManagers)).not.toContain('git-refs')
+    expect(JSON.stringify(packageRules)).not.toContain('skills')
+  })
+})
+
 /**
  * A custom manager is two loose patterns away from rewriting something that
  * only looks like a dependency. `pnpm@` matched the tail of
@@ -2011,6 +2076,7 @@ test('with Renovate options, reading the Python version out of the projenrc', ()
 describe('with Renovate options, the custom managers', () => {
   interface CustomManager {
     depNameTemplate?: string
+    depTypeTemplate?: string
     managerFilePatterns: string[]
     matchStrings: string[]
     matchStringsStrategy?: string
@@ -2095,6 +2161,44 @@ describe('with Renovate options, the custom managers', () => {
       new RegExp(matchString).exec("    pythonVersion: '3.14',")?.groups
         ?.currentValue,
     ).toBe('3.14')
+  })
+
+  test('read skill commits out of a projenrc and nowhere else', () => {
+    const manager = (
+      synthSnapshot(
+        new Project({
+          name: 'test-project',
+          package: {},
+          renovate: {},
+          skills: skillsOptions,
+        }),
+      )['renovate.json5'].customManagers as CustomManager[]
+    ).find(({ depTypeTemplate }) => depTypeTemplate === 'skills')!
+    const matchString = new RegExp(manager.matchStrings[0]!)
+    const sha = '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8'
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/some/.projenrc.mjs')).toBe(true)
+    // Both declare skills in a `.ts` file under a path containing `projen`.
+    expect(covers(manager, 'packages/projen-skills/src/index.test.ts')).toBe(
+      false,
+    )
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+
+    expect(
+      matchString.exec(
+        `{ source: 'vercel-labs/skills', ref: '${sha}', skills: ['find-skills'] }`,
+      )?.groups,
+    ).toEqual({ depName: 'vercel-labs/skills', currentDigest: sha })
+    expect(
+      matchString.exec(
+        `{\n      source: "vercel-labs/skills",\n      ref: "${sha}",\n`,
+      )?.groups,
+    ).toEqual({ depName: 'vercel-labs/skills', currentDigest: sha })
+    expect("source: 'vercel-labs/skills', ref: 'main'").not.toMatch(matchString)
+    expect("source: 'npm:@acme/skills', skills: ['a']").not.toMatch(matchString)
   })
 
   test('read Dagger module refs pinned to a tag, and nothing else', () => {
