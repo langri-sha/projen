@@ -1,18 +1,18 @@
-# @langri-sha/projen-codeowners
+# projen-codeowners
 
 A [projen] component for managing [CODEOWNERS].
 
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-codeowners
+npm install -D projen projen-codeowners
 ```
 
 Then, create the `Codeowners` component for your root project:
 
 ```js
 import { Project } from 'projen'
-import { Codeowners } from '@langri-sha/projen-codeowners'
+import { Codeowners } from 'projen-codeowners'
 
 const project = new Project({
   name: 'my-project',

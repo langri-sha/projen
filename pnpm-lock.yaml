@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-codeowners':
-        specifier: workspace:*
-        version: link:../projen-codeowners
       '@langri-sha/projen-dagger':
         specifier: workspace:*
         version: link:../projen-dagger
@@ -601,6 +598,9 @@ importers:
       projen-cargo:
         specifier: workspace:*
         version: link:../projen-cargo
+      projen-codeowners:
+        specifier: workspace:*
+        version: link:../projen-codeowners
       ramda:
         specifier: 0.32.0
         version: 0.32.0
