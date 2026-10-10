@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-lint-staged",
+  "name": "projen-lint-staged",
   "version": "0.3.19",
   "description": "A projen component for configuring lint-staged.",
   "bugs": {

@@ -1,4 +1,4 @@
-# @langri-sha/projen-lint-staged
+# projen-lint-staged
 
 A [projen] component for configuring [lint-staged].
 
@@ -7,14 +7,14 @@ A [projen] component for configuring [lint-staged].
 Install dependencies:
 
 ```sh
-npm install -D projen @langri-sha/projen-lint-staged
+npm install -D projen projen-lint-staged
 ```
 
 Then, create a `LintStaged` component for your project:
 
 ```js
 import { Project } from 'projen'
-import { LintStaged } from '@langri-sha/projen-lint-staged'
+import { LintStaged } from 'projen-lint-staged'
 
 const project = new Project({
   name: 'my-project',
