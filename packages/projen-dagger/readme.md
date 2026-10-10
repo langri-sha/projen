@@ -1,4 +1,4 @@
-# @langri-sha/projen-dagger
+# projen-dagger
 
 A [projen] component for [Dagger] workspaces.
 
@@ -13,12 +13,12 @@ tag. Prefer that over constructing the component yourself.
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-dagger
+npm install -D projen projen-dagger
 ```
 
 ```js
 import { Project } from 'projen'
-import { Dagger } from '@langri-sha/projen-dagger'
+import { Dagger } from 'projen-dagger'
 
 const project = new Project({
   name: 'my-modules',

@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-dagger",
+  "name": "projen-dagger",
   "version": "0.3.2",
   "description": "A projen component for Dagger workspaces.",
   "bugs": {
