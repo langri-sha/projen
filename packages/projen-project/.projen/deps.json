@@ -166,6 +166,11 @@
       "type": "runtime"
     },
     {
+      "name": "projen-skills",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "projen-swcrc",
       "version": "workspace:*",
       "type": "runtime"

@@ -586,6 +586,9 @@ importers:
       projen-ruff:
         specifier: workspace:*
         version: link:../projen-ruff
+      projen-skills:
+        specifier: workspace:*
+        version: link:../projen-skills
       projen-swcrc:
         specifier: workspace:*
         version: link:../projen-swcrc

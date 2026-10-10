@@ -646,6 +646,7 @@ project.addSubproject(
         'projen-readme@workspace:*',
         'projen-renovate@workspace:*',
         'projen-ruff@workspace:*',
+        'projen-skills@workspace:*',
         'projen-swcrc@workspace:*',
         'projen-ty@workspace:*',
         'projen-typescript-config@workspace:*',

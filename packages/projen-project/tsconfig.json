@@ -55,6 +55,9 @@
       "path": "../projen-ruff"
     },
     {
+      "path": "../projen-skills"
+    },
+    {
       "path": "../projen-swcrc"
     },
     {
