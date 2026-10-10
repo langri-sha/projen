@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Stop pointing the readme at the deprecated jest-config package",
+  "packageName": "projen-jest-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
