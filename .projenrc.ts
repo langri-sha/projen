@@ -496,7 +496,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-lint-staged',
+    name: 'projen-lint-staged',
     outdir: path.join('packages', 'projen-lint-staged'),
     npmIgnore: {},
     readme: {
@@ -639,7 +639,7 @@ project.addSubproject(
         'projen-husky@workspace:*',
         'projen-jest-config@workspace:*',
         'projen-license@workspace:*',
-        '@langri-sha/projen-lint-staged@workspace:*',
+        'projen-lint-staged@workspace:*',
         '@langri-sha/projen-lint-synthesized@workspace:*',
         '@langri-sha/projen-pnpm-workspace@workspace:*',
         '@langri-sha/projen-prettier@workspace:*',

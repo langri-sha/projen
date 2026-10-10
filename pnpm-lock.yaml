@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-lint-staged':
-        specifier: workspace:*
-        version: link:../projen-lint-staged
       '@langri-sha/projen-lint-synthesized':
         specifier: workspace:*
         version: link:../projen-lint-synthesized
@@ -601,6 +598,9 @@ importers:
       projen-license:
         specifier: workspace:*
         version: link:../projen-license
+      projen-lint-staged:
+        specifier: workspace:*
+        version: link:../projen-lint-staged
       ramda:
         specifier: 0.32.0
         version: 0.32.0
