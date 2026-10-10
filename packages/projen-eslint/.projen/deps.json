@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "projen",
+      "version": "0.86.5",
+      "type": "build"
+    },
+    {
       "name": "eslint",
       "version": "^10.4.0",
       "type": "peer"

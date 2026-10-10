@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "projen",
+      "version": "0.86.5",
+      "type": "build"
+    },
+    {
       "name": "jest",
       "version": "^30.0.0",
       "type": "peer"

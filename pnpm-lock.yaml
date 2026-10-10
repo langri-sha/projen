@@ -226,9 +226,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
         specifier: 7.1.2
         version: 7.1.2
@@ -242,15 +239,15 @@ importers:
       '@types/serialize-javascript':
         specifier: 5.0.4
         version: 5.0.4
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-beachball:
     dependencies:
       beachball:
         specifier: ^2.0.0
         version: 2.66.0(typescript@5.9.3)
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -258,12 +255,11 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-cargo:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -271,15 +267,14 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
 
   packages/projen-codeowners:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -287,12 +282,11 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-dagger:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -300,15 +294,14 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       smol-toml:
         specifier: 1.9.0
         version: 1.9.0
 
   packages/projen-editorconfig:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -316,15 +309,15 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-eslint:
     dependencies:
       eslint:
         specifier: ^10.4.0
         version: 10.12.0(supports-color@8.1.1)
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
         specifier: 7.1.2
         version: 7.1.2
@@ -338,12 +331,12 @@ importers:
       '@types/serialize-javascript':
         specifier: 5.0.4
         version: 5.0.4
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-github-templates:
     dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       yaml:
         specifier: 2.9.1
         version: 2.9.1
@@ -354,15 +347,15 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-husky:
     dependencies:
       husky:
         specifier: ^9.0.1
         version: 9.1.7
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -373,15 +366,15 @@ importers:
       '@types/node':
         specifier: 24.19.1
         version: 24.19.1
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-jest-config:
     dependencies:
       jest:
         specifier: ^30.0.0
         version: 30.5.2(@types/node@24.19.1)(babel-plugin-macros@3.1.0)(supports-color@8.1.1)
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
         specifier: 7.1.2
         version: 7.1.2
@@ -395,15 +388,15 @@ importers:
       '@types/serialize-javascript':
         specifier: 5.0.4
         version: 5.0.4
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-license:
     dependencies:
       license-o-matic:
         specifier: ^1.2.0
         version: 1.2.0
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -411,15 +404,15 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-lint-staged:
     dependencies:
       lint-staged:
         specifier: ^17.0.0
         version: 17.6.0
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
         specifier: 7.1.2
         version: 7.1.2
@@ -433,6 +426,9 @@ importers:
       '@types/serialize-javascript':
         specifier: 5.0.4
         version: 5.0.4
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-lint-synthesized:
     dependencies:
@@ -464,9 +460,6 @@ importers:
 
   packages/projen-pnpm-workspace:
     dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       yaml:
         specifier: 2.9.1
         version: 2.9.1
@@ -477,15 +470,15 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
 
   packages/projen-prettier:
     dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       serialize-javascript:
         specifier: 7.1.2
         version: 7.1.2
@@ -502,6 +495,9 @@ importers:
       prettier:
         specifier: 3.9.9
         version: 3.9.9
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-project:
     dependencies:
@@ -532,9 +528,6 @@ importers:
       prettier:
         specifier: ^3.0.0
         version: 3.9.9
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       projen-babel-config:
         specifier: workspace:*
         version: link:../projen-babel
@@ -632,12 +625,11 @@ importers:
       '@types/semver':
         specifier: 7.8.0
         version: 7.8.0
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-readme:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -645,12 +637,11 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-renovate:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -658,15 +649,14 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
 
   packages/projen-ruff:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -674,6 +664,9 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -683,9 +676,6 @@ importers:
 
   packages/projen-skills:
     dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       skills:
         specifier: ^1.7.2
         version: 1.7.2
@@ -699,15 +689,15 @@ importers:
       '@types/node':
         specifier: 24.19.1
         version: 24.19.1
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-swcrc:
     dependencies:
       '@swc/core':
         specifier: ^1.6.0
         version: 1.16.2
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -715,15 +705,14 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
 
   packages/projen-ty:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -731,6 +720,9 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -743,9 +735,6 @@ importers:
       '@schemastore/tsconfig':
         specifier: 1.0.11
         version: 1.0.11
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -756,12 +745,12 @@ importers:
       '@types/node':
         specifier: 24.19.1
         version: 24.19.1
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
 
   packages/projen-uv:
     dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
       smol-toml:
         specifier: 1.9.0
         version: 1.9.0
@@ -772,15 +761,14 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
 
   packages/projen-worktrunk:
-    dependencies:
-      projen:
-        specifier: ^0.86.0
-        version: 0.86.5(constructs@10.8.1)
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -788,6 +776,9 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.86.5
+        version: 0.86.5(constructs@10.8.1)
       smol-toml:
         specifier: 1.9.0
         version: 1.9.0
