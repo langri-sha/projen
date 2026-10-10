@@ -392,7 +392,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-github-templates',
+    name: 'projen-github-templates',
     outdir: path.join('packages', 'projen-github-templates'),
     npmIgnore: {},
     readme: {

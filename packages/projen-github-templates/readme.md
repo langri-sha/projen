@@ -1,4 +1,4 @@
-# @langri-sha/projen-github-templates
+# projen-github-templates
 
 A [projen] component for authoring GitHub [issue forms][issue forms], Markdown
 issue templates, the [template chooser][chooser] and [pull request
@@ -7,14 +7,14 @@ templates][pull request templates].
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-github-templates
+npm install -D projen projen-github-templates
 ```
 
 Declare templates by the path GitHub reads them from:
 
 ```ts
 import { Project } from 'projen'
-import { GitHubTemplates } from '@langri-sha/projen-github-templates'
+import { GitHubTemplates } from 'projen-github-templates'
 
 const project = new Project({
   name: 'acme',

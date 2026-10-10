@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-github-templates",
+  "name": "projen-github-templates",
   "version": "0.0.0",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
