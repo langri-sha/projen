@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 10 Oct 2026 05:05:17 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 10 Oct 2026 15:22:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.35.0
+
+Sat, 10 Oct 2026 15:22:36 GMT
+
+### Minor changes
+
+- Add a skills option that declares agent skills and has Renovate bump their commit pins (filip.dupanovic@gmail.com)
+- Bump projen-jest-config to v0.4.21
+- Bump projen-lint-synthesized to v0.5.20
+- Bump projen-swcrc to v0.1.28
 
 ## 0.34.0
 

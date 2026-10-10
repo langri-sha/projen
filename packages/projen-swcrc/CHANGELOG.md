@@ -1,8 +1,17 @@
 # Change Log - projen-swcrc
 
-<!-- This log was last generated on Sat, 10 Oct 2026 05:05:17 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 10 Oct 2026 15:22:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.28
+
+Sat, 10 Oct 2026 15:22:36 GMT
+
+### Patches
+
+- Fix the readme's import name (filip.dupanovic@gmail.com)
+- Fix the component's description (filip.dupanovic@gmail.com)
 
 ## 0.1.27
 

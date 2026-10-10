@@ -2,6 +2,39 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 10 Oct 2026 15:22:36 GMT",
+      "version": "0.35.0",
+      "tag": "@langri-sha/projen-project_v0.35.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "1923629848ec8dbc073fa154303682cf462bd2c1",
+            "comment": "Add a skills option that declares agent skills and has Renovate bump their commit pins"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-jest-config to v0.4.21",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-lint-synthesized to v0.5.20",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-swcrc to v0.1.28",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Oct 2026 05:05:17 GMT",
       "version": "0.34.0",
       "tag": "@langri-sha/projen-project_v0.34.0",

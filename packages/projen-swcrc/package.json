@@ -1,6 +1,6 @@
 {
   "name": "projen-swcrc",
-  "version": "0.1.27",
+  "version": "0.1.28",
   "description": "A projen component for configuring SWC.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

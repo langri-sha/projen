@@ -2,6 +2,27 @@
   "name": "projen-swcrc",
   "entries": [
     {
+      "date": "Sat, 10 Oct 2026 15:22:36 GMT",
+      "version": "0.1.28",
+      "tag": "projen-swcrc_v0.1.28",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-swcrc",
+            "commit": "1923629848ec8dbc073fa154303682cf462bd2c1",
+            "comment": "Fix the readme's import name"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-swcrc",
+            "commit": "1923629848ec8dbc073fa154303682cf462bd2c1",
+            "comment": "Fix the component's description"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Oct 2026 05:05:17 GMT",
       "version": "0.1.27",
       "tag": "projen-swcrc_v0.1.27",

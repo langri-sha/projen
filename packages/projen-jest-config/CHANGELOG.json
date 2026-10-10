@@ -2,6 +2,21 @@
   "name": "projen-jest-config",
   "entries": [
     {
+      "date": "Sat, 10 Oct 2026 15:22:36 GMT",
+      "version": "0.4.21",
+      "tag": "projen-jest-config_v0.4.21",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-jest-config",
+            "commit": "1923629848ec8dbc073fa154303682cf462bd2c1",
+            "comment": "Stop pointing the readme at the deprecated jest-config package"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Oct 2026 05:05:17 GMT",
       "version": "0.4.20",
       "tag": "projen-jest-config_v0.4.20",

@@ -1,8 +1,16 @@
 # Change Log - projen-jest-config
 
-<!-- This log was last generated on Sat, 10 Oct 2026 05:05:17 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 10 Oct 2026 15:22:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.21
+
+Sat, 10 Oct 2026 15:22:36 GMT
+
+### Patches
+
+- Stop pointing the readme at the deprecated jest-config package (filip.dupanovic@gmail.com)
 
 ## 0.4.20
 
