@@ -21,6 +21,11 @@
       "type": "build"
     },
     {
+      "name": "projen",
+      "version": "0.86.5",
+      "type": "build"
+    },
+    {
       "name": "prettier",
       "version": "^3.0.0",
       "type": "peer"

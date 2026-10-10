@@ -28,7 +28,8 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
-    "@types/serialize-javascript": "5.0.4"
+    "@types/serialize-javascript": "5.0.4",
+    "projen": "0.86.5"
   },
   "peerDependencies": {
     "jest": "^30.0.0",
