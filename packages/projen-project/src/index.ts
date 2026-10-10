@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { Ruff, type RuffOptions } from '@langri-sha/projen-ruff'
 import { SWCConfig, type SWCConfigOptions } from '@langri-sha/projen-swcrc'
 import {
   type SupportedPythonVersion,
@@ -46,6 +45,7 @@ import { PnpmWorkspace, PnpmWorkspaceOptions } from 'projen-pnpm-workspace'
 import { Prettier, PrettierOptions } from 'projen-prettier'
 import { ReadmeFile, type ReadmeFileOptions } from 'projen-readme'
 import { Renovate, type RenovateOptions } from 'projen-renovate'
+import { Ruff, type RuffOptions } from 'projen-ruff'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 

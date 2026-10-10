@@ -10,7 +10,7 @@ projects.
 - configures [Cargo] workspaces with [`projen-cargo`]
 - configures [Dagger] modules with [`projen-dagger`]
 - configures [uv] workspaces with [`@langri-sha/projen-uv`]
-- configures [Ruff] with [`@langri-sha/projen-ruff`]
+- configures [Ruff] with [`projen-ruff`]
 - configures [ty] with [`@langri-sha/projen-ty`]
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
 - managing Git hooks with [`projen-husky`]
@@ -68,8 +68,7 @@ a command.
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
 [`projen-husky`]: https://www.npmjs.com/package/projen-husky
-[`@langri-sha/projen-ruff`]:
-  https://www.npmjs.com/package/@langri-sha/projen-ruff
+[`projen-ruff`]: https://www.npmjs.com/package/projen-ruff
 [`@langri-sha/projen-ty`]: https://www.npmjs.com/package/@langri-sha/projen-ty
 [`@langri-sha/projen-uv`]: https://www.npmjs.com/package/@langri-sha/projen-uv
 [`@langri-sha/projen-worktrunk`]:

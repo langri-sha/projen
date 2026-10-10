@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-ruff",
+  "name": "projen-ruff",
   "version": "0.1.0",
   "description": "A projen component for configuring Ruff.",
   "bugs": {

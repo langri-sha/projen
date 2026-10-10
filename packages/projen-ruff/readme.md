@@ -1,11 +1,11 @@
-# @langri-sha/projen-ruff
+# projen-ruff
 
 A [projen] component for configuring [Ruff].
 
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-ruff
+npm install -D projen projen-ruff
 ```
 
 `Ruff` writes a `ruff.toml`, which Ruff reads ahead of a `[tool.ruff]` table in
@@ -14,7 +14,7 @@ to configure:
 
 ```js
 import { Project } from 'projen'
-import { Ruff } from '@langri-sha/projen-ruff'
+import { Ruff } from 'projen-ruff'
 
 const project = new Project({
   name: 'my-project',
