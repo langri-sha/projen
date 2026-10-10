@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-beachball':
-        specifier: workspace:*
-        version: link:../projen-beachball
       '@langri-sha/projen-cargo':
         specifier: workspace:*
         version: link:../projen-cargo
@@ -601,6 +598,9 @@ importers:
       projen-babel-config:
         specifier: workspace:*
         version: link:../projen-babel
+      projen-beachball:
+        specifier: workspace:*
+        version: link:../projen-beachball
       ramda:
         specifier: 0.32.0
         version: 0.32.0
