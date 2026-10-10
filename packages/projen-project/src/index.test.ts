@@ -2,7 +2,6 @@ import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { UvPackage, UvWorkspace } from '@langri-sha/projen-uv'
 import { Worktrunk } from '@langri-sha/projen-worktrunk'
 import {
   afterAll,
@@ -34,6 +33,7 @@ import { Ruff } from 'projen-ruff'
 import { SWCConfig } from 'projen-swcrc'
 import { Ty } from 'projen-ty'
 import { TypeScriptConfig } from 'projen-typescript-config'
+import { UvPackage, UvWorkspace } from 'projen-uv'
 import { valid } from 'semver'
 import { vi } from 'vitest'
 

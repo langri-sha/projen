@@ -9,7 +9,7 @@ projects.
 - configures [PNPM] [workspaces]
 - configures [Cargo] workspaces with [`projen-cargo`]
 - configures [Dagger] modules with [`projen-dagger`]
-- configures [uv] workspaces with [`@langri-sha/projen-uv`]
+- configures [uv] workspaces with [`projen-uv`]
 - configures [Ruff] with [`projen-ruff`]
 - configures [ty] with [`projen-ty`]
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
@@ -70,7 +70,7 @@ a command.
 [`projen-husky`]: https://www.npmjs.com/package/projen-husky
 [`projen-ruff`]: https://www.npmjs.com/package/projen-ruff
 [`projen-ty`]: https://www.npmjs.com/package/projen-ty
-[`@langri-sha/projen-uv`]: https://www.npmjs.com/package/@langri-sha/projen-uv
+[`projen-uv`]: https://www.npmjs.com/package/projen-uv
 [`@langri-sha/projen-worktrunk`]:
   https://www.npmjs.com/package/@langri-sha/projen-worktrunk
 [`@langri-sha/tsconfig`]: https://www.npmjs.com/package/@langri-sha/tsconfig

@@ -1,7 +1,6 @@
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { type UvOptions, UvPackage, UvWorkspace } from '@langri-sha/projen-uv'
 import {
   Worktrunk,
   type WorktrunkOptions,
@@ -42,6 +41,7 @@ import {
   TypeScriptConfig,
   type TypeScriptConfigOptions,
 } from 'projen-typescript-config'
+import { type UvOptions, UvPackage, UvWorkspace } from 'projen-uv'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
