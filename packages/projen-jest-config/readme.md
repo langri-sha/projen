@@ -27,7 +27,7 @@ new JestConfig(project, {
   // Configure the desired Jest configuration module. Optional.
   filename: 'jest.config.ts',
   // Choose a desired Jest configuration module. Optional.
-  extends: '@langri-sha/jest-config',
+  extends: '../../jest.base.config',
   // Inline your preferred configuration overrides.
   config: {
     testEnvironment: 'node',
@@ -40,7 +40,7 @@ This should produce the following output:
 ```ts
 // jest.config.ts
 import type { Config } from 'jest'
-import defaults from '@langri-sha/jest-config'
+import defaults from '../../jest.base.config'
 
 const config: Config = {
   ...defaults,
