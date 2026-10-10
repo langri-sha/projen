@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-renovate':
-        specifier: workspace:*
-        version: link:../projen-renovate
       '@langri-sha/projen-ruff':
         specifier: workspace:*
         version: link:../projen-ruff
@@ -601,6 +598,9 @@ importers:
       projen-readme:
         specifier: workspace:*
         version: link:../projen-readme
+      projen-renovate:
+        specifier: workspace:*
+        version: link:../projen-renovate
       ramda:
         specifier: 0.32.0
         version: 0.32.0

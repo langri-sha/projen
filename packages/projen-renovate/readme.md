@@ -1,18 +1,18 @@
-# @langri-sha/projen-renovate
+# projen-renovate
 
 A [projen] component for authoring [Renovate] configurations.
 
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-renovate
+npm install -D projen projen-renovate
 ```
 
 Add the Renovate configuration:
 
 ```js
 import { Project } from 'projen'
-import { Renovate } from '@langri-sha/projen-renovate'
+import { Renovate } from 'projen-renovate'
 
 const project = new Project({
   name: 'test',
