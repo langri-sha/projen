@@ -484,7 +484,7 @@ project.addSubproject(
       description:
         'A projen component for configuring linters for synthesized files.',
       type: 'module',
-      deps: ['debug@4.4.3', 'execa@10.0.1', 'minimatch@10.2.6'],
+      deps: ['debug@4.4.3', 'execa@10.1.0', 'minimatch@10.2.6'],
       devDeps: ['@types/debug@4.1.13', 'prettier@3.9.9', 'projen@0.86.5'],
       peerDeps: [...projenPeer.peerDeps],
     },
