@@ -21,7 +21,7 @@
 | [projen-eslint](https://www.npmjs.com/package/projen-eslint)                                   | `eslint.config.js` generator                         |
 | [projen-github-templates](https://www.npmjs.com/package/projen-github-templates)               | `.github/` issue and pull request template generator |
 | [projen-husky](https://www.npmjs.com/package/projen-husky)                                     | `.husky/*` Git hook generator                        |
-| [projen-jest-config](https://www.npmjs.com/package/@langri-sha/projen-jest-config)             | `jest.config.js` generator                           |
+| [projen-jest-config](https://www.npmjs.com/package/projen-jest-config)                         | `jest.config.js` generator                           |
 | [projen-license](https://www.npmjs.com/package/@langri-sha/projen-license)                     | `license` file generator                             |
 | [projen-lint-staged](https://www.npmjs.com/package/@langri-sha/projen-lint-staged)             | `lint-staged.config.js` generator                    |
 | [projen-lint-synthesized](https://www.npmjs.com/package/@langri-sha/projen-lint-synthesized)   | Configures linters to run on synthesized files       |
