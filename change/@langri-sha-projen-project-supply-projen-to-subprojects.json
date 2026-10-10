@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Supply Projen as a development dependency to packages that peer it, and fail synthesis when the peer range excludes the version supplied",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

@@ -40,7 +40,7 @@ import {
 import { type UvOptions, UvPackage, UvWorkspace } from 'projen-uv'
 import { Worktrunk, type WorktrunkOptions, pipeline } from 'projen-worktrunk'
 import * as R from 'ramda'
-import { satisfies, valid } from 'semver'
+import { satisfies, valid, validRange } from 'semver'
 
 import { GitAttributesFile } from './lib/gitattributes.js'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
@@ -505,6 +505,50 @@ export class Project extends BaseProject {
    * to resolve rather than naming a version, and `workspace:` is not semver
    * at all.
    */
+  /**
+   * Whether the package peers `name` and Projen leaves it to the project to
+   * name a development copy. By default Projen pins one at the lowest version
+   * the peer range allows, in which case there is nothing for this preset to
+   * supply.
+   */
+  #peersUnpinned(name: string, { peerDependencyOptions }: NodePackageOptions) {
+    return (
+      peerDependencyOptions?.pinnedDevDependency === false &&
+      this.deps.tryGetDependency(name, DependencyType.PEER) !== undefined
+    )
+  }
+
+  /**
+   * Fail synthesis when the version this preset supplied for development
+   * falls outside the range the package peers it at.
+   *
+   * The supplied version moves with this preset and the range with the
+   * project, so nothing else would notice them drifting apart: the package
+   * would test against a copy it tells its consumers it does not support.
+   * A version the project declared itself is not checked here; that is its
+   * own to keep in line.
+   */
+  #assertPeerCovered(name: string) {
+    const peer = this.deps.tryGetDependency(name, DependencyType.PEER)
+    const supplied = this.#ownedDevDeps.has(name)
+      ? this.deps.tryGetDependency(name, DependencyType.BUILD)
+      : undefined
+
+    if (
+      !peer?.version ||
+      !supplied?.version ||
+      !validRange(peer.version) ||
+      satisfies(supplied.version, peer.version)
+    ) {
+      return
+    }
+
+    throw new Error(
+      `${this.name} peers ${name}@${peer.version}, but the ${name}@${supplied.version} this preset supplies for development is outside that range.\n\n` +
+        `Declare ${name} in \`package.devDeps\` at a version the range allows, or widen the range to include ${supplied.version}.`,
+    )
+  }
+
   #assertSupported({ name, type, version: declared }: Dependency) {
     const supported = SUPPORTED_VERSIONS[name]
 
@@ -872,8 +916,19 @@ export class Project extends BaseProject {
     this.package = new NodePackage(this, deepMerge(defaults, pkg))
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('@langri-sha/projen-project@*', 'projen@0.86.5')
+      this.#addDefaultDevDeps('@langri-sha/projen-project@*')
     }
+
+    // A root project is loaded by Projen. A subproject only needs a copy of
+    // its own when it peers Projen and Projen has been told not to pin one
+    // from the peer range, which would otherwise leave it resolving whatever
+    // the root, or the package manager's peer installation, happens to
+    // provide.
+    if (!this.parent || this.#peersUnpinned('projen', pkg)) {
+      this.#addDefaultDevDeps('projen@0.86.5')
+    }
+
+    this.#assertPeerCovered('projen')
 
     this.package.removeScript('start')
     this.package.removeScript('test')

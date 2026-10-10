@@ -2555,6 +2555,80 @@ describe('supplied development dependency versions', () => {
   })
 })
 
+describe('a subproject that peers projen', () => {
+  const subproject = ({
+    peerDeps = ['projen@^0.86.0'],
+    devDeps,
+    pinnedDevDependency = false,
+  }: {
+    peerDeps?: string[]
+    devDeps?: string[]
+    pinnedDevDependency?: boolean
+  } = {}) => {
+    const project = new Project({ name: 'test-project', package: {} })
+
+    project.addSubproject({
+      name: '@someproject/test',
+      outdir: path.join('packages', 'test'),
+      package: {
+        devDeps,
+        peerDeps,
+        peerDependencyOptions: { pinnedDevDependency },
+      },
+    })
+
+    return synthSnapshot(project)
+  }
+
+  test('is given the version the root develops against', () => {
+    const files = subproject()
+
+    expect(files['packages/test/package.json'].devDependencies.projen).toBe(
+      files['package.json'].devDependencies.projen,
+    )
+    expect(valid(files['package.json'].devDependencies.projen)).not.toBeNull()
+  })
+
+  test('keeps the peer range it declared', () => {
+    expect(
+      subproject()['packages/test/package.json'].peerDependencies.projen,
+    ).toBe('^0.86.0')
+  })
+
+  test('keeps a version it declared itself', () => {
+    expect(
+      subproject({ devDeps: ['projen@*'] })['packages/test/package.json']
+        .devDependencies.projen,
+    ).toBe('*')
+  })
+
+  test('leaves the dependency to Projen when it pins from the range', () => {
+    expect(
+      subproject({ pinnedDevDependency: true })['packages/test/package.json']
+        .devDependencies.projen,
+    ).toBe('0.86.0')
+  })
+
+  test('is not given one without the peer', () => {
+    expect(
+      subproject({ peerDeps: [] })['packages/test/package.json'].devDependencies
+        ?.projen,
+    ).toBeUndefined()
+  })
+
+  test('fails when the range excludes the supplied version', () => {
+    expect(() => subproject({ peerDeps: ['projen@^0.90.0'] })).toThrowError(
+      /@someproject\/test peers projen@\^0\.90\.0.*outside that range.*package\.devDeps/s,
+    )
+  })
+
+  test('accepts a range that spans several releases', () => {
+    expect(() =>
+      subproject({ peerDeps: ['projen@>=0.86.0 <1.0.0'] }),
+    ).not.toThrow()
+  })
+})
+
 describe('declarations this preset cannot support', () => {
   const declaring =
     (devDeps: string[], options = {}) =>
