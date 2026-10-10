@@ -23,7 +23,6 @@
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
   },
   "dependencies": {
-    "@langri-sha/projen-pnpm-workspace": "workspace:*",
     "@langri-sha/projen-prettier": "workspace:*",
     "@langri-sha/projen-readme": "workspace:*",
     "@langri-sha/projen-renovate": "workspace:*",
@@ -45,6 +44,7 @@
     "projen-license": "workspace:*",
     "projen-lint-staged": "workspace:*",
     "projen-lint-synthesized": "workspace:*",
+    "projen-pnpm-workspace": "workspace:*",
     "ramda": "0.32.0",
     "semver": "7.8.5"
   },

@@ -1,4 +1,4 @@
-# @langri-sha/projen-pnpm-workspace
+# projen-pnpm-workspace
 
 A [projen] component for maintaining a [pnpm workspace].
 
@@ -7,14 +7,14 @@ A [projen] component for maintaining a [pnpm workspace].
 Install dependencies:
 
 ```sh
-npm install -D projen @langri-sha/projen-pnpm-workspace
+npm install -D projen projen-pnpm-workspace
 ```
 
 Then, create a `PnpmWorkspace` component for your project:
 
 ```js
 import { Project } from 'projen'
-import { PnpmWorkspace } from '@langri-sha/projen-pnpm-workspace'
+import { PnpmWorkspace } from 'projen-pnpm-workspace'
 
 const project = new Project({
   name: 'my-project',

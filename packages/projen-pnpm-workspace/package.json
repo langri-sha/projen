@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-pnpm-workspace",
+  "name": "projen-pnpm-workspace",
   "version": "0.4.14",
   "description": "A projen component for maintaining pnpm workspaces.",
   "bugs": {

@@ -508,9 +508,6 @@ importers:
       '@babel/core':
         specifier: ^8.0.0
         version: 8.0.6
-      '@langri-sha/projen-pnpm-workspace':
-        specifier: workspace:*
-        version: link:../projen-pnpm-workspace
       '@langri-sha/projen-prettier':
         specifier: workspace:*
         version: link:../projen-prettier
@@ -601,6 +598,9 @@ importers:
       projen-lint-synthesized:
         specifier: workspace:*
         version: link:../projen-lint-synthesized
+      projen-pnpm-workspace:
+        specifier: workspace:*
+        version: link:../projen-pnpm-workspace
       ramda:
         specifier: 0.32.0
         version: 0.32.0
