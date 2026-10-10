@@ -24,7 +24,7 @@
 | [projen-jest-config](https://www.npmjs.com/package/projen-jest-config)                         | `jest.config.js` generator                           |
 | [projen-license](https://www.npmjs.com/package/projen-license)                                 | `license` file generator                             |
 | [projen-lint-staged](https://www.npmjs.com/package/projen-lint-staged)                         | `lint-staged.config.js` generator                    |
-| [projen-lint-synthesized](https://www.npmjs.com/package/@langri-sha/projen-lint-synthesized)   | Configures linters to run on synthesized files       |
+| [projen-lint-synthesized](https://www.npmjs.com/package/projen-lint-synthesized)               | Configures linters to run on synthesized files       |
 | [projen-pnpm-workspace](https://www.npmjs.com/package/@langri-sha/projen-pnpm-workspace)       | `pnpm-workspace.yaml` generator                      |
 | [projen-prettier](https://www.npmjs.com/package/@langri-sha/projen-prettier)                   | `prettier.config.js` generator                       |
 | [projen-project](https://www.npmjs.com/package/@langri-sha/projen-project)                     | Meta-component bundling the rest                     |

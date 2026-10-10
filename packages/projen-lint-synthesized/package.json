@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-lint-synthesized",
+  "name": "projen-lint-synthesized",
   "version": "0.5.18",
   "description": "A projen component for configuring linters for synthesized files.",
   "bugs": {

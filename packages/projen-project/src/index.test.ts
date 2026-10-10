@@ -2,7 +2,6 @@ import { execFileSync } from 'node:child_process'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
-import { LintSynthesized } from '@langri-sha/projen-lint-synthesized'
 import { PnpmWorkspace } from '@langri-sha/projen-pnpm-workspace'
 import { Prettier } from '@langri-sha/projen-prettier'
 import { ReadmeFile } from '@langri-sha/projen-readme'
@@ -34,6 +33,7 @@ import { Husky } from 'projen-husky'
 import { JestConfig } from 'projen-jest-config'
 import { License } from 'projen-license'
 import { LintStaged } from 'projen-lint-staged'
+import { LintSynthesized } from 'projen-lint-synthesized'
 import { valid } from 'semver'
 import { vi } from 'vitest'
 
@@ -42,7 +42,7 @@ import { GitAttributesFile } from './lib/gitattributes'
 
 import { Project } from './index'
 
-vi.mock('@langri-sha/projen-lint-synthesized', () => ({
+vi.mock('projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
 }))
 
