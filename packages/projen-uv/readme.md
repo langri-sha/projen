@@ -1,4 +1,4 @@
-# @langri-sha/projen-uv
+# projen-uv
 
 [projen] components for authoring [uv] workspaces and the Python packages in
 them.
@@ -6,7 +6,7 @@ them.
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-uv
+npm install -D projen projen-uv
 ```
 
 `UvWorkspace` writes the workspace root — a `pyproject.toml` opening the
@@ -15,7 +15,7 @@ workspace, a `.python-version` if you pin one, and into `.gitignore` what
 
 ```js
 import { Project } from 'projen'
-import { UvWorkspace } from '@langri-sha/projen-uv'
+import { UvWorkspace } from 'projen-uv'
 
 const project = new Project({
   name: 'my-project',
@@ -43,7 +43,7 @@ declares a `[project]` table.
 builds before anything has been written into it:
 
 ```js
-import { UvPackage } from '@langri-sha/projen-uv'
+import { UvPackage } from 'projen-uv'
 
 new UvPackage(lib, {
   project: {

@@ -1,5 +1,5 @@
 {
-  "name": "@langri-sha/projen-uv",
+  "name": "projen-uv",
   "version": "0.1.6",
   "description": "projen components for authoring uv workspaces and the Python packages in them.",
   "bugs": {
