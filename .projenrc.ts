@@ -650,7 +650,7 @@ project.addSubproject(
         'projen-ty@workspace:*',
         'projen-typescript-config@workspace:*',
         'projen-uv@workspace:*',
-        '@langri-sha/projen-worktrunk@workspace:*',
+        'projen-worktrunk@workspace:*',
         'ramda@0.32.0',
         'semver@7.8.5',
       ],
@@ -980,7 +980,7 @@ project.addSubproject(
 
 project.addSubproject(
   {
-    name: '@langri-sha/projen-worktrunk',
+    name: 'projen-worktrunk',
     outdir: path.join('packages', 'projen-worktrunk'),
     npmIgnore: {},
     readme: {
