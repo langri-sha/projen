@@ -7,7 +7,7 @@ projects.
 
 - managing [Beachball] configuration for publishing packages
 - configures [PNPM] [workspaces]
-- configures [Cargo] workspaces with [`@langri-sha/projen-cargo`]
+- configures [Cargo] workspaces with [`projen-cargo`]
 - configures [Dagger] modules with [`@langri-sha/projen-dagger`]
 - configures [uv] workspaces with [`@langri-sha/projen-uv`]
 - configures [Ruff] with [`@langri-sha/projen-ruff`]
@@ -64,8 +64,7 @@ Worktrunk asks each teammate to approve a project's commands before it first
 runs them, so no default runs unseen. It remembers approval by the exact text of
 a command.
 
-[`@langri-sha/projen-cargo`]:
-  https://www.npmjs.com/package/@langri-sha/projen-cargo
+[`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
 [`@langri-sha/projen-codeowners`]:
   https://www.npmjs.com/package/@langri-sha/projen-codeowners
 [`@langri-sha/projen-dagger`]:

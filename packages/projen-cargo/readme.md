@@ -1,11 +1,11 @@
-# @langri-sha/projen-cargo
+# projen-cargo
 
 [projen] components for authoring [Cargo] workspaces and the crates in them.
 
 ## Usage
 
 ```sh
-npm install -D projen @langri-sha/projen-cargo
+npm install -D projen projen-cargo
 ```
 
 `CargoWorkspace` writes the workspace root — `Cargo.toml`,
@@ -14,7 +14,7 @@ npm install -D projen @langri-sha/projen-cargo
 
 ```js
 import { Project } from 'projen'
-import { CargoWorkspace } from '@langri-sha/projen-cargo'
+import { CargoWorkspace } from 'projen-cargo'
 
 const project = new Project({
   name: 'my-project',
@@ -45,7 +45,7 @@ restating it, and a sample `src/main.rs` so it compiles before anything has been
 written into it:
 
 ```js
-import { CargoPackage } from '@langri-sha/projen-cargo'
+import { CargoPackage } from 'projen-cargo'
 
 new CargoPackage(crate, {
   package: {

@@ -2,11 +2,6 @@ import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
 import {
-  type CargoOptions,
-  CargoPackage,
-  CargoWorkspace,
-} from '@langri-sha/projen-cargo'
-import {
   Codeowners,
   type CodeownersOptions,
 } from '@langri-sha/projen-codeowners'
@@ -59,6 +54,7 @@ import {
 } from 'projen'
 import { Babel, BabelOptions } from 'projen-babel-config'
 import { Beachball, BeachballOptions } from 'projen-beachball'
+import { type CargoOptions, CargoPackage, CargoWorkspace } from 'projen-cargo'
 import * as R from 'ramda'
 import { satisfies, valid } from 'semver'
 
