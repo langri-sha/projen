@@ -538,7 +538,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('@babel/core@8.0.6')
+      this.#addDefaultDevDeps('@babel/core@8.0.7')
     }
 
     this.babel = new Babel(this, deepMerge(defaults, babel))
