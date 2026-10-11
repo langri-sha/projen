@@ -909,11 +909,21 @@ export class Project extends BaseProject {
     }
 
     const defaults: NodePackageOptions = {
+      addPackageManagerToDevEngines: false,
       entrypoint: 'src/index.ts',
       packageManager: DEFAULT_PACKAGE_MANAGER,
     }
 
     this.package = new NodePackage(this, deepMerge(defaults, pkg))
+
+    // Projen 0.99.41 and later write their own default pnpm into every
+    // manifest, which is not the version a project runs.
+    if (
+      this.package.packageManager === javascript.NodePackageManager.PNPM &&
+      pkg.pnpmVersion === undefined
+    ) {
+      this.package.addField('packageManager', undefined)
+    }
 
     if (!this.parent) {
       this.#addDefaultDevDeps('@langri-sha/projen-project@*')

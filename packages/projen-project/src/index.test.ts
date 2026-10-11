@@ -2629,6 +2629,69 @@ describe('a subproject that peers projen', () => {
   })
 })
 
+describe('the package manager in manifests', () => {
+  const synthesize = (packageOptions: Record<string, unknown> = {}) => {
+    const project = new Project({
+      name: 'test-project',
+      package: packageOptions,
+    })
+
+    project.addSubproject({
+      name: '@someproject/test',
+      outdir: path.join('packages', 'test'),
+      package: packageOptions,
+    })
+
+    return { project, files: synthSnapshot(project) }
+  }
+
+  const projenWritesPnpm = (() => {
+    const project = new BaseProject({ name: 'probe' })
+
+    new javascript.NodePackage(project, {
+      packageManager: javascript.NodePackageManager.PNPM,
+    })
+
+    return 'packageManager' in synthSnapshot(project)['package.json']
+  })()
+
+  test('leaves packageManager out of a subproject', () => {
+    expect(synthesize().files['packages/test/package.json']).not.toHaveProperty(
+      'packageManager',
+    )
+  })
+
+  test('leaves packageManager out of the root', () => {
+    expect(synthesize().files['package.json']).not.toHaveProperty(
+      'packageManager',
+    )
+  })
+
+  test('leaves devEngines out of the manifests', () => {
+    const { files } = synthesize()
+
+    expect(files['package.json']).not.toHaveProperty('devEngines')
+    expect(files['packages/test/package.json']).not.toHaveProperty('devEngines')
+  })
+
+  test('keeps a packageManager the project adds itself', () => {
+    const project = new Project({ name: 'test-project', package: {} })
+
+    project.package?.addField('packageManager', 'pnpm@12.10.1')
+
+    expect(synthSnapshot(project)['package.json'].packageManager).toBe(
+      'pnpm@12.10.1',
+    )
+  })
+
+  test.skipIf(!projenWritesPnpm)('keeps a pnpm version it names', () => {
+    expect(
+      synthesize({ pnpmVersion: '12.10.1' }).files['packages/test/package.json']
+        .packageManager,
+    ).toBe('pnpm@12.10.1')
+  })
+})
+
 describe('declarations this preset cannot support', () => {
   const declaring =
     (devDeps: string[], options = {}) =>
