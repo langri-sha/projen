@@ -30,7 +30,7 @@
     "@langri-sha/vitest": "0.2.3",
     "@types/serialize-javascript": "5.0.4",
     "prettier": "3.9.9",
-    "projen": "0.86.5"
+    "projen": "0.104.1"
   },
   "peerDependencies": {
     "prettier": "^3.0.0",

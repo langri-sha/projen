@@ -206,8 +206,8 @@ importers:
         specifier: 3.9.9
         version: 3.9.9
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -240,8 +240,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-beachball:
     dependencies:
@@ -256,8 +256,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-cargo:
     devDependencies:
@@ -268,8 +268,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -283,8 +283,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-dagger:
     devDependencies:
@@ -295,8 +295,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       smol-toml:
         specifier: 1.9.0
         version: 1.9.0
@@ -310,8 +310,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-eslint:
     dependencies:
@@ -332,8 +332,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-github-templates:
     dependencies:
@@ -348,8 +348,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-husky:
     dependencies:
@@ -367,8 +367,8 @@ importers:
         specifier: 24.19.1
         version: 24.19.1
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-jest-config:
     dependencies:
@@ -389,8 +389,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-license:
     dependencies:
@@ -405,8 +405,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-lint-staged:
     dependencies:
@@ -427,8 +427,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-lint-synthesized:
     dependencies:
@@ -455,8 +455,8 @@ importers:
         specifier: 3.9.9
         version: 3.9.9
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-pnpm-workspace:
     dependencies:
@@ -471,8 +471,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -496,8 +496,8 @@ importers:
         specifier: 3.9.9
         version: 3.9.9
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-project:
     dependencies:
@@ -626,8 +626,8 @@ importers:
         specifier: 7.8.0
         version: 7.8.0
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-readme:
     devDependencies:
@@ -638,8 +638,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-renovate:
     devDependencies:
@@ -650,8 +650,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -665,8 +665,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -690,8 +690,8 @@ importers:
         specifier: 24.19.1
         version: 24.19.1
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-swcrc:
     dependencies:
@@ -706,8 +706,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -721,8 +721,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -746,8 +746,8 @@ importers:
         specifier: 24.19.1
         version: 24.19.1
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
 
   packages/projen-uv:
     dependencies:
@@ -762,8 +762,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
@@ -777,8 +777,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.3(@types/node@24.19.1)(vite@8.3.0(@types/node@24.19.1)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       projen:
-        specifier: 0.86.5
-        version: 0.86.5(constructs@10.8.1)
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
       smol-toml:
         specifier: 1.9.0
         version: 1.9.0
@@ -3942,23 +3942,25 @@ packages:
     resolution: {integrity: sha512-HzMy3Geq23nVALD/M2LliU+F+M+gVNsvkQWWqeBZ8HDiCgzo6YPJ/Omrmtq24EFrIsk0a3EkQGEd7bDOo+IhGA==}
     engines: {node: '>=18'}
 
-  projen@0.86.5:
-    resolution: {integrity: sha512-JVckfyzjFQ46MdHjowslWWNH309A5kxYrpCIkobRTsB1F2KFiiESenjnS+vyWGML9NcfDIw6UIMRNYD6enuTIQ==}
+  projen@0.104.1:
+    resolution: {integrity: sha512-+xbjYg592AOcTcaxlzCj3LvLUP2yFwNs5MaKatWJot8RKDM+Q8TnHwsMYEJuYSUgTNxSnkCqq2oh96exkQAsLQ==}
     engines: {node: '>= 16.0.0'}
     hasBin: true
     peerDependencies:
-      constructs: ^10.0.0
+      constructs: ^10.5.0
     bundledDependencies:
       - '@iarna/toml'
       - case
       - chalk
       - comment-json
       - conventional-changelog-config-spec
+      - dax
+      - fast-glob
       - fast-json-patch
-      - glob
       - ini
+      - parse-conflict-json
+      - properties-file
       - semver
-      - shx
       - xmlbuilder2
       - yaml
       - yargs
@@ -8049,7 +8051,7 @@ snapshots:
     dependencies:
       parse-ms: 4.0.0
 
-  projen@0.86.5(constructs@10.8.1):
+  projen@0.104.1(constructs@10.8.1):
     dependencies:
       constructs: 10.8.1
 

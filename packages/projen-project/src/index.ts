@@ -974,7 +974,7 @@ export class Project extends BaseProject {
     // the root, or the package manager's peer installation, happens to
     // provide.
     if (!this.parent || this.#peersUnpinned('projen', pkg)) {
-      this.#addDefaultDevDeps('projen@0.86.5')
+      this.#addDefaultDevDeps('projen@0.104.1')
     }
 
     this.#assertPeerCovered('projen')

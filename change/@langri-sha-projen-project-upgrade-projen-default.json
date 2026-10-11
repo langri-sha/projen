@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Upgrade the default projen from 0.86.5 to 0.104.1. Synthesis updates task scripts and manifest versions, and adds native pnpm workspace ignore and generated-file attributes. Explicit consumer projen declarations remain supported across >=0.86.0 <1.0.0.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
