@@ -1657,6 +1657,98 @@ describe('PNPM allowed builds', () => {
   })
 })
 
+describe('PNPM release age exclusions', () => {
+  const excluded = (options = {}) => {
+    const workspace = synthSnapshot(
+      new Project({
+        name: 'test-project',
+        pnpmWorkspace: { packages: ['packages/*'] },
+        ...options,
+      }),
+    )['pnpm-workspace.yaml'] as string
+
+    const [, list = ''] =
+      workspace.match(/^minimumReleaseAgeExclude:\n((?: {2}- .+\n)+)/m) ?? []
+
+    return [...list.matchAll(/^ {2}- ['"]?([^'"\n]+)['"]?$/gm)].map(
+      ([, entry]) => entry,
+    )
+  }
+
+  test('are empty by default', () => {
+    expect(excluded()).toEqual([])
+  })
+
+  test('list the preset packages when the project spreads them', () => {
+    expect(
+      excluded({
+        pnpmWorkspace: {
+          packages: ['packages/*'],
+          minimumReleaseAgeExclude: [
+            '@langri-sha/*',
+            ...Project.presetPackages,
+          ],
+        },
+      }),
+    ).toEqual(['@langri-sha/*', ...Project.presetPackages])
+  })
+})
+
+describe('Project.presetPackages', () => {
+  const { name, dependencies } = createRequire(import.meta.url)(
+    '../package.json',
+  ) as { name: string; dependencies: Record<string, string> }
+
+  test('starts with the preset', () => {
+    expect(Project.presetPackages[0]).toBe(name)
+  })
+
+  test('lists every projen component the preset depends on, sorted', () => {
+    const components = Object.keys(dependencies)
+      .filter((dependency) => dependency.startsWith('projen-'))
+      .sort()
+
+    expect(components.length).toBeGreaterThan(0)
+    expect(Project.presetPackages.slice(1)).toEqual(components)
+  })
+
+  test('leaves third-party dependencies out', () => {
+    expect(Project.presetPackages).not.toContain('ramda')
+    expect(Project.presetPackages).not.toContain('semver')
+  })
+
+  test('lists nothing beyond the preset and its components', () => {
+    expect(Project.presetPackages).toMatchInlineSnapshot(`
+      [
+        "@langri-sha/projen-project",
+        "projen-babel-config",
+        "projen-beachball",
+        "projen-cargo",
+        "projen-codeowners",
+        "projen-dagger",
+        "projen-editorconfig",
+        "projen-eslint",
+        "projen-husky",
+        "projen-jest-config",
+        "projen-license",
+        "projen-lint-staged",
+        "projen-lint-synthesized",
+        "projen-pnpm-workspace",
+        "projen-prettier",
+        "projen-readme",
+        "projen-renovate",
+        "projen-ruff",
+        "projen-skills",
+        "projen-swcrc",
+        "projen-ty",
+        "projen-typescript-config",
+        "projen-uv",
+        "projen-worktrunk",
+      ]
+    `)
+  })
+})
+
 describe('with Prettier options', () => {
   test('defaults', () => {
     const project = new Project({
