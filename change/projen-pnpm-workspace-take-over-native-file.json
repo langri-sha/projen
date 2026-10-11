@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Take over the pnpm-workspace.yaml that projen 0.101.7 and later register, instead of failing synthesis",
+  "packageName": "projen-pnpm-workspace",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
