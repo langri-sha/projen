@@ -137,6 +137,7 @@ const project = new Project({
   },
   swcrc: {},
   typeScriptConfig: {},
+  worktrunk: {},
 })
 
 project.package?.addField('private', true)
