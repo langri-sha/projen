@@ -65,6 +65,24 @@ Worktrunk asks each teammate to approve a project's commands before it first
 runs them, so no default runs unseen. It remembers approval by the exact text of
 a command.
 
+## Release age
+
+The preset exempts nothing from pnpm's `minimumReleaseAge`. A project that
+trusts the preset's releases can exempt the preset and the `projen-` components
+it depends on by spreading `Project.presetPackages`, which follows the
+components as they are added or renamed:
+
+```ts
+import { Project } from '@langri-sha/projen-project'
+
+new Project({
+  name: 'my-project',
+  pnpmWorkspace: {
+    minimumReleaseAgeExclude: [...Project.presetPackages],
+  },
+})
+```
+
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
