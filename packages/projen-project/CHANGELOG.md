@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 11 Oct 2026 09:09:48 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.37.0
+
+Sun, 11 Oct 2026 09:09:48 GMT
+
+### Minor changes
+
+- Add Project.presetPackages for projects that exempt the preset from pnpm's minimum release age (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Keep the package manager projen defaults to out of generated manifests, so a newer projen doesn't write its own pnpm version or devEngines into them (filip.dupanovic@gmail.com)
 
 ## 0.36.0
 

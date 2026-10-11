@@ -2,6 +2,29 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 09:09:48 GMT",
+      "version": "0.37.0",
+      "tag": "@langri-sha/projen-project_v0.37.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "2b755fff55d3516e1add97950e4964138381807b",
+            "comment": "Add Project.presetPackages for projects that exempt the preset from pnpm's minimum release age"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "2b755fff55d3516e1add97950e4964138381807b",
+            "comment": "Keep the package manager projen defaults to out of generated manifests, so a newer projen doesn't write its own pnpm version or devEngines into them"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 02:44:24 GMT",
       "version": "0.36.0",
       "tag": "@langri-sha/projen-project_v0.36.0",

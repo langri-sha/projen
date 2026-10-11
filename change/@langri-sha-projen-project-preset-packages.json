@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add Project.presetPackages for projects that exempt the preset from pnpm's minimum release age",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
