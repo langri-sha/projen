@@ -24,7 +24,7 @@ import { JestConfig } from 'projen-jest-config'
 import { License } from 'projen-license'
 import { LintStaged } from 'projen-lint-staged'
 import { LintSynthesized } from 'projen-lint-synthesized'
-import { PnpmWorkspace } from 'projen-pnpm-workspace'
+import { PnpmWorkspace, type PnpmWorkspaceOptions } from 'projen-pnpm-workspace'
 import { Prettier } from 'projen-prettier'
 import { ReadmeFile } from 'projen-readme'
 import { Renovate } from 'projen-renovate'
@@ -38,7 +38,7 @@ import { Worktrunk } from 'projen-worktrunk'
 import { valid } from 'semver'
 import { vi } from 'vitest'
 
-import { NodePackage, ProjenrcFile } from './lib'
+import { NodePackage, type NodePackageOptions, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
 import { Project } from './index'
@@ -2720,6 +2720,73 @@ describe('a subproject that peers projen', () => {
     expect(() =>
       subproject({ peerDeps: ['projen@>=0.86.0 <1.0.0'] }),
     ).not.toThrow()
+  })
+})
+
+describe('pnpm workspace ignore patterns', () => {
+  const synthesize = (
+    packageOptions: NodePackageOptions = {},
+    workspaceOptions?: PnpmWorkspaceOptions,
+  ) => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      pnpmWorkspace: {},
+    })
+
+    project.addSubproject({
+      name: '@someproject/test',
+      outdir: path.join('packages', 'test'),
+      package: packageOptions,
+      pnpmWorkspace: workspaceOptions,
+    })
+
+    return synthSnapshot(project)
+  }
+
+  test('leaves the implicit workspace out of subproject unignore patterns', () => {
+    const files = synthesize()
+
+    expect(files['packages/test/.gitignore'].split('\n')).not.toContain(
+      '!/pnpm-workspace.yaml',
+    )
+    expect(files).not.toHaveProperty('packages/test/pnpm-workspace.yaml')
+  })
+
+  test('keeps the root workspace trackable', () => {
+    const files = synthesize()
+
+    expect(files['.gitignore'].split('\n')).toContain('!/pnpm-workspace.yaml')
+    expect(files).toHaveProperty('pnpm-workspace.yaml')
+  })
+
+  test('keeps an explicitly configured subproject workspace trackable', () => {
+    const files = synthesize({}, { packages: ['nested/*'] })
+
+    expect(files['packages/test/.gitignore'].split('\n')).toContain(
+      '!/pnpm-workspace.yaml',
+    )
+    expect(files['packages/test/pnpm-workspace.yaml']).toContain('nested/*')
+  })
+
+  test('keeps native subproject workspace settings trackable', () => {
+    const files = synthesize({
+      pnpmOptions: { workspaceYamlOptions: { packages: ['nested/*'] } },
+    })
+
+    expect(files['packages/test/.gitignore'].split('\n')).toContain(
+      '!/pnpm-workspace.yaml',
+    )
+    expect(files['packages/test/pnpm-workspace.yaml']).toContain('nested/*')
+  })
+
+  test('keeps a subproject build-script allowlist trackable', () => {
+    const files = synthesize({ allowScripts: ['esbuild'] })
+
+    expect(files['packages/test/.gitignore'].split('\n')).toContain(
+      '!/pnpm-workspace.yaml',
+    )
+    expect(files['packages/test/pnpm-workspace.yaml']).toContain('esbuild')
   })
 })
 

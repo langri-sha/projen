@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Remove the implicit pnpm-workspace.yaml unignore rule from subprojects without workspace settings or a build-script allowlist. Explicit workspace components remain trackable.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
