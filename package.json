@@ -23,7 +23,9 @@
     "change": "pnpm exec projen change",
     "default": "pnpm exec projen default",
     "prepare": "husky",
-    "renovate": "pnpm exec projen renovate"
+    "renovate": "pnpm exec projen renovate",
+    "worktrunk:dry-run": "pnpm exec projen worktrunk:dry-run",
+    "worktrunk:show": "pnpm exec projen worktrunk:show"
   },
   "devDependencies": {
     "@langri-sha/eslint-config": "0.9.19",
