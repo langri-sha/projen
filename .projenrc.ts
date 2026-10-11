@@ -22,7 +22,8 @@ const pkg = {
 // customManager keys off that literal to locate and widen the range, so
 // renaming it silently stops Renovate from updating projen's peer anywhere.
 // The upper bound is the first release that registers its own
-// pnpm-workspace.yaml, which projen-pnpm-workspace's file collides with.
+// pnpm-workspace.yaml, which projen-pnpm-workspace's file collides with, so
+// Renovate is told to leave the range alone until that component copes.
 const projenPeer = {
   peerDeps: ['projen@>=0.86.0 <0.101.7'],
 }
@@ -118,6 +119,13 @@ const project = new Project({
   },
   renovate: {
     packageRules: [
+      {
+        description:
+          'Hold the projen peer range below the release that registers pnpm-workspace.yaml itself',
+        matchPackageNames: ['projen'],
+        matchDepTypes: ['peerDependencies'],
+        enabled: false,
+      },
       {
         description: 'Update our own packages together',
         groupName: 'langri-sha projen toolchain',
