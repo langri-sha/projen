@@ -21,11 +21,8 @@ const pkg = {
 // seventeen. The `peerDeps:` key is load-bearing — Renovate's projenrc
 // customManager keys off that literal to locate and widen the range, so
 // renaming it silently stops Renovate from updating projen's peer anywhere.
-// The upper bound is the first release that registers its own
-// pnpm-workspace.yaml, which projen-pnpm-workspace's file collides with, so
-// Renovate is told to leave the range alone until that component copes.
 const projenPeer = {
-  peerDeps: ['projen@>=0.86.0 <0.101.7'],
+  peerDeps: ['projen@>=0.86.0 <1.0.0'],
 }
 
 const project = new Project({

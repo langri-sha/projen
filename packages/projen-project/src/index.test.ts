@@ -2637,18 +2637,18 @@ describe('declarations this preset cannot support', () => {
 
   test('are rejected, naming the version and the supported range', () => {
     expect(declaring(['projen@0.84.8'])).toThrowError(
-      /declares projen@0\.84\.8.*does not support.*>=0\.86\.0 <0\.101\.7/s,
+      /declares projen@0\.84\.8.*does not support.*>=0\.86\.0 <1\.0\.0/s,
     )
   })
 
-  test('are rejected at the first projen that registers pnpm-workspace.yaml', () => {
-    expect(declaring(['projen@0.101.7'])).toThrowError(
-      /declares projen@0\.101\.7.*does not support/s,
+  test('are rejected from projen 1.0.0', () => {
+    expect(declaring(['projen@1.0.0'])).toThrowError(
+      /declares projen@1\.0\.0.*does not support/s,
     )
   })
 
-  test('are accepted up to the release before it', () => {
-    expect(declaring(['projen@0.101.6'])).not.toThrow()
+  test('are accepted through the 0.x line', () => {
+    expect(declaring(['projen@0.104.3'])).not.toThrow()
   })
 
   test('are rejected among runtime dependencies too', () => {
