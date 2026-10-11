@@ -128,6 +128,27 @@ const RENOVATE_MINIMUM_RELEASE_AGE = '3 days'
 const SUPPORTED_VERSIONS: Record<string, string | undefined> =
   createRequire(import.meta.url)('../package.json').peerDependencies ?? {}
 
+/**
+ * The preset and the `projen-` components it depends on, behind
+ * `Project.presetPackages`.
+ *
+ * Read from `dependencies` rather than restated, so a component added or
+ * renamed there reaches every project that opts in, while the prefix keeps
+ * third-party dependencies such as `ramda` out.
+ */
+const PRESET_PACKAGES: readonly string[] = (() => {
+  const { name, dependencies = {} } = createRequire(import.meta.url)(
+    '../package.json',
+  ) as { name: string; dependencies?: Record<string, string> }
+
+  return [
+    name,
+    ...Object.keys(dependencies)
+      .filter((dependency) => dependency.startsWith('projen-'))
+      .sort(),
+  ]
+})()
+
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
@@ -280,6 +301,24 @@ export interface ProjectOptions extends Omit<
 }
 
 export class Project extends BaseProject {
+  /**
+   * The preset and the `projen-` components it depends on, for a project that
+   * chooses to exempt them from pnpm's `minimumReleaseAge`:
+   *
+   * ```ts
+   * pnpmWorkspace: {
+   *   minimumReleaseAgeExclude: [...Project.presetPackages],
+   * }
+   * ```
+   *
+   * Never applied by default, since what a project trusts past its release age
+   * is its own call. Static so that it can be read while the options are being
+   * written, before the project exists.
+   */
+  static get presetPackages(): string[] {
+    return [...PRESET_PACKAGES]
+  }
+
   babel?: Babel
   beachball?: Beachball
   cargo?: CargoPackage | CargoWorkspace
