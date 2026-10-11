@@ -984,6 +984,14 @@ export class Project extends BaseProject {
 
     if (this.parent) {
       this.package.removeScript('default')
+
+      if (
+        this.package.packageManager === javascript.NodePackageManager.PNPM &&
+        !pkg.pnpmOptions?.workspaceYamlOptions &&
+        !pkg.allowScripts?.length
+      ) {
+        this.gitignore.removePatterns('!/pnpm-workspace.yaml')
+      }
     }
   }
 

@@ -2921,7 +2921,6 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
-!/pnpm-workspace.yaml
 !/package.json
 !/tsconfig.json
 !/.projenrc.mts
@@ -3005,7 +3004,6 @@ node_modules/
 !/.projen/tasks.json
 !/.projen/deps.json
 !/.projen/files.json
-!/pnpm-workspace.yaml
 !/package.json
 !/tsconfig.json
 !/.projenrc.mts
