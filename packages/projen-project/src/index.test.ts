@@ -2649,7 +2649,7 @@ describe('supplied development dependency versions', () => {
 
 describe('a subproject that peers projen', () => {
   const subproject = ({
-    peerDeps = ['projen@^0.86.0'],
+    peerDeps = ['projen@>=0.86.0 <1.0.0'],
     devDeps,
     pinnedDevDependency = false,
   }: {
@@ -2683,8 +2683,10 @@ describe('a subproject that peers projen', () => {
 
   test('keeps the peer range it declared', () => {
     expect(
-      subproject()['packages/test/package.json'].peerDependencies.projen,
-    ).toBe('^0.86.0')
+      subproject({ peerDeps: ['projen@^0.104.0'] })[
+        'packages/test/package.json'
+      ].peerDependencies.projen,
+    ).toBe('^0.104.0')
   })
 
   test('keeps a version it declared itself', () => {

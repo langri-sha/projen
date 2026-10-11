@@ -25,6 +25,7 @@
 /packages/projen-babel/license linguist-generated
 /packages/projen-babel/package.json linguist-generated
 /packages/projen-babel/pnpm-lock.yaml linguist-generated
+/packages/projen-babel/pnpm-workspace.yaml linguist-generated
 /packages/projen-babel/tsconfig.build.json linguist-generated
 /packages/projen-babel/tsconfig.json linguist-generated
 /packages/projen-beachball/.gitattributes linguist-generated
@@ -37,6 +38,7 @@
 /packages/projen-beachball/license linguist-generated
 /packages/projen-beachball/package.json linguist-generated
 /packages/projen-beachball/pnpm-lock.yaml linguist-generated
+/packages/projen-beachball/pnpm-workspace.yaml linguist-generated
 /packages/projen-beachball/tsconfig.build.json linguist-generated
 /packages/projen-beachball/tsconfig.json linguist-generated
 /packages/projen-cargo/.gitattributes linguist-generated
@@ -49,6 +51,7 @@
 /packages/projen-cargo/license linguist-generated
 /packages/projen-cargo/package.json linguist-generated
 /packages/projen-cargo/pnpm-lock.yaml linguist-generated
+/packages/projen-cargo/pnpm-workspace.yaml linguist-generated
 /packages/projen-cargo/tsconfig.build.json linguist-generated
 /packages/projen-cargo/tsconfig.json linguist-generated
 /packages/projen-codeowners/.gitattributes linguist-generated
@@ -61,6 +64,7 @@
 /packages/projen-codeowners/license linguist-generated
 /packages/projen-codeowners/package.json linguist-generated
 /packages/projen-codeowners/pnpm-lock.yaml linguist-generated
+/packages/projen-codeowners/pnpm-workspace.yaml linguist-generated
 /packages/projen-codeowners/tsconfig.build.json linguist-generated
 /packages/projen-codeowners/tsconfig.json linguist-generated
 /packages/projen-dagger/.gitattributes linguist-generated
@@ -73,6 +77,7 @@
 /packages/projen-dagger/license linguist-generated
 /packages/projen-dagger/package.json linguist-generated
 /packages/projen-dagger/pnpm-lock.yaml linguist-generated
+/packages/projen-dagger/pnpm-workspace.yaml linguist-generated
 /packages/projen-dagger/tsconfig.build.json linguist-generated
 /packages/projen-dagger/tsconfig.json linguist-generated
 /packages/projen-editorconfig/.gitattributes linguist-generated
@@ -85,6 +90,7 @@
 /packages/projen-editorconfig/license linguist-generated
 /packages/projen-editorconfig/package.json linguist-generated
 /packages/projen-editorconfig/pnpm-lock.yaml linguist-generated
+/packages/projen-editorconfig/pnpm-workspace.yaml linguist-generated
 /packages/projen-editorconfig/tsconfig.build.json linguist-generated
 /packages/projen-editorconfig/tsconfig.json linguist-generated
 /packages/projen-eslint/.gitattributes linguist-generated
@@ -97,6 +103,7 @@
 /packages/projen-eslint/license linguist-generated
 /packages/projen-eslint/package.json linguist-generated
 /packages/projen-eslint/pnpm-lock.yaml linguist-generated
+/packages/projen-eslint/pnpm-workspace.yaml linguist-generated
 /packages/projen-eslint/tsconfig.build.json linguist-generated
 /packages/projen-eslint/tsconfig.json linguist-generated
 /packages/projen-github-templates/.gitattributes linguist-generated
@@ -109,6 +116,7 @@
 /packages/projen-github-templates/license linguist-generated
 /packages/projen-github-templates/package.json linguist-generated
 /packages/projen-github-templates/pnpm-lock.yaml linguist-generated
+/packages/projen-github-templates/pnpm-workspace.yaml linguist-generated
 /packages/projen-github-templates/tsconfig.build.json linguist-generated
 /packages/projen-github-templates/tsconfig.json linguist-generated
 /packages/projen-husky/.gitattributes linguist-generated
@@ -121,6 +129,7 @@
 /packages/projen-husky/license linguist-generated
 /packages/projen-husky/package.json linguist-generated
 /packages/projen-husky/pnpm-lock.yaml linguist-generated
+/packages/projen-husky/pnpm-workspace.yaml linguist-generated
 /packages/projen-husky/tsconfig.build.json linguist-generated
 /packages/projen-husky/tsconfig.json linguist-generated
 /packages/projen-jest-config/.gitattributes linguist-generated
@@ -133,6 +142,7 @@
 /packages/projen-jest-config/license linguist-generated
 /packages/projen-jest-config/package.json linguist-generated
 /packages/projen-jest-config/pnpm-lock.yaml linguist-generated
+/packages/projen-jest-config/pnpm-workspace.yaml linguist-generated
 /packages/projen-jest-config/tsconfig.build.json linguist-generated
 /packages/projen-jest-config/tsconfig.json linguist-generated
 /packages/projen-license/.gitattributes linguist-generated
@@ -145,6 +155,7 @@
 /packages/projen-license/license linguist-generated
 /packages/projen-license/package.json linguist-generated
 /packages/projen-license/pnpm-lock.yaml linguist-generated
+/packages/projen-license/pnpm-workspace.yaml linguist-generated
 /packages/projen-license/tsconfig.build.json linguist-generated
 /packages/projen-license/tsconfig.json linguist-generated
 /packages/projen-lint-staged/.gitattributes linguist-generated
@@ -157,6 +168,7 @@
 /packages/projen-lint-staged/license linguist-generated
 /packages/projen-lint-staged/package.json linguist-generated
 /packages/projen-lint-staged/pnpm-lock.yaml linguist-generated
+/packages/projen-lint-staged/pnpm-workspace.yaml linguist-generated
 /packages/projen-lint-staged/tsconfig.build.json linguist-generated
 /packages/projen-lint-staged/tsconfig.json linguist-generated
 /packages/projen-lint-synthesized/.gitattributes linguist-generated
@@ -169,6 +181,7 @@
 /packages/projen-lint-synthesized/license linguist-generated
 /packages/projen-lint-synthesized/package.json linguist-generated
 /packages/projen-lint-synthesized/pnpm-lock.yaml linguist-generated
+/packages/projen-lint-synthesized/pnpm-workspace.yaml linguist-generated
 /packages/projen-lint-synthesized/tsconfig.build.json linguist-generated
 /packages/projen-lint-synthesized/tsconfig.json linguist-generated
 /packages/projen-pnpm-workspace/.gitattributes linguist-generated
@@ -181,6 +194,7 @@
 /packages/projen-pnpm-workspace/license linguist-generated
 /packages/projen-pnpm-workspace/package.json linguist-generated
 /packages/projen-pnpm-workspace/pnpm-lock.yaml linguist-generated
+/packages/projen-pnpm-workspace/pnpm-workspace.yaml linguist-generated
 /packages/projen-pnpm-workspace/tsconfig.build.json linguist-generated
 /packages/projen-pnpm-workspace/tsconfig.json linguist-generated
 /packages/projen-prettier/.gitattributes linguist-generated
@@ -193,6 +207,7 @@
 /packages/projen-prettier/license linguist-generated
 /packages/projen-prettier/package.json linguist-generated
 /packages/projen-prettier/pnpm-lock.yaml linguist-generated
+/packages/projen-prettier/pnpm-workspace.yaml linguist-generated
 /packages/projen-prettier/tsconfig.build.json linguist-generated
 /packages/projen-prettier/tsconfig.json linguist-generated
 /packages/projen-project/.gitattributes linguist-generated
@@ -205,6 +220,7 @@
 /packages/projen-project/license linguist-generated
 /packages/projen-project/package.json linguist-generated
 /packages/projen-project/pnpm-lock.yaml linguist-generated
+/packages/projen-project/pnpm-workspace.yaml linguist-generated
 /packages/projen-project/tsconfig.build.json linguist-generated
 /packages/projen-project/tsconfig.json linguist-generated
 /packages/projen-readme/.gitattributes linguist-generated
@@ -217,6 +233,7 @@
 /packages/projen-readme/license linguist-generated
 /packages/projen-readme/package.json linguist-generated
 /packages/projen-readme/pnpm-lock.yaml linguist-generated
+/packages/projen-readme/pnpm-workspace.yaml linguist-generated
 /packages/projen-readme/tsconfig.build.json linguist-generated
 /packages/projen-readme/tsconfig.json linguist-generated
 /packages/projen-renovate/.gitattributes linguist-generated
@@ -229,6 +246,7 @@
 /packages/projen-renovate/license linguist-generated
 /packages/projen-renovate/package.json linguist-generated
 /packages/projen-renovate/pnpm-lock.yaml linguist-generated
+/packages/projen-renovate/pnpm-workspace.yaml linguist-generated
 /packages/projen-renovate/tsconfig.build.json linguist-generated
 /packages/projen-renovate/tsconfig.json linguist-generated
 /packages/projen-ruff/.gitattributes linguist-generated
@@ -241,6 +259,7 @@
 /packages/projen-ruff/license linguist-generated
 /packages/projen-ruff/package.json linguist-generated
 /packages/projen-ruff/pnpm-lock.yaml linguist-generated
+/packages/projen-ruff/pnpm-workspace.yaml linguist-generated
 /packages/projen-ruff/tsconfig.build.json linguist-generated
 /packages/projen-ruff/tsconfig.json linguist-generated
 /packages/projen-skills/.gitattributes linguist-generated
@@ -253,6 +272,7 @@
 /packages/projen-skills/license linguist-generated
 /packages/projen-skills/package.json linguist-generated
 /packages/projen-skills/pnpm-lock.yaml linguist-generated
+/packages/projen-skills/pnpm-workspace.yaml linguist-generated
 /packages/projen-skills/tsconfig.build.json linguist-generated
 /packages/projen-skills/tsconfig.json linguist-generated
 /packages/projen-swcrc/.gitattributes linguist-generated
@@ -265,6 +285,7 @@
 /packages/projen-swcrc/license linguist-generated
 /packages/projen-swcrc/package.json linguist-generated
 /packages/projen-swcrc/pnpm-lock.yaml linguist-generated
+/packages/projen-swcrc/pnpm-workspace.yaml linguist-generated
 /packages/projen-swcrc/tsconfig.build.json linguist-generated
 /packages/projen-swcrc/tsconfig.json linguist-generated
 /packages/projen-ty/.gitattributes linguist-generated
@@ -277,6 +298,7 @@
 /packages/projen-ty/license linguist-generated
 /packages/projen-ty/package.json linguist-generated
 /packages/projen-ty/pnpm-lock.yaml linguist-generated
+/packages/projen-ty/pnpm-workspace.yaml linguist-generated
 /packages/projen-ty/tsconfig.build.json linguist-generated
 /packages/projen-ty/tsconfig.json linguist-generated
 /packages/projen-typescript-config/.gitattributes linguist-generated
@@ -289,6 +311,7 @@
 /packages/projen-typescript-config/license linguist-generated
 /packages/projen-typescript-config/package.json linguist-generated
 /packages/projen-typescript-config/pnpm-lock.yaml linguist-generated
+/packages/projen-typescript-config/pnpm-workspace.yaml linguist-generated
 /packages/projen-typescript-config/tsconfig.build.json linguist-generated
 /packages/projen-typescript-config/tsconfig.json linguist-generated
 /packages/projen-uv/.gitattributes linguist-generated
@@ -301,6 +324,7 @@
 /packages/projen-uv/license linguist-generated
 /packages/projen-uv/package.json linguist-generated
 /packages/projen-uv/pnpm-lock.yaml linguist-generated
+/packages/projen-uv/pnpm-workspace.yaml linguist-generated
 /packages/projen-uv/tsconfig.build.json linguist-generated
 /packages/projen-uv/tsconfig.json linguist-generated
 /packages/projen-worktrunk/.gitattributes linguist-generated
@@ -313,11 +337,12 @@
 /packages/projen-worktrunk/license linguist-generated
 /packages/projen-worktrunk/package.json linguist-generated
 /packages/projen-worktrunk/pnpm-lock.yaml linguist-generated
+/packages/projen-worktrunk/pnpm-workspace.yaml linguist-generated
 /packages/projen-worktrunk/tsconfig.build.json linguist-generated
 /packages/projen-worktrunk/tsconfig.json linguist-generated
 /pnpm-lock.yaml linguist-generated
 /pnpm-workspace.yaml linguist-generated
 /prettier.config.js linguist-generated
-/renovate.json5 linguist-generated
-/tsconfig.json linguist-generated
+/renovate.json5 linguist-generated linguist-language=JSON-with-Comments
+/tsconfig.json linguist-generated linguist-language=JSON-with-Comments
 readme text=auto linguist-language=Markdown

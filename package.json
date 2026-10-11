@@ -20,12 +20,12 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "change": "pnpm exec projen change",
-    "default": "pnpm exec projen default",
+    "change": "projen change",
+    "default": "projen default",
     "prepare": "husky",
-    "renovate": "pnpm exec projen renovate",
-    "worktrunk:dry-run": "pnpm exec projen worktrunk:dry-run",
-    "worktrunk:show": "pnpm exec projen worktrunk:show"
+    "renovate": "projen renovate",
+    "worktrunk:dry-run": "projen worktrunk:dry-run",
+    "worktrunk:show": "projen worktrunk:show"
   },
   "devDependencies": {
     "@langri-sha/eslint-config": "0.9.19",
@@ -41,7 +41,7 @@
     "husky": "9.1.7",
     "lint-staged": "17.6.0",
     "prettier": "3.9.9",
-    "projen": "0.86.5",
+    "projen": "0.104.1",
     "schemastore-to-typescript": "1.0.3",
     "tsx": "4.23.15",
     "typescript": "5.9.3",

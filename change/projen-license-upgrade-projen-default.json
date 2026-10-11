@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Regenerate development metadata with projen 0.104.1",
+  "packageName": "projen-license",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}

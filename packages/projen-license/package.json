@@ -28,7 +28,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
-    "projen": "0.86.5"
+    "projen": "0.104.1"
   },
   "peerDependencies": {
     "projen": ">=0.86.0 <1.0.0"
