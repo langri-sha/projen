@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "eslint": "^10.4.0",
-    "projen": "^0.86.0"
+    "projen": ">=0.86.0 <0.101.7"
   },
   "peerDependenciesMeta": {
     "eslint": {
