@@ -6,6 +6,13 @@ import { Project, javascript } from 'projen'
  * Options for configuring Node.js packages.
  */
 export interface NodePackageOptions extends javascript.NodePackageOptions {
+  /**
+   * Add the package manager to `devEngines`, as Projen does from 0.99.30.
+   * Earlier versions have no such option and ignore it.
+   *
+   * @default false
+   */
+  readonly addPackageManagerToDevEngines?: boolean
   readonly peerDependenciesMeta?: Record<string, { optional?: boolean }>
   readonly type?: 'commonjs' | 'module'
 }

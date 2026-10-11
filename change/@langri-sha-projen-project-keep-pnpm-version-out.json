@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Keep the package manager projen defaults to out of generated manifests, so a newer projen doesn't write its own pnpm version or devEngines into them",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
