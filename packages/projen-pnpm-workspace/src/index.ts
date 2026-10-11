@@ -24,6 +24,8 @@ export class PnpmWorkspace extends YamlFile {
   constructor(project: Project, options: PnpmWorkspaceOptions = {}) {
     const { filename = 'pnpm-workspace.yaml', ...settings } = options
 
+    project.tryRemoveFile(filename)
+
     super(project, filename, {
       readonly: true,
       marker: true,

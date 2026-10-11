@@ -1,6 +1,7 @@
 import { expect, test } from '@langri-sha/vitest'
-import { Project } from 'projen'
-import { NodePackage } from 'projen/lib/javascript'
+import { Project, YamlFile } from 'projen'
+import { NodePackage, NodePackageManager } from 'projen/lib/javascript'
+import * as javascript from 'projen/lib/javascript'
 import { synthSnapshot } from 'projen/lib/util/synth'
 
 import { PnpmWorkspace } from './index'
@@ -160,3 +161,51 @@ test('adds packages from subproject NodePackages', () => {
 
   expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
 })
+
+test('takes over a file registered earlier', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new YamlFile(project, 'pnpm-workspace.yaml', {
+    obj: { packages: ['registered'] },
+  })
+
+  new PnpmWorkspace(project, { packages: ['packages/*'] })
+
+  expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
+})
+
+test('leaves a file registered earlier when renamed', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new YamlFile(project, 'pnpm-workspace.yaml', {
+    obj: { packages: ['registered'] },
+  })
+
+  new PnpmWorkspace(project, {
+    filename: 'pnpm-workspace.yml',
+    packages: ['packages/*'],
+  })
+
+  const files = synthSnapshot(project)
+
+  expect(files['pnpm-workspace.yaml']).toContain('registered')
+  expect(files['pnpm-workspace.yml']).toContain('packages/*')
+})
+
+test.skipIf(!('PnpmWorkspaceYaml' in javascript))(
+  'takes over the file a pnpm package registers',
+  () => {
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    new NodePackage(project, { packageManager: NodePackageManager.PNPM })
+    new PnpmWorkspace(project, { packages: ['packages/*'] })
+
+    expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
+  },
+)
