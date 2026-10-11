@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 11 Oct 2026 09:09:48 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 11 Oct 2026 10:59:34 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.38.0
+
+Sun, 11 Oct 2026 10:59:34 GMT
+
+### Minor changes
+
+- Upgrade the default projen from 0.86.5 to 0.104.1. Synthesis updates task scripts and manifest versions, and adds generated-file attributes for native pnpm workspaces. Explicit consumer projen declarations remain supported across >=0.86.0 \<1.0.0. (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Remove the implicit pnpm-workspace.yaml unignore rule from subprojects without workspace settings or a build-script allowlist. Explicit workspace components remain trackable. (filip.dupanovic@gmail.com)
 
 ## 0.37.0
 

@@ -2,6 +2,21 @@
   "name": "projen-lint-staged",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 10:59:34 GMT",
+      "version": "0.3.21",
+      "tag": "projen-lint-staged_v0.3.21",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-lint-staged",
+            "commit": "ecbcd95b596ea1ab40b867f61a82084b28471dff",
+            "comment": "Regenerate development metadata with projen 0.104.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 02:44:24 GMT",
       "version": "0.3.21",
       "tag": "projen-lint-staged_v0.3.21",

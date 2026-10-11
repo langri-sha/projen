@@ -2,6 +2,21 @@
   "name": "projen-ruff",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 10:59:34 GMT",
+      "version": "0.1.2",
+      "tag": "projen-ruff_v0.1.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-ruff",
+            "commit": "ecbcd95b596ea1ab40b867f61a82084b28471dff",
+            "comment": "Regenerate development metadata with projen 0.104.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 02:44:24 GMT",
       "version": "0.1.2",
       "tag": "projen-ruff_v0.1.2",

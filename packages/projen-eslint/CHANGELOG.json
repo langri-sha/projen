@@ -2,6 +2,21 @@
   "name": "projen-eslint",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 10:59:34 GMT",
+      "version": "0.3.20",
+      "tag": "projen-eslint_v0.3.20",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-eslint",
+            "commit": "ecbcd95b596ea1ab40b867f61a82084b28471dff",
+            "comment": "Regenerate development metadata with projen 0.104.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 02:44:24 GMT",
       "version": "0.3.20",
       "tag": "projen-eslint_v0.3.20",

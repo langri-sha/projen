@@ -2,6 +2,29 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 10:59:34 GMT",
+      "version": "0.38.0",
+      "tag": "@langri-sha/projen-project_v0.38.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "ecbcd95b596ea1ab40b867f61a82084b28471dff",
+            "comment": "Remove the implicit pnpm-workspace.yaml unignore rule from subprojects without workspace settings or a build-script allowlist. Explicit workspace components remain trackable."
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "ecbcd95b596ea1ab40b867f61a82084b28471dff",
+            "comment": "Upgrade the default projen from 0.86.5 to 0.104.1. Synthesis updates task scripts and manifest versions, and adds generated-file attributes for native pnpm workspaces. Explicit consumer projen declarations remain supported across >=0.86.0 <1.0.0."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 09:09:48 GMT",
       "version": "0.37.0",
       "tag": "@langri-sha/projen-project_v0.37.0",
