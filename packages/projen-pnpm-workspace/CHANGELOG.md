@@ -1,8 +1,17 @@
 # Change Log - projen-pnpm-workspace
 
-<!-- This log was last generated on Sat, 10 Oct 2026 05:05:17 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.16
+
+Sun, 11 Oct 2026 02:44:24 GMT
+
+### Patches
+
+- Take over the pnpm-workspace.yaml that projen 0.101.7 and later register, instead of failing synthesis (filip.dupanovic@gmail.com)
+- Widen the projen peer range to >=0.86.0 \<0.101.7 (filip.dupanovic@gmail.com)
 
 ## 0.4.15
 

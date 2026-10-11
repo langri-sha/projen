@@ -1,6 +1,6 @@
 {
   "name": "projen-typescript-config",
-  "version": "0.5.23",
+  "version": "0.5.24",
   "description": "A projen component for managing TSConfig files for TypeScript projects.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

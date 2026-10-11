@@ -2,6 +2,35 @@
   "name": "projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 02:44:24 GMT",
+      "version": "0.4.16",
+      "tag": "projen-pnpm-workspace_v0.4.16",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-pnpm-workspace",
+            "commit": "c500ec0b9f487af7c2bf61b3f39f6ddfa3d3a669",
+            "comment": "Take projen as a development dependency from the preset"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-pnpm-workspace",
+            "commit": "c500ec0b9f487af7c2bf61b3f39f6ddfa3d3a669",
+            "comment": "Take over the pnpm-workspace.yaml that projen 0.101.7 and later register, instead of failing synthesis"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-pnpm-workspace",
+            "commit": "c500ec0b9f487af7c2bf61b3f39f6ddfa3d3a669",
+            "comment": "Widen the projen peer range to >=0.86.0 <0.101.7"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Oct 2026 05:05:17 GMT",
       "version": "0.4.15",
       "tag": "projen-pnpm-workspace_v0.4.15",

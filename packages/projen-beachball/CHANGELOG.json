@@ -2,6 +2,35 @@
   "name": "projen-beachball",
   "entries": [
     {
+      "date": "Sun, 11 Oct 2026 02:44:24 GMT",
+      "version": "0.5.16",
+      "tag": "projen-beachball_v0.5.16",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-beachball",
+            "commit": "c500ec0b9f487af7c2bf61b3f39f6ddfa3d3a669",
+            "comment": "Let the projen peer range reach 1.0.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-beachball",
+            "commit": "c500ec0b9f487af7c2bf61b3f39f6ddfa3d3a669",
+            "comment": "Widen the projen peer range to >=0.86.0 <0.101.7"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-beachball",
+            "commit": "c500ec0b9f487af7c2bf61b3f39f6ddfa3d3a669",
+            "comment": "Take projen as a development dependency from the preset"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 10 Oct 2026 05:05:17 GMT",
       "version": "0.5.15",
       "tag": "projen-beachball_v0.5.15",

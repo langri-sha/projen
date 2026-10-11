@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Let the projen peer range reach 1.0.0",
-  "packageName": "projen-license",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

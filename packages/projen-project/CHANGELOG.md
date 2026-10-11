@@ -1,8 +1,45 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 10 Oct 2026 15:22:36 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.36.0
+
+Sun, 11 Oct 2026 02:44:24 GMT
+
+### Minor changes
+
+- Supply Projen as a development dependency to packages that peer it, and fail synthesis when the peer range excludes the version supplied (filip.dupanovic@gmail.com)
+- Bump projen-babel-config to v0.5.19
+- Bump projen-beachball to v0.5.16
+- Bump projen-cargo to v0.2.1
+- Bump projen-codeowners to v0.5.16
+- Bump projen-dagger to v0.3.4
+- Bump projen-editorconfig to v0.6.16
+- Bump projen-eslint to v0.3.20
+- Bump projen-husky to v0.3.26
+- Bump projen-jest-config to v0.4.22
+- Bump projen-license to v0.3.19
+- Bump projen-lint-staged to v0.3.21
+- Bump projen-lint-synthesized to v0.5.21
+- Bump projen-pnpm-workspace to v0.4.16
+- Bump projen-prettier to v0.4.21
+- Bump projen-readme to v0.1.16
+- Bump projen-renovate to v0.4.28
+- Bump projen-ruff to v0.1.2
+- Bump projen-skills to v0.1.2
+- Bump projen-swcrc to v0.1.29
+- Bump projen-ty to v0.1.2
+- Bump projen-typescript-config to v0.5.24
+- Bump projen-uv to v0.2.1
+- Bump projen-worktrunk to v0.1.7
+
+### Patches
+
+- Update dependency @babel/core to v8.0.7
+- Let the projen peer range reach 1.0.0 (filip.dupanovic@gmail.com)
+- Widen the projen peer range to >=0.86.0 \<0.101.7 (filip.dupanovic@gmail.com)
 
 ## 0.35.0
 

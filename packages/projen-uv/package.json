@@ -1,6 +1,6 @@
 {
   "name": "projen-uv",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "projen components for authoring uv workspaces and the Python packages in them.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
