@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "lint-staged": "^17.0.0",
-    "projen": "^0.86.0"
+    "projen": ">=0.86.0 <0.101.7"
   },
   "peerDependenciesMeta": {
     "lint-staged": {

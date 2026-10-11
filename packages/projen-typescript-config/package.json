@@ -32,7 +32,7 @@
     "projen": "0.86.5"
   },
   "peerDependencies": {
-    "projen": "^0.86.0"
+    "projen": ">=0.86.0 <0.101.7"
   },
   "publishConfig": {
     "access": "public",

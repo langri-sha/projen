@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "prettier": "^3.0.0",
-    "projen": "^0.86.0"
+    "projen": ">=0.86.0 <0.101.7"
   },
   "peerDependenciesMeta": {
     "prettier": {
