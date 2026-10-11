@@ -33,7 +33,7 @@
   },
   "peerDependencies": {
     "@babel/core": "^8.0.0",
-    "projen": ">=0.86.0 <0.101.7"
+    "projen": ">=0.86.0 <1.0.0"
   },
   "peerDependenciesMeta": {
     "@babel/core": {

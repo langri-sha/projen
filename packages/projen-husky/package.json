@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "husky": "^9.0.1",
-    "projen": ">=0.86.0 <0.101.7"
+    "projen": ">=0.86.0 <1.0.0"
   },
   "peerDependenciesMeta": {
     "husky": {

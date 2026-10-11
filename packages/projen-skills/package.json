@@ -29,7 +29,7 @@
     "projen": "0.86.5"
   },
   "peerDependencies": {
-    "projen": ">=0.86.0 <0.101.7",
+    "projen": ">=0.86.0 <1.0.0",
     "skills": "^1.7.2"
   },
   "peerDependenciesMeta": {
