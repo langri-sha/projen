@@ -117,13 +117,6 @@ const project = new Project({
   renovate: {
     packageRules: [
       {
-        description:
-          'Hold the projen peer range below the release that registers pnpm-workspace.yaml itself',
-        matchPackageNames: ['projen'],
-        matchDepTypes: ['peerDependencies'],
-        enabled: false,
-      },
-      {
         description: 'Update our own packages together',
         groupName: 'langri-sha projen toolchain',
         groupSlug: 'langri-sha-projen',
