@@ -2822,16 +2822,6 @@ describe('the package manager in manifests', () => {
     return { project, files: synthSnapshot(project) }
   }
 
-  const projenWritesPnpm = (() => {
-    const project = new BaseProject({ name: 'probe' })
-
-    new javascript.NodePackage(project, {
-      packageManager: javascript.NodePackageManager.PNPM,
-    })
-
-    return 'packageManager' in synthSnapshot(project)['package.json']
-  })()
-
   test('leaves packageManager out of a subproject', () => {
     expect(synthesize().files['packages/test/package.json']).not.toHaveProperty(
       'packageManager',
@@ -2861,11 +2851,13 @@ describe('the package manager in manifests', () => {
     )
   })
 
-  test.skipIf(!projenWritesPnpm)('keeps a pnpm version it names', () => {
-    expect(
-      synthesize({ pnpmVersion: '12.10.1' }).files['packages/test/package.json']
-        .packageManager,
-    ).toBe('pnpm@12.10.1')
+  test('keeps a pnpm version it names', () => {
+    const { files } = synthesize({ pnpmVersion: '12.10.1' })
+
+    expect(files['package.json'].packageManager).toBe('pnpm@12.10.1')
+    expect(files['packages/test/package.json'].packageManager).toBe(
+      'pnpm@12.10.1',
+    )
   })
 })
 

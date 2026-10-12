@@ -959,13 +959,14 @@ export class Project extends BaseProject {
 
     this.package = new NodePackage(this, deepMerge(defaults, pkg))
 
-    // Projen 0.99.41 and later write their own default pnpm into every
-    // manifest, which is not the version a project runs.
-    if (
-      this.package.packageManager === javascript.NodePackageManager.PNPM &&
-      pkg.pnpmVersion === undefined
-    ) {
-      this.package.addField('packageManager', undefined)
+    // Keep the manifest aligned with the configured pnpm version across Projen versions.
+    if (this.package.packageManager === javascript.NodePackageManager.PNPM) {
+      this.package.addField(
+        'packageManager',
+        pkg.pnpmVersion === undefined
+          ? undefined
+          : `pnpm@${this.package.pnpmVersion}`,
+      )
     }
 
     if (!this.parent) {
