@@ -215,6 +215,11 @@ export interface ProjectOptions extends Omit<
    */
   package?: {
     /**
+     * An explicitly empty author name preserves license metadata without generating a license file.
+     */
+    authorName?: string
+
+    /**
      * License copyright year.
      *
      * @default "Current full year"

@@ -1338,6 +1338,7 @@ describe('with license', () => {
 
     expect(project.license).toBeUndefined()
     expect(files['package.json'].license).toBe('ISC')
+    expect(files['package.json']).not.toHaveProperty('author')
     expect(files.license).toBeUndefined()
   })
 
