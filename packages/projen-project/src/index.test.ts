@@ -1,4 +1,5 @@
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawnSync } from 'node:child_process'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
@@ -6,11 +7,17 @@ import {
   afterAll,
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   test,
 } from '@langri-sha/vitest'
-import { Project as BaseProject, IgnoreFile, javascript } from 'projen'
+import {
+  Project as BaseProject,
+  Component,
+  IgnoreFile,
+  javascript,
+} from 'projen'
 import { synthSnapshot } from 'projen/lib/util/synth'
 import { Babel } from 'projen-babel-config'
 import { Beachball } from 'projen-beachball'
@@ -55,6 +62,11 @@ const skillsOptions = {
 
 vi.mock('projen-lint-synthesized', () => ({
   LintSynthesized: vi.fn(),
+}))
+
+vi.mock('node:child_process', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('node:child_process')>()),
+  spawnSync: vi.fn(),
 }))
 
 // Mock system time to January 1, 2024 for consistent test snapshots
@@ -2929,6 +2941,114 @@ describe('declarations this preset cannot support', () => {
       expect(declaring([spec], { typeScriptConfig: {} })).not.toThrow()
     },
   )
+})
+
+describe('synthesizing again once installing dependencies moves projen', () => {
+  const installProjen = (outdir: string, version: string) => {
+    const directory = path.join(outdir, 'node_modules', 'projen')
+
+    mkdirSync(directory, { recursive: true })
+    writeFileSync(
+      path.join(directory, 'package.json'),
+      JSON.stringify({ version }),
+    )
+  }
+
+  class ProjenInstall extends Component {
+    readonly #version: string
+
+    constructor(project: BaseProject, version: string) {
+      super(project)
+
+      this.#version = version
+    }
+
+    override postSynthesize() {
+      installProjen(this.project.outdir, this.#version)
+    }
+  }
+
+  const synthesizeMovingProjen = (from: string, to: string) => {
+    const project = new Project({ name: 'test-project' })
+
+    installProjen(project.outdir, from)
+    new ProjenInstall(project, to)
+    project.synth()
+
+    return project
+  }
+
+  beforeEach(() => {
+    vi.mocked(spawnSync).mockReturnValue({
+      status: 0,
+    } as ReturnType<typeof spawnSync>)
+  })
+
+  afterEach(() => {
+    vi.unstubAllEnvs()
+  })
+
+  test('runs projen again, marked with the version it moved to', () => {
+    const project = synthesizeMovingProjen('0.86.5', '0.104.1')
+
+    expect(spawnSync).toHaveBeenCalledExactlyOnceWith('pnpm exec projen', {
+      cwd: project.outdir,
+      env: expect.objectContaining({
+        PROJEN_PROJECT_RESYNTHESIZED: '0.104.1',
+      }),
+      shell: true,
+      stdio: 'inherit',
+    })
+  })
+
+  test('does not run projen again when it stays put', () => {
+    synthesizeMovingProjen('0.104.1', '0.104.1')
+
+    expect(spawnSync).not.toHaveBeenCalled()
+  })
+
+  test('does not run projen again when it was not installed beforehand', () => {
+    const project = new Project({ name: 'test-project' })
+
+    new ProjenInstall(project, '0.104.1')
+    project.synth()
+
+    expect(spawnSync).not.toHaveBeenCalled()
+  })
+
+  test('leaves running projen again to the root project', () => {
+    const project = new Project({ name: 'test-project' })
+    const subproject = project.addSubproject({
+      name: 'test-subproject',
+      outdir: 'packages/test',
+    })
+
+    installProjen(project.outdir, '0.104.1')
+    installProjen(subproject.outdir, '0.86.5')
+    new ProjenInstall(subproject, '0.104.1')
+    project.synth()
+
+    expect(spawnSync).not.toHaveBeenCalled()
+  })
+
+  test('fails when running projen again fails', () => {
+    vi.mocked(spawnSync).mockReturnValue({
+      status: 1,
+    } as ReturnType<typeof spawnSync>)
+
+    expect(() => synthesizeMovingProjen('0.86.5', '0.104.1')).toThrowError(
+      'Synthesizing again with projen 0.104.1 failed.',
+    )
+  })
+
+  test('fails instead of running projen a third time', () => {
+    vi.stubEnv('PROJEN_PROJECT_RESYNTHESIZED', '0.104.1')
+
+    expect(() => synthesizeMovingProjen('0.104.1', '0.105.0')).toThrowError(
+      /moved projen from 0\.104\.1 to 0\.105\.0 again/,
+    )
+    expect(spawnSync).not.toHaveBeenCalled()
+  })
 })
 
 test('with Terraform enabled', () => {

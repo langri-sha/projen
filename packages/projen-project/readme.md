@@ -65,6 +65,15 @@ Worktrunk asks each teammate to approve a project's commands before it first
 runs them, so no default runs unseen. It remembers approval by the exact text of
 a command.
 
+## Upgrading projen
+
+The preset supplies the projen version a project runs on, unless the project
+declares its own. An upgrade of the preset can supply a new one, which the first
+synthesis only installs after rendering the files with the version already
+loaded. When installing moves projen, the preset synthesizes once more with the
+installed version, so a single `pnpm exec projen` leaves files that the next
+synthesis keeps.
+
 ## Release age
 
 The preset exempts nothing from pnpm's `minimumReleaseAge`. A project that
