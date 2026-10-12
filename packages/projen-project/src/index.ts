@@ -831,6 +831,10 @@ export class Project extends BaseProject {
     }
 
     if (!pkg.authorName) {
+      if (pkg.authorName === '') {
+        return
+      }
+
       throw new Error(
         'Missing package author name. Set `package.authorName` in the project',
       )

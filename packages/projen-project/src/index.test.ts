@@ -1325,6 +1325,22 @@ describe('with license', () => {
     ).toThrowError(/Missing package author name/)
   })
 
+  test('with an explicitly empty author name', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorName: '',
+        license: 'ISC',
+      },
+    })
+
+    const files = synthSnapshot(project)
+
+    expect(project.license).toBeUndefined()
+    expect(files['package.json'].license).toBe('ISC')
+    expect(files.license).toBeUndefined()
+  })
+
   test('assigns license property', () => {
     const project = new Project({
       name: 'test-project',
