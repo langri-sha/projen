@@ -58,6 +58,17 @@ describe('resolves version', () => {
 
     expect(synthSnapshot(project)['package.json'].version).toBe('2.0.0')
   })
+
+  test('without an existing package', () => {
+    const project = new Project({
+      name: 'test-project',
+      outdir: temporaryDirectory(),
+    })
+
+    new NodePackage(project)
+
+    expect(synthSnapshot(project)['package.json'].version).toBe('0.0.0')
+  })
 })
 
 test('assigns `type` field', () => {
