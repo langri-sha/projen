@@ -298,8 +298,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       smol-toml:
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.9.1
+        version: 1.9.1
 
   packages/projen-editorconfig:
     devDependencies:
@@ -671,8 +671,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
       smol-toml:
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.9.1
+        version: 1.9.1
 
   packages/projen-skills:
     dependencies:
@@ -727,8 +727,8 @@ importers:
         specifier: 1.0.3
         version: 1.0.3(supports-color@8.1.1)
       smol-toml:
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.9.1
+        version: 1.9.1
 
   packages/projen-typescript-config:
     dependencies:
@@ -752,8 +752,8 @@ importers:
   packages/projen-uv:
     dependencies:
       smol-toml:
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.9.1
+        version: 1.9.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -780,8 +780,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       smol-toml:
-        specifier: 1.9.0
-        version: 1.9.0
+        specifier: 1.9.1
+        version: 1.9.1
 
 packages:
 
@@ -4154,8 +4154,8 @@ packages:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
 
-  smol-toml@1.9.0:
-    resolution: {integrity: sha512-hpd+HLON7HdZXqYchMM/+LaTTbdK0AU3NngIJ4KVyWbY9bfQqdL9cD+4yf6dUoU2Ap4VsU0JkQi6FxAI1B2mXQ==}
+  smol-toml@1.9.1:
+    resolution: {integrity: sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==}
     engines: {node: '>= 18'}
 
   source-map-js@1.2.1:
@@ -8287,7 +8287,7 @@ snapshots:
 
   slash@3.0.0: {}
 
-  smol-toml@1.9.0: {}
+  smol-toml@1.9.1: {}
 
   source-map-js@1.2.1: {}
 
