@@ -38,6 +38,26 @@ describe('resolves version', () => {
 
     expect(synthSnapshot(project)['package.json']).toMatchSnapshot()
   })
+
+  test('with an explicit version', async () => {
+    const outdir = temporaryDirectory()
+
+    await fs.writeFile(
+      path.join(outdir, 'package.json'),
+      JSON.stringify({
+        version: '1.0.0',
+      }),
+    )
+
+    const project = new Project({
+      name: 'test-project',
+      outdir,
+    })
+
+    new NodePackage(project, { version: '2.0.0' })
+
+    expect(synthSnapshot(project)['package.json'].version).toBe('2.0.0')
+  })
 })
 
 test('assigns `type` field', () => {
