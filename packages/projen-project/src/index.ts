@@ -1,3 +1,5 @@
+import { spawnSync } from 'node:child_process'
+import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
@@ -116,6 +118,13 @@ const WORKTRUNK_ENV_COMMAND =
  * Renovate's own `npm:unpublishSafe` preset.
  */
 const RENOVATE_MINIMUM_RELEASE_AGE = '3 days'
+
+/**
+ * Set on the synthesis that runs again after installing dependencies moved
+ * projen, so that one which finds projen moved once more fails instead of
+ * starting another.
+ */
+const RESYNTHESIZED_ENV = 'PROJEN_PROJECT_RESYNTHESIZED'
 
 /**
  * The versions of the packages this preset supplies that it can support,
@@ -353,6 +362,12 @@ export class Project extends BaseProject {
    */
   readonly #ownedDevDeps = new Set<string>()
 
+  /**
+   * The projen version installed when a root project starts synthesizing,
+   * which is the one rendering its files.
+   */
+  #synthesizingProjenVersion?: string
+
   constructor(options: ProjectOptions) {
     super({
       // Resolved from the options rather than `this.package`, which does not
@@ -437,7 +452,54 @@ export class Project extends BaseProject {
   override preSynthesize(): void {
     super.preSynthesize()
 
+    if (!this.parent) {
+      this.#synthesizingProjenVersion = this.#readInstalledProjenVersion()
+    }
+
     this.#populateTypeScriptProjectReferencesFromDependencies()
+  }
+
+  /**
+   * Synthesize again when installing dependencies moved projen, as when an
+   * upgrade of this preset supplies a new version: the files were rendered by
+   * the version already loaded, and the next synthesis would change them.
+   * Runs after every component's post-synthesis, so nothing rendered by the
+   * old version follows the new synthesis.
+   */
+  override postSynthesize(): void {
+    super.postSynthesize()
+
+    if (this.parent) {
+      return
+    }
+
+    const synthesized = this.#synthesizingProjenVersion
+    const installed = this.#readInstalledProjenVersion()
+
+    if (!synthesized || !installed || synthesized === installed) {
+      return
+    }
+
+    if (process.env[RESYNTHESIZED_ENV]) {
+      throw new Error(
+        `Installing dependencies moved projen from ${synthesized} to ${installed} again, after synthesizing again with projen ${process.env[RESYNTHESIZED_ENV]}.`,
+      )
+    }
+
+    this.logger.info(
+      `Synthesized with projen ${synthesized}, but installing dependencies moved it to ${installed}. Synthesizing again.`,
+    )
+
+    const { status } = spawnSync(this.projenCommand, {
+      cwd: this.outdir,
+      env: { ...process.env, [RESYNTHESIZED_ENV]: installed },
+      shell: true,
+      stdio: 'inherit',
+    })
+
+    if (status !== 0) {
+      throw new Error(`Synthesizing again with projen ${installed} failed.`)
+    }
   }
 
   get allSubprojects(): BaseProject[] {
@@ -1608,6 +1670,23 @@ export class Project extends BaseProject {
 
         project.typeScriptConfig!.addReference(path.relative(from, to))
       }
+    }
+  }
+
+  /**
+   * Read from disk on every call, since `require` would keep returning the
+   * manifest it first loaded.
+   */
+  #readInstalledProjenVersion(): string | undefined {
+    try {
+      return JSON.parse(
+        readFileSync(
+          path.join(this.outdir, 'node_modules', 'projen', 'package.json'),
+          'utf-8',
+        ),
+      ).version
+    } catch (_) {
+      return undefined
     }
   }
 }
