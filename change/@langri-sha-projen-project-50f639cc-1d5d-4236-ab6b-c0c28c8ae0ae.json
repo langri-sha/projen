@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Track the Dagger version pinned in workflows",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

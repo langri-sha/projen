@@ -1989,6 +1989,55 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
   `)
 })
 
+test('with Renovate options, reading the Dagger version pinned in workflows', () => {
+  const project = new Project({
+    name: 'test-project',
+    dagger: {},
+    renovate: {},
+  })
+
+  const { customManagers } = synthSnapshot(project)['renovate.json5']
+
+  expect(
+    customManagers.filter(
+      ({ depNameTemplate }: { depNameTemplate?: string }) =>
+        depNameTemplate === 'dagger/dagger',
+    ),
+  ).toHaveLength(2)
+  expect(
+    customManagers.find(({ matchStrings }: { matchStrings: string[] }) =>
+      matchStrings.some((matchString) =>
+        matchString.includes('dagger-version'),
+      ),
+    ),
+  ).toMatchInlineSnapshot(`
+    {
+      "customType": "regex",
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "dagger/dagger",
+      "extractVersionTemplate": "^v(?<version>.+)$",
+      "managerFilePatterns": [
+        "/^\\.github/workflows/[^/]+\\.ya?ml$/",
+      ],
+      "matchStrings": [
+        "(?:^|\\n)[ \\t]*dagger-version:[ \\t]*['"]?v(?<currentValue>\\d[^\\s'"]*)",
+      ],
+      "versioningTemplate": "semver",
+    }
+  `)
+})
+
+test('with Renovate options and no Dagger, leaving workflow inputs alone', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+  })
+
+  expect(
+    JSON.stringify(synthSnapshot(project)['renovate.json5'].customManagers),
+  ).not.toContain('dagger-version')
+})
+
 test('with Renovate options, reading Dagger module refs pinned to a tag', () => {
   const project = new Project({
     name: 'test-project',
@@ -2303,6 +2352,75 @@ describe('with Renovate options, the custom managers', () => {
     ).toEqual({ depName: 'vercel-labs/skills', currentDigest: sha })
     expect("source: 'vercel-labs/skills', ref: 'main'").not.toMatch(matchString)
     expect("source: 'npm:@acme/skills', skills: ['a']").not.toMatch(matchString)
+  })
+
+  test('read the Dagger version out of a workflow input, and nowhere else', () => {
+    const manager = customManagers().find(({ matchStrings }) =>
+      matchStrings.some((matchString) =>
+        matchString.includes('dagger-version'),
+      ),
+    )!
+    const matchString = new RegExp(manager.matchStrings[0]!, 'g')
+    const versions = (content: string) =>
+      [...content.matchAll(matchString)].map(
+        (match) => match.groups?.currentValue,
+      )
+
+    expect(manager.depNameTemplate).toBe('dagger/dagger')
+    expect(covers(manager, '.github/workflows/workspace.yml')).toBe(true)
+    expect(covers(manager, '.github/workflows/check.yaml')).toBe(true)
+    expect(covers(manager, '.projenrc.ts')).toBe(false)
+    expect(covers(manager, 'packages/projen-project/src/index.test.ts')).toBe(
+      false,
+    )
+    expect(covers(manager, 'packages/app/.github/workflows/check.yml')).toBe(
+      false,
+    )
+
+    expect(versions('      dagger-version: v1.0.0-beta.15\n')).toEqual([
+      '1.0.0-beta.15',
+    ])
+    expect(versions('      dagger-version: "v1.0.0"\n')).toEqual(['1.0.0'])
+    expect(versions("      dagger-version: 'v1.0.0'\n")).toEqual(['1.0.0'])
+    expect(versions('      dagger-version: v1.0.0 # pinned\n')).toEqual([
+      '1.0.0',
+    ])
+    expect(versions('      dagger-version:   v1.0.0\n')).toEqual(['1.0.0'])
+    expect(versions('dagger-version: v1.0.0\n')).toEqual(['1.0.0'])
+    expect(
+      versions('with:\r\n  dagger-version: v1.0.0\r\n  other: v2.0.0\r\n'),
+    ).toEqual(['1.0.0'])
+    expect(
+      versions('a:\n  dagger-version: v1.0.0\nb:\n  dagger-version: v2.0.0\n'),
+    ).toEqual(['1.0.0', '2.0.0'])
+
+    const checkWorkflow = [
+      'on:',
+      '  workflow_call:',
+      '    inputs:',
+      '      dagger-version:',
+      '        description: >-',
+      '          Dagger engine version to run, e.g. `v1.0.0-beta.15`, in place of',
+      '          the one resolved from the module manifests.',
+      '        type: string',
+      '        default: ""',
+      'jobs:',
+      '  check:',
+      '    steps:',
+      '      - name: Resolve Dagger version',
+      '        id: dagger-version',
+      '        uses: langri-sha/github/actions/dagger-version@v0.24.0',
+      '      - with:',
+      '          version: ${{ inputs.dagger-version || steps.dagger-version.outputs.version }}',
+      '',
+    ].join('\n')
+
+    expect(versions(checkWorkflow)).toEqual([])
+    expect(versions('dagger-version:\nv1.0.0\n')).toEqual([])
+    expect(versions('      dagger-version: ${{ vars.DAGGER }}\n')).toEqual([])
+    expect(versions('      dagger-version: latest\n')).toEqual([])
+    expect(versions('      # dagger-version: v1.0.0\n')).toEqual([])
+    expect(versions('      old-dagger-version: v1.0.0\n')).toEqual([])
   })
 
   test('read Dagger module refs pinned to a tag, and nothing else', () => {

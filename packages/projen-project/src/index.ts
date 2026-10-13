@@ -1328,6 +1328,32 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        // The CLI a workspace runs in CI, pinned as the `dagger-version` input
+        // of the reusable check workflow. The same tags and the same
+        // `depName` as the engine above, so both land in one group. Kept as a
+        // manager of its own: matching `engineVersion:` in workflows, or
+        // `dagger-version:` in a projenrc, is a loosening nothing asks for.
+        //
+        // A line break is not part of the gap after the colon: the workflow
+        // declaring the input puts its description on the next line, and
+        // that text quotes a version. The key starts its line, so a comment or
+        // a longer key ending in it is left alone; Renovate compiles a match
+        // string without the `m` flag, which is why the anchor spells out `\n`.
+        ...(dagger
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
+                depNameTemplate: 'dagger/dagger',
+                managerFilePatterns: ['/^\\.github/workflows/[^/]+\\.ya?ml$/'],
+                matchStrings: [
+                  `(?:^|\\n)[ \\t]*dagger-version:[ \\t]*['"]?v(?<currentValue>\\d[^\\s'"]*)`,
+                ],
+                extractVersionTemplate: '^v(?<version>.+)$',
+              },
+            ]
+          : []),
         // Module refs pinned to a GitHub tag. `dagger install` writes a module
         // in a monorepo as `…/hello@v0.3.0`, and Dagger resolves that to the
         // tag `hello/v0.3.0`, so a bare version is read against the subpath's
