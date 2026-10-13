@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency smol-toml to v1.9.1",
-  "packageName": "projen-ty",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

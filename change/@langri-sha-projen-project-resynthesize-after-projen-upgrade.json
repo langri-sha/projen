@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Synthesize again when installing dependencies moves projen, as when a preset upgrade supplies a new version, so a single synthesis leaves files that the next one keeps.",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
