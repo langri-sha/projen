@@ -117,10 +117,32 @@ Leave out the `pin` beside a tracked ref. `dagger.lock` pins the commit anyway,
 and once Renovate moves the tag, a pin left behind makes a short-form ref fail
 to load.
 
-A ref without a version resolves to the latest release and is pinned in
-`dagger.lock`, which `dagger update` and `dagger lock update` refresh. Renovate
-cannot resolve a vanity ref such as `dagger.io/js/eslint`; write the
-`github.com` form to have it tracked.
+A ref without a version is resolved once, and `dagger.lock` pins what it
+resolved to, until `dagger update` or `dagger lock update` refreshes it.
+Renovate has no manager for that file, and the hosted app cannot run
+`dagger lock update` after a bump, so an unversioned ref is never proposed.
+
+#### Dagger's own modules
+
+`dagger install dagger.io/js/prettier` writes a vanity ref,
+`source = "dagger.io/js/prettier"`, with no version. Pin these modules in the
+`github.com` form instead, as `source = "github.com/dagger/prettier@v0.1.0"`. It
+is the module `dagger.io/js/prettier@v0.1.0` loads, locked to the same commit,
+and the preset's manager reads it like any other ref pinned to a tag.
+
+Renovate cannot track the vanity form, pinned or not, because the vanity name
+does not say which repository it resolves to. `dagger.io/js/prettier` is
+`github.com/dagger/prettier`, but `dagger.io/js/biome` is
+`github.com/dagger/biomejs`, and `dagger.io/python/pytest` is the `pytest`
+subdirectory of `github.com/dagger/python`. A manager that guessed would propose
+tags of a repository the module does not come from. The repository a vanity ref
+resolves to is on its `vanity-url` entry in `dagger.lock`.
+
+Renovate moves the tag and leaves `dagger.lock` alone. The next Dagger command
+appends the entries for the new tag and leaves those of the old one behind. The
+Renovate branch does not carry that refresh, and a commit pushed to it by hand
+stops Renovate from updating it, so it lands with the next change that runs
+Dagger.
 
 ### Workspace
 

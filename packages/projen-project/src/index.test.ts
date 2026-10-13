@@ -2479,6 +2479,87 @@ describe('with Renovate options, the custom managers', () => {
     }
   })
 
+  test('read the pinned modules of a workspace, and no vanity ref', () => {
+    const manager = customManagers().find(({ depNameTemplate }) =>
+      depNameTemplate?.startsWith('github.com/'),
+    )!
+    const matchString = new RegExp(manager.matchStrings[0]!, 'g')
+    const refs = (content: string) =>
+      [...content.matchAll(matchString)].map((match) => ({
+        ...match.groups,
+      }))
+
+    const workspace = [
+      'ignore = [',
+      '  "**/node_modules",',
+      '  "**/dist",',
+      ']',
+      '',
+      '[modules.ci]',
+      'source = "github.com/langri-sha/dagger/ci@ci/v0.1.0"',
+      '',
+      '[modules.eslint]',
+      'source = "github.com/dagger/eslint@v0.2.0"',
+      '',
+      '[modules.eslint.settings]',
+      'packageManager = "pnpm"',
+      'baseImageAddress = "node:24-slim"',
+      '',
+      '[modules.prettier]',
+      'source = "github.com/dagger/prettier@v0.1.0"',
+      '',
+      '[modules.vitest]',
+      'source = "github.com/dagger/vitest@v0.1.0"',
+      '',
+    ].join('\n')
+
+    expect(refs(workspace)).toEqual([
+      {
+        repo: 'langri-sha/dagger',
+        subdir: 'ci',
+        tagDir: 'ci/',
+        currentValue: '0.1.0',
+      },
+      {
+        repo: 'dagger/eslint',
+        subdir: undefined,
+        tagDir: undefined,
+        currentValue: '0.2.0',
+      },
+      {
+        repo: 'dagger/prettier',
+        subdir: undefined,
+        tagDir: undefined,
+        currentValue: '0.1.0',
+      },
+      {
+        repo: 'dagger/vitest',
+        subdir: undefined,
+        tagDir: undefined,
+        currentValue: '0.1.0',
+      },
+    ])
+
+    const vanityWorkspace = [
+      '[modules.ci]',
+      'source = "github.com/langri-sha/dagger/ci@ci/v0.1.0"',
+      '',
+      '[modules.prettier]',
+      'source = "dagger.io/js/prettier"',
+      '',
+      '[modules.eslint]',
+      'source = "dagger.io/js/eslint@v0.1.0"',
+      '',
+      '[modules.biome]',
+      'source = "dagger.io/js/biome"',
+      '',
+    ].join('\n')
+
+    expect(refs(vanityWorkspace).map(({ repo }) => repo)).toEqual([
+      'langri-sha/dagger',
+    ])
+  })
+
   test('name the package an execution runs, not the one they were copied from', () => {
     const manager = customManagers().find(({ matchStrings }) =>
       matchStrings.some((matchString) => matchString.includes('bun')),
