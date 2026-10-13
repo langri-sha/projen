@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Document how the preset has Renovate move the workflow Dagger pin",
+  "packageName": "projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

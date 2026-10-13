@@ -7,8 +7,9 @@ workspace's `dagger.toml`. `dagger.lock` is left to the Dagger CLI, which may
 update it on any command.
 
 [`@langri-sha/projen-project`] reaches it through its `dagger` option, which
-also points Renovate at the engine version and at module refs pinned to a GitHub
-tag. Prefer that over constructing the component yourself.
+also points Renovate at the engine version, in the projenrc and in workflows,
+and at module refs pinned to a GitHub tag. Prefer that over constructing the
+component yourself.
 
 ## Usage
 
@@ -91,6 +92,11 @@ It is the engine a module requires, not the one it runs on: the CLI starts its
 own engine, and loads a module when the engine's base version is at least the
 declared one's. Every 1.0 prerelease therefore loads a module declaring any
 other, and pinning the CLI in CI is a separate concern.
+
+That pin is the `dagger-version` input of langri-sha/github's reusable
+`check.yml`, passed from a workflow under `.github/workflows`. Through the
+preset, Renovate moves it together with `engineVersion`, in one "Dagger engine"
+group.
 
 #### Module refs
 
