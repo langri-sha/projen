@@ -1,6 +1,6 @@
 {
   "name": "projen-dagger",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "A projen component for Dagger workspaces.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

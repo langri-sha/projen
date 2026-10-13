@@ -1,8 +1,20 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 13 Oct 2026 01:08:30 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.38.2
+
+Tue, 13 Oct 2026 20:46:26 GMT
+
+### Patches
+
+- Track the Dagger version pinned in workflows (filip.dupanovic@gmail.com)
+- Bump projen-dagger to v0.3.6
+- Bump projen-husky to v0.3.27
+- Bump projen-skills to v0.1.3
+- Bump projen-typescript-config to v0.5.25
 
 ## 0.38.1
 

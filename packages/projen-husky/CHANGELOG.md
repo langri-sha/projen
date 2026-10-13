@@ -1,8 +1,16 @@
 # Change Log - projen-husky
 
-<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.27
+
+Tue, 13 Oct 2026 20:46:26 GMT
+
+### Patches
+
+- Update dependency @types/node to v24.19.2
 
 ## 0.3.26
 

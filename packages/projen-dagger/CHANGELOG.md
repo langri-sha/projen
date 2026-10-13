@@ -1,8 +1,17 @@
 # Change Log - projen-dagger
 
-<!-- This log was last generated on Tue, 13 Oct 2026 01:08:30 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.6
+
+Tue, 13 Oct 2026 20:46:26 GMT
+
+### Patches
+
+- Document how the preset has Renovate move the workflow Dagger pin (filip.dupanovic@gmail.com)
+- Document pinning Dagger's own modules in the github.com form (filip.dupanovic@gmail.com)
 
 ## 0.3.5
 

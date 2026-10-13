@@ -2,6 +2,21 @@
   "name": "projen-husky",
   "entries": [
     {
+      "date": "Tue, 13 Oct 2026 20:46:26 GMT",
+      "version": "0.3.27",
+      "tag": "projen-husky_v0.3.27",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-husky",
+            "commit": "a8cd522026b907b563833e3c4b5a2fbd6aed763d",
+            "comment": "Update dependency @types/node to v24.19.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 10:59:34 GMT",
       "version": "0.3.26",
       "tag": "projen-husky_v0.3.26",
