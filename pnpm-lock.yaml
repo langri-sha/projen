@@ -170,8 +170,8 @@ importers:
         specifier: 0.9.19
         version: 0.9.19(@typescript-eslint/utils@8.71.0(eslint@10.12.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3))(eslint@10.12.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@5.9.3)
       '@langri-sha/lint-staged':
-        specifier: 0.9.10
-        version: 0.9.10(eslint@10.12.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)
+        specifier: 0.9.11
+        version: 0.9.11(eslint@10.12.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)
       '@langri-sha/prettier':
         specifier: 0.4.11
         version: 0.4.11(prettier@3.9.9)
@@ -1412,8 +1412,8 @@ packages:
     peerDependencies:
       eslint: ^10.4.0
 
-  '@langri-sha/lint-staged@0.9.10':
-    resolution: {integrity: sha512-NS3/zY2AgftZO0dx7wK6J0QBD9KImJroExHhxulwCEc8huKuHjYqNDvQcAxugDXF0y0TEXyDMX4rFBGO2q5oEw==}
+  '@langri-sha/lint-staged@0.9.11':
+    resolution: {integrity: sha512-FhU/Fx3BUMAlbzNg+TdaDUohosn7hsleT+OMyslY1Qhae4EBSqEccNcMQben2YoWEmX+dKo4ovjvV/nLKqU9eQ==}
     peerDependencies:
       eslint: ^10.4.0
       lint-staged: ^17.0.0
@@ -5357,7 +5357,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@langri-sha/lint-staged@0.9.10(eslint@10.12.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)':
+  '@langri-sha/lint-staged@0.9.11(eslint@10.12.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)':
     dependencies:
       lint-staged: 17.6.0
     optionalDependencies:
