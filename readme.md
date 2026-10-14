@@ -49,6 +49,13 @@ pnpm -r --if-present prepublishOnly  # tsc-build
 
 See [AGENTS.md](./AGENTS.md) for orientation and the release flow.
 
+## Contributing
+
+See [CONTRIBUTING.md] in `langri-sha/github`.
+
 ## License
 
 MIT — see [license](./license).
+
+[contributing.md]:
+  https://github.com/langri-sha/github/blob/main/CONTRIBUTING.md
