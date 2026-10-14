@@ -36,7 +36,7 @@ const project = new Project({
     type: 'module',
 
     devDeps: [
-      '@langri-sha/eslint-config@0.9.19',
+      '@langri-sha/eslint-config@0.10.0',
       '@langri-sha/lint-staged@0.9.11',
       '@langri-sha/prettier@0.4.11',
       '@langri-sha/projen-project@workspace:*',
