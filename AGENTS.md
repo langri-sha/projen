@@ -51,6 +51,13 @@ the `package.json` checks, `tsc --build`, Vitest and, on pull requests,
 a touched package lacks a change file. On Renovate pull requests it
 re-synthesizes and commits the result.
 
+## Projen's peer range
+
+`projen`'s peer range is declared **once**, in the `projenPeer` constant at the
+top of `.projenrc.ts`, and spread into each subproject. The `peerDeps:` key in
+that constant is load-bearing — Renovate's projenrc customManager keys off that
+literal.
+
 ## Release
 
 Beachball versions each package. Anything that reaches a package's tarball or
@@ -72,8 +79,3 @@ Actions tab to publish every package with a pending change file through npm
 trusted publishing. It cuts no git tags and no GitHub releases: Beachball's
 `gitTags` is off, and `publish.yml` passes the shared Packages workflow neither
 `tag-template` nor `github-releases`.
-
-Note also that `projen`'s peer range is declared **once**, in the `projenPeer`
-constant at the top of `.projenrc.ts`, and spread into each subproject. The
-`peerDeps:` key in that constant is load-bearing — Renovate's projenrc
-customManager keys off that literal.
