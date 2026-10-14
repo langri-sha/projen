@@ -16,6 +16,11 @@ The shared configs (`@langri-sha/eslint-config`, `lint-staged`, `prettier`,
 `tsconfig` and `vitest`) and `schemastore-to-typescript` come from npm, pinned
 in `.projenrc.ts`; Renovate moves them with the rest of `@langri-sha/*`.
 
+The `@langri-sha/*` config names inside `projen-project` are defaults it writes
+into consuming projects, not dependencies of this repository. Its
+`this.name !== '@langri-sha/tsconfig'` guards let `langri-sha/tsconfig`
+synthesize itself with the preset; keep them.
+
 ## Common tasks
 
 ```sh
