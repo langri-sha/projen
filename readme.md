@@ -47,7 +47,7 @@ pnpm exec vitest run             # tests
 pnpm -r --if-present prepublishOnly  # tsc-build
 ```
 
-See [AGENTS.md](./AGENTS.md) for orientation, release flow, and provenance.
+See [AGENTS.md](./AGENTS.md) for orientation and the release flow.
 
 ## License
 
