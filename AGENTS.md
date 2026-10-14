@@ -41,6 +41,7 @@ pnpm exec projen                 # re-synth everything from .projenrc.ts (tsx)
 pnpm exec vitest run             # run all unit tests
 pnpm tsc --build .               # type check
 pnpm eslint . && pnpm prettier --check .
+pnpm change                      # write a change file
 pnpm -r --if-present prepublishOnly  # tsc-build every package
 ```
 
@@ -52,12 +53,12 @@ re-synthesizes and commits the result.
 
 ## Release
 
-`beachball` drives versioning per package.
-
-```sh
-pnpm change                      # write a change/<name>.json file
-# merge to main, then trigger the "Release" workflow on GitHub
-```
+Beachball versions each package. Anything that reaches a package's tarball or
+builds it needs a change file for that package in the same pull request: run
+`pnpm change`. Use `none` for edits that shouldn't cut a release on their own,
+such as readme-only changes. The root is private and never needs one. On
+Renovate pull requests that touch a package, CI writes a `patch` change file
+itself.
 
 Releasing publishes **only** packages that have a change file. A package whose
 source you edit without one keeps its version number, so `beachball check` —
