@@ -44,6 +44,12 @@ pnpm eslint . && pnpm prettier --check .
 pnpm -r --if-present prepublishOnly  # tsc-build every package
 ```
 
+CI (`workspace.yml` → `langri-sha/github` `check.yml`) runs ESLint, Prettier,
+the `package.json` checks, `tsc --build`, Vitest and, on pull requests,
+`beachball check`. It fails when synthesized files drift from `.projenrc.ts` or
+a touched package lacks a change file. On Renovate pull requests it
+re-synthesizes and commits the result.
+
 ## Release
 
 `beachball` drives versioning per package.
