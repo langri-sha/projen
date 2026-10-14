@@ -39,6 +39,8 @@ secrets are managed by `langri-sha/github-repos`.
 pnpm install                     # also runs schema → .d.ts prepare scripts
 pnpm exec projen                 # re-synth everything from .projenrc.ts (tsx)
 pnpm exec vitest run             # run all unit tests
+pnpm tsc --build .               # type check
+pnpm eslint . && pnpm prettier --check .
 pnpm -r --if-present prepublishOnly  # tsc-build every package
 ```
 
