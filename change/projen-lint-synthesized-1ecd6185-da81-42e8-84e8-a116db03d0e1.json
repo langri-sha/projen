@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Fix a typo in the readme",
+  "packageName": "projen-lint-synthesized",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
