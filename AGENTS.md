@@ -21,6 +21,18 @@ into consuming projects, not dependencies of this repository. Its
 `this.name !== '@langri-sha/tsconfig'` guards let `langri-sha/tsconfig`
 synthesize itself with the preset; keep them.
 
+## Who owns which file
+
+Projen writes every `package.json` and every file listed in a
+`.projen/files.json`, at the root and in each package; they are read-only.
+Change them in `.projenrc.ts`, then run `pnpm exec projen`. The SchemaStore
+typings that `prepare` scripts compile, such as
+`packages/projen-cargo/src/cargo.ts`, are generated and gitignored. Beachball
+owns each package's `CHANGELOG.md`, `CHANGELOG.json` and `version` field.
+Everything else — `packages/*/src/`, the readmes, `.github/workflows/`, this
+file — is edited by hand. Repository settings, branch protection and the Actions
+secrets are managed by `langri-sha/github-repos`.
+
 ## Common tasks
 
 ```sh
