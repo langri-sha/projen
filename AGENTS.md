@@ -66,6 +66,12 @@ moment that PR lands, and npm serves the stale tarball indefinitely. Nothing
 detects this automatically; when you edit a package, write the change file in
 the same PR.
 
+Nothing publishes on merge. Run the Release workflow (`publish.yml`) from the
+Actions tab to publish every package with a pending change file through npm
+trusted publishing. It cuts no git tags and no GitHub releases: Beachball's
+`gitTags` is off, and `publish.yml` passes the shared Packages workflow neither
+`tag-template` nor `github-releases`.
+
 Note also that `projen`'s peer range is declared **once**, in the `projenPeer`
 constant at the top of `.projenrc.ts`, and spread into each subproject. The
 `peerDeps:` key in that constant is load-bearing — Renovate's projenrc
