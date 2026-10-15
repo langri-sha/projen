@@ -43,7 +43,7 @@ const project = new Project({
       '@langri-sha/tsconfig@1.1.1',
       '@types/node@24.19.2',
       'schemastore-to-typescript@1.0.3',
-      'vitest@5.0.3',
+      'vitest@5.0.4',
     ],
   },
   beachball: {
