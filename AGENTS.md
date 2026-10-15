@@ -31,7 +31,8 @@ typings that `prepare` scripts compile, such as
 owns each package's `CHANGELOG.md`, `CHANGELOG.json` and `version` field.
 Everything else — `packages/*/src/`, the readmes, `.github/workflows/`, this
 file — is edited by hand. Repository settings, branch protection and the Actions
-secrets are managed by `langri-sha/github-repos`.
+secrets are managed by Terraform outside this repository; don't change them in
+the GitHub UI.
 
 ## Common tasks
 
