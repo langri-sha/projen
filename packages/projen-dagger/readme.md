@@ -109,9 +109,14 @@ A module in a monorepo moves along its own tags. `dagger install` writes
 `github.com/shykes/daggerverse/hello@v0.3.0`, which Dagger resolves to the tag
 `hello/v0.3.0`, and the spelled-out `…/hello@hello/v0.3.0` names that tag
 itself; either moves along `hello/v*`. Dagger falls back to a root tag when a
-module has none of its own, and Renovate cannot: a module nested in a repository
-tagged only at its root, such as
-`github.com/dagger/eslint/.dagger/modules/e2e@v0.2.0`, is not tracked.
+module has none of its own, and Renovate cannot. So the preset reads a bare
+version against the root tags in the repositories its `rootTaggedRepositories`
+option names, `dagger/python` and `langri-sha/dagger` by default:
+`github.com/langri-sha/dagger/ci@v1.0.0` moves along `v*`, never to the older
+`ci/v0.1.0`, while `…/ci@ci/v0.1.0` keeps moving along `ci/v*`. A module nested
+in any other repository tagged only at its root, such as
+`github.com/dagger/eslint/.dagger/modules/e2e@v0.2.0`, is tracked once that
+repository is in the list.
 
 Leave out the `pin` beside a tracked ref. `dagger.lock` pins the commit anyway,
 and once Renovate moves the tag, a pin left behind makes a short-form ref fail

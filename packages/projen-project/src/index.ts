@@ -158,6 +158,31 @@ const PRESET_PACKAGES: readonly string[] = (() => {
   ]
 })()
 
+/**
+ * Repositories that tag a release of all their Dagger modules at the root,
+ * read by Renovate unless a project names its own.
+ */
+const ROOT_TAGGED_DAGGER_REPOSITORIES: readonly string[] = [
+  'dagger/python',
+  'langri-sha/dagger',
+]
+
+/**
+ * Dagger options, with how Renovate reads the module refs.
+ */
+export interface ProjectDaggerOptions extends DaggerOptions {
+  /**
+   * Repositories that tag a release of all their modules at the root,
+   * `v<version>`, rather than each module as `<module>/v<version>`. Renovate
+   * reads a ref such as `github.com/langri-sha/dagger/ci@v1.1.0` against
+   * their root tags, while a ref that names its tag prefix,
+   * `…/ci@ci/v0.1.0`, keeps reading that prefix.
+   *
+   * @default ['dagger/python', 'langri-sha/dagger']
+   */
+  readonly rootTaggedRepositories?: string[]
+}
+
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
@@ -187,7 +212,7 @@ export interface ProjectOptions extends Omit<
    * Pass in to set up Dagger modules. Root projects only — module
    * directories are relative to the workspace root.
    */
-  dagger?: DaggerOptions
+  dagger?: ProjectDaggerOptions
 
   /**
    * EditorConfig options.
@@ -1360,7 +1385,9 @@ export class Project extends BaseProject {
         // tags. The spelled-out `…/hello@hello/v0.3.0` names its tag prefix
         // itself. Either way the prefix stays out of the captured version, so
         // the replacement keeps it. Dagger falls back to a root tag when a
-        // module has none of its own, and this cannot.
+        // module has none of its own, and Renovate cannot, so a bare version
+        // in a repository named in `rootTaggedRepositories` is read against
+        // the root tags instead, and its older `<module>/v…` tags never match.
         //
         // The Dagger config files are read whether or not synthesis writes
         // them: a ref there is the same string as in the projenrc, so both
@@ -1384,8 +1411,7 @@ export class Project extends BaseProject {
                 depNameTemplate:
                   'github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}',
                 packageNameTemplate: '{{{repo}}}',
-                extractVersionTemplate:
-                  '^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$',
+                extractVersionTemplate: `^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}${moduleTagPrefix(dagger.rootTaggedRepositories ?? ROOT_TAGGED_DAGGER_REPOSITORIES)}{{/if}}{{/if}}v(?<version>.+)$`,
               },
             ]
           : []),
@@ -1715,6 +1741,30 @@ export class Project extends BaseProject {
       return undefined
     }
   }
+}
+
+/**
+ * The tag prefix of a module in a subdirectory, as a Renovate template: the
+ * subdirectory, unless the repository tags its modules at the root.
+ */
+const moduleTagPrefix = (rootTaggedRepositories: readonly string[]) => {
+  for (const repository of rootTaggedRepositories) {
+    if (!/^[\w.-]+\/[\w.-]+$/.test(repository)) {
+      throw new Error(
+        `Cannot read Dagger module tags at the root of "${repository}". Name the repository as owner/name.`,
+      )
+    }
+  }
+
+  if (rootTaggedRepositories.length === 0) {
+    return '{{{subdir}}}/'
+  }
+
+  const repositories = rootTaggedRepositories
+    .map((repository) => `'${repository}'`)
+    .join(' ')
+
+  return `{{#unless (includes (toArray ${repositories}) repo)}}{{{subdir}}}/{{/unless}}`
 }
 
 const getProjenCommand = ({ package: pkg }: ProjectOptions) =>
