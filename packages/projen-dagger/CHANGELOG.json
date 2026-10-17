@@ -2,6 +2,21 @@
   "name": "projen-dagger",
   "entries": [
     {
+      "date": "Sat, 17 Oct 2026 19:15:20 GMT",
+      "version": "0.3.6",
+      "tag": "projen-dagger_v0.3.6",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "a528ee9b46fb380f8cce8b55941c1ae61e3a65b1",
+            "comment": "Document root-tagged Dagger modules"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Oct 2026 20:46:26 GMT",
       "version": "0.3.6",
       "tag": "projen-dagger_v0.3.6",

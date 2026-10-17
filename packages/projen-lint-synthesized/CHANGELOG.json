@@ -2,6 +2,29 @@
   "name": "projen-lint-synthesized",
   "entries": [
     {
+      "date": "Sat, 17 Oct 2026 19:15:20 GMT",
+      "version": "0.5.22",
+      "tag": "projen-lint-synthesized_v0.5.22",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-lint-synthesized",
+            "commit": "a528ee9b46fb380f8cce8b55941c1ae61e3a65b1",
+            "comment": "Fix a typo in the readme"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-lint-synthesized",
+            "commit": "a528ee9b46fb380f8cce8b55941c1ae61e3a65b1",
+            "comment": "Update dependency execa to v10.1.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 10:59:34 GMT",
       "version": "0.5.21",
       "tag": "projen-lint-synthesized_v0.5.21",

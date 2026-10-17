@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 17 Oct 2026 19:15:20 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.39.0
+
+Sat, 17 Oct 2026 19:15:20 GMT
+
+### Minor changes
+
+- Read root-tagged Dagger modules against their root tags (filip.dupanovic@gmail.com)
+- Bump projen-lint-synthesized to v0.5.22
 
 ## 0.38.2
 

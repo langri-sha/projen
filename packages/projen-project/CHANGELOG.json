@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 17 Oct 2026 19:15:20 GMT",
+      "version": "0.39.0",
+      "tag": "@langri-sha/projen-project_v0.39.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "a528ee9b46fb380f8cce8b55941c1ae61e3a65b1",
+            "comment": "Read root-tagged Dagger modules against their root tags"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-lint-synthesized to v0.5.22",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Oct 2026 20:46:26 GMT",
       "version": "0.38.2",
       "tag": "@langri-sha/projen-project_v0.38.2",
