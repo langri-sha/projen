@@ -26,3 +26,6 @@ source = "github.com/langri-sha/dagger/ci@v1.2.0"
 
 [modules.typescript]
 source = "github.com/langri-sha/dagger/typescript@v1.2.0"
+
+[modules.vitest]
+source = "github.com/langri-sha/dagger/vitest@v1.2.0"
