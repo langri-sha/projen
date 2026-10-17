@@ -48,7 +48,7 @@ import { vi } from 'vitest'
 import { NodePackage, type NodePackageOptions, ProjenrcFile } from './lib'
 import { GitAttributesFile } from './lib/gitattributes'
 
-import { Project } from './index'
+import { Project, type ProjectDaggerOptions } from './index'
 
 const skillsOptions = {
   skills: [
@@ -2055,7 +2055,7 @@ test('with Renovate options, reading Dagger module refs pinned to a tag', () => 
       "customType": "regex",
       "datasourceTemplate": "github-tags",
       "depNameTemplate": "github.com/{{{repo}}}{{#if subdir}}/{{{subdir}}}{{/if}}",
-      "extractVersionTemplate": "^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$",
+      "extractVersionTemplate": "^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{#unless (includes (toArray 'dagger/python' 'langri-sha/dagger') repo)}}{{{subdir}}}/{{/unless}}{{/if}}{{/if}}v(?<version>.+)$",
       "managerFilePatterns": [
         "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
         "/(^|/)dagger\\.toml$/",
@@ -2068,6 +2068,43 @@ test('with Renovate options, reading Dagger module refs pinned to a tag', () => 
       "versioningTemplate": "semver",
     }
   `)
+})
+
+const moduleRefManager = (dagger: ProjectDaggerOptions) =>
+  synthSnapshot(
+    new Project({
+      name: 'test-project',
+      dagger,
+      renovate: {},
+    }),
+  )['renovate.json5'].customManagers.find(
+    ({ packageNameTemplate }: { packageNameTemplate?: string }) =>
+      packageNameTemplate === '{{{repo}}}',
+  )
+
+test('with Renovate options, reading module refs of the named root-tagged repositories against the root tags', () => {
+  expect(
+    moduleRefManager({ rootTaggedRepositories: ['acme/modules'] })
+      .extractVersionTemplate,
+  ).toMatchInlineSnapshot(
+    `"^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{#unless (includes (toArray 'acme/modules') repo)}}{{{subdir}}}/{{/unless}}{{/if}}{{/if}}v(?<version>.+)$"`,
+  )
+})
+
+test('with Renovate options and no root-tagged repositories, reading every module ref against its subdirectory', () => {
+  expect(
+    moduleRefManager({ rootTaggedRepositories: [] }).extractVersionTemplate,
+  ).toMatchInlineSnapshot(
+    `"^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{{subdir}}}/{{/if}}{{/if}}v(?<version>.+)$"`,
+  )
+})
+
+test('with Renovate options, rejecting a root-tagged repository that is not owner/name', () => {
+  expect(() =>
+    moduleRefManager({ rootTaggedRepositories: ["acme/modules') x ('"] }),
+  ).toThrow(
+    `Cannot read Dagger module tags at the root of "acme/modules') x ('". Name the repository as owner/name.`,
+  )
 })
 
 test('with Renovate options and no uv workspace', () => {
