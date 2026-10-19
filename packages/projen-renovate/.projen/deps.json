@@ -17,7 +17,7 @@
     },
     {
       "name": "schemastore-to-typescript",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "type": "build"
     },
     {
