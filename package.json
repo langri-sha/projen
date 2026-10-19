@@ -42,7 +42,7 @@
     "lint-staged": "17.6.0",
     "prettier": "3.9.9",
     "projen": "0.104.1",
-    "schemastore-to-typescript": "1.0.3",
+    "schemastore-to-typescript": "1.0.4",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
     "vitest": "5.0.5"
