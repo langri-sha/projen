@@ -27,7 +27,7 @@
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
     "projen": "0.104.1",
-    "schemastore-to-typescript": "1.0.3",
+    "schemastore-to-typescript": "1.0.4",
     "smol-toml": "1.9.1"
   },
   "peerDependencies": {
