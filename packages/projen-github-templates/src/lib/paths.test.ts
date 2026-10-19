@@ -6,6 +6,7 @@ describe('templateKind', () => {
   test.each([
     ['.github/ISSUE_TEMPLATE/config.yml', 'chooser'],
     ['.github/ISSUE_TEMPLATE/01-bug.yml', 'issue-form'],
+    ['.github/ISSUE_TEMPLATE/02-feature.yml', 'issue-form'],
     ['.github/ISSUE_TEMPLATE/Bug Report.yml', 'issue-form'],
     ['.github/ISSUE_TEMPLATE/02-proposal.md', 'issue-template'],
     ['.github/ISSUE_TEMPLATE/config.md', 'issue-template'],
