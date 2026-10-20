@@ -1230,6 +1230,13 @@ export class Project extends BaseProject {
                 groupSlug: 'dagger-engine',
                 matchDepNames: ['dagger/dagger'],
               },
+              {
+                description:
+                  'Move the langri-sha/dagger modules together, as they are released in lockstep',
+                groupName: 'langri-sha Dagger modules',
+                groupSlug: 'langri-sha-dagger-modules',
+                matchDepNames: ['github.com/langri-sha/dagger/**'],
+              },
             ]
           : []),
         // Synthesis writes every requirement into the manifests, so a range
