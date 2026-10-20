@@ -30,5 +30,8 @@ source = "github.com/langri-sha/dagger/typescript@v1.4.1"
 [modules.vitest]
 source = "github.com/langri-sha/dagger/vitest@v1.4.1"
 
+[modules.vitest.settings]
+baseImageAddress = "node:24"
+
 [modules.beachball]
 source = "github.com/langri-sha/dagger/beachball@v1.4.1"
