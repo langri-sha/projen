@@ -1989,6 +1989,47 @@ test('with Renovate options, reading the Dagger engine out of the projenrc', () 
   `)
 })
 
+test('with Renovate options, grouping the langri-sha/dagger modules', () => {
+  const project = new Project({
+    name: 'test-project',
+    dagger: {},
+    renovate: {},
+  })
+
+  const { packageRules } = synthSnapshot(project)['renovate.json5']
+
+  expect(
+    packageRules.filter(
+      ({ groupSlug }: { groupSlug?: string }) =>
+        groupSlug === 'langri-sha-dagger-modules',
+    ),
+  ).toMatchInlineSnapshot(`
+    [
+      {
+        "description": "Move the langri-sha/dagger modules together, as they are released in lockstep",
+        "groupName": "langri-sha Dagger modules",
+        "groupSlug": "langri-sha-dagger-modules",
+        "matchDepNames": [
+          "github.com/langri-sha/dagger/**",
+        ],
+      },
+    ]
+  `)
+})
+
+test('with Renovate options and no Dagger, not grouping the langri-sha/dagger modules', () => {
+  const project = new Project({
+    name: 'test-project',
+    renovate: {},
+  })
+
+  const { packageRules } = synthSnapshot(project)['renovate.json5']
+
+  expect(
+    packageRules.map(({ groupSlug }: { groupSlug?: string }) => groupSlug),
+  ).not.toContain('langri-sha-dagger-modules')
+})
+
 test('with Renovate options, reading the Dagger version pinned in workflows', () => {
   const project = new Project({
     name: 'test-project',
