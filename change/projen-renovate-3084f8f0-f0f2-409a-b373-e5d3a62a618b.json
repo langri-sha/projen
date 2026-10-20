@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update schemastore-to-typescript to 1.0.4",
-  "packageName": "projen-renovate",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,16 @@
 # Change Log - projen-renovate
 
-<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 20 Oct 2026 07:26:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.29
+
+Tue, 20 Oct 2026 07:26:45 GMT
+
+### Patches
+
+- Update schemastore-to-typescript to 1.0.4 (filip.dupanovic@gmail.com)
 
 ## 0.4.28
 

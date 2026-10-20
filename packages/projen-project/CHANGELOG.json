@@ -2,6 +2,63 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Tue, 20 Oct 2026 07:26:45 GMT",
+      "version": "0.40.0",
+      "tag": "@langri-sha/projen-project_v0.40.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "ea4aa0de0841f26ad188b83f8cd6f3576fbf4f78",
+            "comment": "Group the langri-sha/dagger modules into one Renovate upgrade"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-cargo to v0.2.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-pnpm-workspace to v0.4.17",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-renovate to v0.4.29",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ruff to v0.1.4",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-swcrc to v0.1.30",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ty to v0.1.4",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-uv to v0.2.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 17 Oct 2026 19:15:20 GMT",
       "version": "0.39.0",
       "tag": "@langri-sha/projen-project_v0.39.0",

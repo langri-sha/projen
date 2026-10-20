@@ -2,6 +2,21 @@
   "name": "projen-uv",
   "entries": [
     {
+      "date": "Tue, 20 Oct 2026 07:26:45 GMT",
+      "version": "0.2.3",
+      "tag": "projen-uv_v0.2.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-uv",
+            "commit": "ea4aa0de0841f26ad188b83f8cd6f3576fbf4f78",
+            "comment": "Update schemastore-to-typescript to 1.0.4"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Oct 2026 01:08:30 GMT",
       "version": "0.2.2",
       "tag": "projen-uv_v0.2.2",

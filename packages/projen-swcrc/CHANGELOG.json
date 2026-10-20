@@ -2,6 +2,21 @@
   "name": "projen-swcrc",
   "entries": [
     {
+      "date": "Tue, 20 Oct 2026 07:26:45 GMT",
+      "version": "0.1.30",
+      "tag": "projen-swcrc_v0.1.30",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-swcrc",
+            "commit": "ea4aa0de0841f26ad188b83f8cd6f3576fbf4f78",
+            "comment": "Update schemastore-to-typescript to 1.0.4"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 11 Oct 2026 10:59:34 GMT",
       "version": "0.1.29",
       "tag": "projen-swcrc_v0.1.29",

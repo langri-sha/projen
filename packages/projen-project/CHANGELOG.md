@@ -1,8 +1,23 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 17 Oct 2026 19:15:20 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 20 Oct 2026 07:26:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.40.0
+
+Tue, 20 Oct 2026 07:26:45 GMT
+
+### Minor changes
+
+- Group the langri-sha/dagger modules into one Renovate upgrade (filip.dupanovic@gmail.com)
+- Bump projen-cargo to v0.2.2
+- Bump projen-pnpm-workspace to v0.4.17
+- Bump projen-renovate to v0.4.29
+- Bump projen-ruff to v0.1.4
+- Bump projen-swcrc to v0.1.30
+- Bump projen-ty to v0.1.4
+- Bump projen-uv to v0.2.3
 
 ## 0.39.0
 
