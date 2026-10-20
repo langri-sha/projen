@@ -120,13 +120,6 @@ const project = new Project({
     packageRules: [
       {
         description:
-          'Move the langri-sha/dagger modules together, as they are released in lockstep',
-        groupName: 'langri-sha Dagger modules',
-        groupSlug: 'langri-sha-dagger-modules',
-        matchDepNames: ['github.com/langri-sha/dagger/**'],
-      },
-      {
-        description:
           'Update schemastore-to-typescript with our own packages and install it without waiting it out',
         groupName: 'langri-sha projen toolchain',
         groupSlug: 'langri-sha-projen',
