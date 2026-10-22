@@ -17,7 +17,30 @@ projects.
 - configures extensive list of Git ignore patterns
 - manages [code owners] with [`projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`projen-worktrunk`]
+- shares [Claude Code] settings with [`projen-claude`]
 - declares and installs agent [skills] with [`projen-skills`]
+
+## Claude Code
+
+Given a `claude` option, the preset writes `.claude/settings.json` through
+[`projen-claude`]. Root projects only: Claude Code reads the file from the
+directory it is started in, so a session started in a subproject does not see
+it, and such a subproject wants a `Claude` component of its own. The preset adds
+no settings of its own: permissions, model and attribution are yours to declare.
+
+```ts
+new Project({
+  name: 'my-project',
+  claude: {
+    settings: {
+      permissions: { deny: ['Read(./.env)'] },
+    },
+  },
+})
+```
+
+Add to it afterwards with `project.claude?.addAllow('Bash(pnpm test:*)')` and
+the other methods the component has.
 
 ## Worktrunk
 
@@ -93,6 +116,7 @@ new Project({
 ```
 
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
+[`projen-claude`]: https://www.npmjs.com/package/projen-claude
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
 [`projen-husky`]: https://www.npmjs.com/package/projen-husky
@@ -104,6 +128,7 @@ new Project({
 [`@langri-sha/tsconfig`]: https://www.npmjs.com/package/@langri-sha/tsconfig
 [beachball]: https://microsoft.github.io/beachball/
 [cargo]: https://doc.rust-lang.org/cargo/
+[claude code]: https://code.claude.com/docs/en/settings
 [code owners]:
   https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 [dagger]: https://dagger.io/
