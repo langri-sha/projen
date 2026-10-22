@@ -122,6 +122,14 @@ export class Claude extends Component {
       readonly: true,
       obj: () => this.settings,
     })
+
+    // After the file, whose own annotation this has to follow on the line:
+    // hooks and allowed commands run on teammates' machines, so a change to
+    // them must not arrive collapsed in review.
+    project.gitattributes.addAttributes(
+      `/${SETTINGS_FILE}`,
+      '-linguist-generated',
+    )
   }
 
   /**
