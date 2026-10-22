@@ -13,6 +13,9 @@
       "path": "../projen-cargo"
     },
     {
+      "path": "../projen-claude"
+    },
+    {
       "path": "../projen-codeowners"
     },
     {

@@ -1736,6 +1736,7 @@ describe('Project.presetPackages', () => {
         "projen-babel-config",
         "projen-beachball",
         "projen-cargo",
+        "projen-claude",
         "projen-codeowners",
         "projen-dagger",
         "projen-editorconfig",

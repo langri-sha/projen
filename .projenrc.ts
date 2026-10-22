@@ -661,6 +661,7 @@ project.addSubproject(
         'projen-babel-config@workspace:*',
         'projen-beachball@workspace:*',
         'projen-cargo@workspace:*',
+        'projen-claude@workspace:*',
         'projen-codeowners@workspace:*',
         'projen-dagger@workspace:*',
         'projen-editorconfig@workspace:*',
