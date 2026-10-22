@@ -59,6 +59,7 @@ const project = new Project({
   eslint: {
     ignorePatterns: [
       '**/cargo.ts',
+      'packages/projen-claude/src/settings.ts',
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',
       '**/renovate.ts',
@@ -93,6 +94,7 @@ const project = new Project({
     ignorePatterns: [
       '*.frag',
       'cargo.ts',
+      'packages/projen-claude/src/settings.ts',
       'pnpm-workspace.ts',
       'pyproject.ts',
       'renovate.ts',
@@ -324,6 +326,43 @@ project.addSubproject(
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
+    )
+  },
+)
+
+project.addSubproject(
+  {
+    name: 'projen-claude',
+    outdir: path.join('packages', 'projen-claude'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      description:
+        'A projen component for authoring Claude Code settings, so the permissions, hooks and environment a repository shares are declared in your projenrc along with everything else.',
+      type: 'module',
+      devDeps: ['schemastore-to-typescript@1.0.5'],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+  (project) => {
+    project.addGitIgnore('settings.ts')
+
+    project.package?.setScript(
+      'prepare',
+      "schemastore-to-typescript --no-cache 'Claude Code Settings' src/settings.ts",
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/settings.d.ts',
     )
   },
 )
