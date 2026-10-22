@@ -1,6 +1,11 @@
 import { Component, JsonFile, type Project } from 'projen'
 
-import type { ClaudeCodeSettings } from './settings.js'
+import type {
+  ClaudeCodeSettings,
+  HookCommand,
+  HookMatcher,
+  PermissionRule,
+} from './settings.js'
 
 export * from './settings.js'
 
@@ -15,6 +20,20 @@ const SCHEMA_URL = 'https://json.schemastore.org/claude-code-settings.json'
  * keys it lacks with `file.addOverride()`.
  */
 export type ClaudeSettings = ClaudeCodeSettings
+
+/**
+ * The events that take hooks.
+ */
+export type ClaudeHookEvent = keyof NonNullable<ClaudeSettings['hooks']>
+
+export type ClaudeMarketplace = NonNullable<
+  ClaudeSettings['extraKnownMarketplaces']
+>[string]
+
+/**
+ * The permission lists a rule goes in.
+ */
+export type ClaudePermissionList = 'allow' | 'ask' | 'deny'
 
 /**
  * Claude options.
@@ -90,5 +109,119 @@ export class Claude extends Component {
    */
   get settings(): ClaudeSettings {
     return structuredClone(this.#settings)
+  }
+
+  /**
+   * Allow tool calls that match the rules, in Claude Code's permission rule
+   * syntax.
+   */
+  addAllow(...rules: PermissionRule[]) {
+    this.#addRules('allow', rules)
+  }
+
+  /**
+   * Make tool calls that match the rules prompt, whatever else allows them.
+   */
+  addAsk(...rules: PermissionRule[]) {
+    this.#addRules('ask', rules)
+  }
+
+  /**
+   * Deny tool calls that match the rules.
+   */
+  addDeny(...rules: PermissionRule[]) {
+    this.#addRules('deny', rules)
+  }
+
+  /**
+   * Run a hook on an event. Hooks with the same matcher share a group, and one
+   * that is already there is not added twice.
+   */
+  addHook(
+    event: ClaudeHookEvent,
+    hook: HookCommand,
+    options: { readonly matcher?: string } = {},
+  ) {
+    const { matcher } = options
+    const hooks = (this.#settings.hooks ??= {})
+    const groups: HookMatcher[] = (hooks[event] ??= [])
+    const group = groups.find((group) => group.matcher === matcher)
+
+    if (!group) {
+      groups.push({
+        ...(matcher !== undefined && { matcher }),
+        hooks: [structuredClone(hook)],
+      })
+
+      return
+    }
+
+    const serialized = JSON.stringify(hook)
+
+    if (!group.hooks.some((other) => JSON.stringify(other) === serialized)) {
+      group.hooks.push(structuredClone(hook))
+    }
+  }
+
+  /**
+   * Set an environment variable for Claude Code sessions. Throws if the name
+   * is already set to something else, as which one wins is the caller's call.
+   */
+  addEnv(name: string, value: string) {
+    const env: Record<string, unknown> = (this.#settings.env ??= {})
+
+    if (env[name] !== undefined && env[name] !== value) {
+      throw new Error(
+        `env.${name} is already set to '${String(env[name])}', so '${value}' cannot replace it.`,
+      )
+    }
+
+    env[name] = value
+  }
+
+  /**
+   * Enable a plugin, named `plugin@marketplace`. Throws if it is already
+   * enabled or disabled the other way.
+   */
+  addEnabledPlugin(id: string, enabled = true) {
+    const plugins = (this.#settings.enabledPlugins ??= {})
+
+    if (plugins[id] !== undefined && plugins[id] !== enabled) {
+      throw new Error(
+        `Plugin ${id} is already ${plugins[id] ? 'enabled' : 'disabled'}, so it cannot be ${enabled ? 'enabled' : 'disabled'}.`,
+      )
+    }
+
+    plugins[id] = enabled
+  }
+
+  /**
+   * Make a plugin marketplace known to the repository. Throws if the name
+   * already points at a different source.
+   */
+  addMarketplace(name: string, marketplace: ClaudeMarketplace) {
+    const marketplaces = (this.#settings.extraKnownMarketplaces ??= {})
+
+    if (
+      marketplaces[name] !== undefined &&
+      JSON.stringify(marketplaces[name]) !== JSON.stringify(marketplace)
+    ) {
+      throw new Error(
+        `Marketplace ${name} already points at ${JSON.stringify(marketplaces[name].source)}, so it cannot point at ${JSON.stringify(marketplace.source)}.`,
+      )
+    }
+
+    marketplaces[name] = structuredClone(marketplace)
+  }
+
+  #addRules(list: ClaudePermissionList, rules: PermissionRule[]) {
+    const permissions = (this.#settings.permissions ??= {})
+    const current = (permissions[list] ??= [])
+
+    for (const rule of rules) {
+      if (!current.includes(rule)) {
+        current.push(rule)
+      }
+    }
   }
 }
