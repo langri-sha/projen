@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add a claude option for the Claude Code settings",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
