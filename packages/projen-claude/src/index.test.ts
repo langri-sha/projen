@@ -167,3 +167,245 @@ describe('ignore file', () => {
     })
   })
 })
+
+describe('permission rules', () => {
+  const claude = (options?: ClaudeOptions) =>
+    new Claude(new Project({ name: 'test-project' }), options)
+
+  test.each(['allow', 'ask', 'deny'] as const)(
+    'adds to the %s list',
+    (list) => {
+      const component = claude()
+      const add = {
+        allow: component.addAllow,
+        ask: component.addAsk,
+        deny: component.addDeny,
+      }[list].bind(component)
+
+      add('Bash(git status)', 'Read(./src/**)')
+
+      expect(component.settings.permissions?.[list]).toEqual([
+        'Bash(git status)',
+        'Read(./src/**)',
+      ])
+    },
+  )
+
+  test('keeps the rules the options declared, first', () => {
+    const component = claude({
+      settings: { permissions: { deny: ['Read(./.env)'] } },
+    })
+
+    component.addDeny('Read(./secrets/**)')
+
+    expect(component.settings.permissions?.deny).toEqual([
+      'Read(./.env)',
+      'Read(./secrets/**)',
+    ])
+  })
+
+  test('does not repeat a rule', () => {
+    const component = claude({
+      settings: { permissions: { allow: ['Bash(ls)'] } },
+    })
+
+    component.addAllow('Bash(ls)', 'Bash(pwd)', 'Bash(pwd)')
+
+    expect(component.settings.permissions?.allow).toEqual([
+      'Bash(ls)',
+      'Bash(pwd)',
+    ])
+  })
+
+  test('leaves the other lists out', () => {
+    const component = claude()
+
+    component.addAllow('Bash(ls)')
+
+    expect(component.settings.permissions).not.toHaveProperty('deny')
+  })
+})
+
+describe('hooks', () => {
+  const claude = () => new Claude(new Project({ name: 'test-project' }))
+  const format = { type: 'command', command: 'prettier --write .' } as const
+  const lint = { type: 'command', command: 'eslint .' } as const
+
+  test('adds a hook under its matcher', () => {
+    const component = claude()
+
+    component.addHook('PostToolUse', format, { matcher: 'Edit|Write' })
+
+    expect(component.settings.hooks).toEqual({
+      PostToolUse: [{ matcher: 'Edit|Write', hooks: [format] }],
+    })
+  })
+
+  test('adds a hook without a matcher', () => {
+    const component = claude()
+
+    component.addHook('Stop', format)
+
+    expect(component.settings.hooks).toEqual({
+      Stop: [{ hooks: [format] }],
+    })
+  })
+
+  test('groups hooks that share a matcher', () => {
+    const component = claude()
+
+    component.addHook('PostToolUse', format, { matcher: 'Edit' })
+    component.addHook('PostToolUse', lint, { matcher: 'Edit' })
+
+    expect(component.settings.hooks?.PostToolUse).toEqual([
+      { matcher: 'Edit', hooks: [format, lint] },
+    ])
+  })
+
+  test('keeps hooks with different matchers apart', () => {
+    const component = claude()
+
+    component.addHook('PostToolUse', format, { matcher: 'Edit' })
+    component.addHook('PostToolUse', lint)
+
+    expect(component.settings.hooks?.PostToolUse).toEqual([
+      { matcher: 'Edit', hooks: [format] },
+      { hooks: [lint] },
+    ])
+  })
+
+  test('does not repeat a hook', () => {
+    const component = claude()
+
+    component.addHook('Stop', format)
+    component.addHook('Stop', { ...format })
+
+    expect(component.settings.hooks?.Stop).toEqual([{ hooks: [format] }])
+  })
+
+  test('is not changed by later changes to the hook', () => {
+    const component = claude()
+    const hook = { type: 'command' as const, command: 'prettier --write .' }
+
+    component.addHook('Stop', hook)
+    hook.command = 'rm -rf .'
+
+    expect(component.settings.hooks?.Stop).toEqual([{ hooks: [format] }])
+  })
+})
+
+describe('environment', () => {
+  const claude = (options?: ClaudeOptions) =>
+    new Claude(new Project({ name: 'test-project' }), options)
+
+  test('sets a variable', () => {
+    const component = claude()
+
+    component.addEnv('BASH_DEFAULT_TIMEOUT_MS', '60000')
+
+    expect(component.settings.env).toEqual({ BASH_DEFAULT_TIMEOUT_MS: '60000' })
+  })
+
+  test('accepts the same value again', () => {
+    const component = claude({ settings: { env: { FOO: 'bar' } } })
+
+    component.addEnv('FOO', 'bar')
+
+    expect(component.settings.env).toEqual({ FOO: 'bar' })
+  })
+
+  test('refuses another value', () => {
+    const component = claude({ settings: { env: { FOO: 'bar' } } })
+
+    expect(() => component.addEnv('FOO', 'baz')).toThrow(
+      "env.FOO is already set to 'bar', so 'baz' cannot replace it.",
+    )
+  })
+})
+
+describe('plugins', () => {
+  const claude = (options?: ClaudeOptions) =>
+    new Claude(new Project({ name: 'test-project' }), options)
+
+  const marketplace = {
+    source: { source: 'github', repo: 'langri-sha/marketplace' },
+  } as const
+
+  test('enables a plugin', () => {
+    const component = claude()
+
+    component.addEnabledPlugin('formatter@tools')
+
+    expect(component.settings.enabledPlugins).toEqual({
+      'formatter@tools': true,
+    })
+  })
+
+  test('disables a plugin', () => {
+    const component = claude()
+
+    component.addEnabledPlugin('formatter@tools', false)
+
+    expect(component.settings.enabledPlugins).toEqual({
+      'formatter@tools': false,
+    })
+  })
+
+  test('refuses to flip a plugin', () => {
+    const component = claude({
+      settings: { enabledPlugins: { 'formatter@tools': true } },
+    })
+
+    expect(() => component.addEnabledPlugin('formatter@tools', false)).toThrow(
+      'Plugin formatter@tools is already enabled, so it cannot be disabled.',
+    )
+  })
+
+  test('adds a marketplace', () => {
+    const component = claude()
+
+    component.addMarketplace('tools', marketplace)
+
+    expect(component.settings.extraKnownMarketplaces).toEqual({
+      tools: marketplace,
+    })
+  })
+
+  test('accepts the same marketplace again', () => {
+    const component = claude()
+
+    component.addMarketplace('tools', marketplace)
+    component.addMarketplace('tools', structuredClone(marketplace))
+
+    expect(component.settings.extraKnownMarketplaces).toEqual({
+      tools: marketplace,
+    })
+  })
+
+  test('refuses another source for a marketplace', () => {
+    const component = claude()
+
+    component.addMarketplace('tools', marketplace)
+
+    expect(() =>
+      component.addMarketplace('tools', {
+        source: { source: 'url', url: 'https://example.com/marketplace.json' },
+      }),
+    ).toThrow('Marketplace tools already points at')
+  })
+})
+
+test('writes what was added', () => {
+  const project = new Project({ name: 'test-project' })
+  const claude = new Claude(project)
+
+  claude.addDeny('Read(./.env)')
+  claude.addHook(
+    'PreToolUse',
+    { type: 'command', command: 'check-command' },
+    { matcher: 'Bash' },
+  )
+  claude.addEnv('BASH_DEFAULT_TIMEOUT_MS', '60000')
+
+  expect(synthSnapshot(project)['.claude/settings.json']).toMatchSnapshot()
+})
