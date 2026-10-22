@@ -491,3 +491,45 @@ describe('ownership', () => {
     expect(() => project.synth()).not.toThrow()
   })
 })
+
+describe('attributes', () => {
+  class AnnotatingProject extends Project {
+    override annotateGenerated(glob: string) {
+      this.gitattributes.addAttributes(glob, 'linguist-generated')
+    }
+  }
+
+  test('keeps the settings expanded in review', () => {
+    expect(synth()['.gitattributes']).toContain(
+      '/.claude/settings.json -linguist-generated',
+    )
+  })
+
+  test('overrules a project that annotates generated files', () => {
+    const project = new AnnotatingProject({ name: 'test-project' })
+
+    new Claude(project)
+    project.synth()
+
+    execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+    expect(
+      execFileSync(
+        'git',
+        [
+          'check-attr',
+          'linguist-generated',
+          '.claude/settings.json',
+          '.gitignore',
+        ],
+        { cwd: project.outdir, encoding: 'utf8' },
+      ),
+    ).toBe(
+      [
+        '.claude/settings.json: linguist-generated: unset',
+        '.gitignore: linguist-generated: set',
+        '',
+      ].join('\n'),
+    )
+  })
+})
