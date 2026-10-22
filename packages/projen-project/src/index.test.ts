@@ -22,6 +22,7 @@ import { synthSnapshot } from 'projen/lib/util/synth'
 import { Babel } from 'projen-babel-config'
 import { Beachball } from 'projen-beachball'
 import { CargoPackage, CargoWorkspace } from 'projen-cargo'
+import { Claude } from 'projen-claude'
 import { Codeowners } from 'projen-codeowners'
 import { Dagger } from 'projen-dagger'
 import { EditorConfig } from 'projen-editorconfig'
@@ -1299,6 +1300,110 @@ describe('with skills options', () => {
     })
 
     expect(project.skills).toBeUndefined()
+  })
+})
+
+describe('with Claude options', () => {
+  const claude = {
+    settings: { permissions: { deny: ['Read(./.env)'] } },
+  }
+
+  test('writes the settings', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      claude,
+    })
+
+    const files = synthSnapshot(project)
+
+    expect(project.claude).toBeInstanceOf(Claude)
+    expect(files['.claude/settings.json'].permissions).toEqual(
+      claude.settings.permissions,
+    )
+  })
+
+  test('writes nothing without it', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+    })
+
+    const files = synthSnapshot(project)
+
+    expect(project.claude).toBeUndefined()
+    expect(
+      Object.keys(files).filter((file) => file.startsWith('.claude')),
+    ).toEqual([])
+    expect(files['.gitignore']).not.toContain('.claude')
+  })
+
+  test('supplies no settings of its own', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      claude: {},
+    })
+
+    expect(
+      Object.keys(synthSnapshot(project)['.claude/settings.json']).sort(),
+    ).toEqual(['$schema', '//'])
+  })
+
+  describe('as git reads it under the deny-by-default ignore file', () => {
+    const ignored = (file: string) => {
+      const project = new Project({
+        name: 'test-project',
+        claude: {},
+      })
+
+      project.synth()
+
+      execFileSync('git', ['init', '--quiet'], { cwd: project.outdir })
+
+      try {
+        execFileSync('git', ['check-ignore', '--quiet', file], {
+          cwd: project.outdir,
+        })
+
+        return true
+      } catch {
+        return false
+      }
+    }
+
+    test('the preset ignores dot-directories', () => {
+      const project = new Project({
+        name: 'test-project',
+        claude: {},
+      })
+
+      expect(synthSnapshot(project)['.gitignore']).toMatch(/^\.\*$/m)
+    })
+
+    test('the settings are tracked', () => {
+      expect(ignored('.claude/settings.json')).toBe(false)
+    })
+
+    test('the personal settings are ignored', () => {
+      expect(ignored('.claude/settings.local.json')).toBe(true)
+    })
+  })
+
+  test('is left to the root project', () => {
+    const parent = new Project({
+      name: 'parent',
+      package: {},
+    })
+    const project = new Project({
+      name: 'test-project',
+      parent,
+      outdir: 'test-project',
+      package: {},
+      claude,
+    })
+
+    expect(project.claude).toBeUndefined()
   })
 })
 

@@ -15,6 +15,7 @@ import {
 import { Babel, BabelOptions } from 'projen-babel-config'
 import { Beachball, BeachballOptions } from 'projen-beachball'
 import { type CargoOptions, CargoPackage, CargoWorkspace } from 'projen-cargo'
+import { Claude, type ClaudeOptions } from 'projen-claude'
 import { Codeowners, type CodeownersOptions } from 'projen-codeowners'
 import { Dagger, type DaggerOptions } from 'projen-dagger'
 import { EditorConfig, type EditorConfigOptions } from 'projen-editorconfig'
@@ -203,6 +204,17 @@ export interface ProjectOptions extends Omit<
    */
   cargo?: CargoOptions
 
+  /**
+   * Pass in to write the Claude Code settings the repository shares, to
+   * `.claude/settings.json`. Root projects only. Claude Code reads the file
+   * from the directory it is started in, so a session started in a subproject
+   * does not see the root's; give such a subproject a `Claude` component of
+   * its own.
+   *
+   * The preset supplies no settings of its own.
+   */
+  claude?: ClaudeOptions
+
   /*
    * Pass in to set up Beachball.
    */
@@ -356,6 +368,7 @@ export class Project extends BaseProject {
   babel?: Babel
   beachball?: Beachball
   cargo?: CargoPackage | CargoWorkspace
+  claude?: Claude
   codeowners?: Codeowners
   dagger?: Dagger
   editorConfig?: EditorConfig
@@ -437,6 +450,7 @@ export class Project extends BaseProject {
     this.#configureBabel(options)
     this.#configureBeachball(options)
     this.#configureCargo(options)
+    this.#configureClaude(options)
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
     this.#configureGitAttributes()
@@ -802,6 +816,14 @@ export class Project extends BaseProject {
     workspace?.addMember(
       path.relative(this.root.outdir, this.outdir).split(path.sep).join('/'),
     )
+  }
+
+  #configureClaude({ claude }: ProjectOptions) {
+    if (!claude || this.parent) {
+      return
+    }
+
+    this.claude = new Claude(this, claude)
   }
 
   #configureCodeowners({ codeowners: codeownersOptions }: ProjectOptions) {
