@@ -552,6 +552,9 @@ importers:
       projen-cargo:
         specifier: workspace:*
         version: link:../projen-cargo
+      projen-claude:
+        specifier: workspace:*
+        version: link:../projen-claude
       projen-codeowners:
         specifier: workspace:*
         version: link:../projen-codeowners
