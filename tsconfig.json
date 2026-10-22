@@ -20,6 +20,9 @@
       "path": "packages/projen-cargo"
     },
     {
+      "path": "packages/projen-claude"
+    },
+    {
       "path": "packages/projen-codeowners"
     },
     {

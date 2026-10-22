@@ -274,6 +274,21 @@ importers:
         specifier: 1.0.5
         version: 1.0.5(supports-color@8.1.1)
 
+  packages/projen-claude:
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: 1.1.1
+        version: 1.1.1(typescript@5.9.3)
+      '@langri-sha/vitest':
+        specifier: 0.2.3
+        version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
+      schemastore-to-typescript:
+        specifier: 1.0.5
+        version: 1.0.5(supports-color@8.1.1)
+
   packages/projen-codeowners:
     devDependencies:
       '@langri-sha/tsconfig':
@@ -4084,6 +4099,10 @@ packages:
   safe-regex-test@1.1.0:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
+
+  schemastore-to-typescript@1.0.5:
+    resolution: {integrity: sha512-pKJKxf4WtZVFah1Rw99TWjC/hRxQS05nEUd1WtEW0OmU4MKJIkaJqGinI5hl2yPE6jXW0mt0NJ9obA+Ki8oq9g==}
+    hasBin: true
 
   schemastore-to-typescript@1.0.5:
     resolution: {integrity: sha512-pKJKxf4WtZVFah1Rw99TWjC/hRxQS05nEUd1WtEW0OmU4MKJIkaJqGinI5hl2yPE6jXW0mt0NJ9obA+Ki8oq9g==}
@@ -8189,6 +8208,19 @@ snapshots:
       call-bound: 1.0.4
       es-errors: 1.3.0
       is-regex: 1.2.1
+
+  schemastore-to-typescript@1.0.5(supports-color@8.1.1):
+    dependencies:
+      commander: 15.0.0
+      debug: 4.4.3(supports-color@8.1.1)
+      env-paths: 4.0.0
+      es-main: 1.4.0
+      got: 16.1.0
+      json-schema-to-typescript: 16.0.0
+      keyv: 5.6.0
+      keyv-file: 5.3.5
+    transitivePeerDependencies:
+      - supports-color
 
   schemastore-to-typescript@1.0.5(supports-color@8.1.1):
     dependencies:

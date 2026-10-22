@@ -7,6 +7,7 @@ export default [
       '**/.*',
       '**/dist/',
       '**/cargo.ts',
+      'packages/projen-claude/src/settings.ts',
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',
       '**/renovate.ts',
