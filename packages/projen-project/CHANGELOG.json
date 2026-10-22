@@ -2,6 +2,69 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 22 Oct 2026 22:49:08 GMT",
+      "version": "0.40.1",
+      "tag": "@langri-sha/projen-project_v0.40.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "cabc3732424b75d53931a7eb244667ca64104522",
+            "comment": "Update dependency eslint to v10.13.0"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-cargo to v0.2.3",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-lint-synthesized to v0.5.23",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-pnpm-workspace to v0.4.18",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-renovate to v0.4.30",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ruff to v0.1.5",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-swcrc to v0.1.31",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ty to v0.1.5",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-uv to v0.2.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 20 Oct 2026 07:26:45 GMT",
       "version": "0.40.0",
       "tag": "@langri-sha/projen-project_v0.40.0",

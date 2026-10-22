@@ -1,0 +1,20 @@
+{
+  "name": "projen-claude",
+  "entries": [
+    {
+      "date": "Thu, 22 Oct 2026 22:49:08 GMT",
+      "version": "0.1.0",
+      "tag": "projen-claude_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-claude",
+            "commit": "cabc3732424b75d53931a7eb244667ca64104522",
+            "comment": "Add a component for Claude Code settings"
+          }
+        ]
+      }
+    }
+  ]
+}

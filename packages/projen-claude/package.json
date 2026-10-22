@@ -1,6 +1,6 @@
 {
   "name": "projen-claude",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A projen component for authoring Claude Code settings, so the permissions, hooks and environment a repository shares are declared in your projenrc along with everything else.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"

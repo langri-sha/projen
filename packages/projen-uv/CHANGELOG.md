@@ -1,8 +1,16 @@
 # Change Log - projen-uv
 
-<!-- This log was last generated on Tue, 20 Oct 2026 07:26:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 22 Oct 2026 22:49:08 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.4
+
+Thu, 22 Oct 2026 22:49:08 GMT
+
+### Patches
+
+- Update dependency schemastore-to-typescript to v1.0.5
 
 ## 0.2.3
 

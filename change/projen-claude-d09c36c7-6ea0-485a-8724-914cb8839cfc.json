@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Add a component for Claude Code settings",
-  "packageName": "projen-claude",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

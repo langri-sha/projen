@@ -2,6 +2,21 @@
   "name": "projen-renovate",
   "entries": [
     {
+      "date": "Thu, 22 Oct 2026 22:49:08 GMT",
+      "version": "0.4.30",
+      "tag": "projen-renovate_v0.4.30",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-renovate",
+            "commit": "cabc3732424b75d53931a7eb244667ca64104522",
+            "comment": "Update dependency schemastore-to-typescript to v1.0.5"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 20 Oct 2026 07:26:45 GMT",
       "version": "0.4.29",
       "tag": "projen-renovate_v0.4.29",

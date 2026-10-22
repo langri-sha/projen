@@ -1,6 +1,6 @@
 {
   "name": "projen-pnpm-workspace",
-  "version": "0.4.17",
+  "version": "0.4.18",
   "description": "A projen component for maintaining pnpm workspaces.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
