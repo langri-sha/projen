@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 22 Oct 2026 22:58:36 GMT",
+      "version": "0.41.0",
+      "tag": "@langri-sha/projen-project_v0.41.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "8183a4985576fac73da3b4d64a5238b4b1a9258d",
+            "comment": "Add a claude option for the Claude Code settings"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 Oct 2026 22:49:08 GMT",
       "version": "0.40.1",
       "tag": "@langri-sha/projen-project_v0.40.1",

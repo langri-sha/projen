@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 22 Oct 2026 22:49:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 22 Oct 2026 22:58:36 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.41.0
+
+Thu, 22 Oct 2026 22:58:36 GMT
+
+### Minor changes
+
+- Add a claude option for the Claude Code settings (filip.dupanovic@gmail.com)
 
 ## 0.40.1
 
