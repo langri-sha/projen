@@ -22,22 +22,22 @@ baseImageAddress = "node:24-slim"
 installFlags = ["--ignore-scripts"]
 
 [modules.ci]
-source = "github.com/langri-sha/dagger/ci@v1.7.0"
+source = "github.com/langri-sha/dagger/ci@v1.8.0"
 
 [modules.ci.generate]
 skip = ["projen"]
 
 [modules.projen]
-source = "github.com/langri-sha/dagger/projen@v1.7.0"
+source = "github.com/langri-sha/dagger/projen@v1.8.0"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@v1.7.0"
+source = "github.com/langri-sha/dagger/typescript@v1.8.0"
 
 [modules.vitest]
-source = "github.com/langri-sha/dagger/vitest@v1.7.0"
+source = "github.com/langri-sha/dagger/vitest@v1.8.0"
 
 [modules.vitest.settings]
 baseImageAddress = "node:24"
 
 [modules.beachball]
-source = "github.com/langri-sha/dagger/beachball@v1.7.0"
+source = "github.com/langri-sha/dagger/beachball@v1.8.0"
