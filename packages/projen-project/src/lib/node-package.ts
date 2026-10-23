@@ -7,6 +7,11 @@ import { Project, javascript } from 'projen'
  */
 export interface NodePackageOptions extends javascript.NodePackageOptions {
   /**
+   * Package version. Takes precedence over the version in the existing manifest.
+   */
+  readonly version?: string
+
+  /**
    * Add the package manager to `devEngines`, as Projen does from 0.99.30.
    * Earlier versions have no such option and ignore it.
    *
@@ -24,7 +29,9 @@ export class NodePackage extends javascript.NodePackage {
   constructor(project: Project, options?: NodePackageOptions) {
     super(project, options)
 
-    this.addVersion(this.#getPackageJson()?.version ?? '0.0.0')
+    this.addVersion(
+      options?.version ?? this.#getPackageJson()?.version ?? '0.0.0',
+    )
 
     if (options?.type) {
       this.addField('type', options.type)

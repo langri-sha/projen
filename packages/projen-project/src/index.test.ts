@@ -1442,6 +1442,23 @@ describe('with license', () => {
     ).toThrowError(/Missing package author name/)
   })
 
+  test('with an explicitly empty author name', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        authorName: '',
+        license: 'ISC',
+      },
+    })
+
+    const files = synthSnapshot(project)
+
+    expect(project.license).toBeUndefined()
+    expect(files['package.json'].license).toBe('ISC')
+    expect(files['package.json']).not.toHaveProperty('author')
+    expect(files.license).toBeUndefined()
+  })
+
   test('assigns license property', () => {
     const project = new Project({
       name: 'test-project',
@@ -3201,16 +3218,6 @@ describe('the package manager in manifests', () => {
     return { project, files: synthSnapshot(project) }
   }
 
-  const projenWritesPnpm = (() => {
-    const project = new BaseProject({ name: 'probe' })
-
-    new javascript.NodePackage(project, {
-      packageManager: javascript.NodePackageManager.PNPM,
-    })
-
-    return 'packageManager' in synthSnapshot(project)['package.json']
-  })()
-
   test('leaves packageManager out of a subproject', () => {
     expect(synthesize().files['packages/test/package.json']).not.toHaveProperty(
       'packageManager',
@@ -3240,11 +3247,13 @@ describe('the package manager in manifests', () => {
     )
   })
 
-  test.skipIf(!projenWritesPnpm)('keeps a pnpm version it names', () => {
-    expect(
-      synthesize({ pnpmVersion: '12.10.1' }).files['packages/test/package.json']
-        .packageManager,
-    ).toBe('pnpm@12.10.1')
+  test('keeps a pnpm version it names', () => {
+    const { files } = synthesize({ pnpmVersion: '12.10.1' })
+
+    expect(files['package.json'].packageManager).toBe('pnpm@12.10.1')
+    expect(files['packages/test/package.json'].packageManager).toBe(
+      'pnpm@12.10.1',
+    )
   })
 })
 
