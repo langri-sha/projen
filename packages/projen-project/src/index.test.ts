@@ -1269,7 +1269,7 @@ describe('with skills options', () => {
       }),
     )
 
-    expect(pkg.devDependencies.skills).toBe('1.7.2')
+    expect(pkg.devDependencies.skills).toMatchInlineSnapshot('"1.7.4"')
   })
 
   test('leaves skills-lock.json to the CLI', () => {
