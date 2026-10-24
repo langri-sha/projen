@@ -92,6 +92,36 @@ to declare it here instead.
 This package owns `ISSUE_TEMPLATE/`, `pull_request_template.md` and
 `PULL_REQUEST_TEMPLATE/`, and nothing else in `.github/`.
 
+## Loading templates from a directory
+
+`loadTemplates(dir)` reads a directory laid out like a repository's `.github/`
+contents, without the prefix, and returns `files` for `GitHubTemplates`, keyed
+by repository path:
+
+```ts
+import { GitHubTemplates, loadTemplates } from 'projen-github-templates'
+
+new GitHubTemplates(project, { files: loadTemplates('templates') })
+```
+
+```text
+templates/
+  ISSUE_TEMPLATE/01-bug-report.yml
+  ISSUE_TEMPLATE/02-proposal.md
+  ISSUE_TEMPLATE/config.yml
+  PULL_REQUEST_TEMPLATE/<name>.md
+  pull_request_template.md
+```
+
+Forms are read as written, `config.yml` takes GitHub's `blank_issues_enabled`
+and `contact_links`, a Markdown issue template's front matter becomes its
+options and the rest its `body`, and a pull request template is its `body`. A
+file anywhere else, or a Markdown issue template without front matter, is an
+error. Validation is left to the templates themselves.
+
+Keep the directory out of `.github/`: a package's `.npmignore` usually drops
+dotfiles, and GitHub would read the files as the repository's own templates.
+
 ## Serialization
 
 GitHub reads YAML 1.1, where `Yes` is a Boolean, `1:20` is the integer 80 and

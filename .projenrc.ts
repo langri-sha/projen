@@ -98,6 +98,7 @@ const project = new Project({
       '*.frag',
       'cargo.ts',
       'packages/projen-claude/src/settings.ts',
+      'packages/projen-github-templates/src/__fixtures__/malformed-yaml/',
       'pnpm-workspace.ts',
       'pyproject.ts',
       'renovate.ts',
@@ -442,6 +443,9 @@ project.addSubproject(
   subproject,
   test,
   publish,
+  (project) => {
+    project.npmIgnore?.exclude('__fixtures__/')
+  },
 )
 
 project.addSubproject(
