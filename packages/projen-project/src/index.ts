@@ -20,6 +20,10 @@ import { Codeowners, type CodeownersOptions } from 'projen-codeowners'
 import { Dagger, type DaggerOptions } from 'projen-dagger'
 import { EditorConfig, type EditorConfigOptions } from 'projen-editorconfig'
 import { ESLint, ESLintOptions } from 'projen-eslint'
+import {
+  GitHubTemplates,
+  type GitHubTemplatesOptions,
+} from 'projen-github-templates'
 import { Husky, type HuskyOptions } from 'projen-husky'
 import { JestConfig, JestConfigOptions } from 'projen-jest-config'
 import { License } from 'projen-license'
@@ -46,6 +50,8 @@ import * as R from 'ramda'
 import { satisfies, valid, validRange } from 'semver'
 
 import { GitAttributesFile } from './lib/gitattributes.js'
+import { parseGitHubRepository } from './lib/github-repository.js'
+import { defaultTemplates } from './lib/github-templates.js'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 
 export * from 'projen-typescript-config'
@@ -184,6 +190,31 @@ export interface ProjectDaggerOptions extends DaggerOptions {
   readonly rootTaggedRepositories?: string[]
 }
 
+/**
+ * Options for the preset's GitHub templates.
+ */
+export interface ProjectGitHubTemplatesOptions {
+  /**
+   * Link to the repository's Discussions from the template chooser.
+   *
+   * @default true
+   */
+  readonly discussions?: boolean
+
+  /**
+   * Repository paths of default templates to leave out, such as
+   * `.github/ISSUE_TEMPLATE/03-maintenance.yml`. A path that is not a default
+   * template is an error.
+   */
+  readonly exclude?: string[]
+
+  /**
+   * Templates by repository path, merged over the defaults. A template at the
+   * path of a default replaces it whole, including a derived chooser's links.
+   */
+  readonly files?: GitHubTemplatesOptions['files']
+}
+
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
@@ -235,6 +266,19 @@ export interface ProjectOptions extends Omit<
    * Pass in to configure ESLint.
    */
   eslint?: ESLintOptions
+
+  /**
+   * Pass in to write the preset's issue forms, template chooser and pull
+   * request template, through [`projen-github-templates`]. Root projects only.
+   *
+   * The chooser gets a link to the repository's Discussions and one for
+   * reporting a security vulnerability, derived from `package.repository`, and
+   * none of them when that is not a GitHub repository. With `beachball`, the
+   * pull request template also reminds authors to add a change file.
+   *
+   * [`projen-github-templates`]: https://www.npmjs.com/package/projen-github-templates
+   */
+  githubTemplates?: ProjectGitHubTemplatesOptions
 
   /**
    * Husky options.
@@ -373,6 +417,7 @@ export class Project extends BaseProject {
   dagger?: Dagger
   editorConfig?: EditorConfig
   eslint?: ESLint
+  githubTemplates?: GitHubTemplates
   husky?: Husky
   jestConfig?: JestConfig
   license?: License
@@ -454,6 +499,7 @@ export class Project extends BaseProject {
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
     this.#configureGitAttributes()
+    this.#configureGitHubTemplates(options)
     this.#configureHusky(options)
     this.#configureJestConfig(options)
     this.#configureLicense(options)
@@ -884,6 +930,30 @@ export class Project extends BaseProject {
     this.annotateGenerated('/.gitignore')
     this.annotateGenerated('/.projen/**')
     this.annotateGenerated(`/${this.gitattributes.path}`)
+  }
+
+  #configureGitHubTemplates({
+    beachball,
+    githubTemplates,
+    package: pkg,
+  }: ProjectOptions) {
+    if (!githubTemplates || this.parent) {
+      return
+    }
+
+    const { discussions = true, exclude = [], files } = githubTemplates
+
+    this.githubTemplates = new GitHubTemplates(this, {
+      files: {
+        ...defaultTemplates({
+          beachball: Boolean(beachball),
+          discussions,
+          exclude,
+          repository: parseGitHubRepository(pkg?.repository),
+        }),
+        ...files,
+      },
+    })
   }
 
   #configureESLint({ eslint, package: pkg }: ProjectOptions) {
