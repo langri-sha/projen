@@ -99,6 +99,7 @@ const project = new Project({
       'cargo.ts',
       'packages/projen-claude/src/settings.ts',
       'packages/projen-github-templates/src/__fixtures__/malformed-yaml/',
+      'packages/projen-project/templates/pull_request_template.md',
       'pnpm-workspace.ts',
       'pyproject.ts',
       'renovate.ts',
