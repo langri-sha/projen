@@ -131,6 +131,11 @@
       "type": "runtime"
     },
     {
+      "name": "projen-github-templates",
+      "version": "workspace:*",
+      "type": "runtime"
+    },
+    {
       "name": "projen-husky",
       "version": "workspace:*",
       "type": "runtime"

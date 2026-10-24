@@ -28,6 +28,9 @@
       "path": "../projen-eslint"
     },
     {
+      "path": "../projen-github-templates"
+    },
+    {
       "path": "../projen-husky"
     },
     {

@@ -673,6 +673,7 @@ project.addSubproject(
         'projen-dagger@workspace:*',
         'projen-editorconfig@workspace:*',
         'projen-eslint@workspace:*',
+        'projen-github-templates@workspace:*',
         'projen-husky@workspace:*',
         'projen-jest-config@workspace:*',
         'projen-license@workspace:*',
