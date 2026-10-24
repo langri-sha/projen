@@ -27,6 +27,7 @@ import { Codeowners } from 'projen-codeowners'
 import { Dagger } from 'projen-dagger'
 import { EditorConfig } from 'projen-editorconfig'
 import { ESLint } from 'projen-eslint'
+import { GitHubTemplates } from 'projen-github-templates'
 import { Husky } from 'projen-husky'
 import { JestConfig } from 'projen-jest-config'
 import { License } from 'projen-license'
@@ -1404,6 +1405,164 @@ describe('with Claude options', () => {
     })
 
     expect(project.claude).toBeUndefined()
+  })
+})
+
+describe('with GitHub templates options', () => {
+  const repository = 'langri-sha/projen'
+
+  const githubFiles = (project: Project) =>
+    Object.fromEntries(
+      Object.entries(synthSnapshot(project)).filter(([file]) =>
+        file.startsWith('.github/'),
+      ),
+    )
+
+  test('writes the default templates', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: {},
+    })
+
+    expect(githubFiles(project)).toMatchSnapshot()
+    expect(project.githubTemplates).toBeInstanceOf(GitHubTemplates)
+  })
+
+  test('leaves out excluded templates', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: {
+        exclude: [
+          '.github/ISSUE_TEMPLATE/03-maintenance.yml',
+          '.github/pull_request_template.md',
+        ],
+      },
+    })
+
+    expect(githubFiles(project)).toMatchSnapshot()
+  })
+
+  test('rejects an excluded path that is not a default template', () => {
+    expect(
+      () =>
+        new Project({
+          name: 'test-project',
+          package: { repository },
+          githubTemplates: { exclude: ['.github/ISSUE_TEMPLATE/nope.yml'] },
+        }),
+    ).toThrow(
+      'githubTemplates.exclude: `.github/ISSUE_TEMPLATE/nope.yml` not among the default templates',
+    )
+  })
+
+  test('leaves out the Discussions link without discussions', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: { discussions: false },
+    })
+
+    expect(
+      githubFiles(project)['.github/ISSUE_TEMPLATE/config.yml'],
+    ).toMatchSnapshot()
+  })
+
+  test.each([
+    'langri-sha/projen',
+    'github:langri-sha/projen',
+    'git+https://github.com/langri-sha/projen.git',
+  ])('derives contact links from the repository %s', (repository) => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: {},
+    })
+
+    expect(githubFiles(project)['.github/ISSUE_TEMPLATE/config.yml']).toContain(
+      'https://github.com/langri-sha/projen/security/advisories/new',
+    )
+  })
+
+  test.each([
+    ['without a repository', undefined],
+    ['of another host', 'https://gitlab.com/langri-sha/projen.git'],
+  ])('writes no contact links for a repository %s', (_, repository) => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: {},
+    })
+
+    expect(
+      githubFiles(project)['.github/ISSUE_TEMPLATE/config.yml'],
+    ).toMatchSnapshot()
+  })
+
+  test('merges files over the defaults, the same path winning', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: {
+        files: {
+          '.github/pull_request_template.md': { body: '## Summary\n' },
+          '.github/PULL_REQUEST_TEMPLATE/release.md': { body: '## Release\n' },
+          '.github/ISSUE_TEMPLATE/config.yml': { blankIssuesEnabled: false },
+        },
+      },
+    })
+
+    expect(githubFiles(project)).toMatchSnapshot()
+  })
+
+  test('reminds about a change file with Beachball', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      beachball: {},
+      githubTemplates: {},
+    })
+
+    expect(
+      githubFiles(project)['.github/pull_request_template.md'],
+    ).toMatchSnapshot()
+  })
+
+  test('leaves the reminder out without Beachball', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      githubTemplates: {},
+    })
+
+    expect(
+      githubFiles(project)['.github/pull_request_template.md'],
+    ).toMatchSnapshot()
+  })
+
+  test('writes no templates without the option', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+    })
+
+    expect(githubFiles(project)).toEqual({})
+    expect(project.githubTemplates).toBeUndefined()
+  })
+
+  test('ignores the option on a subproject', () => {
+    const parent = new Project({ name: 'parent', package: {} })
+
+    const project = new Project({
+      name: 'test-project',
+      parent,
+      outdir: 'test-project',
+      package: { repository },
+      githubTemplates: {},
+    })
+
+    expect(project.githubTemplates).toBeUndefined()
   })
 })
 
