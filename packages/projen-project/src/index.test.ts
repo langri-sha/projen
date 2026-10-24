@@ -1846,6 +1846,7 @@ describe('Project.presetPackages', () => {
         "projen-dagger",
         "projen-editorconfig",
         "projen-eslint",
+        "projen-github-templates",
         "projen-husky",
         "projen-jest-config",
         "projen-license",

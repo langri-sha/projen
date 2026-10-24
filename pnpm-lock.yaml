@@ -567,6 +567,9 @@ importers:
       projen-eslint:
         specifier: workspace:*
         version: link:../projen-eslint
+      projen-github-templates:
+        specifier: workspace:*
+        version: link:../projen-github-templates
       projen-husky:
         specifier: workspace:*
         version: link:../projen-husky
