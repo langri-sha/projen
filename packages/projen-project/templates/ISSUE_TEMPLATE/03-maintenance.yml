@@ -1,0 +1,16 @@
+name: Maintenance task
+description: Track upkeep that changes no behavior.
+labels:
+  - maintenance
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: What needs doing?
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Context, constraints or links.
