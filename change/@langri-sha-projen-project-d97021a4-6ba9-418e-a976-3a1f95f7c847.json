@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Document the githubTemplates option",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}

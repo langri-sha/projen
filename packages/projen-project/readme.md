@@ -19,6 +19,8 @@ projects.
 - configures [Worktrunk] worktree hooks with [`projen-worktrunk`]
 - shares [Claude Code] settings with [`projen-claude`]
 - declares and installs agent [skills] with [`projen-skills`]
+- writes GitHub issue forms and a pull request template with
+  [`projen-github-templates`]
 
 ## Claude Code
 
@@ -88,6 +90,36 @@ Worktrunk asks each teammate to approve a project's commands before it first
 runs them, so no default runs unseen. It remembers approval by the exact text of
 a command.
 
+## GitHub templates
+
+Given a `githubTemplates` option, the preset writes house-default templates
+through [`projen-github-templates`], from the package's `templates/` directory:
+bug report, feature request and maintenance issue forms, a template chooser and
+a pull request template. Root projects only.
+
+```ts
+new Project({
+  name: 'my-project',
+  package: { repository: 'acme/my-project' },
+  githubTemplates: {},
+})
+```
+
+- The forms label issues `bug`, `enhancement` and `maintenance`. GitHub silently
+  drops a label the repository lacks, so create them first.
+- The chooser links to the repository's Discussions, unless `discussions` is
+  `false`, and to reporting a security vulnerability. The links come from
+  `package.repository`, and are left out when that is not a GitHub repository.
+- With `beachball`, the pull request template's first section carries a
+  checklist line about adding a change file.
+- `exclude` lists repository paths of defaults to leave out, and `files` merges
+  templates over the defaults, so one at the same path replaces the default
+  whole, derived links and all.
+
+The preset's `Project` writes no `.github/pull_request_template.md` of its own,
+so nothing needs disabling. Projen's `NodeProject` does, and its
+`pullRequestTemplate: false` is what to set there.
+
 ## Upgrading projen
 
 The preset supplies the projen version a project runs on, unless the project
@@ -118,6 +150,8 @@ new Project({
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
 [`projen-claude`]: https://www.npmjs.com/package/projen-claude
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
+[`projen-github-templates`]:
+  https://www.npmjs.com/package/projen-github-templates
 [`projen-dagger`]: https://www.npmjs.com/package/projen-dagger
 [`projen-husky`]: https://www.npmjs.com/package/projen-husky
 [`projen-ruff`]: https://www.npmjs.com/package/projen-ruff
