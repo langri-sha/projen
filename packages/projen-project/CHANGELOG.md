@@ -1,8 +1,23 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 22 Oct 2026 22:58:36 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 25 Oct 2026 07:43:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.42.0
+
+Sun, 25 Oct 2026 07:43:54 GMT
+
+### Minor changes
+
+- Ship house-default GitHub issue forms and pull request template files (filip.dupanovic@gmail.com)
+- Add a githubTemplates option for house-default issue forms and a pull request template (filip.dupanovic@gmail.com)
+- Depend on projen-github-templates (filip.dupanovic@gmail.com)
+- Bump projen-github-templates to v0.2.0
+
+### Patches
+
+- Update dependency skills to v1.7.4
 
 ## 0.41.0
 
