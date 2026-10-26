@@ -253,7 +253,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring Babel.',
       type: 'module',
-      deps: ['serialize-javascript@7.1.2'],
+      deps: ['serialize-javascript@7.1.3'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['@babel/core@^8.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -410,7 +410,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring ESLint.',
       type: 'module',
-      deps: ['serialize-javascript@7.1.2'],
+      deps: ['serialize-javascript@7.1.3'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['eslint@^10.4.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -492,7 +492,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for authoring Jest configurations.',
       type: 'module',
-      deps: ['serialize-javascript@7.1.2'],
+      deps: ['serialize-javascript@7.1.3'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['jest@^30.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -546,7 +546,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring lint-staged.',
       type: 'module',
-      deps: ['serialize-javascript@7.1.2'],
+      deps: ['serialize-javascript@7.1.3'],
       devDeps: ['@types/serialize-javascript@5.0.4'],
       peerDeps: ['lint-staged@^17.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
@@ -636,7 +636,7 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring Prettier.',
       type: 'module',
-      deps: ['serialize-javascript@7.1.2'],
+      deps: ['serialize-javascript@7.1.3'],
       devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.9'],
       peerDeps: ['prettier@^3.0.0', ...projenPeer.peerDeps],
       peerDependenciesMeta: {
