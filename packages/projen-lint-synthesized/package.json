@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "debug": "4.4.3",
-    "execa": "10.2.0",
+    "execa": "10.2.1",
     "minimatch": "10.2.6"
   },
   "devDependencies": {
