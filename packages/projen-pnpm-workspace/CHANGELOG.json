@@ -2,6 +2,21 @@
   "name": "projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Tue, 27 Oct 2026 17:36:03 GMT",
+      "version": "0.4.19",
+      "tag": "projen-pnpm-workspace_v0.4.19",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-pnpm-workspace",
+            "commit": "6e833892874888e2a962beb6605a9b1abe98c81d",
+            "comment": "Skip subproject paths a packages glob already covers"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 Oct 2026 22:49:08 GMT",
       "version": "0.4.18",
       "tag": "projen-pnpm-workspace_v0.4.18",

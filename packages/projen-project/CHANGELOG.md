@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 17:36:03 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.42.2
+
+Tue, 27 Oct 2026 17:36:03 GMT
+
+### Patches
+
+- Bump projen-pnpm-workspace to v0.4.19
 
 ## 0.42.1
 
