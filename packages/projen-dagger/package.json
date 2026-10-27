@@ -20,12 +20,14 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json"
+    "prepare": "schemastore-to-typescript --no-cache 'Dagger module (dagger-module.toml)' src/dagger-module.ts && schemastore-to-typescript --no-cache 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
+    "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
     "projen": "0.104.1",
+    "schemastore-to-typescript": "1.0.5",
     "smol-toml": "1.9.1"
   },
   "peerDependencies": {

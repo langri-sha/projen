@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "schemastore-to-typescript",
+      "version": "1.0.5",
+      "type": "build"
+    },
+    {
       "name": "smol-toml",
       "version": "1.9.1",
       "type": "build"
