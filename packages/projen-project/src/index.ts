@@ -127,6 +127,18 @@ const WORKTRUNK_ENV_COMMAND =
 const RENOVATE_MINIMUM_RELEASE_AGE = '3 days'
 
 /**
+ * What sits between the braces of the `cargo` option, to the depth where
+ * `target` tables hold dependency tables that hold a dependency. A regular
+ * expression cannot balance braces without limit, so a block nested deeper than
+ * this is left unread rather than read wrongly. Renovate runs these on RE2,
+ * which has no recursion either.
+ */
+const BRACE_BODY_PATTERN = Array.from({ length: 4 }).reduce<string>(
+  (inner) => `(?:[^{}]|\\{${inner}\\})*`,
+  '[^{}]*',
+)
+
+/**
  * Set on the synthesis that runs again after installing dependencies moved
  * projen, so that one which finds projen moved once more fails instead of
  * starting another.
@@ -1403,6 +1415,9 @@ export class Project extends BaseProject {
           depTypeTemplate:
             "{{#if (equals depType 'deps')}}dependencies{{else if (equals depType 'devDeps')}}devDependencies{{else}}peerDependencies{{/if}}",
         },
+        // Anchored on the `cargo` option, the one key that only ever means a
+        // Cargo manifest. A bare `dependencies` key is as likely to be an npm
+        // block elsewhere in the projenrc, and would be read as crates.
         ...(cargo
           ? [
               {
@@ -1413,6 +1428,7 @@ export class Project extends BaseProject {
                 ],
                 matchStringsStrategy: 'recursive' as const,
                 matchStrings: [
+                  `\\bcargo'?:\\s*\\{${BRACE_BODY_PATTERN}\\}`,
                   "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
                   '\\{(?:[^{}]|\\{[^{}]*\\})*\\}',
                   "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
