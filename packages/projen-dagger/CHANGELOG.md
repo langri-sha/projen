@@ -1,8 +1,16 @@
 # Change Log - projen-dagger
 
-<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.0
+
+Tue, 27 Oct 2026 17:10:31 GMT
+
+### Minor changes
+
+- Generate the module and workspace config types from SchemaStore
 
 ## 0.3.6
 

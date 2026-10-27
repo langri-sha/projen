@@ -1,8 +1,16 @@
 # Change Log - projen-lint-synthesized
 
-<!-- This log was last generated on Thu, 22 Oct 2026 22:49:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.24
+
+Tue, 27 Oct 2026 17:10:31 GMT
+
+### Patches
+
+- Update dependency execa to v10.2.1
 
 ## 0.5.23
 

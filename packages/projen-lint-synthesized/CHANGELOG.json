@@ -2,6 +2,21 @@
   "name": "projen-lint-synthesized",
   "entries": [
     {
+      "date": "Tue, 27 Oct 2026 17:10:31 GMT",
+      "version": "0.5.24",
+      "tag": "projen-lint-synthesized_v0.5.24",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-lint-synthesized",
+            "commit": "7f7e2c9c3d238f8d8b4bdf834f494ce25e5a90af",
+            "comment": "Update dependency execa to v10.2.1"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 Oct 2026 22:49:08 GMT",
       "version": "0.5.23",
       "tag": "projen-lint-synthesized_v0.5.23",

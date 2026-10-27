@@ -1,8 +1,17 @@
 # Change Log - projen-babel-config
 
-<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.20
+
+Tue, 27 Oct 2026 17:10:31 GMT
+
+### Patches
+
+- Update dependency serialize-javascript to v7.1.4
+- Update dependency serialize-javascript to v7.1.3
 
 ## 0.5.19
 

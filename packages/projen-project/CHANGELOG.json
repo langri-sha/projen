@@ -2,6 +2,63 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Tue, 27 Oct 2026 17:10:31 GMT",
+      "version": "0.42.1",
+      "tag": "@langri-sha/projen-project_v0.42.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7f7e2c9c3d238f8d8b4bdf834f494ce25e5a90af",
+            "comment": "Update dependency @babel/core to v8.0.9"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-babel-config to v0.5.20",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-dagger to v0.4.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-eslint to v0.3.21",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-jest-config to v0.4.23",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-lint-staged to v0.3.22",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-lint-synthesized to v0.5.24",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-prettier to v0.4.22",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 25 Oct 2026 07:43:54 GMT",
       "version": "0.42.0",
       "tag": "@langri-sha/projen-project_v0.42.0",

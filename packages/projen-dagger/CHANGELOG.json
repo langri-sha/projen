@@ -2,6 +2,21 @@
   "name": "projen-dagger",
   "entries": [
     {
+      "date": "Tue, 27 Oct 2026 17:10:31 GMT",
+      "version": "0.4.0",
+      "tag": "projen-dagger_v0.4.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "projen-dagger",
+            "commit": "7f7e2c9c3d238f8d8b4bdf834f494ce25e5a90af",
+            "comment": "Generate the module and workspace config types from SchemaStore"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 17 Oct 2026 19:15:20 GMT",
       "version": "0.3.6",
       "tag": "projen-dagger_v0.3.6",

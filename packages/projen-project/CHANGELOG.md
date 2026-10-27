@@ -1,8 +1,23 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 25 Oct 2026 07:43:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.42.1
+
+Tue, 27 Oct 2026 17:10:31 GMT
+
+### Patches
+
+- Update dependency @babel/core to v8.0.9
+- Bump projen-babel-config to v0.5.20
+- Bump projen-dagger to v0.4.0
+- Bump projen-eslint to v0.3.21
+- Bump projen-jest-config to v0.4.23
+- Bump projen-lint-staged to v0.3.22
+- Bump projen-lint-synthesized to v0.5.24
+- Bump projen-prettier to v0.4.22
 
 ## 0.42.0
 
