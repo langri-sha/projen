@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Generate the module and workspace config types from SchemaStore",
+  "packageName": "projen-dagger",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
