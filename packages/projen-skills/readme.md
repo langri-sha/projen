@@ -77,6 +77,14 @@ Only the declared skills are ignored: `/.agents/skills/<name>/` and, per agent,
 still commit hand-written skills in `.claude/skills`. Sync rebuilds the ignored
 ones from `skills-lock.json` on a fresh clone. Run `projen` after cloning.
 
+To commit the skills instead, pass `ignore: false`. The component then ignores
+none of them and re-includes `.agents/`, so the files in
+`.agents/skills/<name>/` and the links in each agent's folder are tracked beside
+`skills-lock.json`. Sync clones and rewrites them only when a declared `ref`
+differs from the locked one, so a bump changes the files with the lock. It does
+not compare the files with the lock otherwise: an edit to a committed skill at
+the same `ref` goes unnoticed.
+
 A deny-by-default `.gitignore` (`.*`) excludes `.agents/` and `.claude/`
 entirely, and git does not descend into an excluded directory. Re-include them
 yourself, or the committed skills of your own never get tracked.

@@ -111,6 +111,37 @@ describe('.gitignore', () => {
   })
 })
 
+describe('.gitignore without ignoring', () => {
+  const skills = [{ source: 'owner/repo', ref: SHA, skills: ['a', 'b'] }]
+
+  test('ignores none of the declared skills', () => {
+    const lines: string[] = synth({ skills, ignore: false })[
+      '.gitignore'
+    ].split('\n')
+
+    expect(lines.filter((line) => /skills/.test(line))).toEqual([])
+  })
+
+  test('re-includes the shared folder', () => {
+    expect(
+      synth({ skills, ignore: false })['.gitignore'].split('\n'),
+    ).toContain('!/.agents')
+  })
+
+  test('does not re-include the shared folder when ignoring', () => {
+    expect(synth({ skills })['.gitignore'].split('\n')).not.toContain(
+      '!/.agents',
+    )
+  })
+
+  test('still declares the skills and syncs them', () => {
+    const snapshot = synth({ skills, ignore: false })
+
+    expect(snapshot['package.json'].skills).toEqual(skills)
+    expect(snapshot['.projen/tasks.json'].tasks.skills).toBeDefined()
+  })
+})
+
 describe('sync', () => {
   const skills = [{ source: 'owner/repo', ref: SHA, skills: ['a'] }]
 
