@@ -21,6 +21,8 @@ export interface PnpmWorkspaceOptions extends PnpmWorkspaceSchema {
 }
 
 export class PnpmWorkspace extends YamlFile {
+  readonly #configured: readonly string[]
+
   constructor(project: Project, options: PnpmWorkspaceOptions = {}) {
     const { filename = 'pnpm-workspace.yaml', ...settings } = options
 
@@ -36,6 +38,8 @@ export class PnpmWorkspace extends YamlFile {
         packages: [...(settings.packages ?? [])],
       },
     })
+
+    this.#configured = [...(settings.packages ?? [])]
   }
 
   override preSynthesize(): void {
@@ -54,14 +58,14 @@ export class PnpmWorkspace extends YamlFile {
       )
 
     for (const pkg of packages) {
-      if (
-        packages
-          .filter((other) => other !== pkg)
-          .some((other) => path.dirname(other) === path.dirname(pkg))
-      ) {
-        this.addPackages(path.join(path.dirname(pkg), '*'))
-      } else {
-        this.addPackages(pkg)
+      const candidate = packages
+        .filter((other) => other !== pkg)
+        .some((other) => path.dirname(other) === path.dirname(pkg))
+        ? path.join(path.dirname(pkg), '*')
+        : pkg
+
+      if (!this.#configured.some((glob) => covers(glob, candidate))) {
+        this.addPackages(candidate)
       }
     }
   }
@@ -96,6 +100,31 @@ export class PnpmWorkspace extends YamlFile {
       this.addToArray('packages', pkg)
     }
   }
+}
+
+/**
+ * Whether a `packages` entry matches a path. Entries using syntax beyond `*`,
+ * `**` and `?` are never taken to cover anything, which at worst leaves a
+ * redundant line behind.
+ */
+const covers = (glob: string, target: string): boolean => {
+  if (glob.startsWith('!') || /[{}[\]()!+@,]/.test(glob)) {
+    return false
+  }
+
+  const pattern = glob
+    .split('/')
+    .map((segment) =>
+      segment === '**'
+        ? '.*'
+        : segment
+            .replace(/[.\\^$|]/g, '\\$&')
+            .replace(/\*/g, '[^/]*')
+            .replace(/\?/g, '[^/]'),
+    )
+    .join('/')
+
+  return new RegExp(`^${pattern}$`).test(target)
 }
 
 type Writable<T> = {
