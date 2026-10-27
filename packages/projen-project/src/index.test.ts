@@ -2162,17 +2162,57 @@ test('with Renovate options and no crates to read', () => {
   ).not.toContain('crate')
 })
 
-test('with Renovate options, reading the crates a workspace declares', () => {
-  const project = new Project({
-    name: 'test-project',
-    cargo: {},
-    renovate: {},
-  })
+type CustomManager = {
+  datasourceTemplate: string
+  matchStrings: string[]
+}
 
+type Extraction = Record<string, string | undefined>
+
+const customManagers = (options: ConstructorParameters<typeof Project>[0]) =>
+  synthSnapshot(new Project(options))['renovate.json5']
+    .customManagers as CustomManager[]
+
+const extract = (
+  matchStrings: string[],
+  text: string,
+  index = 0,
+  inherited: Extraction = {},
+): Extraction[] =>
+  index === matchStrings.length
+    ? [inherited]
+    : [...text.matchAll(new RegExp(matchStrings[index], 'g'))].flatMap(
+        (match) =>
+          extract(
+            matchStrings,
+            match[0],
+            index + 1,
+            Object.assign(
+              {},
+              inherited,
+              Object.fromEntries(
+                Object.entries(match.groups ?? {}).filter(
+                  ([, value]) => value !== undefined,
+                ),
+              ),
+            ),
+          ),
+      )
+
+const extractCrates = (projenrc: string) =>
+  customManagers({ name: 'test-project', cargo: {}, renovate: {} })
+    .filter(({ datasourceTemplate }) => datasourceTemplate === 'crate')
+    .flatMap(({ matchStrings }) => extract(matchStrings, projenrc))
+
+const extractNpmDeps = (projenrc: string) =>
+  customManagers({ name: 'test-project', cargo: {}, renovate: {} })
+    .filter(({ datasourceTemplate }) => datasourceTemplate === 'npm')
+    .flatMap(({ matchStrings }) => extract(matchStrings, projenrc))
+
+test('with Renovate options, reading the crates the cargo option declares', () => {
   expect(
-    synthSnapshot(project)['renovate.json5'].customManagers.find(
-      ({ datasourceTemplate }: { datasourceTemplate: string }) =>
-        datasourceTemplate === 'crate',
+    customManagers({ name: 'test-project', cargo: {}, renovate: {} }).find(
+      ({ datasourceTemplate }) => datasourceTemplate === 'crate',
     ),
   ).toMatchInlineSnapshot(`
     {
@@ -2182,6 +2222,7 @@ test('with Renovate options, reading the crates a workspace declares', () => {
         "/\\.?projen.*.(js|cjs|mjs|ts|mts|cts)$/",
       ],
       "matchStrings": [
+        "\\bcargo'?:\\s*\\{(?:[^{}]|\\{(?:[^{}]|\\{(?:[^{}]|\\{(?:[^{}]|\\{[^{}]*\\})*\\})*\\})*\\})*\\}",
         "(?<depType>dependencies|dev-dependencies|build-dependencies)'?:\\s*\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
         "\\{(?:[^{}]|\\{[^{}]*\\})*\\}",
         "'?(?<depName>[\\w-]+)'?:\\s*(?:'[^']*'|\\{[^{}]*\\})",
@@ -2191,6 +2232,133 @@ test('with Renovate options, reading the crates a workspace declares', () => {
       "matchStringsStrategy": "recursive",
     }
   `)
+})
+
+describe('with Renovate options, reading a projenrc that declares crates and npm packages', () => {
+  const projenrc = `
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        devDeps: ['vitest@5.0.5'],
+        dependencies: { express: '4.0.0' },
+      },
+      cargo: {
+        workspace: {
+          package: { license: 'MIT' },
+          dependencies: {
+            anyhow: '1.0.104',
+            tokio: { version: '1.53.2', features: ['rt', 'macros'] },
+            'rustls-pki-types': '1.15.1',
+          },
+        },
+      },
+      deps: ['left-pad@1.3.0'],
+    })
+
+    project.addSubproject({
+      name: 'api',
+      cargo: {
+        dependencies: {
+          serde: { version: '1.0.229', features: ['derive'] },
+          telemetry: { path: '../telemetry' },
+          shared: { workspace: true },
+          http: { package: 'http-types', version: '2.12.0' },
+        },
+        'dev-dependencies': {
+          insta: '1.43.2',
+          tokio: { workspace: true, features: ['test-util'] },
+        },
+        'build-dependencies': { 'tonic-build': '0.14.2' },
+        target: {
+          'cfg(unix)': { dependencies: { libc: '0.2.177' } },
+        },
+      },
+    })
+
+    new PnpmWorkspace(project, {
+      dependencies: { 'dev-only': '2.0.0' },
+      'dev-dependencies': { 'build-only': '3.0.0' },
+    })
+  `
+
+  test('extracts every crate the cargo options declare', () => {
+    expect(extractCrates(projenrc)).toEqual([
+      { depType: 'dependencies', depName: 'anyhow', currentValue: '1.0.104' },
+      { depType: 'dependencies', depName: 'tokio', currentValue: '1.53.2' },
+      {
+        depType: 'dependencies',
+        depName: 'rustls-pki-types',
+        currentValue: '1.15.1',
+      },
+      {
+        depType: 'dependencies',
+        depName: 'serde',
+        currentValue: '1.0.229',
+      },
+      {
+        depType: 'dependencies',
+        depName: 'http',
+        packageName: 'http-types',
+        currentValue: '2.12.0',
+      },
+      {
+        depType: 'dev-dependencies',
+        depName: 'insta',
+        currentValue: '1.43.2',
+      },
+      {
+        depType: 'build-dependencies',
+        depName: 'tonic-build',
+        currentValue: '0.14.2',
+      },
+      { depType: 'dependencies', depName: 'libc', currentValue: '0.2.177' },
+    ])
+  })
+
+  test('leaves the dependencies outside the cargo options to the npm managers', () => {
+    expect(
+      extractNpmDeps(projenrc).map(({ depName, currentValue }) => ({
+        depName,
+        currentValue,
+      })),
+    ).toEqual([
+      { depName: 'vitest', currentValue: '5.0.5' },
+      { depName: 'left-pad', currentValue: '1.3.0' },
+    ])
+  })
+
+  test('extracts no crates from a projenrc with no cargo option', () => {
+    expect(
+      extractCrates(`
+        new Project({
+          package: { dependencies: { express: '4.0.0' } },
+          deps: ['left-pad@1.3.0'],
+        })
+      `),
+    ).toEqual([])
+  })
+
+  test('reads a quoted cargo key', () => {
+    expect(
+      extractCrates(`
+        new Project({
+          'cargo': { dependencies: { anyhow: '1.0.104' } },
+        })
+      `),
+    ).toEqual([
+      { depType: 'dependencies', depName: 'anyhow', currentValue: '1.0.104' },
+    ])
+  })
+
+  test('ignores a key that only ends in cargo', () => {
+    expect(
+      extractCrates(`
+        new Project({
+          notcargo: { dependencies: { anyhow: '1.0.104' } },
+        })
+      `),
+    ).toEqual([])
+  })
 })
 
 test('with Renovate options and no Dagger modules to read', () => {
