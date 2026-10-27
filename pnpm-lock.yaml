@@ -315,6 +315,9 @@ importers:
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
+      schemastore-to-typescript:
+        specifier: 1.0.5
+        version: 1.0.5(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1

@@ -62,6 +62,8 @@ const project = new Project({
   eslint: {
     ignorePatterns: [
       '**/cargo.ts',
+      '**/dagger-module.ts',
+      '**/dagger-workspace.ts',
       'packages/projen-claude/src/settings.ts',
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',
@@ -98,6 +100,8 @@ const project = new Project({
     ignorePatterns: [
       '*.frag',
       'cargo.ts',
+      'dagger-module.ts',
+      'dagger-workspace.ts',
       'packages/projen-claude/src/settings.ts',
       'packages/projen-github-templates/src/__fixtures__/malformed-yaml/',
       'packages/projen-project/templates/pull_request_template.md',
@@ -239,13 +243,30 @@ project.addSubproject(
       copyrightYear: '2026',
       description: 'A projen component for Dagger workspaces.',
       type: 'module',
-      devDeps: ['smol-toml@1.9.1'],
+      devDeps: ['schemastore-to-typescript@1.0.5', 'smol-toml@1.9.1'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
   publish,
+  (project) => {
+    project.addGitIgnore('dagger-module.ts')
+    project.addGitIgnore('dagger-workspace.ts')
+
+    project.package?.setScript(
+      'prepare',
+      [
+        "schemastore-to-typescript --no-cache 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
+        "schemastore-to-typescript --no-cache 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
+      ].join(' && '),
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts',
+    )
+  },
 )
 
 project.addSubproject(

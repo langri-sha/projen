@@ -7,6 +7,8 @@ export default [
       '**/.*',
       '**/dist/',
       '**/cargo.ts',
+      '**/dagger-module.ts',
+      '**/dagger-workspace.ts',
       'packages/projen-claude/src/settings.ts',
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',

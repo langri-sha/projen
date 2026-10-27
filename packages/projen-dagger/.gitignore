@@ -9,4 +9,6 @@ node_modules/
 !/license
 !/.npmignore
 !/tsconfig.build.json
+dagger-module.ts
+dagger-workspace.ts
 !/.projenrc.ts
