@@ -40,6 +40,14 @@ export interface SkillsOptions {
    * @default true
    */
   readonly sync?: boolean
+
+  /**
+   * Ignore the installed skills. Turn it off to commit them: the files in
+   * `.agents/skills` and the links in each agent's folder, beside the lock.
+   *
+   * @default true
+   */
+  readonly ignore?: boolean
 }
 
 /**
@@ -54,7 +62,12 @@ export class Skills extends Component {
   constructor(project: Project, options: SkillsOptions) {
     super(project)
 
-    const { skills, agents = ['claude-code'], sync = true } = options
+    const {
+      skills,
+      agents = ['claude-code'],
+      sync = true,
+      ignore = true,
+    } = options
 
     this.#entries = normalizeSkills(skills)
     this.#agents = validateAgents(agents)
@@ -73,7 +86,11 @@ export class Skills extends Component {
 
     pkg.addField('skills', this.#entries)
 
-    project.gitignore.exclude(...this.#installPaths())
+    if (ignore) {
+      project.gitignore.exclude(...this.#installPaths())
+    } else {
+      project.gitignore.include(`/${SHARED_SKILLS_DIR.split('/')[0]}`)
+    }
 
     project.addTask('skills', {
       description: 'Install the declared skills with the skills CLI',
