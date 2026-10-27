@@ -162,6 +162,80 @@ test('adds packages from subproject NodePackages', () => {
   expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
 })
 
+test('skips a subproject path covered by a packages glob', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new PnpmWorkspace(project, { packages: ['packages/*'] })
+
+  const subproject = new Project({
+    name: 'subproject',
+    outdir: 'packages/subproject',
+    parent: project,
+  })
+
+  new NodePackage(subproject)
+
+  expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
+})
+
+test('skips sibling subproject paths covered by a packages glob', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new PnpmWorkspace(project, { packages: ['packages/**'] })
+
+  for (const name of ['a', 'b']) {
+    new NodePackage(
+      new Project({
+        name,
+        outdir: `packages/${name}`,
+        parent: project,
+      }),
+    )
+  }
+
+  expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
+})
+
+test('keeps a subproject path outside the packages globs', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new PnpmWorkspace(project, { packages: ['packages/*'] })
+
+  new NodePackage(
+    new Project({
+      name: 'standalone',
+      outdir: 'some/where/standalone',
+      parent: project,
+    }),
+  )
+
+  expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
+})
+
+test('keeps a nested subproject path a single-level glob does not cover', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new PnpmWorkspace(project, { packages: ['packages/*'] })
+
+  new NodePackage(
+    new Project({
+      name: 'nested',
+      outdir: 'packages/group/nested',
+      parent: project,
+    }),
+  )
+
+  expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
+})
+
 test('takes over a file registered earlier', () => {
   const project = new Project({
     name: 'test-project',
