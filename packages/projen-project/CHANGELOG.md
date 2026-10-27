@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 27 Oct 2026 18:13:52 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 18:24:05 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.42.4
+
+Tue, 27 Oct 2026 18:24:05 GMT
+
+### Patches
+
+- Bump projen-skills to v0.2.0
 
 ## 0.42.3
 

@@ -1,8 +1,16 @@
 # Change Log - projen-skills
 
-<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 27 Oct 2026 18:24:05 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.0
+
+Tue, 27 Oct 2026 18:24:05 GMT
+
+### Minor changes
+
+- Commit the installed skills with the ignore option (filip.dupanovic@gmail.com)
 
 ## 0.1.3
 

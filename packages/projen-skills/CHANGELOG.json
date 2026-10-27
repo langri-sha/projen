@@ -2,6 +2,21 @@
   "name": "projen-skills",
   "entries": [
     {
+      "date": "Tue, 27 Oct 2026 18:24:05 GMT",
+      "version": "0.2.0",
+      "tag": "projen-skills_v0.2.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-skills",
+            "commit": "82e489e691963787fb6db0948c6c7db5434c21eb",
+            "comment": "Commit the installed skills with the ignore option"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Oct 2026 20:46:26 GMT",
       "version": "0.1.3",
       "tag": "projen-skills_v0.1.3",
