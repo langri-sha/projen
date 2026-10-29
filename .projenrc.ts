@@ -777,6 +777,7 @@ project.addSubproject(
         '@changesets/cli@^3.0.0',
         '@langri-sha/babel-preset@^0.6.0',
         '@langri-sha/eslint-config@^0.10.0',
+        '@langri-sha/lint-staged@^0.9.0',
         '@swc-node/register@^1.0.0',
         '@swc/core@^1.6.0',
         'beachball@^2.0.0',
@@ -801,6 +802,9 @@ project.addSubproject(
           optional: true,
         },
         '@langri-sha/eslint-config': {
+          optional: true,
+        },
+        '@langri-sha/lint-staged': {
           optional: true,
         },
         '@swc-node/register': {
