@@ -1095,6 +1095,10 @@ export class Project extends BaseProject {
 
     if (!this.parent) {
       this.#addDefaultDevDeps('lint-staged@17.6.0')
+
+      if (this.name !== '@langri-sha/lint-staged') {
+        this.#addDefaultDevDeps('@langri-sha/lint-staged@0.9.11')
+      }
     }
 
     // ruff is configured at the root alone, but lint-staged runs the nearest
