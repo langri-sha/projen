@@ -25,6 +25,7 @@ import {
   type SyncRunner,
   syncArgs,
   syncSkills,
+  synthesisArgs,
 } from './sync'
 
 const SHA = '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8'
@@ -81,7 +82,14 @@ test('runs sync non-interactively for the named agents', () => {
   sync(run, { agents: ['claude-code', 'cursor'] })
 
   expect(run).toHaveBeenCalledWith({
-    args: ['experimental_sync', '-a', 'claude-code', 'cursor', '-y'],
+    args: [
+      'experimental_sync',
+      '-a',
+      'claude-code',
+      'cursor',
+      '-y',
+      '--no-frozen-lockfile',
+    ],
     cwd,
     env: { DISABLE_TELEMETRY: '1', LC_ALL: 'C' },
   })
@@ -89,6 +97,12 @@ test('runs sync non-interactively for the named agents', () => {
 
 test('never calls experimental_install', () => {
   expect(syncArgs(['claude-code'])).not.toContain('experimental_install')
+})
+
+test('leaves the lock unfrozen for synthesis only', () => {
+  expect(synthesisArgs(['claude-code'])).toContain('--no-frozen-lockfile')
+  expect(syncArgs(['claude-code'])).not.toContain('--no-frozen-lockfile')
+  expect(syncArgs(['claude-code'])).not.toContain('--frozen-lockfile')
 })
 
 test('accepts a sync that installed everything', () => {

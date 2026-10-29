@@ -105,6 +105,10 @@ Because the lock is rewritten by every sync, `projen` followed by a check for
 uncommitted changes, as a CI step does, is the frozen-lock check: it fails when
 the declaration and the committed lock disagree.
 
+Synthesis passes `--no-frozen-lockfile`. Newer CLI releases freeze the lock by
+default when `CI` or `GITHUB_ACTIONS` is set, which would fail every ref bump
+regenerated in CI. The `skills` task passes nothing, so in CI it stays frozen.
+
 The CLI runs with `DISABLE_TELEMETRY=1` and `LC_ALL=C`. `computedHash` sorts
 paths with `localeCompare`, so the lock would otherwise differ between machines.
 It also depends on line endings: keep skill files out of any `text=auto`
@@ -115,8 +119,8 @@ entries the field manages; sync then skips them as installed with `skills add`,
 installs nothing on a fresh clone, and still exits 0.
 
 Pass `sync: false` to leave installing to the `skills` task, which runs the same
-command by hand (`pnpm exec projen skills`). It has neither the lock restore nor
-the verification.
+command by hand (`pnpm exec projen skills`), without `--no-frozen-lockfile`. It
+has neither the lock restore nor the verification.
 
 [projen]: https://projen.io/
 [spec]: https://github.com/antfu/skills-npm/blob/main/SPEC.md

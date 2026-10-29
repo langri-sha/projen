@@ -183,7 +183,7 @@ describe('sync', () => {
 })
 
 describe('skills task', () => {
-  test('runs the same command as the sync', () => {
+  test('syncs with the CLI default for freezing the lock', () => {
     const { tasks } = synth({
       skills: [{ source: 'owner/repo', ref: SHA, skills: ['a'] }],
       agents: ['claude-code', 'cursor'],
