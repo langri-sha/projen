@@ -15,6 +15,7 @@
 | [projen-babel-config](https://www.npmjs.com/package/projen-babel-config)           | `babel.config.js` generator                          |
 | [projen-beachball](https://www.npmjs.com/package/projen-beachball)                 | `beachball.config.cjs` generator                     |
 | [projen-cargo](https://www.npmjs.com/package/projen-cargo)                         | Cargo workspace and crate generator                  |
+| [projen-changesets](https://www.npmjs.com/package/projen-changesets)               | `.changeset/config.json` generator                   |
 | [projen-codeowners](https://www.npmjs.com/package/projen-codeowners)               | `CODEOWNERS` generator                               |
 | [projen-dagger](https://www.npmjs.com/package/projen-dagger)                       | `dagger-module.toml` and `dagger.toml` generator     |
 | [projen-editorconfig](https://www.npmjs.com/package/projen-editorconfig)           | `.editorconfig` generator                            |
