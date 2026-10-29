@@ -1,8 +1,19 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 29 Oct 2026 18:58:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 29 Oct 2026 23:01:56 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.45.0
+
+Thu, 29 Oct 2026 23:01:56 GMT
+
+### Minor changes
+
+- Supply @langri-sha/eslint-config to projects that use ESLint (filip.dupanovic@gmail.com)
+- Supply @langri-sha/babel-preset to projects that use Babel (filip.dupanovic@gmail.com)
+- Supply @langri-sha/prettier to projects that use Prettier (filip.dupanovic@gmail.com)
+- Supply @langri-sha/lint-staged to projects that use lint-staged (filip.dupanovic@gmail.com)
 
 ## 0.44.2
 

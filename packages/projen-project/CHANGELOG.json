@@ -2,6 +2,39 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 29 Oct 2026 23:01:56 GMT",
+      "version": "0.45.0",
+      "tag": "@langri-sha/projen-project_v0.45.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7673d8cac621c9805b6d2e5da5e773c00d1ba6d8",
+            "comment": "Supply @langri-sha/eslint-config to projects that use ESLint"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7673d8cac621c9805b6d2e5da5e773c00d1ba6d8",
+            "comment": "Supply @langri-sha/babel-preset to projects that use Babel"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7673d8cac621c9805b6d2e5da5e773c00d1ba6d8",
+            "comment": "Supply @langri-sha/prettier to projects that use Prettier"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7673d8cac621c9805b6d2e5da5e773c00d1ba6d8",
+            "comment": "Supply @langri-sha/lint-staged to projects that use lint-staged"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Oct 2026 18:58:08 GMT",
       "version": "0.44.2",
       "tag": "@langri-sha/projen-project_v0.44.2",
