@@ -896,6 +896,7 @@ export class Project extends BaseProject {
     this.changesets = new Changesets(this, changesets)
 
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
+    this.#addDefaultDevDeps('@changesets/cli@3.0.3')
   }
 
   #configureClaude({ claude }: ProjectOptions) {

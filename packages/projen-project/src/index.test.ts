@@ -3295,6 +3295,7 @@ describe('peers the preset requires', () => {
 
   test.each([
     '@babel/core',
+    '@changesets/cli',
     '@swc/core',
     'beachball',
     'eslint',
@@ -3348,6 +3349,7 @@ describe('supplied development dependency versions', () => {
 
   const TOOLS = [
     { tool: '@babel/core', enabledBy: { babel: {} } },
+    { tool: '@changesets/cli', enabledBy: { changesets: {} } },
     { tool: 'beachball', enabledBy: { beachball: {} } },
     { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
@@ -3688,6 +3690,7 @@ describe('declarations this preset cannot support', () => {
 
   test.each([
     { spec: '@babel/core@7.29.7', enabledBy: { babel: {} } },
+    { spec: '@changesets/cli@2.29.0', enabledBy: { changesets: {} } },
     { spec: '@swc/core@1.5.29', enabledBy: { swcrc: {} } },
     { spec: 'beachball@1.53.2', enabledBy: { beachball: {} } },
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },
