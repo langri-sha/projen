@@ -740,6 +740,7 @@ project.addSubproject(
         'projen-babel-config@workspace:*',
         'projen-beachball@workspace:*',
         'projen-cargo@workspace:*',
+        'projen-changesets@workspace:*',
         'projen-claude@workspace:*',
         'projen-codeowners@workspace:*',
         'projen-dagger@workspace:*',
