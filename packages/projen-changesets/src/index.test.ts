@@ -89,3 +89,13 @@ describe('gitignore', () => {
     )
   })
 })
+
+describe('task', () => {
+  test('adds a change file with the changeset command', () => {
+    expect(synth()['.projen/tasks.json'].tasks.changeset).toEqual({
+      name: 'changeset',
+      description: 'Add a Changesets change file',
+      steps: [{ exec: 'changeset' }],
+    })
+  })
+})

@@ -57,7 +57,8 @@ const defaults: ChangesetsConfig = {
 
 /**
  * A component for [Changesets](https://github.com/changesets/changesets),
- * written to `.changeset/config.json`.
+ * written to `.changeset/config.json`, with a `changeset` task that adds a
+ * change file.
  */
 export class Changesets extends Component {
   /**
@@ -82,6 +83,11 @@ export class Changesets extends Component {
         ...structuredClone(defaults),
         ...structuredClone(config),
       },
+    })
+
+    project.addTask('changeset', {
+      description: 'Add a Changesets change file',
+      exec: 'changeset',
     })
   }
 }

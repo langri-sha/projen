@@ -66,6 +66,15 @@ node_modules/
           },
         ],
       },
+      "changeset": {
+        "description": "Add a Changesets change file",
+        "name": "changeset",
+        "steps": [
+          {
+            "exec": "changeset",
+          },
+        ],
+      },
       "compile": {
         "description": "Only compile",
         "name": "compile",
