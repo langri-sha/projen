@@ -763,10 +763,15 @@ project.addSubproject(
         'projen-typescript-config@workspace:*',
         'projen-uv@workspace:*',
         'projen-worktrunk@workspace:*',
+        'hosted-git-info@10.1.1',
         'ramda@0.32.0',
         'semver@7.8.5',
       ],
-      devDeps: ['@types/ramda@0.32.0', '@types/semver@7.8.0'],
+      devDeps: [
+        '@types/hosted-git-info@3.0.5',
+        '@types/ramda@0.32.0',
+        '@types/semver@7.8.0',
+      ],
       peerDeps: [
         '@babel/core@^8.0.0',
         '@changesets/cli@^3.0.0',
