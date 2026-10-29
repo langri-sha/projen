@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Supply @langri-sha/lint-staged to projects that use lint-staged",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
