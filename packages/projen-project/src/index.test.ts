@@ -22,6 +22,7 @@ import { synthSnapshot } from 'projen/lib/util/synth'
 import { Babel } from 'projen-babel-config'
 import { Beachball } from 'projen-beachball'
 import { CargoPackage, CargoWorkspace } from 'projen-cargo'
+import { Changesets } from 'projen-changesets'
 import { Claude } from 'projen-claude'
 import { Codeowners } from 'projen-codeowners'
 import { Dagger } from 'projen-dagger'
@@ -331,6 +332,78 @@ describe('with Beachball configuration', () => {
     })
 
     expect(synthSnapshot(project)).toMatchSnapshot()
+  })
+})
+
+describe('with Changesets configuration', () => {
+  test('defaults', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      changesets: {},
+      prettier: {},
+    })
+
+    expect(synthSnapshot(project)).toMatchSnapshot()
+    expect(project.changesets).toBeInstanceOf(Changesets)
+  })
+
+  test('leaves private packages unset', () => {
+    const project = new Project({
+      name: 'test-project',
+      changesets: {},
+    })
+
+    expect(synthSnapshot(project)['.changeset/config.json']).not.toHaveProperty(
+      'privatePackages',
+    )
+  })
+
+  test('passes the options through', () => {
+    const project = new Project({
+      name: 'test-project',
+      changesets: {
+        config: { privatePackages: { version: true, tag: true } },
+      },
+    })
+
+    expect(synthSnapshot(project)['.changeset/config.json']).toMatchObject({
+      privatePackages: { version: true, tag: true },
+    })
+  })
+
+  test('ignores generated changelogs in Prettier', () => {
+    const project = new Project({
+      name: 'test-project',
+      changesets: {},
+      prettier: {},
+    })
+
+    expect(synthSnapshot(project)['.prettierignore']).toContain('CHANGELOG.md')
+  })
+
+  test('writes nothing in a subproject', () => {
+    const project = new Project({ name: 'test-project', package: {} })
+
+    project.addSubproject({
+      name: '@someproject/test',
+      outdir: path.join('packages', 'test'),
+      package: {},
+      changesets: {},
+    })
+
+    expect(synthSnapshot(project)).not.toHaveProperty([
+      'packages/test/.changeset/config.json',
+    ])
+  })
+
+  test('writes nothing without the option', () => {
+    const project = new Project({ name: 'test-project' })
+
+    expect(project.changesets).toBeUndefined()
+    expect(synthSnapshot(project)).not.toHaveProperty([
+      '.changeset/config.json',
+    ])
   })
 })
 
