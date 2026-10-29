@@ -17,6 +17,9 @@ projects.
 - configures [`@langri-sha/tsconfig`] for TypeScript monorepos
 - managing Git hooks with [`projen-husky`]
 - configures extensive list of Git ignore patterns
+- writes `package.repository` the way `npm pkg fix` spells it, so `owner/repo`
+  becomes `git+https://github.com/owner/repo.git` and the check finds nothing to
+  rewrite
 - manages [code owners] with [`projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`projen-worktrunk`]
 - shares [Claude Code] settings with [`projen-claude`]
