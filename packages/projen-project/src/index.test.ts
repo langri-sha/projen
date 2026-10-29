@@ -2778,8 +2778,8 @@ describe('with Renovate and skills options', () => {
   test('reads skill commits out of the projenrc', () => {
     expect(
       renovate({ skills: skillsOptions }).customManagers.filter(
-        ({ depTypeTemplate }: { depTypeTemplate?: string }) =>
-          depTypeTemplate === 'skills',
+        ({ datasourceTemplate }: { datasourceTemplate?: string }) =>
+          datasourceTemplate === 'git-refs',
       ),
     ).toMatchInlineSnapshot(`
       [
@@ -2794,6 +2794,31 @@ describe('with Renovate and skills options', () => {
             "source:\\s*['"](?<depName>[\\w.-]+/[\\w.-]+)['"],\\s*ref:\\s*['"](?<currentDigest>[0-9a-f]{40})['"]",
           ],
           "packageNameTemplate": "https://github.com/{{{depName}}}",
+        },
+      ]
+    `)
+  })
+
+  test('reads skill tags out of the projenrc', () => {
+    expect(
+      renovate({ skills: skillsOptions }).customManagers.filter(
+        ({ depTypeTemplate, datasourceTemplate }: Record<string, string>) =>
+          depTypeTemplate === 'skills' && datasourceTemplate === 'github-tags',
+      ),
+    ).toMatchInlineSnapshot(`
+      [
+        {
+          "customType": "regex",
+          "datasourceTemplate": "github-tags",
+          "depTypeTemplate": "skills",
+          "extractVersionTemplate": "^v(?<version>.+)$",
+          "managerFilePatterns": [
+            "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
+          ],
+          "matchStrings": [
+            "source:\\s*['"](?<depName>[\\w.-]+/[\\w.-]+)['"],\\s*ref:\\s*['"]v(?<currentValue>\\d+\\.\\d+\\.\\d+)['"]",
+          ],
+          "versioningTemplate": "semver",
         },
       ]
     `)
@@ -2838,6 +2863,7 @@ describe('with Renovate and skills options', () => {
  */
 describe('with Renovate options, the custom managers', () => {
   interface CustomManager {
+    datasourceTemplate?: string
     depNameTemplate?: string
     depTypeTemplate?: string
     managerFilePatterns: string[]
@@ -2936,7 +2962,7 @@ describe('with Renovate options, the custom managers', () => {
           skills: skillsOptions,
         }),
       )['renovate.json5'].customManagers as CustomManager[]
-    ).find(({ depTypeTemplate }) => depTypeTemplate === 'skills')!
+    ).find(({ datasourceTemplate }) => datasourceTemplate === 'git-refs')!
     const matchString = new RegExp(manager.matchStrings[0]!)
     const sha = '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8'
 
@@ -2961,6 +2987,51 @@ describe('with Renovate options, the custom managers', () => {
       )?.groups,
     ).toEqual({ depName: 'vercel-labs/skills', currentDigest: sha })
     expect("source: 'vercel-labs/skills', ref: 'main'").not.toMatch(matchString)
+    expect("source: 'npm:@acme/skills', skills: ['a']").not.toMatch(matchString)
+    expect("source: 'vercel-labs/skills', ref: 'v1.0.0'").not.toMatch(
+      matchString,
+    )
+  })
+
+  test('read skill tags out of a projenrc and nowhere else', () => {
+    const manager = (
+      synthSnapshot(
+        new Project({
+          name: 'test-project',
+          package: {},
+          renovate: {},
+          skills: skillsOptions,
+        }),
+      )['renovate.json5'].customManagers as CustomManager[]
+    ).find(
+      ({ datasourceTemplate, depTypeTemplate }) =>
+        datasourceTemplate === 'github-tags' && depTypeTemplate === 'skills',
+    )!
+    const matchString = new RegExp(manager.matchStrings[0]!)
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/some/.projenrc.mjs')).toBe(true)
+    expect(covers(manager, 'packages/projen-skills/src/index.test.ts')).toBe(
+      false,
+    )
+
+    expect(
+      matchString.exec(
+        `{ source: 'vercel-labs/skills', ref: 'v1.2.3', skills: ['find-skills'] }`,
+      )?.groups,
+    ).toEqual({ depName: 'vercel-labs/skills', currentValue: '1.2.3' })
+    expect(
+      matchString.exec(
+        `{\n      source: "vercel-labs/skills",\n      ref: "v10.0.21",\n`,
+      )?.groups,
+    ).toEqual({ depName: 'vercel-labs/skills', currentValue: '10.0.21' })
+    expect(
+      "source: 'vercel-labs/skills', ref: '0b8fb22aaa7f82447d4befe1b6a95d30a5b279b8'",
+    ).not.toMatch(matchString)
+    expect("source: 'vercel-labs/skills', ref: 'main'").not.toMatch(matchString)
+    expect("source: 'vercel-labs/skills', ref: 'v1.2.3-beta.1'").not.toMatch(
+      matchString,
+    )
     expect("source: 'npm:@acme/skills', skills: ['a']").not.toMatch(matchString)
   })
 
