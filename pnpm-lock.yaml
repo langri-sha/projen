@@ -573,6 +573,9 @@ importers:
       projen-cargo:
         specifier: workspace:*
         version: link:../projen-cargo
+      projen-changesets:
+        specifier: workspace:*
+        version: link:../projen-changesets
       projen-claude:
         specifier: workspace:*
         version: link:../projen-claude

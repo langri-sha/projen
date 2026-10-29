@@ -2000,6 +2000,7 @@ describe('Project.presetPackages', () => {
         "projen-babel-config",
         "projen-beachball",
         "projen-cargo",
+        "projen-changesets",
         "projen-claude",
         "projen-codeowners",
         "projen-dagger",
