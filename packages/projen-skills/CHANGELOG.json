@@ -2,6 +2,29 @@
   "name": "projen-skills",
   "entries": [
     {
+      "date": "Thu, 29 Oct 2026 17:17:09 GMT",
+      "version": "0.3.0",
+      "tag": "projen-skills_v0.3.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-skills",
+            "commit": "4f0dffbc82909ba007f72053744fb5ec25891a74",
+            "comment": "Pass --no-frozen-lockfile when synthesis syncs, so CLI releases that freeze the lock in CI still regenerate it"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-skills",
+            "commit": "4f0dffbc82909ba007f72053744fb5ec25891a74",
+            "comment": "Accept a release tag such as v1.2.3 as the ref of a git skill source"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 27 Oct 2026 18:24:05 GMT",
       "version": "0.2.0",
       "tag": "projen-skills_v0.2.0",

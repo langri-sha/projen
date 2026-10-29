@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 29 Oct 2026 17:17:09 GMT",
+      "version": "0.44.0",
+      "tag": "@langri-sha/projen-project_v0.44.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4f0dffbc82909ba007f72053744fb5ec25891a74",
+            "comment": "Propose a Renovate bump for a skill pinned to a release tag"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-skills to v0.3.0",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Oct 2026 12:22:30 GMT",
       "version": "0.43.0",
       "tag": "@langri-sha/projen-project_v0.43.0",

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Pass --no-frozen-lockfile when synthesis syncs, so CLI releases that freeze the lock in CI still regenerate it",
-  "packageName": "projen-skills",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

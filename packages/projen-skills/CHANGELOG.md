@@ -1,8 +1,20 @@
 # Change Log - projen-skills
 
-<!-- This log was last generated on Tue, 27 Oct 2026 18:24:05 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 29 Oct 2026 17:17:09 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.0
+
+Thu, 29 Oct 2026 17:17:09 GMT
+
+### Minor changes
+
+- Accept a release tag such as v1.2.3 as the ref of a git skill source (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Pass --no-frozen-lockfile when synthesis syncs, so CLI releases that freeze the lock in CI still regenerate it (filip.dupanovic@gmail.com)
 
 ## 0.2.0
 

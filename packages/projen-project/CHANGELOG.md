@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 29 Oct 2026 12:22:30 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 29 Oct 2026 17:17:09 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.44.0
+
+Thu, 29 Oct 2026 17:17:09 GMT
+
+### Minor changes
+
+- Propose a Renovate bump for a skill pinned to a release tag (filip.dupanovic@gmail.com)
+- Bump projen-skills to v0.3.0
 
 ## 0.43.0
 
