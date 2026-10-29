@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Omit an empty packages list from pnpm-workspace.yaml, which Changesets read as a monorepo without packages",
+  "packageName": "projen-pnpm-workspace",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
