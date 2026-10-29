@@ -794,6 +794,10 @@ export class Project extends BaseProject {
 
     if (!this.parent) {
       this.#addDefaultDevDeps('@babel/core@8.0.9')
+
+      if (this.name !== '@langri-sha/babel-preset') {
+        this.#addDefaultDevDeps('@langri-sha/babel-preset@0.6.10')
+      }
     }
 
     this.babel = new Babel(this, deepMerge(defaults, babel))

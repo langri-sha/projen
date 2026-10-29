@@ -41,6 +41,11 @@
       "type": "peer"
     },
     {
+      "name": "@langri-sha/babel-preset",
+      "version": "^0.6.0",
+      "type": "peer"
+    },
+    {
       "name": "@swc-node/register",
       "version": "^1.0.0",
       "type": "peer"
