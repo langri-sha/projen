@@ -64,6 +64,7 @@ const project = new Project({
       '**/cargo.ts',
       '**/dagger-module.ts',
       '**/dagger-workspace.ts',
+      'packages/projen-changesets/src/config.ts',
       'packages/projen-claude/src/settings.ts',
       '**/pnpm-workspace.ts',
       '**/pyproject.ts',
@@ -102,6 +103,7 @@ const project = new Project({
       'cargo.ts',
       'dagger-module.ts',
       'dagger-workspace.ts',
+      'packages/projen-changesets/src/config.ts',
       'packages/projen-claude/src/settings.ts',
       'packages/projen-github-templates/src/__fixtures__/malformed-yaml/',
       'packages/projen-project/templates/pull_request_template.md',
@@ -363,6 +365,43 @@ project.addSubproject(
     project.package?.setScript(
       'prepublishOnly',
       'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
+    )
+  },
+)
+
+project.addSubproject(
+  {
+    name: 'projen-changesets',
+    outdir: path.join('packages', 'projen-changesets'),
+    npmIgnore: {},
+    readme: {
+      filename: 'readme.md',
+    },
+    typeScriptConfig: {},
+    package: {
+      ...pkg,
+      copyrightYear: '2026',
+      description:
+        'A projen component for configuring Changesets, so the change files a repository versions and tags with are declared in your projenrc.',
+      type: 'module',
+      devDeps: ['schemastore-to-typescript@1.0.5'],
+      peerDeps: [...projenPeer.peerDeps],
+    },
+  },
+  subproject,
+  test,
+  publish,
+  (project) => {
+    project.addGitIgnore('config.ts')
+
+    project.package?.setScript(
+      'prepare',
+      'schemastore-to-typescript --no-cache Changesets src/config.ts',
+    )
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/config.d.ts',
     )
   },
 )
