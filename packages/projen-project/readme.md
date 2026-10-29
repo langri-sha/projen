@@ -20,7 +20,9 @@ projects.
 - manages [code owners] with [`projen-codeowners`]
 - configures [Worktrunk] worktree hooks with [`projen-worktrunk`]
 - shares [Claude Code] settings with [`projen-claude`]
-- declares and installs agent [skills] with [`projen-skills`]
+- declares and installs agent [skills] with [`projen-skills`], and with
+  Renovate, moves a skill to each new release tag, or to the latest commit when
+  it is pinned to a SHA
 - writes GitHub issue forms and a pull request template with
   [`projen-github-templates`]
 

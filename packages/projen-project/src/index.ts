@@ -1582,7 +1582,7 @@ export class Project extends BaseProject {
               },
             ]
           : []),
-        // A skill is pinned to a commit and declares no branch, so only the
+        // A skill pinned to a commit declares no branch, so only the
         // digest is captured, and Renovate compares it with the tip of the
         // repository's default branch. Synthesis carries a bump into
         // package.json, and the sync after it refreshes skills-lock.json.
@@ -1601,6 +1601,29 @@ export class Project extends BaseProject {
                   `source:\\s*['"](?<depName>[\\w.-]+/[\\w.-]+)['"],\\s*ref:\\s*['"](?<currentDigest>[0-9a-f]{40})['"]`,
                 ],
                 packageNameTemplate: 'https://github.com/{{{depName}}}',
+              },
+            ]
+          : []),
+        // A skill pinned to a release tag. Like the Dagger managers, the `v`
+        // stays out of `currentValue` and is put back by the extract
+        // template, so the replacement keeps it. The package is the
+        // repository itself, not its URL, so rules matching `langri-sha/**`
+        // reach it, and a bump is proposed only for a tag newer than the one
+        // pinned.
+        ...(skills
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'github-tags',
+                versioningTemplate: 'semver',
+                depTypeTemplate: 'skills',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                ],
+                matchStrings: [
+                  `source:\\s*['"](?<depName>[\\w.-]+/[\\w.-]+)['"],\\s*ref:\\s*['"]v(?<currentValue>\\d+\\.\\d+\\.\\d+)['"]`,
+                ],
+                extractVersionTemplate: '^v(?<version>.+)$',
               },
             ]
           : []),
