@@ -16,6 +16,7 @@ const CHANGE_FILE_CHECKLIST =
 
 export interface DefaultTemplatesOptions {
   readonly beachball: boolean
+  readonly changesets: boolean
   readonly discussions: boolean
   readonly exclude: readonly string[]
   readonly repository: GitHubRepository | undefined
@@ -25,10 +26,11 @@ export interface DefaultTemplatesOptions {
  * The preset's templates: the files in `templates/`, with the chooser's
  * contact links derived from the repository, and a change file reminder
  * under the first section of the pull request template when the project
- * uses Beachball.
+ * uses Beachball or Changesets.
  */
 export const defaultTemplates = ({
   beachball,
+  changesets,
   discussions,
   exclude,
   repository,
@@ -73,7 +75,7 @@ export const defaultTemplates = ({
   const pullRequest = templates[PULL_REQUEST_TEMPLATE] as
     PullRequestTemplateOptions | undefined
 
-  if (pullRequest && beachball) {
+  if (pullRequest && (beachball || changesets)) {
     templates[PULL_REQUEST_TEMPLATE] = {
       ...pullRequest,
       body: (pullRequest.body as string).replace(
