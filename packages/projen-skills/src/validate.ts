@@ -13,8 +13,10 @@ export type SkillSource =
       readonly source: string
 
       /**
-       * The commit to install, as a full 40-character SHA. Required for git
-       * sources, so a branch moving never changes what is installed.
+       * What to install: a full 40-character commit SHA, or a release tag
+       * such as `v1.2.3`. Required for git sources, so a branch moving never
+       * changes what is installed. The lock records it as declared, so a tag
+       * is only as fixed as the repository keeps it.
        */
       readonly ref?: string
 
@@ -32,7 +34,7 @@ export interface SkillEntry {
   readonly skills: string[]
 }
 
-const SHA = /^[0-9a-f]{40}$/
+const PINNED_REF = /^(?:[0-9a-f]{40}|v\d+\.\d+\.\d+)$/
 const SKILL_NAME = /^[A-Za-z0-9][A-Za-z0-9._-]*$/
 const GIT_SOURCE = /^(?:[\w.-]+\/[\w.-]+|(?:https?|ssh|git):\/\/\S+|git@\S+)$/
 
@@ -69,9 +71,9 @@ export const normalizeSkills = (skills: SkillSource[]): SkillEntry[] => {
       )
     }
 
-    if (!npm && (ref === undefined || !SHA.test(ref))) {
+    if (!npm && (ref === undefined || !PINNED_REF.test(ref))) {
       throw new Error(
-        `${label} needs a \`ref\` that is a full 40-character commit SHA${ref === undefined ? '' : `, not ${JSON.stringify(ref)}`}. A branch or tag moves, and the lock would stop meaning anything.`,
+        `${label} needs a \`ref\` that is a full 40-character commit SHA or a release tag such as \`v1.2.3\`${ref === undefined ? '' : `, not ${JSON.stringify(ref)}`}. A branch moves, and the lock would stop meaning anything.`,
       )
     }
 

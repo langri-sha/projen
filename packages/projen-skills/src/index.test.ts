@@ -38,6 +38,14 @@ describe('package.json', () => {
     ])
   })
 
+  test('declares a release tag as the ref', () => {
+    const skills = [
+      { source: 'vercel-labs/skills', ref: 'v1.0.0', skills: ['find-skills'] },
+    ]
+
+    expect(synth({ skills })['package.json'].skills).toEqual(skills)
+  })
+
   test('is the only file the component adds', () => {
     const base = synthSnapshot(
       (() => {
@@ -71,6 +79,12 @@ test('rejects a skill without a pinned ref', () => {
   expect(() =>
     synth({ skills: [{ source: 'owner/repo', skills: ['a'] }] }),
   ).toThrow(/40-character commit SHA/)
+})
+
+test('rejects a skill pinned to a branch', () => {
+  expect(() =>
+    synth({ skills: [{ source: 'owner/repo', ref: 'main', skills: ['a'] }] }),
+  ).toThrow(/not "main"/)
 })
 
 describe('.gitignore', () => {

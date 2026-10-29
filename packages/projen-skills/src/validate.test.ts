@@ -39,14 +39,28 @@ describe('normalizeSkills', () => {
     ).toThrow(/local path/)
   })
 
-  test.each([undefined, 'main', 'v1.0.0', SHA.slice(1), SHA.toUpperCase()])(
-    'rejects the git ref %s',
-    (ref) => {
-      expect(() =>
-        normalizeSkills([{ source: 'owner/repo', ref, skills: ['a'] }]),
-      ).toThrow(/40-character commit SHA/)
-    },
-  )
+  test.each(['v1.0.0', 'v0.12.345', SHA])('keeps the git ref %s', (ref) => {
+    expect(
+      normalizeSkills([{ source: 'owner/repo', ref, skills: ['a'] }]),
+    ).toEqual([{ source: 'owner/repo', ref, skills: ['a'] }])
+  })
+
+  test.each([
+    undefined,
+    'main',
+    'v1',
+    'v1.0',
+    '1.0.0',
+    'V1.0.0',
+    'v1.0.0-beta.1',
+    'v1.0.0 ',
+    SHA.slice(1),
+    SHA.toUpperCase(),
+  ])('rejects the git ref %s', (ref) => {
+    expect(() =>
+      normalizeSkills([{ source: 'owner/repo', ref, skills: ['a'] }]),
+    ).toThrow(/40-character commit SHA or a release tag/)
+  })
 
   test('rejects a bare string, which cannot carry a ref or skills', () => {
     expect(() => normalizeSkills(['owner/repo'])).toThrow(/40-character/)
