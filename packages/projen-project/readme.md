@@ -6,6 +6,8 @@ projects.
 ## Features
 
 - managing [Beachball] configuration for publishing packages
+- configures [Changesets] with [`projen-changesets`], to version and tag
+  packages Beachball would not
 - configures [PNPM] [workspaces]
 - configures [Cargo] workspaces with [`projen-cargo`]
 - configures [Dagger] modules with [`projen-dagger`]
@@ -21,6 +23,22 @@ projects.
 - declares and installs agent [skills] with [`projen-skills`]
 - writes GitHub issue forms and a pull request template with
   [`projen-github-templates`]
+
+## Changesets
+
+Given a `changesets` option, the preset writes `.changeset/config.json` through
+[`projen-changesets`] and supplies `@changesets/cli`. Root projects only, and
+not alongside `beachball`. `privatePackages` stays unset, so a private package
+is neither versioned nor tagged until you opt in:
+
+```ts
+new Project({
+  name: 'my-project',
+  changesets: {
+    config: { privatePackages: { version: true, tag: true } },
+  },
+})
+```
 
 ## Claude Code
 
@@ -110,8 +128,8 @@ new Project({
 - The chooser links to the repository's Discussions, unless `discussions` is
   `false`, and to reporting a security vulnerability. The links come from
   `package.repository`, and are left out when that is not a GitHub repository.
-- With `beachball`, the pull request template's first section carries a
-  checklist line about adding a change file.
+- With `beachball` or `changesets`, the pull request template's first section
+  carries a checklist line about adding a change file.
 - `exclude` lists repository paths of defaults to leave out, and `files` merges
   templates over the defaults, so one at the same path replaces the default
   whole, derived links and all.
@@ -148,6 +166,7 @@ new Project({
 ```
 
 [`projen-cargo`]: https://www.npmjs.com/package/projen-cargo
+[`projen-changesets`]: https://www.npmjs.com/package/projen-changesets
 [`projen-claude`]: https://www.npmjs.com/package/projen-claude
 [`projen-codeowners`]: https://www.npmjs.com/package/projen-codeowners
 [`projen-github-templates`]:
@@ -161,6 +180,7 @@ new Project({
 [`projen-worktrunk`]: https://www.npmjs.com/package/projen-worktrunk
 [`@langri-sha/tsconfig`]: https://www.npmjs.com/package/@langri-sha/tsconfig
 [beachball]: https://microsoft.github.io/beachball/
+[changesets]: https://github.com/changesets/changesets
 [cargo]: https://doc.rust-lang.org/cargo/
 [claude code]: https://code.claude.com/docs/en/settings
 [code owners]:
