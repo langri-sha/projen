@@ -76,3 +76,41 @@ test('skips install on subprojects', () => {
 
   expect(synthSnapshot(project1)).toMatchSnapshot()
 })
+
+describe('writes the repository', () => {
+  test('in full when given as a shorthand', () => {
+    const project = new Project({ name: 'test' })
+
+    new NodePackage(project, { repository: 'langri-sha/projen' })
+
+    expect(synthSnapshot(project)['package.json']?.repository).toEqual({
+      type: 'git',
+      url: 'git+https://github.com/langri-sha/projen.git',
+    })
+  })
+
+  test('as given when already a full URL', () => {
+    const project = new Project({ name: 'test' })
+
+    new NodePackage(project, {
+      repository: 'git+https://github.com/langri-sha/projen.git',
+      repositoryDirectory: 'packages/projen-project',
+    })
+
+    expect(synthSnapshot(project)['package.json']?.repository).toEqual({
+      type: 'git',
+      url: 'git+https://github.com/langri-sha/projen.git',
+      directory: 'packages/projen-project',
+    })
+  })
+
+  test('not at all when none is given', () => {
+    const project = new Project({ name: 'test' })
+
+    new NodePackage(project)
+
+    expect(synthSnapshot(project)['package.json']).not.toHaveProperty(
+      'repository',
+    )
+  })
+})

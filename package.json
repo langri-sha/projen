@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "langri-sha/projen"
+    "url": "git+https://github.com/langri-sha/projen.git"
   },
   "license": "MIT",
   "author": {

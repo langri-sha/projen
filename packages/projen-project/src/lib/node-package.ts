@@ -2,6 +2,8 @@ import * as fs from 'node:fs'
 
 import { Project, javascript } from 'projen'
 
+import { normalizeRepository } from './repository.js'
+
 /**
  * Options for configuring Node.js packages.
  */
@@ -22,7 +24,13 @@ export interface NodePackageOptions extends javascript.NodePackageOptions {
  */
 export class NodePackage extends javascript.NodePackage {
   constructor(project: Project, options?: NodePackageOptions) {
-    super(project, options)
+    super(
+      project,
+      options && {
+        ...options,
+        repository: normalizeRepository(options.repository),
+      },
+    )
 
     this.addVersion(this.#getPackageJson()?.version ?? '0.0.0')
 
