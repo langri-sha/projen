@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 27 Oct 2026 18:24:05 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 29 Oct 2026 12:22:30 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.43.0
+
+Thu, 29 Oct 2026 12:22:30 GMT
+
+### Minor changes
+
+- Add a changesets option (filip.dupanovic@gmail.com)
 
 ## 0.42.4
 

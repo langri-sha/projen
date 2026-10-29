@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 29 Oct 2026 12:22:30 GMT",
+      "version": "0.43.0",
+      "tag": "@langri-sha/projen-project_v0.43.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "8e53bc3e670a00dc94add7b95ffd8e6930b505bb",
+            "comment": "Add a changesets option"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 27 Oct 2026 18:24:05 GMT",
       "version": "0.42.4",
       "tag": "@langri-sha/projen-project_v0.42.4",
