@@ -20,6 +20,9 @@
       "path": "packages/projen-cargo"
     },
     {
+      "path": "packages/projen-changesets"
+    },
+    {
       "path": "packages/projen-claude"
     },
     {

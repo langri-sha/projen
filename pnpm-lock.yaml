@@ -277,6 +277,21 @@ importers:
         specifier: 1.0.5
         version: 1.0.5(supports-color@8.1.1)
 
+  packages/projen-changesets:
+    devDependencies:
+      '@langri-sha/tsconfig':
+        specifier: 1.1.1
+        version: 1.1.1(typescript@5.9.3)
+      '@langri-sha/vitest':
+        specifier: 0.2.3
+        version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(tsx@4.23.15)(yaml@2.9.1)))
+      projen:
+        specifier: 0.104.1
+        version: 0.104.1(constructs@10.8.1)
+      schemastore-to-typescript:
+        specifier: 1.0.5
+        version: 1.0.5(supports-color@8.1.1)
+
   packages/projen-claude:
     devDependencies:
       '@langri-sha/tsconfig':
