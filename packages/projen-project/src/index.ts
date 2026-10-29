@@ -250,7 +250,8 @@ export interface ProjectOptions extends Omit<
 
   /**
    * Pass in to set up Changesets, to version and tag a package Beachball
-   * would not, such as a private one. Root projects only.
+   * would not, such as a private one. Root projects only, and not alongside
+   * `beachball`.
    *
    * The preset leaves `privatePackages` unset; opt in with
    * `changesets: { config: { privatePackages: { version: true, tag: true } } }`.
@@ -888,7 +889,13 @@ export class Project extends BaseProject {
     )
   }
 
-  #configureChangesets({ changesets }: ProjectOptions) {
+  #configureChangesets({ beachball, changesets }: ProjectOptions) {
+    if (beachball && changesets) {
+      throw new Error(
+        'Set only one of `beachball` and `changesets`: both would own the change files and the changelogs.',
+      )
+    }
+
     if (!changesets || this.parent) {
       return
     }

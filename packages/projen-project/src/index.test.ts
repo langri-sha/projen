@@ -382,6 +382,17 @@ describe('with Changesets configuration', () => {
     expect(synthSnapshot(project)['.prettierignore']).toContain('CHANGELOG.md')
   })
 
+  test('cannot be combined with Beachball', () => {
+    expect(
+      () =>
+        new Project({
+          name: 'test-project',
+          beachball: {},
+          changesets: {},
+        }),
+    ).toThrowError(/only one of `beachball` and `changesets`/)
+  })
+
   test('writes nothing in a subproject', () => {
     const project = new Project({ name: 'test-project', package: {} })
 
