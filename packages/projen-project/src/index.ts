@@ -1263,6 +1263,11 @@ export class Project extends BaseProject {
     }
 
     this.#addDefaultDevDeps('prettier@3.9.9')
+
+    if (this.name !== '@langri-sha/prettier') {
+      this.#addDefaultDevDeps('@langri-sha/prettier@0.4.11')
+    }
+
     this.prettier = new Prettier(this, deepMerge(defaults, prettier))
 
     if (this.projenrc?.filePath) {

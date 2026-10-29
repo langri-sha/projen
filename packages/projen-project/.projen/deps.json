@@ -56,6 +56,11 @@
       "type": "peer"
     },
     {
+      "name": "@langri-sha/prettier",
+      "version": "^0.4.0",
+      "type": "peer"
+    },
+    {
       "name": "@swc-node/register",
       "version": "^1.0.0",
       "type": "peer"

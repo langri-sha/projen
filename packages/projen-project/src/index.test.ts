@@ -3394,6 +3394,7 @@ describe('peers the preset requires', () => {
     '@langri-sha/babel-preset',
     '@langri-sha/eslint-config',
     '@langri-sha/lint-staged',
+    '@langri-sha/prettier',
     '@swc/core',
     'beachball',
     'eslint',
@@ -3451,6 +3452,7 @@ describe('supplied development dependency versions', () => {
     { tool: '@langri-sha/babel-preset', enabledBy: { babel: {} } },
     { tool: '@langri-sha/eslint-config', enabledBy: { eslint: {} } },
     { tool: '@langri-sha/lint-staged', enabledBy: { lintStaged: {} } },
+    { tool: '@langri-sha/prettier', enabledBy: { prettier: {} } },
     { tool: 'beachball', enabledBy: { beachball: {} } },
     { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
@@ -3531,6 +3533,7 @@ describe('supplied development dependency versions', () => {
     { name: '@langri-sha/babel-preset', enabledBy: { babel: {} } },
     { name: '@langri-sha/eslint-config', enabledBy: { eslint: {} } },
     { name: '@langri-sha/lint-staged', enabledBy: { lintStaged: {} } },
+    { name: '@langri-sha/prettier', enabledBy: { prettier: {} } },
   ])('does not declare $name in its own project', ({ name, enabledBy }) => {
     const files = synthesize({ name, ...enabledBy })
 
@@ -3805,6 +3808,7 @@ describe('declarations this preset cannot support', () => {
     { spec: '@langri-sha/babel-preset@0.5.7', enabledBy: { babel: {} } },
     { spec: '@langri-sha/eslint-config@0.9.19', enabledBy: { eslint: {} } },
     { spec: '@langri-sha/lint-staged@0.8.0', enabledBy: { lintStaged: {} } },
+    { spec: '@langri-sha/prettier@0.3.1', enabledBy: { prettier: {} } },
     { spec: '@swc/core@1.5.29', enabledBy: { swcrc: {} } },
     { spec: 'beachball@1.53.2', enabledBy: { beachball: {} } },
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },

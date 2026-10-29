@@ -552,6 +552,9 @@ importers:
       '@langri-sha/lint-staged':
         specifier: ^0.9.0
         version: 0.9.11(eslint@10.13.0(supports-color@8.1.1))(lint-staged@17.6.0)(prettier@3.9.9)
+      '@langri-sha/prettier':
+        specifier: ^0.4.0
+        version: 0.4.11(prettier@3.9.9)
       '@swc-node/register':
         specifier: ^1.0.0
         version: 1.12.1(@swc/core@1.16.2)(@swc/types@0.1.28)(supports-color@8.1.1)(typescript@5.9.3)
