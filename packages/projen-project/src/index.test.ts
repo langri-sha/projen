@@ -3392,6 +3392,7 @@ describe('peers the preset requires', () => {
     '@babel/core',
     '@changesets/cli',
     '@langri-sha/babel-preset',
+    '@langri-sha/eslint-config',
     '@swc/core',
     'beachball',
     'eslint',
@@ -3447,6 +3448,7 @@ describe('supplied development dependency versions', () => {
     { tool: '@babel/core', enabledBy: { babel: {} } },
     { tool: '@changesets/cli', enabledBy: { changesets: {} } },
     { tool: '@langri-sha/babel-preset', enabledBy: { babel: {} } },
+    { tool: '@langri-sha/eslint-config', enabledBy: { eslint: {} } },
     { tool: 'beachball', enabledBy: { beachball: {} } },
     { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
@@ -3523,14 +3525,14 @@ describe('supplied development dependency versions', () => {
     expect(suppressedPackages(files)).not.toContain('@langri-sha/tsconfig')
   })
 
-  test.each([{ name: '@langri-sha/babel-preset', enabledBy: { babel: {} } }])(
-    'does not declare $name in its own project',
-    ({ name, enabledBy }) => {
-      const files = synthesize({ name, ...enabledBy })
+  test.each([
+    { name: '@langri-sha/babel-preset', enabledBy: { babel: {} } },
+    { name: '@langri-sha/eslint-config', enabledBy: { eslint: {} } },
+  ])('does not declare $name in its own project', ({ name, enabledBy }) => {
+    const files = synthesize({ name, ...enabledBy })
 
-      expect(files['package.json'].devDependencies).not.toHaveProperty([name])
-    },
-  )
+    expect(files['package.json'].devDependencies).not.toHaveProperty([name])
+  })
 
   test('withholds them from the manifest, not from this preset', () => {
     // The custom managers read `.projenrc` files, and this preset's own
@@ -3798,6 +3800,7 @@ describe('declarations this preset cannot support', () => {
     { spec: '@babel/core@7.29.7', enabledBy: { babel: {} } },
     { spec: '@changesets/cli@2.29.0', enabledBy: { changesets: {} } },
     { spec: '@langri-sha/babel-preset@0.5.7', enabledBy: { babel: {} } },
+    { spec: '@langri-sha/eslint-config@0.9.19', enabledBy: { eslint: {} } },
     { spec: '@swc/core@1.5.29', enabledBy: { swcrc: {} } },
     { spec: 'beachball@1.53.2', enabledBy: { beachball: {} } },
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },

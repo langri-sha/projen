@@ -46,6 +46,11 @@
       "type": "peer"
     },
     {
+      "name": "@langri-sha/eslint-config",
+      "version": "^0.10.0",
+      "type": "peer"
+    },
+    {
       "name": "@swc-node/register",
       "version": "^1.0.0",
       "type": "peer"
