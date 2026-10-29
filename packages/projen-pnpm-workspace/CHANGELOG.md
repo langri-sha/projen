@@ -1,8 +1,16 @@
 # Change Log - projen-pnpm-workspace
 
-<!-- This log was last generated on Tue, 27 Oct 2026 17:36:03 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 29 Oct 2026 17:40:58 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.20
+
+Thu, 29 Oct 2026 17:40:58 GMT
+
+### Patches
+
+- Omit an empty packages list from pnpm-workspace.yaml, which Changesets read as a monorepo without packages (filip.dupanovic@gmail.com)
 
 ## 0.4.19
 

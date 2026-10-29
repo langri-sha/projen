@@ -2,6 +2,21 @@
   "name": "projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Thu, 29 Oct 2026 17:40:58 GMT",
+      "version": "0.4.20",
+      "tag": "projen-pnpm-workspace_v0.4.20",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-pnpm-workspace",
+            "commit": "e0e7a885976e3ba669aa246039a457e211fd62dc",
+            "comment": "Omit an empty packages list from pnpm-workspace.yaml, which Changesets read as a monorepo without packages"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 27 Oct 2026 17:36:03 GMT",
       "version": "0.4.19",
       "tag": "projen-pnpm-workspace_v0.4.19",
