@@ -295,8 +295,8 @@ export interface ProjectOptions extends Omit<
    *
    * The chooser gets a link to the repository's Discussions and one for
    * reporting a security vulnerability, derived from `package.repository`, and
-   * none of them when that is not a GitHub repository. With `beachball`, the
-   * pull request template also reminds authors to add a change file.
+   * none of them when that is not a GitHub repository. With `beachball` or `changesets`,
+   * the pull request template also reminds authors to add a change file.
    *
    * [`projen-github-templates`]: https://www.npmjs.com/package/projen-github-templates
    */
@@ -969,6 +969,7 @@ export class Project extends BaseProject {
 
   #configureGitHubTemplates({
     beachball,
+    changesets,
     githubTemplates,
     package: pkg,
   }: ProjectOptions) {
@@ -982,6 +983,7 @@ export class Project extends BaseProject {
       files: {
         ...defaultTemplates({
           beachball: Boolean(beachball),
+          changesets: Boolean(changesets),
           discussions,
           exclude,
           repository: parseGitHubRepository(pkg?.repository),

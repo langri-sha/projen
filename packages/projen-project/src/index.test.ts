@@ -1602,6 +1602,19 @@ describe('with GitHub templates options', () => {
     ).toMatchSnapshot()
   })
 
+  test('reminds about a change file with Changesets', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { repository },
+      changesets: {},
+      githubTemplates: {},
+    })
+
+    expect(
+      githubFiles(project)['.github/pull_request_template.md'],
+    ).toMatchSnapshot()
+  })
+
   test('leaves the reminder out without Beachball', () => {
     const project = new Project({
       name: 'test-project',
