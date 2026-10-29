@@ -15,6 +15,7 @@ import {
 import { Babel, BabelOptions } from 'projen-babel-config'
 import { Beachball, BeachballOptions } from 'projen-beachball'
 import { type CargoOptions, CargoPackage, CargoWorkspace } from 'projen-cargo'
+import { Changesets, type ChangesetsOptions } from 'projen-changesets'
 import { Claude, type ClaudeOptions } from 'projen-claude'
 import { Codeowners, type CodeownersOptions } from 'projen-codeowners'
 import { Dagger, type DaggerOptions } from 'projen-dagger'
@@ -248,6 +249,15 @@ export interface ProjectOptions extends Omit<
   cargo?: CargoOptions
 
   /**
+   * Pass in to set up Changesets, to version and tag a package Beachball
+   * would not, such as a private one. Root projects only.
+   *
+   * The preset leaves `privatePackages` unset; opt in with
+   * `changesets: { config: { privatePackages: { version: true, tag: true } } }`.
+   */
+  changesets?: ChangesetsOptions
+
+  /**
    * Pass in to write the Claude Code settings the repository shares, to
    * `.claude/settings.json`. Root projects only. Claude Code reads the file
    * from the directory it is started in, so a session started in a subproject
@@ -424,6 +434,7 @@ export class Project extends BaseProject {
   babel?: Babel
   beachball?: Beachball
   cargo?: CargoPackage | CargoWorkspace
+  changesets?: Changesets
   claude?: Claude
   codeowners?: Codeowners
   dagger?: Dagger
@@ -507,6 +518,7 @@ export class Project extends BaseProject {
     this.#configureBabel(options)
     this.#configureBeachball(options)
     this.#configureCargo(options)
+    this.#configureChangesets(options)
     this.#configureClaude(options)
     this.#configureCodeowners(options)
     this.#configureEditorConfig(options)
@@ -874,6 +886,16 @@ export class Project extends BaseProject {
     workspace?.addMember(
       path.relative(this.root.outdir, this.outdir).split(path.sep).join('/'),
     )
+  }
+
+  #configureChangesets({ changesets }: ProjectOptions) {
+    if (!changesets || this.parent) {
+      return
+    }
+
+    this.changesets = new Changesets(this, changesets)
+
+    this.prettier?.ignore.addPatterns('CHANGELOG.md')
   }
 
   #configureClaude({ claude }: ProjectOptions) {
