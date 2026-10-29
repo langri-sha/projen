@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 29 Oct 2026 17:40:58 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 29 Oct 2026 18:58:08 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.44.2
+
+Thu, 29 Oct 2026 18:58:08 GMT
+
+### Patches
+
+- Write a shorthand repository as the full git URL npm pkg fix produces (filip.dupanovic@gmail.com)
 
 ## 0.44.1
 

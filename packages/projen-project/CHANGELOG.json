@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 29 Oct 2026 18:58:08 GMT",
+      "version": "0.44.2",
+      "tag": "@langri-sha/projen-project_v0.44.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "b9cfb1b49ab1c55ae5a0ac949981b89803e3785a",
+            "comment": "Write a shorthand repository as the full git URL npm pkg fix produces"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Oct 2026 17:40:58 GMT",
       "version": "0.44.1",
       "tag": "@langri-sha/projen-project_v0.44.1",

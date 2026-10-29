@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Write a shorthand repository as the full git URL npm pkg fix produces",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
