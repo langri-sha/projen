@@ -96,6 +96,23 @@ test('accepts a sync that installed everything', () => {
   expect(readFileSync(path.join(cwd, LOCK_FILE), 'utf8')).toBe(lockOf())
 })
 
+test('accepts a lock that holds the declared tag', () => {
+  const tag = 'v1.2.3'
+  const tagged = [{ ...entries[0]!, ref: tag }]
+
+  expect(() =>
+    sync(
+      (invocation) => {
+        install(invocation)
+        writeFileSync(path.join(cwd, LOCK_FILE), lockOf({ ref: tag }))
+
+        return { exitCode: 0, output: '' }
+      },
+      { entries: tagged },
+    ),
+  ).not.toThrow()
+})
+
 describe('on failure', () => {
   const before = lock({ other: { via: '.' } })
 

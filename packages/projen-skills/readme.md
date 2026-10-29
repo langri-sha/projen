@@ -55,8 +55,10 @@ Each entry is `{ source, ref?, skills }`:
 
 - `source` is `npm:<package>`, or a git repository as `owner/repo` or a URL.
   Local paths are rejected, as a fresh clone could not restore them.
-- `ref` must be a full 40-character commit SHA for git sources. A branch or tag
-  moves, and the lock would stop meaning anything.
+- `ref` is required for git sources: a full 40-character commit SHA, or a
+  release tag such as `v1.2.3`. A branch moves, and the lock would stop meaning
+  anything. The CLI clones a tag as is and locks it as declared, so a tag is
+  only as fixed as its repository keeps it.
 - `skills` names the skills to install. The spec makes it optional, but the
   component ignores and checks skills by name, and a source does not reveal its
   skills before it is cloned. Declare the ones you use.
