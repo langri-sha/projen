@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Propose a Renovate bump for a skill pinned to a release tag",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
