@@ -40,6 +40,17 @@ export const syncArgs = (agents: string[]): string[] => [
 ]
 
 /**
+ * Synthesis produces the lock, so it must be allowed to change it. From the
+ * CLI release that follows vercel-labs/skills#2559, `CI` or `GITHUB_ACTIONS`
+ * freezes the lock by default, which fails every ref bump regenerated in CI.
+ * The `skills` task keeps the default, so it stays the frozen check there.
+ */
+export const synthesisArgs = (agents: string[]): string[] => [
+  ...syncArgs(agents),
+  '--no-frozen-lockfile',
+]
+
+/**
  * Run the `skills` CLI the project installed, with this process's Node.
  */
 export const runSkills: SyncRunner = ({ args, cwd, env }) => {
@@ -110,7 +121,7 @@ export const syncSkills = ({
   let result: SyncResult
 
   try {
-    result = run({ args: syncArgs(agents), cwd, env: { ...SYNC_ENV } })
+    result = run({ args: synthesisArgs(agents), cwd, env: { ...SYNC_ENV } })
   } catch (error) {
     restore()
     throw error
@@ -125,7 +136,7 @@ export const syncSkills = ({
     throw new Error(
       [
         result.exitCode !== 0
-          ? `skills ${syncArgs(agents).join(' ')} exited with ${result.exitCode}.`
+          ? `skills ${synthesisArgs(agents).join(' ')} exited with ${result.exitCode}.`
           : 'skills sync exited cleanly but did not install what was declared:',
         ...(problems ?? []).map((problem) => `  - ${problem}`),
         `${LOCK_FILE} was ${snapshot ? 'restored' : 'removed'}.`,
