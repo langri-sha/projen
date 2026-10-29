@@ -31,6 +31,11 @@
       "type": "peer"
     },
     {
+      "name": "@changesets/cli",
+      "version": "^3.0.0",
+      "type": "peer"
+    },
+    {
       "name": "@swc-node/register",
       "version": "^1.0.0",
       "type": "peer"

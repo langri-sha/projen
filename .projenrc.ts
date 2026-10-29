@@ -769,6 +769,7 @@ project.addSubproject(
       devDeps: ['@types/ramda@0.32.0', '@types/semver@7.8.0'],
       peerDeps: [
         '@babel/core@^8.0.0',
+        '@changesets/cli@^3.0.0',
         '@swc-node/register@^1.0.0',
         '@swc/core@^1.6.0',
         'beachball@^2.0.0',
@@ -784,6 +785,9 @@ project.addSubproject(
       ],
       peerDependenciesMeta: {
         '@babel/core': {
+          optional: true,
+        },
+        '@changesets/cli': {
           optional: true,
         },
         '@swc-node/register': {
