@@ -1,0 +1,20 @@
+{
+  "name": "projen-changesets",
+  "entries": [
+    {
+      "date": "Thu, 29 Oct 2026 12:16:21 GMT",
+      "version": "0.1.0",
+      "tag": "projen-changesets_v0.1.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-changesets",
+            "commit": "b4bc8d1bc2c2568b600252d371f45caa667f3675",
+            "comment": "Add a component for Changesets configuration"
+          }
+        ]
+      }
+    }
+  ]
+}

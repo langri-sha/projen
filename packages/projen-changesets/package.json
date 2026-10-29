@@ -1,6 +1,6 @@
 {
   "name": "projen-changesets",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A projen component for configuring Changesets, so the change files a repository versions and tags with are declared in your projenrc.",
   "bugs": {
     "url": "https://github.com/langri-sha/projen/issues"
