@@ -82,8 +82,13 @@ export class PnpmWorkspace extends YamlFile {
     const parsed: Writable<Omit<PnpmWorkspaceOptions, 'filename'>> =
       YAML.parse(yaml)
 
-    if (parsed.packages) {
+    // An empty `packages` is not the same as none: tools such as
+    // `@manypkg/tools` take the key as proof of a monorepo, find no packages
+    // in it, and so lose the root package of a single-package repository.
+    if (parsed.packages?.length) {
       parsed.packages = [...new Set(parsed.packages)].sort()
+    } else {
+      delete parsed.packages
     }
 
     return [

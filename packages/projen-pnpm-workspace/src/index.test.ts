@@ -89,6 +89,24 @@ test('with settings and no packages', () => {
   expect(synthSnapshot(project)['pnpm-workspace.yaml']).toMatchSnapshot()
 })
 
+test.each([{}, { packages: [] }])(
+  'omits the packages key when no package is declared or found: %j',
+  (options) => {
+    const project = new Project({
+      name: 'test-project',
+    })
+
+    new PnpmWorkspace(project, {
+      minimumReleaseAgeExclude: ['@langri-sha/*'],
+      ...options,
+    })
+
+    expect(synthSnapshot(project)['pnpm-workspace.yaml']).not.toMatch(
+      /packages/,
+    )
+  },
+)
+
 test('keeps settings when packages come from subprojects', () => {
   const project = new Project({
     name: 'test-project',
