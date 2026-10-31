@@ -45,7 +45,7 @@
 pnpm install
 pnpm exec projen                 # synth from .projenrc.ts
 pnpm exec vitest run             # tests
-pnpm -r --if-present prepublishOnly  # tsc-build
+pnpm -r --if-present prepublishOnly  # build every package, as publishing does
 ```
 
 See [AGENTS.md](./AGENTS.md) for orientation and the release flow.

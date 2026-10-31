@@ -43,7 +43,7 @@ pnpm exec vitest run             # run all unit tests
 pnpm tsc --build .               # type check
 pnpm eslint . && pnpm prettier --check .
 pnpm change                      # write a change file
-pnpm -r --if-present prepublishOnly  # tsc-build every package
+pnpm -r --if-present prepublishOnly  # build every package, as publishing does
 ```
 
 CI (`workspace.yml` → `langri-sha/github` `check.yml`) runs ESLint, Prettier,
