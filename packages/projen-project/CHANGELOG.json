@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 16:10:34 GMT",
+      "version": "0.46.0",
+      "tag": "@langri-sha/projen-project_v0.46.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4b149c73de214e12570d688a0abea4655c368108",
+            "comment": "Supply Vitest to projects that test with it"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4b149c73de214e12570d688a0abea4655c368108",
+            "comment": "Ignore test files in tarballs of projects that use Vitest"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4b149c73de214e12570d688a0abea4655c368108",
+            "comment": "Describe what the vitest option does for npmignore"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Oct 2026 23:01:56 GMT",
       "version": "0.45.0",
       "tag": "@langri-sha/projen-project_v0.45.0",

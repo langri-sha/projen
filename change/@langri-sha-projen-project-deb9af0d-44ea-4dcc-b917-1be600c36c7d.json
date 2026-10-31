@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Ignore test files in tarballs of projects that use Vitest",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

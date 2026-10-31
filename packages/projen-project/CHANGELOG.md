@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 29 Oct 2026 23:01:56 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 31 Oct 2026 16:10:34 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.46.0
+
+Sat, 31 Oct 2026 16:10:34 GMT
+
+### Minor changes
+
+- Supply Vitest to projects that test with it (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Ignore test files in tarballs of projects that use Vitest (filip.dupanovic@gmail.com)
+- Describe what the vitest option does for npmignore (filip.dupanovic@gmail.com)
 
 ## 0.45.0
 
