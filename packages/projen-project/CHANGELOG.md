@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 31 Oct 2026 16:10:34 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 31 Oct 2026 22:03:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.47.0
+
+Sat, 31 Oct 2026 22:03:31 GMT
+
+### Minor changes
+
+- Have Renovate raise Python floors and pins declared in the projenrc (filip.dupanovic@gmail.com)
 
 ## 0.46.0
 

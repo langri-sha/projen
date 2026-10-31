@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 22:03:31 GMT",
+      "version": "0.47.0",
+      "tag": "@langri-sha/projen-project_v0.47.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "46c2343f5622b0813e98e5d51c4d579a84f03cc9",
+            "comment": "Have Renovate raise Python floors and pins declared in the projenrc"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.46.0",
       "tag": "@langri-sha/projen-project_v0.46.0",
