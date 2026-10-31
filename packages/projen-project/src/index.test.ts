@@ -1967,6 +1967,23 @@ describe('with NPM ignore', () => {
 
     expect(synthSnapshot(project)['.npmignore']).toMatchSnapshot()
   })
+
+  test.each([
+    { runner: 'Jest', options: { jestConfig: {} }, ignored: true },
+    { runner: 'Vitest', options: { vitest: true }, ignored: true },
+    { runner: 'neither', options: {}, ignored: false },
+  ])('with $runner, test files ignored is $ignored', ({ options, ignored }) => {
+    const project = new Project({
+      name: 'test-project',
+      npmIgnore: {},
+      ...options,
+    })
+
+    const lines: string[] = synthSnapshot(project)['.npmignore'].split('\n')
+
+    expect(lines.includes('*.test.*')).toBe(ignored)
+    expect(lines.includes('__snapshots__/')).toBe(ignored)
+  })
 })
 
 describe('with package', () => {
