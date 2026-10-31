@@ -1685,6 +1685,26 @@ describe('with Jest configuration', () => {
   })
 })
 
+describe('with Vitest', () => {
+  test('runs it from the test script', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      vitest: true,
+    })
+
+    expect(synthSnapshot(project)['package.json'].scripts.test).toBe('vitest')
+  })
+
+  test('leaves the test script out without it', () => {
+    const project = new Project({ name: 'test-project', package: {} })
+
+    expect(synthSnapshot(project)['package.json'].scripts).not.toHaveProperty(
+      'test',
+    )
+  })
+})
+
 describe('with license', () => {
   test('without author name', () => {
     expect(
@@ -3395,6 +3415,7 @@ describe('peers the preset requires', () => {
     '@langri-sha/eslint-config',
     '@langri-sha/lint-staged',
     '@langri-sha/prettier',
+    '@langri-sha/vitest',
     '@swc/core',
     'beachball',
     'eslint',
@@ -3404,6 +3425,7 @@ describe('peers the preset requires', () => {
     'prettier',
     'skills',
     'typescript',
+    'vitest',
   ])('leave out %s', (tool) => {
     expect(required).not.toContain(tool)
   })
@@ -3453,6 +3475,7 @@ describe('supplied development dependency versions', () => {
     { tool: '@langri-sha/eslint-config', enabledBy: { eslint: {} } },
     { tool: '@langri-sha/lint-staged', enabledBy: { lintStaged: {} } },
     { tool: '@langri-sha/prettier', enabledBy: { prettier: {} } },
+    { tool: '@langri-sha/vitest', enabledBy: { vitest: true } },
     { tool: 'beachball', enabledBy: { beachball: {} } },
     { tool: 'eslint', enabledBy: { eslint: {} } },
     { tool: 'husky', enabledBy: { husky: {} } },
@@ -3461,6 +3484,7 @@ describe('supplied development dependency versions', () => {
     { tool: 'prettier', enabledBy: { prettier: {} } },
     { tool: 'skills', enabledBy: { skills: skillsOptions } },
     { tool: 'typescript', enabledBy: { typeScriptConfig: {} } },
+    { tool: 'vitest', enabledBy: { vitest: true } },
     { tool: '@swc/core', enabledBy: { swcrc: {} } },
     { tool: '@swc-node/register', enabledBy: { swcrc: {} } },
     // Not features — every root project is given Projen itself, and `tsx` to
@@ -3534,6 +3558,7 @@ describe('supplied development dependency versions', () => {
     { name: '@langri-sha/eslint-config', enabledBy: { eslint: {} } },
     { name: '@langri-sha/lint-staged', enabledBy: { lintStaged: {} } },
     { name: '@langri-sha/prettier', enabledBy: { prettier: {} } },
+    { name: '@langri-sha/vitest', enabledBy: { vitest: true } },
   ])('does not declare $name in its own project', ({ name, enabledBy }) => {
     const files = synthesize({ name, ...enabledBy })
 
@@ -3809,6 +3834,7 @@ describe('declarations this preset cannot support', () => {
     { spec: '@langri-sha/eslint-config@0.9.19', enabledBy: { eslint: {} } },
     { spec: '@langri-sha/lint-staged@0.8.0', enabledBy: { lintStaged: {} } },
     { spec: '@langri-sha/prettier@0.3.1', enabledBy: { prettier: {} } },
+    { spec: '@langri-sha/vitest@0.1.0', enabledBy: { vitest: true } },
     { spec: '@swc/core@1.5.29', enabledBy: { swcrc: {} } },
     { spec: 'beachball@1.53.2', enabledBy: { beachball: {} } },
     { spec: 'eslint@9.39.5', enabledBy: { eslint: {} } },
@@ -3818,6 +3844,7 @@ describe('declarations this preset cannot support', () => {
     { spec: 'prettier@2.8.8', enabledBy: { prettier: {} } },
     { spec: 'skills@1.7.1', enabledBy: { skills: skillsOptions } },
     { spec: 'typescript@5.4.5', enabledBy: { typeScriptConfig: {} } },
+    { spec: 'vitest@4.1.0', enabledBy: { vitest: true } },
   ])(
     'validate $spec when its configuration is enabled',
     ({ spec, enabledBy }) => {

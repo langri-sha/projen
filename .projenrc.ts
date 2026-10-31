@@ -776,6 +776,7 @@ project.addSubproject(
         '@langri-sha/eslint-config@^0.10.0',
         '@langri-sha/lint-staged@^0.9.0',
         '@langri-sha/prettier@^0.4.0',
+        '@langri-sha/vitest@^0.2.0',
         '@swc-node/register@^1.0.0',
         '@swc/core@^1.6.0',
         'beachball@^2.0.0',
@@ -788,6 +789,7 @@ project.addSubproject(
         'skills@^1.7.2',
         'tsx@^4.0.0',
         'typescript@^5.5.0',
+        'vitest@^5.0.0',
       ],
       peerDependenciesMeta: {
         '@babel/core': {
@@ -806,6 +808,9 @@ project.addSubproject(
           optional: true,
         },
         '@langri-sha/prettier': {
+          optional: true,
+        },
+        '@langri-sha/vitest': {
           optional: true,
         },
         '@swc-node/register': {
@@ -839,6 +844,9 @@ project.addSubproject(
           optional: true,
         },
         typescript: {
+          optional: true,
+        },
+        vitest: {
           optional: true,
         },
       },

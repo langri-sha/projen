@@ -401,6 +401,12 @@ export interface ProjectOptions extends Omit<
    */
   uv?: UvOptions
 
+  /**
+   * Whether to test with Vitest. Root projects get Vitest, its shared
+   * configuration, and a `test` script that runs it.
+   */
+  vitest?: boolean
+
   /*
    * Whether to use Terrafom.
    */
@@ -537,6 +543,7 @@ export class Project extends BaseProject {
     this.#configureSkills(options)
     this.#configureTy(options)
     this.#configureUv(options)
+    this.#configureVitest(options)
     this.#configureWorktrunk(options)
     this.#configureRenovate(options)
   }
@@ -1844,6 +1851,20 @@ export class Project extends BaseProject {
     workspace?.addMember(
       path.relative(this.root.outdir, this.outdir).split(path.sep).join('/'),
     )
+  }
+
+  #configureVitest({ vitest }: ProjectOptions) {
+    if (!vitest || this.parent) {
+      return
+    }
+
+    this.#addDefaultDevDeps('vitest@5.0.5')
+
+    if (this.name !== '@langri-sha/vitest') {
+      this.#addDefaultDevDeps('@langri-sha/vitest@0.2.3')
+    }
+
+    this.package?.setScript('test', 'vitest')
   }
 
   #configureWorktrunk({ worktrunk }: ProjectOptions) {
