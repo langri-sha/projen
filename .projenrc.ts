@@ -185,7 +185,10 @@ const test = (project: Project) => {
   project.package?.addDevDeps('@langri-sha/vitest@0.2.3')
 }
 
-const publish = (project: Project) => {
+const publish = (
+  project: Project,
+  build = 'tsc --project tsconfig.build.json',
+) => {
   project.package?.addField('publishConfig', {
     access: 'public',
     main: 'dist/index.js',
@@ -200,10 +203,7 @@ const publish = (project: Project) => {
     },
   })
 
-  project.package?.setScript(
-    'prepublishOnly',
-    'rm -rf dist; tsc --project tsconfig.build.json',
-  )
+  project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
 }
 
 project.addSubproject(
