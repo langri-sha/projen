@@ -2693,6 +2693,36 @@ describe('with Renovate options, the projenrc manager and the pep621 rule', () =
   )
 })
 
+test('with Renovate options, naming the branch of a Python package for its normalized name', () => {
+  expect(
+    synthSnapshot(new Project({ name: 'test-project', renovate: {}, uv: {} }))[
+      'renovate.json5'
+    ].packageRules.filter(
+      ({ branchTopic }: { branchTopic?: string }) => branchTopic,
+    ),
+  ).toMatchInlineSnapshot(`
+    [
+      {
+        "branchTopic": "{{{replace '[-_.]+' '-' depNameSanitized}}}-{{{newMajor}}}{{#if separateMinorPatch}}{{#if isPatch}}.{{{newMinor}}}{{/if}}{{/if}}{{#if separateMultipleMinor}}{{#if isMinor}}.{{{newMinor}}}{{/if}}{{/if}}.x{{#if isLockfileUpdate}}-lockfile{{/if}}",
+        "description": "Name the branch for the normalized package name, so the projenrc and the manifests are updated together whichever way a name is spelled",
+        "matchDatasources": [
+          "pypi",
+        ],
+      },
+    ]
+  `)
+})
+
+test('with Renovate options and no uv workspace, leaving the branch names alone', () => {
+  expect(
+    JSON.stringify(
+      synthSnapshot(new Project({ name: 'test-project', renovate: {} }))[
+        'renovate.json5'
+      ].packageRules,
+    ),
+  ).not.toContain('branchTopic')
+})
+
 test('with Renovate options and no Dagger modules to read', () => {
   const project = new Project({
     name: 'test-project',

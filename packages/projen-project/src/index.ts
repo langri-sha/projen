@@ -1418,6 +1418,12 @@ export class Project extends BaseProject {
         // keeps pep621's `requires-python` out, whose datasource is
         // `python-version`: `>=3.14` would otherwise rise with every Python
         // release.
+        //
+        // pep621 normalizes the names in `dependency-groups` and
+        // `optional-dependencies` and keeps the rest as written, while the
+        // default branch topic keeps `_` and `.`. One package could then be
+        // split over two branches, each holding half of the change, so every
+        // pypi branch is keyed on the normalized name.
         ...(uv
           ? [
               {
@@ -1433,6 +1439,13 @@ export class Project extends BaseProject {
                 matchDatasources: ['pypi'],
                 matchManagers: ['pep621'],
                 rangeStrategy: 'bump' as const,
+              },
+              {
+                description:
+                  'Name the branch for the normalized package name, so the projenrc and the manifests are updated together whichever way a name is spelled',
+                matchDatasources: ['pypi'],
+                branchTopic:
+                  "{{{replace '[-_.]+' '-' depNameSanitized}}}-{{{newMajor}}}{{#if separateMinorPatch}}{{#if isPatch}}.{{{newMinor}}}{{/if}}{{/if}}{{#if separateMultipleMinor}}{{#if isMinor}}.{{{newMinor}}}{{/if}}{{/if}}.x{{#if isLockfileUpdate}}-lockfile{{/if}}",
               },
             ]
           : []),
@@ -1530,6 +1543,8 @@ export class Project extends BaseProject {
         // as they are, and a rule over its values can take neither, so
         // neither manager does. `*` is out for the same reason: a wildcard is
         // no version to Renovate.
+        //
+        // Names are kept as written; see the branch-topic rule.
         //
         // shortcut: literal requirements only, in the sections pep621 reads,
         // at most four braces deep inside `uv:`. A requirement built from a
