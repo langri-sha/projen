@@ -2,6 +2,21 @@
   "name": "projen-ty",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 17:00:43 GMT",
+      "version": "0.1.5",
+      "tag": "projen-ty_v0.1.5",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-ty",
+            "commit": "2d8255b32f5abec2bb5993e3b0a544b17365fc01",
+            "comment": "Reorder the generated npmignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 Oct 2026 22:49:08 GMT",
       "version": "0.1.5",
       "tag": "projen-ty_v0.1.5",

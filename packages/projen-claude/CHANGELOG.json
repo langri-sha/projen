@@ -2,6 +2,21 @@
   "name": "projen-claude",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 17:00:43 GMT",
+      "version": "0.1.0",
+      "tag": "projen-claude_v0.1.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-claude",
+            "commit": "2d8255b32f5abec2bb5993e3b0a544b17365fc01",
+            "comment": "Reorder the generated npmignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 22 Oct 2026 22:49:08 GMT",
       "version": "0.1.0",
       "tag": "projen-claude_v0.1.0",

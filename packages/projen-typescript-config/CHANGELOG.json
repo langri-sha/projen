@@ -2,6 +2,21 @@
   "name": "projen-typescript-config",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 17:00:43 GMT",
+      "version": "0.5.25",
+      "tag": "projen-typescript-config_v0.5.25",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-typescript-config",
+            "commit": "2d8255b32f5abec2bb5993e3b0a544b17365fc01",
+            "comment": "Reorder the generated npmignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 13 Oct 2026 20:46:26 GMT",
       "version": "0.5.25",
       "tag": "projen-typescript-config_v0.5.25",

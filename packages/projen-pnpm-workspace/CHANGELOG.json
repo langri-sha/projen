@@ -2,6 +2,21 @@
   "name": "projen-pnpm-workspace",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 17:00:43 GMT",
+      "version": "0.4.20",
+      "tag": "projen-pnpm-workspace_v0.4.20",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-pnpm-workspace",
+            "commit": "2d8255b32f5abec2bb5993e3b0a544b17365fc01",
+            "comment": "Reorder the generated npmignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 29 Oct 2026 17:40:58 GMT",
       "version": "0.4.20",
       "tag": "projen-pnpm-workspace_v0.4.20",

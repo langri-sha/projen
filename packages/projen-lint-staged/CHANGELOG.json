@@ -2,6 +2,21 @@
   "name": "projen-lint-staged",
   "entries": [
     {
+      "date": "Sat, 31 Oct 2026 17:00:43 GMT",
+      "version": "0.3.22",
+      "tag": "projen-lint-staged_v0.3.22",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-lint-staged",
+            "commit": "2d8255b32f5abec2bb5993e3b0a544b17365fc01",
+            "comment": "Reorder the generated npmignore patterns"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 27 Oct 2026 17:10:31 GMT",
       "version": "0.3.22",
       "tag": "projen-lint-staged_v0.3.22",

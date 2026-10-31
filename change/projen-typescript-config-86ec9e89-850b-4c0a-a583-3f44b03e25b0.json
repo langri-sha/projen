@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Reorder the generated npmignore patterns",
-  "packageName": "projen-typescript-config",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

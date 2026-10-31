@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Reorder the generated npmignore patterns",
-  "packageName": "projen-editorconfig",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}
