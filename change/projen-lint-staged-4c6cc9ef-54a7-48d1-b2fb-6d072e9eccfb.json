@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Reorder the generated npmignore patterns",
+  "packageName": "projen-lint-staged",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
