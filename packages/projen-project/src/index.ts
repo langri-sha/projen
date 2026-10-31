@@ -1164,6 +1164,7 @@ export class Project extends BaseProject {
     typeScriptConfig,
     jestConfig,
     npmIgnore,
+    vitest,
   }: ProjectOptions) {
     if (!npmIgnore) {
       return
@@ -1172,7 +1173,7 @@ export class Project extends BaseProject {
     const defaults: IgnoreFileOptions = {
       ignorePatterns: [
         '.*',
-        ...(jestConfig ? ['*.test.*', '__snapshots__/'] : []),
+        ...(jestConfig || vitest ? ['*.test.*', '__snapshots__/'] : []),
         ...(typeScriptConfig ? ['tsconfig*.json'] : []),
       ],
     }
