@@ -182,7 +182,6 @@ const subproject = (project: Project) => {
 }
 
 const test = (project: Project) => {
-  project.npmIgnore?.exclude('*.test.*', '__snapshots__/')
   project.package?.addDevDeps('@langri-sha/vitest@0.2.3')
 }
 
