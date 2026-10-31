@@ -1862,10 +1862,6 @@ export class Project extends BaseProject {
 
     this.#addDefaultDevDeps('vitest@5.0.5')
 
-    if (this.name !== '@langri-sha/vitest') {
-      this.#addDefaultDevDeps('@langri-sha/vitest@0.2.3')
-    }
-
     this.package?.setScript('test', 'vitest')
   }
 

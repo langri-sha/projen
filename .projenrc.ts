@@ -776,7 +776,6 @@ project.addSubproject(
         '@langri-sha/eslint-config@^0.10.0',
         '@langri-sha/lint-staged@^0.9.0',
         '@langri-sha/prettier@^0.4.0',
-        '@langri-sha/vitest@^0.2.0',
         '@swc-node/register@^1.0.0',
         '@swc/core@^1.6.0',
         'beachball@^2.0.0',
@@ -808,9 +807,6 @@ project.addSubproject(
           optional: true,
         },
         '@langri-sha/prettier': {
-          optional: true,
-        },
-        '@langri-sha/vitest': {
           optional: true,
         },
         '@swc-node/register': {

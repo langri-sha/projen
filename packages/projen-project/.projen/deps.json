@@ -61,11 +61,6 @@
       "type": "peer"
     },
     {
-      "name": "@langri-sha/vitest",
-      "version": "^0.2.0",
-      "type": "peer"
-    },
-    {
       "name": "@swc-node/register",
       "version": "^1.0.0",
       "type": "peer"
