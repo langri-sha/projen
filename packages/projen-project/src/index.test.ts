@@ -1984,6 +1984,19 @@ describe('with NPM ignore', () => {
     expect(lines.includes('*.test.*')).toBe(ignored)
     expect(lines.includes('__snapshots__/')).toBe(ignored)
   })
+
+  test('lists a test pattern once when the project passes it too', () => {
+    const project = new Project({
+      name: 'test-project',
+      npmIgnore: { ignorePatterns: ['*.test.*', '__snapshots__/'] },
+      vitest: true,
+    })
+
+    const lines: string[] = synthSnapshot(project)['.npmignore'].split('\n')
+
+    expect(lines.filter((line) => line === '*.test.*')).toHaveLength(1)
+    expect(lines.filter((line) => line === '__snapshots__/')).toHaveLength(1)
+  })
 })
 
 describe('with package', () => {

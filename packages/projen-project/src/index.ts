@@ -1178,11 +1178,12 @@ export class Project extends BaseProject {
       ],
     }
 
-    this.npmIgnore = new IgnoreFile(
-      this,
-      '.npmignore',
-      deepMerge(defaults, npmIgnore),
-    )
+    const merged = deepMerge(defaults, npmIgnore)
+
+    this.npmIgnore = new IgnoreFile(this, '.npmignore', {
+      ...merged,
+      ignorePatterns: [...new Set(merged.ignorePatterns)],
+    })
   }
 
   #configurePackage({ package: pkg }: ProjectOptions) {
