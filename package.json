@@ -25,6 +25,7 @@
     "prepare": "husky",
     "renovate": "projen renovate",
     "skills": "projen skills",
+    "test": "vitest",
     "worktrunk:dry-run": "projen worktrunk:dry-run",
     "worktrunk:show": "projen worktrunk:show"
   },
