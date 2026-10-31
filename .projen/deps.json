@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@langri-sha/eslint-config",
-      "version": "0.10.0",
+      "version": "0.11.0",
       "type": "build"
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "name": "schemastore-to-typescript",
-      "version": "1.0.5",
+      "version": "1.1.0",
       "type": "build"
     },
     {
