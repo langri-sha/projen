@@ -2638,6 +2638,61 @@ test('with Renovate options, reading the Python requirements out of the uv optio
   `)
 })
 
+describe('with Renovate options, the projenrc manager and the pep621 rule', () => {
+  const [{ matchCurrentValue }] = synthSnapshot(
+    new Project({ name: 'test-project', renovate: {}, uv: {} }),
+  )['renovate.json5'].packageRules.filter(
+    ({ rangeStrategy }: { rangeStrategy?: string }) => rangeStrategy === 'bump',
+  )
+  const raised = new RegExp(matchCurrentValue.slice(1, -1))
+
+  const pep508CurrentValue = (requirement: string) =>
+    /^[A-Z0-9._-]+\s*(?:\[[A-Z0-9\s,._-]+\])?\s*(?<currentValue>[^;]+)?/i.exec(
+      requirement,
+    )?.groups?.currentValue ?? ''
+
+  const declare = (requirement: string) =>
+    `new Project({ uv: { 'dependency-groups': { dev: [${
+      requirement.includes('"') ? `'${requirement}'` : `"${requirement}"`
+    }] } } })`
+
+  test.each([
+    { requirement: 'ruff>=0.15.10', raisedByBoth: true },
+    { requirement: 'pkg==1.2.3', raisedByBoth: true },
+    { requirement: 'setuptools>=61.0', raisedByBoth: true },
+    { requirement: 'typing_extensions>=4.12', raisedByBoth: true },
+    { requirement: 'zope.interface>=5.0', raisedByBoth: true },
+    { requirement: 'pkg[extra]==1.2.3', raisedByBoth: true },
+    {
+      requirement: 'pkg[extra]==1.2.3; python_version < "3.14"',
+      raisedByBoth: true,
+    },
+    { requirement: 'pkg==1!2.0+local', raisedByBoth: true },
+    {
+      requirement: "tomli>=2.0.1 ; python_full_version < '3.11'",
+      raisedByBoth: false,
+    },
+    { requirement: 'ruff>=0.15 ', raisedByBoth: false },
+    { requirement: 'pkg==1.*', raisedByBoth: false },
+    { requirement: 'wheel>= 61.0', raisedByBoth: false },
+    { requirement: 'pkg== 1.0', raisedByBoth: false },
+    { requirement: 'wheel>=0.30,<1', raisedByBoth: false },
+    { requirement: 'click~=8.1', raisedByBoth: false },
+    { requirement: 'typer>0.9', raisedByBoth: false },
+    { requirement: 'tomli<2', raisedByBoth: false },
+    { requirement: 'idna!=3.0', raisedByBoth: false },
+    { requirement: 'attrs', raisedByBoth: false },
+  ])(
+    'select the requirement $requirement alike: $raisedByBoth',
+    ({ requirement, raisedByBoth }) => {
+      expect(extractPythonRequirements(declare(requirement)).length > 0).toBe(
+        raisedByBoth,
+      )
+      expect(raised.test(pep508CurrentValue(requirement))).toBe(raisedByBoth)
+    },
+  )
+})
+
 test('with Renovate options and no Dagger modules to read', () => {
   const project = new Project({
     name: 'test-project',
@@ -2872,7 +2927,7 @@ test('with Renovate options and no uv workspace', () => {
   ).not.toContain('pep621')
 })
 
-test('with Renovate options, holding uv to the ranges its manifests declare', () => {
+test('with Renovate options, holding uv to the ranges its manifests declare, but for floors and pins', () => {
   const project = new Project({
     name: 'test-project',
     renovate: {},
@@ -2892,6 +2947,17 @@ test('with Renovate options, holding uv to the ranges its manifests declare', ()
           "pep621",
         ],
         "rangeStrategy": "in-range-only",
+      },
+      {
+        "description": "Raise Python floors and pins with each release, in the pyproject.toml manifests and in the projenrc they are synthesized from",
+        "matchCurrentValue": "/^(?:>=|==)[\\w.+!-]+$/",
+        "matchDatasources": [
+          "pypi",
+        ],
+        "matchManagers": [
+          "pep621",
+        ],
+        "rangeStrategy": "bump",
       },
     ]
   `)

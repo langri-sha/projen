@@ -1406,8 +1406,18 @@ export class Project extends BaseProject {
         // Synthesis writes every requirement into the manifests, so a range
         // Renovate rewrote there would be put back by its next run. Held to
         // the declared ranges, pep621 still moves `uv.lock`, by lock-file
-        // updates and maintenance alike; raising a bound is an edit to the
-        // projenrc.
+        // updates and maintenance alike.
+        //
+        // A floor or a pin is the exception, because the projenrc manager
+        // below raises it in the projenrc and pep621 in the manifest to the
+        // same value, on the same branch. That manager reads a bare version, as
+        // Renovate ignores `rangeStrategy` for custom managers, so the rule
+        // applies to the single-clause forms where a bare version and `bump`
+        // agree. A bound that has a ceiling, a compatible release or an
+        // exclusive bound stays an edit to the projenrc. `matchDatasources`
+        // keeps pep621's `requires-python` out, whose datasource is
+        // `python-version`: `>=3.14` would otherwise rise with every Python
+        // release.
         ...(uv
           ? [
               {
@@ -1415,6 +1425,14 @@ export class Project extends BaseProject {
                   'Synthesis writes the pyproject.toml manifests and reverts edits to them. Move only what uv.lock pins, within the ranges they declare',
                 matchManagers: ['pep621'],
                 rangeStrategy: 'in-range-only' as const,
+              },
+              {
+                description:
+                  'Raise Python floors and pins with each release, in the pyproject.toml manifests and in the projenrc they are synthesized from',
+                matchCurrentValue: '/^(?:>=|==)[\\w.+!-]+$/',
+                matchDatasources: ['pypi'],
+                matchManagers: ['pep621'],
+                rangeStrategy: 'bump' as const,
               },
             ]
           : []),
@@ -1521,6 +1539,10 @@ export class Project extends BaseProject {
         // shortcut: a requirement on a package named in `tool.uv.sources` or
         // `tool.uv.index` is looked up on PyPI here, as pep621 would not.
         // Write those bare, or without `>=` and `==`, until one needs a floor.
+        // shortcut: a vulnerability alert makes pep621 move `uv.lock` alone,
+        // while this manager raises the floor in the projenrc, so synthesis
+        // leaves the lock stale. Such a pull request needs a hand `uv lock`,
+        // or closing.
         // shortcut: the legacy `pkg (>=1.0)` form is read by pep621 and not
         // here. Write the specifier without parentheses.
         ...(uv
