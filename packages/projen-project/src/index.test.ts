@@ -2344,6 +2344,11 @@ const extractCrates = (projenrc: string) =>
     .filter(({ datasourceTemplate }) => datasourceTemplate === 'crate')
     .flatMap(({ matchStrings }) => extract(matchStrings, projenrc))
 
+const extractPythonRequirements = (projenrc: string) =>
+  customManagers({ name: 'test-project', uv: {}, renovate: {} })
+    .filter(({ datasourceTemplate }) => datasourceTemplate === 'pypi')
+    .flatMap(({ matchStrings }) => extract(matchStrings, projenrc))
+
 const extractNpmDeps = (projenrc: string) =>
   customManagers({ name: 'test-project', cargo: {}, renovate: {} })
     .filter(({ datasourceTemplate }) => datasourceTemplate === 'npm')
@@ -2499,6 +2504,138 @@ describe('with Renovate options, reading a projenrc that declares crates and npm
       `),
     ).toEqual([])
   })
+})
+
+describe('with Renovate options, reading a projenrc that declares Python requirements and npm packages', () => {
+  const projenrc = `
+    const project = new Project({
+      name: 'test-project',
+      package: { devDeps: ['vitest@5.0.5', 'left-pad@1.3.0'] },
+      uv: {
+        pythonVersion: '3.14',
+        'dependency-groups': {
+          dev: ['ruff>=0.15.10', 'pytest', 'ty>=0.0.52'],
+        },
+      },
+    })
+
+    project.addSubproject({
+      name: 'lib',
+      uv: {
+        project: {
+          'requires-python': '>=3.14',
+          dependencies: [
+            'httpx[http2]==0.28.1; python_version < "3.14"',
+            'attrs',
+          ],
+        },
+        'build-system': {
+          requires: ['setuptools>=61.0'],
+          'build-backend': 'setuptools.build_meta',
+        },
+      },
+    })
+  `
+
+  test('extracts every floor and pin the uv options declare', () => {
+    expect(extractPythonRequirements(projenrc)).toEqual([
+      { depName: 'ruff', currentValue: '0.15.10' },
+      { depName: 'ty', currentValue: '0.0.52' },
+      { depName: 'httpx', currentValue: '0.28.1' },
+      { depName: 'setuptools', currentValue: '61.0' },
+    ])
+  })
+
+  test('extracts nothing from bare names, other specifiers and npm specs', () => {
+    expect(
+      extractPythonRequirements(`
+        new Project({
+          package: { devDeps: ['vitest@5.0.5', 'ruff>=0.15.10'] },
+          uv: {
+            project: {
+              'requires-python': '>=3.14',
+              dependencies: [
+                'attrs',
+                'vitest@5.0.5',
+                'rich>=13.0,<14',
+                'uv_build>=0.12,<0.13',
+                'click~=8.1',
+                'typer>0.9',
+                'tomli<2',
+                'idna!=3.0',
+                'lib @ https://example.com/lib.tar.gz',
+                'pkg==1.*',
+                'pkg (>=1.0)',
+                'wheel>= 61.0',
+                'ruff>=0.15 ',
+                "tomli>=2.0.1 ; python_full_version < '3.11'",
+              ],
+            },
+          },
+        })
+      `),
+    ).toEqual([])
+  })
+
+  test('reads requirements quoted with double quotes', () => {
+    expect(
+      extractPythonRequirements(`
+        new Project({
+          uv: { project: { dependencies: ["tomli==2.0.1; python_version < '3.11'"] } },
+        })
+      `),
+    ).toEqual([{ depName: 'tomli', currentValue: '2.0.1' }])
+  })
+
+  test('reads a quoted uv key', () => {
+    expect(
+      extractPythonRequirements(`
+        new Project({
+          'uv': { 'dependency-groups': { dev: ['ruff>=0.15.10'] } },
+        })
+      `),
+    ).toEqual([{ depName: 'ruff', currentValue: '0.15.10' }])
+  })
+
+  test('ignores a key that only ends in uv', () => {
+    expect(
+      extractPythonRequirements(`
+        new Project({
+          notuv: { 'dependency-groups': { dev: ['ruff>=0.15.10'] } },
+        })
+      `),
+    ).toEqual([])
+  })
+})
+
+test('with Renovate options and no uv workspace to read', () => {
+  expect(
+    customManagers({ name: 'test-project', renovate: {} }).map(
+      ({ datasourceTemplate }) => datasourceTemplate,
+    ),
+  ).not.toContain('pypi')
+})
+
+test('with Renovate options, reading the Python requirements out of the uv options', () => {
+  expect(
+    customManagers({ name: 'test-project', uv: {}, renovate: {} }).find(
+      ({ datasourceTemplate }) => datasourceTemplate === 'pypi',
+    ),
+  ).toMatchInlineSnapshot(`
+    {
+      "customType": "regex",
+      "datasourceTemplate": "pypi",
+      "managerFilePatterns": [
+        "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
+      ],
+      "matchStrings": [
+        "\\buv'?:\\s*\\{(?:[^{}]|\\{(?:[^{}]|\\{(?:[^{}]|\\{(?:[^{}]|\\{[^{}]*\\})*\\})*\\})*\\})*\\}",
+        "["'](?<depName>[A-Za-z0-9][\\w.-]*)\\s*(?:\\[[^\\]'"]*\\]\\s*)?(?:==|>=)(?<currentValue>[\\w.+!-]+)["';]",
+      ],
+      "matchStringsStrategy": "recursive",
+      "versioningTemplate": "pep440",
+    }
+  `)
 })
 
 test('with Renovate options and no Dagger modules to read', () => {
@@ -2992,6 +3129,17 @@ describe('with Renovate options, the custom managers', () => {
       new RegExp(matchString).exec("    pythonVersion: '3.14',")?.groups
         ?.currentValue,
     ).toBe('3.14')
+  })
+
+  test('read Python requirements out of a projenrc and nowhere else', () => {
+    const manager = customManagers().find(
+      ({ datasourceTemplate }) => datasourceTemplate === 'pypi',
+    )!
+
+    expect(covers(manager, '.projenrc.ts')).toBe(true)
+    expect(covers(manager, 'packages/some/.projenrc.mjs')).toBe(true)
+    expect(covers(manager, 'packages/projen-uv/src/index.ts')).toBe(false)
+    expect(covers(manager, 'packages/projen-uv/src/index.test.ts')).toBe(false)
   })
 
   test('read skill commits out of a projenrc and nowhere else', () => {

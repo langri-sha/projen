@@ -1498,6 +1498,48 @@ export class Project extends BaseProject {
               },
             ]
           : []),
+        // Anchored on the `uv` option, which holds every requirement that
+        // synthesis writes into a `pyproject.toml`, in the root and in each
+        // subproject. Only a quoted floor or pin counts: a bare name has
+        // nothing to raise, and `vitest@5.0.5`, an npm spec, has no operator.
+        //
+        // The version alone is captured, leaving the operator, extras and
+        // marker where they are, so that Renovate raises it as it does an
+        // exact pin. A requirement with a ceiling would otherwise end up with
+        // a floor above it, and `~=` and `>` read differently once raised.
+        // The version ends at the quote or the `;`, with nothing between, and
+        // follows the operator directly: pep621 reads `>=2.0.1 ` and `>= 2.0`
+        // as they are, and a rule over its values can take neither, so
+        // neither manager does. `*` is out for the same reason: a wildcard is
+        // no version to Renovate.
+        //
+        // shortcut: literal requirements only, in the sections pep621 reads,
+        // at most four braces deep inside `uv:`. A requirement built from a
+        // constant or a spread, a deeper block, and `constraint-dependencies`
+        // or `override-dependencies`, which pep621 does not read, are not
+        // handled alike by the two managers.
+        // shortcut: a requirement on a package named in `tool.uv.sources` or
+        // `tool.uv.index` is looked up on PyPI here, as pep621 would not.
+        // Write those bare, or without `>=` and `==`, until one needs a floor.
+        // shortcut: the legacy `pkg (>=1.0)` form is read by pep621 and not
+        // here. Write the specifier without parentheses.
+        ...(uv
+          ? [
+              {
+                customType: 'regex' as const,
+                datasourceTemplate: 'pypi',
+                versioningTemplate: 'pep440',
+                managerFilePatterns: [
+                  '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
+                ],
+                matchStringsStrategy: 'recursive' as const,
+                matchStrings: [
+                  `\\buv'?:\\s*\\{${BRACE_BODY_PATTERN}\\}`,
+                  `["'](?<depName>[A-Za-z0-9][\\w.-]*)\\s*(?:\\[[^\\]'"]*\\]\\s*)?(?:==|>=)(?<currentValue>[\\w.+!-]+)["';]`,
+                ],
+              },
+            ]
+          : []),
         // The engine version is declared in the projenrc and written into
         // every module manifest from there, so nothing Renovate has a manager
         // for names it. The `v` prefix sits outside the capture group, and
