@@ -402,8 +402,10 @@ export interface ProjectOptions extends Omit<
   uv?: UvOptions
 
   /**
-   * Whether to test with Vitest. Root projects get Vitest, its shared
-   * configuration, and a `test` script that runs it.
+   * Whether to test with Vitest. Root projects get Vitest and a `test` script
+   * that runs it. Any project that sets it, subprojects included, lists
+   * `*.test.*` and `__snapshots__/` in its own `.npmignore`, keeping test files
+   * out of its tarball.
    */
   vitest?: boolean
 
