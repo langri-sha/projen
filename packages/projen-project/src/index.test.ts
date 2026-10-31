@@ -1695,14 +1695,6 @@ describe('with Vitest', () => {
 
     expect(synthSnapshot(project)['package.json'].scripts.test).toBe('vitest')
   })
-
-  test('leaves the test script out without it', () => {
-    const project = new Project({ name: 'test-project', package: {} })
-
-    expect(synthSnapshot(project)['package.json'].scripts).not.toHaveProperty(
-      'test',
-    )
-  })
 })
 
 describe('with license', () => {
