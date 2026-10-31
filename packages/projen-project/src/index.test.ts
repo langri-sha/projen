@@ -1697,6 +1697,150 @@ describe('with Vitest', () => {
   })
 })
 
+describe('with jsii', () => {
+  const identified = {
+    authorName: 'John Smith',
+    repository: 'acme/test-project',
+  }
+
+  test('declares the build and types jsii reads from the entrypoint', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: identified,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.types).toBe('src/index.ts')
+    expect(manifest.jsii).toEqual({
+      tsconfig: 'tsconfig.build.json',
+      validateTsconfig: 'minimal',
+    })
+  })
+
+  test('leaves the jsii version to the bot', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: identified,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.devDependencies.jsii).toBe('*')
+  })
+
+  test('keeps a jsii version the project declares', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { ...identified, devDeps: ['jsii@5.9.57'] },
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.devDependencies.jsii).toBe('5.9.57')
+  })
+
+  test('runs jsii before publishing', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: identified,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.scripts.prepublishOnly).toBe('jsii')
+  })
+
+  test('yields the publishing script to the project', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: identified,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    project.package?.setScript('prepublishOnly', 'rm -rf dist; jsii')
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.scripts.prepublishOnly).toBe('rm -rf dist; jsii')
+  })
+
+  test('keeps the assembly in the tarball', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: identified,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const lines: string[] = synthSnapshot(project)['.npmignore'].split('\n')
+
+    expect(lines.indexOf('!/.jsii')).toBeGreaterThan(lines.indexOf('.*'))
+  })
+
+  test('accepts an author and a repository added after construction', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    project.package?.addField('author', 'John Smith')
+    project.package?.addField('repository', 'acme/test-project')
+
+    expect(() => synthSnapshot(project)).not.toThrow()
+  })
+
+  test.each([
+    ['an author', { repository: 'acme/test-project' }, /without author\./],
+    ['a repository', { authorName: 'John Smith' }, /without repository\./],
+    ['an author and a repository', {}, /without author and repository\./],
+  ])('fails synthesis without %s', (_, pkg, message) => {
+    const project = new Project({
+      name: 'test-project',
+      package: pkg,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    expect(() => synthSnapshot(project)).toThrowError(message)
+  })
+
+  test('fails without npmIgnore', () => {
+    expect(
+      () =>
+        new Project({
+          name: 'test-project',
+          package: identified,
+          jsii: { tsconfig: 'tsconfig.build.json' },
+        }),
+    ).toThrowError(/needs `npmIgnore`/)
+  })
+
+  test('leaves the manifest alone when not passed', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.types).toBeUndefined()
+    expect(manifest.jsii).toBeUndefined()
+    expect(manifest.devDependencies?.jsii).toBeUndefined()
+  })
+})
+
 describe('with license', () => {
   test('without author name', () => {
     expect(

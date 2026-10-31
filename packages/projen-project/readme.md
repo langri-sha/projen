@@ -28,6 +28,7 @@ projects.
   it is pinned to a SHA
 - writes GitHub issue forms and a pull request template with
   [`projen-github-templates`]
+- compiles packages with [jsii] on request, to ship a `.jsii` assembly
 
 ## Changesets
 
@@ -143,6 +144,34 @@ The preset's `Project` writes no `.github/pull_request_template.md` of its own,
 so nothing needs disabling. Projen's `NodeProject` does, and its
 `pullRequestTemplate: false` is what to set there.
 
+## jsii
+
+Given a `jsii` option, the preset prepares the package to compile with [jsii],
+so that its tarball carries a `.jsii` assembly. `tsconfig` names the build
+configuration jsii compiles, which jsii validates with its `minimal` rule set:
+
+```ts
+new Project({
+  name: 'my-project',
+  package: {
+    authorName: 'John Smith',
+    repository: 'acme/my-project',
+  },
+  npmIgnore: {},
+  jsii: { tsconfig: 'tsconfig.build.json' },
+})
+```
+
+- jsii is added as a development dependency, left to Renovate to move.
+- `types` points at the entrypoint, so the package keeps loading from source
+  while `publishConfig` decides what the tarball ships. A package that publishes
+  from `dist/` needs `publishConfig.types` as well as `publishConfig.main`.
+- `prepublishOnly` runs `jsii`, unless the project sets that script itself.
+- `npmIgnore` is required, and the assembly is kept out of the patterns that
+  would drop it. Without a `.npmignore`, npm falls back to `.gitignore` and
+  leaves `.jsii` out of the tarball.
+- Synthesis fails without an `author` and a `repository`, which jsii requires.
+
 ## Upgrading projen
 
 The preset supplies the projen version a project runs on, unless the project
@@ -193,6 +222,7 @@ new Project({
 [dagger]: https://dagger.io/
 [pnpm]: https://pnpm.io
 [projen]: https://projen.io/
+[jsii]: https://aws.github.io/jsii/
 [ruff]: https://docs.astral.sh/ruff/
 [skills]: https://skills.sh
 [ty]: https://docs.astral.sh/ty/

@@ -228,6 +228,19 @@ export interface ProjectGitHubTemplatesOptions {
   readonly files?: GitHubTemplatesOptions['files']
 }
 
+/**
+ * Options for compiling the package with jsii, so that its tarball carries a
+ * `.jsii` assembly.
+ */
+export interface ProjectJsiiOptions {
+  /**
+   * The TypeScript configuration jsii compiles with, relative to the project.
+   * It must emit JavaScript and declarations, as `@langri-sha/tsconfig/build`
+   * does, since jsii validates it with its `minimal` rule set.
+   */
+  readonly tsconfig: string
+}
+
 export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
@@ -317,6 +330,20 @@ export interface ProjectOptions extends Omit<
    * Configures `lint-staged`, when provided.
    */
   lintStaged?: LintStagedOptions
+
+  /**
+   * Pass in to compile the package with jsii, which writes a `.jsii` assembly
+   * next to `package.json` and keeps it in the tarball. The package stays
+   * loadable from source: `types` points at the entrypoint, so `publishConfig`
+   * decides what the tarball's `main` and `types` are. A project that publishes
+   * from `dist/` needs `publishConfig.types` as well as `publishConfig.main`.
+   *
+   * Adds jsii, and runs it from `prepublishOnly` unless the project sets that
+   * script itself. Requires `npmIgnore`, since without a `.npmignore` npm falls
+   * back to `.gitignore` and drops `.jsii`. jsii refuses to compile a package
+   * without an `author` and a `repository`, so synthesis fails without them.
+   */
+  jsii?: ProjectJsiiOptions
 
   /*
    * Options for the linting synthesized files.
@@ -539,6 +566,7 @@ export class Project extends BaseProject {
     this.#configureLintStaged(options)
     this.#configureLintSynthesized(options)
     this.#configureNpmIgnore(options)
+    this.#configureJsii(options)
     this.#configurePnpmWorkspace(options)
     this.#configureReadme(options)
     this.#configureRuff(options)
@@ -575,6 +603,7 @@ export class Project extends BaseProject {
       this.#synthesizingProjenVersion = this.#readInstalledProjenVersion()
     }
 
+    this.#assertJsiiManifest()
     this.#populateTypeScriptProjectReferencesFromDependencies()
   }
 
@@ -1063,6 +1092,54 @@ export class Project extends BaseProject {
     this.jestConfig = new JestConfig(this, jestConfigOptions)
 
     this.typeScriptConfig?.addFile(this.jestConfig.path)
+  }
+
+  /**
+   * After `#configureNpmIgnore`, whose leading `.*` would otherwise drop the
+   * assembly from the tarball. The version is left to Renovate, since a pin
+   * written here by a subproject is out of reach of the owned-versions rule.
+   */
+  #configureJsii({ jsii }: ProjectOptions) {
+    if (!jsii || !this.package) {
+      return
+    }
+
+    if (!this.npmIgnore) {
+      throw new Error(
+        'Compiling with jsii needs `npmIgnore`, or npm falls back to `.gitignore` and drops `.jsii` from the tarball. Set `npmIgnore` in the project',
+      )
+    }
+
+    this.#addDefaultDevDeps('jsii@*')
+
+    this.package.addField('types', this.package.entrypoint)
+    this.package.addField('jsii', {
+      tsconfig: jsii.tsconfig,
+      validateTsconfig: 'minimal',
+    })
+    this.package.setScript('prepublishOnly', 'jsii')
+
+    this.npmIgnore.include('/.jsii')
+  }
+
+  /**
+   * Read once the project has had its say, since `author` and `repository`
+   * often arrive from a callback after construction.
+   */
+  #assertJsiiManifest() {
+    const manifest: Record<string, unknown> | undefined = this.package?.manifest
+
+    if (!manifest?.jsii) {
+      return
+    }
+
+    const missing = ['author', 'repository'].filter((field) => !manifest[field])
+
+    if (missing.length) {
+      throw new Error(
+        `${this.name} compiles with jsii, which refuses a package without ${missing.join(' and ')}. Set \`package.authorName\` and \`package.repository\` in the project, or add the field before synthesis.`,
+      )
+    }
   }
 
   #configureLicense({ package: pkg }: ProjectOptions) {
