@@ -206,6 +206,8 @@ const publish = (
   project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
 }
 
+const publishJsii = (project: Project) => publish(project, 'jsii')
+
 project.addSubproject(
   {
     name: 'projen-codeowners',
@@ -874,6 +876,7 @@ project.addSubproject(
   {
     name: 'projen-readme',
     outdir: path.join('packages', 'projen-readme'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -885,12 +888,13 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for creating sample README files.',
       type: 'module',
+      devDeps: ['jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(
