@@ -212,6 +212,7 @@ project.addSubproject(
     name: 'projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -234,6 +235,7 @@ project.addSubproject(
     name: 'projen-dagger',
     outdir: path.join('packages', 'projen-dagger'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -274,6 +276,7 @@ project.addSubproject(
     name: 'projen-babel-config',
     outdir: path.join('packages', 'projen-babel'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -303,6 +306,7 @@ project.addSubproject(
     name: 'projen-beachball',
     outdir: path.join('packages', 'projen-beachball'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -330,6 +334,7 @@ project.addSubproject(
     name: 'projen-cargo',
     outdir: path.join('packages', 'projen-cargo'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -371,6 +376,7 @@ project.addSubproject(
     name: 'projen-changesets',
     outdir: path.join('packages', 'projen-changesets'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -408,6 +414,7 @@ project.addSubproject(
     name: 'projen-claude',
     outdir: path.join('packages', 'projen-claude'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -445,6 +452,7 @@ project.addSubproject(
     name: 'projen-editorconfig',
     outdir: path.join('packages', 'projen-editorconfig'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -468,6 +476,7 @@ project.addSubproject(
     name: 'projen-eslint',
     outdir: path.join('packages', 'projen-eslint'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -497,6 +506,7 @@ project.addSubproject(
     name: 'projen-github-templates',
     outdir: path.join('packages', 'projen-github-templates'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -522,6 +532,7 @@ project.addSubproject(
     name: 'projen-husky',
     outdir: path.join('packages', 'projen-husky'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -550,6 +561,7 @@ project.addSubproject(
     name: 'projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -579,6 +591,7 @@ project.addSubproject(
     name: 'projen-lint-synthesized',
     outdir: path.join('packages', 'projen-lint-synthesized'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -604,6 +617,7 @@ project.addSubproject(
     name: 'projen-lint-staged',
     outdir: path.join('packages', 'projen-lint-staged'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -633,6 +647,7 @@ project.addSubproject(
     name: 'projen-license',
     outdir: path.join('packages', 'projen-license'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -657,6 +672,7 @@ project.addSubproject(
     name: 'projen-pnpm-workspace',
     outdir: path.join('packages', 'projen-pnpm-workspace'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -694,6 +710,7 @@ project.addSubproject(
     name: 'projen-prettier',
     outdir: path.join('packages', 'projen-prettier'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -723,6 +740,7 @@ project.addSubproject(
     name: '@langri-sha/projen-project',
     outdir: path.join('packages', 'projen-project'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -858,6 +876,7 @@ project.addSubproject(
     name: 'projen-readme',
     outdir: path.join('packages', 'projen-readme'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -880,6 +899,7 @@ project.addSubproject(
     name: 'projen-renovate',
     outdir: path.join('packages', 'projen-renovate'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -916,6 +936,7 @@ project.addSubproject(
     name: 'projen-ruff',
     outdir: path.join('packages', 'projen-ruff'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -952,6 +973,7 @@ project.addSubproject(
     name: 'projen-skills',
     outdir: path.join('packages', 'projen-skills'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -981,6 +1003,7 @@ project.addSubproject(
     name: 'projen-swcrc',
     outdir: path.join('packages', 'projen-swcrc'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -1022,6 +1045,7 @@ project.addSubproject(
     name: 'projen-ty',
     outdir: path.join('packages', 'projen-ty'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -1058,6 +1082,7 @@ project.addSubproject(
     name: 'projen-typescript-config',
     outdir: path.join('packages', 'projen-typescript-config'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -1083,6 +1108,7 @@ project.addSubproject(
     name: 'projen-uv',
     outdir: path.join('packages', 'projen-uv'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
@@ -1125,6 +1151,7 @@ project.addSubproject(
     name: 'projen-worktrunk',
     outdir: path.join('packages', 'projen-worktrunk'),
     npmIgnore: {},
+    vitest: true,
     readme: {
       filename: 'readme.md',
     },
