@@ -209,8 +209,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
       skills:
         specifier: 1.7.4
         version: 1.7.4
@@ -274,8 +274,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-changesets:
     devDependencies:
@@ -289,8 +289,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-claude:
     devDependencies:
@@ -304,8 +304,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-codeowners:
     devDependencies:
@@ -331,8 +331,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -510,8 +510,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-prettier:
     dependencies:
@@ -722,8 +722,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-ruff:
     devDependencies:
@@ -737,8 +737,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -778,8 +778,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-ty:
     devDependencies:
@@ -793,8 +793,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -834,8 +834,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.0.5
-        version: 1.0.5(supports-color@8.1.1)
+        specifier: 1.1.0
+        version: 1.1.0(supports-color@8.1.1)
 
   packages/projen-worktrunk:
     devDependencies:
@@ -4891,8 +4891,8 @@ packages:
     resolution: {integrity: sha512-x/+Cz4YrimQxQccJf5mKEbIa1NzeCRNI5Ecl/ekmlYaampdNLPalVyIcCZNNH3MvmqBugV5TMYZXv0ljslUlaw==}
     engines: {node: '>= 0.4'}
 
-  schemastore-to-typescript@1.0.5:
-    resolution: {integrity: sha512-pKJKxf4WtZVFah1Rw99TWjC/hRxQS05nEUd1WtEW0OmU4MKJIkaJqGinI5hl2yPE6jXW0mt0NJ9obA+Ki8oq9g==}
+  schemastore-to-typescript@1.1.0:
+    resolution: {integrity: sha512-Sr6vyV6TiftgcUiw+o5dd1tBiEu3OcZU/ek51oh3IOl2lH0n2m6TYR3PPHxB9uUSehdK4+58ZSmQL5IhWg+HbA==}
     hasBin: true
 
   semver@6.3.1:
@@ -9935,7 +9935,7 @@ snapshots:
       es-errors: 1.3.0
       is-regex: 1.2.1
 
-  schemastore-to-typescript@1.0.5(supports-color@8.1.1):
+  schemastore-to-typescript@1.1.0(supports-color@8.1.1):
     dependencies:
       commander: 15.0.0
       debug: 4.4.3(supports-color@8.1.1)

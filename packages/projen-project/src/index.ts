@@ -805,7 +805,7 @@ export class Project extends BaseProject {
       this.#addDefaultDevDeps('@babel/core@8.0.9')
 
       if (this.name !== '@langri-sha/babel-preset') {
-        this.#addDefaultDevDeps('@langri-sha/babel-preset@0.6.10')
+        this.#addDefaultDevDeps('@langri-sha/babel-preset@0.6.11')
       }
     }
 
@@ -1029,7 +1029,7 @@ export class Project extends BaseProject {
       this.#addDefaultDevDeps('eslint@10.13.0')
 
       if (this.name !== '@langri-sha/eslint-config') {
-        this.#addDefaultDevDeps('@langri-sha/eslint-config@0.10.0')
+        this.#addDefaultDevDeps('@langri-sha/eslint-config@0.11.0')
       }
     }
 
