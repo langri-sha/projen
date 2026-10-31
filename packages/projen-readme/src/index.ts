@@ -11,11 +11,8 @@ export interface ReadmeFileOptions {
  * Initial `README` for new packages.
  */
 export class ReadmeFile extends SampleFile {
-  constructor(
-    project: Project,
-    { filename = 'README.md' }: ReadmeFileOptions = {},
-  ) {
-    super(project, filename, {
+  constructor(project: Project, options: ReadmeFileOptions = {}) {
+    super(project, options.filename ?? 'README.md', {
       contents: `# ${project.name}\n`,
     })
   }
