@@ -725,6 +725,7 @@ project.addSubproject(
   {
     name: 'projen-prettier',
     outdir: path.join('packages', 'projen-prettier'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -737,13 +738,17 @@ project.addSubproject(
       description: 'A projen component for configuring Prettier.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.9'],
+      devDeps: [
+        '@types/serialize-javascript@5.0.4',
+        'jsii@5.9.57',
+        'prettier@3.9.9',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
 )
 
 project.addSubproject(
