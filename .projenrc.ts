@@ -1085,8 +1085,12 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, 'jsii && test -f dist/renovate.d.ts'),
+  (project) =>
+    publish(project, 'jsii --compress-assembly && test -f dist/renovate.d.ts'),
   (project) => {
+    // The compressed assembly is named `.jsii.gz`, which `.*` would drop.
+    project.npmIgnore?.include('/.jsii.gz')
+
     // jsii reads `T | null` as `T` only with `strictNullChecks` off, which the
     // strict `tsconfig.json` type check does not share.
     new TypeScriptConfig(project, {

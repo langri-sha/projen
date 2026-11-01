@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts",
-    "prepublishOnly": "rm -rf dist; jsii && test -f dist/renovate.d.ts"
+    "prepublishOnly": "rm -rf dist; jsii --compress-assembly && test -f dist/renovate.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "1.1.1",
