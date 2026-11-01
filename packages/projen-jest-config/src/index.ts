@@ -1,4 +1,4 @@
-import { Config } from 'jest'
+import type { Config } from 'jest'
 import { FileBase, IResolver, Project } from 'projen'
 import serialize from 'serialize-javascript'
 
@@ -20,12 +20,17 @@ export interface JestConfigOptions {
 
   /**
    * Jest configuration object.
+   *
+   * @jsii ignore
    */
   readonly config?: Config
 }
 
 export class JestConfig extends FileBase {
   #extends?: string
+  /**
+   * @jsii ignore
+   */
   config: Config
 
   constructor(project: Project, options: JestConfigOptions = {}) {
