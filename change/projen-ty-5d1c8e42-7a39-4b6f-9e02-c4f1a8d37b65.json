@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Drop the RelativePathBuf, Rules and SystemPathBuf type names from the schema typings, whose members are now readonly and no longer accept null.",
+  "packageName": "projen-ty",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

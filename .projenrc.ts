@@ -1081,7 +1081,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'schemastore-to-typescript --no-cache ty src/ty.ts',
+      'schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts',
     )
 
     project.package?.setScript(
