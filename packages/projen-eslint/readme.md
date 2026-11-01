@@ -10,6 +10,9 @@ Install dependencies:
 npm install -D eslint projen-eslint
 ```
 
+ESLint is not a dependency of the package: install ESLint 10, the major it is
+checked against.
+
 Then, create an `ESLint` component for your project:
 
 ```js
