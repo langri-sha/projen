@@ -4,6 +4,9 @@ import { Component, type Project, TextFile } from 'projen'
  * Codeowners options.
  */
 export interface CodeownersOptions {
+  /**
+   * @jsii ignore
+   */
   readonly [pattern: string]: string | string[]
 }
 
