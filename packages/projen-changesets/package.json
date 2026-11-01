@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache Changesets src/config.ts",
-    "prepublishOnly": "rm -rf dist; jsii"
+    "prepublishOnly": "rm -rf dist; jsii && test -f dist/config.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "1.1.1",
