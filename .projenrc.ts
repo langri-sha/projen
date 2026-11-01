@@ -447,6 +447,7 @@ project.addSubproject(
   {
     name: 'projen-editorconfig',
     outdir: path.join('packages', 'projen-editorconfig'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -459,12 +460,13 @@ project.addSubproject(
       description:
         'A projen component for authoring EditorConfig configurations.',
       type: 'module',
+      devDeps: ['jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(
