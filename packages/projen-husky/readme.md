@@ -10,6 +10,9 @@ Install dependencies:
 npm install -D projen husky projen-husky
 ```
 
+Husky is not a dependency of the package: install Husky 9, the major it is
+checked against.
+
 Then, create a `Husky` component for your root project:
 
 ```js
