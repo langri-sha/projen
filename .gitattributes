@@ -295,7 +295,9 @@
 /packages/projen-renovate/package.json linguist-generated
 /packages/projen-renovate/pnpm-lock.yaml linguist-generated
 /packages/projen-renovate/pnpm-workspace.yaml linguist-generated
+/packages/projen-renovate/smoke.mjs linguist-generated
 /packages/projen-renovate/tsconfig.build.json linguist-generated
+/packages/projen-renovate/tsconfig.jsii.json linguist-generated
 /packages/projen-renovate/tsconfig.json linguist-generated
 /packages/projen-ruff/.gitattributes linguist-generated
 /packages/projen-ruff/.gitignore linguist-generated
