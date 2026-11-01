@@ -1,6 +1,6 @@
 {
   "type": "minor",
-  "comment": "Drop some exported type names from the schema typings, whose members are now readonly and no longer accept null. The generated types are now exported, and @swc/core is no longer a peer dependency.",
+  "comment": "Ship a jsii assembly in the tarball. The SWC options are now readonly and no longer accept null, the generated types are exported without the names jsii can't represent, such as MatchPattern, and @swc/core is no longer a peer dependency.",
   "packageName": "projen-swcrc",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "patch"
