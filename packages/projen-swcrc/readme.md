@@ -8,6 +8,9 @@ A [projen] component for [configuring] [SWC].
 npm install -D projen projen-swcrc
 ```
 
+`.swcrc` is read by SWC, which you install yourself: this package only writes
+the file.
+
 Add the SWC configuration:
 
 ```js

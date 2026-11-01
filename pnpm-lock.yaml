@@ -796,10 +796,6 @@ importers:
         version: 1.7.4
 
   packages/projen-swcrc:
-    dependencies:
-      '@swc/core':
-        specifier: ^1.6.0
-        version: 1.16.2
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -807,6 +803,9 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      '@swc/core':
+        specifier: 1.16.2
+        version: 1.16.2
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)

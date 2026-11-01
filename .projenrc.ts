@@ -1026,13 +1026,8 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring SWC.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.2.2'],
-      peerDeps: ['@swc/core@^1.6.0', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        '@swc/core': {
-          optional: true,
-        },
-      },
+      devDeps: ['@swc/core@1.16.2', 'schemastore-to-typescript@1.2.2'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
