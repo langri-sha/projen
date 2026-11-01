@@ -29,9 +29,7 @@ export type WorktrunkCommand = string
  * Named commands that run concurrently. Names are how a command is addressed
  * (`wt hook pre-merge project:test`) and what `{{ hook_name }}` resolves to.
  */
-export interface WorktrunkCommands {
-  readonly [name: string]: WorktrunkCommand
-}
+export type WorktrunkCommands = Readonly<Record<string, WorktrunkCommand>>
 
 /**
  * Ordered steps. Steps run in sequence, the commands within a step run
@@ -47,12 +45,29 @@ export type WorktrunkPipeline = readonly WorktrunkCommands[]
 export type WorktrunkHook =
   WorktrunkCommand | WorktrunkCommands | WorktrunkPipeline
 
-export interface WorktrunkAliases {
-  readonly [name: string]: WorktrunkHook
-}
+export type WorktrunkAliases = Readonly<Record<string, WorktrunkHook>>
 
-export type WorktrunkHooks = {
-  readonly [Event in WorktrunkHookEvent]?: WorktrunkHook
+export interface WorktrunkHooks {
+  /** @jsii ignore */
+  readonly 'pre-switch'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'post-switch'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'pre-start'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'post-start'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'pre-commit'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'post-commit'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'pre-merge'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'post-merge'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'pre-remove'?: WorktrunkHook
+  /** @jsii ignore */
+  readonly 'post-remove'?: WorktrunkHook
 }
 
 /**
@@ -71,32 +86,13 @@ export interface WorktrunkConfig extends WorktrunkHooks {
    */
   readonly aliases?: WorktrunkAliases
 
-  readonly commit?: {
-    readonly generation?: {
-      /**
-       * Project conventions appended to the LLM commit and squash prompts.
-       */
-      readonly 'template-append'?: string
-    }
-  }
+  readonly commit?: WorktrunkCommit
 
-  readonly forge?: {
-    readonly platform?: 'github' | 'gitlab' | 'gitea' | 'azure-devops'
-    readonly hostname?: string
-  }
+  readonly forge?: WorktrunkForge
 
-  readonly list?: {
-    /**
-     * Dev-server URL template for the `wt list` URL column.
-     */
-    readonly url?: string
-  }
+  readonly list?: WorktrunkList
 
-  readonly step?: {
-    readonly 'copy-ignored'?: {
-      readonly exclude?: readonly string[]
-    }
-  }
+  readonly step?: WorktrunkStep
 }
 
 /**
@@ -109,3 +105,36 @@ export const WORKTRUNK_SECTIONS = [
   'list',
   'step',
 ] as const
+
+export interface WorktrunkCommit {
+  readonly generation?: WorktrunkCommitGeneration
+}
+
+export interface WorktrunkCommitGeneration {
+  /**
+   * Project conventions appended to the LLM commit and squash prompts.
+   * @jsii ignore
+   */
+  readonly 'template-append'?: string
+}
+
+export interface WorktrunkForge {
+  readonly platform?: 'github' | 'gitlab' | 'gitea' | 'azure-devops'
+  readonly hostname?: string
+}
+
+export interface WorktrunkList {
+  /**
+   * Dev-server URL template for the `wt list` URL column.
+   */
+  readonly url?: string
+}
+
+export interface WorktrunkStep {
+  /** @jsii ignore */
+  readonly 'copy-ignored'?: WorktrunkCopyIgnored
+}
+
+export interface WorktrunkCopyIgnored {
+  readonly exclude?: readonly string[]
+}
