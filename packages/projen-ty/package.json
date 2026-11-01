@@ -20,7 +20,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache ty src/ty.ts",
+    "prepare": "schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/ty.d.ts"
   },
   "devDependencies": {

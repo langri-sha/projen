@@ -5,7 +5,6 @@ import { parse } from 'smol-toml'
 
 import {
   type EnvironmentOptions,
-  type Rules,
   type SupportedPythonVersion,
   Ty,
 } from './index'
@@ -89,11 +88,15 @@ error-on-warning = true
 test('names the types its own options are written in', () => {
   const version: SupportedPythonVersion = '3.14'
   const environment: EnvironmentOptions = { 'python-version': version }
-  const rules: Rules = { 'division-by-zero': 'error' }
 
   const project = new Project({
     name: 'test-project',
   })
 
-  expect(new Ty(project, { environment, rules }).file).toBeInstanceOf(TomlFile)
+  expect(
+    new Ty(project, {
+      environment,
+      rules: { 'division-by-zero': 'error' },
+    }).file,
+  ).toBeInstanceOf(TomlFile)
 })

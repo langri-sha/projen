@@ -1,6 +1,6 @@
 import { Component, type Project, TomlFile } from 'projen'
 
-import { type Ty as TySchema } from './ty.js'
+import { type TySchema } from './ty.js'
 
 export * from './ty.js'
 
