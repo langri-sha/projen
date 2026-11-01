@@ -1,4 +1,4 @@
-import licenseOMatic, { type Spdx } from 'license-o-matic'
+import licenseOMatic from 'license-o-matic'
 import { FileBase, type IResolver, Project } from 'projen'
 
 export interface LicenseOptions {
@@ -12,7 +12,7 @@ export interface LicenseOptions {
   /**
    * License identifier.
    */
-  readonly spdx: Spdx | string
+  readonly spdx: string
 
   /**
    * Copyright year.
