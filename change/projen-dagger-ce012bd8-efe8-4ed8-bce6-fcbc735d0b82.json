@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Update schemastore-to-typescript to v1.3.0",
+  "packageName": "projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
