@@ -578,13 +578,8 @@ project.addSubproject(
       description: 'A projen component for authoring Jest configurations.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['jest@^30.0.0', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        jest: {
-          optional: true,
-        },
-      },
+      devDeps: ['@types/serialize-javascript@5.0.4', 'jest@30.5.2'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,

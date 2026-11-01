@@ -12,6 +12,9 @@ Install required dependencies:
 npm install -D jest projen-jest-config
 ```
 
+Jest is not a dependency of the package: install Jest 30, the major it is
+checked against.
+
 Configure Jest for your project:
 
 ```ts
