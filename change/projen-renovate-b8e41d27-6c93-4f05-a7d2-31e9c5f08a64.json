@@ -1,6 +1,6 @@
 {
   "type": "minor",
-  "comment": "Generate the Renovate typings in the mode jsii can represent: their members are now readonly, and null stays accepted",
+  "comment": "Generate the Renovate typings in the mode jsii can represent: their members are now readonly, null stays accepted, and the generated schema types are now exported",
   "packageName": "projen-renovate",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "patch"

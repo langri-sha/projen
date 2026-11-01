@@ -2,6 +2,8 @@ import { Component, JsonFile, type Project } from 'projen'
 
 import { type RenovateSchema } from './renovate.js'
 
+export * from './renovate.js'
+
 /**
  * Renovate configuration options.
  */
