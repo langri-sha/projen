@@ -976,13 +976,8 @@ project.addSubproject(
       description:
         'A projen component for declaring and installing the agent skills a repository uses.',
       type: 'module',
-      devDeps: ['@types/node@24.19.2'],
-      peerDeps: ['skills@^1.7.2', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        skills: {
-          optional: true,
-        },
-      },
+      devDeps: ['@types/node@24.19.2', 'skills@1.7.4'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,

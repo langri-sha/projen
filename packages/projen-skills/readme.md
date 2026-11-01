@@ -13,8 +13,8 @@ Checked against `skills` `1.7.2`, which added the `skills` field and
 
 ## Usage
 
-Install dependencies. `skills` is an optional peer, because components do not
-install CLIs for you, and it needs Node 22.20 or later:
+Install dependencies. `skills` is not a dependency of the package, because
+components do not install CLIs for you, and it needs Node 22.20 or later:
 
 ```sh
 npm install -D projen projen-skills skills

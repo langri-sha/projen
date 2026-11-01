@@ -21,13 +21,13 @@
       "type": "build"
     },
     {
-      "name": "projen",
-      "version": ">=0.86.0 <1.0.0",
-      "type": "peer"
+      "name": "skills",
+      "version": "1.7.4",
+      "type": "build"
     },
     {
-      "name": "skills",
-      "version": "^1.7.2",
+      "name": "projen",
+      "version": ">=0.86.0 <1.0.0",
       "type": "peer"
     }
   ],
