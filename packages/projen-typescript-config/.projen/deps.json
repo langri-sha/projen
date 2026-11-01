@@ -21,6 +21,10 @@
       "type": "build"
     },
     {
+      "name": "@schemastore/tsconfig",
+      "type": "bundled"
+    },
+    {
       "name": "projen",
       "version": ">=0.86.0 <1.0.0",
       "type": "peer"

@@ -34,6 +34,9 @@
   "peerDependencies": {
     "projen": ">=0.86.0 <1.0.0"
   },
+  "bundledDependencies": [
+    "@schemastore/tsconfig"
+  ],
   "publishConfig": {
     "access": "public",
     "main": "dist/index.js",
