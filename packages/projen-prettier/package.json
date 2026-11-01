@@ -33,13 +33,7 @@
     "projen": "0.104.1"
   },
   "peerDependencies": {
-    "prettier": "^3.0.0",
     "projen": ">=0.86.0 <1.0.0"
-  },
-  "peerDependenciesMeta": {
-    "prettier": {
-      "optional": true
-    }
   },
   "publishConfig": {
     "access": "public",

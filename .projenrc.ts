@@ -733,12 +733,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
       devDeps: ['@types/serialize-javascript@5.0.4', 'prettier@3.9.9'],
-      peerDeps: ['prettier@^3.0.0', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        prettier: {
-          optional: true,
-        },
-      },
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
