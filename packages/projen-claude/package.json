@@ -20,7 +20,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache 'Claude Code Settings' src/settings.ts",
+    "prepare": "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/settings.d.ts"
   },
   "devDependencies": {

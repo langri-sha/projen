@@ -454,7 +454,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      "schemastore-to-typescript --no-cache 'Claude Code Settings' src/settings.ts",
+      "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
     )
 
     project.package?.setScript(

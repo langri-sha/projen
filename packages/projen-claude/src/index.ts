@@ -11,6 +11,10 @@ import type {
 
 export * from './settings.js'
 
+type Writable<T> = T extends object
+  ? { -readonly [Key in keyof T]: Writable<T[Key]> }
+  : T
+
 const SETTINGS_FILE = '.claude/settings.json'
 const LOCAL_SETTINGS_FILE = '.claude/settings.local.json'
 const SCHEMA_URL = 'https://json.schemastore.org/claude-code-settings.json'
@@ -93,7 +97,7 @@ export class Claude extends Component {
   readonly file: JsonFile
 
   readonly #overwriteExisting: boolean
-  readonly #settings: ClaudeSettings
+  readonly #settings: Writable<ClaudeSettings>
 
   constructor(project: Project, options: ClaudeOptions = {}) {
     super(project)
