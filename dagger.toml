@@ -31,7 +31,7 @@ skip = ["projen"]
 source = "github.com/langri-sha/dagger/projen@v2.0.0"
 
 [modules.typescript]
-source = "github.com/langri-sha/dagger/typescript@v2.0.0"
+source = "github.com/langri-sha/dagger/typescript@v2.1.0"
 
 [modules.vitest]
 source = "github.com/langri-sha/dagger/vitest@v2.0.0"
