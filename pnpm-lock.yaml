@@ -816,6 +816,9 @@ importers:
       '@langri-sha/vitest':
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
+      jsii:
+        specifier: 5.9.57
+        version: 5.9.57(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)

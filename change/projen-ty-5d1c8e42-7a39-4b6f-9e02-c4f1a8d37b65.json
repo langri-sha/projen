@@ -1,6 +1,6 @@
 {
   "type": "minor",
-  "comment": "Drop the RelativePathBuf, Rules and SystemPathBuf type names from the schema typings, whose members are now readonly and no longer accept null.",
+  "comment": "Ship a jsii assembly in the tarball. The schema typings drop the RelativePathBuf, Rules and SystemPathBuf type names, and their members are now readonly and no longer accept null.",
   "packageName": "projen-ty",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "patch"
