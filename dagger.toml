@@ -44,3 +44,6 @@ baseImageAddress = "node:24"
 
 [modules.beachball]
 source = "github.com/langri-sha/dagger/beachball@v2.1.0"
+
+[modules.smoke]
+source = ".dagger/smoke"

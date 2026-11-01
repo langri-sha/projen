@@ -44,6 +44,7 @@ pnpm tsc --build .               # type check
 pnpm eslint . && pnpm prettier --check .
 pnpm change                      # write a change file
 pnpm -r --if-present prepublishOnly  # build every package, as publishing does
+.dagger/smoke/testdata/test.sh  # self-test the smoke check on fixtures; needs `dagger`
 ```
 
 CI (`workspace.yml` → `langri-sha/github` `check.yml`) runs ESLint, Prettier,

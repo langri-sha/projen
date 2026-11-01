@@ -1,0 +1,42 @@
+"""
+Smoke tests for the packages a workspace publishes: each is packed, installed
+into a project of its own and run under plain Node, which tools such as tsx
+would otherwise paper over.
+"""
+type Smoke {
+  """
+  The workspace with its dependencies installed, from the typescript module.
+  """
+  pub installed: Container!
+
+  new(
+    ws: Workspace!,
+    baseImageAddress: String! = "node:24-slim",
+  ) {
+    self.installed = typescript(ws: ws, baseImageAddress: baseImageAddress).base
+    self
+  }
+
+  """
+  Build the packages as the typescript module's `publishable` check does, with
+  the same command, so that Dagger reuses its build, then run each package's
+  `smoke.mjs` against its tarball.
+  """
+  pub smoke: Void @check {
+    installed
+      .withExec([
+        "pnpm",
+        "-r",
+        "--if-present",
+        "--include-workspace-root",
+        "run",
+        "prepublishOnly",
+      ])
+      .withMountedCache("/root/.npm", cacheVolume("npm-cache"))
+      .withFile("/run/smoke.mjs", currentModule.source.file("run.mjs"))
+      .withExec(["node", "/run/smoke.mjs"])
+      .sync
+
+    null
+  }
+}
