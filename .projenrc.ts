@@ -394,7 +394,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  publishJsii,
+  (project) => publish(project, 'jsii && test -f dist/config.d.ts'),
   (project) => {
     project.addGitIgnore('config.ts')
 
