@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 01:14:55 GMT",
+      "version": "0.48.0",
+      "tag": "@langri-sha/projen-project_v0.48.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "4f1bdd7c03a42b04faaae4f70d90825bcbe1de82",
+            "comment": "Add a jsii option that prepares a package to compile with jsii"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-readme to v0.1.17",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 01:00:47 GMT",
       "version": "0.47.1",
       "tag": "@langri-sha/projen-project_v0.47.1",

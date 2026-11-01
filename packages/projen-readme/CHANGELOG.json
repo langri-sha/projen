@@ -2,6 +2,21 @@
   "name": "projen-readme",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 01:14:55 GMT",
+      "version": "0.1.17",
+      "tag": "projen-readme_v0.1.17",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-readme",
+            "commit": "4f1bdd7c03a42b04faaae4f70d90825bcbe1de82",
+            "comment": "Ship a jsii assembly in the tarball"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.1.16",
       "tag": "projen-readme_v0.1.16",

@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 01:14:55 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.48.0
+
+Sun, 01 Nov 2026 01:14:55 GMT
+
+### Minor changes
+
+- Add a jsii option that prepares a package to compile with jsii (filip.dupanovic@gmail.com)
+- Bump projen-readme to v0.1.17
 
 ## 0.47.1
 
