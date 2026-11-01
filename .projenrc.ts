@@ -299,6 +299,7 @@ project.addSubproject(
   {
     name: 'projen-babel-config',
     outdir: path.join('packages', 'projen-babel'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -311,13 +312,17 @@ project.addSubproject(
       description: 'A projen component for configuring Babel.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@babel/core@8.0.7', '@types/serialize-javascript@5.0.4'],
+      devDeps: [
+        '@babel/core@8.0.7',
+        '@types/serialize-javascript@5.0.4',
+        'jsii@5.9.57',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
 )
 
 project.addSubproject(
