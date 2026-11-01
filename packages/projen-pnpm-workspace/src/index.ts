@@ -3,7 +3,9 @@ import * as path from 'node:path'
 import { type IResolver, Project, YamlFile, javascript } from 'projen'
 import YAML from 'yaml'
 
-import { type PnpmWorkspacePnpmWorkspaceYaml as PnpmWorkspaceSchema } from './pnpm-workspace'
+import { type PnpmWorkspaceSchema } from './pnpm-workspace.js'
+
+export * from './pnpm-workspace.js'
 
 /**
  * Options for maintaining a PNPM workspace.

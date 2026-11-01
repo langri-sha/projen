@@ -848,7 +848,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      "schemastore-to-typescript --no-cache --jsii 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
+      "schemastore-to-typescript --no-cache --jsii --type-name PnpmWorkspaceSchema 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     )
 
     project.package?.setScript(
