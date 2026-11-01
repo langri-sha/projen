@@ -953,6 +953,7 @@ project.addSubproject(
   {
     name: 'projen-ruff',
     outdir: path.join('packages', 'projen-ruff'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -964,13 +965,17 @@ project.addSubproject(
       copyrightYear: '2026',
       description: 'A projen component for configuring Ruff.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.2.2', 'smol-toml@1.9.1'],
+      devDeps: [
+        'jsii@5.9.57',
+        'schemastore-to-typescript@1.2.2',
+        'smol-toml@1.9.1',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publish(project, 'jsii && test -f dist/ruff.d.ts'),
   (project) => {
     project.addGitIgnore('ruff.ts')
 
@@ -980,11 +985,6 @@ project.addSubproject(
         'schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts',
         String.raw`node -e "const f='src/ruff.ts',fs=require('node:fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/\bRuffOptions\b/g,'LintRuffOptions'))"`,
       ].join(' && '),
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/ruff.d.ts',
     )
   },
 )
