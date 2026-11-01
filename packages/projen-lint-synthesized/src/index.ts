@@ -9,6 +9,9 @@ import { Component, Project } from 'projen'
 const debug = createDebug('projen-lint-synthesized')
 
 export interface LintSynthesizedOptions {
+  /**
+   * @jsii ignore
+   */
   readonly [pattern: string]: string | ((files: string[]) => string)
 }
 
