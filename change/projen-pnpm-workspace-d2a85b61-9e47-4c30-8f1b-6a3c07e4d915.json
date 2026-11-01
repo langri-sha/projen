@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Ship a jsii assembly in the tarball, with yaml inlined into it. The schema typings drop the Catalog, Dependency, OptionalDependency, PackageConfig, PeerDependency and PeerDependencyMeta type names and are now exported, and their members are readonly and no longer accept null.",
+  "packageName": "projen-pnpm-workspace",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

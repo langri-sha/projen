@@ -824,6 +824,7 @@ project.addSubproject(
   {
     name: 'projen-pnpm-workspace',
     outdir: path.join('packages', 'projen-pnpm-workspace'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -836,13 +837,13 @@ project.addSubproject(
       description: 'A projen component for maintaining pnpm workspaces.',
       type: 'module',
       deps: ['yaml@2.9.1'],
-      devDeps: ['schemastore-to-typescript@1.3.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.3.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
   (project) => {
     project.addGitIgnore('pnpm-workspace.ts')
 
@@ -850,12 +851,13 @@ project.addSubproject(
       'prepare',
       "schemastore-to-typescript --no-cache --jsii --type-name PnpmWorkspaceSchema 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pnpm-workspace.d.ts',
-    )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { PnpmWorkspace } from 'projen-pnpm-workspace'",
+      run: "new PnpmWorkspace(project, { packages: ['packages/*'] })",
+      check: "assert.ok(read('pnpm-workspace.yaml').includes('packages/*'))",
+    }),
 )
 
 project.addSubproject(
