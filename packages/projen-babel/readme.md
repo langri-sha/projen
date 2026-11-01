@@ -10,6 +10,9 @@ Install dependencies:
 npm install -D projen projen-babel-config
 ```
 
+Babel is not a dependency of the package: install `@babel/core` 8, the major it
+is checked against.
+
 Then, create a `Babel` component for your project:
 
 ```js

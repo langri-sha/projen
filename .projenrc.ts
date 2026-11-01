@@ -311,13 +311,8 @@ project.addSubproject(
       description: 'A projen component for configuring Babel.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['@babel/core@^8.0.0', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        '@babel/core': {
-          optional: true,
-        },
-      },
+      devDeps: ['@babel/core@8.0.7', '@types/serialize-javascript@5.0.4'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
