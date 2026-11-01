@@ -4,6 +4,9 @@ import { Component, IniFile, type Project } from 'projen'
  * EditorConfig options.
  */
 export interface EditorConfigOptions {
+  /**
+   * @jsii ignore
+   */
   readonly [pattern: string]: {
     /**
      * Enforce either spaces or tabs for indentation.
