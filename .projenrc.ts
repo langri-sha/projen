@@ -1098,6 +1098,7 @@ project.addSubproject(
   {
     name: 'projen-typescript-config',
     outdir: path.join('packages', 'projen-typescript-config'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1112,13 +1113,13 @@ project.addSubproject(
       type: 'module',
       deps: ['@schemastore/tsconfig@1.0.11'],
       bundledDeps: ['@schemastore/tsconfig'],
-      devDeps: ['@types/node@24.19.2'],
+      devDeps: ['@types/node@24.19.2', 'jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(

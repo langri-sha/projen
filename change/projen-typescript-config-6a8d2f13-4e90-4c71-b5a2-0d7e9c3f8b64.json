@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Bundle @schemastore/tsconfig in the tarball",
+  "comment": "Ship a jsii assembly in the tarball, with @schemastore/tsconfig bundled",
   "packageName": "projen-typescript-config",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "patch"
