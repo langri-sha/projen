@@ -2,26 +2,22 @@ import path from 'node:path'
 
 import { Component, type Project, TextFile } from 'projen'
 
-type Hooks =
-  | 'pre-commit'
-  | 'applypatch-msg'
-  | 'pre-applypatch'
-  | 'post-applypatch'
-  | 'pre-commit'
-  | 'pre-merge-commit'
-  | 'prepare-commit-msg'
-  | 'commit-msg'
-  | 'post-commit'
-  | 'pre-rebase'
-  | 'post-checkout'
-  | 'post-merge'
-  | 'pre-push'
-
 /**
  * Husky options.
  */
-export type HuskyOptions = {
-  [hook in Hooks]?: string | string[]
+export interface HuskyOptions {
+  'pre-commit'?: string | string[]
+  'applypatch-msg'?: string | string[]
+  'pre-applypatch'?: string | string[]
+  'post-applypatch'?: string | string[]
+  'pre-merge-commit'?: string | string[]
+  'prepare-commit-msg'?: string | string[]
+  'commit-msg'?: string | string[]
+  'post-commit'?: string | string[]
+  'pre-rebase'?: string | string[]
+  'post-checkout'?: string | string[]
+  'post-merge'?: string | string[]
+  'pre-push'?: string | string[]
 }
 
 /**
@@ -31,7 +27,7 @@ export class Husky extends Component {
   constructor(project: Project, options?: HuskyOptions) {
     super(project)
 
-    for (const [hook, commands] of Object.entries(options ?? {}).map(
+    for (const [hook, commands] of Object.entries({ ...options }).map(
       ([hook, commands]) =>
         [hook, Array.isArray(commands) ? commands : [commands]] as const,
     )) {
