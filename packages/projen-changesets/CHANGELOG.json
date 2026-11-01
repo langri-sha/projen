@@ -2,6 +2,21 @@
   "name": "projen-changesets",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 02:28:27 GMT",
+      "version": "0.1.2",
+      "tag": "projen-changesets_v0.1.2",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-changesets",
+            "commit": "927e8d8bb5811d15f7ef4cda1bc60c72ef4df5b0",
+            "comment": "Ship a jsii assembly in the tarball"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 01:00:47 GMT",
       "version": "0.1.1",
       "tag": "projen-changesets_v0.1.1",

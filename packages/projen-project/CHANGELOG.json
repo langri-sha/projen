@@ -2,6 +2,27 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 02:28:27 GMT",
+      "version": "0.48.1",
+      "tag": "@langri-sha/projen-project_v0.48.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "927e8d8bb5811d15f7ef4cda1bc60c72ef4df5b0",
+            "comment": "Update dependency @langri-sha/eslint-config to v0.12.0"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-changesets to v0.1.2",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 01:14:55 GMT",
       "version": "0.48.0",
       "tag": "@langri-sha/projen-project_v0.48.0",

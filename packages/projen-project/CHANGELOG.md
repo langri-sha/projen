@@ -1,8 +1,17 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 01 Nov 2026 01:14:55 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 02:28:27 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.48.1
+
+Sun, 01 Nov 2026 02:28:27 GMT
+
+### Patches
+
+- Update dependency @langri-sha/eslint-config to v0.12.0
+- Bump projen-changesets to v0.1.2
 
 ## 0.48.0
 

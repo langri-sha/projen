@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency @langri-sha/eslint-config to v0.12.0",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}
