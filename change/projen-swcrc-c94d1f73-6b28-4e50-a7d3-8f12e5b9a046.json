@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Drop some exported type names from the schema typings, whose members are now readonly and no longer accept null.",
+  "packageName": "projen-swcrc",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
