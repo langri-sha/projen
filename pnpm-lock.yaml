@@ -212,8 +212,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
       skills:
         specifier: 1.7.4
         version: 1.7.4
@@ -282,8 +282,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-changesets:
     devDependencies:
@@ -300,8 +300,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-claude:
     devDependencies:
@@ -315,8 +315,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-codeowners:
     devDependencies:
@@ -345,8 +345,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -532,8 +532,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-prettier:
     dependencies:
@@ -747,8 +747,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-ruff:
     devDependencies:
@@ -762,8 +762,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -805,8 +805,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-ty:
     devDependencies:
@@ -820,8 +820,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -861,8 +861,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       schemastore-to-typescript:
-        specifier: 1.2.1
-        version: 1.2.1(supports-color@8.1.1)
+        specifier: 1.2.2
+        version: 1.2.2(supports-color@8.1.1)
 
   packages/projen-worktrunk:
     devDependencies:
@@ -5962,8 +5962,8 @@ packages:
       webpack:
         optional: true
 
-  schemastore-to-typescript@1.2.1:
-    resolution: {integrity: sha512-3TCrvPnq3o0cx6kCblVGZnSA6oOZVKkObU51Aau97xKyXQmv0SvnD5c0dJ+UZxC2lhC9Sl2rJfXcSblOWY9v/Q==}
+  schemastore-to-typescript@1.2.2:
+    resolution: {integrity: sha512-OKwgfuUarewpoqJoMpt9PKrWgWO8lEHPciNP9GGEwVjlvCttmg9HSAWAiJ+qivQ3G0B9W33t5Tqe5VB7zEoKtg==}
     hasBin: true
 
   selfsigned@5.5.0:
@@ -12463,7 +12463,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.112.2(@swc/core@1.16.2)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.30)
 
-  schemastore-to-typescript@1.2.1(supports-color@8.1.1):
+  schemastore-to-typescript@1.2.2(supports-color@8.1.1):
     dependencies:
       commander: 15.0.0
       debug: 4.4.3(supports-color@8.1.1)
