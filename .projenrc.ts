@@ -212,6 +212,7 @@ project.addSubproject(
   {
     name: 'projen-codeowners',
     outdir: path.join('packages', 'projen-codeowners'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -223,12 +224,13 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for managing CODEOWNERS.',
       type: 'module',
+      devDeps: ['jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(
