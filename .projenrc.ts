@@ -306,6 +306,7 @@ project.addSubproject(
   {
     name: 'projen-beachball',
     outdir: path.join('packages', 'projen-beachball'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -317,13 +318,13 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring Beachball.',
       type: 'module',
-      devDeps: ['beachball@2.66.0'],
+      devDeps: ['beachball@2.66.0', 'jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(
