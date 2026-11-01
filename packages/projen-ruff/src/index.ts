@@ -1,12 +1,8 @@
 import { Component, type Project, TomlFile } from 'projen'
 
-import { type Ruff as RuffSchema } from './ruff.js'
+import { type RuffSchema } from './ruff.js'
 
 export * from './ruff.js'
-
-// The schema's own `RuffOptions` is the `[lint.ruff]` table. This component's
-// options take the name, which hides it from the export above.
-export type { RuffOptions as LintRuffOptions } from './ruff.js'
 
 /**
  * `ruff.toml` options, as published in SchemaStore's "Ruff" schema.
