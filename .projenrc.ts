@@ -1067,6 +1067,7 @@ project.addSubproject(
   {
     name: 'projen-renovate',
     outdir: path.join('packages', 'projen-renovate'),
+    jsii: { tsconfig: 'tsconfig.jsii.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1078,26 +1079,38 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for authoring Renovate configurations.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.3.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.3.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publish(project, 'jsii && test -f dist/renovate.d.ts'),
   (project) => {
+    // jsii reads `T | null` as `T` only with `strictNullChecks` off, which the
+    // strict `tsconfig.json` type check does not share.
+    new TypeScriptConfig(project, {
+      fileName: 'tsconfig.jsii.json',
+      config: {
+        extends: './tsconfig.build.json',
+        compilerOptions: { strictNullChecks: false },
+      },
+    })
+
     project.addGitIgnore('renovate.ts')
 
     project.package?.setScript(
       'prepare',
       'schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts',
     )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/renovate.d.ts',
-    )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Renovate } from 'projen-renovate'",
+      run: "new Renovate(project, {\n  packageRules: [{ matchPackageNames: ['smoke'], minimumReleaseAge: null }],\n})",
+      check:
+        "assert.ok(read('renovate.json5').includes('\"minimumReleaseAge\": null'))",
+    }),
 )
 
 project.addSubproject(
