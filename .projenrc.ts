@@ -525,6 +525,7 @@ project.addSubproject(
   {
     name: 'projen-husky',
     outdir: path.join('packages', 'projen-husky'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -536,13 +537,13 @@ project.addSubproject(
       type: 'module',
       copyrightYear: '2024',
       description: 'A projen component for maintaining Git hooks with Husky.',
-      devDeps: ['@types/node@24.19.2', 'husky@9.1.7'],
+      devDeps: ['@types/node@24.19.2', 'husky@9.1.7', 'jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(
