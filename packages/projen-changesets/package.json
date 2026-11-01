@@ -29,7 +29,7 @@
     "@langri-sha/vitest": "0.2.3",
     "jsii": "5.9.57",
     "projen": "0.104.1",
-    "schemastore-to-typescript": "1.2.1"
+    "schemastore-to-typescript": "1.2.2"
   },
   "peerDependencies": {
     "projen": ">=0.86.0 <1.0.0"
