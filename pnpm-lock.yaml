@@ -506,6 +506,9 @@ importers:
       '@types/debug':
         specifier: 4.1.13
         version: 4.1.13
+      jsii:
+        specifier: 5.9.57
+        version: 5.9.57(supports-color@8.1.1)
       prettier:
         specifier: 3.9.9
         version: 3.9.9
