@@ -571,6 +571,7 @@ project.addSubproject(
   {
     name: 'projen-jest-config',
     outdir: path.join('packages', 'projen-jest-config'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -583,13 +584,17 @@ project.addSubproject(
       description: 'A projen component for authoring Jest configurations.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4', 'jest@30.5.2'],
+      devDeps: [
+        '@types/serialize-javascript@5.0.4',
+        'jest@30.5.2',
+        'jsii@5.9.57',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
 )
 
 project.addSubproject(
