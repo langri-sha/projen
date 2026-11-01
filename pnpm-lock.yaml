@@ -493,6 +493,9 @@ importers:
       '@types/serialize-javascript':
         specifier: 5.0.4
         version: 5.0.4
+      jsii:
+        specifier: 5.9.57
+        version: 5.9.57(supports-color@8.1.1)
       lint-staged:
         specifier: 17.6.0
         version: 17.6.0
