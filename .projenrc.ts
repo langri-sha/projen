@@ -677,6 +677,13 @@ project.addSubproject(
   subproject,
   test,
   publish,
+  (project) => {
+    // The ambient typings beside package.json would otherwise make jsii take
+    // the package root as the source root.
+    project
+      .tryFindObjectFile('tsconfig.build.json')
+      ?.addOverride('compilerOptions.rootDir', 'src')
+  },
 )
 
 project.addSubproject(
