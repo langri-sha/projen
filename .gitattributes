@@ -240,6 +240,7 @@
 /packages/projen-pnpm-workspace/package.json linguist-generated
 /packages/projen-pnpm-workspace/pnpm-lock.yaml linguist-generated
 /packages/projen-pnpm-workspace/pnpm-workspace.yaml linguist-generated
+/packages/projen-pnpm-workspace/smoke.mjs linguist-generated
 /packages/projen-pnpm-workspace/tsconfig.build.json linguist-generated
 /packages/projen-pnpm-workspace/tsconfig.json linguist-generated
 /packages/projen-prettier/.gitattributes linguist-generated
