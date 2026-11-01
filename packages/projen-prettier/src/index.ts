@@ -25,6 +25,8 @@ export interface PrettierOptions {
 
   /**
    * Prettier configuration object.
+   *
+   * @jsii ignore
    */
   readonly config?: Config
 }
@@ -32,6 +34,9 @@ export interface PrettierOptions {
 export class Prettier extends FileBase {
   #extends?: string
   ignore: IgnoreFile
+  /**
+   * @jsii ignore
+   */
   config: Config
 
   constructor(project: Project, options: PrettierOptions = {}) {
