@@ -10,6 +10,8 @@ Install dependencies:
 npm install -D projen projen-lint-staged
 ```
 
+lint-staged is not a dependency of the package: install lint-staged 17.
+
 Then, create a `LintStaged` component for your project:
 
 ```js

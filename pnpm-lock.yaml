@@ -474,9 +474,6 @@ importers:
 
   packages/projen-lint-staged:
     dependencies:
-      lint-staged:
-        specifier: ^17.0.0
-        version: 17.6.0
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
@@ -490,6 +487,9 @@ importers:
       '@types/serialize-javascript':
         specifier: 5.0.4
         version: 5.0.4
+      lint-staged:
+        specifier: 17.6.0
+        version: 17.6.0
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
