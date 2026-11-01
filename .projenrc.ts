@@ -206,7 +206,28 @@ const publish = (
   project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
 }
 
-const publishJsii = (project: Project) => publish(project, 'jsii')
+const publishJsii = (
+  project: Project,
+  { inline = false }: { inline?: boolean } = {},
+) => {
+  if (!inline) {
+    return publish(project, 'jsii')
+  }
+
+  // jsii takes only jsii modules as dependencies, and npm cannot pack
+  // `bundledDependencies` out of pnpm's symlinked store. A package that
+  // imports anything else declares it as a development dependency, and the
+  // build inlines it into `dist/index.js` after jsii has written the assembly.
+  project.package?.addDevDeps('esbuild@0.28.2')
+
+  publish(
+    project,
+    `jsii && node ${path.relative(
+      project.outdir,
+      path.join(project.root.outdir, 'scripts', 'inline-dependencies.mjs'),
+    )}`,
+  )
+}
 
 project.addSubproject(
   {
