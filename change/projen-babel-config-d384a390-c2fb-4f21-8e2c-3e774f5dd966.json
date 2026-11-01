@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Smoke test the package from its tarball in CI",
+  "packageName": "projen-babel-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}

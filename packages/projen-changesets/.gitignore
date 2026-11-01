@@ -10,4 +10,5 @@ node_modules/
 !/.npmignore
 !/tsconfig.build.json
 config.ts
+!/smoke.mjs
 !/.projenrc.ts
