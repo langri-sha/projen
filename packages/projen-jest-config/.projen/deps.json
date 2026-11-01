@@ -16,14 +16,14 @@
       "type": "build"
     },
     {
-      "name": "projen",
-      "version": "0.104.1",
+      "name": "jest",
+      "version": "30.5.2",
       "type": "build"
     },
     {
-      "name": "jest",
-      "version": "^30.0.0",
-      "type": "peer"
+      "name": "projen",
+      "version": "0.104.1",
+      "type": "build"
     },
     {
       "name": "projen",
