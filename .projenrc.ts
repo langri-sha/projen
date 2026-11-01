@@ -317,12 +317,8 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring Beachball.',
       type: 'module',
-      peerDeps: ['beachball@^2.0.0', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        beachball: {
-          optional: true,
-        },
-      },
+      devDeps: ['beachball@2.66.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
