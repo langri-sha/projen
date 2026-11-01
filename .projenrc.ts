@@ -1058,6 +1058,7 @@ project.addSubproject(
   {
     name: 'projen-ty',
     outdir: path.join('packages', 'projen-ty'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1069,24 +1070,23 @@ project.addSubproject(
       copyrightYear: '2026',
       description: 'A projen component for configuring ty.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.2.2', 'smol-toml@1.9.1'],
+      devDeps: [
+        'jsii@5.9.57',
+        'schemastore-to-typescript@1.2.2',
+        'smol-toml@1.9.1',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publish(project, 'jsii && test -f dist/ty.d.ts'),
   (project) => {
     project.addGitIgnore('ty.ts')
 
     project.package?.setScript(
       'prepare',
       'schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts',
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/ty.d.ts',
     )
   },
 )
