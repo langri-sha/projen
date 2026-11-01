@@ -16,6 +16,11 @@
       "type": "build"
     },
     {
+      "name": "jsii",
+      "version": "5.9.57",
+      "type": "build"
+    },
+    {
       "name": "prettier",
       "version": "3.9.9",
       "type": "build"

@@ -605,6 +605,7 @@ project.addSubproject(
   {
     name: 'projen-lint-synthesized',
     outdir: path.join('packages', 'projen-lint-synthesized'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -618,13 +619,13 @@ project.addSubproject(
         'A projen component for configuring linters for synthesized files.',
       type: 'module',
       deps: ['debug@4.4.3', 'execa@10.2.1', 'minimatch@10.2.6'],
-      devDeps: ['@types/debug@4.1.13', 'prettier@3.9.9'],
+      devDeps: ['@types/debug@4.1.13', 'jsii@5.9.57', 'prettier@3.9.9'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
 )
 
 project.addSubproject(
