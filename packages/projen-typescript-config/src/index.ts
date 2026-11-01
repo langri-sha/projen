@@ -4,6 +4,9 @@ import { IResolver, JsonFile, Project } from 'projen'
 export interface TypeScriptConfigOptions {
   readonly fileName?: string
 
+  /**
+   * @jsii ignore
+   */
   readonly config?: JSONSchemaForTheTypeScriptCompilerSConfigurationFile & {
     /**
      * Referenced projects. Requires TypeScript version 3.0 or later.
