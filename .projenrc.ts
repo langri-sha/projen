@@ -376,6 +376,7 @@ project.addSubproject(
   {
     name: 'projen-changesets',
     outdir: path.join('packages', 'projen-changesets'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -388,24 +389,19 @@ project.addSubproject(
       description:
         'A projen component for configuring Changesets, so the change files a repository versions and tags with are declared in your projenrc.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.1.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.1.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
   (project) => {
     project.addGitIgnore('config.ts')
 
     project.package?.setScript(
       'prepare',
       'schemastore-to-typescript --no-cache Changesets src/config.ts',
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/config.d.ts',
     )
   },
 )
