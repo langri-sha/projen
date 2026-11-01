@@ -1090,7 +1090,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'schemastore-to-typescript --no-cache renovate src/renovate.ts',
+      'schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts',
     )
 
     project.package?.setScript(
