@@ -658,6 +658,7 @@ project.addSubproject(
   {
     name: 'projen-license',
     outdir: path.join('packages', 'projen-license'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -671,12 +672,13 @@ project.addSubproject(
         'A projen component for generating license files using license-o-matic.',
       type: 'module',
       deps: ['license-o-matic@^1.2.0'],
+      devDeps: ['jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
   (project) => {
     // The ambient typings beside package.json would otherwise make jsii take
     // the package root as the source root.
