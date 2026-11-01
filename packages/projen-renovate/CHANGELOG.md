@@ -1,8 +1,22 @@
 # Change Log - projen-renovate
 
-<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.0
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Minor changes
+
+- Generate the Renovate typings in the mode jsii can represent: their members are now readonly, null stays accepted, the generated schema types are now exported, and a jsii assembly ships in the tarball (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update dependency schemastore-to-typescript to v1.2.1
+- Update dependency schemastore-to-typescript to v1.3.0
+- Update dependency schemastore-to-typescript to v1.2.2
 
 ## 0.4.31
 

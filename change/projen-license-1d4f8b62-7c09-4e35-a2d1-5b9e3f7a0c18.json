@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Ship a jsii assembly, inline license-o-matic into dist/index.js, and type the licence identifier as a string, where it was any in the published typings",
-  "packageName": "projen-license",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

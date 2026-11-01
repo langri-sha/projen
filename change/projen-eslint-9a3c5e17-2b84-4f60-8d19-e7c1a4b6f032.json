@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Ship a jsii assembly, inline serialize-javascript into dist/index.js, and install ESLint yourself",
-  "packageName": "projen-eslint",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

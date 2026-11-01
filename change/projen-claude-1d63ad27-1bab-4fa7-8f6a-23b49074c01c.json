@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency schemastore-to-typescript to v1.2.1",
-  "packageName": "projen-claude",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

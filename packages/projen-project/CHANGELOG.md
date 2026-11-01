@@ -1,8 +1,39 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 01 Nov 2026 02:28:27 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.48.2
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Update dependency @babel/core to v8.0.9
+- Bump projen-babel-config to v0.5.21
+- Bump projen-beachball to v0.5.17
+- Bump projen-cargo to v0.2.5
+- Bump projen-changesets to v0.1.3
+- Bump projen-claude to v0.2.0
+- Bump projen-codeowners to v0.5.17
+- Bump projen-dagger to v0.4.2
+- Bump projen-editorconfig to v0.6.17
+- Bump projen-eslint to v0.3.22
+- Bump projen-husky to v0.3.28
+- Bump projen-jest-config to v0.4.24
+- Bump projen-license to v0.3.20
+- Bump projen-lint-staged to v0.3.23
+- Bump projen-lint-synthesized to v0.5.25
+- Bump projen-pnpm-workspace to v0.5.0
+- Bump projen-prettier to v0.4.23
+- Bump projen-renovate to v0.5.0
+- Bump projen-ruff to v0.2.0
+- Bump projen-skills to v0.3.1
+- Bump projen-swcrc to v0.2.0
+- Bump projen-ty to v0.2.0
+- Bump projen-typescript-config to v0.5.26
+- Bump projen-uv to v0.2.6
 
 ## 0.48.1
 

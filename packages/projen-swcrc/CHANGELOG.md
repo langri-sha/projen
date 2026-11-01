@@ -1,8 +1,23 @@
 # Change Log - projen-swcrc
 
-<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.0
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Minor changes
+
+- Name the types lifted out of inline objects without the Option1 suffix: JsMinifyOptionsExtractComments, JsMinifyOptionsFormatComments and ReactConfigRefresh. (filip.dupanovic@gmail.com)
+- Ship a jsii assembly in the tarball. The SWC options are now readonly and no longer accept null, the generated types are exported without the names jsii can't represent, such as MatchPattern, and @swc/core is no longer a peer dependency. (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update dependency schemastore-to-typescript to v1.2.1
+- Update dependency schemastore-to-typescript to v1.2.2
+- Update dependency schemastore-to-typescript to v1.3.0
 
 ## 0.1.32
 

@@ -2,6 +2,29 @@
   "name": "projen-jest-config",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 19:06:54 GMT",
+      "version": "0.4.24",
+      "tag": "projen-jest-config_v0.4.24",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-jest-config",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Ship a jsii assembly, inline serialize-javascript into dist/index.js, and install Jest yourself"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-jest-config",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Smoke test the package from its tarball in CI"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.4.23",
       "tag": "projen-jest-config_v0.4.23",

@@ -1,8 +1,17 @@
 # Change Log - projen-babel-config
 
-<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.21
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly, inline serialize-javascript into dist/index.js, and install Babel yourself (filip.dupanovic@gmail.com)
+- Update dependency @babel/core to v8.0.9
 
 ## 0.5.20
 

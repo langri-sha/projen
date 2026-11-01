@@ -2,6 +2,29 @@
   "name": "projen-license",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 19:06:54 GMT",
+      "version": "0.3.20",
+      "tag": "projen-license_v0.3.20",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-license",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Ship a jsii assembly, inline license-o-matic into dist/index.js, and type the licence identifier as a string, where it was any in the published typings"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-license",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Smoke test the package from its tarball in CI"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.3.19",
       "tag": "projen-license_v0.3.19",

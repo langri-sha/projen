@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Ship a jsii assembly in the tarball. The schema typings are now readonly and no longer accept null.",
-  "packageName": "projen-ruff",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,29 @@
   "name": "projen-editorconfig",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 19:06:54 GMT",
+      "version": "0.6.17",
+      "tag": "projen-editorconfig_v0.6.17",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-editorconfig",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Ship a jsii assembly in the tarball"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-editorconfig",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Smoke test the package from its tarball in CI"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.6.16",
       "tag": "projen-editorconfig_v0.6.16",

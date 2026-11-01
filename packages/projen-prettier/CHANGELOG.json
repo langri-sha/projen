@@ -2,6 +2,29 @@
   "name": "projen-prettier",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 19:06:54 GMT",
+      "version": "0.4.23",
+      "tag": "projen-prettier_v0.4.23",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-prettier",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Smoke test the package from its tarball in CI"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-prettier",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Ship a jsii assembly, inline serialize-javascript into dist/index.js, and install Prettier yourself"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.4.22",
       "tag": "projen-prettier_v0.4.22",

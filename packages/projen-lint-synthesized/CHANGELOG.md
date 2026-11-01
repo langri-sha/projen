@@ -1,8 +1,16 @@
 # Change Log - projen-lint-synthesized
 
-<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.25
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly, and inline the dependencies into dist/index.js (filip.dupanovic@gmail.com)
 
 ## 0.5.24
 

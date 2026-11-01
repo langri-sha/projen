@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Ship a jsii assembly in the tarball. The settings types are now readonly and no longer accept null, and ClaudeHookOptions names the options addHook takes.",
-  "packageName": "projen-claude",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

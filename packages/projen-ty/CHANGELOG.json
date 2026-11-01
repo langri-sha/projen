@@ -2,6 +2,49 @@
   "name": "projen-ty",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 19:06:54 GMT",
+      "version": "0.2.0",
+      "tag": "projen-ty_v0.2.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-ty",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Smoke test the package from its tarball in CI"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-ty",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Update dependency schemastore-to-typescript to v1.2.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-ty",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Update dependency schemastore-to-typescript to v1.2.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-ty",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Update dependency schemastore-to-typescript to v1.3.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-ty",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Ship a jsii assembly in the tarball. The schema typings drop the RelativePathBuf, Rules and SystemPathBuf type names, and their members are now readonly and no longer accept null."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 01:00:47 GMT",
       "version": "0.1.6",
       "tag": "projen-ty_v0.1.6",

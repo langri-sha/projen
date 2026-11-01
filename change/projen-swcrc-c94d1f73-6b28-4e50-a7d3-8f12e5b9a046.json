@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Ship a jsii assembly in the tarball. The SWC options are now readonly and no longer accept null, the generated types are exported without the names jsii can't represent, such as MatchPattern, and @swc/core is no longer a peer dependency.",
-  "packageName": "projen-swcrc",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

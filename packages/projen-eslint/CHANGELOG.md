@@ -1,8 +1,16 @@
 # Change Log - projen-eslint
 
-<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.22
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly, inline serialize-javascript into dist/index.js, and install ESLint yourself (filip.dupanovic@gmail.com)
 
 ## 0.3.21
 

@@ -1,8 +1,16 @@
 # Change Log - projen-license
 
-<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.20
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly, inline license-o-matic into dist/index.js, and type the licence identifier as a string, where it was any in the published typings (filip.dupanovic@gmail.com)
 
 ## 0.3.19
 

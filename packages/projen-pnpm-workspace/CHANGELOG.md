@@ -1,8 +1,22 @@
 # Change Log - projen-pnpm-workspace
 
-<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.0
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Minor changes
+
+- Ship a jsii assembly in the tarball, with yaml inlined into it. The schema typings drop the Catalog, Dependency, OptionalDependency, PackageConfig, PeerDependency and PeerDependencyMeta type names and are now exported, and their members are readonly and no longer accept null. (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Update dependency schemastore-to-typescript to v1.2.2
+- Update dependency schemastore-to-typescript to v1.3.0
+- Update dependency schemastore-to-typescript to v1.2.1
 
 ## 0.4.21
 

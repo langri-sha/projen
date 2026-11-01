@@ -1,8 +1,16 @@
 # Change Log - projen-skills
 
-<!-- This log was last generated on Thu, 29 Oct 2026 17:17:09 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.1
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly in the tarball, and install the skills CLI yourself (filip.dupanovic@gmail.com)
 
 ## 0.3.0
 

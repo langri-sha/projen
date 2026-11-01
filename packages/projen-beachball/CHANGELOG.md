@@ -1,8 +1,16 @@
 # Change Log - projen-beachball
 
-<!-- This log was last generated on Sun, 11 Oct 2026 02:44:24 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.17
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly in the tarball, and install Beachball yourself (filip.dupanovic@gmail.com)
 
 ## 0.5.16
 

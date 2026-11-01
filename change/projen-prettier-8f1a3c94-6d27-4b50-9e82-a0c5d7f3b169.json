@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Ship a jsii assembly, inline serialize-javascript into dist/index.js, and install Prettier yourself",
-  "packageName": "projen-prettier",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

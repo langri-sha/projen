@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Name the types lifted out of inline objects without the Option1 suffix: JsMinifyOptionsExtractComments, JsMinifyOptionsFormatComments and ReactConfigRefresh.",
-  "packageName": "projen-swcrc",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

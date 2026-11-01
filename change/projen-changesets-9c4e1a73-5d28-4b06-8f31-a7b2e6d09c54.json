@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Fail the publish build when the generated config typings are missing",
-  "packageName": "projen-changesets",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

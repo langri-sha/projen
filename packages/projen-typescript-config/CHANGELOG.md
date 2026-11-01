@@ -1,8 +1,16 @@
 # Change Log - projen-typescript-config
 
-<!-- This log was last generated on Tue, 13 Oct 2026 20:46:26 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.26
+
+Sun, 01 Nov 2026 19:06:54 GMT
+
+### Patches
+
+- Ship a jsii assembly in the tarball, with @schemastore/tsconfig bundled (filip.dupanovic@gmail.com)
 
 ## 0.5.25
 

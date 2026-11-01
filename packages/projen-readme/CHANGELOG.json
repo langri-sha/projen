@@ -2,6 +2,21 @@
   "name": "projen-readme",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 19:06:54 GMT",
+      "version": "0.1.17",
+      "tag": "projen-readme_v0.1.17",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-readme",
+            "commit": "53ab5d95cf0d6ccadec2344393a28780c139db0b",
+            "comment": "Smoke test the package from its tarball in CI"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 01:14:55 GMT",
       "version": "0.1.17",
       "tag": "projen-readme_v0.1.17",
