@@ -42,6 +42,17 @@ export type ClaudeMarketplace = NonNullable<
 export type ClaudePermissionList = 'allow' | 'ask' | 'deny'
 
 /**
+ * Options for a hook.
+ */
+export interface ClaudeHookOptions {
+  /**
+   * The tool or event pattern the hook applies to. Hooks without one run for
+   * every match of the event.
+   */
+  readonly matcher?: string
+}
+
+/**
  * Claude options.
  */
 export interface ClaudeOptions {
@@ -172,7 +183,7 @@ export class Claude extends Component {
   addHook(
     event: ClaudeHookEvent,
     hook: HookCommand,
-    options: { readonly matcher?: string } = {},
+    options: ClaudeHookOptions = {},
   ) {
     const { matcher } = options
     const hooks = (this.#settings.hooks ??= {})
