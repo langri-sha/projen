@@ -19,6 +19,8 @@ export interface SkillsOptions {
   /**
    * The skills the repository declares, in the grammar of the `skills` field
    * of `package.json`.
+   *
+   * @jsii ignore
    */
   readonly skills: SkillSource[]
 
