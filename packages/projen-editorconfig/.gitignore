@@ -9,4 +9,5 @@ node_modules/
 !/license
 !/.npmignore
 !/tsconfig.build.json
+!/smoke.mjs
 !/.projenrc.ts
