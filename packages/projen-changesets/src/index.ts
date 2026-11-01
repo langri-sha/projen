@@ -20,6 +20,8 @@ export interface ChangesetsOptions {
    * The configuration to write. Defaults to what `changeset init` writes, bar
    * the prompts: restricted access, no commit on `changeset add`, and the
    * built-in changelog.
+   *
+   * @jsii ignore
    */
   readonly config?: ChangesetsConfig
 
