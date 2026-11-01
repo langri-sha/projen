@@ -502,13 +502,8 @@ project.addSubproject(
       description: 'A projen component for configuring ESLint.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4'],
-      peerDeps: ['eslint@^10.4.0', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        eslint: {
-          optional: true,
-        },
-      },
+      devDeps: ['@types/serialize-javascript@5.0.4', 'eslint@10.13.0'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
