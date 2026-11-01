@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Ship a jsii assembly in the tarball, and install Beachball yourself",
+  "packageName": "projen-beachball",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
