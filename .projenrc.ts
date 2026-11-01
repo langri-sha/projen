@@ -976,7 +976,10 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'schemastore-to-typescript --no-cache Ruff src/ruff.ts',
+      [
+        'schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts',
+        String.raw`node -e "const f='src/ruff.ts',fs=require('node:fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/\bRuffOptions\b/g,'LintRuffOptions'))"`,
+      ].join(' && '),
     )
 
     project.package?.setScript(
