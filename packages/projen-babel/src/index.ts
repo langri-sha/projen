@@ -20,12 +20,17 @@ export interface BabelOptions {
 
   /**
    * Options for transforming Babel.
+   *
+   * @jsii ignore
    */
   readonly options?: InputOptions
 }
 
 export class Babel extends FileBase {
   #configApiFunction: string | undefined
+  /**
+   * @jsii ignore
+   */
   options: InputOptions
 
   constructor(project: Project, options: BabelOptions = {}) {
