@@ -10,6 +10,9 @@ Install dependencies:
 npm install -D projen projen-prettier
 ```
 
+Prettier is not a dependency of the package: install Prettier 3, the major it is
+checked against.
+
 Then, create an `Prettier` component for your project:
 
 ```js
