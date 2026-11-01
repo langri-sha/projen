@@ -1043,7 +1043,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepare',
-      'schemastore-to-typescript --no-cache swcrc src/swcrc.ts',
+      'schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts',
     )
 
     project.package?.setScript(

@@ -1,11 +1,11 @@
 import { JsonFile, type Project } from 'projen'
 
-import { type Swcrc } from './swcrc'
+import { type SwcrcSchema } from './swcrc'
 
 /**
  * SWC configuration options.
  */
-export type SWCConfigOptions = Swcrc
+export type SWCConfigOptions = SwcrcSchema
 
 /**
  * A component for managing SWC configurations, written to a `.swcrc`.
