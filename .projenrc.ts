@@ -38,8 +38,10 @@ const project = new Project({
     devDeps: [
       '@langri-sha/projen-project@workspace:*',
       '@langri-sha/tsconfig@1.1.1',
+      '@langri-sha/webpack@0.8.2',
       '@types/node@24.19.2',
       'schemastore-to-typescript@1.2.1',
+      'webpack@5.112.2',
     ],
   },
   beachball: {
@@ -206,7 +208,25 @@ const publish = (
   project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
 }
 
-const publishJsii = (project: Project) => publish(project, 'jsii')
+const publishJsii = (
+  project: Project,
+  { inline = false }: { inline?: boolean } = {},
+) => {
+  if (!inline) {
+    return publish(project, 'jsii')
+  }
+
+  // jsii takes only jsii modules as dependencies, and npm cannot pack
+  // `bundledDependencies` out of pnpm's symlinked store. The build inlines the
+  // other dependencies into `dist/index.js` after jsii has written the
+  // assembly.
+  const script = `node ${path.relative(
+    project.outdir,
+    path.join(project.root.outdir, 'scripts', 'inline-dependencies.mjs'),
+  )}`
+
+  publish(project, `${script} build`)
+}
 
 project.addSubproject(
   {

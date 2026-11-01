@@ -35,6 +35,7 @@
     "@langri-sha/prettier": "0.4.11",
     "@langri-sha/projen-project": "workspace:*",
     "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/webpack": "0.8.2",
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.16.2",
     "@types/node": "24.19.2",
@@ -48,7 +49,8 @@
     "skills": "1.7.4",
     "tsx": "4.23.15",
     "typescript": "5.9.3",
-    "vitest": "5.0.5"
+    "vitest": "5.0.5",
+    "webpack": "5.112.2"
   },
   "packageManager": "pnpm@12.16.1",
   "engines": {
