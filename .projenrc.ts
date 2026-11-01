@@ -2,7 +2,7 @@ import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
-import { SampleFile } from 'projen'
+import { SampleFile, TextFile } from 'projen'
 
 const pkg = {
   authorEmail: 'filip.dupanovic@gmail.com',
@@ -229,6 +229,48 @@ const publishJsii = (
   project.package?.setScript('postpublish', `${script} restore`)
 }
 
+/**
+ * A script that loads what a package publishes under plain Node and does one
+ * real thing with it, run against the packed tarball by the `smoke` Dagger
+ * module. The script stays out of the tarball.
+ */
+const smoke = (
+  project: Project,
+  { imports, run, check }: { imports: string; run: string; check: string },
+) => {
+  new TextFile(project, 'smoke.mjs', {
+    lines: [
+      "import assert from 'node:assert/strict'",
+      "import fs from 'node:fs'",
+      "import os from 'node:os'",
+      "import path from 'node:path'",
+      '',
+      "import * as projen from 'projen'",
+      imports,
+      '',
+      "const outdir = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-'))",
+      "const project = new projen.Project({ name: 'smoke', outdir })",
+      "const read = (file) => fs.readFileSync(path.join(outdir, file), 'utf8')",
+      '',
+      run,
+      '',
+      'project.synth()',
+      '',
+      check,
+    ],
+  })
+
+  project.npmIgnore?.exclude('smoke.mjs')
+
+  // Its imports name the published packages, which only a tarball resolves.
+  project
+    .tryFindObjectFile('tsconfig.json')
+    ?.addOverride('exclude', ['dist', 'smoke.mjs'])
+  project
+    .tryFindObjectFile('tsconfig.build.json')
+    ?.addToArray('exclude', 'smoke.mjs')
+}
+
 project.addSubproject(
   {
     name: 'projen-codeowners',
@@ -252,6 +294,12 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { Codeowners } from 'projen-codeowners'",
+      run: "new Codeowners(project, { '*': '@admins' })",
+      check: "assert.ok(read('CODEOWNERS').includes('* @admins'))",
+    }),
 )
 
 project.addSubproject(
@@ -323,6 +371,12 @@ project.addSubproject(
   subproject,
   test,
   (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    smoke(project, {
+      imports: "import { Babel } from 'projen-babel-config'",
+      run: "new Babel(project, { options: { presets: ['smoke-preset'] } })",
+      check: "assert.ok(read('babel.config.js').includes('smoke-preset'))",
+    }),
 )
 
 project.addSubproject(
@@ -348,6 +402,13 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { Beachball } from 'projen-beachball'",
+      run: "new Beachball(project, { config: { branch: 'main' } })",
+      check:
+        'assert.ok(read(\'beachball.config.cjs\').includes(\'"branch": "main"\'))',
+    }),
 )
 
 project.addSubproject(
@@ -424,6 +485,13 @@ project.addSubproject(
       'schemastore-to-typescript --no-cache Changesets src/config.ts',
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Changesets } from 'projen-changesets'",
+      run: 'new Changesets(project)',
+      check:
+        "assert.equal(JSON.parse(read('.changeset/config.json')).baseBranch, 'main')",
+    }),
 )
 
 project.addSubproject(
@@ -458,6 +526,13 @@ project.addSubproject(
       "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Claude } from 'projen-claude'",
+      run: "new Claude(project, { settings: { permissions: { allow: ['Bash(ls:*)'] } } })",
+      check:
+        "assert.deepEqual(JSON.parse(read('.claude/settings.json')).permissions.allow, ['Bash(ls:*)'])",
+    }),
 )
 
 project.addSubproject(
@@ -484,6 +559,13 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { EditorConfig } from 'projen-editorconfig'",
+      run: "new EditorConfig(project, { '*': { trim_trailing_whitespace: true } })",
+      check:
+        "assert.ok(read('.editorconfig').includes('trim_trailing_whitespace=true'))",
+    }),
 )
 
 project.addSubproject(
@@ -514,6 +596,13 @@ project.addSubproject(
   subproject,
   test,
   (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    smoke(project, {
+      imports: "import { ESLint } from 'projen-eslint'",
+      run: "new ESLint(project, { config: [{ rules: { 'no-undef': 'off' } }] })",
+      check:
+        'assert.ok(read(\'eslint.config.js\').includes(\'"no-undef":"off"\'))',
+    }),
 )
 
 project.addSubproject(
@@ -565,6 +654,12 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { Husky } from 'projen-husky'",
+      run: "new Husky(project, { 'pre-commit': 'npm run lint' })",
+      check: "assert.ok(read('.husky/pre-commit').includes('npm run lint'))",
+    }),
 )
 
 project.addSubproject(
@@ -595,6 +690,12 @@ project.addSubproject(
   subproject,
   test,
   (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    smoke(project, {
+      imports: "import { JestConfig } from 'projen-jest-config'",
+      run: 'new JestConfig(project, { config: { testTimeout: 1234 } })',
+      check: "assert.ok(read('jest.config.ts').includes('1234'))",
+    }),
 )
 
 project.addSubproject(
@@ -622,6 +723,12 @@ project.addSubproject(
   subproject,
   test,
   (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    smoke(project, {
+      imports: "import { LintSynthesized } from 'projen-lint-synthesized'",
+      run: "new projen.TextFile(project, 'a.txt', { lines: ['a'] })\nnew LintSynthesized(project, { '*.txt': 'touch linted &&' })",
+      check: "assert.equal(read('linted'), '')",
+    }),
 )
 
 project.addSubproject(
@@ -652,6 +759,12 @@ project.addSubproject(
   subproject,
   test,
   (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    smoke(project, {
+      imports: "import { LintStaged } from 'projen-lint-staged'",
+      run: "new LintStaged(project, { config: { '*': 'prettier' } })",
+      check: "assert.ok(read('lint-staged.config.js').includes('prettier'))",
+    }),
 )
 
 project.addSubproject(
@@ -686,6 +799,12 @@ project.addSubproject(
       .tryFindObjectFile('tsconfig.build.json')
       ?.addOverride('compilerOptions.rootDir', 'src')
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { License } from 'projen-license'",
+      run: "new License(project, { copyrightHolder: 'Smoke', spdx: 'MIT', year: '2000' })",
+      check: "assert.ok(read('license').includes('MIT License'))",
+    }),
 )
 
 project.addSubproject(
@@ -754,6 +873,12 @@ project.addSubproject(
   subproject,
   test,
   (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    smoke(project, {
+      imports: "import { Prettier } from 'projen-prettier'",
+      run: "new Prettier(project, { config: { endOfLine: 'lf' } })",
+      check: "assert.ok(read('prettier.config.js').includes('endOfLine'))",
+    }),
 )
 
 project.addSubproject(
@@ -915,6 +1040,12 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { ReadmeFile } from 'projen-readme'",
+      run: 'new ReadmeFile(project)',
+      check: "assert.ok(read('README.md').includes('smoke'))",
+    }),
 )
 
 project.addSubproject(
@@ -992,6 +1123,12 @@ project.addSubproject(
       ].join(' && '),
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Ruff } from 'projen-ruff'",
+      run: "new Ruff(project, { 'line-length': 100 })",
+      check: "assert.ok(read('ruff.toml').includes('line-length = 100'))",
+    }),
 )
 
 project.addSubproject(
@@ -1018,6 +1155,13 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { Skills } from 'projen-skills'",
+      run: "// NodePackage installs its dependencies after synthesis.\nprocess.env.PROJEN_DISABLE_POST = '1'\nnew projen.javascript.NodePackage(project, { packageName: 'smoke' })\nnew Skills(project, {\n  sync: false,\n  skills: [{ source: 'vercel-labs/skills', ref: 'v1.0.0', skills: ['find-skills'] }],\n})",
+      check:
+        "assert.equal(JSON.parse(read('package.json')).skills[0].skills[0], 'find-skills')",
+    }),
 )
 
 project.addSubproject(
@@ -1055,6 +1199,13 @@ project.addSubproject(
       'schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts',
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { SWCConfig } from 'projen-swcrc'",
+      run: "new SWCConfig(project, { jsc: { parser: { syntax: 'ecmascript' } } })",
+      check:
+        "assert.equal(JSON.parse(read('.swcrc')).jsc.parser.syntax, 'ecmascript')",
+    }),
 )
 
 project.addSubproject(
@@ -1092,6 +1243,12 @@ project.addSubproject(
       'schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts',
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Ty } from 'projen-ty'",
+      run: "new Ty(project, { environment: { 'python-version': '3.13' } })",
+      check: "assert.ok(read('ty.toml').includes('python-version = \"3.13\"'))",
+    }),
 )
 
 project.addSubproject(
@@ -1120,6 +1277,12 @@ project.addSubproject(
   subproject,
   test,
   publishJsii,
+  (project) =>
+    smoke(project, {
+      imports: "import { TypeScriptConfig } from 'projen-typescript-config'",
+      run: 'new TypeScriptConfig(project, { config: { compilerOptions: { strict: true } } })',
+      check: "assert.ok(read('tsconfig.json').includes('\"strict\": true'))",
+    }),
 )
 
 project.addSubproject(

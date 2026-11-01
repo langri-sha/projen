@@ -4,3 +4,4 @@
 __snapshots__/
 tsconfig*.json
 !/.jsii
+smoke.mjs

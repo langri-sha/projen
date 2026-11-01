@@ -10,4 +10,5 @@ node_modules/
 !/.npmignore
 !/tsconfig.build.json
 ruff.ts
+!/smoke.mjs
 !/.projenrc.ts
