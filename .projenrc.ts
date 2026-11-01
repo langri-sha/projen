@@ -964,6 +964,7 @@ project.addSubproject(
   {
     name: 'projen-skills',
     outdir: path.join('packages', 'projen-skills'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -976,13 +977,13 @@ project.addSubproject(
       description:
         'A projen component for declaring and installing the agent skills a repository uses.',
       type: 'module',
-      devDeps: ['@types/node@24.19.2', 'skills@1.7.4'],
+      devDeps: ['@types/node@24.19.2', 'jsii@5.9.57', 'skills@1.7.4'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
 )
 
 project.addSubproject(
