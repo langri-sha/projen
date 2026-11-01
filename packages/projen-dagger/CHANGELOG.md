@@ -1,8 +1,16 @@
 # Change Log - projen-dagger
 
-<!-- This log was last generated on Tue, 27 Oct 2026 17:10:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.4.1
+
+Sun, 01 Nov 2026 01:00:47 GMT
+
+### Patches
+
+- Update langri-sha projen toolchain
 
 ## 0.4.0
 

@@ -2,6 +2,21 @@
   "name": "projen-ruff",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 01:00:47 GMT",
+      "version": "0.1.6",
+      "tag": "projen-ruff_v0.1.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-ruff",
+            "commit": "022fad8c9f1c84d852686b368927a6317d91a36b",
+            "comment": "Update langri-sha projen toolchain"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.1.5",
       "tag": "projen-ruff_v0.1.5",

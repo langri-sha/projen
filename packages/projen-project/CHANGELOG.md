@@ -1,8 +1,26 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sat, 31 Oct 2026 22:03:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.47.1
+
+Sun, 01 Nov 2026 01:00:47 GMT
+
+### Patches
+
+- Update langri-sha projen toolchain
+- Bump projen-cargo to v0.2.4
+- Bump projen-changesets to v0.1.1
+- Bump projen-claude to v0.1.1
+- Bump projen-dagger to v0.4.1
+- Bump projen-pnpm-workspace to v0.4.21
+- Bump projen-renovate to v0.4.31
+- Bump projen-ruff to v0.1.6
+- Bump projen-swcrc to v0.1.32
+- Bump projen-ty to v0.1.6
+- Bump projen-uv to v0.2.5
 
 ## 0.47.0
 

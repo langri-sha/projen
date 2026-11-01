@@ -2,6 +2,81 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sun, 01 Nov 2026 01:00:47 GMT",
+      "version": "0.47.1",
+      "tag": "@langri-sha/projen-project_v0.47.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "022fad8c9f1c84d852686b368927a6317d91a36b",
+            "comment": "Update langri-sha projen toolchain"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-cargo to v0.2.4",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-changesets to v0.1.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-claude to v0.1.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-dagger to v0.4.1",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-pnpm-workspace to v0.4.21",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-renovate to v0.4.31",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ruff to v0.1.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-swcrc to v0.1.32",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ty to v0.1.6",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-uv to v0.2.5",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 22:03:31 GMT",
       "version": "0.47.0",
       "tag": "@langri-sha/projen-project_v0.47.0",

@@ -1,8 +1,16 @@
 # Change Log - projen-ty
 
-<!-- This log was last generated on Thu, 22 Oct 2026 22:49:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sun, 01 Nov 2026 01:00:47 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.1.6
+
+Sun, 01 Nov 2026 01:00:47 GMT
+
+### Patches
+
+- Update langri-sha projen toolchain
 
 ## 0.1.5
 
