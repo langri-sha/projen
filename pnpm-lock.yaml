@@ -232,13 +232,13 @@ importers:
 
   packages/projen-babel:
     dependencies:
-      '@babel/core':
-        specifier: ^8.0.0
-        version: 8.0.7
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
     devDependencies:
+      '@babel/core':
+        specifier: 8.0.7
+        version: 8.0.7
       '@langri-sha/tsconfig':
         specifier: 1.1.1
         version: 1.1.1(typescript@5.9.3)

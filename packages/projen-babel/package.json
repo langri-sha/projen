@@ -26,19 +26,14 @@
     "serialize-javascript": "7.1.4"
   },
   "devDependencies": {
+    "@babel/core": "8.0.7",
     "@langri-sha/tsconfig": "1.1.1",
     "@langri-sha/vitest": "0.2.3",
     "@types/serialize-javascript": "5.0.4",
     "projen": "0.104.1"
   },
   "peerDependencies": {
-    "@babel/core": "^8.0.0",
     "projen": ">=0.86.0 <1.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    }
   },
   "publishConfig": {
     "access": "public",
