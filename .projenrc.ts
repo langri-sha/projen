@@ -490,6 +490,7 @@ project.addSubproject(
   {
     name: 'projen-eslint',
     outdir: path.join('packages', 'projen-eslint'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -502,13 +503,17 @@ project.addSubproject(
       description: 'A projen component for configuring ESLint.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4', 'eslint@10.13.0'],
+      devDeps: [
+        '@types/serialize-javascript@5.0.4',
+        'eslint@10.13.0',
+        'jsii@5.9.57',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
 )
 
 project.addSubproject(
