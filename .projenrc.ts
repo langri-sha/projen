@@ -628,6 +628,7 @@ project.addSubproject(
   {
     name: 'projen-lint-staged',
     outdir: path.join('packages', 'projen-lint-staged'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -640,13 +641,17 @@ project.addSubproject(
       description: 'A projen component for configuring lint-staged.',
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
-      devDeps: ['@types/serialize-javascript@5.0.4', 'lint-staged@17.6.0'],
+      devDeps: [
+        '@types/serialize-javascript@5.0.4',
+        'jsii@5.9.57',
+        'lint-staged@17.6.0',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
 )
 
 project.addSubproject(
