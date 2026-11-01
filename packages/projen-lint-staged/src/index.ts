@@ -20,12 +20,17 @@ export interface LintStagedOptions {
 
   /**
    * `lint-staged` configuration.
+   *
+   * @jsii ignore
    */
   readonly config?: Config
 }
 
 export class LintStaged extends FileBase {
   #extends?: string
+  /**
+   * @jsii ignore
+   */
   config: Config
 
   constructor(project: Project, options: LintStagedOptions = {}) {
