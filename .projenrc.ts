@@ -430,6 +430,7 @@ project.addSubproject(
   {
     name: 'projen-claude',
     outdir: path.join('packages', 'projen-claude'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -442,24 +443,19 @@ project.addSubproject(
       description:
         'A projen component for authoring Claude Code settings, so the permissions, hooks and environment a repository shares are declared in your projenrc along with everything else.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.2.2'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.2.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publish(project, 'jsii && test -f dist/settings.d.ts'),
   (project) => {
     project.addGitIgnore('settings.ts')
 
     project.package?.setScript(
       'prepare',
       "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/settings.d.ts',
     )
   },
 )
