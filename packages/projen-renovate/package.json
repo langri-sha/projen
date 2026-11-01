@@ -20,7 +20,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache renovate src/renovate.ts",
+    "prepare": "schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/renovate.d.ts"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import { Component, JsonFile, type Project } from 'projen'
 
-import { type Renovate as RenovateSchema } from './renovate'
+import { type RenovateSchema } from './renovate.js'
 
 /**
  * Renovate configuration options.
