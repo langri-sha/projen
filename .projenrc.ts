@@ -1015,6 +1015,7 @@ project.addSubproject(
   {
     name: 'projen-swcrc',
     outdir: path.join('packages', 'projen-swcrc'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1026,24 +1027,23 @@ project.addSubproject(
       copyrightYear: '2024',
       description: 'A projen component for configuring SWC.',
       type: 'module',
-      devDeps: ['@swc/core@1.16.2', 'schemastore-to-typescript@1.2.2'],
+      devDeps: [
+        '@swc/core@1.16.2',
+        'jsii@5.9.57',
+        'schemastore-to-typescript@1.2.2',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publish(project, 'jsii && test -f dist/swcrc.d.ts'),
   (project) => {
     project.addGitIgnore('swcrc.ts')
 
     project.package?.setScript(
       'prepare',
       'schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts',
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/swcrc.d.ts',
     )
   },
 )

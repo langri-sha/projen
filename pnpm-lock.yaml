@@ -806,6 +806,9 @@ importers:
       '@swc/core':
         specifier: 1.16.2
         version: 1.16.2
+      jsii:
+        specifier: 5.9.57
+        version: 5.9.57(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
