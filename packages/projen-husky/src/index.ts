@@ -6,17 +6,53 @@ import { Component, type Project, TextFile } from 'projen'
  * Husky options.
  */
 export interface HuskyOptions {
+  /**
+   * @jsii ignore
+   */
   'pre-commit'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'applypatch-msg'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'pre-applypatch'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'post-applypatch'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'pre-merge-commit'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'prepare-commit-msg'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'commit-msg'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'post-commit'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'pre-rebase'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'post-checkout'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'post-merge'?: string | string[]
+  /**
+   * @jsii ignore
+   */
   'pre-push'?: string | string[]
 }
 
