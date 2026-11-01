@@ -536,13 +536,8 @@ project.addSubproject(
       type: 'module',
       copyrightYear: '2024',
       description: 'A projen component for maintaining Git hooks with Husky.',
-      devDeps: ['@types/node@24.19.2'],
-      peerDeps: ['husky@^9.0.1', ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        husky: {
-          optional: true,
-        },
-      },
+      devDeps: ['@types/node@24.19.2', 'husky@9.1.7'],
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,

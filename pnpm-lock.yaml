@@ -393,10 +393,6 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-husky:
-    dependencies:
-      husky:
-        specifier: ^9.0.1
-        version: 9.1.7
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 1.1.1
@@ -407,6 +403,9 @@ importers:
       '@types/node':
         specifier: 24.19.2
         version: 24.19.2
+      husky:
+        specifier: 9.1.7
+        version: 9.1.7
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
