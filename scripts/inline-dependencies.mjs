@@ -8,6 +8,11 @@ import webpack from '@langri-sha/webpack'
 const packageDir = process.cwd()
 const distDir = path.join(packageDir, 'dist')
 const manifestPath = path.join(packageDir, 'package.json')
+const stashPath = path.join(
+  packageDir,
+  'node_modules',
+  '.inline-dependencies.package.json',
+)
 const entry = path.join(distDir, 'index.js')
 
 const readManifest = () => fs.readFileSync(manifestPath, 'utf8')
@@ -165,11 +170,28 @@ const inline = async (manifest) => {
 }
 
 const commands = {
-  // jsii accepts only jsii modules as dependencies.
+  // jsii accepts only jsii modules as dependencies. A publish then goes on
+  // without them: npm sends the registry the manifest it reads after packing,
+  // so the stripped one stays until `postpublish` restores it.
   async build() {
-    const original = readManifest()
+    // A publish that failed, and is being retried, left its own.
+    if (fs.existsSync(stashPath)) {
+      if (
+        readManifest() !==
+        withoutDependencies(fs.readFileSync(stashPath, 'utf8'))
+      ) {
+        throw new Error(
+          `${stashPath} is not of this manifest: delete it, since restoring it would overwrite a newer one.`,
+        )
+      }
 
-    fs.writeFileSync(manifestPath, withoutDependencies(original))
+      commands.restore()
+    }
+
+    const original = readManifest()
+    const stripped = withoutDependencies(original)
+
+    fs.writeFileSync(manifestPath, stripped)
 
     try {
       execFileSync('jsii', { stdio: 'inherit' })
@@ -178,6 +200,15 @@ const commands = {
     }
 
     await inline(JSON.parse(original))
+
+    if (process.env.npm_command === 'publish') {
+      fs.writeFileSync(stashPath, original)
+      fs.writeFileSync(manifestPath, stripped)
+    }
+  },
+
+  restore() {
+    fs.renameSync(stashPath, manifestPath)
   },
 }
 

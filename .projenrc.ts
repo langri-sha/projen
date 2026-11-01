@@ -219,13 +219,14 @@ const publishJsii = (
   // jsii takes only jsii modules as dependencies, and npm cannot pack
   // `bundledDependencies` out of pnpm's symlinked store. The build inlines the
   // other dependencies into `dist/index.js` after jsii has written the
-  // assembly.
+  // assembly, and a publish leaves them out of its manifest.
   const script = `node ${path.relative(
     project.outdir,
     path.join(project.root.outdir, 'scripts', 'inline-dependencies.mjs'),
   )}`
 
   publish(project, `${script} build`)
+  project.package?.setScript('postpublish', `${script} restore`)
 }
 
 project.addSubproject(
