@@ -1111,6 +1111,7 @@ project.addSubproject(
         'A projen component for managing TSConfig files for TypeScript projects.',
       type: 'module',
       deps: ['@schemastore/tsconfig@1.0.11'],
+      bundledDeps: ['@schemastore/tsconfig'],
       devDeps: ['@types/node@24.19.2'],
       peerDeps: [...projenPeer.peerDeps],
     },
