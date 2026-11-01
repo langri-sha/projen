@@ -3,6 +3,7 @@
 * text=auto eol=lf
 /.claude/settings.json linguist-generated -linguist-generated
 /.config/wt.toml linguist-generated -linguist-generated
+/.dagger/smoke/dagger-module.toml linguist-generated
 /.editorconfig linguist-generated
 /.gitattributes linguist-generated
 /.github/ISSUE_TEMPLATE/01-bug-report.yml linguist-generated

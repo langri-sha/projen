@@ -2,6 +2,7 @@
   "files": [
     ".claude/settings.json",
     ".config/wt.toml",
+    ".dagger/smoke/dagger-module.toml",
     ".editorconfig",
     ".gitattributes",
     ".github/ISSUE_TEMPLATE/01-bug-report.yml",

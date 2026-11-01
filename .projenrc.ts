@@ -55,7 +55,14 @@ const project = new Project({
   codeowners: {
     '*': '@langri-sha',
   },
-  dagger: {},
+  dagger: {
+    engineVersion: 'v1.0.0-beta.21',
+    modules: {
+      '.dagger/smoke': {
+        dependencies: ['github.com/langri-sha/dagger/typescript@v2.1.0'],
+      },
+    },
+  },
   editorConfig: {},
   eslint: {
     ignorePatterns: [
