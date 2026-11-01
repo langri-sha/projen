@@ -21,6 +21,11 @@
       "type": "build"
     },
     {
+      "name": "jsii",
+      "version": "5.9.57",
+      "type": "build"
+    },
+    {
       "name": "projen",
       "version": "0.104.1",
       "type": "build"
