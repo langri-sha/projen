@@ -58,6 +58,8 @@ import { defaultTemplates } from './lib/github-templates.js'
 import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
 
 export * from 'projen-typescript-config'
+export * from './lib/gitattributes.js'
+export * from './lib/index.js'
 
 /**
  * The package manager assumed when a project does not name one.
@@ -811,6 +813,7 @@ export class Project extends BaseProject {
 
   /**
    * Add a subproject.
+   * @jsii ignore
    */
   addSubproject(
     projectOptions: ProjectOptions,
