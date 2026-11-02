@@ -613,7 +613,7 @@ project.addSubproject(
       deps: ['serialize-javascript@7.1.4'],
       devDeps: [
         '@types/serialize-javascript@5.0.4',
-        'eslint@10.13.0',
+        'eslint@10.14.0',
         'jsii@5.9.57',
       ],
       peerDeps: [...projenPeer.peerDeps],
