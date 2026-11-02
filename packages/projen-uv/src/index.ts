@@ -35,14 +35,6 @@ export interface PyProjectTool {
 }
 
 /**
- * JSON-valued metadata and tool tables exposed through JSII.
- */
-export interface PyProjectOptionsBase {
-  readonly project?: unknown
-  readonly tool?: unknown
-}
-
-/**
  * A `pyproject.toml`, as published in SchemaStore's "PyProject" schema.
  *
  * `[project] name` and `version` are optional here where the schema requires
@@ -50,7 +42,7 @@ export interface PyProjectOptionsBase {
  * the `0.1.0` that `uv init` writes — uv refuses a `[project]` table with
  * neither a `version` nor one listed in `dynamic`.
  */
-export interface PyProjectOptions extends PyProjectOptionsBase {
+export interface PyProjectOptions {
   /** @jsii ignore */
   'dependency-groups'?: PyProject['dependency-groups']
   /** @jsii ignore */

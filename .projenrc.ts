@@ -1390,14 +1390,14 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        'schemastore-to-typescript --no-cache PyProject src/pyproject.ts',
-        'schemastore-to-typescript --no-cache uv src/uv.ts',
+        'schemastore-to-typescript --no-cache --jsii --keep-null PyProject src/pyproject.ts',
+        'schemastore-to-typescript --no-cache --jsii --keep-null uv src/uv.ts',
       ].join(' && '),
     )
 
     project.package?.setScript(
       'prepublishOnly',
-      'rm -rf dist; node ../../scripts/build-jsii-models.mjs --inline --keep-null PyProject src/pyproject.ts uv src/uv.ts',
+      'rm -rf dist; node ../../scripts/inline-dependencies.mjs build',
     )
   },
   (project) =>
