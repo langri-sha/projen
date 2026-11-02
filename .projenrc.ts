@@ -344,8 +344,9 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        "schemastore-to-typescript --no-cache 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
-        "schemastore-to-typescript --no-cache 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
+        "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
+        "schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
+        'node ../../scripts/dagger-schema-compatibility.mjs prepare',
       ].join(' && '),
     )
 
