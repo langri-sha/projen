@@ -171,13 +171,7 @@ const inline = async (manifest) => {
 
 const compile = () => {
   const original = readManifest()
-  const manifest = JSON.parse(original)
-
-  for (const name of inlinedDependencies(manifest)) {
-    delete manifest.dependencies[name]
-  }
-
-  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
+  fs.writeFileSync(manifestPath, withoutDependencies(original))
   try {
     execFileSync('jsii', { stdio: 'inherit' })
   } finally {

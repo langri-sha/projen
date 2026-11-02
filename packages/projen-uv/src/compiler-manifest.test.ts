@@ -46,7 +46,7 @@ test.each([0, 1])(
       expect(
         JSON.parse(readFileSync(join(directory, 'observed.json'), 'utf8'))
           .dependencies,
-      ).toEqual({})
+      ).toBeUndefined()
       expect(readFileSync(join(directory, 'package.json'), 'utf8')).toBe(
         manifest,
       )
