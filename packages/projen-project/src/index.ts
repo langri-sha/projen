@@ -245,7 +245,7 @@ export interface ProjectJsiiOptions {
 /**
  * Package options for the preset.
  */
-export interface ProjectPackageOptionsBase extends NodePackageOptions {
+export interface ProjectPackageOptions extends NodePackageOptions {
   /**
    * License copyright year.
    * @default "Current full year"
@@ -253,15 +253,10 @@ export interface ProjectPackageOptionsBase extends NodePackageOptions {
   readonly copyrightYear?: string
 }
 
-export interface ProjectPackageOptions extends ProjectPackageOptionsBase {
-  /** @jsii ignore */
-  copyrightYear?: string
-}
-
 /**
  * Project fields exposed through the JSII assembly.
  */
-export interface ProjectOptionsBase {
+export interface ProjectOptions {
   /**
    * This is the name of your project.
    * @default $BASEDIR
@@ -531,69 +526,6 @@ export interface ProjectOptionsBase {
    * pipeline, which a `pre-start` in `config`, in any form, replaces whole.
    */
   readonly worktrunk?: WorktrunkOptions
-}
-
-export interface ProjectOptions extends ProjectOptionsBase {
-  /** @jsii ignore */
-  babel?: BabelOptions
-  /** @jsii ignore */
-  beachball?: BeachballOptions
-  /** @jsii ignore */
-  cargo?: CargoOptions
-  /** @jsii ignore */
-  changesets?: ChangesetsOptions
-  /** @jsii ignore */
-  claude?: ClaudeOptions
-  /** @jsii ignore */
-  codeowners?: CodeownersOptions
-  /** @jsii ignore */
-  dagger?: ProjectDaggerOptions
-  /** @jsii ignore */
-  editorConfig?: EditorConfigOptions
-  /** @jsii ignore */
-  eslint?: ESLintOptions
-  /** @jsii ignore */
-  githubTemplates?: ProjectGitHubTemplatesOptions
-  /** @jsii ignore */
-  husky?: HuskyOptions
-  /** @jsii ignore */
-  jestConfig?: JestConfigOptions
-  /** @jsii ignore */
-  lintStaged?: LintStagedOptions
-  /** @jsii ignore */
-  jsii?: ProjectJsiiOptions
-  /** @jsii ignore */
-  lintSynthesized?: LintSynthesizedOptions
-  /** @jsii ignore */
-  package?: ProjectPackageOptions
-  /** @jsii ignore */
-  pnpmWorkspace?: PnpmWorkspaceOptions
-  /** @jsii ignore */
-  prettier?: PrettierOptions
-  /** @jsii ignore */
-  npmIgnore?: IgnoreFileOptions
-  /** @jsii ignore */
-  readme?: ReadmeFileOptions
-  /** @jsii ignore */
-  renovate?: RenovateOptions
-  /** @jsii ignore */
-  ruff?: RuffOptions
-  /** @jsii ignore */
-  skills?: SkillsOptions
-  /** @jsii ignore */
-  swcrc?: SWCConfigOptions
-  /** @jsii ignore */
-  ty?: TyOptions
-  /** @jsii ignore */
-  typeScriptConfig?: TypeScriptConfigOptions
-  /** @jsii ignore */
-  uv?: UvOptions
-  /** @jsii ignore */
-  vitest?: boolean
-  /** @jsii ignore */
-  withTerraform?: boolean
-  /** @jsii ignore */
-  worktrunk?: WorktrunkOptions
 }
 
 export class Project extends BaseProject {

@@ -1,6 +1,6 @@
 {
-  "type": "patch",
-  "comment": "Make the preset discoverable through JSII while preserving source loading and supported tool validation.",
+  "type": "minor",
+  "comment": "Make the preset discoverable through JSII.",
   "packageName": "@langri-sha/projen-project",
   "email": "filip.dupanovic@gmail.com",
   "dependentChangeType": "patch"

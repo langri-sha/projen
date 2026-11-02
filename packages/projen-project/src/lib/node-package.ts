@@ -7,13 +7,8 @@ import { normalizeRepository } from './repository.js'
 /**
  * Peer metadata exposed through the JSII assembly.
  */
-export interface PeerDependencyMetadataBase {
+export interface PeerDependencyMetadata {
   readonly optional?: boolean
-}
-
-export interface PeerDependencyMetadata extends PeerDependencyMetadataBase {
-  /** @jsii ignore */
-  optional?: boolean
 }
 
 /**
