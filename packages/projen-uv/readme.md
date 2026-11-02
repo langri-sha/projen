@@ -129,6 +129,14 @@ It also has Renovate read `pythonVersion` out of `.projenrc` the way its pyenv
 manager reads `.python-version`, so a new Python release moves both on one
 branch and the next synthesis keeps it.
 
+The package ships an ESM entry point and a `.jsii` assembly exposing both
+components. Project and tool tables cross JSII as JSON data; TypeScript source
+and strict published declarations retain the generated names, nullable values
+and tuple constraints. The JSII compiler's relaxed null configuration does not
+change the public declarations. Bindings can set the root `dependency-groups`
+and `build-system` wire keys through `manifest.addOverride`. The published entry
+point includes the TOML serializer.
+
 [projen]: https://projen.io/
 [pyproject]: https://www.schemastore.org/pyproject.json
 [schema]: https://www.schemastore.org/uv.json

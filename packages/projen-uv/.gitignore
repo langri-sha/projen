@@ -11,4 +11,6 @@ node_modules/
 !/tsconfig.build.json
 pyproject.ts
 uv.ts
+!/tsconfig.jsii.json
+!/smoke.mjs
 !/.projenrc.ts

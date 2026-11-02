@@ -1351,6 +1351,7 @@ project.addSubproject(
   {
     name: 'projen-uv',
     outdir: path.join('packages', 'projen-uv'),
+    jsii: { tsconfig: 'tsconfig.jsii.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1364,16 +1365,27 @@ project.addSubproject(
         'projen components for authoring uv workspaces and the Python packages in them.',
       type: 'module',
       deps: ['smol-toml@1.9.1'],
-      devDeps: ['schemastore-to-typescript@1.3.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.3.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
   (project) => {
     project.addGitIgnore('pyproject.ts')
     project.addGitIgnore('uv.ts')
+    project
+      .tryFindObjectFile('tsconfig.build.json')
+      ?.addOverride('include', ['src/**/*.ts'])
+
+    new TypeScriptConfig(project, {
+      fileName: 'tsconfig.jsii.json',
+      config: {
+        extends: './tsconfig.build.json',
+        compilerOptions: { strictNullChecks: false },
+      },
+    })
 
     project.package?.setScript(
       'prepare',
@@ -1385,9 +1397,16 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pyproject.d.ts && test -f dist/uv.d.ts',
+      'rm -rf dist; node ../../scripts/build-jsii-models.mjs --inline --keep-null PyProject src/pyproject.ts uv src/uv.ts',
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { UvWorkspace, UvPackage } from 'projen-uv'",
+      run: "const workspace = new UvWorkspace(project, {\n  pythonVersion: '3.14',\n  'dependency-groups': { lint: ['ruff'], dev: ['ty', { 'include-group': 'lint' }] },\n  tool: { uv: { workspace: { members: null } }, custom: { enabled: true } },\n})\nnew UvPackage(new projen.Project({ name: '@scope/my-lib', parent: project, outdir: 'packages/lib' }), {\n  project: { dynamic: ['version'], 'requires-python': '>=3.14' },\n  'build-system': { requires: ['setuptools'], 'build-backend': 'setuptools.build_meta' },\n})\nworkspace.addMember('packages/lib', 'apps/app')",
+      check:
+        "assert.ok(read('pyproject.toml').includes('apps/app'))\nassert.ok(read('pyproject.toml').includes('include-group'))\nassert.ok(read('pyproject.toml').includes('enabled = true'))\nassert.ok(read('.python-version').includes('3.14'))\nassert.ok(read('packages/lib/pyproject.toml').includes('requires-python'))\nassert.ok(read('packages/lib/src/my_lib/__init__.py').includes('my-lib'))\nassert.equal(UvWorkspace[Symbol.for('jsii.rtti')].fqn, 'projen-uv.UvWorkspace')\nassert.equal(UvPackage[Symbol.for('jsii.rtti')].fqn, 'projen-uv.UvPackage')",
+    }),
 )
 
 project.addSubproject(
