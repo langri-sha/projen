@@ -41,7 +41,10 @@ export interface PyProjectTool {
  * the `0.1.0` that `uv init` writes — uv refuses a `[project]` table with
  * neither a `version` nor one listed in `dynamic`.
  */
-export interface PyProjectOptions extends Omit<PyProject, 'project' | 'tool'> {
+export interface PyProjectOptions {
+  'dependency-groups'?: PyProject['dependency-groups']
+  'build-system'?: PyProject['build-system']
+
   /**
    * The `[project]` table. Omit it at a workspace root to keep the root
    * virtual — a workspace, and not a package of its own.
