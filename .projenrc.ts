@@ -441,6 +441,7 @@ project.addSubproject(
   {
     name: 'projen-cargo',
     outdir: path.join('packages', 'projen-cargo'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -453,16 +454,19 @@ project.addSubproject(
       description:
         'projen components for authoring Cargo workspaces and the crates in them.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.3.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.3.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
   (project) => {
     project.addGitIgnore('cargo.ts')
     project.addGitIgnore('rustfmt.ts')
+    project
+      .tryFindObjectFile('tsconfig.build.json')
+      ?.addOverride('include', ['src/**/*.ts'])
 
     project.package?.setScript(
       'prepare',
@@ -474,9 +478,16 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
+      "rm -rf dist; node ../../scripts/build-jsii-models.mjs 'cargo manifest' src/cargo.ts rustfmt src/rustfmt.ts",
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { CargoWorkspace, CargoPackage } from 'projen-cargo'",
+      run: "const workspace = new CargoWorkspace(project, {\n  workspace: { members: ['packages/lib'], package: { edition: '2024' } },\n  deny: { licenses: { allow: ['MIT'] } },\n  rustfmt: { group_imports: 'StdExternalCrate' },\n})\nnew CargoPackage(new projen.Project({ name: 'lib', parent: project, outdir: 'packages/lib' }), { package: { version: '0.1.0' } })\nworkspace.addMember('packages/app')",
+      check:
+        "assert.ok(read('Cargo.toml').includes('packages/app'))\nassert.ok(read('packages/lib/Cargo.toml').includes('0.1.0'))\nassert.ok(read('packages/lib/src/main.rs').includes('fn main'))\nassert.ok(read('rustfmt.toml').includes('StdExternalCrate'))\nassert.ok(read('deny.toml').includes('MIT'))\nassert.equal(CargoWorkspace[Symbol.for('jsii.rtti')].fqn, 'projen-cargo.CargoWorkspace')\nassert.equal(CargoPackage[Symbol.for('jsii.rtti')].fqn, 'projen-cargo.CargoPackage')",
+    }),
 )
 
 project.addSubproject(

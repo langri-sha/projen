@@ -11,4 +11,5 @@ node_modules/
 !/tsconfig.build.json
 cargo.ts
 rustfmt.ts
+!/smoke.mjs
 !/.projenrc.ts

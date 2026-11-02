@@ -8,7 +8,17 @@
  * six section names have been stable since `cargo deny` 0.9.
  */
 export interface CargoDenySection {
+  /** @jsii ignore */
   readonly [key: string]: unknown
+}
+
+/**
+ * Open deny tables exposed as JSON maps through JSII.
+ */
+export interface CargoDenyOptionsBase {
+  readonly graph?: { readonly [key: string]: unknown }
+  readonly output?: { readonly [key: string]: unknown }
+  readonly sources?: { readonly [key: string]: unknown }
 }
 
 /**
@@ -18,15 +28,17 @@ export interface CargoDenySection {
  *
  * @see https://embarkstudios.github.io/cargo-deny/checks/cfg.html
  */
-export interface CargoDenyOptions {
+export interface CargoDenyOptions extends CargoDenyOptionsBase {
   /**
    * How the dependency graph `cargo deny` checks is built — the targets to
    * resolve for, the features to enable, the crates to leave out.
+   * @jsii ignore
    */
   readonly graph?: CargoDenySection
 
   /**
    * How findings are reported.
+   * @jsii ignore
    */
   readonly output?: CargoDenySection
 
@@ -50,6 +62,7 @@ export interface CargoDenyOptions {
   /**
    * The `cargo deny check sources` pass, over the registries and Git remotes
    * dependencies are fetched from.
+   * @jsii ignore
    */
   readonly sources?: CargoDenySection
 }
@@ -82,6 +95,7 @@ export interface CargoDenyLicensesOptions extends CargoDenySection {
 export interface CargoDenyBansOptions extends CargoDenySection {
   /**
    * How to treat a crate resolved at more than one version.
+   * @jsii ignore
    */
   readonly 'multiple-versions'?: 'deny' | 'warn' | 'allow'
 
