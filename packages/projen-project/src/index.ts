@@ -147,15 +147,12 @@ const BRACE_BODY_PATTERN = Array.from({ length: 4 }).reduce<string>(
 const RESYNTHESIZED_ENV = 'PROJEN_PROJECT_RESYNTHESIZED'
 
 /**
- * The versions of the packages this preset supplies that it can support,
- * taken from its own `peerDependencies`.
- *
- * Read rather than restated so that the range a project is held to is the
- * same one the package publishes, and widening support stays a single edit
- * to `peerDeps` in `.projenrc.ts`.
+ * Support ranges are independent of installation policy, and declared once in
+ * `.projenrc.ts` with the tool dependencies.
  */
-const SUPPORTED_VERSIONS: Record<string, string | undefined> =
-  createRequire(import.meta.url)('../package.json').peerDependencies ?? {}
+const SUPPORTED_VERSIONS: Record<string, string | undefined> = createRequire(
+  import.meta.url,
+)('../package.json').projenProject.supportedVersions
 
 /**
  * The preset and the `projen-` components it depends on, behind

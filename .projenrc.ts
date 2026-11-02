@@ -25,6 +25,29 @@ const projenPeer = {
   peerDeps: ['projen@>=0.86.0 <1.0.0'],
 }
 
+const presetTools = {
+  devDeps: [
+    '@babel/core@^8.0.0',
+    '@changesets/cli@^3.0.0',
+    '@langri-sha/babel-preset@^0.6.0',
+    '@langri-sha/eslint-config@^0.12.0',
+    '@langri-sha/lint-staged@^0.9.0',
+    '@langri-sha/prettier@^0.4.0',
+    '@swc-node/register@^1.0.0',
+    '@swc/core@^1.6.0',
+    'beachball@^2.0.0',
+    'eslint@^10.4.0',
+    'husky@^9.0.1',
+    'jest@^30.0.0',
+    'lint-staged@^17.0.0',
+    'prettier@^3.0.0',
+    'skills@^1.7.2',
+    'tsx@^4.0.0',
+    'typescript@^5.5.0',
+    'vitest@^5.0.0',
+  ],
+}
+
 const project = new Project({
   name: 'projen',
   package: {
@@ -978,27 +1001,7 @@ project.addSubproject(
         '@types/ramda@0.32.0',
         '@types/semver@7.8.0',
       ],
-      peerDeps: [
-        '@babel/core@^8.0.0',
-        '@changesets/cli@^3.0.0',
-        '@langri-sha/babel-preset@^0.6.0',
-        '@langri-sha/eslint-config@^0.12.0',
-        '@langri-sha/lint-staged@^0.9.0',
-        '@langri-sha/prettier@^0.4.0',
-        '@swc-node/register@^1.0.0',
-        '@swc/core@^1.6.0',
-        'beachball@^2.0.0',
-        'eslint@^10.4.0',
-        'husky@^9.0.1',
-        'jest@^30.0.0',
-        'lint-staged@^17.0.0',
-        'prettier@^3.0.0',
-        ...projenPeer.peerDeps,
-        'skills@^1.7.2',
-        'tsx@^4.0.0',
-        'typescript@^5.5.0',
-        'vitest@^5.0.0',
-      ],
+      peerDeps: [...presetTools.devDeps, ...projenPeer.peerDeps],
       peerDependenciesMeta: {
         '@babel/core': {
           optional: true,
@@ -1060,6 +1063,16 @@ project.addSubproject(
   subproject,
   test,
   publish,
+  (project) => {
+    project.package?.addField('projenProject', {
+      supportedVersions: Object.fromEntries(
+        [...presetTools.devDeps, ...projenPeer.peerDeps].map((spec) => {
+          const separator = spec.lastIndexOf('@')
+          return [spec.slice(0, separator), spec.slice(separator + 1)]
+        }),
+      ),
+    })
+  },
 )
 
 project.addSubproject(
