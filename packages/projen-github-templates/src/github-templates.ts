@@ -31,7 +31,14 @@ export type GitHubTemplateOptions =
 export type GitHubTemplate =
   IssueForm | IssueTemplate | IssueTemplateChooser | PullRequestTemplate
 
-export interface GitHubTemplatesOptions {
+/**
+ * JSON-valued fields modeled by JSII, refined by GitHubTemplatesOptions.
+ */
+export interface GitHubTemplatesOptionsBase {
+  readonly unmanaged?: unknown
+}
+
+export interface GitHubTemplatesOptions extends GitHubTemplatesOptionsBase {
   /**
    * Templates keyed by repository-relative path. The path selects the kind:
    *
@@ -51,6 +58,7 @@ export interface GitHubTemplatesOptions {
   /**
    * Repository-relative paths of templates written by hand. Never written, and
    * declaring a template at one is an error.
+   * @jsii ignore
    */
   readonly unmanaged?: readonly string[]
 }
@@ -69,6 +77,7 @@ export class GitHubTemplates extends Component {
    */
   readonly files: Readonly<Record<string, GitHubTemplate>>
 
+  /** @jsii ignore */
   readonly unmanaged: readonly string[]
 
   constructor(project: Project, options: GitHubTemplatesOptions = {}) {
