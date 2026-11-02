@@ -1055,7 +1055,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('eslint@10.13.0')
+      this.#addDefaultDevDeps('eslint@10.14.0')
 
       if (this.name !== '@langri-sha/eslint-config') {
         this.#addDefaultDevDeps('@langri-sha/eslint-config@0.12.0')
