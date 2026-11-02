@@ -86,6 +86,11 @@
       "type": "build"
     },
     {
+      "name": "jsii",
+      "version": "5.9.57",
+      "type": "build"
+    },
+    {
       "name": "lint-staged",
       "version": "^17.0.0",
       "type": "build"

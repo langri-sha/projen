@@ -959,6 +959,7 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-project',
     outdir: path.join('packages', 'projen-project'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1007,14 +1008,23 @@ project.addSubproject(
         '@types/hosted-git-info@3.0.5',
         '@types/ramda@0.32.0',
         '@types/semver@7.8.0',
+        'jsii@5.9.57',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true, preserveModules: true }),
   (project) => {
+    project
+      .tryFindObjectFile('tsconfig.build.json')
+      ?.addOverride('include', ['src/**/*.ts', 'project.d.ts'])
+    project
+      .tryFindObjectFile('tsconfig.build.json')
+      ?.addOverride('compilerOptions', {
+        rootDir: 'src',
+      })
     project.package?.addField('projenProject', {
       supportedVersions: Object.fromEntries(
         [...presetTools.devDeps, ...projenPeer.peerDeps].map((spec) => {
@@ -1024,6 +1034,14 @@ project.addSubproject(
       ),
     })
   },
+  (project) =>
+    smoke(project, {
+      imports:
+        "import { createRequire } from 'node:module'\nimport { discover } from 'projen/lib/inventory.js'\nimport { GitAttributesFile, NodePackage, Project, ProjenrcFile } from '@langri-sha/projen-project'\nimport { GitAttributesFile as SubpathGitAttributesFile } from '@langri-sha/projen-project/dist/lib/gitattributes.js'\nimport { NodePackage as SubpathNodePackage } from '@langri-sha/projen-project/dist/lib/node-package.js'\nimport { ProjenrcFile as SubpathProjenrcFile } from '@langri-sha/projen-project/dist/lib/projenrc.js'",
+      run: "const preset = new Project({ name: 'preset-smoke', outdir: path.join(outdir, 'preset'), githubTemplates: {} })",
+      check:
+        "preset.synth()\nassert.ok(read('preset/.github/ISSUE_TEMPLATE/01-bug-report.yml').includes('name: Bug report'))\nassert.equal(Project[Symbol.for('jsii.rtti')].fqn, '@langri-sha/projen-project.Project')\nassert.ok(Project.presetPackages.includes('projen-uv'))\nassert.equal(preset.package, undefined)\nconst presetDir = path.dirname(createRequire(import.meta.url).resolve('@langri-sha/projen-project/package.json'))\nconst types = discover(presetDir).filter(({ moduleName }) => moduleName === '@langri-sha/projen-project')\nassert.deepEqual(types.map(({ fqn }) => fqn), ['@langri-sha/projen-project.Project'])\nassert.equal(types[0].options.length, 41)\nassert.equal(GitAttributesFile, SubpathGitAttributesFile)\nassert.equal(NodePackage, SubpathNodePackage)\nassert.equal(ProjenrcFile, SubpathProjenrcFile)",
+    }),
 )
 
 project.addSubproject(
