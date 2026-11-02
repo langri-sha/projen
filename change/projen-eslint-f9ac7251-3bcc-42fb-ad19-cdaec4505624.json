@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency eslint to v10.14.0",
+  "packageName": "projen-eslint",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
