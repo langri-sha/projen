@@ -18,11 +18,18 @@ export interface IssueTemplateContactLink {
 }
 
 /**
+ * JSON-valued fields modeled by JSII, refined by IssueTemplateChooserOptions.
+ */
+export interface IssueTemplateChooserOptionsBase {
+  readonly contactLinks?: unknown
+}
+
+/**
  * The template chooser.
  *
  * @see https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#configuring-the-template-chooser
  */
-export interface IssueTemplateChooserOptions {
+export interface IssueTemplateChooserOptions extends IssueTemplateChooserOptionsBase {
   /**
    * Offer a blank issue beside the templates. When `false`, people with write
    * access still see it, labelled "Maintainers only".
@@ -31,6 +38,7 @@ export interface IssueTemplateChooserOptions {
    */
   readonly blankIssuesEnabled?: boolean
 
+  /** @jsii ignore */
   readonly contactLinks?: readonly IssueTemplateContactLink[]
 }
 

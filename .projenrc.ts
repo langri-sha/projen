@@ -635,6 +635,7 @@ project.addSubproject(
   {
     name: 'projen-github-templates',
     outdir: path.join('packages', 'projen-github-templates'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -646,15 +647,23 @@ project.addSubproject(
       copyrightYear: '2026',
       type: 'module',
       deps: ['yaml@2.9.1'],
+      devDeps: ['jsii@5.9.57'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
   (project) => {
     project.npmIgnore?.exclude('__fixtures__/')
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { GitHubTemplates } from 'projen-github-templates'",
+      run: "new GitHubTemplates(project, {\n  files: {\n    '.github/ISSUE_TEMPLATE/bug.yml': { name: 'Bug report', description: 'Report a bug', body: [{ type: 'input', attributes: { label: 'Version' }, validations: { required: true } }] },\n    '.github/ISSUE_TEMPLATE/config.yml': { blankIssuesEnabled: false },\n    '.github/ISSUE_TEMPLATE/feature.md': { name: 'Feature request', about: 'Request a feature', body: ['Describe it'] },\n    '.github/pull_request_template.md': { body: ['Describe the change'] },\n  },\n})",
+      check:
+        "assert.ok(read('.github/ISSUE_TEMPLATE/bug.yml').includes('required: true'))\nassert.ok(read('.github/ISSUE_TEMPLATE/config.yml').includes('blank_issues_enabled: false'))\nassert.ok(read('.github/ISSUE_TEMPLATE/feature.md').includes('Describe it'))\nassert.ok(read('.github/pull_request_template.md').includes('Describe the change'))",
+    }),
 )
 
 project.addSubproject(

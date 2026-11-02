@@ -29,6 +29,7 @@ export interface TextValidations extends Validations {
   /**
    * Prevents form submission until the response has at least this many
    * characters. A non-negative integer.
+   * @jsii ignore
    */
   readonly min_length?: number
 }
@@ -187,7 +188,7 @@ export interface TextareaAttributes {
   readonly render?: string
 }
 
-export interface DropdownAttributes {
+export interface DropdownAttributes extends FormChoices {
   /**
    * Unique within the form, unless an `id` tells the two elements apart.
    */
@@ -202,6 +203,7 @@ export interface DropdownAttributes {
   /**
    * Non-empty and distinct. `None` is reserved: GitHub adds it itself to a
    * dropdown that is not required.
+   * @jsii ignore
    */
   readonly options: readonly string[]
   /**
@@ -210,7 +212,7 @@ export interface DropdownAttributes {
   readonly default?: number
 }
 
-export interface CheckboxesAttributes {
+export interface CheckboxesAttributes extends FormChoices {
   readonly label: string
   /**
    * Supports Markdown.
@@ -220,6 +222,7 @@ export interface CheckboxesAttributes {
    * Option labels are unique among themselves and among the form's other
    * labels, unless an `id` on the clashing element tells them apart. Options
    * cannot carry an `id` of their own.
+   * @jsii ignore
    */
   readonly options: readonly CheckboxOption[]
 }
@@ -227,4 +230,11 @@ export interface CheckboxesAttributes {
 export interface UploadAttributes {
   readonly label: string
   readonly description?: string
+}
+
+/**
+ * JSON-valued choices modeled by JSII, refined by each element's attributes.
+ */
+export interface FormChoices {
+  readonly options: unknown
 }

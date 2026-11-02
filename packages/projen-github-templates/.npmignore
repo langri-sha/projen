@@ -3,4 +3,6 @@
 *.test.*
 __snapshots__/
 tsconfig*.json
+!/.jsii
 __fixtures__/
+smoke.mjs
