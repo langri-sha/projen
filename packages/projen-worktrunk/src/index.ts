@@ -172,6 +172,7 @@ export class Worktrunk extends Component {
   /**
    * Set a hook, in any of the three forms. Throws if the event already has
    * one: whether the two should run together or in turn is the caller's call.
+   * @jsii ignore
    */
   addHook(event: WorktrunkHookEvent, hook: WorktrunkHook) {
     validateEvent(event)

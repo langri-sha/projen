@@ -159,6 +159,13 @@ committed. The component re-includes each dot-directory leading to the file
 (`!/.config`), leaving dotfiles inside it ignored. Other files in `.config/`
 become visible to git. Pass `gitignore: false` if you manage this yourself.
 
+The package ships an ESM entry point and a `.jsii` assembly. JSII receives
+aliases and exclusion lists as JSON data through the options base interfaces;
+TypeScript options keep their strict types. Hyphenated configuration keys and
+`addHook` are omitted from the assembly. JSII consumers can add named hooks and
+pipeline steps with `addCommand` and `addStep`. Validation and overwrite
+protection apply to every consumer.
+
 [hooks]: https://worktrunk.dev/hook/
 [install]: https://worktrunk.dev/#install
 [projen]: https://projen.io/

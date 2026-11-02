@@ -394,6 +394,7 @@
 /packages/projen-worktrunk/package.json linguist-generated
 /packages/projen-worktrunk/pnpm-lock.yaml linguist-generated
 /packages/projen-worktrunk/pnpm-workspace.yaml linguist-generated
+/packages/projen-worktrunk/smoke.mjs linguist-generated
 /packages/projen-worktrunk/tsconfig.build.json linguist-generated
 /packages/projen-worktrunk/tsconfig.json linguist-generated
 /pnpm-lock.yaml linguist-generated
