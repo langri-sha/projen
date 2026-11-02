@@ -21,8 +21,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build --preserve-modules",
-    "postpublish": "node ../../scripts/inline-dependencies.mjs restore"
+    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs compile"
   },
   "dependencies": {
     "hosted-git-info": "10.1.1",

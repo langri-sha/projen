@@ -1,6 +1,7 @@
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 
 import webpack from '@langri-sha/webpack'
 
@@ -16,77 +17,11 @@ const entry = path.join(distDir, 'index.js')
 
 const readManifest = () => fs.readFileSync(manifestPath, 'utf8')
 
-const workspaceEntries = (manifest) => {
-  const entries = {}
-
-  for (const [name, spec] of Object.entries(manifest.dependencies ?? {})) {
-    const directory = path.join(packageDir, 'node_modules', name)
-    const local =
-      fs.existsSync(directory) &&
-      path.dirname(fs.realpathSync(directory)) === path.dirname(packageDir)
-
-    if (!spec.startsWith('workspace:') && !local) {
-      continue
-    }
-
-    const dependency = JSON.parse(
-      fs.readFileSync(path.join(directory, 'package.json'), 'utf8'),
-    )
-    const built = path.resolve(
-      directory,
-      dependency.publishConfig?.main ?? dependency.main,
-    )
-
-    if (
-      !fs.existsSync(path.join(directory, '.jsii')) ||
-      !fs.existsSync(built)
-    ) {
-      throw new Error(`Build the workspace dependency ${name} before inlining.`)
-    }
-
-    entries[name] = built
-  }
-
-  return entries
-}
-
-// A missing workspace assembly is a build failure, never an inlining request.
-const inlinedDependencies = (manifest) => {
-  const workspace = workspaceEntries(manifest)
-  return Object.keys(manifest.dependencies ?? {}).filter(
+// The dependencies that are not jsii modules are inlined.
+const inlinedDependencies = (manifest) =>
+  Object.keys(manifest.dependencies ?? {}).filter(
     (name) =>
-      !Object.hasOwn(workspace, name) &&
       !fs.existsSync(path.join(packageDir, 'node_modules', name, '.jsii')),
-  )
-}
-
-const exportsOf = (workspace, file = entry) =>
-  JSON.parse(
-    execFileSync(
-      process.execPath,
-      [
-        '--input-type=module',
-        '-e',
-        `
-    import { registerHooks } from 'node:module'
-    import { pathToFileURL } from 'node:url'
-    const [entry, workspace] = process.argv.slice(1).map(JSON.parse)
-    registerHooks({
-      resolve(specifier, context, nextResolve) {
-        if (Object.hasOwn(workspace, specifier)) {
-          return { url: pathToFileURL(workspace[specifier]).href, shortCircuit: true }
-        }
-        return nextResolve(specifier, context)
-      },
-    })
-    const names = Object.keys(await import(pathToFileURL(entry))).sort()
-    process.stdout.write(JSON.stringify(names))
-  `,
-        JSON.stringify(file),
-        JSON.stringify(workspace),
-      ],
-      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'] },
-    ),
   )
 
 const withoutDependencies = (text) => {
@@ -103,52 +38,12 @@ const withoutDependencies = (text) => {
   return `${JSON.stringify(manifest, null, 2)}\n`
 }
 
-// Only the compiler sees concrete workspace versions; publishing keeps its
-// existing manifest view so retry validation is independent of sibling bumps.
-const forCompilation = (text) => {
-  const manifest = JSON.parse(text)
-
-  for (const field of ['dependencies', 'peerDependencies']) {
-    for (const [name, spec] of Object.entries(manifest[field] ?? {})) {
-      if (!spec.startsWith('workspace:')) {
-        continue
-      }
-      const range = spec.slice('workspace:'.length)
-      const { version } = JSON.parse(
-        fs.readFileSync(
-          path.join(packageDir, 'node_modules', name, 'package.json'),
-          'utf8',
-        ),
-      )
-      if (
-        !['*', '^', '~'].includes(range) ||
-        typeof version !== 'string' ||
-        !version
-      ) {
-        throw new Error(`Cannot resolve workspace range ${name}@${spec}.`)
-      }
-      manifest[field][name] = `${range === '*' ? '' : range}${version}`
-    }
-  }
-
-  return `${JSON.stringify(manifest, null, 2)}\n`
-}
-
 // Inlines everything `dist/index.js` imports but `external`, and returns the
 // name of each package it inlined, by directory, since versions differ.
-const bundle = async (external, workspace) => {
-  const entries = preserveModules
-    ? Object.fromEntries(
-        fs
-          .readdirSync(distDir, { recursive: true })
-          .filter((file) => file.endsWith('.js'))
-          .sort()
-          .map((file) => [file.slice(0, -3), path.join(distDir, file)]),
-      )
-    : { index: entry }
-  const before = Object.fromEntries(
-    Object.values(entries).map((file) => [file, exportsOf(workspace, file)]),
-  )
+const bundle = async (external) => {
+  const exportsOf = async (query) =>
+    Object.keys(await import(`${pathToFileURL(entry)}?${query}`)).sort()
+  const before = await exportsOf('before')
 
   const stats = await new Promise((resolve, reject) => {
     webpack(
@@ -160,39 +55,15 @@ const bundle = async (external, workspace) => {
           sideEffects: true,
         },
         target: 'node',
-        entry: entries,
+        entry,
         experiments: { outputModule: true },
         output: {
           path: distDir,
-          filename: '[name].js',
+          filename: 'index.js',
           module: true,
           library: { type: 'module' },
         },
-        module: {
-          rules: [
-            {
-              include: distDir,
-              parser: { importMeta: false, createRequire: false, url: false },
-            },
-          ],
-        },
-        externals: ({ context, request }, callback) => {
-          const resolved = path.resolve(context, request)
-          if (
-            preserveModules &&
-            request.startsWith('.') &&
-            Object.values(entries).includes(resolved)
-          ) {
-            callback(undefined, `module ${request}`)
-            return
-          }
-          if (
-            !preserveModules &&
-            resolved === path.join(distDir, 'lib/templates-directory.js')
-          ) {
-            callback(undefined, 'module ./lib/templates-directory.js')
-            return
-          }
+        externals: ({ request }, callback) =>
           callback(
             undefined,
             external.some(
@@ -200,8 +71,7 @@ const bundle = async (external, workspace) => {
             )
               ? `module ${request}`
               : undefined,
-          )
-        },
+          ),
       },
       (error, result) => (error ? reject(error) : resolve(result)),
     )
@@ -215,21 +85,23 @@ const bundle = async (external, workspace) => {
     )
   }
 
-  for (const file of Object.values(entries)) {
-    const after = exportsOf(workspace, file)
-    if (before[file].join() !== after.join()) {
-      throw new Error(
-        `The bundle ${path.relative(distDir, file)} exports ${after.join(', ') || 'nothing'}, not ${before[file].join(', ')}.`,
-      )
-    }
-    fs.writeFileSync(
-      file,
-      fs
-        .readFileSync(file, 'utf8')
-        .replace(/^\/\/# sourceMappingURL=.*\n/gm, ''),
+  const after = await exportsOf('after')
+
+  if (before.join() !== after.join()) {
+    throw new Error(
+      `The bundle exports ${after.join(', ') || 'nothing'}, not ${before.join(', ')}.`,
     )
-    fs.rmSync(`${file}.map`, { force: true })
   }
+
+  // The inputs' source map comments point at maps that are not shipped.
+  fs.writeFileSync(
+    entry,
+    fs
+      .readFileSync(entry, 'utf8')
+      .replace(/^\/\/# sourceMappingURL=.*\n/gm, ''),
+  )
+  // jsii's map describes the file the bundle replaced.
+  fs.rmSync(`${entry}.map`, { force: true })
 
   const inlined = new Map()
 
@@ -256,15 +128,12 @@ const inline = async (manifest) => {
   const skipped = new Set(inlinedDependencies(manifest))
   // shortcut: a value import of a peer moved to devDependencies (#549) is
   // inlined too; keep those imports type-only.
-  const inlined = await bundle(
-    [
-      ...Object.keys(manifest.dependencies ?? {}).filter(
-        (name) => !skipped.has(name),
-      ),
-      ...Object.keys(manifest.peerDependencies ?? {}),
-    ],
-    workspaceEntries(manifest),
-  )
+  const inlined = await bundle([
+    ...Object.keys(manifest.dependencies ?? {}).filter(
+      (name) => !skipped.has(name),
+    ),
+    ...Object.keys(manifest.peerDependencies ?? {}),
+  ])
 
   if (!inlined.size) {
     throw new Error('Nothing was inlined: remove the inlining step.')
@@ -302,7 +171,35 @@ const inline = async (manifest) => {
 
 const compile = () => {
   const original = readManifest()
-  fs.writeFileSync(manifestPath, withoutDependencies(original))
+  const originalManifest = JSON.parse(original)
+  for (const [name, spec] of Object.entries(
+    originalManifest.dependencies ?? {},
+  )) {
+    if (
+      spec.startsWith('workspace:') &&
+      !fs.existsSync(path.join(packageDir, 'node_modules', name, '.jsii'))
+    ) {
+      throw new Error(`Build the workspace dependency ${name} first.`)
+    }
+  }
+  const manifest = JSON.parse(withoutDependencies(original))
+  for (const field of ['dependencies', 'peerDependencies']) {
+    for (const [name, spec] of Object.entries(manifest[field] ?? {})) {
+      if (!spec.startsWith('workspace:')) continue
+      const range = spec.slice('workspace:'.length)
+      if (!['*', '^', '~'].includes(range)) {
+        throw new Error(`Cannot resolve workspace range ${name}@${spec}.`)
+      }
+      const { version } = JSON.parse(
+        fs.readFileSync(
+          path.join(packageDir, 'node_modules', name, 'package.json'),
+          'utf8',
+        ),
+      )
+      manifest[field][name] = `${range === '*' ? '' : range}${version}`
+    }
+  }
+  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
   try {
     execFileSync('jsii', { stdio: 'inherit' })
   } finally {
@@ -332,9 +229,8 @@ const commands = {
 
     const original = readManifest()
     const stripped = withoutDependencies(original)
-    const compiled = forCompilation(stripped)
 
-    fs.writeFileSync(manifestPath, compiled)
+    fs.writeFileSync(manifestPath, stripped)
 
     try {
       execFileSync('jsii', { stdio: 'inherit' })
@@ -355,12 +251,7 @@ const commands = {
   },
 }
 
-const [command, ...options] = process.argv.slice(2)
-const preserveModules = options.includes('--preserve-modules')
-
-if (options.some((option) => option !== '--preserve-modules')) {
-  throw new Error('Expected --preserve-modules as the only build option.')
-}
+const [command] = process.argv.slice(2)
 
 if (!Object.hasOwn(commands, command)) {
   throw new Error(`Expected ${Object.keys(commands).join(', ')}.`)
