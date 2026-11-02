@@ -319,6 +319,7 @@ project.addSubproject(
   {
     name: 'projen-dagger',
     outdir: path.join('packages', 'projen-dagger'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -330,16 +331,25 @@ project.addSubproject(
       copyrightYear: '2026',
       description: 'A projen component for Dagger workspaces.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.3.0', 'smol-toml@1.9.1'],
+      devDeps: [
+        'jsii@5.9.57',
+        'schemastore-to-typescript@1.3.0',
+        'smol-toml@1.9.1',
+      ],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  publishJsii,
   (project) => {
     project.addGitIgnore('dagger-module.ts')
     project.addGitIgnore('dagger-workspace.ts')
+
+    project.package?.setScript(
+      'prepublishOnly',
+      'rm -rf dist; node ../../scripts/dagger-schema-compatibility.mjs build',
+    )
 
     project.package?.setScript(
       'prepare',
@@ -349,12 +359,14 @@ project.addSubproject(
         'node ../../scripts/dagger-schema-compatibility.mjs prepare',
       ].join(' && '),
     )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts',
-    )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Dagger } from 'projen-dagger'",
+      run: "new Dagger(project, {\n  engineVersion: 'v1.0.0-beta.15',\n  modules: { '.dagger/build': { dependencies: ['../lint'], codegen: { automaticGitignore: false } } },\n  workspace: { ignore: ['node_modules'] },\n})",
+      check:
+        "assert.ok(read('.dagger/build/dagger-module.toml').includes('v1.0.0-beta.15'))\nassert.ok(read('.dagger/build/dagger-module.toml').includes('../lint'))\nassert.ok(read('dagger.toml').includes('node_modules'))",
+    }),
 )
 
 project.addSubproject(
