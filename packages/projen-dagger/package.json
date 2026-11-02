@@ -20,7 +20,7 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache 'Dagger module (dagger-module.toml)' src/dagger-module.ts && schemastore-to-typescript --no-cache 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
+    "prepare": "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts && schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts && node ../../scripts/dagger-schema-compatibility.mjs prepare",
     "prepublishOnly": "rm -rf dist; tsc --project tsconfig.build.json && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts"
   },
   "devDependencies": {

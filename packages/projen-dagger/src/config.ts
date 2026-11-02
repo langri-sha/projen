@@ -3,7 +3,7 @@ import type {
   DaggerModuleDaggerModuleToml,
   ModuleCodegenConfig,
   ModuleConfigClient,
-  SDK,
+  Sdk,
 } from './dagger-module.js'
 import type {
   DaggerWorkspaceDaggerToml,
@@ -20,13 +20,16 @@ import type {
  * The runtime a module is implemented with, without the fields the schema
  * deprecates.
  */
-export type DaggerModuleRuntime = Omit<SDK, 'config' | 'debug' | 'experimental'>
+export type DaggerModuleRuntime = Mutable<
+  Omit<Sdk, 'config' | 'debug' | 'experimental'>
+>
 
-export type DaggerModuleDependencyConfig = CurrentModuleConfigDependency
+export type DaggerModuleDependencyConfig =
+  Mutable<CurrentModuleConfigDependency>
 
-export type DaggerModuleCodegen = ModuleCodegenConfig
+export type DaggerModuleCodegen = Mutable<ModuleCodegenConfig>
 
-export type DaggerModuleClient = ModuleConfigClient
+export type DaggerModuleClient = Mutable<ModuleConfigClient>
 
 /**
  * `dagger-module.toml`, as the Dagger CLI reads it, without the fields the
@@ -34,34 +37,34 @@ export type DaggerModuleClient = ModuleConfigClient
  *
  * @see https://docs.dagger.io/reference/dagger-module.schema.json
  */
-export type DaggerModuleConfig = Omit<
-  DaggerModuleDaggerModuleToml,
-  '$schema' | 'exclude' | 'runtime'
-> & {
-  runtime?: DaggerModuleRuntime
-}
+export type DaggerModuleConfig = Mutable<
+  Omit<DaggerModuleDaggerModuleToml, '$schema' | 'exclude' | 'runtime'> & {
+    runtime?: DaggerModuleRuntime
+  }
+>
 
 /**
  * Values a module reads by name, such as constructor arguments. A string can
  * point at another module's output with a `dag://` reference.
  */
 export interface DaggerSettings {
+  /** @jsii ignore */
   [name: string]: unknown
 }
 
-export type DaggerWorkspaceSkip = ModuleSkip
+export type DaggerWorkspaceSkip = Mutable<ModuleSkip>
 
-export type DaggerWorkspaceModule = ModuleEntry
+export type DaggerWorkspaceModule = Mutable<ModuleEntry>
 
-export type DaggerWorkspaceSdkScope = SDKScope
+export type DaggerWorkspaceSdkScope = Mutable<SDKScope>
 
-export type DaggerWorkspaceSdk = SDKEntry
+export type DaggerWorkspaceSdk = Mutable<SDKEntry>
 
-export type DaggerWorkspaceEnvModule = EnvModuleOverlay
+export type DaggerWorkspaceEnvModule = Mutable<EnvModuleOverlay>
 
-export type DaggerWorkspaceEnv = EnvOverlay
+export type DaggerWorkspaceEnv = Mutable<EnvOverlay>
 
-export type DaggerWorkspacePort = PortMapping
+export type DaggerWorkspacePort = Mutable<PortMapping>
 
 /**
  * `dagger.toml`, as the Dagger CLI reads it, without the workspace
@@ -69,4 +72,9 @@ export type DaggerWorkspacePort = PortMapping
  *
  * @see https://docs.dagger.io/reference/dagger-workspace.schema.json
  */
-export type DaggerWorkspaceConfig = Omit<DaggerWorkspaceDaggerToml, 'include'>
+export type DaggerWorkspaceConfig = Mutable<
+  Omit<DaggerWorkspaceDaggerToml, 'include'>
+>
+
+/** @internal */
+type Mutable<T> = { -readonly [Key in keyof T]: Mutable<T[Key]> }
