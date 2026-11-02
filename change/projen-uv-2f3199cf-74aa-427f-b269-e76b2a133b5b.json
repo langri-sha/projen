@@ -1,6 +1,6 @@
 {
-  "type": "patch",
-  "comment": "Compile uv components with JSII while preserving the TypeScript configuration API.",
+  "type": "minor",
+  "comment": "Compile uv components with JSII.",
   "packageName": "projen-uv",
   "email": "email not defined",
   "dependentChangeType": "patch"
