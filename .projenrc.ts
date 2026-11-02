@@ -1371,7 +1371,8 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) =>
+    publish(project, 'node ../../scripts/inline-dependencies.mjs compile'),
   (project) => {
     project.addGitIgnore('pyproject.ts')
     project.addGitIgnore('uv.ts')
@@ -1397,7 +1398,7 @@ project.addSubproject(
 
     project.package?.setScript(
       'prepublishOnly',
-      'rm -rf dist; node ../../scripts/inline-dependencies.mjs build',
+      'rm -rf dist; node ../../scripts/inline-dependencies.mjs compile',
     )
   },
   (project) =>

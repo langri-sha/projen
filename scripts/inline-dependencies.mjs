@@ -169,7 +169,24 @@ const inline = async (manifest) => {
   console.log(`Inlined ${[...new Set(inlined.values())].sort().join(', ')}.`)
 }
 
+const compile = () => {
+  const original = readManifest()
+  const manifest = JSON.parse(original)
+
+  for (const name of inlinedDependencies(manifest)) {
+    delete manifest.dependencies[name]
+  }
+
+  fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
+  try {
+    execFileSync('jsii', { stdio: 'inherit' })
+  } finally {
+    fs.writeFileSync(manifestPath, original)
+  }
+}
+
 const commands = {
+  compile,
   // jsii accepts only jsii modules as dependencies. A publish then goes on
   // without them: npm sends the registry the manifest it reads after packing,
   // so the stripped one stays until `postpublish` restores it.
