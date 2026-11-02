@@ -5,6 +5,18 @@ import { Project, javascript } from 'projen'
 import { normalizeRepository } from './repository.js'
 
 /**
+ * Peer metadata exposed through the JSII assembly.
+ */
+export interface PeerDependencyMetadataBase {
+  readonly optional?: boolean
+}
+
+export interface PeerDependencyMetadata extends PeerDependencyMetadataBase {
+  /** @jsii ignore */
+  optional?: boolean
+}
+
+/**
  * Options for configuring Node.js packages.
  */
 export interface NodePackageOptions extends javascript.NodePackageOptions {
@@ -13,9 +25,10 @@ export interface NodePackageOptions extends javascript.NodePackageOptions {
    * Earlier versions have no such option and ignore it.
    *
    * @default false
+   * @jsii ignore
    */
   readonly addPackageManagerToDevEngines?: boolean
-  readonly peerDependenciesMeta?: Record<string, { optional?: boolean }>
+  readonly peerDependenciesMeta?: Record<string, PeerDependencyMetadata>
   readonly type?: 'commonjs' | 'module'
 }
 
