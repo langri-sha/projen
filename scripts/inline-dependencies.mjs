@@ -185,7 +185,9 @@ const compile = () => {
   const manifest = JSON.parse(withoutDependencies(original))
   for (const field of ['dependencies', 'peerDependencies']) {
     for (const [name, spec] of Object.entries(manifest[field] ?? {})) {
-      if (!spec.startsWith('workspace:')) continue
+      if (!spec.startsWith('workspace:')) {
+        continue
+      }
       const range = spec.slice('workspace:'.length)
       if (!['*', '^', '~'].includes(range)) {
         throw new Error(`Cannot resolve workspace range ${name}@${spec}.`)
