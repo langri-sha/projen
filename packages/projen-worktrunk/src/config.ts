@@ -71,6 +71,13 @@ export interface WorktrunkHooks {
 }
 
 /**
+ * JSON-valued aliases modeled by JSII, refined by WorktrunkConfig.
+ */
+export interface WorktrunkConfigBase extends WorktrunkHooks {
+  readonly aliases?: unknown
+}
+
+/**
  * `.config/wt.toml`, as Worktrunk reads it. Hooks are top-level keys alongside
  * the section tables.
  *
@@ -79,10 +86,11 @@ export interface WorktrunkHooks {
  *
  * @see https://worktrunk.dev/config/
  */
-export interface WorktrunkConfig extends WorktrunkHooks {
+export interface WorktrunkConfig extends WorktrunkConfigBase {
   /**
    * Shared command templates run as `wt <name>`. An alias takes any of the
    * three hook forms, and is approved like a hook.
+   * @jsii ignore
    */
   readonly aliases?: WorktrunkAliases
 
@@ -135,6 +143,14 @@ export interface WorktrunkStep {
   readonly 'copy-ignored'?: WorktrunkCopyIgnored
 }
 
-export interface WorktrunkCopyIgnored {
+/**
+ * JSON-valued exclusions modeled by JSII, refined by WorktrunkCopyIgnored.
+ */
+export interface WorktrunkCopyIgnoredBase {
+  readonly exclude?: unknown
+}
+
+export interface WorktrunkCopyIgnored extends WorktrunkCopyIgnoredBase {
+  /** @jsii ignore */
   readonly exclude?: readonly string[]
 }
