@@ -41,3 +41,25 @@ test('raw schemas retain metadata, tuple and nullable value constraints', () => 
     project: { dynamic: ['unknown'] }
   }>().not.toExtend<PyProjectOptions>()
 })
+
+test('metadata and tool tables keep strict fields and open tool configuration', () => {
+  const tool: PyProjectTool = {
+    uv: { workspace: { members: null }, 'required-version': '>=0.12' },
+    ty: { environment: { 'python-version': '3.14' } },
+    custom: [{ enabled: true }],
+  }
+  const options: PyProjectOptions = {
+    project: { name: 'example', 'requires-python': '>=3.14' },
+    tool,
+  }
+
+  expect(options.tool).toBe(tool)
+  expect(options.project!['requires-python']).toBe('>=3.14')
+  expectTypeOf<{
+    uv: { workspace: { members: number[] } }
+  }>().not.toExtend<PyProjectTool>()
+  expectTypeOf<{ other: number }>().not.toExtend<PyProjectTool>()
+  expectTypeOf<{
+    project: { 'requires-python': number }
+  }>().not.toExtend<PyProjectOptions>()
+})

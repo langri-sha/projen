@@ -29,8 +29,17 @@ export * from './uv.js'
  */
 export interface PyProjectTool {
   readonly uv?: Uv
+  /** @jsii ignore */
   readonly [tool: string]:
     NonNullable<PyProject['tool']>[string] | Uv | undefined
+}
+
+/**
+ * JSON-valued metadata and tool tables exposed through JSII.
+ */
+export interface PyProjectOptionsBase {
+  readonly project?: unknown
+  readonly tool?: unknown
 }
 
 /**
@@ -41,8 +50,10 @@ export interface PyProjectTool {
  * the `0.1.0` that `uv init` writes — uv refuses a `[project]` table with
  * neither a `version` nor one listed in `dynamic`.
  */
-export interface PyProjectOptions {
+export interface PyProjectOptions extends PyProjectOptionsBase {
+  /** @jsii ignore */
   'dependency-groups'?: PyProject['dependency-groups']
+  /** @jsii ignore */
   'build-system'?: PyProject['build-system']
 
   /**
@@ -50,11 +61,13 @@ export interface PyProjectOptions {
    * virtual — a workspace, and not a package of its own.
    *
    * @default The project's name at version 0.1.0, when the table is declared at all
+   * @jsii ignore
    */
   readonly project?: Partial<NonNullable<PyProject['project']>>
 
   /**
    * The `[tool]` table.
+   * @jsii ignore
    */
   readonly tool?: PyProjectTool
 }
