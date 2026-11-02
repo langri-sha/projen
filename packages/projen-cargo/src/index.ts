@@ -21,63 +21,9 @@ export * from './toolchain.js'
  * `[package] name` is optional here where the schema requires it, because both
  * components fall back to the project's own name.
  */
-export interface CargoManifestOptions extends CargoManifestOptionsBase {
+export interface CargoManifestOptions {
   /** @jsii ignore */
-  'cargo-features'?: CargoManifest['cargo-features']
-  /** @jsii ignore */
-  project?: CargoManifest['project']
-  /** @jsii ignore */
-  workspace?: CargoManifest['workspace']
-  /** @jsii ignore */
-  lib?: CargoManifest['lib']
-  /** @jsii ignore */
-  bin?: CargoManifest['bin']
-  /** @jsii ignore */
-  example?: CargoManifest['example']
-  /** @jsii ignore */
-  test?: CargoManifest['test']
-  /** @jsii ignore */
-  bench?: CargoManifest['bench']
-  /** @jsii ignore */
-  dependencies?: CargoManifest['dependencies']
-  /** @jsii ignore */
-  'dev-dependencies'?: CargoManifest['dev-dependencies']
-  /** @jsii ignore */
-  dev_dependencies?: CargoManifest['dev_dependencies']
-  /** @jsii ignore */
-  'build-dependencies'?: CargoManifest['build-dependencies']
-  /** @jsii ignore */
-  build_dependencies?: CargoManifest['build_dependencies']
-  /** @jsii ignore */
-  target?: CargoManifest['target']
-  /** @jsii ignore */
-  badges?: CargoManifest['badges']
-  /** @jsii ignore */
-  features?: CargoManifest['features']
-  /** @jsii ignore */
-  lints?: CargoManifest['lints']
-  /** @jsii ignore */
-  patch?: CargoManifest['patch']
-  /** @jsii ignore */
-  replace?: CargoManifest['replace']
-  /** @jsii ignore */
-  profile?: CargoManifest['profile']
-
-  /**
-   * The `[package]` table. Omit it entirely for a virtual manifest — one that
-   * only opens a workspace.
-   *
-   * @default The project's name, when the table is declared at all
-   * @jsii ignore
-   */
   readonly package?: Partial<NonNullable<CargoManifest['package']>>
-}
-
-/**
- * Manifest fields exposed through the JSII assembly.
- */
-export interface CargoManifestOptionsBase {
-  readonly package?: unknown
   /** @jsii ignore */
   readonly 'cargo-features'?: CargoManifest['cargo-features']
   readonly project?: CargoManifest['project']
@@ -116,16 +62,9 @@ const crateName = (name: string): string => name.replace(/^@[^/]+\//, '')
 const INSTALL_COMMAND = 'cargo fetch --locked'
 
 /**
- * JSON-valued formatter options exposed through JSII.
- */
-export interface CargoWorkspaceOptionsBase extends CargoManifestOptions {
-  readonly rustfmt?: unknown
-}
-
-/**
  * Cargo workspace options.
  */
-export interface CargoWorkspaceOptions extends CargoWorkspaceOptionsBase {
+export interface CargoWorkspaceOptions extends CargoManifestOptions {
   /**
    * `deny.toml` contents. Omit to leave `cargo deny` unconfigured.
    */
@@ -135,7 +74,6 @@ export interface CargoWorkspaceOptions extends CargoWorkspaceOptionsBase {
    * `rustfmt.toml` contents.
    *
    * @default The edition declared by `[workspace.package]`
-   * @jsii ignore
    */
   readonly rustfmt?: Rustfmt
 

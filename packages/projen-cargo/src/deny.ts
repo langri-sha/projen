@@ -13,22 +13,13 @@ export interface CargoDenySection {
 }
 
 /**
- * Open deny tables exposed as JSON maps through JSII.
- */
-export interface CargoDenyOptionsBase {
-  readonly graph?: { readonly [key: string]: unknown }
-  readonly output?: { readonly [key: string]: unknown }
-  readonly sources?: { readonly [key: string]: unknown }
-}
-
-/**
  * `cargo deny` configuration.
  *
  * Written out by hand: SchemaStore publishes no schema for `deny.toml`.
  *
  * @see https://embarkstudios.github.io/cargo-deny/checks/cfg.html
  */
-export interface CargoDenyOptions extends CargoDenyOptionsBase {
+export interface CargoDenyOptions {
   /**
    * How the dependency graph `cargo deny` checks is built — the targets to
    * resolve for, the features to enable, the crates to leave out.

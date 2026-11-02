@@ -471,15 +471,12 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        "schemastore-to-typescript --no-cache 'cargo manifest' src/cargo.ts",
-        'schemastore-to-typescript --no-cache rustfmt src/rustfmt.ts',
+        "schemastore-to-typescript --no-cache --jsii 'cargo manifest' src/cargo.ts",
+        'schemastore-to-typescript --no-cache --jsii rustfmt src/rustfmt.ts',
       ].join(' && '),
     )
 
-    project.package?.setScript(
-      'prepublishOnly',
-      "rm -rf dist; node ../../scripts/build-jsii-models.mjs 'cargo manifest' src/cargo.ts rustfmt src/rustfmt.ts",
-    )
+    project.package?.setScript('prepublishOnly', 'rm -rf dist; jsii')
   },
   (project) =>
     smoke(project, {
