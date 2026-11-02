@@ -7,7 +7,7 @@ import { synthSnapshot } from 'projen/lib/util/synth'
 import { parse } from 'smol-toml'
 
 import {
-  type PEP735DependencyGroups,
+  type PyProject,
   type Source,
   type Uv,
   UvPackage,
@@ -57,7 +57,7 @@ test('workspace', () => {
 })
 
 test('names the types its own options are written in', () => {
-  const groups: PEP735DependencyGroups = { dev: ['ty>=0.0.52'] }
+  const groups: PyProject['dependency-groups'] = { dev: ['ty>=0.0.52'] }
   const source: Source = { workspace: true }
   const uv: Uv = { sources: { lib: source } }
 
