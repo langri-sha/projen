@@ -12,7 +12,7 @@ const project = new projen.Project({ name: 'smoke', outdir })
 const read = (file) => fs.readFileSync(path.join(outdir, file), 'utf8')
 
 new Dagger(project, {
-  engineVersion: 'v1.0.0-beta.15',
+  engineVersion: 'v1.0.0-beta.21',
   modules: {
     '.dagger/build': {
       dependencies: ['../lint'],
