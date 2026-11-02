@@ -21,7 +21,28 @@ export * from './toolchain.js'
  * `[package] name` is optional here where the schema requires it, because both
  * components fall back to the project's own name.
  */
-export interface CargoManifestOptions extends Omit<CargoManifest, 'package'> {
+export interface CargoManifestOptions {
+  'cargo-features'?: CargoManifest['cargo-features']
+  project?: CargoManifest['project']
+  workspace?: CargoManifest['workspace']
+  lib?: CargoManifest['lib']
+  bin?: CargoManifest['bin']
+  example?: CargoManifest['example']
+  test?: CargoManifest['test']
+  bench?: CargoManifest['bench']
+  dependencies?: CargoManifest['dependencies']
+  'dev-dependencies'?: CargoManifest['dev-dependencies']
+  dev_dependencies?: CargoManifest['dev_dependencies']
+  'build-dependencies'?: CargoManifest['build-dependencies']
+  build_dependencies?: CargoManifest['build_dependencies']
+  target?: CargoManifest['target']
+  badges?: CargoManifest['badges']
+  features?: CargoManifest['features']
+  lints?: CargoManifest['lints']
+  patch?: CargoManifest['patch']
+  replace?: CargoManifest['replace']
+  profile?: CargoManifest['profile']
+
   /**
    * The `[package]` table. Omit it entirely for a virtual manifest — one that
    * only opens a workspace.
