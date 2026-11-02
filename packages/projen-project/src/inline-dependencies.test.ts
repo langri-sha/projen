@@ -235,6 +235,109 @@ test('a Webpack warning fails without leaving a publish transaction', () => {
   expect(fs.existsSync(stash)).toBe(false)
 })
 
+test.each([
+  ['workspace:*', '1.2.3'],
+  ['workspace:^', '^1.2.3'],
+  ['workspace:~', '~1.2.3'],
+  ['1.2.3', '1.2.3'],
+])(
+  'compiles %s using the installed version without changing its publish view',
+  (range, compiled) => {
+    const { directory, manifest, stash } = fixture()
+    const source = JSON.parse(fs.readFileSync(manifest, 'utf8'))
+    source.dependencies['fixture-sibling'] = range
+    const original = JSON.stringify(source) + '\n\n'
+    fs.writeFileSync(manifest, original)
+
+    run(directory, { npm_command: 'publish' })
+
+    expect(
+      JSON.parse(
+        fs.readFileSync(path.join(directory, 'compiler-manifest.json'), 'utf8'),
+      ).dependencies,
+    ).toEqual({ 'fixture-sibling': compiled })
+    expect(JSON.parse(fs.readFileSync(manifest, 'utf8')).dependencies).toEqual({
+      'fixture-sibling': range,
+    })
+    expect(fs.readFileSync(stash, 'utf8')).toBe(original)
+
+    run(directory, {}, 'restore')
+
+    expect(fs.readFileSync(manifest, 'utf8')).toBe(original)
+    expect(fs.existsSync(stash)).toBe(false)
+  },
+)
+
+test('normalization failure leaves the original manifest byte for byte', () => {
+  const { directory, sibling, manifest, stash, original } = fixture()
+  const file = path.join(sibling, 'package.json')
+  const dependency = JSON.parse(fs.readFileSync(file, 'utf8'))
+  delete dependency.version
+  fs.writeFileSync(file, JSON.stringify(dependency))
+
+  expect(() => run(directory)).toThrow()
+
+  expect(fs.readFileSync(manifest, 'utf8')).toBe(original)
+  expect(fs.existsSync(stash)).toBe(false)
+  expect(fs.existsSync(path.join(directory, 'compiler-manifest.json'))).toBe(
+    false,
+  )
+})
+
+test('compiler failure restores exact original bytes without a stash', () => {
+  const { directory, manifest, stash, original } = fixture()
+
+  expect(() =>
+    run(directory, { FAIL_COMPILER: '1', npm_command: 'publish' }),
+  ).toThrow()
+
+  expect(fs.readFileSync(manifest, 'utf8')).toBe(original)
+  expect(fs.existsSync(stash)).toBe(false)
+})
+
+test('a publish retry accepts its prior publish view after a sibling version changes', () => {
+  const { directory, sibling, manifest, stash, original } = fixture()
+  run(directory, { npm_command: 'publish' })
+  const dependencyPath = path.join(sibling, 'package.json')
+  const dependency = JSON.parse(fs.readFileSync(dependencyPath, 'utf8'))
+  dependency.version = '1.2.4'
+  fs.writeFileSync(dependencyPath, JSON.stringify(dependency))
+
+  run(directory, { npm_command: 'publish' })
+
+  expect(
+    JSON.parse(
+      fs.readFileSync(path.join(directory, 'compiler-manifest.json'), 'utf8'),
+    ).dependencies,
+  ).toEqual({ 'fixture-sibling': '1.2.4' })
+  expect(fs.readFileSync(stash, 'utf8')).toBe(original)
+  expect(JSON.parse(fs.readFileSync(manifest, 'utf8')).dependencies).toEqual({
+    'fixture-sibling': 'workspace:*',
+  })
+})
+
+test('a stale publish stash cannot overwrite an independently edited manifest', () => {
+  const { directory, manifest, stash, original } = fixture()
+  run(directory, { npm_command: 'publish' })
+  const edited = fs.readFileSync(manifest, 'utf8').replace('2.3.4', '2.3.5')
+  fs.writeFileSync(manifest, edited)
+
+  expect(() => run(directory, { npm_command: 'publish' })).toThrow()
+
+  expect(fs.readFileSync(manifest, 'utf8')).toBe(edited)
+  expect(fs.readFileSync(stash, 'utf8')).toBe(original)
+})
+
+test('a licence failure leaves the original manifest without a stash', () => {
+  const { directory, thirdParty, manifest, stash, original } = fixture()
+  fs.rmSync(path.join(thirdParty, 'LICENSE'))
+
+  expect(() => run(directory, { npm_command: 'publish' })).toThrow()
+
+  expect(fs.readFileSync(manifest, 'utf8')).toBe(original)
+  expect(fs.existsSync(stash)).toBe(false)
+})
+
 test('preserved modules keep subpath classes identical and inline their own dependencies', () => {
   const { directory, sibling, manifest, original } = fixture()
   fs.appendFileSync(

@@ -103,6 +103,37 @@ const withoutDependencies = (text) => {
   return `${JSON.stringify(manifest, null, 2)}\n`
 }
 
+// Only the compiler sees concrete workspace versions; publishing keeps its
+// existing manifest view so retry validation is independent of sibling bumps.
+const forCompilation = (text) => {
+  const manifest = JSON.parse(text)
+
+  for (const field of ['dependencies', 'peerDependencies']) {
+    for (const [name, spec] of Object.entries(manifest[field] ?? {})) {
+      if (!spec.startsWith('workspace:')) {
+        continue
+      }
+      const range = spec.slice('workspace:'.length)
+      const { version } = JSON.parse(
+        fs.readFileSync(
+          path.join(packageDir, 'node_modules', name, 'package.json'),
+          'utf8',
+        ),
+      )
+      if (
+        !['*', '^', '~'].includes(range) ||
+        typeof version !== 'string' ||
+        !version
+      ) {
+        throw new Error(`Cannot resolve workspace range ${name}@${spec}.`)
+      }
+      manifest[field][name] = `${range === '*' ? '' : range}${version}`
+    }
+  }
+
+  return `${JSON.stringify(manifest, null, 2)}\n`
+}
+
 // Inlines everything `dist/index.js` imports but `external`, and returns the
 // name of each package it inlined, by directory, since versions differ.
 const bundle = async (external, workspace) => {
@@ -301,8 +332,9 @@ const commands = {
 
     const original = readManifest()
     const stripped = withoutDependencies(original)
+    const compiled = forCompilation(stripped)
 
-    fs.writeFileSync(manifestPath, stripped)
+    fs.writeFileSync(manifestPath, compiled)
 
     try {
       execFileSync('jsii', { stdio: 'inherit' })
