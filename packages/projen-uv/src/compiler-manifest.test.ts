@@ -31,17 +31,16 @@ test.each([0, 1])(
     )
 
     try {
-      try {
+      const run = () =>
         execFileSync(process.execPath, [script, 'compile'], {
           cwd: directory,
           env: { ...process.env, PATH: `${bin}:${process.env.PATH}` },
           stdio: 'pipe',
         })
-        expect(exitCode).toBe(0)
-      } catch (error) {
-        if (exitCode === 0) {
-          throw error
-        }
+      if (exitCode) {
+        expect(run).toThrow()
+      } else {
+        run()
       }
       expect(
         JSON.parse(readFileSync(join(directory, 'observed.json'), 'utf8'))
