@@ -1,5 +1,5 @@
 {
-  "type": "patch",
+  "type": "minor",
   "comment": "Compile Cargo components with JSII.",
   "packageName": "projen-cargo",
   "email": "email not defined",
