@@ -99,11 +99,8 @@ differently. `rustfmt.toml` therefore carries over the edition
 `[workspace.package]` declares, unless you set one yourself.
 
 The package ships an ESM entry point and a `.jsii` assembly exposing both
-components. Package and Rustfmt tables cross JSII as JSON data; TypeScript
-source and published declarations retain the generated names, mutable tables and
-dependency-selector constraints. Wire keys containing hyphens or underscores and
-custom keys on named deny sections remain available in TypeScript. Bindings can
-set those keys through the generated files' `addOverride`.
+components. The partial package table and unsupported wire keys are omitted from
+the JSII assembly; use the generated files' `addOverride` for those fields.
 
 [cargo]: https://doc.rust-lang.org/cargo/
 [projen]: https://projen.io/

@@ -1,6 +1,6 @@
 {
   "type": "patch",
-  "comment": "Compile Cargo components with JSII while preserving the TypeScript configuration API.",
+  "comment": "Compile Cargo components with JSII.",
   "packageName": "projen-cargo",
   "email": "email not defined",
   "dependentChangeType": "patch"
