@@ -7,7 +7,7 @@
  * them would be wrong within a release or two of being written — whereas the
  * six section names have been stable since `cargo deny` 0.9.
  */
-interface CargoDenySection {
+export interface CargoDenySection {
   readonly [key: string]: unknown
 }
 
@@ -34,59 +34,70 @@ export interface CargoDenyOptions {
    * The `cargo deny check advisories` pass, over RustSec advisories and
    * yanked or unmaintained crates.
    */
-  readonly advisories?: CargoDenySection & {
-    /**
-     * Advisory identifiers to accept, each ideally with the reason it is
-     * tolerable.
-     */
-    readonly ignore?: Array<
-      string | { readonly id: string; readonly reason?: string }
-    >
-
-    /**
-     * How to treat a dependency whose version has been yanked.
-     */
-    readonly yanked?: 'deny' | 'warn' | 'allow'
-  }
+  readonly advisories?: CargoDenyAdvisoriesOptions
 
   /**
    * The `cargo deny check licenses` pass.
    */
-  readonly licenses?: CargoDenySection & {
-    /**
-     * SPDX expressions a dependency's license must satisfy.
-     */
-    readonly allow?: string[]
-
-    /**
-     * Per-crate exemptions from `allow`.
-     */
-    readonly exceptions?: Array<{
-      readonly name: string
-      readonly version?: string
-      readonly allow: string[]
-    }>
-  }
+  readonly licenses?: CargoDenyLicensesOptions
 
   /**
    * The `cargo deny check bans` pass, over duplicate, unwanted or
    * build-script-running crates.
    */
-  readonly bans?: CargoDenySection & {
-    /**
-     * How to treat a crate resolved at more than one version.
-     */
-    readonly 'multiple-versions'?: 'deny' | 'warn' | 'allow'
-
-    /**
-     * How to treat a dependency requirement of `*`.
-     */
-    readonly wildcards?: 'deny' | 'warn' | 'allow'
-  }
+  readonly bans?: CargoDenyBansOptions
 
   /**
    * The `cargo deny check sources` pass, over the registries and Git remotes
    * dependencies are fetched from.
    */
   readonly sources?: CargoDenySection
+}
+
+export interface CargoDenyAdvisoriesOptions extends CargoDenySection {
+  /**
+   * Advisory identifiers to accept, each ideally with the reason it is
+   * tolerable.
+   */
+  readonly ignore?: Array<string | CargoDenyIgnoredAdvisory>
+
+  /**
+   * How to treat a dependency whose version has been yanked.
+   */
+  readonly yanked?: 'deny' | 'warn' | 'allow'
+}
+
+export interface CargoDenyLicensesOptions extends CargoDenySection {
+  /**
+   * SPDX expressions a dependency's license must satisfy.
+   */
+  readonly allow?: string[]
+
+  /**
+   * Per-crate exemptions from `allow`.
+   */
+  readonly exceptions?: CargoDenyLicenseException[]
+}
+
+export interface CargoDenyBansOptions extends CargoDenySection {
+  /**
+   * How to treat a crate resolved at more than one version.
+   */
+  readonly 'multiple-versions'?: 'deny' | 'warn' | 'allow'
+
+  /**
+   * How to treat a dependency requirement of `*`.
+   */
+  readonly wildcards?: 'deny' | 'warn' | 'allow'
+}
+
+export interface CargoDenyIgnoredAdvisory {
+  readonly id: string
+  readonly reason?: string
+}
+
+export interface CargoDenyLicenseException {
+  readonly name: string
+  readonly version?: string
+  readonly allow: string[]
 }
