@@ -3,6 +3,11 @@
 Collection of [projen] templates for bootstraping monorepos and workspace
 projects.
 
+The preset adds each enabled tool to the generated project's development
+dependencies. Install the generated dependencies before running those tools;
+consumers supply only `projen` as a peer. Explicit tool versions remain subject
+to the preset's supported ranges.
+
 ## Features
 
 - managing [Beachball] configuration for publishing packages

@@ -997,67 +997,12 @@ project.addSubproject(
         'semver@7.8.5',
       ],
       devDeps: [
+        ...presetTools.devDeps,
         '@types/hosted-git-info@3.0.5',
         '@types/ramda@0.32.0',
         '@types/semver@7.8.0',
       ],
-      peerDeps: [...presetTools.devDeps, ...projenPeer.peerDeps],
-      peerDependenciesMeta: {
-        '@babel/core': {
-          optional: true,
-        },
-        '@changesets/cli': {
-          optional: true,
-        },
-        '@langri-sha/babel-preset': {
-          optional: true,
-        },
-        '@langri-sha/eslint-config': {
-          optional: true,
-        },
-        '@langri-sha/lint-staged': {
-          optional: true,
-        },
-        '@langri-sha/prettier': {
-          optional: true,
-        },
-        '@swc-node/register': {
-          optional: true,
-        },
-        '@swc/core': {
-          optional: true,
-        },
-        beachball: {
-          optional: true,
-        },
-        eslint: {
-          optional: true,
-        },
-        husky: {
-          optional: true,
-        },
-        jest: {
-          optional: true,
-        },
-        'lint-staged': {
-          optional: true,
-        },
-        prettier: {
-          optional: true,
-        },
-        skills: {
-          optional: true,
-        },
-        tsx: {
-          optional: true,
-        },
-        typescript: {
-          optional: true,
-        },
-        vitest: {
-          optional: true,
-        },
-      },
+      peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,

@@ -54,89 +54,33 @@
     "semver": "7.8.5"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.1.1",
-    "@langri-sha/vitest": "0.2.3",
-    "@types/hosted-git-info": "3.0.5",
-    "@types/ramda": "0.32.0",
-    "@types/semver": "7.8.0",
-    "projen": "0.104.1"
-  },
-  "peerDependencies": {
     "@babel/core": "^8.0.0",
     "@changesets/cli": "^3.0.0",
     "@langri-sha/babel-preset": "^0.6.0",
     "@langri-sha/eslint-config": "^0.12.0",
     "@langri-sha/lint-staged": "^0.9.0",
     "@langri-sha/prettier": "^0.4.0",
+    "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/vitest": "0.2.3",
     "@swc-node/register": "^1.0.0",
     "@swc/core": "^1.6.0",
+    "@types/hosted-git-info": "3.0.5",
+    "@types/ramda": "0.32.0",
+    "@types/semver": "7.8.0",
     "beachball": "^2.0.0",
     "eslint": "^10.4.0",
     "husky": "^9.0.1",
     "jest": "^30.0.0",
     "lint-staged": "^17.0.0",
     "prettier": "^3.0.0",
-    "projen": ">=0.86.0 <1.0.0",
+    "projen": "0.104.1",
     "skills": "^1.7.2",
     "tsx": "^4.0.0",
     "typescript": "^5.5.0",
     "vitest": "^5.0.0"
   },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    },
-    "@changesets/cli": {
-      "optional": true
-    },
-    "@langri-sha/babel-preset": {
-      "optional": true
-    },
-    "@langri-sha/eslint-config": {
-      "optional": true
-    },
-    "@langri-sha/lint-staged": {
-      "optional": true
-    },
-    "@langri-sha/prettier": {
-      "optional": true
-    },
-    "@swc-node/register": {
-      "optional": true
-    },
-    "@swc/core": {
-      "optional": true
-    },
-    "beachball": {
-      "optional": true
-    },
-    "eslint": {
-      "optional": true
-    },
-    "husky": {
-      "optional": true
-    },
-    "jest": {
-      "optional": true
-    },
-    "lint-staged": {
-      "optional": true
-    },
-    "prettier": {
-      "optional": true
-    },
-    "skills": {
-      "optional": true
-    },
-    "tsx": {
-      "optional": true
-    },
-    "typescript": {
-      "optional": true
-    },
-    "vitest": {
-      "optional": true
-    }
+  "peerDependencies": {
+    "projen": ">=0.86.0 <1.0.0"
   },
   "publishConfig": {
     "access": "public",
