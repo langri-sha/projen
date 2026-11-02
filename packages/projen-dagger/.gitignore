@@ -11,4 +11,5 @@ node_modules/
 !/tsconfig.build.json
 dagger-module.ts
 dagger-workspace.ts
+!/smoke.mjs
 !/.projenrc.ts

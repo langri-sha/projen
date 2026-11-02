@@ -116,6 +116,7 @@
 /packages/projen-dagger/package.json linguist-generated
 /packages/projen-dagger/pnpm-lock.yaml linguist-generated
 /packages/projen-dagger/pnpm-workspace.yaml linguist-generated
+/packages/projen-dagger/smoke.mjs linguist-generated
 /packages/projen-dagger/tsconfig.build.json linguist-generated
 /packages/projen-dagger/tsconfig.json linguist-generated
 /packages/projen-editorconfig/.gitattributes linguist-generated
