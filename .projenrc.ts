@@ -240,7 +240,10 @@ const publish = (
 
 const publishJsii = (
   project: Project,
-  { inline = false }: { inline?: boolean } = {},
+  {
+    inline = false,
+    preserveModules = false,
+  }: { inline?: boolean; preserveModules?: boolean } = {},
 ) => {
   if (!inline) {
     return publish(project, 'jsii')
@@ -255,7 +258,10 @@ const publishJsii = (
     path.join(project.root.outdir, 'scripts', 'inline-dependencies.mjs'),
   )}`
 
-  publish(project, `${script} build`)
+  publish(
+    project,
+    `${script} build${preserveModules ? ' --preserve-modules' : ''}`,
+  )
   project.package?.setScript('postpublish', `${script} restore`)
 }
 
