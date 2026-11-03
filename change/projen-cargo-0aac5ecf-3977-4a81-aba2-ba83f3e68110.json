@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Publish a jsii assembly, which omits the deny option, the package table, every nested key with a hyphen or underscore, and all but four of the rustfmt options.",
+  "packageName": "projen-cargo",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

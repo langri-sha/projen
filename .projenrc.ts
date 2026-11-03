@@ -441,6 +441,7 @@ project.addSubproject(
   {
     name: 'projen-cargo',
     outdir: path.join('packages', 'projen-cargo'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -453,13 +454,17 @@ project.addSubproject(
       description:
         'projen components for authoring Cargo workspaces and the crates in them.',
       type: 'module',
-      devDeps: ['schemastore-to-typescript@1.3.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.3.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) =>
+    publish(
+      project,
+      'jsii && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
+    ),
   (project) => {
     project.addGitIgnore('cargo.ts')
     project.addGitIgnore('rustfmt.ts')
@@ -467,14 +472,9 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        "schemastore-to-typescript --no-cache 'cargo manifest' src/cargo.ts",
-        'schemastore-to-typescript --no-cache rustfmt src/rustfmt.ts',
+        "schemastore-to-typescript --no-cache --jsii 'cargo manifest' src/cargo.ts",
+        'schemastore-to-typescript --no-cache --jsii rustfmt src/rustfmt.ts',
       ].join(' && '),
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
     )
   },
 )
