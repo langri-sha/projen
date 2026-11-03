@@ -17,6 +17,7 @@ interface CargoDenySection {
  * Written out by hand: SchemaStore publishes no schema for `deny.toml`.
  *
  * @see https://embarkstudios.github.io/cargo-deny/checks/cfg.html
+ * @jsii ignore
  */
 export interface CargoDenyOptions {
   /**
