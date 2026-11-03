@@ -21,12 +21,58 @@ export * from './toolchain.js'
  * `[package] name` is optional here where the schema requires it, because both
  * components fall back to the project's own name.
  */
-export interface CargoManifestOptions extends Omit<CargoManifest, 'package'> {
+export interface CargoManifestOptions {
+  /** @jsii ignore */
+  readonly 'cargo-features'?: CargoManifest['cargo-features']
+
+  readonly project?: CargoManifest['project']
+
+  readonly workspace?: CargoManifest['workspace']
+
+  readonly lib?: CargoManifest['lib']
+
+  readonly bin?: CargoManifest['bin']
+
+  readonly example?: CargoManifest['example']
+
+  readonly test?: CargoManifest['test']
+
+  readonly bench?: CargoManifest['bench']
+
+  readonly dependencies?: CargoManifest['dependencies']
+
+  /** @jsii ignore */
+  readonly 'dev-dependencies'?: CargoManifest['dev-dependencies']
+
+  /** @jsii ignore */
+  readonly dev_dependencies?: CargoManifest['dev_dependencies']
+
+  /** @jsii ignore */
+  readonly 'build-dependencies'?: CargoManifest['build-dependencies']
+
+  /** @jsii ignore */
+  readonly build_dependencies?: CargoManifest['build_dependencies']
+
+  readonly target?: CargoManifest['target']
+
+  readonly badges?: CargoManifest['badges']
+
+  readonly features?: CargoManifest['features']
+
+  readonly lints?: CargoManifest['lints']
+
+  readonly patch?: CargoManifest['patch']
+
+  readonly replace?: CargoManifest['replace']
+
+  readonly profile?: CargoManifest['profile']
+
   /**
    * The `[package]` table. Omit it entirely for a virtual manifest — one that
    * only opens a workspace.
    *
    * @default The project's name, when the table is declared at all
+   * @jsii ignore
    */
   readonly package?: Partial<NonNullable<CargoManifest['package']>>
 }
@@ -47,6 +93,8 @@ const INSTALL_COMMAND = 'cargo fetch --locked'
 export interface CargoWorkspaceOptions extends CargoManifestOptions {
   /**
    * `deny.toml` contents. Omit to leave `cargo deny` unconfigured.
+   *
+   * @jsii ignore
    */
   readonly deny?: CargoDenyOptions
 
