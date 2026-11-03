@@ -61,6 +61,7 @@
 /packages/projen-cargo/package.json linguist-generated
 /packages/projen-cargo/pnpm-lock.yaml linguist-generated
 /packages/projen-cargo/pnpm-workspace.yaml linguist-generated
+/packages/projen-cargo/smoke.mjs linguist-generated
 /packages/projen-cargo/tsconfig.build.json linguist-generated
 /packages/projen-cargo/tsconfig.json linguist-generated
 /packages/projen-changesets/.gitattributes linguist-generated

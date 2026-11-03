@@ -477,6 +477,18 @@ project.addSubproject(
       ].join(' && '),
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { CargoPackage, CargoWorkspace } from 'projen-cargo'",
+      run: [
+        'new CargoWorkspace(project)',
+        "new CargoPackage(new projen.Project({ name: 'crate', parent: project, outdir: 'crate' }))",
+      ].join('\n'),
+      check: [
+        "assert.ok(read('rust-toolchain.toml').includes('channel = \"stable\"'))",
+        "assert.ok(read('crate/Cargo.toml').includes('[package]'))",
+      ].join('\n'),
+    }),
 )
 
 project.addSubproject(
