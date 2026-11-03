@@ -91,6 +91,10 @@ schema][rustfmt]. `rust-toolchain.toml` and `deny.toml` are not: rustup's schema
 types its one table as an open bag, and no schema is published for `cargo deny`
 at all, so both are written out by hand.
 
+The published jsii assembly omits `deny` and the `package` table, along with
+every manifest key spelled with a hyphen or underscore, such as `rust-version`
+and `default-features`. It also keeps only four of rustfmt's 83 options.
+
 ## rustfmt and the edition
 
 `cargo fmt` reads the edition out of `Cargo.toml`, but rustfmt invoked directly
