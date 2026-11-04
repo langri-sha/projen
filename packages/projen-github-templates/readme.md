@@ -206,13 +206,9 @@ every issue or pull request. Pass `marker: true` for an HTML comment.
 - [Creating a pull request template][pull request templates]
 - [Common validation errors when creating issue forms][validation errors]
 
-The package ships an ESM entry point and a `.jsii` assembly. JSII receives
-readonly collections and string-or-list fields as JSON data through the options
-base interfaces, including required form bodies. TypeScript options keep their
-strict types, and all inputs pass the same runtime validation. `min_length` and
-the generated component's `unmanaged` property are omitted from the assembly;
-`min_length` remains available inside a JSON form body, and unmanaged paths can
-be supplied through the constructor options.
+The published jsii assembly omits every form, template and pull request `body`,
+the `labels`, `assignees`, `projects`, `unmanaged` and `contactLinks` options,
+the `options` of dropdowns and checkboxes, and `min_length`.
 
 [chooser]:
   https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository

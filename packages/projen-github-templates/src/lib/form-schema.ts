@@ -188,7 +188,7 @@ export interface TextareaAttributes {
   readonly render?: string
 }
 
-export interface DropdownAttributes extends FormChoices {
+export interface DropdownAttributes {
   /**
    * Unique within the form, unless an `id` tells the two elements apart.
    */
@@ -212,7 +212,7 @@ export interface DropdownAttributes extends FormChoices {
   readonly default?: number
 }
 
-export interface CheckboxesAttributes extends FormChoices {
+export interface CheckboxesAttributes {
   readonly label: string
   /**
    * Supports Markdown.
@@ -230,11 +230,4 @@ export interface CheckboxesAttributes extends FormChoices {
 export interface UploadAttributes {
   readonly label: string
   readonly description?: string
-}
-
-/**
- * JSON-valued choices modeled by JSII, refined by each element's attributes.
- */
-export interface FormChoices {
-  readonly options: unknown
 }

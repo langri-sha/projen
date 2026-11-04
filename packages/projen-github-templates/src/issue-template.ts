@@ -12,20 +12,11 @@ import { validateIssueTemplate } from './lib/validate.js'
 import { stringify } from './lib/yaml-file.js'
 
 /**
- * JSON-valued fields modeled by JSII, refined by IssueTemplateOptions.
- */
-export interface IssueTemplateOptionsBase extends MarkdownTemplateOptions {
-  readonly body: unknown
-  readonly labels?: unknown
-  readonly assignees?: unknown
-}
-
-/**
  * A Markdown issue template.
  *
  * @see https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-templates
  */
-export interface IssueTemplateOptions extends IssueTemplateOptionsBase {
+export interface IssueTemplateOptions extends MarkdownTemplateOptions {
   /**
    * Shown in the template chooser. Must be more than 3 characters, or GitHub
    * silently leaves the template out, and unique across every issue template.

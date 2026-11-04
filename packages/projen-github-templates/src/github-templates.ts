@@ -31,14 +31,7 @@ export type GitHubTemplateOptions =
 export type GitHubTemplate =
   IssueForm | IssueTemplate | IssueTemplateChooser | PullRequestTemplate
 
-/**
- * JSON-valued fields modeled by JSII, refined by GitHubTemplatesOptions.
- */
-export interface GitHubTemplatesOptionsBase {
-  readonly unmanaged?: unknown
-}
-
-export interface GitHubTemplatesOptions extends GitHubTemplatesOptionsBase {
+export interface GitHubTemplatesOptions {
   /**
    * Templates keyed by repository-relative path. The path selects the kind:
    *
