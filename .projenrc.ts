@@ -933,6 +933,7 @@ project.addSubproject(
   {
     name: '@langri-sha/projen-project',
     outdir: path.join('packages', 'projen-project'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -977,6 +978,7 @@ project.addSubproject(
         'semver@7.8.5',
       ],
       devDeps: [
+        'jsii@5.9.57',
         '@types/hosted-git-info@3.0.5',
         '@types/ramda@0.32.0',
         '@types/semver@7.8.0',
@@ -1062,7 +1064,14 @@ project.addSubproject(
   },
   subproject,
   test,
-  publish,
+  publishJsii,
+  (project) => {
+    // The ambient typings beside package.json would otherwise make jsii take
+    // the package root as the source root.
+    project
+      .tryFindObjectFile('tsconfig.build.json')
+      ?.addOverride('compilerOptions.rootDir', 'src')
+  },
 )
 
 project.addSubproject(
