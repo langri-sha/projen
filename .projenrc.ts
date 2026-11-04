@@ -1355,6 +1355,7 @@ project.addSubproject(
   {
     name: 'projen-uv',
     outdir: path.join('packages', 'projen-uv'),
+    jsii: { tsconfig: 'tsconfig.build.json' },
     npmIgnore: {},
     vitest: true,
     readme: {
@@ -1368,13 +1369,13 @@ project.addSubproject(
         'projen components for authoring uv workspaces and the Python packages in them.',
       type: 'module',
       deps: ['smol-toml@1.9.1'],
-      devDeps: ['schemastore-to-typescript@1.3.0'],
+      devDeps: ['jsii@5.9.57', 'schemastore-to-typescript@1.3.0'],
       peerDeps: [...projenPeer.peerDeps],
     },
   },
   subproject,
   test,
-  publish,
+  (project) => publishJsii(project, { inline: true }),
   (project) => {
     project.addGitIgnore('pyproject.ts')
     project.addGitIgnore('uv.ts')
@@ -1382,14 +1383,9 @@ project.addSubproject(
     project.package?.setScript(
       'prepare',
       [
-        'schemastore-to-typescript --no-cache PyProject src/pyproject.ts',
-        'schemastore-to-typescript --no-cache uv src/uv.ts',
+        'schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts',
+        'schemastore-to-typescript --no-cache --jsii uv src/uv.ts',
       ].join(' && '),
-    )
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; tsc --project tsconfig.build.json && test -f dist/pyproject.d.ts && test -f dist/uv.d.ts',
     )
   },
 )
