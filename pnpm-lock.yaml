@@ -752,6 +752,9 @@ importers:
       '@types/semver':
         specifier: 7.8.0
         version: 7.8.0
+      jsii:
+        specifier: 5.9.57
+        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
