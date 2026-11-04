@@ -1,8 +1,27 @@
 diff --git a/lib/project-info.js b/lib/project-info.js
-index 62630bf1c76effac44081479b31f762ece4697e0..2a7c1499887482a34428e3debef4874012182347 100644
+index 62630bf1c76effac44081479b31f762ece4697e0..11477cc4f5ccf1bd828fda0cbfb4ee7707cd96a5 100644
 --- a/lib/project-info.js
 +++ b/lib/project-info.js
-@@ -232,7 +232,7 @@ class DependencyResolver {
+@@ -76,8 +76,8 @@ function loadProjectInfo(projectRoot) {
+         keywords: pkg.keywords,
+         main: _required(pkg.main, 'The "package.json" file must specify the "main" attribute'),
+         types: pkg.types,
+-        dependencies,
+-        peerDependencies,
++        dependencies: filterDictByKey(dependencies, (name) => name in resolved),
++        peerDependencies: filterDictByKey(peerDependencies, (name) => name in resolved),
+         dependencyClosure: transitiveDependencies,
+         bundleDependencies,
+         targets: {
+@@ -228,11 +228,15 @@ class DependencyResolver {
+                 resolved = this.resolveDependency(root, name, declaration);
+             }
+             catch (e) {
++                if (e instanceof utils_1.JsiiError && e.message.startsWith('Unable to locate jsii assembly')) {
++                    LOG.warn(`Skipping "${name}" ("${declaration}"): it is not a jsii module.`);
++                    continue;
++                }
+                 LOG.error(`Unable to find a JSII dependency named "${name}" as "${declaration}". If you meant to include a non-JSII dependency, try adding it to bundledDependencies instead.`);
                  throw e;
              }
              const actualVersion = resolved.dependencyInfo.assembly.version;
@@ -11,7 +30,7 @@ index 62630bf1c76effac44081479b31f762ece4697e0..2a7c1499887482a34428e3debef48740
                  throw new utils_1.JsiiError(`Declared dependency on version ${declaration} of ${name}, but version ${actualVersion} was found`);
              }
              ret[name] = resolved.resolvedFile;
-@@ -260,7 +260,9 @@ class DependencyResolver {
+@@ -260,7 +264,9 @@ class DependencyResolver {
          return Array.from(closure.values());
      }
      resolveDependency(root, name, declaration) {
