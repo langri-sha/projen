@@ -1,0 +1,24 @@
+diff --git a/lib/project-info.js b/lib/project-info.js
+index 62630bf1c76effac44081479b31f762ece4697e0..2a7c1499887482a34428e3debef4874012182347 100644
+--- a/lib/project-info.js
++++ b/lib/project-info.js
+@@ -232,7 +232,7 @@ class DependencyResolver {
+                 throw e;
+             }
+             const actualVersion = resolved.dependencyInfo.assembly.version;
+-            if (!semver.satisfies(actualVersion, declaration)) {
++            if (!semver.satisfies(actualVersion, resolved.resolvedVersion)) {
+                 throw new utils_1.JsiiError(`Declared dependency on version ${declaration} of ${name}, but version ${actualVersion} was found`);
+             }
+             ret[name] = resolved.resolvedFile;
+@@ -260,7 +260,9 @@ class DependencyResolver {
+         return Array.from(closure.values());
+     }
+     resolveDependency(root, name, declaration) {
+-        const { version: versionString, localPackage } = _resolveVersion(declaration, root);
++        const { version: versionString, localPackage } = declaration.startsWith('workspace:')
++            ? { version: `^${JSON.parse(fs.readFileSync(path.join(root, 'node_modules', name, 'package.json'), 'utf-8')).version}` }
++            : _resolveVersion(declaration, root);
+         const version = new semver.Range(versionString);
+         if (!version) {
+             throw new utils_1.JsiiError(`Invalid semver expression for ${name}: ${versionString}`);
