@@ -383,6 +383,7 @@
 /packages/projen-uv/package.json linguist-generated
 /packages/projen-uv/pnpm-lock.yaml linguist-generated
 /packages/projen-uv/pnpm-workspace.yaml linguist-generated
+/packages/projen-uv/smoke.mjs linguist-generated
 /packages/projen-uv/tsconfig.build.json linguist-generated
 /packages/projen-uv/tsconfig.json linguist-generated
 /packages/projen-worktrunk/.gitattributes linguist-generated
