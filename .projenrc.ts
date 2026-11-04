@@ -124,6 +124,7 @@ const project = new Project({
   },
   pnpmWorkspace: {
     packages: ['packages/*'],
+    patchedDependencies: { 'jsii@5.9.57': 'patches/jsii@5.9.57.patch' },
     minimumReleaseAgeExclude: ['@langri-sha/*', 'schemastore-to-typescript'],
     allowBuilds: {
       '@swc/core': true,
