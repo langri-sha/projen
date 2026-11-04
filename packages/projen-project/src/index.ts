@@ -241,10 +241,78 @@ export interface ProjectJsiiOptions {
   readonly tsconfig: string
 }
 
-export interface ProjectOptions extends Omit<
-  BaseProjectOptions,
-  'renovatebot' | 'renovatebotOptions'
-> {
+export interface ProjectOptions {
+  /**
+   * This is the name of your project.
+   *
+   * @default $BASEDIR
+   */
+  readonly name: BaseProjectOptions['name']
+
+  /**
+   * Whether to commit the managed files by default.
+   *
+   * @default true
+   */
+  readonly commitGenerated?: BaseProjectOptions['commitGenerated']
+
+  /**
+   * Configuration options for .gitignore file.
+   */
+  readonly gitIgnoreOptions?: BaseProjectOptions['gitIgnoreOptions']
+
+  /**
+   * Configuration options for git.
+   */
+  readonly gitOptions?: BaseProjectOptions['gitOptions']
+
+  /**
+   * Configure logging options such as verbosity.
+   *
+   * @default {}
+   */
+  readonly logging?: BaseProjectOptions['logging']
+
+  /**
+   * The root directory of the project.
+   *
+   * @default "."
+   */
+  readonly outdir?: BaseProjectOptions['outdir']
+
+  /**
+   * The parent project, if this project is part of a bigger project.
+   */
+  readonly parent?: BaseProjectOptions['parent']
+
+  /**
+   * Generate a project tree file (`.projen/tree.json`) that shows all components and their relationships. Useful for understanding your project structure and debugging.
+   *
+   * @default false
+   */
+  readonly projectTree?: BaseProjectOptions['projectTree']
+
+  /**
+   * The shell command to use in order to run the projen CLI.
+   *
+   * @default - the package manager's projen command, such as "pnpm exec projen"
+   */
+  readonly projenCommand?: BaseProjectOptions['projenCommand']
+
+  /**
+   * Generate (once) .projenrc.json (in JSON). Set to `false` in order to disable .projenrc.json generation.
+   *
+   * @default false
+   */
+  readonly projenrcJson?: BaseProjectOptions['projenrcJson']
+
+  /**
+   * Options for .projenrc.json.
+   *
+   * @default - default options
+   */
+  readonly projenrcJsonOptions?: BaseProjectOptions['projenrcJsonOptions']
+
   /**
    * Pass in to set up Babel.
    */
