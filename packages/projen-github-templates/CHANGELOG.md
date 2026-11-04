@@ -1,8 +1,16 @@
 # Change Log - projen-github-templates
 
-<!-- This log was last generated on Sun, 25 Oct 2026 07:43:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.1
+
+Wed, 04 Nov 2026 01:55:45 GMT
+
+### Patches
+
+- Name issue form attribute interfaces and publish a jsii assembly, which omits template bodies, labels, assignees, projects, unmanaged paths, contact links, dropdown and checkbox options, and min_length. (filip.dupanovic@gmail.com)
 
 ## 0.2.0
 

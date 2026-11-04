@@ -2,6 +2,21 @@
   "name": "projen-github-templates",
   "entries": [
     {
+      "date": "Wed, 04 Nov 2026 01:55:45 GMT",
+      "version": "0.2.1",
+      "tag": "projen-github-templates_v0.2.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-github-templates",
+            "commit": "c913ccffe0b2315012d266b5b156fe1cadb989b3",
+            "comment": "Name issue form attribute interfaces and publish a jsii assembly, which omits template bodies, labels, assignees, projects, unmanaged paths, contact links, dropdown and checkbox options, and min_length."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sat, 31 Oct 2026 17:00:43 GMT",
       "version": "0.2.0",
       "tag": "projen-github-templates_v0.2.0",

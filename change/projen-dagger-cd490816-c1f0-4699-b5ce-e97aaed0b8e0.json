@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Publish a jsii assembly, which omits the workspace option and each module's runtime, dependencies, codegen and clients. The generated Dagger configuration types and `DaggerModuleOptions` become readonly, and `SDK` is renamed `Sdk`.",
-  "packageName": "projen-dagger",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

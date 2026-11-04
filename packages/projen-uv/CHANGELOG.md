@@ -1,8 +1,16 @@
 # Change Log - projen-uv
 
-<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.0
+
+Wed, 04 Nov 2026 01:55:45 GMT
+
+### Minor changes
+
+- Publish a jsii assembly, which omits the project, dependency-groups and build-system tables, every tool table but uv, and the uv options spelled with a hyphen. (filip.dupanovic@gmail.com)
 
 ## 0.2.6
 

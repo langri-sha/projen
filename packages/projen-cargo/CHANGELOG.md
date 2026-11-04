@@ -1,8 +1,16 @@
 # Change Log - projen-cargo
 
-<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.0
+
+Wed, 04 Nov 2026 01:55:45 GMT
+
+### Minor changes
+
+- Publish a jsii assembly, which omits the deny option, the package table, every nested key with a hyphen or underscore, and all but four of the rustfmt options. (filip.dupanovic@gmail.com)
 
 ## 0.2.5
 

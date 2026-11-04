@@ -2,6 +2,21 @@
   "name": "projen-uv",
   "entries": [
     {
+      "date": "Wed, 04 Nov 2026 01:55:45 GMT",
+      "version": "0.3.0",
+      "tag": "projen-uv_v0.3.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-uv",
+            "commit": "c913ccffe0b2315012d266b5b156fe1cadb989b3",
+            "comment": "Publish a jsii assembly, which omits the project, dependency-groups and build-system tables, every tool table but uv, and the uv options spelled with a hyphen."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 19:06:54 GMT",
       "version": "0.2.6",
       "tag": "projen-uv_v0.2.6",

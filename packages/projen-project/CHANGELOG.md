@@ -1,8 +1,23 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.48.3
+
+Wed, 04 Nov 2026 01:55:45 GMT
+
+### Patches
+
+- Update dependency eslint to v10.14.0
+- Bump projen-cargo to v0.3.0
+- Bump projen-dagger to v0.5.0
+- Bump projen-eslint to v0.3.23
+- Bump projen-github-templates to v0.2.1
+- Bump projen-skills to v0.3.2
+- Bump projen-uv to v0.3.0
+- Bump projen-worktrunk to v0.1.9
 
 ## 0.48.2
 

@@ -1,8 +1,16 @@
 # Change Log - projen-dagger
 
-<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.0
+
+Wed, 04 Nov 2026 01:55:45 GMT
+
+### Minor changes
+
+- Publish a jsii assembly, which omits the workspace option and each module's runtime, dependencies, codegen and clients. The generated Dagger configuration types and `DaggerModuleOptions` become readonly, and `SDK` is renamed `Sdk`. (filip.dupanovic@gmail.com)
 
 ## 0.4.2
 

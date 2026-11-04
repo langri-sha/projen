@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Publish a jsii assembly, which omits the project, dependency-groups and build-system tables, every tool table but uv, and the uv options spelled with a hyphen.",
-  "packageName": "projen-uv",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

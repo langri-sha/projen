@@ -2,6 +2,21 @@
   "name": "projen-dagger",
   "entries": [
     {
+      "date": "Wed, 04 Nov 2026 01:55:45 GMT",
+      "version": "0.5.0",
+      "tag": "projen-dagger_v0.5.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "c913ccffe0b2315012d266b5b156fe1cadb989b3",
+            "comment": "Publish a jsii assembly, which omits the workspace option and each module's runtime, dependencies, codegen and clients. The generated Dagger configuration types and `DaggerModuleOptions` become readonly, and `SDK` is renamed `Sdk`."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 19:06:54 GMT",
       "version": "0.4.2",
       "tag": "projen-dagger_v0.4.2",
