@@ -245,17 +245,17 @@ export interface ProjectOptions extends Omit<
   BaseProjectOptions,
   'renovatebot' | 'renovatebotOptions'
 > {
-  /*
-   * Pass in to set up Beachball.
+  /**
+   * Pass in to set up Babel.
    */
   babel?: BabelOptions
 
-  /*
+  /**
    * Pass in to set up Beachball.
    */
   beachball?: BeachballOptions
 
-  /*
+  /**
    * Pass in to set up Cargo. Root projects get a workspace, subprojects a
    * crate in it.
    */
@@ -282,8 +282,8 @@ export interface ProjectOptions extends Omit<
    */
   claude?: ClaudeOptions
 
-  /*
-   * Pass in to set up Beachball.
+  /**
+   * Pass in to set up CODEOWNERS.
    */
   codeowners?: CodeownersOptions
 
@@ -345,7 +345,7 @@ export interface ProjectOptions extends Omit<
    */
   jsii?: ProjectJsiiOptions
 
-  /*
+  /**
    * Options for the linting synthesized files.
    */
   lintSynthesized?: LintSynthesizedOptions
@@ -362,7 +362,7 @@ export interface ProjectOptions extends Omit<
     copyrightYear?: string
   } & NodePackageOptions
 
-  /*
+  /**
    * PNPM workspaces to generate, if provided.
    */
   pnpmWorkspace?: PnpmWorkspaceOptions
@@ -377,12 +377,12 @@ export interface ProjectOptions extends Omit<
    */
   npmIgnore?: IgnoreFileOptions
 
-  /*
+  /**
    * Add a sample `README`.
    */
   readme?: ReadmeFileOptions
 
-  /*
+  /**
    * Pass in to configure Renovate.
    */
   renovate?: RenovateOptions
@@ -404,7 +404,7 @@ export interface ProjectOptions extends Omit<
    */
   skills?: SkillsOptions
 
-  /*
+  /**
    * Pass in to configure SWC.
    */
   swcrc?: SWCConfigOptions
@@ -436,7 +436,7 @@ export interface ProjectOptions extends Omit<
    */
   vitest?: boolean
 
-  /*
+  /**
    * Whether to use Terrafom.
    */
   withTerraform?: boolean
