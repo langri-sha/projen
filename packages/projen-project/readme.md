@@ -172,6 +172,10 @@ new Project({
   leaves `.jsii` out of the tarball.
 - Synthesis fails without an `author` and a `repository`, which jsii requires.
 
+The preset's own jsii assembly omits the `package` option, `Project`'s
+`addSubproject` method, and its `gitattributes`, `package` and `projenrc`
+properties.
+
 ## Upgrading projen
 
 The preset supplies the projen version a project runs on, unless the project
