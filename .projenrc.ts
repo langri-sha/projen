@@ -1388,6 +1388,18 @@ project.addSubproject(
       ].join(' && '),
     )
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { UvPackage, UvWorkspace } from 'projen-uv'",
+      run: [
+        'new UvWorkspace(project)',
+        "new UvPackage(new projen.Project({ name: 'pkg', parent: project, outdir: 'pkg' }))",
+      ].join('\n'),
+      check: [
+        "assert.ok(read('pyproject.toml').includes('[tool.uv.workspace]'))",
+        "assert.ok(read('pkg/pyproject.toml').includes('[project]'))",
+      ].join('\n'),
+    }),
 )
 
 project.addSubproject(
