@@ -6,21 +6,11 @@ import { validateIssueForm } from './lib/validate.js'
 import { GitHubYamlFile } from './lib/yaml-file.js'
 
 /**
- * JSON-valued form fields modeled by JSII, refined by IssueFormOptions.
- */
-export interface IssueFormOptionsBase {
-  readonly body: unknown
-  readonly labels?: unknown
-  readonly assignees?: unknown
-  readonly projects?: unknown
-}
-
-/**
  * A GitHub issue form.
  *
  * @see https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms
  */
-export interface IssueFormOptions extends IssueFormOptionsBase {
+export interface IssueFormOptions {
   /**
    * Shown in the template chooser. Must be more than 3 characters, or GitHub
    * silently leaves the template out, and unique across every issue template.

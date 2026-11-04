@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Name issue form attribute interfaces and publish a jsii assembly, which omits template bodies, labels, assignees, projects, unmanaged paths, contact links, dropdown and checkbox options, and min_length.",
+  "packageName": "projen-github-templates",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

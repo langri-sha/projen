@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Name issue form attribute interfaces for JSII compilation.",
-  "packageName": "projen-github-templates",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -11,18 +11,11 @@ import { templateKind } from './lib/paths.js'
 import { validateBody, validateOptions } from './lib/validate.js'
 
 /**
- * JSON-valued fields modeled by JSII, refined by PullRequestTemplateOptions.
- */
-export interface PullRequestTemplateOptionsBase extends MarkdownTemplateOptions {
-  readonly body: unknown
-}
-
-/**
  * A pull request template.
  *
  * @see https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/creating-a-pull-request-template-for-your-repository
  */
-export interface PullRequestTemplateOptions extends PullRequestTemplateOptionsBase {
+export interface PullRequestTemplateOptions extends MarkdownTemplateOptions {
   /**
    * The pull request body to start from, in Markdown, as a string or lines.
    * @jsii ignore
