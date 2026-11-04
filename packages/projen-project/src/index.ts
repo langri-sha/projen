@@ -420,6 +420,8 @@ export interface ProjectOptions {
 
   /**
    * Package configuration options.
+   *
+   * @jsii ignore
    */
   readonly package?: {
     /**
@@ -550,10 +552,13 @@ export class Project extends BaseProject {
   license?: License
   lintStaged?: LintStaged
   npmIgnore?: IgnoreFile
+  /** @jsii ignore */
   override readonly gitattributes: GitAttributesFile
+  /** @jsii ignore */
   package?: NodePackage
   pnpmWorkspace?: PnpmWorkspace
   prettier?: Prettier
+  /** @jsii ignore */
   projenrc?: ProjenrcFile
   readme?: ReadmeFile
   renovate?: Renovate
@@ -733,6 +738,8 @@ export class Project extends BaseProject {
 
   /**
    * Add a subproject.
+   *
+   * @jsii ignore
    */
   addSubproject(
     projectOptions: ProjectOptions,
