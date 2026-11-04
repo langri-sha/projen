@@ -248,18 +248,18 @@ export interface ProjectOptions extends Omit<
   /**
    * Pass in to set up Babel.
    */
-  babel?: BabelOptions
+  readonly babel?: BabelOptions
 
   /**
    * Pass in to set up Beachball.
    */
-  beachball?: BeachballOptions
+  readonly beachball?: BeachballOptions
 
   /**
    * Pass in to set up Cargo. Root projects get a workspace, subprojects a
    * crate in it.
    */
-  cargo?: CargoOptions
+  readonly cargo?: CargoOptions
 
   /**
    * Pass in to set up Changesets, to version and tag a package Beachball
@@ -269,7 +269,7 @@ export interface ProjectOptions extends Omit<
    * The preset leaves `privatePackages` unset; opt in with
    * `changesets: { config: { privatePackages: { version: true, tag: true } } }`.
    */
-  changesets?: ChangesetsOptions
+  readonly changesets?: ChangesetsOptions
 
   /**
    * Pass in to write the Claude Code settings the repository shares, to
@@ -280,28 +280,28 @@ export interface ProjectOptions extends Omit<
    *
    * The preset supplies no settings of its own.
    */
-  claude?: ClaudeOptions
+  readonly claude?: ClaudeOptions
 
   /**
    * Pass in to set up CODEOWNERS.
    */
-  codeowners?: CodeownersOptions
+  readonly codeowners?: CodeownersOptions
 
   /**
    * Pass in to set up Dagger modules. Root projects only — module
    * directories are relative to the workspace root.
    */
-  dagger?: ProjectDaggerOptions
+  readonly dagger?: ProjectDaggerOptions
 
   /**
    * EditorConfig options.
    */
-  editorConfig?: EditorConfigOptions
+  readonly editorConfig?: EditorConfigOptions
 
   /**
    * Pass in to configure ESLint.
    */
-  eslint?: ESLintOptions
+  readonly eslint?: ESLintOptions
 
   /**
    * Pass in to write the preset's issue forms, template chooser and pull
@@ -314,22 +314,22 @@ export interface ProjectOptions extends Omit<
    *
    * [`projen-github-templates`]: https://www.npmjs.com/package/projen-github-templates
    */
-  githubTemplates?: ProjectGitHubTemplatesOptions
+  readonly githubTemplates?: ProjectGitHubTemplatesOptions
 
   /**
    * Husky options.
    */
-  husky?: HuskyOptions
+  readonly husky?: HuskyOptions
 
   /**
    * Configures Jest, when provided.
    */
-  jestConfig?: JestConfigOptions
+  readonly jestConfig?: JestConfigOptions
 
   /**
    * Configures `lint-staged`, when provided.
    */
-  lintStaged?: LintStagedOptions
+  readonly lintStaged?: LintStagedOptions
 
   /**
    * Pass in to compile the package with jsii, which writes a `.jsii` assembly
@@ -343,17 +343,17 @@ export interface ProjectOptions extends Omit<
    * back to `.gitignore` and drops `.jsii`. jsii refuses to compile a package
    * without an `author` and a `repository`, so synthesis fails without them.
    */
-  jsii?: ProjectJsiiOptions
+  readonly jsii?: ProjectJsiiOptions
 
   /**
    * Options for the linting synthesized files.
    */
-  lintSynthesized?: LintSynthesizedOptions
+  readonly lintSynthesized?: LintSynthesizedOptions
 
   /**
    * Package configuration options.
    */
-  package?: {
+  readonly package?: {
     /**
      * License copyright year.
      *
@@ -365,27 +365,27 @@ export interface ProjectOptions extends Omit<
   /**
    * PNPM workspaces to generate, if provided.
    */
-  pnpmWorkspace?: PnpmWorkspaceOptions
+  readonly pnpmWorkspace?: PnpmWorkspaceOptions
 
   /**
    * Pass in to configure Prettier.
    */
-  prettier?: PrettierOptions
+  readonly prettier?: PrettierOptions
 
   /**
    * Pass in to configure NPM ignore options.
    */
-  npmIgnore?: IgnoreFileOptions
+  readonly npmIgnore?: IgnoreFileOptions
 
   /**
    * Add a sample `README`.
    */
-  readme?: ReadmeFileOptions
+  readonly readme?: ReadmeFileOptions
 
   /**
    * Pass in to configure Renovate.
    */
-  renovate?: RenovateOptions
+  readonly renovate?: RenovateOptions
 
   /**
    * Pass in to configure Ruff. Root projects only: Ruff takes the nearest
@@ -396,18 +396,18 @@ export interface ProjectOptions extends Omit<
    * declare it in the workspace's `dev` group, or `uv run` falls back to
    * whatever ruff is on the `PATH`.
    */
-  ruff?: RuffOptions
+  readonly ruff?: RuffOptions
 
   /**
    * Pass in to declare the agent skills the repository uses, installed by the
    * `skills` CLI after every synthesis. Root projects only.
    */
-  skills?: SkillsOptions
+  readonly skills?: SkillsOptions
 
   /**
    * Pass in to configure SWC.
    */
-  swcrc?: SWCConfigOptions
+  readonly swcrc?: SWCConfigOptions
 
   /**
    * Pass in to configure ty. Root projects only, like `ruff`.
@@ -415,18 +415,18 @@ export interface ProjectOptions extends Omit<
    * With `uv.pythonVersion` set, `environment.python-version` follows it; set
    * it to `null` to leave the version to ty.
    */
-  ty?: TyOptions
+  readonly ty?: TyOptions
 
   /**
    * TypeScript configuration options.
    */
-  typeScriptConfig?: TypeScriptConfigOptions
+  readonly typeScriptConfig?: TypeScriptConfigOptions
 
   /**
    * Pass in to set up uv. Root projects get a workspace, subprojects a
    * package in it.
    */
-  uv?: UvOptions
+  readonly uv?: UvOptions
 
   /**
    * Whether to test with Vitest. Root projects get Vitest and a `test` script
@@ -434,18 +434,18 @@ export interface ProjectOptions extends Omit<
    * `*.test.*` and `__snapshots__/` in its own `.npmignore`, keeping test files
    * out of its tarball.
    */
-  vitest?: boolean
+  readonly vitest?: boolean
 
   /**
    * Whether to use Terrafom.
    */
-  withTerraform?: boolean
+  readonly withTerraform?: boolean
 
   /**
    * Configures Worktrunk, when provided. Supplies a default `pre-start`
    * pipeline, which a `pre-start` in `config`, in any form, replaces whole.
    */
-  worktrunk?: WorktrunkOptions
+  readonly worktrunk?: WorktrunkOptions
 }
 
 export class Project extends BaseProject {
