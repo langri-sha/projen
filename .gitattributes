@@ -271,6 +271,7 @@
 /packages/projen-project/package.json linguist-generated
 /packages/projen-project/pnpm-lock.yaml linguist-generated
 /packages/projen-project/pnpm-workspace.yaml linguist-generated
+/packages/projen-project/smoke.mjs linguist-generated
 /packages/projen-project/tsconfig.build.json linguist-generated
 /packages/projen-project/tsconfig.json linguist-generated
 /packages/projen-readme/.gitattributes linguist-generated
