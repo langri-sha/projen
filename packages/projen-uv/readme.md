@@ -129,6 +129,10 @@ It also has Renovate read `pythonVersion` out of `.projenrc` the way its pyenv
 manager reads `.python-version`, so a new Python release moves both on one
 branch and the next synthesis keeps it.
 
+The published jsii assembly omits the `project`, `dependency-groups` and
+`build-system` tables, every `[tool]` table but `uv`, and every uv option whose
+name has a hyphen, at any depth.
+
 [projen]: https://projen.io/
 [pyproject]: https://www.schemastore.org/pyproject.json
 [schema]: https://www.schemastore.org/uv.json
