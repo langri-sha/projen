@@ -1072,6 +1072,12 @@ project.addSubproject(
       .tryFindObjectFile('tsconfig.build.json')
       ?.addOverride('compilerOptions.rootDir', 'src')
   },
+  (project) =>
+    smoke(project, {
+      imports: "import { Project } from '@langri-sha/projen-project'",
+      run: "new Project({ name: 'child', parent: project, outdir: 'child' })",
+      check: "assert.ok(read('child/.gitignore').includes('!/.projenrc.mts'))",
+    }),
 )
 
 project.addSubproject(
