@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Preserve mutable Dagger configuration aliases alongside JSII schema interfaces.",
-  "packageName": "projen-dagger",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

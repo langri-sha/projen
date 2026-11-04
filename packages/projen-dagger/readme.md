@@ -176,12 +176,8 @@ Synthesis fails when the workspace gives an SDK an `is-module` scope over a
 module the component writes: the SDK's generation would rewrite that manifest,
 and `dagger check` would fail on it.
 
-The package ships an ESM entry point and a `.jsii` assembly. Existing TypeScript
-configuration types remain mutable, including the generated module/workspace
-subpaths. JSII uses the generated schema interfaces and receives dependency
-lists as JSON data through `DaggerModuleOptionsBase`; the TypeScript options
-keep their strict types. Schema keys containing hyphens or underscores are
-omitted from the assembly.
+The published jsii assembly omits the `workspace` option and, from each module,
+`runtime`, `dependencies`, `codegen` and `clients`.
 
 [`@langri-sha/projen-project`]:
   https://www.npmjs.com/package/@langri-sha/projen-project

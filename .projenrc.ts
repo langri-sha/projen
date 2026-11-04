@@ -341,22 +341,20 @@ project.addSubproject(
   },
   subproject,
   test,
-  publishJsii,
+  (project) =>
+    publish(
+      project,
+      'jsii && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts',
+    ),
   (project) => {
     project.addGitIgnore('dagger-module.ts')
     project.addGitIgnore('dagger-workspace.ts')
-
-    project.package?.setScript(
-      'prepublishOnly',
-      'rm -rf dist; node ../../scripts/dagger-schema-compatibility.mjs build',
-    )
 
     project.package?.setScript(
       'prepare',
       [
         "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
         "schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
-        'node ../../scripts/dagger-schema-compatibility.mjs prepare',
       ].join(' && '),
     )
   },

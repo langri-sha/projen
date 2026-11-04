@@ -3,23 +3,13 @@ import * as path from 'node:path'
 import { Component, type Project, TomlFile } from 'projen'
 
 import type {
-  DaggerModuleClient,
-  DaggerModuleCodegen,
   DaggerModuleConfig,
   DaggerModuleDependencyConfig,
   DaggerModuleRuntime,
   DaggerWorkspaceConfig,
 } from './config.js'
-import type {
-  ModuleCodegenConfig,
-  ModuleConfigClient,
-  Sdk,
-} from './dagger-module.js'
-import type { DaggerWorkspaceDaggerToml } from './dagger-workspace.js'
 
 export type * from './config.js'
-export type * from './dagger-module.js'
-export type * from './dagger-workspace.js'
 
 /**
  * A source ref, or the full dependency configuration.
@@ -29,17 +19,16 @@ export type DaggerModuleDependency = string | DaggerModuleDependencyConfig
 /**
  * Options for one module manifest.
  */
-export interface DaggerModuleOptions extends DaggerModuleOptionsBase {
+export interface DaggerModuleOptions {
+  readonly include?: DaggerModuleConfig['include']
+  readonly source?: DaggerModuleConfig['source']
+  readonly disableDefaultFunctionCaching?: DaggerModuleConfig['disableDefaultFunctionCaching']
+
   /** @jsii ignore */
-  include?: string[]
+  readonly codegen?: DaggerModuleConfig['codegen']
+
   /** @jsii ignore */
-  source?: string
-  /** @jsii ignore */
-  disableDefaultFunctionCaching?: boolean
-  /** @jsii ignore */
-  codegen?: DaggerModuleCodegen
-  /** @jsii ignore */
-  clients?: DaggerModuleClient[]
+  readonly clients?: DaggerModuleConfig['clients']
 
   /**
    * Name of the module. Required for a module at the project root, whose
@@ -59,32 +48,13 @@ export interface DaggerModuleOptions extends DaggerModuleOptionsBase {
 
   /**
    * Modules this module depends on.
+   *
    * @jsii ignore
    */
   readonly dependencies?: readonly DaggerModuleDependency[]
 }
 
-/**
- * Schema-backed module fields available to JSII consumers.
- */
-export interface DaggerModuleOptionsBase {
-  readonly dependencies?: unknown
-  readonly include?: string[]
-  readonly source?: string
-  readonly disableDefaultFunctionCaching?: boolean
-  readonly runtime?: string | Sdk
-  readonly codegen?: ModuleCodegenConfig
-  readonly clients?: ModuleConfigClient[]
-}
-
-/**
- * Schema-backed workspace fields available to JSII consumers.
- */
-export interface DaggerOptionsBase {
-  readonly workspace?: DaggerWorkspaceDaggerToml
-}
-
-export interface DaggerOptions extends DaggerOptionsBase {
+export interface DaggerOptions {
   /**
    * Engine version recorded in every module manifest, e.g. `v1.0.0-beta.15`.
    *
