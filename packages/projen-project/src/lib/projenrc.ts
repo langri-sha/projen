@@ -30,10 +30,10 @@ export class ProjenrcFile extends BaseProjenrcFile {
     new SampleFile(project, filename, {
       contents: `import { Project } from '@langri-sha/projen-project'
 
-      const project = new Project()
+const project = new Project()
 
-      project.synth()
-      `,
+project.synth()
+`,
     })
   }
 }
