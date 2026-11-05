@@ -17,7 +17,7 @@ new projen.javascript.NodePackage(project, { packageName: 'smoke' })
 new Skills(project, {
   sync: false,
   skills: [
-    { source: 'vercel-labs/skills', ref: 'v1.7.4', skills: ['find-skills'] },
+    { source: 'vercel-labs/skills', ref: 'v1.7.5', skills: ['find-skills'] },
   ],
 })
 
