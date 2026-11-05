@@ -6,6 +6,11 @@ export interface ProjenrcOptions {
    * @default ".projenrc.mts"
    */
   readonly filename?: string
+
+  /**
+   * Whether the project is a package, and of which module type.
+   */
+  readonly package?: { readonly type?: 'commonjs' | 'module' }
 }
 
 export class ProjenrcFile extends BaseProjenrcFile {
@@ -13,7 +18,7 @@ export class ProjenrcFile extends BaseProjenrcFile {
 
   constructor(
     project: Project,
-    { filename = '.projenrc.ts' }: ProjenrcOptions,
+    { filename = '.projenrc.ts', package: pkg }: ProjenrcOptions,
   ) {
     super(project)
 
@@ -32,10 +37,23 @@ export class ProjenrcFile extends BaseProjenrcFile {
       .replace(/\\"/g, '"')
       .replace(/'/g, "\\'")
 
+    const packageOption = !pkg
+      ? undefined
+      : pkg.type
+        ? `package: { type: '${pkg.type}' }`
+        : 'package: {}'
+
+    const options = packageOption
+      ? `{
+  name: '${name}',
+  ${packageOption},
+}`
+      : `{ name: '${name}' }`
+
     new SampleFile(project, filename, {
       contents: `import { Project } from '@langri-sha/projen-project'
 
-const project = new Project({ name: '${name}' })
+const project = new Project(${options})
 
 project.synth()
 `,

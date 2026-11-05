@@ -25,3 +25,17 @@ test('custom filename', () => {
 
   expect(synthSnapshot(project)).toMatchSnapshot()
 })
+
+test('commonjs package keeps its type in the sample', () => {
+  const project = new Project({
+    name: 'test-project',
+  })
+
+  new ProjenrcFile(project, {
+    package: { type: 'commonjs' },
+  })
+
+  expect(synthSnapshot(project)['.projenrc.ts']).toContain(
+    "package: { type: 'commonjs' }",
+  )
+})
