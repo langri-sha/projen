@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 05 Nov 2026 10:40:41 GMT",
+      "version": "0.49.1",
+      "tag": "@langri-sha/projen-project_v0.49.1",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "285761fd4ff32e6698956f0791ce4fdb84c481bc",
+            "comment": "Pass the project name in the sample projenrc, so it type-checks and runs."
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Nov 2026 08:01:57 GMT",
       "version": "0.49.0",
       "tag": "@langri-sha/projen-project_v0.49.0",

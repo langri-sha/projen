@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 05 Nov 2026 08:01:57 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 05 Nov 2026 10:40:41 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.49.1
+
+Thu, 05 Nov 2026 10:40:41 GMT
+
+### Patches
+
+- Pass the project name in the sample projenrc, so it type-checks and runs. (filip.dupanovic@gmail.com)
 
 ## 0.49.0
 
