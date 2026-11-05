@@ -24,7 +24,7 @@
     "prepublishOnly": "rm -rf dist; jsii"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/tsconfig": "2.0.0",
     "@langri-sha/vitest": "0.2.3",
     "@types/node": "24.19.2",
     "jsii": "5.9.57",

@@ -55,7 +55,7 @@
     "semver": "7.8.6"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/tsconfig": "2.0.0",
     "@langri-sha/vitest": "0.2.3",
     "@types/hosted-git-info": "3.0.5",
     "@types/ramda": "0.32.0",

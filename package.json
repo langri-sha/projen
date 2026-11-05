@@ -34,7 +34,7 @@
     "@langri-sha/lint-staged": "0.9.11",
     "@langri-sha/prettier": "0.4.11",
     "@langri-sha/projen-project": "workspace:*",
-    "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/tsconfig": "2.0.0",
     "@langri-sha/webpack": "0.8.2",
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.16.2",
