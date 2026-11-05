@@ -4908,7 +4908,7 @@ describe('listing the declared @types packages', () => {
       name: 'test-project',
       package: {
         devDeps: ['@types/node@24.19.2', '@types/babel__core@7.20.5'],
-        deps: ['@types/semver@7.0.0'],
+        deps: ['@types/semver@7.8.0'],
       },
       typeScriptConfig: {},
     })
@@ -4946,7 +4946,7 @@ describe('listing the declared @types packages', () => {
   test('leaves an explicit types alone', () => {
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['@types/node@24.19.2', '@types/semver@7.0.0'] },
+      package: { devDeps: ['@types/node@24.19.2', '@types/semver@7.8.0'] },
       typeScriptConfig: { config: { compilerOptions: { types: ['node'] } } },
     })
 
@@ -4988,7 +4988,7 @@ describe('listing the declared @types packages', () => {
   test('omits types when no @types package is declared', () => {
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['semver@7.0.0'] },
+      package: { devDeps: ['semver@7.8.6'] },
       typeScriptConfig: {},
     })
 
@@ -5008,7 +5008,7 @@ describe('listing the declared @types packages', () => {
       name: 'child',
       parent: root,
       outdir: 'child',
-      package: { devDeps: ['@types/semver@7.0.0'] },
+      package: { devDeps: ['@types/semver@7.8.0'] },
       typeScriptConfig: {},
     })
 
