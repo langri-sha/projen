@@ -4907,7 +4907,7 @@ describe('listing the declared @types packages', () => {
     const project = new Project({
       name: 'test-project',
       package: {
-        devDeps: ['@types/node@24.0.0', '@types/babel__core@7.20.0'],
+        devDeps: ['@types/node@24.0.0', '@types/babel__core@7.20.5'],
         deps: ['@types/semver@7.0.0'],
       },
       typeScriptConfig: {},
