@@ -2047,7 +2047,7 @@ export class Project extends BaseProject {
     this.typeScriptConfig = new TypeScriptConfig(this, merged)
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('typescript@5.9.3')
+      this.#addDefaultDevDeps('typescript@6.0.3')
     }
 
     if (this.name !== '@langri-sha/tsconfig') {
