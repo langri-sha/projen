@@ -906,7 +906,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('@babel/core@8.0.10')
+      this.#addDefaultDevDeps('@babel/core@8.1.0')
 
       if (this.name !== '@langri-sha/babel-preset') {
         this.#addDefaultDevDeps('@langri-sha/babel-preset@0.6.11')
