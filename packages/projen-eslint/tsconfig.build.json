@@ -2,5 +2,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@langri-sha/tsconfig/build",
-  "exclude": ["**/*.test.*", "smoke.mjs"]
+  "exclude": ["**/*.test.*", "smoke.mjs"],
+  "compilerOptions": {
+    "types": ["node", "serialize-javascript"]
+  }
 }
