@@ -975,7 +975,7 @@ project.addSubproject(
         'projen-worktrunk@workspace:*',
         'hosted-git-info@10.1.1',
         'ramda@0.32.0',
-        'semver@7.8.5',
+        'semver@7.8.6',
       ],
       devDeps: [
         'jsii@5.9.57',
