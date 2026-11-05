@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 05 Nov 2026 08:01:57 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.49.0
+
+Thu, 05 Nov 2026 08:01:57 GMT
+
+### Minor changes
+
+- Publish a jsii assembly, which omits the package option, addSubproject, and the gitattributes, package and projenrc members. Make the options readonly and spell out the base project options. (filip.dupanovic@gmail.com)
 
 ## 0.48.3
 

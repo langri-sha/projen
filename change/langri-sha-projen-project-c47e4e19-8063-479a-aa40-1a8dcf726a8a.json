@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Publish a jsii assembly, which omits the package option, addSubproject, and the gitattributes, package and projenrc members. Make the options readonly and spell out the base project options.",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
