@@ -1,8 +1,26 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 05 Nov 2026 18:56:50 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 05 Nov 2026 22:44:39 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.50.0
+
+Thu, 05 Nov 2026 22:44:39 GMT
+
+### Minor changes
+
+- Default to TypeScript 6.0.3. (filip.dupanovic@gmail.com)
+- List the declared @types packages in TypeScript configs. (filip.dupanovic@gmail.com)
+- Bump projen-babel-config to v0.5.22
+- Bump projen-skills to v0.3.3
+
+### Patches
+
+- Update dependency @babel/core to v8.1.0
+- Update dependency skills to v1.7.5
+- Accept TypeScript 6 as a peer. (filip.dupanovic@gmail.com)
+- Update dependency semver to v7.8.6
 
 ## 0.49.2
 

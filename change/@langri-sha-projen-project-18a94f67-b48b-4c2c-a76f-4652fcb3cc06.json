@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency semver to v7.8.6",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -2,6 +2,21 @@
   "name": "projen-uv",
   "entries": [
     {
+      "date": "Thu, 05 Nov 2026 22:44:39 GMT",
+      "version": "0.3.0",
+      "tag": "projen-uv_v0.3.0",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-uv",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "List the declared @types packages in TypeScript configs."
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 04 Nov 2026 01:55:45 GMT",
       "version": "0.3.0",
       "tag": "projen-uv_v0.3.0",

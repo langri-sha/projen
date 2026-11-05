@@ -1,8 +1,17 @@
 # Change Log - projen-skills
 
-<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 05 Nov 2026 22:44:39 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.3
+
+Thu, 05 Nov 2026 22:44:39 GMT
+
+### Patches
+
+- Update dependency vercel-labs/skills to v1.7.5
+- Update dependency skills to v1.7.5
 
 ## 0.3.2
 

@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency @babel/core to v8.1.0",
-  "packageName": "projen-babel-config",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

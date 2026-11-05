@@ -2,6 +2,65 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Thu, 05 Nov 2026 22:44:39 GMT",
+      "version": "0.50.0",
+      "tag": "@langri-sha/projen-project_v0.50.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "Update dependency @babel/core to v8.1.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "Update dependency skills to v1.7.5"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "Accept TypeScript 6 as a peer."
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "Update dependency semver to v7.8.6"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "Default to TypeScript 6.0.3."
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "List the declared @types packages in TypeScript configs."
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-babel-config to v0.5.22",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-skills to v0.3.3",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Nov 2026 18:56:50 GMT",
       "version": "0.49.2",
       "tag": "@langri-sha/projen-project_v0.49.2",

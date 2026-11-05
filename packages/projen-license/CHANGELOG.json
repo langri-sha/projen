@@ -2,6 +2,21 @@
   "name": "projen-license",
   "entries": [
     {
+      "date": "Thu, 05 Nov 2026 22:44:39 GMT",
+      "version": "0.3.20",
+      "tag": "projen-license_v0.3.20",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-license",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "List the declared @types packages in TypeScript configs."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 19:06:54 GMT",
       "version": "0.3.20",
       "tag": "projen-license_v0.3.20",

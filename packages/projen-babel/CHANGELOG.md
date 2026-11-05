@@ -1,8 +1,16 @@
 # Change Log - projen-babel-config
 
-<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Thu, 05 Nov 2026 22:44:39 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.5.22
+
+Thu, 05 Nov 2026 22:44:39 GMT
+
+### Patches
+
+- Update dependency @babel/core to v8.1.0
 
 ## 0.5.21
 

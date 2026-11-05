@@ -2,6 +2,21 @@
   "name": "projen-editorconfig",
   "entries": [
     {
+      "date": "Thu, 05 Nov 2026 22:44:39 GMT",
+      "version": "0.6.17",
+      "tag": "projen-editorconfig_v0.6.17",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-editorconfig",
+            "commit": "ae807717cdb5ebe074e3321ada1ebc132d050ab7",
+            "comment": "List the declared @types packages in TypeScript configs."
+          }
+        ]
+      }
+    },
+    {
       "date": "Sun, 01 Nov 2026 19:06:54 GMT",
       "version": "0.6.17",
       "tag": "projen-editorconfig_v0.6.17",

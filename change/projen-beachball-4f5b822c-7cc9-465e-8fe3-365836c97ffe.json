@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "List the declared @types packages in TypeScript configs.",
-  "packageName": "projen-beachball",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}
