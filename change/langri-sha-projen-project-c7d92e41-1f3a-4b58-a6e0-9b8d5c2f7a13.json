@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Default to TypeScript 6.0.3.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
