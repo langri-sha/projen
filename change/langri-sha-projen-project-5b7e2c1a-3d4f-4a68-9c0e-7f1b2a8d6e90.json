@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Keep the package options in the sample projenrc.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

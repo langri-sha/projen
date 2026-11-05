@@ -1447,6 +1447,7 @@ export class Project extends BaseProject {
   #configureProjenrc({ package: pkg }: ProjectOptions) {
     this.projenrc = new ProjenrcFile(this, {
       filename: pkg?.type === 'module' ? '.projenrc.ts' : '.projenrc.mts',
+      package: pkg,
     })
 
     if (!this.parent) {
