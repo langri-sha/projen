@@ -15,6 +15,7 @@ import {
 import {
   Project as BaseProject,
   Component,
+  DependencyType,
   IgnoreFile,
   javascript,
 } from 'projen'
@@ -4897,3 +4898,123 @@ const uvFiles = (files: Record<string, string>): Record<string, string> =>
       .sort()
       .map((file) => [file, files[file]]),
   )
+
+describe('listing the declared @types packages', () => {
+  const typesOf = (project: BaseProject, fileName = 'tsconfig.json') =>
+    synthSnapshot(project)[fileName].compilerOptions?.types
+
+  test("lists the preset's configuration with the declared packages, sorted", () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        devDeps: ['@types/node@24.0.0', '@types/babel__core@7.20.0'],
+        deps: ['@types/semver@7.0.0'],
+      },
+      typeScriptConfig: {},
+    })
+
+    expect(typesOf(project)).toStrictEqual(['babel__core', 'node', 'semver'])
+  })
+
+  test('gives a configuration added after construction the declared packages', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { devDeps: ['@types/node@24.0.0'] },
+      typeScriptConfig: {},
+    })
+
+    new TypeScriptConfig(project, {
+      fileName: 'tsconfig.build.json',
+      config: { extends: '@langri-sha/tsconfig/build' },
+    })
+
+    expect(typesOf(project, 'tsconfig.build.json')).toStrictEqual(['node'])
+  })
+
+  test('counts a dependency added after construction', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {},
+      typeScriptConfig: {},
+    })
+
+    project.package?.addDeps('@types/node@24.0.0')
+
+    expect(typesOf(project)).toStrictEqual(['node'])
+  })
+
+  test('leaves an explicit types alone', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { devDeps: ['@types/node@24.0.0', '@types/semver@7.0.0'] },
+      typeScriptConfig: { config: { compilerOptions: { types: ['node'] } } },
+    })
+
+    new TypeScriptConfig(project, {
+      fileName: 'tsconfig.build.json',
+      config: { compilerOptions: { types: [] } },
+    })
+
+    const files = synthSnapshot(project)
+
+    expect(files['tsconfig.json'].compilerOptions.types).toStrictEqual(['node'])
+    expect(files['tsconfig.build.json'].compilerOptions.types).toStrictEqual([])
+  })
+
+  test('leaves types set through an override alone', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { devDeps: ['@types/node@24.0.0'] },
+      typeScriptConfig: {},
+    })
+
+    project.typeScriptConfig?.addOverride('compilerOptions.types', ['semver'])
+
+    expect(typesOf(project)).toStrictEqual(['semver'])
+  })
+
+  test('leaves out an override, which installs nothing', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { devDeps: ['@types/node@24.0.0'] },
+      typeScriptConfig: {},
+    })
+
+    project.deps.addDependency('@types/semver@7.0.0', DependencyType.OVERRIDE)
+
+    expect(typesOf(project)).toStrictEqual(['node'])
+  })
+
+  test('omits types when no @types package is declared', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { devDeps: ['semver@7.0.0'] },
+      typeScriptConfig: {},
+    })
+
+    expect(synthSnapshot(project)['tsconfig.json'].compilerOptions).toBe(
+      undefined,
+    )
+  })
+
+  test("includes the parent's packages in a subproject", () => {
+    const root = new Project({
+      name: 'test-project',
+      package: { devDeps: ['@types/node@24.0.0'] },
+      typeScriptConfig: {},
+    })
+
+    new Project({
+      name: 'child',
+      parent: root,
+      outdir: 'child',
+      package: { devDeps: ['@types/semver@7.0.0'] },
+      typeScriptConfig: {},
+    })
+
+    expect(typesOf(root, 'child/tsconfig.json')).toStrictEqual([
+      'node',
+      'semver',
+    ])
+  })
+})

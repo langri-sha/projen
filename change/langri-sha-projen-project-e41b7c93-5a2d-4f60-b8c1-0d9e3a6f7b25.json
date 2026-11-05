@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "List the declared @types packages in TypeScript configs.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

@@ -678,6 +678,7 @@ export class Project extends BaseProject {
 
     this.#assertJsiiManifest()
     this.#populateTypeScriptProjectReferencesFromDependencies()
+    this.#listDeclaredTypes()
   }
 
   /**
@@ -2131,6 +2132,55 @@ export class Project extends BaseProject {
       { sync: WORKTRUNK_SYNC_COMMAND },
       { env: WORKTRUNK_ENV_COMMAND, ...install, ...cargo, ...uv },
     )
+  }
+
+  /**
+   * TypeScript 6 stopped including every installed `@types` package, so each
+   * configuration that does not say which to include lists the ones this
+   * project or an ancestor declares. Computed at synthesis, since dependencies
+   * and configurations are added after construction. An explicit `types` is
+   * left alone, because merging would concatenate it.
+   */
+  #listDeclaredTypes() {
+    const declared = new Set<string>()
+
+    const lineage: BaseProject[] = [this]
+
+    while (lineage[0].parent) {
+      lineage.unshift(lineage[0].parent)
+    }
+
+    for (const project of lineage) {
+      for (const { name, type } of project.deps.all) {
+        if (type !== DependencyType.OVERRIDE && name.startsWith('@types/')) {
+          declared.add(name.slice('@types/'.length))
+        }
+      }
+    }
+
+    if (declared.size === 0) {
+      return
+    }
+
+    const types = [...declared].sort()
+
+    for (const config of this.components) {
+      if (!(config instanceof TypeScriptConfig)) {
+        continue
+      }
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const { obj, rawOverrides } = config as any
+
+      if (
+        obj?.compilerOptions?.types !== undefined ||
+        rawOverrides?.compilerOptions?.types !== undefined
+      ) {
+        continue
+      }
+
+      config.addOverride('compilerOptions.types', types)
+    }
   }
 
   #populateTypeScriptProjectReferencesFromDependencies() {

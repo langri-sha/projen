@@ -91,5 +91,8 @@
     {
       "path": "packages/projen-worktrunk"
     }
-  ]
+  ],
+  "compilerOptions": {
+    "types": ["node"]
+  }
 }

@@ -4,6 +4,7 @@
   "extends": "@langri-sha/tsconfig/build",
   "exclude": ["**/*.test.*", "smoke.mjs"],
   "compilerOptions": {
-    "rootDir": "src"
+    "rootDir": "src",
+    "types": ["hosted-git-info", "node", "ramda", "semver"]
   }
 }
