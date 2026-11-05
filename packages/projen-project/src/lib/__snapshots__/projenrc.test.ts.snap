@@ -96,7 +96,7 @@ node_modules/
   },
   ".projerc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -199,7 +199,7 @@ node_modules/
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",

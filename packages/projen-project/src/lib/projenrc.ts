@@ -27,10 +27,15 @@ export class ProjenrcFile extends BaseProjenrcFile {
 
     this.project.defaultTask?.exec(`tsx ${filename}`)
 
+    const name = JSON.stringify(project.name)
+      .slice(1, -1)
+      .replace(/\\"/g, '"')
+      .replace(/'/g, "\\'")
+
     new SampleFile(project, filename, {
       contents: `import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: '${name}' })
 
 project.synth()
 `,
