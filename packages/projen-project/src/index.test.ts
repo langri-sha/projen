@@ -4907,7 +4907,7 @@ describe('listing the declared @types packages', () => {
     const project = new Project({
       name: 'test-project',
       package: {
-        devDeps: ['@types/node@24.0.0', '@types/babel__core@7.20.5'],
+        devDeps: ['@types/node@24.19.2', '@types/babel__core@7.20.5'],
         deps: ['@types/semver@7.0.0'],
       },
       typeScriptConfig: {},
@@ -4919,7 +4919,7 @@ describe('listing the declared @types packages', () => {
   test('gives a configuration added after construction the declared packages', () => {
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['@types/node@24.0.0'] },
+      package: { devDeps: ['@types/node@24.19.2'] },
       typeScriptConfig: {},
     })
 
@@ -4938,7 +4938,7 @@ describe('listing the declared @types packages', () => {
       typeScriptConfig: {},
     })
 
-    project.package?.addDeps('@types/node@24.0.0')
+    project.package?.addDeps('@types/node@24.19.2')
 
     expect(typesOf(project)).toStrictEqual(['node'])
   })
@@ -4946,7 +4946,7 @@ describe('listing the declared @types packages', () => {
   test('leaves an explicit types alone', () => {
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['@types/node@24.0.0', '@types/semver@7.0.0'] },
+      package: { devDeps: ['@types/node@24.19.2', '@types/semver@7.0.0'] },
       typeScriptConfig: { config: { compilerOptions: { types: ['node'] } } },
     })
 
@@ -4964,7 +4964,7 @@ describe('listing the declared @types packages', () => {
   test('leaves types set through an override alone', () => {
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['@types/node@24.0.0'] },
+      package: { devDeps: ['@types/node@24.19.2'] },
       typeScriptConfig: {},
     })
 
@@ -4976,7 +4976,7 @@ describe('listing the declared @types packages', () => {
   test('leaves out an override, which installs nothing', () => {
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['@types/node@24.0.0'] },
+      package: { devDeps: ['@types/node@24.19.2'] },
       typeScriptConfig: {},
     })
 
@@ -5000,7 +5000,7 @@ describe('listing the declared @types packages', () => {
   test("includes the parent's packages in a subproject", () => {
     const root = new Project({
       name: 'test-project',
-      package: { devDeps: ['@types/node@24.0.0'] },
+      package: { devDeps: ['@types/node@24.19.2'] },
       typeScriptConfig: {},
     })
 
