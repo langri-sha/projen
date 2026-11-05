@@ -63,7 +63,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -142,7 +142,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -292,7 +292,7 @@ node_modules/
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -382,7 +382,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -452,7 +452,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -529,7 +529,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -686,7 +686,7 @@ node_modules/
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -804,7 +804,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -961,7 +961,7 @@ node_modules/
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -1169,7 +1169,7 @@ CHANGELOG.md
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -1391,7 +1391,7 @@ CHANGELOG.md
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -1614,7 +1614,7 @@ CHANGELOG.md
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -1786,7 +1786,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -1946,7 +1946,7 @@ node_modules/
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -2071,7 +2071,7 @@ dist/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -2554,7 +2554,7 @@ lint-staged
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -2660,7 +2660,7 @@ tsconfig*.json
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -2769,7 +2769,7 @@ dist/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -2876,7 +2876,7 @@ dist/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -3028,7 +3028,7 @@ pnpm-lock.yaml
   },
   ".projenrc.ts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -3141,7 +3141,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -3334,7 +3334,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -3481,7 +3481,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -3810,7 +3810,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -3980,7 +3980,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -4170,7 +4170,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
@@ -4264,7 +4264,7 @@ node_modules/
   },
   ".projenrc.mts": "import { Project } from '@langri-sha/projen-project'
 
-const project = new Project()
+const project = new Project({ name: 'test-project' })
 
 project.synth()
 ",
