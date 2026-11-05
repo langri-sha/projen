@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Accept TypeScript 6 as a peer.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
