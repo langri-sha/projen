@@ -29,7 +29,7 @@
     "smol-toml": "1.9.1"
   },
   "devDependencies": {
-    "@langri-sha/tsconfig": "1.1.1",
+    "@langri-sha/tsconfig": "2.0.0",
     "@langri-sha/vitest": "0.2.3",
     "jsii": "5.9.57",
     "projen": "0.104.1",
