@@ -4266,6 +4266,13 @@ describe('declarations this preset cannot support', () => {
     ).toBe('5.6.0')
   })
 
+  test.each(['typescript@5.9.3', 'typescript@6.0.3'])(
+    'accept %s, which the peer range covers',
+    (spec) => {
+      expect(declaring([spec], { typeScriptConfig: {} })).not.toThrow()
+    },
+  )
+
   test('do not reject a version that runs ahead', () => {
     const project = declaring(['@swc/core@1.15.46'], { swcrc: {} })()
 
