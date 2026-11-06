@@ -1,5 +1,6 @@
 import type { JSONSchemaForTheTypeScriptCompilerSConfigurationFile } from '@schemastore/tsconfig'
-import { IResolver, JsonFile, Project } from 'projen'
+import type { IResolver, Project } from 'projen'
+import { JsonFile } from 'projen'
 
 export interface TypeScriptConfigOptions {
   readonly fileName?: string

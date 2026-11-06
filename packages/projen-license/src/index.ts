@@ -1,5 +1,6 @@
 import licenseOMatic from 'license-o-matic'
-import { FileBase, type IResolver, Project } from 'projen'
+import type { Project } from 'projen'
+import { FileBase, type IResolver } from 'projen'
 
 export interface LicenseOptions {
   /**

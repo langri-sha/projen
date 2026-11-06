@@ -1,9 +1,10 @@
 import * as path from 'node:path'
 
-import { type IResolver, Project, YamlFile, javascript } from 'projen'
+import type { Project } from 'projen'
+import { type IResolver, YamlFile, javascript } from 'projen'
 import YAML from 'yaml'
 
-import { type PnpmWorkspaceSchema } from './pnpm-workspace.js'
+import type { PnpmWorkspaceSchema } from './pnpm-workspace.js'
 
 export * from './pnpm-workspace.js'
 

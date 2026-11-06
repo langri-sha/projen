@@ -1,6 +1,7 @@
 import * as fs from 'node:fs'
 
-import { Project, javascript } from 'projen'
+import type { Project } from 'projen'
+import { javascript } from 'projen'
 
 import { normalizeRepository } from './repository.js'
 

@@ -3,38 +3,45 @@ import { readFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import * as path from 'node:path'
 
+import type { IgnoreFileOptions } from 'projen'
 import {
   Project as BaseProject,
   type ProjectOptions as BaseProjectOptions,
   type Dependency,
   DependencyType,
   IgnoreFile,
-  IgnoreFileOptions,
   javascript,
 } from 'projen'
-import { Babel, BabelOptions } from 'projen-babel-config'
-import { Beachball, BeachballOptions } from 'projen-beachball'
+import type { BabelOptions } from 'projen-babel-config'
+import { Babel } from 'projen-babel-config'
+import type { BeachballOptions } from 'projen-beachball'
+import { Beachball } from 'projen-beachball'
 import { type CargoOptions, CargoPackage, CargoWorkspace } from 'projen-cargo'
 import { Changesets, type ChangesetsOptions } from 'projen-changesets'
 import { Claude, type ClaudeOptions } from 'projen-claude'
 import { Codeowners, type CodeownersOptions } from 'projen-codeowners'
 import { Dagger, type DaggerOptions } from 'projen-dagger'
 import { EditorConfig, type EditorConfigOptions } from 'projen-editorconfig'
-import { ESLint, ESLintOptions } from 'projen-eslint'
+import type { ESLintOptions } from 'projen-eslint'
+import { ESLint } from 'projen-eslint'
 import {
   GitHubTemplates,
   type GitHubTemplatesOptions,
 } from 'projen-github-templates'
 import { Husky, type HuskyOptions } from 'projen-husky'
-import { JestConfig, JestConfigOptions } from 'projen-jest-config'
+import type { JestConfigOptions } from 'projen-jest-config'
+import { JestConfig } from 'projen-jest-config'
 import { License } from 'projen-license'
-import { LintStaged, LintStagedOptions } from 'projen-lint-staged'
+import type { LintStagedOptions } from 'projen-lint-staged'
+import { LintStaged } from 'projen-lint-staged'
 import {
   LintSynthesized,
   type LintSynthesizedOptions,
 } from 'projen-lint-synthesized'
-import { PnpmWorkspace, PnpmWorkspaceOptions } from 'projen-pnpm-workspace'
-import { Prettier, PrettierOptions } from 'projen-prettier'
+import type { PnpmWorkspaceOptions } from 'projen-pnpm-workspace'
+import { PnpmWorkspace } from 'projen-pnpm-workspace'
+import type { PrettierOptions } from 'projen-prettier'
+import { Prettier } from 'projen-prettier'
 import { ReadmeFile, type ReadmeFileOptions } from 'projen-readme'
 import { Renovate, type RenovateOptions } from 'projen-renovate'
 import { Ruff, type RuffOptions } from 'projen-ruff'
@@ -53,7 +60,8 @@ import { satisfies, valid, validRange } from 'semver'
 import { GitAttributesFile } from './lib/gitattributes.js'
 import { parseGitHubRepository } from './lib/github-repository.js'
 import { defaultTemplates } from './lib/github-templates.js'
-import { NodePackage, NodePackageOptions, ProjenrcFile } from './lib/index.js'
+import type { NodePackageOptions } from './lib/index.js'
+import { NodePackage, ProjenrcFile } from './lib/index.js'
 
 export * from 'projen-typescript-config'
 
@@ -1134,7 +1142,7 @@ export class Project extends BaseProject {
       this.#addDefaultDevDeps('eslint@10.14.0')
 
       if (this.name !== '@langri-sha/eslint-config') {
-        this.#addDefaultDevDeps('@langri-sha/eslint-config@0.12.0')
+        this.#addDefaultDevDeps('@langri-sha/eslint-config@0.13.0')
       }
     }
 

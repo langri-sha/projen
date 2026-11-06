@@ -12,8 +12,8 @@ import {
 } from 'projen'
 import { stringify } from 'smol-toml'
 
-import { type PyProject } from './pyproject.js'
-import { type Uv } from './uv.js'
+import type { PyProject } from './pyproject.js'
+import type { Uv } from './uv.js'
 
 export * from './pyproject.js'
 export * from './uv.js'

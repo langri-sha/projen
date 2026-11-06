@@ -1,6 +1,6 @@
 import { JsonFile, type Project } from 'projen'
 
-import { type SwcrcSchema } from './swcrc.js'
+import type { SwcrcSchema } from './swcrc.js'
 
 export * from './swcrc.js'
 
