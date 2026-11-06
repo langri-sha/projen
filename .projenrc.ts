@@ -987,7 +987,7 @@ project.addSubproject(
         '@babel/core@^8.0.0',
         '@changesets/cli@^3.0.0',
         '@langri-sha/babel-preset@^0.6.0',
-        '@langri-sha/eslint-config@^0.12.0',
+        '@langri-sha/eslint-config@^0.13.0',
         '@langri-sha/lint-staged@^0.9.0',
         '@langri-sha/prettier@^0.4.0',
         '@swc-node/register@^1.0.0',
