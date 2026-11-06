@@ -1250,7 +1250,7 @@ project.addSubproject(
   (project) =>
     smoke(project, {
       imports: "import { Skills } from 'projen-skills'",
-      run: "// NodePackage installs its dependencies after synthesis.\nprocess.env.PROJEN_DISABLE_POST = '1'\nnew projen.javascript.NodePackage(project, { packageName: 'smoke' })\nnew Skills(project, {\n  sync: false,\n  skills: [{ source: 'vercel-labs/skills', ref: 'v1.7.5', skills: ['find-skills'] }],\n})",
+      run: "// NodePackage installs its dependencies after synthesis.\nprocess.env.PROJEN_DISABLE_POST = '1'\nnew projen.javascript.NodePackage(project, { packageName: 'smoke' })\nnew Skills(project, {\n  sync: false,\n  skills: [{ source: 'vercel-labs/skills', ref: 'v1.7.6', skills: ['find-skills'] }],\n})",
       check:
         "assert.equal(JSON.parse(read('package.json')).skills[0].skills[0], 'find-skills')",
     }),
