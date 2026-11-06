@@ -37,7 +37,7 @@ const project = new Project({
 
     devDeps: [
       '@langri-sha/projen-project@workspace:*',
-      '@langri-sha/tsconfig@2.0.0',
+      '@langri-sha/tsconfig@3.0.0',
       '@langri-sha/webpack@0.8.2',
       '@types/node@24.19.2',
       'schemastore-to-typescript@1.3.0',
@@ -188,7 +188,7 @@ const subproject = (project: Project) => {
     ),
   })
 
-  project.package?.addDevDeps('@langri-sha/tsconfig@2.0.0')
+  project.package?.addDevDeps('@langri-sha/tsconfig@3.0.0')
 }
 
 const test = (project: Project) => {

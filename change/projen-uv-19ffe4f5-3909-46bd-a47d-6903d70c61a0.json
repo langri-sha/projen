@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Build against @langri-sha/tsconfig 3.0.0",
+  "packageName": "projen-uv",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
