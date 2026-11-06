@@ -1,8 +1,8 @@
 diff --git a/lib/project-info.js b/lib/project-info.js
-index 62630bf1c76effac44081479b31f762ece4697e0..11477cc4f5ccf1bd828fda0cbfb4ee7707cd96a5 100644
+index a2a5eed..9ea85fd 100644
 --- a/lib/project-info.js
 +++ b/lib/project-info.js
-@@ -76,8 +76,8 @@ function loadProjectInfo(projectRoot) {
+@@ -109,8 +109,8 @@ function loadProjectInfo(projectRoot) {
          keywords: pkg.keywords,
          main: _required(pkg.main, 'The "package.json" file must specify the "main" attribute'),
          types: pkg.types,
@@ -13,7 +13,7 @@ index 62630bf1c76effac44081479b31f762ece4697e0..11477cc4f5ccf1bd828fda0cbfb4ee77
          dependencyClosure: transitiveDependencies,
          bundleDependencies,
          targets: {
-@@ -228,11 +228,15 @@ class DependencyResolver {
+@@ -258,11 +258,15 @@ class DependencyResolver {
                  resolved = this.resolveDependency(root, name, declaration);
              }
              catch (e) {
@@ -30,7 +30,7 @@ index 62630bf1c76effac44081479b31f762ece4697e0..11477cc4f5ccf1bd828fda0cbfb4ee77
                  throw new utils_1.JsiiError(`Declared dependency on version ${declaration} of ${name}, but version ${actualVersion} was found`);
              }
              ret[name] = resolved.resolvedFile;
-@@ -260,7 +264,9 @@ class DependencyResolver {
+@@ -290,7 +294,9 @@ class DependencyResolver {
          return Array.from(closure.values());
      }
      resolveDependency(root, name, declaration) {

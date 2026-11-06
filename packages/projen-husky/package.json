@@ -28,7 +28,7 @@
     "@langri-sha/vitest": "0.2.3",
     "@types/node": "24.19.2",
     "husky": "9.1.7",
-    "jsii": "5.9.57",
+    "jsii": "6.0.20",
     "projen": "0.104.1"
   },
   "peerDependencies": {

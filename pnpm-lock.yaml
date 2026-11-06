@@ -163,7 +163,7 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  jsii@5.9.57: dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf
+  jsii@6.0.20: 8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe
 
 importers:
 
@@ -252,8 +252,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -270,8 +270,8 @@ importers:
         specifier: 2.66.0
         version: 2.66.0(typescript@5.9.3)
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -285,8 +285,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -303,8 +303,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -321,8 +321,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -339,8 +339,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -354,8 +354,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -375,8 +375,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -400,8 +400,8 @@ importers:
         specifier: 10.14.0
         version: 10.14.0(supports-color@8.1.1)
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -419,8 +419,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -440,8 +440,8 @@ importers:
         specifier: 9.1.7
         version: 9.1.7
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -465,8 +465,8 @@ importers:
         specifier: 30.5.2
         version: 30.5.2(@types/node@24.19.2)(babel-plugin-macros@3.1.0)(supports-color@8.1.1)
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -484,8 +484,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -506,8 +506,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       lint-staged:
         specifier: 17.6.0
         version: 17.6.0
@@ -537,8 +537,8 @@ importers:
         specifier: 4.1.13
         version: 4.1.13
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       prettier:
         specifier: 3.9.9
         version: 3.9.9
@@ -559,8 +559,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -584,8 +584,8 @@ importers:
         specifier: 5.0.4
         version: 5.0.4
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       prettier:
         specifier: 3.9.9
         version: 3.9.9
@@ -753,8 +753,8 @@ importers:
         specifier: 7.8.0
         version: 7.8.0
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -768,8 +768,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -783,8 +783,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -801,8 +801,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -825,8 +825,8 @@ importers:
         specifier: 24.19.2
         version: 24.19.2
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -846,8 +846,8 @@ importers:
         specifier: 1.16.2
         version: 1.16.2
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -864,8 +864,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -892,8 +892,8 @@ importers:
         specifier: 24.19.2
         version: 24.19.2
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -911,8 +911,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -929,8 +929,8 @@ importers:
         specifier: 0.2.3
         version: 0.2.3(vitest@5.0.5(@types/node@24.19.2)(vite@8.3.4(@types/node@24.19.2)(esbuild@0.28.2)(terser@5.51.2)(tsx@4.23.15)(yaml@2.9.1)))
       jsii:
-        specifier: 5.9.57
-        version: 5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1)
+        specifier: 6.0.20
+        version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -5035,8 +5035,8 @@ packages:
     engines: {node: '>=6'}
     hasBin: true
 
-  jsii@5.9.57:
-    resolution: {integrity: sha512-+6t5k7zCn7kndIBHj2vhEHGG37aVIZxq2JVcG8md15vyQ67sLu3rqRkXTo4Y56yzcD/Pd9gcHEq99gpRHjpUIw==}
+  jsii@6.0.20:
+    resolution: {integrity: sha512-E+EadEU/WIlqat3gTi+Oj1mptH68+O8KWQGAOrufCXkxqL528KbS59y233nuSZqW5RPpbDPCdKuVZ2CxxxCJSQ==}
     engines: {node: '>= 20.16.0'}
     hasBin: true
 
@@ -6488,6 +6488,11 @@ packages:
 
   typescript@5.9.3:
     resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -11523,7 +11528,7 @@ snapshots:
 
   jsesc@3.1.0: {}
 
-  jsii@5.9.57(patch_hash=dc3427dfe750b6a5309f7c809d2b50236293506488e72a17c190d49b87a4efdf)(supports-color@8.1.1):
+  jsii@6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1):
     dependencies:
       '@jsii/check-node': 1.142.0
       '@jsii/spec': 1.142.0
@@ -11535,7 +11540,7 @@ snapshots:
       semver-intersect: 1.5.0
       sort-json: 2.0.1
       spdx-license-list: 6.12.0
-      typescript: 5.9.3
+      typescript: 6.0.3
       yargs: 17.7.3
     transitivePeerDependencies:
       - supports-color
@@ -13012,6 +13017,8 @@ snapshots:
       - supports-color
 
   typescript@5.9.3: {}
+
+  typescript@6.0.3: {}
 
   uint8array-extras@1.6.0: {}
 

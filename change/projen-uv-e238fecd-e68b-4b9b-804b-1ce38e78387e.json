@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Move jsii to 6.0.20",
+  "packageName": "projen-uv",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
