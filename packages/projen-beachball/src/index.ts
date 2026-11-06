@@ -1,5 +1,6 @@
-import { type BeachballConfig } from 'beachball'
-import { Project, TextFile } from 'projen'
+import type { BeachballConfig } from 'beachball'
+import type { Project } from 'projen'
+import { TextFile } from 'projen'
 
 /**
  * Options for configuring Beachball.

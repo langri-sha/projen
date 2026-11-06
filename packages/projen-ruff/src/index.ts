@@ -1,6 +1,6 @@
 import { Component, type Project, TomlFile } from 'projen'
 
-import { type RuffSchema } from './ruff.js'
+import type { RuffSchema } from './ruff.js'
 
 export * from './ruff.js'
 

@@ -1,4 +1,5 @@
-import { ProjenrcFile as BaseProjenrcFile, Project, SampleFile } from 'projen'
+import type { Project } from 'projen'
+import { ProjenrcFile as BaseProjenrcFile, SampleFile } from 'projen'
 
 export interface ProjenrcOptions {
   /**

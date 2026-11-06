@@ -1,4 +1,5 @@
-import { Project, SampleFile } from 'projen'
+import type { Project } from 'projen'
+import { SampleFile } from 'projen'
 
 /**
  * Initial `README` for new packages.

@@ -1,9 +1,9 @@
 import { Component, type Project, SampleFile, TomlFile } from 'projen'
 
-import { type CargoManifest } from './cargo.js'
-import { type CargoDenyOptions } from './deny.js'
-import { type Rustfmt } from './rustfmt.js'
-import { type RustToolchainOptions } from './toolchain.js'
+import type { CargoManifest } from './cargo.js'
+import type { CargoDenyOptions } from './deny.js'
+import type { Rustfmt } from './rustfmt.js'
+import type { RustToolchainOptions } from './toolchain.js'
 
 export * from './cargo.js'
 export * from './deny.js'
