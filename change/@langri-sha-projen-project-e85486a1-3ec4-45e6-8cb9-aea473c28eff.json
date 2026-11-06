@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Default to @langri-sha/eslint-config 0.13.0. The next synth brings new type-only import lint errors, all fixed by `eslint --fix`. Require TypeScript 6 as a peer.",
-  "packageName": "@langri-sha/projen-project",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

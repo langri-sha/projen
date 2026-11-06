@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Thu, 05 Nov 2026 22:44:39 GMT and should not be manually modified. -->
+<!-- This log was last generated on Fri, 06 Nov 2026 23:37:31 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.51.0
+
+Fri, 06 Nov 2026 23:37:31 GMT
+
+### Minor changes
+
+- Default to @langri-sha/eslint-config 0.13.0. The next synth brings new type-only import lint errors, all fixed by `eslint --fix`. Require TypeScript 6 as a peer. (filip.dupanovic@gmail.com)
+- Bump projen-skills to v0.3.4
+
+### Patches
+
+- Update dependency skills to v1.7.6
 
 ## 0.50.0
 

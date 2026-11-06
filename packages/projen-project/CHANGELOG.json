@@ -2,6 +2,55 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Fri, 06 Nov 2026 23:37:31 GMT",
+      "version": "0.51.0",
+      "tag": "@langri-sha/projen-project_v0.51.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Update dependency skills to v1.7.6"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Move jsii to 6.0.20"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Build against @langri-sha/tsconfig 3.0.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Build against @langri-sha/tsconfig 2.0.0."
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Default to @langri-sha/eslint-config 0.13.0. The next synth brings new type-only import lint errors, all fixed by `eslint --fix`. Require TypeScript 6 as a peer."
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-skills to v0.3.4",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Nov 2026 22:44:39 GMT",
       "version": "0.50.0",
       "tag": "@langri-sha/projen-project_v0.50.0",

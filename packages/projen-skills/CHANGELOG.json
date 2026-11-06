@@ -2,6 +2,47 @@
   "name": "projen-skills",
   "entries": [
     {
+      "date": "Fri, 06 Nov 2026 23:37:31 GMT",
+      "version": "0.3.4",
+      "tag": "projen-skills_v0.3.4",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Update dependency vercel-labs/skills to v1.7.6"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Update dependency skills to v1.7.6"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-skills",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Build against @langri-sha/tsconfig 3.0.0"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-skills",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Move to @langri-sha/tsconfig 2.0.0."
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-skills",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Move jsii to 6.0.20"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Nov 2026 22:44:39 GMT",
       "version": "0.3.3",
       "tag": "projen-skills_v0.3.3",

@@ -2,6 +2,39 @@
   "name": "projen-prettier",
   "entries": [
     {
+      "date": "Fri, 06 Nov 2026 23:37:31 GMT",
+      "version": "0.4.23",
+      "tag": "projen-prettier_v0.4.23",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-prettier",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Move to @langri-sha/tsconfig 2.0.0."
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-prettier",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Use type-only imports"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-prettier",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Move jsii to 6.0.20"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-prettier",
+            "commit": "89a3d9dcebaff6889fa1bf6252c5370c44ec08f1",
+            "comment": "Build against @langri-sha/tsconfig 3.0.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Thu, 05 Nov 2026 22:44:39 GMT",
       "version": "0.4.23",
       "tag": "projen-prettier_v0.4.23",

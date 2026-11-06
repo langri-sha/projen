@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Use type-only imports",
-  "packageName": "projen-uv",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}
