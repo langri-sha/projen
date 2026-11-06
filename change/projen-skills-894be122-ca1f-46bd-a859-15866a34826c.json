@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency skills to v1.7.6",
+  "packageName": "projen-skills",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
