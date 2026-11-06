@@ -1001,7 +1001,7 @@ project.addSubproject(
         ...projenPeer.peerDeps,
         'skills@^1.7.2',
         'tsx@^4.0.0',
-        'typescript@^5.5.0 || ^6.0.0',
+        'typescript@^6.0.0',
         'vitest@^5.0.0',
       ],
       peerDependenciesMeta: {

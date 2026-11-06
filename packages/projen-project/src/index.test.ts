@@ -4260,17 +4260,26 @@ describe('declarations this preset cannot support', () => {
   )
 
   test('do not reject a version that is behind but still supported', () => {
-    const project = declaring(['typescript@5.6.0'], { typeScriptConfig: {} })()
+    const project = declaring(['typescript@6.0.0'], { typeScriptConfig: {} })()
 
     expect(
       synthSnapshot(project)['package.json'].devDependencies.typescript,
-    ).toBe('5.6.0')
+    ).toBe('6.0.0')
   })
 
-  test.each(['typescript@5.9.3', 'typescript@6.0.3'])(
+  test.each(['typescript@6.0.0', 'typescript@6.0.3'])(
     'accept %s, which the peer range covers',
     (spec) => {
       expect(declaring([spec], { typeScriptConfig: {} })).not.toThrow()
+    },
+  )
+
+  test.each(['typescript@5.9.3', 'typescript@7.0.2'])(
+    'reject %s, which the peer range excludes',
+    (spec) => {
+      expect(declaring([spec], { typeScriptConfig: {} })).toThrowError(
+        `declares ${spec},`,
+      )
     },
   )
 
