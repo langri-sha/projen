@@ -41,7 +41,6 @@ const project = new Project({
       '@langri-sha/webpack@0.8.2',
       '@types/node@24.19.2',
       'schemastore-to-typescript@1.3.0',
-      'typescript@5.9.3',
       'webpack@5.112.2',
     ],
   },
@@ -146,17 +145,6 @@ const project = new Project({
         groupSlug: 'langri-sha-projen',
         matchPackageNames: ['schemastore-to-typescript'],
         minimumReleaseAge: null,
-      },
-      {
-        description:
-          "Keep this repository's TypeScript on the version jsii compiles with, until jsii moves",
-        matchFileNames: [
-          '.projenrc.ts',
-          'package.json',
-          'packages/*/package.json',
-        ],
-        matchPackageNames: ['typescript'],
-        enabled: false,
       },
     ],
   },
