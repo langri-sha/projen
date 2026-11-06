@@ -38,6 +38,7 @@
         'projen',
         'skills',
         'tsx',
+        'typescript',
         'vitest',
       ],
       enabled: false,
@@ -66,16 +67,6 @@
       groupSlug: 'langri-sha-projen',
       matchPackageNames: ['schemastore-to-typescript'],
       minimumReleaseAge: null,
-    },
-    {
-      description: "Keep this repository's TypeScript on the version jsii compiles with, until jsii moves",
-      matchFileNames: [
-        '.projenrc.ts',
-        'package.json',
-        'packages/*/package.json',
-      ],
-      matchPackageNames: ['typescript'],
-      enabled: false,
     },
   ],
   customManagers: [
