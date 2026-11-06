@@ -31,7 +31,7 @@
     "@langri-sha/tsconfig": "2.0.0",
     "@langri-sha/vitest": "0.2.3",
     "@types/serialize-javascript": "5.0.4",
-    "jsii": "5.9.57",
+    "jsii": "6.0.20",
     "lint-staged": "17.6.0",
     "projen": "0.104.1"
   },

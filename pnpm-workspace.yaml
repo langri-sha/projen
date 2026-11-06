@@ -8,7 +8,7 @@ allowBuilds:
 packages:
   - packages/*
 patchedDependencies:
-  jsii@5.9.57: patches/jsii@5.9.57.patch
+  jsii@6.0.20: patches/jsii@6.0.20.patch
 minimumReleaseAgeExclude:
   - '@langri-sha/*'
   - schemastore-to-typescript
