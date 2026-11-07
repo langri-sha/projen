@@ -220,6 +220,12 @@ const publish = (
   project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
 }
 
+// Reserved words matter only to language bindings, and none are published.
+// These packages expose the keys of the configuration they mirror, and the keys
+// are the wire format. JSII5019 is a member named like its type.
+const reservedWord = 'JSII5018'
+const memberNameConflict = 'JSII5019'
+
 // The preset ships its components as dependencies, so consumers install one
 // package. Peers would have each of them install every component themselves.
 const siblingPeer = 'JSII5'
@@ -478,7 +484,7 @@ project.addSubproject(
   (project) =>
     publish(
       project,
-      `${jsiiCommand} && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts`,
+      `${jsiiSilencing(reservedWord)} && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts`,
     ),
   (project) => {
     project.addGitIgnore('cargo.ts')
@@ -570,7 +576,11 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, `${jsiiCommand} && test -f dist/settings.d.ts`),
+  (project) =>
+    publish(
+      project,
+      `${jsiiSilencing(reservedWord)} && test -f dist/settings.d.ts`,
+    ),
   (project) => {
     project.addGitIgnore('settings.ts')
 
@@ -648,7 +658,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) =>
     smoke(project, {
       imports: "import { ESLint } from 'projen-eslint'",
@@ -680,7 +690,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) => {
     project.npmIgnore?.exclude('__fixtures__/')
   },
@@ -751,7 +761,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) =>
     smoke(project, {
       imports: "import { JestConfig } from 'projen-jest-config'",
@@ -820,7 +830,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) =>
     smoke(project, {
       imports: "import { LintStaged } from 'projen-lint-staged'",
@@ -892,7 +902,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) => {
     project.addGitIgnore('pnpm-workspace.ts')
 
@@ -936,7 +946,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) =>
     smoke(project, {
       imports: "import { Prettier } from 'projen-prettier'",
@@ -1152,7 +1162,7 @@ project.addSubproject(
   (project) =>
     publish(
       project,
-      `${jsiiCommand} --compress-assembly && test -f dist/renovate.d.ts`,
+      `${jsiiSilencing(reservedWord, memberNameConflict)} --compress-assembly && test -f dist/renovate.d.ts`,
     ),
   (project) => {
     // The compressed assembly is named `.jsii.gz`, which `.*` would drop.
@@ -1210,7 +1220,11 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, `${jsiiCommand} && test -f dist/ruff.d.ts`),
+  (project) =>
+    publish(
+      project,
+      `${jsiiSilencing(reservedWord)} && test -f dist/ruff.d.ts`,
+    ),
   (project) => {
     project.addGitIgnore('ruff.ts')
 
@@ -1289,7 +1303,11 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, `${jsiiCommand} && test -f dist/swcrc.d.ts`),
+  (project) =>
+    publish(
+      project,
+      `${jsiiSilencing(reservedWord)} && test -f dist/swcrc.d.ts`,
+    ),
   (project) => {
     project.addGitIgnore('swcrc.ts')
 
@@ -1408,7 +1426,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publishJsii(project, { inline: true }),
+  (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) => {
     project.addGitIgnore('pyproject.ts')
     project.addGitIgnore('uv.ts')
@@ -1458,7 +1476,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  publishJsii,
+  (project) => publishJsii(project, { silence: [reservedWord] }),
   (project) =>
     smoke(project, {
       imports: "import { Worktrunk } from 'projen-worktrunk'",
