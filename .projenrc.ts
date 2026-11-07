@@ -220,12 +220,24 @@ const publish = (
   project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
 }
 
+// The preset ships its components as dependencies, so consumers install one
+// package. Peers would have each of them install every component themselves.
+const siblingPeer = 'JSII5'
+
+const jsiiSilencing = (...codes: string[]) =>
+  [jsiiCommand, ...codes.map((code) => `--silence-warnings ${code}`)].join(' ')
+
 const publishJsii = (
   project: Project,
-  { inline = false }: { inline?: boolean } = {},
+  {
+    inline = false,
+    silence = [],
+  }: { inline?: boolean; silence?: string[] } = {},
 ) => {
+  const jsii = jsiiSilencing(...silence)
+
   if (!inline) {
-    return publish(project, jsiiCommand)
+    return publish(project, jsii)
   }
 
   // jsii takes only jsii modules as dependencies, and npm cannot pack
@@ -237,7 +249,7 @@ const publishJsii = (
     path.join(project.root.outdir, 'scripts', 'inline-dependencies.mjs'),
   )}`
 
-  publish(project, `${script} build '${jsiiCommand}'`)
+  publish(project, `${script} build '${jsii}'`)
   project.package?.setScript('postpublish', `${script} restore`)
 }
 
@@ -1068,7 +1080,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  publishJsii,
+  (project) => publishJsii(project, { silence: [siblingPeer] }),
   (project) => {
     // The ambient typings beside package.json would otherwise make jsii take
     // the package root as the source root.
