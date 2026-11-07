@@ -32,6 +32,7 @@
     "skills": "1.7.6"
   },
   "peerDependencies": {
+    "constructs": "^10.5.0",
     "projen": ">=0.86.0 <1.0.0"
   },
   "publishConfig": {

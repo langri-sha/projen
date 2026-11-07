@@ -73,6 +73,7 @@
     "@swc-node/register": "^1.0.0",
     "@swc/core": "^1.6.0",
     "beachball": "^2.0.0",
+    "constructs": "^10.5.0",
     "eslint": "^10.4.0",
     "husky": "^9.0.1",
     "jest": "^30.0.0",

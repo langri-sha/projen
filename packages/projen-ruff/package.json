@@ -33,6 +33,7 @@
     "smol-toml": "1.9.1"
   },
   "peerDependencies": {
+    "constructs": "^10.5.0",
     "projen": ">=0.86.0 <1.0.0"
   },
   "publishConfig": {

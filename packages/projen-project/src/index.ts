@@ -1205,6 +1205,10 @@ export class Project extends BaseProject {
 
     this.#addDefaultDevDeps('jsii@*')
 
+    if (!this.deps.tryGetDependency('constructs', DependencyType.PEER)) {
+      this.deps.addDependency('constructs@^10.5.0', DependencyType.PEER)
+    }
+
     this.package.addField('types', this.package.entrypoint)
     this.package.addField('jsii', {
       tsconfig: jsii.tsconfig,
