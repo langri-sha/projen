@@ -7,4 +7,4 @@ engineVersion = "v1.0.0-beta.21"
 source = "dang"
 
 [[dependencies]]
-source = "github.com/langri-sha/dagger/typescript@v2.1.0"
+source = "github.com/langri-sha/dagger/typescript@v2.2.0"
