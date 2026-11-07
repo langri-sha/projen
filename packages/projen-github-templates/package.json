@@ -20,7 +20,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build",
+    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build 'jsii --silence-warnings JSII6 --silence-warnings JSII5018'",
     "postpublish": "node ../../scripts/inline-dependencies.mjs restore"
   },
   "dependencies": {
@@ -33,6 +33,7 @@
     "projen": "0.104.1"
   },
   "peerDependencies": {
+    "constructs": "^10.5.0",
     "projen": ">=0.86.0 <1.0.0"
   },
   "publishConfig": {

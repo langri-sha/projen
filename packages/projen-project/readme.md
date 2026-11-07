@@ -166,7 +166,13 @@ new Project({
 - `types` points at the entrypoint, so the package keeps loading from source
   while `publishConfig` decides what the tarball ships. A package that publishes
   from `dist/` needs `publishConfig.types` as well as `publishConfig.main`.
-- `prepublishOnly` runs `jsii`, unless the project sets that script itself.
+- `prepublishOnly` runs `jsii --silence-warnings JSII6`, unless the project sets
+  that script itself. A project that does can build its own command from the
+  exported `jsiiCommand`.
+- `constructs` is peered at `^10.5.0`, projen's own range, unless the project
+  declares that peer, since jsii asks for one on every module that exposes its
+  types. Projen pins a development copy at the floor unless
+  `peerDependencyOptions.pinnedDevDependency` is `false`.
 - `npmIgnore` is required, and the assembly is kept out of the patterns that
   would drop it. Without a `.npmignore`, npm falls back to `.gitignore` and
   leaves `.jsii` out of the tarball.

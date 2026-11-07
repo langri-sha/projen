@@ -1757,7 +1757,90 @@ describe('with jsii', () => {
 
     const manifest = synthSnapshot(project)['package.json']
 
-    expect(manifest.scripts.prepublishOnly).toBe('jsii')
+    expect(manifest.scripts.prepublishOnly).toBe(
+      'jsii --silence-warnings JSII6',
+    )
+  })
+
+  test('peers constructs without a development copy when peers are unpinned', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        ...identified,
+        peerDependencyOptions: { pinnedDevDependency: false },
+      },
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.5.0' })
+    expect(manifest.devDependencies).not.toHaveProperty('constructs')
+  })
+
+  test('pins a development copy of constructs at the default', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: identified,
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.5.0' })
+    expect(manifest.devDependencies).toMatchObject({ constructs: '10.5.0' })
+  })
+
+  test('peers constructs when the project only develops with it', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        ...identified,
+        devDeps: ['constructs@10.8.1'],
+        peerDependencyOptions: { pinnedDevDependency: false },
+      },
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.5.0' })
+    expect(manifest.devDependencies).toMatchObject({ constructs: '10.8.1' })
+  })
+
+  test('keeps a declared constructs peer beside its development copy', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: {
+        ...identified,
+        peerDeps: ['constructs@^10.0.0'],
+        devDeps: ['constructs@10.8.1'],
+        peerDependencyOptions: { pinnedDevDependency: false },
+      },
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.0.0' })
+    expect(manifest.devDependencies).toMatchObject({ constructs: '10.8.1' })
+  })
+
+  test('keeps the constructs range the project declares', () => {
+    const project = new Project({
+      name: 'test-project',
+      package: { ...identified, peerDeps: ['constructs@^10.0.0'] },
+      npmIgnore: {},
+      jsii: { tsconfig: 'tsconfig.build.json' },
+    })
+
+    const manifest = synthSnapshot(project)['package.json']
+
+    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.0.0' })
   })
 
   test('yields the publishing script to the project', () => {

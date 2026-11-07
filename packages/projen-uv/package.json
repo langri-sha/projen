@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts && schemastore-to-typescript --no-cache --jsii uv src/uv.ts",
-    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build",
+    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build 'jsii --silence-warnings JSII6 --silence-warnings JSII5018'",
     "postpublish": "node ../../scripts/inline-dependencies.mjs restore"
   },
   "dependencies": {
@@ -36,6 +36,7 @@
     "schemastore-to-typescript": "1.3.0"
   },
   "peerDependencies": {
+    "constructs": "^10.5.0",
     "projen": ">=0.86.0 <1.0.0"
   },
   "publishConfig": {

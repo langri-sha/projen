@@ -21,7 +21,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; jsii"
+    "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6"
   },
   "dependencies": {
     "@schemastore/tsconfig": "1.0.11"
@@ -34,6 +34,7 @@
     "projen": "0.104.1"
   },
   "peerDependencies": {
+    "constructs": "^10.5.0",
     "projen": ">=0.86.0 <1.0.0"
   },
   "bundledDependencies": [

@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Silence the JSII6 warning when compiling with jsii",
+  "packageName": "projen-typescript-config",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}

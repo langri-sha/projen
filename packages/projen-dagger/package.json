@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts && schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
-    "prepublishOnly": "rm -rf dist; jsii && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts"
+    "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "3.0.0",
@@ -33,6 +33,7 @@
     "smol-toml": "1.9.1"
   },
   "peerDependencies": {
+    "constructs": "^10.5.0",
     "projen": ">=0.86.0 <1.0.0"
   },
   "publishConfig": {

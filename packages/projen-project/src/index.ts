@@ -237,6 +237,15 @@ export interface ProjectGitHubTemplatesOptions {
 }
 
 /**
+ * jsii, with its JSII6 warning silenced. It asks for a development dependency
+ * on each peer, pinned to the floor of the peer range: `projen` sits above it
+ * because it follows the current projen through Renovate, and a peer with no
+ * development copy at all, such as `constructs`, is reported as `undefined`.
+ * Pinning to the floor would build and test against an old projen.
+ */
+export const jsiiCommand = 'jsii --silence-warnings JSII6'
+
+/**
  * Options for compiling the package with jsii, so that its tarball carries a
  * `.jsii` assembly.
  */
@@ -1196,12 +1205,16 @@ export class Project extends BaseProject {
 
     this.#addDefaultDevDeps('jsii@*')
 
+    if (!this.deps.tryGetDependency('constructs', DependencyType.PEER)) {
+      this.deps.addDependency('constructs@^10.5.0', DependencyType.PEER)
+    }
+
     this.package.addField('types', this.package.entrypoint)
     this.package.addField('jsii', {
       tsconfig: jsii.tsconfig,
       validateTsconfig: 'minimal',
     })
-    this.package.setScript('prepublishOnly', 'jsii')
+    this.package.setScript('prepublishOnly', jsiiCommand)
 
     this.npmIgnore.include('/.jsii')
   }

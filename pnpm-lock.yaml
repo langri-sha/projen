@@ -235,6 +235,9 @@ importers:
 
   packages/projen-babel:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
@@ -259,6 +262,10 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-beachball:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -277,6 +284,10 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-cargo:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -295,6 +306,10 @@ importers:
         version: 1.3.0(supports-color@8.1.1)
 
   packages/projen-changesets:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -313,6 +328,10 @@ importers:
         version: 1.3.0(supports-color@8.1.1)
 
   packages/projen-claude:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -331,6 +350,10 @@ importers:
         version: 1.3.0(supports-color@8.1.1)
 
   packages/projen-codeowners:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -346,6 +369,10 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-dagger:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -367,6 +394,10 @@ importers:
         version: 1.9.1
 
   packages/projen-editorconfig:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -383,6 +414,9 @@ importers:
 
   packages/projen-eslint:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
@@ -408,6 +442,9 @@ importers:
 
   packages/projen-github-templates:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       yaml:
         specifier: 2.9.1
         version: 2.9.1
@@ -426,6 +463,10 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-husky:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -448,6 +489,9 @@ importers:
 
   packages/projen-jest-config:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
@@ -473,6 +517,9 @@ importers:
 
   packages/projen-license:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       license-o-matic:
         specifier: ^1.2.0
         version: 1.2.0
@@ -492,6 +539,9 @@ importers:
 
   packages/projen-lint-staged:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
@@ -517,6 +567,9 @@ importers:
 
   packages/projen-lint-synthesized:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       debug:
         specifier: 4.4.3
         version: 4.4.3(supports-color@8.1.1)
@@ -548,6 +601,9 @@ importers:
 
   packages/projen-pnpm-workspace:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       yaml:
         specifier: 2.9.1
         version: 2.9.1
@@ -570,6 +626,9 @@ importers:
 
   packages/projen-prettier:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       serialize-javascript:
         specifier: 7.1.4
         version: 7.1.4
@@ -622,6 +681,9 @@ importers:
       beachball:
         specifier: ^2.0.0
         version: 2.66.0(typescript@6.0.3)
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       eslint:
         specifier: ^10.4.0
         version: 10.14.0(supports-color@8.1.1)
@@ -760,6 +822,10 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-readme:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -775,6 +841,10 @@ importers:
         version: 0.104.1(constructs@10.8.1)
 
   packages/projen-renovate:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -793,6 +863,10 @@ importers:
         version: 1.3.0(supports-color@8.1.1)
 
   packages/projen-ruff:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -814,6 +888,10 @@ importers:
         version: 1.9.1
 
   packages/projen-skills:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -835,6 +913,10 @@ importers:
         version: 1.7.6
 
   packages/projen-swcrc:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -856,6 +938,10 @@ importers:
         version: 1.3.0(supports-color@8.1.1)
 
   packages/projen-ty:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -881,6 +967,9 @@ importers:
       '@schemastore/tsconfig':
         specifier: 1.0.11
         version: 1.0.11
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
@@ -900,6 +989,9 @@ importers:
 
   packages/projen-uv:
     dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
       smol-toml:
         specifier: 1.9.1
         version: 1.9.1
@@ -921,6 +1013,10 @@ importers:
         version: 1.3.0(supports-color@8.1.1)
 
   packages/projen-worktrunk:
+    dependencies:
+      constructs:
+        specifier: ^10.5.0
+        version: 10.8.1
     devDependencies:
       '@langri-sha/tsconfig':
         specifier: 3.0.0
