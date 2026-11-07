@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts",
-    "prepublishOnly": "rm -rf dist; jsii && test -f dist/swcrc.d.ts"
+    "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 && test -f dist/swcrc.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "3.0.0",

@@ -1,4 +1,4 @@
-import { execFileSync } from 'node:child_process'
+import { execSync } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -194,7 +194,7 @@ const commands = {
     fs.writeFileSync(manifestPath, stripped)
 
     try {
-      execFileSync('jsii', { stdio: 'inherit' })
+      execSync(jsii, { stdio: 'inherit' })
     } finally {
       fs.writeFileSync(manifestPath, original)
     }
@@ -212,7 +212,7 @@ const commands = {
   },
 }
 
-const [command] = process.argv.slice(2)
+const [command, jsii = 'jsii'] = process.argv.slice(2)
 
 if (!Object.hasOwn(commands, command)) {
   throw new Error(`Expected ${Object.keys(commands).join(', ')}.`)

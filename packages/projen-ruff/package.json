@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts && node -e \"const f='src/ruff.ts',fs=require('node:fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/\\bRuffOptions\\b/g,'LintRuffOptions'))\"",
-    "prepublishOnly": "rm -rf dist; jsii && test -f dist/ruff.d.ts"
+    "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 && test -f dist/ruff.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "3.0.0",
