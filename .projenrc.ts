@@ -56,7 +56,7 @@ const project = new Project({
     '*': '@langri-sha',
   },
   dagger: {
-    engineVersion: 'v1.0.0-beta.21',
+    engineVersion: 'v1.0.0-beta.23',
     modules: {
       '.dagger/smoke': {
         dependencies: ['github.com/langri-sha/dagger/typescript@v2.1.0'],
@@ -362,7 +362,7 @@ project.addSubproject(
   (project) =>
     smoke(project, {
       imports: "import { Dagger } from 'projen-dagger'",
-      run: "new Dagger(project, {\n  engineVersion: 'v1.0.0-beta.15',\n  modules: { '.dagger/build': { dependencies: ['../lint'], codegen: { automaticGitignore: false } } },\n  workspace: { ignore: ['node_modules'] },\n})",
+      run: "new Dagger(project, {\n  engineVersion: 'v1.0.0-beta.23',\n  modules: { '.dagger/build': { dependencies: ['../lint'], codegen: { automaticGitignore: false } } },\n  workspace: { ignore: ['node_modules'] },\n})",
       check:
         "assert.ok(read('.dagger/build/dagger-module.toml').includes('v1.0.0-beta.15'))\nassert.ok(read('.dagger/build/dagger-module.toml').includes('../lint'))\nassert.ok(read('dagger.toml').includes('node_modules'))",
     }),
