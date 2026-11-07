@@ -21,7 +21,7 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build",
+    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build 'jsii --silence-warnings JSII6'",
     "postpublish": "node ../../scripts/inline-dependencies.mjs restore"
   },
   "dependencies": {

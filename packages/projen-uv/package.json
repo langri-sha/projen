@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts && schemastore-to-typescript --no-cache --jsii uv src/uv.ts",
-    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build",
+    "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build 'jsii --silence-warnings JSII6'",
     "postpublish": "node ../../scripts/inline-dependencies.mjs restore"
   },
   "dependencies": {

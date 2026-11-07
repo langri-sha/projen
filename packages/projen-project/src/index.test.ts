@@ -1757,7 +1757,9 @@ describe('with jsii', () => {
 
     const manifest = synthSnapshot(project)['package.json']
 
-    expect(manifest.scripts.prepublishOnly).toBe('jsii')
+    expect(manifest.scripts.prepublishOnly).toBe(
+      'jsii --silence-warnings JSII6',
+    )
   })
 
   test('yields the publishing script to the project', () => {

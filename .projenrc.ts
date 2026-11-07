@@ -1,7 +1,11 @@
 import * as path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { Project, TypeScriptConfig } from '@langri-sha/projen-project'
+import {
+  Project,
+  TypeScriptConfig,
+  jsiiCommand,
+} from '@langri-sha/projen-project'
 import { SampleFile, TextFile } from 'projen'
 
 const pkg = {
@@ -221,7 +225,7 @@ const publishJsii = (
   { inline = false }: { inline?: boolean } = {},
 ) => {
   if (!inline) {
-    return publish(project, 'jsii')
+    return publish(project, jsiiCommand)
   }
 
   // jsii takes only jsii modules as dependencies, and npm cannot pack
@@ -233,7 +237,7 @@ const publishJsii = (
     path.join(project.root.outdir, 'scripts', 'inline-dependencies.mjs'),
   )}`
 
-  publish(project, `${script} build`)
+  publish(project, `${script} build '${jsiiCommand}'`)
   project.package?.setScript('postpublish', `${script} restore`)
 }
 
@@ -345,7 +349,7 @@ project.addSubproject(
   (project) =>
     publish(
       project,
-      'jsii && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts',
+      `${jsiiCommand} && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts`,
     ),
   (project) => {
     project.addGitIgnore('dagger-module.ts')
@@ -462,7 +466,7 @@ project.addSubproject(
   (project) =>
     publish(
       project,
-      'jsii && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts',
+      `${jsiiCommand} && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts`,
     ),
   (project) => {
     project.addGitIgnore('cargo.ts')
@@ -513,7 +517,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, 'jsii && test -f dist/config.d.ts'),
+  (project) => publish(project, `${jsiiCommand} && test -f dist/config.d.ts`),
   (project) => {
     project.addGitIgnore('config.ts')
 
@@ -554,7 +558,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, 'jsii && test -f dist/settings.d.ts'),
+  (project) => publish(project, `${jsiiCommand} && test -f dist/settings.d.ts`),
   (project) => {
     project.addGitIgnore('settings.ts')
 
@@ -1134,7 +1138,10 @@ project.addSubproject(
   subproject,
   test,
   (project) =>
-    publish(project, 'jsii --compress-assembly && test -f dist/renovate.d.ts'),
+    publish(
+      project,
+      `${jsiiCommand} --compress-assembly && test -f dist/renovate.d.ts`,
+    ),
   (project) => {
     // The compressed assembly is named `.jsii.gz`, which `.*` would drop.
     project.npmIgnore?.include('/.jsii.gz')
@@ -1191,7 +1198,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, 'jsii && test -f dist/ruff.d.ts'),
+  (project) => publish(project, `${jsiiCommand} && test -f dist/ruff.d.ts`),
   (project) => {
     project.addGitIgnore('ruff.ts')
 
@@ -1270,7 +1277,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, 'jsii && test -f dist/swcrc.d.ts'),
+  (project) => publish(project, `${jsiiCommand} && test -f dist/swcrc.d.ts`),
   (project) => {
     project.addGitIgnore('swcrc.ts')
 
@@ -1314,7 +1321,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, 'jsii && test -f dist/ty.d.ts'),
+  (project) => publish(project, `${jsiiCommand} && test -f dist/ty.d.ts`),
   (project) => {
     project.addGitIgnore('ty.ts')
 
