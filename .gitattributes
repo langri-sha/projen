@@ -281,6 +281,7 @@
 /packages/projen-readme/.projen/deps.json linguist-generated
 /packages/projen-readme/.projen/files.json linguist-generated
 /packages/projen-readme/.projen/tasks.json linguist-generated
+/packages/projen-readme/API.md linguist-generated
 /packages/projen-readme/license linguist-generated
 /packages/projen-readme/package.json linguist-generated
 /packages/projen-readme/pnpm-lock.yaml linguist-generated
