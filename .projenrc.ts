@@ -111,6 +111,7 @@ const project = new Project({
   prettier: {
     ignorePatterns: [
       '*.frag',
+      'API.md',
       'cargo.ts',
       'dagger-module.ts',
       'dagger-workspace.ts',
@@ -204,6 +205,7 @@ const test = (project: Project) => {
 const publish = (
   project: Project,
   build = 'tsc --project tsconfig.build.json',
+  clean = 'dist',
 ) => {
   project.package?.addField('publishConfig', {
     access: 'public',
@@ -219,7 +221,7 @@ const publish = (
     },
   })
 
-  project.package?.setScript('prepublishOnly', `rm -rf dist; ${build}`)
+  project.package?.setScript('prepublishOnly', `rm -rf ${clean}; ${build}`)
 }
 
 // Reserved words matter only to language bindings, and none are published.
@@ -239,17 +241,29 @@ const jsiiSilencing = (...codes: string[]) =>
     ...codes.map((code) => `--silence-warnings ${code}`),
   ].join(' ')
 
+// jsii-docgen reads the assembly jsii has just written, and finds the
+// assemblies of the dependencies only under the package's own `node_modules`,
+// where pnpm links its peers.
+const docgenCommand = 'jsii-docgen --output API.md'
+
 const publishJsii = (
   project: Project,
   {
+    apiDocs = false,
     inline = false,
     silence = [],
-  }: { inline?: boolean; silence?: string[] } = {},
+  }: { apiDocs?: boolean; inline?: boolean; silence?: string[] } = {},
 ) => {
   const jsii = jsiiSilencing(...silence)
 
+  if (apiDocs) {
+    project.annotateGenerated('/API.md')
+  }
+
   if (!inline) {
-    return publish(project, jsii)
+    return apiDocs
+      ? publish(project, `${jsii} && ${docgenCommand}`, 'dist API.md')
+      : publish(project, jsii)
   }
 
   // jsii takes only jsii modules as dependencies, and npm cannot pack
@@ -1135,7 +1149,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  publishJsii,
+  (project) => publishJsii(project, { apiDocs: true }),
   (project) =>
     smoke(project, {
       imports: "import { ReadmeFile } from 'projen-readme'",

@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Ship a generated API reference",
+  "packageName": "projen-readme",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
