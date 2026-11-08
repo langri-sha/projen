@@ -61,6 +61,16 @@
       "type": "build"
     },
     {
+      "name": "jsii-docgen",
+      "version": "10.12.8",
+      "type": "build"
+    },
+    {
+      "name": "jsii-rosetta",
+      "version": "6.0.22",
+      "type": "build"
+    },
+    {
       "name": "lint-staged",
       "version": "17.6.0",
       "type": "build"

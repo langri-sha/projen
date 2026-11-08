@@ -44,6 +44,8 @@ const project = new Project({
       '@langri-sha/tsconfig@3.0.0',
       '@langri-sha/webpack@0.8.2',
       '@types/node@24.19.2',
+      'jsii-docgen@10.12.8',
+      'jsii-rosetta@6.0.22',
       'schemastore-to-typescript@1.3.0',
       'webpack@5.112.2',
     ],
