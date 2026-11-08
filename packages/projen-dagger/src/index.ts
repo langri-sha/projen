@@ -56,7 +56,7 @@ export interface DaggerModuleOptions {
 
 export interface DaggerOptions {
   /**
-   * Engine version recorded in every module manifest, e.g. `v1.0.0-beta.15`.
+   * Engine version recorded in every module manifest, e.g. `v1.0.0-beta.25`.
    *
    * Required to declare a module. Renovate moves the pin here rather than in
    * the manifests, so this is the one place the repository names an engine.

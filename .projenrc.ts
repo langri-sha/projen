@@ -388,7 +388,7 @@ project.addSubproject(
   (project) =>
     smoke(project, {
       imports: "import { Dagger } from 'projen-dagger'",
-      run: "const example = { engineVersion: 'v1.0.0-beta.15' }\nnew Dagger(project, {\n  ...example,\n  modules: { '.dagger/build': { dependencies: ['../lint'], codegen: { automaticGitignore: false } } },\n  workspace: { ignore: ['node_modules'] },\n})",
+      run: "const example = { engineVersion: 'v1.0.0-beta.25' }\nnew Dagger(project, {\n  ...example,\n  modules: { '.dagger/build': { dependencies: ['../lint'], codegen: { automaticGitignore: false } } },\n  workspace: { ignore: ['node_modules'] },\n})",
       check:
         "assert.ok(read('.dagger/build/dagger-module.toml').includes(example.engineVersion))\nassert.ok(read('.dagger/build/dagger-module.toml').includes('../lint'))\nassert.ok(read('dagger.toml').includes('node_modules'))",
     }),

@@ -11,7 +11,7 @@ const outdir = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-'))
 const project = new projen.Project({ name: 'smoke', outdir })
 const read = (file) => fs.readFileSync(path.join(outdir, file), 'utf8')
 
-const example = { engineVersion: 'v1.0.0-beta.15' }
+const example = { engineVersion: 'v1.0.0-beta.25' }
 new Dagger(project, {
   ...example,
   modules: {

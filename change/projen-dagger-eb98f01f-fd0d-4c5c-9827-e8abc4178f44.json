@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Use Dagger v1.0.0-beta.25 in the examples",
+  "packageName": "projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
