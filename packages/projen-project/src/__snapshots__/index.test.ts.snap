@@ -1194,7 +1194,9 @@ module.exports = {
     ".*/**",
     "__snapshots__/",
     "dist/",
-    "node_modules/"
+    "node_modules/",
+    ".gitattributes",
+    ".prettierignore"
   ]
 }",
   "package.json": {
@@ -1419,7 +1421,9 @@ module.exports = {
     ".*/**",
     "__snapshots__/",
     "dist/",
-    "node_modules/"
+    "node_modules/",
+    ".gitattributes",
+    ".prettierignore"
   ]
 }",
   "package.json": {

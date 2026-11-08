@@ -336,6 +336,83 @@ describe('with Beachball configuration', () => {
   })
 })
 
+describe('Beachball ignore patterns', () => {
+  const ignorePatterns = (options: Record<string, unknown> = {}) => {
+    const source = synthSnapshot(
+      new Project({
+        name: 'test-project',
+        package: {},
+        beachball: {},
+        editorConfig: {},
+        npmIgnore: {},
+        prettier: {},
+        ...options,
+      }),
+    )['beachball.config.js'] as string
+
+    return JSON.parse(
+      source.slice(
+        source.indexOf('module.exports = ') + 'module.exports = '.length,
+      ),
+    ).ignorePatterns as string[]
+  }
+
+  test('exempts the generated root dotfiles', () => {
+    expect(ignorePatterns()).toEqual(
+      expect.arrayContaining([
+        '.editorconfig',
+        '.gitattributes',
+        '.gitignore',
+        '.prettierignore',
+      ]),
+    )
+  })
+
+  test('keeps requiring change files for .gitignore without npmIgnore', () => {
+    const patterns = ignorePatterns({ npmIgnore: undefined })
+
+    expect(patterns).not.toContain('.gitignore')
+    expect(patterns).toContain('.gitattributes')
+  })
+
+  test.each([
+    ['.editorconfig', { editorConfig: undefined }],
+    ['.prettierignore', { prettier: undefined }],
+  ])('leaves out %s when the project does not generate it', (file, options) => {
+    const patterns = ignorePatterns(options)
+
+    expect(patterns).not.toContain(file)
+    expect(patterns).toContain('.gitattributes')
+  })
+
+  test.each(['.npmignore', 'package.json'])(
+    'keeps requiring change files for %s',
+    (file) => {
+      expect(ignorePatterns()).not.toContain(file)
+    },
+  )
+
+  test('keeps the defaults and the patterns the project passes', () => {
+    expect(
+      ignorePatterns({
+        beachball: { config: { ignorePatterns: ['CODEOWNERS'] } },
+      }),
+    ).toEqual(
+      expect.arrayContaining(['*.test.*', '.*/**', 'dist/', 'CODEOWNERS']),
+    )
+  })
+
+  test('lists a pattern once when the project passes it too', () => {
+    const patterns = ignorePatterns({
+      beachball: { config: { ignorePatterns: ['.gitignore'] } },
+    })
+
+    expect(patterns.filter((pattern) => pattern === '.gitignore')).toHaveLength(
+      1,
+    )
+  })
+})
+
 describe('with Changesets configuration', () => {
   test('defaults', () => {
     const project = new Project({

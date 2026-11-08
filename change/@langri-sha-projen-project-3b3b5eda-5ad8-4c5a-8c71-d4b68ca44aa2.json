@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Exempt generated root dotfiles from change files",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
