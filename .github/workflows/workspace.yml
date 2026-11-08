@@ -11,12 +11,13 @@ jobs:
     permissions:
       contents: write
       id-token: write
-    uses: langri-sha/github/.github/workflows/check.yml@v0.36.0
+    uses: langri-sha/github/.github/workflows/check.yml@v0.37.0
     with:
       beachball: true
       dagger: true
       dagger-version: v1.0.0-beta.25
       eslint: true
+      generators: smoke/generate-api-docs
       packages: true
       prettier: true
       projen: true
