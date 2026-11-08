@@ -11,8 +11,9 @@ const outdir = fs.mkdtempSync(path.join(os.tmpdir(), 'smoke-'))
 const project = new projen.Project({ name: 'smoke', outdir })
 const read = (file) => fs.readFileSync(path.join(outdir, file), 'utf8')
 
+const example = { engineVersion: 'v1.0.0-beta.15' }
 new Dagger(project, {
-  engineVersion: 'v1.0.0-beta.15',
+  ...example,
   modules: {
     '.dagger/build': {
       dependencies: ['../lint'],
@@ -24,6 +25,8 @@ new Dagger(project, {
 
 project.synth()
 
-assert.ok(read('.dagger/build/dagger-module.toml').includes('v1.0.0-beta.15'))
+assert.ok(
+  read('.dagger/build/dagger-module.toml').includes(example.engineVersion),
+)
 assert.ok(read('.dagger/build/dagger-module.toml').includes('../lint'))
 assert.ok(read('dagger.toml').includes('node_modules'))
