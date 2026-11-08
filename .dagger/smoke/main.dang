@@ -1,7 +1,8 @@
 """
 Smoke tests for the packages a workspace publishes: each is packed, installed
 into a project of its own and run under plain Node, which tools such as tsx
-would otherwise paper over.
+would otherwise paper over. The API references they commit are rebuilt and
+compared.
 """
 type Smoke {
   """
@@ -18,23 +19,44 @@ type Smoke {
   }
 
   """
-  Build the packages as the typescript module's `publishable` check does, with
-  the same command, so that Dagger reuses its build, then run each package's
-  `smoke.mjs` against its tarball.
+  The packages built as the typescript module's `publishable` check builds
+  them, with the same command, so that Dagger reuses its build.
+  """
+  let built: Container! {
+    installed.withExec([
+      "pnpm",
+      "-r",
+      "--if-present",
+      "--include-workspace-root",
+      "run",
+      "prepublishOnly",
+    ])
+  }
+
+  """
+  Run each package's `smoke.mjs` against its tarball.
   """
   pub smoke: Void @check {
-    installed
-      .withExec([
-        "pnpm",
-        "-r",
-        "--if-present",
-        "--include-workspace-root",
-        "run",
-        "prepublishOnly",
-      ])
+    built
       .withMountedCache("/root/.npm", cacheVolume("npm-cache"))
       .withFile("/run/smoke.mjs", currentModule.source.file("run.mjs"))
       .withExec(["node", "/run/smoke.mjs"])
+      .sync
+
+    null
+  }
+
+  """
+  Fail when a committed `API.md` differs from the one the build writes.
+  """
+  pub apiDocs: Void @check {
+    built
+      .withMountedDirectory("/committed", installed.directory("/src"))
+      .withExec([
+        "sh",
+        "-c",
+        "status=0; for file in $(find packages -name API.md -not -path '*/node_modules/*'); do diff -u /committed/$file $file || { echo $file is stale: run pnpm --dir $(dirname $file) run prepublishOnly and commit $file >&2; status=1; }; done; exit $status",
+      ])
       .sync
 
     null

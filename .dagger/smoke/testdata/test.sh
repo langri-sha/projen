@@ -24,6 +24,10 @@ smoke() {
   (cd "$scratch/$1" && dagger check smoke:smoke >"$scratch/$1.log" 2>&1)
 }
 
+documented() {
+  (cd "$scratch/$1" && dagger check smoke:api-docs >"$scratch/$1.log" 2>&1)
+}
+
 passes() {
   echo "== $1: smoke passes"
   smoke "$1"
@@ -102,3 +106,46 @@ rmSync('dist', { recursive: true, force: true })
 cpSync('src', 'dist', { recursive: true })
 writeFileSync('.jsii', JSON.stringify({ name: 'good', types: {} }))"
 fails unshipped 'good: ships no assembly'
+
+writes_docs() {
+  local name=$1 committed=$2
+  fixture "$name"
+  edit "$name" packages/good/package.json '{"name": "good", "version": "1.0.0", "type": "module", "main": "dist/index.js", "scripts": {"prepublishOnly": "node build.js"}}'
+  edit "$name" packages/good/build.js "import { cpSync, rmSync, writeFileSync } from 'node:fs'
+rmSync('dist', { recursive: true, force: true })
+cpSync('src', 'dist', { recursive: true })
+writeFileSync('API.md', '# API\n')"
+  if [ -n "$committed" ]; then
+    edit "$name" packages/good/API.md "$committed"
+  fi
+}
+
+writes_docs fresh-docs '# API'
+echo "== fresh-docs: api-docs passes"
+documented fresh-docs
+
+writes_docs stale-docs '# Old API'
+echo "== stale-docs: api-docs fails on the difference"
+if documented stale-docs; then
+  echo "api-docs passed" >&2
+  exit 1
+fi
+grep -q -- '+# API$' "$scratch/stale-docs.log" || {
+  echo "no difference in the log" >&2
+  exit 1
+}
+grep -q 'packages/good/API.md is stale: run pnpm --dir packages/good run prepublishOnly and commit' "$scratch/stale-docs.log" || {
+  echo "no hint in the log" >&2
+  exit 1
+}
+
+writes_docs uncommitted-docs ''
+echo "== uncommitted-docs: api-docs fails on the missing copy"
+if documented uncommitted-docs; then
+  echo "api-docs passed" >&2
+  exit 1
+fi
+grep -q 'packages/good/API.md is stale' "$scratch/uncommitted-docs.log" || {
+  echo "no hint in the log" >&2
+  exit 1
+}
