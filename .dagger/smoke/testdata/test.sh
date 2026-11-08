@@ -149,3 +149,30 @@ grep -q 'packages/good/API.md is stale' "$scratch/uncommitted-docs.log" || {
   echo "no hint in the log" >&2
   exit 1
 }
+
+generated() {
+  (cd "$scratch/$1" && dagger generate -y --require-load smoke/generate-api-docs >"$scratch/$1.log" 2>&1)
+}
+
+writes_docs regenerated-docs '# Old API'
+echo "== regenerated-docs: the generator replaces a stale API.md"
+generated regenerated-docs
+[ "$(cat "$scratch/regenerated-docs/packages/good/API.md")" = '# API' ] || {
+  echo "API.md was not regenerated" >&2
+  exit 1
+}
+documented regenerated-docs
+
+writes_docs created-docs ''
+echo "== created-docs: the generator writes an API.md that was never committed"
+generated created-docs
+[ "$(cat "$scratch/created-docs/packages/good/API.md")" = '# API' ] || {
+  echo "API.md was not created" >&2
+  exit 1
+}
+[ ! -e "$scratch/created-docs/packages/good/dist" ] || {
+  echo "the generator wrote more than API.md" >&2
+  exit 1
+}
+documented created-docs
+
