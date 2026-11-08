@@ -60,7 +60,7 @@ const project = new Project({
     '*': '@langri-sha',
   },
   dagger: {
-    engineVersion: 'v1.0.0-beta.21',
+    engineVersion: 'v1.0.0-beta.25',
     modules: {
       '.dagger/smoke': {
         dependencies: ['github.com/langri-sha/dagger/typescript@v2.1.0'],
