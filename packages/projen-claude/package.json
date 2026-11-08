@@ -22,7 +22,7 @@
   "types": "src/index.ts",
   "scripts": {
     "prepare": "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
-    "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --silence-warnings JSII5018 && test -f dist/settings.d.ts"
+    "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --fail-on-warnings --silence-warnings JSII5018 && test -f dist/settings.d.ts"
   },
   "devDependencies": {
     "@langri-sha/tsconfig": "3.0.0",

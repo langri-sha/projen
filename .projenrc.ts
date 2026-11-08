@@ -231,7 +231,11 @@ const memberNameConflict = 'JSII5019'
 const siblingPeer = 'JSII5'
 
 const jsiiSilencing = (...codes: string[]) =>
-  [jsiiCommand, ...codes.map((code) => `--silence-warnings ${code}`)].join(' ')
+  [
+    jsiiCommand,
+    '--fail-on-warnings',
+    ...codes.map((code) => `--silence-warnings ${code}`),
+  ].join(' ')
 
 const publishJsii = (
   project: Project,
@@ -367,7 +371,7 @@ project.addSubproject(
   (project) =>
     publish(
       project,
-      `${jsiiCommand} && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts`,
+      `${jsiiSilencing()} && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts`,
     ),
   (project) => {
     project.addGitIgnore('dagger-module.ts')
@@ -535,7 +539,8 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, `${jsiiCommand} && test -f dist/config.d.ts`),
+  (project) =>
+    publish(project, `${jsiiSilencing()} && test -f dist/config.d.ts`),
   (project) => {
     project.addGitIgnore('config.ts')
 
@@ -1351,7 +1356,7 @@ project.addSubproject(
   },
   subproject,
   test,
-  (project) => publish(project, `${jsiiCommand} && test -f dist/ty.d.ts`),
+  (project) => publish(project, `${jsiiSilencing()} && test -f dist/ty.d.ts`),
   (project) => {
     project.addGitIgnore('ty.ts')
 
