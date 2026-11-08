@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Fail jsii builds on warnings",
+  "packageName": "projen-ruff",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
