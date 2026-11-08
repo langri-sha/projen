@@ -55,7 +55,7 @@ type Smoke {
       .withExec([
         "sh",
         "-c",
-        "status=0; for file in $(find packages -name API.md -not -path '*/node_modules/*'); do diff -u /committed/$file $file || { echo $file is stale: run pnpm --dir $(dirname $file) run prepublishOnly and commit $file >&2; status=1; }; done; exit $status",
+        "status=0; for file in $(find packages -name API.md -not -path '*/node_modules/*'); do diff -u /committed/$file $file || { echo $file is stale: run dagger generate smoke/generate-api-docs, or pnpm --dir $(dirname $file) run prepublishOnly, and commit $file >&2; status=1; }; done; exit $status",
       ])
       .sync
 

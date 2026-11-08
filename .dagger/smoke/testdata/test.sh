@@ -134,7 +134,7 @@ grep -q -- '+# API$' "$scratch/stale-docs.log" || {
   echo "no difference in the log" >&2
   exit 1
 }
-grep -q 'packages/good/API.md is stale: run pnpm --dir packages/good run prepublishOnly and commit' "$scratch/stale-docs.log" || {
+grep -q 'packages/good/API.md is stale: run dagger generate smoke/generate-api-docs, or pnpm --dir packages/good run prepublishOnly, and commit packages/good/API.md' "$scratch/stale-docs.log" || {
   echo "no hint in the log" >&2
   exit 1
 }
