@@ -23,6 +23,8 @@ const project = new Project({
 new ReadmeFile(project)
 ```
 
+See the [API reference](API.md).
+
 [`README` files]:
   https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes
 [projen]: https://projen.io/
