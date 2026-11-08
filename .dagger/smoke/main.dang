@@ -61,4 +61,19 @@ type Smoke {
 
     null
   }
+
+  """
+  Write the `API.md` of every package from the build the `apiDocs` check
+  compares, so that a generator and its check cannot disagree.
+  """
+  pub generateApiDocs: Changeset! @generate {
+    built
+      .directory("/src")
+      .filter(include: ["packages/**/API.md"], exclude: ["**/node_modules"])
+      .changes(
+        installed
+          .directory("/src")
+          .filter(include: ["packages/**/API.md"], exclude: ["**/node_modules"]),
+      )
+  }
 }
