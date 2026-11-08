@@ -936,7 +936,12 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.babel.path)
   }
 
-  #configureBeachball({ beachball, package: pkg }: ProjectOptions) {
+  #configureBeachball({
+    beachball,
+    editorConfig,
+    npmIgnore,
+    package: pkg,
+  }: ProjectOptions) {
     if (!beachball || this.parent) {
       return
     }
@@ -953,11 +958,26 @@ export class Project extends BaseProject {
           '__snapshots__/',
           'dist/',
           'node_modules/',
+          ...(editorConfig ? ['.editorconfig'] : []),
+          ...(this.tryFindFile('.gitattributes') ? ['.gitattributes'] : []),
+          ...(npmIgnore && this.tryFindFile('.gitignore')
+            ? ['.gitignore']
+            : []),
+          ...(this.prettier ? ['.prettierignore'] : []),
         ],
       },
     }
 
-    this.beachball = new Beachball(this, deepMerge(defaults, beachball))
+    const merged = deepMerge(defaults, beachball)
+    const ignorePatterns = merged.config?.ignorePatterns
+
+    this.beachball = new Beachball(this, {
+      ...merged,
+      config: {
+        ...merged.config,
+        ignorePatterns: ignorePatterns && [...new Set(ignorePatterns)],
+      },
+    })
 
     this.prettier?.ignore.addPatterns('CHANGELOG.md')
     this.#addDefaultDevDeps('beachball@2.66.0')
