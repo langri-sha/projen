@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts",
     "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --fail-on-warnings --silence-warnings JSII5018 --silence-warnings JSII5019 --compress-assembly && test -f dist/renovate.d.ts"
   },
   "devDependencies": {

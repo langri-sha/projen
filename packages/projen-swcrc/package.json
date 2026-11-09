@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts",
     "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --fail-on-warnings --silence-warnings JSII5018 && test -f dist/swcrc.d.ts"
   },
   "devDependencies": {

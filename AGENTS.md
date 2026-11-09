@@ -26,18 +26,20 @@ synthesize itself with the preset; keep them.
 Projen writes every `package.json` and every file listed in a
 `.projen/files.json`, at the root and in each package; they are read-only.
 Change them in `.projenrc.ts`, then run `pnpm exec projen`. The SchemaStore
-typings that `prepare` scripts compile, such as
-`packages/projen-cargo/src/cargo.ts`, are generated and gitignored. Beachball
-owns each package's `CHANGELOG.md`, `CHANGELOG.json` and `version` field.
-Everything else — `packages/*/src/`, the readmes, `.github/workflows/`, this
-file — is edited by hand. Repository settings, branch protection and the Actions
-secrets are managed by Terraform outside this repository; don't change them in
-the GitHub UI.
+typings that `pnpm schemas` generates, such as
+`packages/projen-cargo/src/cargo.ts`, are committed. Run it when a schema or
+`schemastore-to-typescript` changes, in its own pull request, with a change file
+for each package whose types move. Beachball owns each package's `CHANGELOG.md`,
+`CHANGELOG.json` and `version` field. Everything else — `packages/*/src/`, the
+readmes, `.github/workflows/`, this file — is edited by hand. Repository
+settings, branch protection and the Actions secrets are managed by Terraform
+outside this repository; don't change them in the GitHub UI.
 
 ## Common tasks
 
 ```sh
-pnpm install                     # also runs schema → .d.ts prepare scripts
+pnpm install
+pnpm schemas                     # regenerate the committed schema types
 pnpm exec projen                 # re-synth everything from .projenrc.ts (tsx)
 pnpm exec vitest run             # run all unit tests
 pnpm tsc --build .               # type check

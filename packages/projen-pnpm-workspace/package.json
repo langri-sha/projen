@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache --jsii --type-name PnpmWorkspaceSchema 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     "prepublishOnly": "rm -rf dist; node ../../scripts/inline-dependencies.mjs build 'jsii --silence-warnings JSII6 --fail-on-warnings --silence-warnings JSII5018'",
     "postpublish": "node ../../scripts/inline-dependencies.mjs restore"
   },

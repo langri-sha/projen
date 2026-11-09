@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
     "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --fail-on-warnings --silence-warnings JSII5018 && test -f dist/settings.d.ts"
   },
   "devDependencies": {

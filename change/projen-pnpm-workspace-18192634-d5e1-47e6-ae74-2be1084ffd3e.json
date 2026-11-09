@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Track the generated schema types",
+  "packageName": "projen-pnpm-workspace",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
