@@ -1,8 +1,21 @@
 # Change Log - projen-pnpm-workspace
 
-<!-- This log was last generated on Sun, 01 Nov 2026 19:06:54 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.6.0
+
+Mon, 09 Nov 2026 08:29:08 GMT
+
+### Minor changes
+
+- `include` is now a map from each included source to the settings it delegates, or `"*"` for all, following pnpm's schema; a list no longer type-checks (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Silence the JSII6 warning when compiling with jsii (filip.dupanovic@gmail.com)
+- Peer constructs when compiling with jsii (filip.dupanovic@gmail.com)
 
 ## 0.5.0
 

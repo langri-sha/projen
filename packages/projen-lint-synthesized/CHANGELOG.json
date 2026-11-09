@@ -2,6 +2,35 @@
   "name": "projen-lint-synthesized",
   "entries": [
     {
+      "date": "Mon, 09 Nov 2026 08:29:08 GMT",
+      "version": "0.5.26",
+      "tag": "projen-lint-synthesized_v0.5.26",
+      "comments": {
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-lint-synthesized",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Peer constructs when compiling with jsii"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-lint-synthesized",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Silence the JSII6 warning when compiling with jsii"
+          }
+        ],
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-lint-synthesized",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Fail jsii builds on warnings"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Nov 2026 23:37:31 GMT",
       "version": "0.5.25",
       "tag": "projen-lint-synthesized_v0.5.25",

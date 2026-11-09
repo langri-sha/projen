@@ -2,6 +2,35 @@
   "name": "projen-changesets",
   "entries": [
     {
+      "date": "Mon, 09 Nov 2026 08:29:08 GMT",
+      "version": "0.1.4",
+      "tag": "projen-changesets_v0.1.4",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-changesets",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Fail jsii builds on warnings"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-changesets",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Silence the JSII6 warning when compiling with jsii"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-changesets",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Peer constructs when compiling with jsii"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Nov 2026 23:37:31 GMT",
       "version": "0.1.3",
       "tag": "projen-changesets_v0.1.3",

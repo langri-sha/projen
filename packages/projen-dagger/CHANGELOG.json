@@ -2,6 +2,41 @@
   "name": "projen-dagger",
   "entries": [
     {
+      "date": "Mon, 09 Nov 2026 08:29:08 GMT",
+      "version": "0.5.1",
+      "tag": "projen-dagger_v0.5.1",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Fail jsii builds on warnings"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Use Dagger v1.0.0-beta.25 in the examples"
+          }
+        ],
+        "patch": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Silence the JSII6 warning when compiling with jsii"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "d2673d9e6499738d0555129f1d60b6a5c4740003",
+            "comment": "Peer constructs when compiling with jsii"
+          }
+        ]
+      }
+    },
+    {
       "date": "Fri, 06 Nov 2026 23:37:31 GMT",
       "version": "0.5.0",
       "tag": "projen-dagger_v0.5.0",

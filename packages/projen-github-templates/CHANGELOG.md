@@ -1,8 +1,17 @@
 # Change Log - projen-github-templates
 
-<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.2
+
+Mon, 09 Nov 2026 08:29:08 GMT
+
+### Patches
+
+- Silence the JSII6 warning when compiling with jsii (filip.dupanovic@gmail.com)
+- Peer constructs when compiling with jsii (filip.dupanovic@gmail.com)
 
 ## 0.2.1
 

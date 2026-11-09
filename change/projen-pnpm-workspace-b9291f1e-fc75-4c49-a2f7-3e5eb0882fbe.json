@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Fail jsii builds on warnings",
-  "packageName": "projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

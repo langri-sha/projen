@@ -1,8 +1,44 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Fri, 06 Nov 2026 23:37:31 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.52.0
+
+Mon, 09 Nov 2026 08:29:08 GMT
+
+### Minor changes
+
+- Peer constructs when compiling with jsii (filip.dupanovic@gmail.com)
+- Exempt generated root dotfiles from change files (filip.dupanovic@gmail.com)
+- Silence the JSII6 warning when compiling with jsii (filip.dupanovic@gmail.com)
+- Bump projen-babel-config to v0.5.23
+- Bump projen-beachball to v0.5.18
+- Bump projen-cargo to v0.3.1
+- Bump projen-changesets to v0.1.4
+- Bump projen-claude to v0.2.1
+- Bump projen-codeowners to v0.5.18
+- Bump projen-dagger to v0.5.1
+- Bump projen-editorconfig to v0.6.18
+- Bump projen-eslint to v0.3.24
+- Bump projen-github-templates to v0.2.2
+- Bump projen-husky to v0.3.29
+- Bump projen-jest-config to v0.4.25
+- Bump projen-license to v0.3.21
+- Bump projen-lint-staged to v0.3.24
+- Bump projen-lint-synthesized to v0.5.26
+- Bump projen-pnpm-workspace to v0.6.0
+- Bump projen-prettier to v0.4.24
+- Bump projen-readme to v0.1.18
+- Bump projen-renovate to v0.5.1
+- Bump projen-ruff to v0.2.1
+- Bump projen-skills to v0.3.5
+- Bump projen-swcrc to v0.2.1
+- Bump projen-ty to v0.2.1
+- Bump projen-typescript-config to v0.5.27
+- Bump projen-uv to v0.3.1
+- Bump projen-worktrunk to v0.1.10
 
 ## 0.51.0
 

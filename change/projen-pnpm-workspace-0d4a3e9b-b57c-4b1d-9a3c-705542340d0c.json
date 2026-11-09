@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "`include` is now a map from each included source to the settings it delegates, or `\"*\"` for all, following pnpm's schema; a list no longer type-checks",
-  "packageName": "projen-pnpm-workspace",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}

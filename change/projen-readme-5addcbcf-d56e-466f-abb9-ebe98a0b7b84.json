@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Fail jsii builds on warnings",
-  "packageName": "projen-readme",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

@@ -1,8 +1,17 @@
 # Change Log - projen-uv
 
-<!-- This log was last generated on Wed, 04 Nov 2026 01:55:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.1
+
+Mon, 09 Nov 2026 08:29:08 GMT
+
+### Patches
+
+- Peer constructs when compiling with jsii (filip.dupanovic@gmail.com)
+- Silence the JSII6 warning when compiling with jsii (filip.dupanovic@gmail.com)
 
 ## 0.3.0
 

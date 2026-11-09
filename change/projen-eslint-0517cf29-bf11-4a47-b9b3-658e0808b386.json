@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Peer constructs when compiling with jsii",
-  "packageName": "projen-eslint",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "patch"
-}
