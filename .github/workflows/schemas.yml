@@ -1,0 +1,47 @@
+name: Schemas
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: schemas
+
+jobs:
+  refresh:
+    name: Refresh
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Resolve Dagger version
+        id: dagger-version
+        uses: langri-sha/github/actions/dagger-version@v0.37.0
+
+      - name: Set up Dagger
+        uses: dagger/dagger-for-github@v8.4.1
+        with:
+          version: ${{ steps.dagger-version.outputs.version }}
+
+      - name: Generate App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ secrets.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+
+      - name: Refresh the schema types
+        env:
+          APP_TOKEN: ${{ steps.app-token.outputs.token }}
+          APP_SLUG: ${{ steps.app-token.outputs.app-slug }}
+          BASE: ${{ github.event.repository.default_branch }}
+        run: dagger call smoke refresh-schemas --token env://APP_TOKEN --app-slug "$APP_SLUG" --repository "$GITHUB_REPOSITORY" --base "$BASE" --sha "$GITHUB_SHA"
