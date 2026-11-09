@@ -273,6 +273,20 @@ api_workspace unbuilt
 rm "$scratch/unbuilt/packages/readme/.jsii"
 api_fails unbuilt 'projen-readme: has a jsii configuration but no .jsii'
 
+api_workspace sibling-dependency
+sibling=$scratch/sibling-dependency/packages/constructs
+mkdir -p "$sibling/dist"
+: >"$sibling/dist/index.js"
+constructs=$(readlink -f "$repo/packages/projen-readme/node_modules/constructs")
+cp "$constructs/.jsii" "$sibling/.jsii"
+node -e "
+  const fs = require('node:fs')
+  const manifest = JSON.parse(fs.readFileSync('$constructs/package.json', 'utf8'))
+  fs.writeFileSync('$sibling/package.json', JSON.stringify({ ...manifest, main: 'src/index.ts', publishConfig: { main: 'dist/index.js' } }))
+"
+ln -sfn "$sibling" "$scratch/sibling-dependency/packages/readme/node_modules/constructs"
+api_passes sibling-dependency
+
 api_workspace malformed-change
 printf '{' >"$scratch/malformed-change/change/broken.json"
 api_fails malformed-change 'change/broken.json'

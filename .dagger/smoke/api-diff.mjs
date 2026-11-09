@@ -70,11 +70,12 @@ const releasing = (version) =>
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'api-diff-'))
 
-// What a publish ships: the assembly, and the manifest without the
-// dependencies that are inlined, beside the modules the package resolves.
-const stage = ({ name, path: directory }, index) => {
-  const root = path.join(scratch, String(index), 'node_modules')
-  const staged = path.join(root, name)
+const rootOf = (index) => path.join(scratch, String(index), 'node_modules')
+
+// What a publish ships: the assembly, the build, and the manifest without the
+// dependencies that are inlined and with `publishConfig` applied.
+const place = ({ name, path: directory }, index) => {
+  const staged = path.join(rootOf(index), name)
 
   fs.mkdirSync(staged, { recursive: true })
 
@@ -84,42 +85,90 @@ const stage = ({ name, path: directory }, index) => {
     }
   }
 
-  fs.writeFileSync(
-    path.join(staged, 'package.json'),
+  const manifest = JSON.parse(
     withoutDependencies(
       fs.readFileSync(path.join(directory, 'package.json'), 'utf8'),
       directory,
     ),
   )
+  const { main, types } = manifest.publishConfig ?? {}
 
-  const modules = path.join(directory, 'node_modules')
+  fs.writeFileSync(
+    path.join(staged, 'package.json'),
+    JSON.stringify(
+      {
+        ...manifest,
+        main: main ?? manifest.main,
+        types: types ?? manifest.types,
+      },
+      null,
+      2,
+    ),
+  )
 
-  if (fs.existsSync(modules)) {
-    const link = (entry, ...scope) => {
-      const target = path.join(root, ...scope, entry)
-
-      if (!fs.existsSync(target)) {
-        fs.mkdirSync(path.dirname(target), { recursive: true })
-        fs.symlinkSync(
-          fs.realpathSync(path.join(modules, ...scope, entry)),
-          target,
-        )
-      }
-    }
-
-    for (const entry of fs.readdirSync(modules)) {
-      if (entry.startsWith('@')) {
-        for (const child of fs.readdirSync(path.join(modules, entry))) {
-          link(child, entry)
-        }
-      } else if (!entry.startsWith('.')) {
-        link(entry)
-      }
-    }
+  // jsii-reflect finds a dependency through the real path of its `main`, which
+  // leads back to the workspace if `dist` is a link.
+  if (fs.existsSync(path.join(directory, 'dist'))) {
+    fs.cpSync(path.join(directory, 'dist'), path.join(staged, 'dist'), {
+      recursive: true,
+    })
   }
 
   return staged
 }
+
+const staging = (subject, step) => {
+  try {
+    return step()
+  } catch (error) {
+    failures.push(`${subject.name}: cannot be staged: ${error.message}`)
+  }
+}
+
+const stagedDirs = packages.map((subject, index) =>
+  staging(subject, () => place(subject, index)),
+)
+const stagedByDirectory = new Map(
+  packages.flatMap(({ path: directory }, index) =>
+    stagedDirs[index] ? [[fs.realpathSync(directory), stagedDirs[index]]] : [],
+  ),
+)
+
+const linkModules = ({ path: directory }, index) => {
+  const root = rootOf(index)
+  const modules = path.join(directory, 'node_modules')
+
+  if (!fs.existsSync(modules)) {
+    return
+  }
+
+  const link = (entry, ...scope) => {
+    const target = path.join(root, ...scope, entry)
+
+    if (!fs.existsSync(target)) {
+      const source = fs.realpathSync(path.join(modules, ...scope, entry))
+
+      fs.mkdirSync(path.dirname(target), { recursive: true })
+      fs.symlinkSync(stagedByDirectory.get(source) ?? source, target)
+    }
+  }
+
+  for (const entry of fs.readdirSync(modules)) {
+    if (entry.startsWith('@')) {
+      for (const child of fs.readdirSync(path.join(modules, entry))) {
+        link(child, entry)
+      }
+    } else if (!entry.startsWith('.')) {
+      link(entry)
+    }
+  }
+}
+
+packages.forEach((subject, index) => {
+  if (stagedDirs[index]) {
+    staging(subject, () => linkModules(subject, index))
+  }
+})
 
 // The line that says why a child failed, never one of npm's warnings.
 const cause = (error) => {
@@ -207,7 +256,12 @@ const lagging = ({ version }, { code, registry }) =>
 
 const verdict = async (subject, index) => {
   const { name, version } = subject
-  const staged = stage(subject, index)
+  const staged = stagedDirs[index]
+
+  if (!staged) {
+    return
+  }
+
   let result = await attempt(subject, staged)
 
   if (lagging(subject, result)) {
@@ -286,4 +340,6 @@ if (failures.length) {
   process.exit(1)
 }
 
-console.log(`Compared ${packages.length} packages with their releases in ${seconds}s.`)
+console.log(
+  `Compared ${packages.length} packages with their releases in ${seconds}s.`,
+)
