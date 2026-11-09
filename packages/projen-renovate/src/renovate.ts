@@ -66,6 +66,11 @@ export type Automerge = boolean;
  */
 export type AutomergeComment = string;
 /**
+ * Label to add to the PR to trigger automerge. Only used if `automergeType=label`.
+ * See also: https://docs.renovatebot.com/configuration-options/#automergelabel
+ */
+export type AutomergeLabel = string;
+/**
  * Limit automerge to these times of day or week.
  * See also: https://docs.renovatebot.com/configuration-options/#automergeschedule
  */
@@ -79,7 +84,7 @@ export type AutomergeStrategy = "auto" | "fast-forward" | "merge-commit" | "reba
  * How to automerge, if enabled.
  * See also: https://docs.renovatebot.com/configuration-options/#automergetype
  */
-export type AutomergeType = "branch" | "pr" | "pr-comment";
+export type AutomergeType = "branch" | "pr" | "pr-comment" | "label";
 /**
  * The id of an existing work item on Azure Boards to link to each PR.
  * See also: https://docs.renovatebot.com/configuration-options/#azureworkitemid
@@ -2079,6 +2084,7 @@ export interface RenovateSchema {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -2459,6 +2465,7 @@ export interface Ansible {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -3004,6 +3011,7 @@ export interface Digest {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -3150,6 +3158,7 @@ export interface Group {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -3350,6 +3359,7 @@ export interface PackageRulesItem {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -3580,6 +3590,7 @@ export interface LockFileMaintenance {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -3726,6 +3737,7 @@ export interface Major {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -3872,6 +3884,7 @@ export interface Minor {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4018,6 +4031,7 @@ export interface Patch {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4164,6 +4178,7 @@ export interface Pin {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4310,6 +4325,7 @@ export interface PinDigest {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4456,6 +4472,7 @@ export interface Replacement {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4602,6 +4619,7 @@ export interface Rollback {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4749,6 +4767,7 @@ export interface AnsibleGalaxy {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -4954,6 +4973,7 @@ export interface Ant {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -5159,6 +5179,7 @@ export interface Apm {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -5364,6 +5385,7 @@ export interface Argocd {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -5569,6 +5591,7 @@ export interface Asdf {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -5774,6 +5797,7 @@ export interface AzurePipelines {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -5979,6 +6003,7 @@ export interface Batect {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -6184,6 +6209,7 @@ export interface BatectWrapper {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -6389,6 +6415,7 @@ export interface Bazel {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -6594,6 +6621,7 @@ export interface BazelModule {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -6799,6 +6827,7 @@ export interface Bazelisk {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -7004,6 +7033,7 @@ export interface Bicep {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -7209,6 +7239,7 @@ export interface BitbucketPipelines {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -7414,6 +7445,7 @@ export interface Bitrise {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -7619,6 +7651,7 @@ export interface Buildkite {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -7824,6 +7857,7 @@ export interface Buildpacks {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -8029,6 +8063,7 @@ export interface Bun {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -8234,6 +8269,7 @@ export interface BunVersion {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -8439,6 +8475,7 @@ export interface Bundler {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -8644,6 +8681,7 @@ export interface Cake {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -8849,6 +8887,7 @@ export interface Cargo {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -9054,6 +9093,7 @@ export interface Cdnurl {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -9259,6 +9299,7 @@ export interface Circleci {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -9464,6 +9505,7 @@ export interface Cloudbuild {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -9669,6 +9711,7 @@ export interface Cocoapods {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -9874,6 +9917,7 @@ export interface Composer {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -10079,6 +10123,7 @@ export interface Conan {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -10284,6 +10329,7 @@ export interface Copier {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -10489,6 +10535,7 @@ export interface Cpanfile {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -10694,6 +10741,7 @@ export interface Crossplane {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -10899,6 +10947,7 @@ export interface Crow {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -11139,6 +11188,7 @@ export interface Deno {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -11344,6 +11394,7 @@ export interface DepsEdn {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -11549,6 +11600,7 @@ export interface Devbox {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -11754,6 +11806,7 @@ export interface Devcontainer {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -11959,6 +12012,7 @@ export interface DockerCompose {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -12164,6 +12218,7 @@ export interface Dockerfile {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -12369,6 +12424,7 @@ export interface Droneci {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -12574,6 +12630,7 @@ export interface Fleet {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -12779,6 +12836,7 @@ export interface Flux {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -12984,6 +13042,7 @@ export interface Fvm {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -13189,6 +13248,7 @@ export interface GitSubmodules {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -13394,6 +13454,7 @@ export interface GithubActions {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -13599,6 +13660,7 @@ export interface Gitlabci {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -13804,6 +13866,7 @@ export interface GitlabciInclude {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -14009,6 +14072,7 @@ export interface Glasskube {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -14214,6 +14278,7 @@ export interface Gleam {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -14419,6 +14484,7 @@ export interface Gomod {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -14624,6 +14690,7 @@ export interface Gradle {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -14829,6 +14896,7 @@ export interface GradleWrapper {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -15034,6 +15102,7 @@ export interface HaskellCabal {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -15239,6 +15308,7 @@ export interface HelmRequirements {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -15444,6 +15514,7 @@ export interface HelmValues {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -15649,6 +15720,7 @@ export interface Helmfile {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -15854,6 +15926,7 @@ export interface Helmsman {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -16059,6 +16132,7 @@ export interface Helmv3 {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -16264,6 +16338,7 @@ export interface Hermit {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -16469,6 +16544,7 @@ export interface HomeassistantManifest {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -16674,6 +16750,7 @@ export interface Homebrew {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -16918,6 +16995,7 @@ export interface Html {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -17123,6 +17201,7 @@ export interface Jenkins {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -17328,6 +17407,7 @@ export interface Jsonata {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -17533,6 +17613,7 @@ export interface JsonnetBundler {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -17738,6 +17819,7 @@ export interface Julia {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -17943,6 +18025,7 @@ export interface KotlinScript {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -18148,6 +18231,7 @@ export interface Kubernetes {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -18353,6 +18437,7 @@ export interface Kustomize {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -18558,6 +18643,7 @@ export interface Leiningen {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -18774,6 +18860,7 @@ export interface Maven {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -18979,6 +19066,7 @@ export interface MavenWrapper {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -19184,6 +19272,7 @@ export interface Meteor {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -19389,6 +19478,7 @@ export interface Mint {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -19594,6 +19684,7 @@ export interface Mise {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -19799,6 +19890,7 @@ export interface Mix {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -20004,6 +20096,7 @@ export interface Nix {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -20209,6 +20302,7 @@ export interface Nodenv {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -20414,6 +20508,7 @@ export interface Npm {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -20619,6 +20714,7 @@ export interface Nuget {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -20824,6 +20920,7 @@ export interface Nvm {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -21029,6 +21126,7 @@ export interface Ocb {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -21234,6 +21332,7 @@ export interface Osgi {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -21439,6 +21538,7 @@ export interface Paket {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -21644,6 +21744,7 @@ export interface Pep621 {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -21849,6 +21950,7 @@ export interface Pep723 {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -22054,6 +22156,7 @@ export interface PipCompile {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -22259,6 +22362,7 @@ export interface PipRequirements {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -22464,6 +22568,7 @@ export interface PipSetup {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -22669,6 +22774,7 @@ export interface Pipenv {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -22874,6 +22980,7 @@ export interface Pixi {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -23079,6 +23186,7 @@ export interface Poetry {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -23284,6 +23392,7 @@ export interface PreCommit {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -23489,6 +23598,7 @@ export interface Proto {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -23694,6 +23804,7 @@ export interface Pub {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -23899,6 +24010,7 @@ export interface Puppet {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -24104,6 +24216,7 @@ export interface Pyenv {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -24309,6 +24422,7 @@ export interface Quadlet {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -24514,6 +24628,7 @@ export interface Regex {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -24719,6 +24834,7 @@ export interface RenovateConfig {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -24924,6 +25040,7 @@ export interface RubyVersion {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -25129,6 +25246,7 @@ export interface RuntimeVersion {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -25334,6 +25452,7 @@ export interface RustToolchain {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -25539,6 +25658,7 @@ export interface Sbt {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -25744,6 +25864,7 @@ export interface Scalafmt {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -25949,6 +26070,7 @@ export interface SetupCfg {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -26154,6 +26276,7 @@ export interface Smithy {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -26359,6 +26482,7 @@ export interface Sveltos {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -26564,6 +26688,7 @@ export interface Swift {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -26769,6 +26894,7 @@ export interface Tekton {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -26974,6 +27100,7 @@ export interface Terraform {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -27179,6 +27306,7 @@ export interface TerraformVersion {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -27384,6 +27512,7 @@ export interface Terragrunt {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -27589,6 +27718,7 @@ export interface TerragruntVersion {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -27794,6 +27924,7 @@ export interface TflintPlugin {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -27999,6 +28130,7 @@ export interface Travis {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -28204,6 +28336,7 @@ export interface Typst {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -28409,6 +28542,7 @@ export interface Unity3D {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -28614,6 +28748,7 @@ export interface Velaci {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -28819,6 +28954,7 @@ export interface Vendir {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -29024,6 +29160,7 @@ export interface VulnerabilityAlerts {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -29225,6 +29362,7 @@ export interface Woodpecker {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
@@ -29430,6 +29568,7 @@ export interface Xcodegen {
   readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
   readonly automerge?: Automerge;
   readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
   readonly automergeSchedule?: AutomergeSchedule;
   readonly automergeStrategy?: AutomergeStrategy;
   readonly automergeType?: AutomergeType;
