@@ -206,11 +206,22 @@ const test = (project: Project) => {
 const schemaCommands: { cwd: string; command: string }[] = []
 
 const schemas = (subproject: Project, ...commands: string[]) => {
+  const cwd = path.relative(project.outdir, subproject.outdir)
+
   for (const command of commands) {
     schemaCommands.push({
-      cwd: path.relative(project.outdir, subproject.outdir),
+      cwd,
       command: `pnpm exec ${command}`,
     })
+
+    const output = command.match(/ (src\/[\w.-]+\.ts)$/)?.[1]
+
+    if (output) {
+      project.gitattributes.addAttributes(
+        `/${path.posix.join(cwd, output)}`,
+        'linguist-generated',
+      )
+    }
   }
 }
 

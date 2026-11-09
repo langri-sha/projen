@@ -62,6 +62,8 @@
 /packages/projen-cargo/pnpm-lock.yaml linguist-generated
 /packages/projen-cargo/pnpm-workspace.yaml linguist-generated
 /packages/projen-cargo/smoke.mjs linguist-generated
+/packages/projen-cargo/src/cargo.ts linguist-generated
+/packages/projen-cargo/src/rustfmt.ts linguist-generated
 /packages/projen-cargo/tsconfig.build.json linguist-generated
 /packages/projen-cargo/tsconfig.json linguist-generated
 /packages/projen-changesets/.gitattributes linguist-generated
@@ -76,6 +78,7 @@
 /packages/projen-changesets/pnpm-lock.yaml linguist-generated
 /packages/projen-changesets/pnpm-workspace.yaml linguist-generated
 /packages/projen-changesets/smoke.mjs linguist-generated
+/packages/projen-changesets/src/config.ts linguist-generated
 /packages/projen-changesets/tsconfig.build.json linguist-generated
 /packages/projen-changesets/tsconfig.json linguist-generated
 /packages/projen-claude/.gitattributes linguist-generated
@@ -90,6 +93,7 @@
 /packages/projen-claude/pnpm-lock.yaml linguist-generated
 /packages/projen-claude/pnpm-workspace.yaml linguist-generated
 /packages/projen-claude/smoke.mjs linguist-generated
+/packages/projen-claude/src/settings.ts linguist-generated
 /packages/projen-claude/tsconfig.build.json linguist-generated
 /packages/projen-claude/tsconfig.json linguist-generated
 /packages/projen-codeowners/.gitattributes linguist-generated
@@ -118,6 +122,8 @@
 /packages/projen-dagger/pnpm-lock.yaml linguist-generated
 /packages/projen-dagger/pnpm-workspace.yaml linguist-generated
 /packages/projen-dagger/smoke.mjs linguist-generated
+/packages/projen-dagger/src/dagger-module.ts linguist-generated
+/packages/projen-dagger/src/dagger-workspace.ts linguist-generated
 /packages/projen-dagger/tsconfig.build.json linguist-generated
 /packages/projen-dagger/tsconfig.json linguist-generated
 /packages/projen-editorconfig/.gitattributes linguist-generated
@@ -244,6 +250,7 @@
 /packages/projen-pnpm-workspace/pnpm-lock.yaml linguist-generated
 /packages/projen-pnpm-workspace/pnpm-workspace.yaml linguist-generated
 /packages/projen-pnpm-workspace/smoke.mjs linguist-generated
+/packages/projen-pnpm-workspace/src/pnpm-workspace.ts linguist-generated
 /packages/projen-pnpm-workspace/tsconfig.build.json linguist-generated
 /packages/projen-pnpm-workspace/tsconfig.json linguist-generated
 /packages/projen-prettier/.gitattributes linguist-generated
@@ -301,6 +308,7 @@
 /packages/projen-renovate/pnpm-lock.yaml linguist-generated
 /packages/projen-renovate/pnpm-workspace.yaml linguist-generated
 /packages/projen-renovate/smoke.mjs linguist-generated
+/packages/projen-renovate/src/renovate.ts linguist-generated
 /packages/projen-renovate/tsconfig.build.json linguist-generated
 /packages/projen-renovate/tsconfig.jsii.json linguist-generated
 /packages/projen-renovate/tsconfig.json linguist-generated
@@ -316,6 +324,7 @@
 /packages/projen-ruff/pnpm-lock.yaml linguist-generated
 /packages/projen-ruff/pnpm-workspace.yaml linguist-generated
 /packages/projen-ruff/smoke.mjs linguist-generated
+/packages/projen-ruff/src/ruff.ts linguist-generated
 /packages/projen-ruff/tsconfig.build.json linguist-generated
 /packages/projen-ruff/tsconfig.json linguist-generated
 /packages/projen-skills/.gitattributes linguist-generated
@@ -344,6 +353,7 @@
 /packages/projen-swcrc/pnpm-lock.yaml linguist-generated
 /packages/projen-swcrc/pnpm-workspace.yaml linguist-generated
 /packages/projen-swcrc/smoke.mjs linguist-generated
+/packages/projen-swcrc/src/swcrc.ts linguist-generated
 /packages/projen-swcrc/tsconfig.build.json linguist-generated
 /packages/projen-swcrc/tsconfig.json linguist-generated
 /packages/projen-ty/.gitattributes linguist-generated
@@ -358,6 +368,7 @@
 /packages/projen-ty/pnpm-lock.yaml linguist-generated
 /packages/projen-ty/pnpm-workspace.yaml linguist-generated
 /packages/projen-ty/smoke.mjs linguist-generated
+/packages/projen-ty/src/ty.ts linguist-generated
 /packages/projen-ty/tsconfig.build.json linguist-generated
 /packages/projen-ty/tsconfig.json linguist-generated
 /packages/projen-typescript-config/.gitattributes linguist-generated
@@ -386,6 +397,8 @@
 /packages/projen-uv/pnpm-lock.yaml linguist-generated
 /packages/projen-uv/pnpm-workspace.yaml linguist-generated
 /packages/projen-uv/smoke.mjs linguist-generated
+/packages/projen-uv/src/pyproject.ts linguist-generated
+/packages/projen-uv/src/uv.ts linguist-generated
 /packages/projen-uv/tsconfig.build.json linguist-generated
 /packages/projen-uv/tsconfig.json linguist-generated
 /packages/projen-worktrunk/.gitattributes linguist-generated
