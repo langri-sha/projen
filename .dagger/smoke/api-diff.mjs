@@ -19,17 +19,31 @@ const { withoutDependencies } = await import(
 
 const failures = []
 
-const packages = JSON.parse(
+const publishable = JSON.parse(
   execFileSync(
     'pnpm',
     ['-r', '--include-workspace-root', 'ls', '--json', '--depth', '-1'],
     { encoding: 'utf8' },
   ),
-).filter(({ name, version, path: directory, private: isPrivate }) => {
-  if (!name || !version || isPrivate) {
-    return false
-  }
+).filter(
+  ({ name, version, private: isPrivate }) => name && version && !isPrivate,
+)
 
+// Dev-only dependents don't ship the break, so they don't need a release.
+const dependentsOf = (name) =>
+  publishable.filter(({ path: directory }) => {
+    const manifest = JSON.parse(
+      fs.readFileSync(path.join(directory, 'package.json'), 'utf8'),
+    )
+
+    return [
+      manifest.dependencies,
+      manifest.peerDependencies,
+      manifest.optionalDependencies,
+    ].some((group) => group && name in group)
+  })
+
+const packages = publishable.filter(({ name, path: directory }) => {
   const { jsii } = JSON.parse(
     fs.readFileSync(path.join(directory, 'package.json'), 'utf8'),
   )
@@ -83,6 +97,15 @@ const pending = fs.existsSync(changes)
 // A break takes a minor while a package is below 1.0, and a major after.
 const releasing = (version) =>
   Number(version.split('.')[0]) < 1 ? ['minor', 'major'] : ['major']
+
+const covered = (breaking, dependent) =>
+  pending.some(
+    ({ packageName, type, dependentChangeType }) =>
+      (packageName === dependent.name &&
+        releasing(dependent.version).includes(type)) ||
+      (packageName === breaking &&
+        releasing(dependent.version).includes(dependentChangeType)),
+  )
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'api-diff-'))
 
@@ -397,19 +420,35 @@ const verdict = async (subject, index) => {
 
   if (code === 1) {
     const needed = releasing(version)
+    const own = pending.some(
+      ({ packageName, type }) => packageName === name && needed.includes(type),
+    )
+    const uncovered = dependentsOf(name).filter(
+      (dependent) => !covered(name, dependent),
+    )
 
-    if (
-      pending.some(
-        ({ packageName, type }) =>
-          packageName === name && needed.includes(type),
-      )
-    ) {
+    if (own && !uncovered.length) {
       return
     }
 
     const [first] = output.match(/^err .*$/m) ?? ['an incompatible change']
+    const reason = `${name}: ${first.replace(/^err\s+-\s+/, '')}`
 
-    return `${name}: ${first.replace(/^err\s+-\s+/, '')}. Add a ${needed[0]} change file: pnpm change`
+    if (!uncovered.length) {
+      return `${reason}. Add a ${needed[0]} change file: pnpm change`
+    }
+
+    const level = uncovered.some(
+      (dependent) => releasing(dependent.version).length === 1,
+    )
+      ? 'major'
+      : 'minor'
+    const dependents = uncovered.map((dependent) => dependent.name).join(', ')
+    const command = `pnpm exec beachball change --package ${name} --dependent-change-type ${level}`
+
+    return own
+      ? `${reason}. Release ${dependents} as ${level} too: ${command}`
+      : `${reason}. Add a ${needed[0]} change file that releases ${dependents} as ${level}: ${command}`
   }
 
   return `${name}: jsii-diff failed: ${result.cause}`
