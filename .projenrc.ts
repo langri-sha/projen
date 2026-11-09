@@ -212,8 +212,6 @@ const schemas = (subproject: Project, ...commands: string[]) => {
       command: `pnpm exec ${command}`,
     })
   }
-
-  subproject.package?.setScript('prepare', commands.join(' && '))
 }
 
 const publish = (
@@ -404,9 +402,6 @@ project.addSubproject(
       `${jsiiSilencing()} && test -f dist/dagger-module.d.ts && test -f dist/dagger-workspace.d.ts`,
     ),
   (project) => {
-    project.addGitIgnore('dagger-module.ts')
-    project.addGitIgnore('dagger-workspace.ts')
-
     schemas(
       project,
       "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
@@ -519,9 +514,6 @@ project.addSubproject(
       `${jsiiSilencing(reservedWord)} && test -f dist/cargo.d.ts && test -f dist/rustfmt.d.ts`,
     ),
   (project) => {
-    project.addGitIgnore('cargo.ts')
-    project.addGitIgnore('rustfmt.ts')
-
     schemas(
       project,
       "schemastore-to-typescript --no-cache --jsii 'cargo manifest' src/cargo.ts",
@@ -568,8 +560,6 @@ project.addSubproject(
   (project) =>
     publish(project, `${jsiiSilencing()} && test -f dist/config.d.ts`),
   (project) => {
-    project.addGitIgnore('config.ts')
-
     schemas(
       project,
       'schemastore-to-typescript --no-cache Changesets src/config.ts',
@@ -613,8 +603,6 @@ project.addSubproject(
       `${jsiiSilencing(reservedWord)} && test -f dist/settings.d.ts`,
     ),
   (project) => {
-    project.addGitIgnore('settings.ts')
-
     schemas(
       project,
       "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
@@ -935,8 +923,6 @@ project.addSubproject(
   test,
   (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) => {
-    project.addGitIgnore('pnpm-workspace.ts')
-
     schemas(
       project,
       "schemastore-to-typescript --no-cache --jsii --type-name PnpmWorkspaceSchema 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
@@ -1209,8 +1195,6 @@ project.addSubproject(
       },
     })
 
-    project.addGitIgnore('renovate.ts')
-
     schemas(
       project,
       'schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts',
@@ -1257,8 +1241,6 @@ project.addSubproject(
       `${jsiiSilencing(reservedWord)} && test -f dist/ruff.d.ts`,
     ),
   (project) => {
-    project.addGitIgnore('ruff.ts')
-
     schemas(
       project,
       'schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts',
@@ -1338,8 +1320,6 @@ project.addSubproject(
       `${jsiiSilencing(reservedWord)} && test -f dist/swcrc.d.ts`,
     ),
   (project) => {
-    project.addGitIgnore('swcrc.ts')
-
     schemas(
       project,
       'schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts',
@@ -1382,8 +1362,6 @@ project.addSubproject(
   test,
   (project) => publish(project, `${jsiiSilencing()} && test -f dist/ty.d.ts`),
   (project) => {
-    project.addGitIgnore('ty.ts')
-
     schemas(
       project,
       'schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts',
@@ -1457,9 +1435,6 @@ project.addSubproject(
   test,
   (project) => publishJsii(project, { inline: true, silence: [reservedWord] }),
   (project) => {
-    project.addGitIgnore('pyproject.ts')
-    project.addGitIgnore('uv.ts')
-
     schemas(
       project,
       'schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts',

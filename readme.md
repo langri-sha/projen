@@ -45,6 +45,7 @@
 pnpm install
 pnpm exec projen                 # synth from .projenrc.ts
 pnpm exec vitest run             # tests
+pnpm schemas                     # regenerate the committed schema types
 pnpm -r --if-present prepublishOnly  # build every package, as publishing does
 ```
 

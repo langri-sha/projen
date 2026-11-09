@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache Changesets src/config.ts",
     "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --fail-on-warnings && test -f dist/config.d.ts"
   },
   "devDependencies": {

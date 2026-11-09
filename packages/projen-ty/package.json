@@ -21,7 +21,6 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "scripts": {
-    "prepare": "schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts",
     "prepublishOnly": "rm -rf dist; jsii --silence-warnings JSII6 --fail-on-warnings && test -f dist/ty.d.ts"
   },
   "devDependencies": {
