@@ -90,4 +90,22 @@ type Smoke {
           .filter(include: ["packages/**/API.md"], exclude: ["**/node_modules"]),
       )
   }
+
+  """
+  Regenerate the types the packages derive from their JSON schemas, with the
+  root `schemas` task, which reads the live schemas. It is not a workspace
+  generator, so that a schema that moved stays out of unrelated pull requests.
+  """
+  pub generateSchemas: Changeset! @generate @cache(policy: FunctionCachePolicy.Never) {
+    installed
+      .withEnvVariable("CACHEBUST", UUID.v7)
+      .withExec(["pnpm", "schemas"])
+      .directory("/src")
+      .filter(include: ["packages/*/src/*.ts"], exclude: ["**/node_modules"])
+      .changes(
+        installed
+          .directory("/src")
+          .filter(include: ["packages/*/src/*.ts"], exclude: ["**/node_modules"]),
+      )
+  }
 }
