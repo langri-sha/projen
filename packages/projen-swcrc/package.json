@@ -29,7 +29,7 @@
     "@swc/core": "1.16.2",
     "jsii": "6.0.20",
     "projen": "0.104.1",
-    "schemastore-to-typescript": "1.3.0"
+    "schemastore-to-typescript": "1.4.0"
   },
   "peerDependencies": {
     "constructs": "^10.5.0",
