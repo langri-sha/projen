@@ -300,6 +300,102 @@ api_workspace malformed-change
 printf '{' >"$scratch/malformed-change/change/broken.json"
 api_fails malformed-change 'change/broken.json'
 
+project=$scratch/project-release
+mkdir -p "$project"
+(
+  cd "$project"
+  printf '{"name": "project-release", "private": true}\n' >package.json
+  projen=$(node -p "require('$repo/packages/projen-project/package.json').devDependencies.projen")
+  npm install --ignore-scripts --no-audit --no-fund --legacy-peer-deps @langri-sha/projen-project@0.52.0 "projen@$projen" constructs@10 >/dev/null 2>&1
+)
+
+project_workspace() {
+  local name=$1 package=${2:-@langri-sha/projen-project} version=${3:-0.52.0}
+  local dir=$scratch/$name
+  local pkg=$dir/packages/project
+  mkdir -p "$pkg" "$dir/scripts" "$dir/change"
+  printf '{"name": "fixture", "private": true}\n' >"$dir/package.json"
+  printf 'packages:\n  - packages/*\n' >"$dir/pnpm-workspace.yaml"
+  cp -r "$project/node_modules/@langri-sha/projen-project/." "$pkg/"
+  node -e "
+    const fs = require('node:fs')
+    const file = '$pkg/package.json'
+    const manifest = JSON.parse(fs.readFileSync(file, 'utf8'))
+    fs.writeFileSync(file, JSON.stringify({ ...manifest, name: '$package', version: '$version' }))
+  "
+  sed -i "s|@langri-sha/projen-project|$package|g" "$pkg/.jsii"
+  mkdir "$pkg/node_modules"
+  for entry in "$project"/node_modules/*; do
+    ln -s "$entry" "$pkg/node_modules/$(basename "$entry")"
+  done
+  cp "$repo/scripts/inline-manifest.mjs" "$dir/scripts/"
+  ln -s "$repo/node_modules" "$dir/node_modules"
+}
+
+edit_manifest() {
+  node -e "
+    const fs = require('node:fs')
+    const file = '$scratch/$1/packages/project/package.json'
+    const manifest = JSON.parse(fs.readFileSync(file, 'utf8'))
+    $2
+    fs.writeFileSync(file, JSON.stringify(manifest))
+  "
+}
+
+project_changes() {
+  printf '{"type": "%s", "comment": "Change", "packageName": "@langri-sha/projen-project"}\n' "$2" >"$scratch/$1/change/projen-project-$2.json"
+}
+
+project_removes_property() {
+  node -e "
+    const fs = require('node:fs')
+    const file = '$scratch/$1/packages/project/.jsii'
+    const assembly = JSON.parse(fs.readFileSync(file, 'utf8'))
+    const options = assembly.types['@langri-sha/projen-project.ProjectGitHubTemplatesOptions']
+    options.properties = options.properties.filter(({ name }) => name !== 'discussions')
+    fs.writeFileSync(file, JSON.stringify(assembly))
+  "
+}
+
+project_workspace project-compatible
+api_passes project-compatible
+
+project_workspace project-unmarked-break
+project_removes_property project-unmarked-break
+api_fails project-unmarked-break '@langri-sha/projen-project: PROP @langri-sha/projen-project.ProjectGitHubTemplatesOptions.discussions: has been removed.*Add a minor change file: pnpm change'
+
+project_workspace project-minor-break
+project_removes_property project-minor-break
+project_changes project-minor-break minor
+api_passes project-minor-break
+
+project_workspace project-renamed-sibling-type
+mkdir -p "$scratch/project-renamed-sibling-type/siblings"
+cp -r "$project/node_modules/projen-babel-config" "$scratch/project-renamed-sibling-type/siblings/projen-babel-config"
+rm "$scratch/project-renamed-sibling-type/packages/project/node_modules/projen-babel-config"
+ln -s "$scratch/project-renamed-sibling-type/siblings/projen-babel-config" "$scratch/project-renamed-sibling-type/packages/project/node_modules/projen-babel-config"
+sed -i 's/projen-babel-config\.BabelOptions/projen-babel-config.BabelSettings/g' "$scratch/project-renamed-sibling-type/siblings/projen-babel-config/.jsii" "$scratch/project-renamed-sibling-type/packages/project/.jsii"
+api_fails project-renamed-sibling-type 'could not find type projen-babel-config.BabelOptions.*Add a minor change file: pnpm change'
+project_changes project-renamed-sibling-type minor
+api_passes project-renamed-sibling-type
+
+project_workspace project-without-peers
+edit_manifest project-without-peers 'delete manifest.peerDependencies'
+api_passes project-without-peers
+
+project_workspace project-inlined
+edit_manifest project-inlined 'delete manifest.peerDependencies; delete manifest.dependencies.ramda; manifest.scripts = { prepublishOnly: "node ../../scripts/inline-dependencies.mjs build jsii" }'
+api_passes project-inlined
+
+project_workspace project-never-published @langri-sha/smoke-fixture-never-published 1.0.0
+api_passes project-never-published
+
+project_workspace project-unreleased-version @langri-sha/projen-project 0.0.1
+api_fails project-unreleased-version '@langri-sha/projen-project@0.0.1 is not among its'
+
+project_workspace project-unreachable-registry smoke-fixture-project-never-published 1.0.0
+registry=http://127.0.0.1:9 api_fails project-unreachable-registry 'the registry did not answer'
+
 broken_release() {
   local name=$1
   fixture "$name"
