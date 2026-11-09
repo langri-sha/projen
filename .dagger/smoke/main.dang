@@ -2,7 +2,7 @@
 Smoke tests for the packages a workspace publishes: each is packed, installed
 into a project of its own and run under plain Node, which tools such as tsx
 would otherwise paper over. The API references they commit are rebuilt and
-compared.
+compared, and so is each package's API with its release's.
 """
 type Smoke {
   """
@@ -57,6 +57,20 @@ type Smoke {
         "-c",
         "status=0; for file in $(find packages -name API.md -not -path '*/node_modules/*'); do diff -u /committed/$file $file || { echo $file is stale: run dagger generate smoke/generate-api-docs, or pnpm --dir $(dirname $file) run prepublishOnly, and commit $file >&2; status=1; }; done; exit $status",
       ])
+      .sync
+
+    null
+  }
+
+  """
+  Fail when a package's API breaks against the version it last released and
+  no pending change file releases the break.
+  """
+  pub apiBreaks: Void @check {
+    built
+      .withMountedCache("/root/.npm", cacheVolume("npm-cache"))
+      .withFile("/run/api-diff.mjs", currentModule.source.file("api-diff.mjs"))
+      .withExec(["node", "/run/api-diff.mjs"])
       .sync
 
     null
