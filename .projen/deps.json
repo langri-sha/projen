@@ -61,6 +61,11 @@
       "type": "build"
     },
     {
+      "name": "jsii-diff",
+      "version": "1.142.0",
+      "type": "build"
+    },
+    {
       "name": "jsii-docgen",
       "version": "10.12.8",
       "type": "build"
