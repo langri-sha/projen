@@ -45,9 +45,15 @@
 pnpm install
 pnpm exec projen                 # synth from .projenrc.ts
 pnpm exec vitest run             # tests
-pnpm schemas                     # regenerate the committed schema types
+dagger generate smoke/generate-schemas  # regenerate the committed schema types
 pnpm -r --if-present prepublishOnly  # build every package, as publishing does
 ```
+
+A weekly workflow runs `dagger call smoke refresh-schemas`, which regenerates
+them and opens a pull request with patch change files when a schema moved. If
+`smoke:api-breaks` fails on it, run the
+`pnpm exec beachball change --package <name> --dependent-change-type minor` it
+prints.
 
 See [AGENTS.md](./AGENTS.md) for orientation and the release flow.
 
