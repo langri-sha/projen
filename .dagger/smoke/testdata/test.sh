@@ -217,6 +217,11 @@ changes() {
   printf '{"type": "%s", "comment": "Change", "packageName": "projen-readme"}\n' "$2" >"$scratch/$1/change/projen-readme-$2.json"
 }
 
+grouped_changes() {
+  mkdir -p "$scratch/$1/change"
+  printf '{"changes": [{"type": "minor", "comment": "Change", "packageName": "projen-other"}, {"type": "%s", "comment": "Change", "packageName": "projen-readme"}]}\n' "$2" >"$scratch/$1/change/grouped-$2.json"
+}
+
 api_diff() {
   (cd "$scratch/$1" && env ${registry:+npm_config_registry=$registry} API_DIFF_RETRY_DELAY=0 npm_config_fetch_retries=0 JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=1 node "$module/api-diff.mjs" >"$scratch/$1.log" 2>&1)
 }
@@ -258,6 +263,20 @@ api_workspace minor-break
 removes_property minor-break
 changes minor-break minor
 api_passes minor-break
+
+api_workspace grouped-minor-break
+removes_property grouped-minor-break
+grouped_changes grouped-minor-break minor
+api_passes grouped-minor-break
+
+api_workspace grouped-patched-break
+removes_property grouped-patched-break
+grouped_changes grouped-patched-break patch
+api_fails grouped-patched-break 'Add a minor change file: pnpm change'
+
+api_workspace malformed-grouped-change
+printf '{"changes": [null]}\n' >"$scratch/malformed-grouped-change/change/grouped.json"
+api_fails malformed-grouped-change 'change/grouped.json: has an entry that is not a change'
 
 api_workspace unreachable-registry
 registry=http://127.0.0.1:9 api_fails unreachable-registry 'the registry did not answer'

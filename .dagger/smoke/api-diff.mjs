@@ -59,7 +59,20 @@ const pending = fs.existsSync(changes)
       .filter((file) => file.endsWith('.json'))
       .flatMap((file) => {
         try {
-          return [JSON.parse(fs.readFileSync(path.join(changes, file), 'utf8'))]
+          const change = JSON.parse(
+            fs.readFileSync(path.join(changes, file), 'utf8'),
+          )
+
+          return (
+            Array.isArray(change.changes) ? change.changes : [change]
+          ).filter((entry) => {
+            if (entry !== null && typeof entry === 'object') {
+              return true
+            }
+
+            failures.push(`change/${file}: has an entry that is not a change`)
+            return false
+          })
         } catch (error) {
           failures.push(`change/${file}: ${error.message}`)
           return []
