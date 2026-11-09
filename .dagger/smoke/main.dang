@@ -108,4 +108,49 @@ type Smoke {
           .filter(include: ["packages/*/src/*.ts"], exclude: ["**/node_modules"]),
       )
   }
+
+  """
+  Regenerate the schema types, and when one moved, push them with their change
+  files to a bot-owned branch and open a pull request. Only the container that
+  pushes holds the token; the ones that read the schemas and the repository
+  never do. `sha` is the commit the schemas were generated from. `remote` and
+  `pullRequest` let a test run against a local repository.
+  """
+  pub refreshSchemas(
+    token: Secret!,
+    appSlug: String!,
+    repository: String!,
+    branch: String! = "schema-refresh",
+    base: String! = "main",
+    botId: String! = "",
+    sha: String! = "",
+    remote: String! = "",
+    pullRequest: Boolean! = true,
+  ): String! @cache(policy: FunctionCachePolicy.Never) {
+    let git = container
+      .from("alpine:3.22")
+      .withExec(["apk", "add", "--no-cache", "bash", "curl", "git", "github-cli", "jq"])
+      .withEnvVariable("CACHEBUST", UUID.v7)
+      .withEnvVariable("APP_SLUG", appSlug)
+      .withEnvVariable("REPOSITORY", repository)
+      .withEnvVariable("BRANCH", branch)
+      .withEnvVariable("BASE", base)
+      .withEnvVariable("BOT_ID", botId)
+      .withEnvVariable("SHA", sha)
+      .withEnvVariable("REMOTE", remote)
+      .withEnvVariable("PULL_REQUEST", if (pullRequest) { "true" } else { "false" })
+
+    let prepared = git
+      .withDirectory("/generated", generateSchemas.after)
+      .withFile("/run/prepare.sh", currentModule.source.file("refresh-prepare.sh"))
+      .withExec(["bash", "/run/prepare.sh"])
+
+    git
+      .withDirectory("/repo", prepared.directory("/repo"))
+      .withDirectory("/out", prepared.directory("/out"))
+      .withFile("/run/publish.sh", currentModule.source.file("refresh-publish.sh"))
+      .withSecretVariable("GH_TOKEN", token)
+      .withExec(["bash", "/run/publish.sh"])
+      .stdout
+  }
 }
