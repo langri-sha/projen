@@ -46,6 +46,68 @@
         }
       ]
     },
+    "schemas": {
+      "name": "schemas",
+      "description": "Regenerate the types the packages derive from their JSON schemas",
+      "steps": [
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
+          "cwd": "packages/projen-dagger"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
+          "cwd": "packages/projen-dagger"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii 'cargo manifest' src/cargo.ts",
+          "cwd": "packages/projen-cargo"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii rustfmt src/rustfmt.ts",
+          "cwd": "packages/projen-cargo"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache Changesets src/config.ts",
+          "cwd": "packages/projen-changesets"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
+          "cwd": "packages/projen-claude"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii --type-name PnpmWorkspaceSchema 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
+          "cwd": "packages/projen-pnpm-workspace"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts",
+          "cwd": "packages/projen-renovate"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts",
+          "cwd": "packages/projen-ruff"
+        },
+        {
+          "exec": "pnpm exec node -e \"const f='src/ruff.ts',fs=require('node:fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/\\bRuffOptions\\b/g,'LintRuffOptions'))\"",
+          "cwd": "packages/projen-ruff"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts",
+          "cwd": "packages/projen-swcrc"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts",
+          "cwd": "packages/projen-ty"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts",
+          "cwd": "packages/projen-uv"
+        },
+        {
+          "exec": "pnpm exec schemastore-to-typescript --no-cache --jsii uv src/uv.ts",
+          "cwd": "packages/projen-uv"
+        }
+      ]
+    },
     "skills": {
       "name": "skills",
       "description": "Install the declared skills with the skills CLI",
