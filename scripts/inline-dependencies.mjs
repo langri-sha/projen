@@ -5,6 +5,8 @@ import { pathToFileURL } from 'node:url'
 
 import webpack from '@langri-sha/webpack'
 
+import { inlinedDependencies, withoutDependencies } from './inline-manifest.mjs'
+
 const packageDir = process.cwd()
 const distDir = path.join(packageDir, 'dist')
 const manifestPath = path.join(packageDir, 'package.json')
@@ -16,27 +18,6 @@ const stashPath = path.join(
 const entry = path.join(distDir, 'index.js')
 
 const readManifest = () => fs.readFileSync(manifestPath, 'utf8')
-
-// The dependencies that are not jsii modules are inlined.
-const inlinedDependencies = (manifest) =>
-  Object.keys(manifest.dependencies ?? {}).filter(
-    (name) =>
-      !fs.existsSync(path.join(packageDir, 'node_modules', name, '.jsii')),
-  )
-
-const withoutDependencies = (text) => {
-  const manifest = JSON.parse(text)
-
-  for (const name of inlinedDependencies(manifest)) {
-    delete manifest.dependencies[name]
-  }
-
-  if (!Object.keys(manifest.dependencies ?? {}).length) {
-    delete manifest.dependencies
-  }
-
-  return `${JSON.stringify(manifest, null, 2)}\n`
-}
 
 // Inlines everything `dist/index.js` imports but `external`, and returns the
 // name of each package it inlined, by directory, since versions differ.
@@ -125,7 +106,7 @@ const bundle = async (external) => {
 }
 
 const inline = async (manifest) => {
-  const skipped = new Set(inlinedDependencies(manifest))
+  const skipped = new Set(inlinedDependencies(manifest, packageDir))
   // shortcut: a value import of a peer moved to devDependencies (#549) is
   // inlined too; keep those imports type-only.
   const inlined = await bundle([
@@ -178,7 +159,7 @@ const commands = {
     if (fs.existsSync(stashPath)) {
       if (
         readManifest() !==
-        withoutDependencies(fs.readFileSync(stashPath, 'utf8'))
+        withoutDependencies(fs.readFileSync(stashPath, 'utf8'), packageDir)
       ) {
         throw new Error(
           `${stashPath} is not of this manifest: delete it, since restoring it would overwrite a newer one.`,
@@ -189,7 +170,7 @@ const commands = {
     }
 
     const original = readManifest()
-    const stripped = withoutDependencies(original)
+    const stripped = withoutDependencies(original, packageDir)
 
     fs.writeFileSync(manifestPath, stripped)
 
