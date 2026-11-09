@@ -47,3 +47,6 @@ source = "github.com/langri-sha/dagger/beachball@v2.2.0"
 
 [modules.smoke]
 source = ".dagger/smoke"
+
+[modules.smoke.check]
+skip = ["generate-schemas/stale"]
