@@ -24,6 +24,7 @@
     "default": "projen default",
     "prepare": "husky",
     "renovate": "projen renovate",
+    "schemas": "projen schemas",
     "skills": "projen skills",
     "test": "vitest",
     "worktrunk:dry-run": "projen worktrunk:dry-run",

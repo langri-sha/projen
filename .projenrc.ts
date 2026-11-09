@@ -203,6 +203,19 @@ const test = (project: Project) => {
   project.package?.addDevDeps('@langri-sha/vitest@0.2.3')
 }
 
+const schemaCommands: { cwd: string; command: string }[] = []
+
+const schemas = (subproject: Project, ...commands: string[]) => {
+  for (const command of commands) {
+    schemaCommands.push({
+      cwd: path.relative(project.outdir, subproject.outdir),
+      command: `pnpm exec ${command}`,
+    })
+  }
+
+  subproject.package?.setScript('prepare', commands.join(' && '))
+}
+
 const publish = (
   project: Project,
   build = 'tsc --project tsconfig.build.json',
@@ -394,12 +407,10 @@ project.addSubproject(
     project.addGitIgnore('dagger-module.ts')
     project.addGitIgnore('dagger-workspace.ts')
 
-    project.package?.setScript(
-      'prepare',
-      [
-        "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
-        "schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
-      ].join(' && '),
+    schemas(
+      project,
+      "schemastore-to-typescript --no-cache --jsii 'Dagger module (dagger-module.toml)' src/dagger-module.ts",
+      "schemastore-to-typescript --no-cache --jsii 'Dagger workspace (dagger.toml)' src/dagger-workspace.ts",
     )
   },
   (project) =>
@@ -511,12 +522,10 @@ project.addSubproject(
     project.addGitIgnore('cargo.ts')
     project.addGitIgnore('rustfmt.ts')
 
-    project.package?.setScript(
-      'prepare',
-      [
-        "schemastore-to-typescript --no-cache --jsii 'cargo manifest' src/cargo.ts",
-        'schemastore-to-typescript --no-cache --jsii rustfmt src/rustfmt.ts',
-      ].join(' && '),
+    schemas(
+      project,
+      "schemastore-to-typescript --no-cache --jsii 'cargo manifest' src/cargo.ts",
+      'schemastore-to-typescript --no-cache --jsii rustfmt src/rustfmt.ts',
     )
   },
   (project) =>
@@ -561,8 +570,8 @@ project.addSubproject(
   (project) => {
     project.addGitIgnore('config.ts')
 
-    project.package?.setScript(
-      'prepare',
+    schemas(
+      project,
       'schemastore-to-typescript --no-cache Changesets src/config.ts',
     )
   },
@@ -606,8 +615,8 @@ project.addSubproject(
   (project) => {
     project.addGitIgnore('settings.ts')
 
-    project.package?.setScript(
-      'prepare',
+    schemas(
+      project,
       "schemastore-to-typescript --no-cache --jsii 'Claude Code Settings' src/settings.ts",
     )
   },
@@ -928,8 +937,8 @@ project.addSubproject(
   (project) => {
     project.addGitIgnore('pnpm-workspace.ts')
 
-    project.package?.setScript(
-      'prepare',
+    schemas(
+      project,
       "schemastore-to-typescript --no-cache --jsii --type-name PnpmWorkspaceSchema 'pnpm Workspace (pnpm-workspace.yaml)' src/pnpm-workspace.ts",
     )
   },
@@ -1202,8 +1211,8 @@ project.addSubproject(
 
     project.addGitIgnore('renovate.ts')
 
-    project.package?.setScript(
-      'prepare',
+    schemas(
+      project,
       'schemastore-to-typescript --no-cache --jsii --keep-null --type-name RenovateSchema renovate src/renovate.ts',
     )
   },
@@ -1250,12 +1259,10 @@ project.addSubproject(
   (project) => {
     project.addGitIgnore('ruff.ts')
 
-    project.package?.setScript(
-      'prepare',
-      [
-        'schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts',
-        String.raw`node -e "const f='src/ruff.ts',fs=require('node:fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/\bRuffOptions\b/g,'LintRuffOptions'))"`,
-      ].join(' && '),
+    schemas(
+      project,
+      'schemastore-to-typescript --no-cache --jsii --type-name RuffSchema Ruff src/ruff.ts',
+      String.raw`node -e "const f='src/ruff.ts',fs=require('node:fs');fs.writeFileSync(f,fs.readFileSync(f,'utf8').replace(/\bRuffOptions\b/g,'LintRuffOptions'))"`,
     )
   },
   (project) =>
@@ -1333,8 +1340,8 @@ project.addSubproject(
   (project) => {
     project.addGitIgnore('swcrc.ts')
 
-    project.package?.setScript(
-      'prepare',
+    schemas(
+      project,
       'schemastore-to-typescript --no-cache --jsii --type-name SwcrcSchema swcrc src/swcrc.ts',
     )
   },
@@ -1377,8 +1384,8 @@ project.addSubproject(
   (project) => {
     project.addGitIgnore('ty.ts')
 
-    project.package?.setScript(
-      'prepare',
+    schemas(
+      project,
       'schemastore-to-typescript --no-cache --jsii --type-name TySchema ty src/ty.ts',
     )
   },
@@ -1453,12 +1460,10 @@ project.addSubproject(
     project.addGitIgnore('pyproject.ts')
     project.addGitIgnore('uv.ts')
 
-    project.package?.setScript(
-      'prepare',
-      [
-        'schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts',
-        'schemastore-to-typescript --no-cache --jsii uv src/uv.ts',
-      ].join(' && '),
+    schemas(
+      project,
+      'schemastore-to-typescript --no-cache --jsii PyProject src/pyproject.ts',
+      'schemastore-to-typescript --no-cache --jsii uv src/uv.ts',
     )
   },
   (project) =>
@@ -1507,5 +1512,13 @@ project.addSubproject(
         "assert.ok(read('.config/wt.toml').includes('[[pre-start]]'))\nassert.ok(read('.config/wt.toml').includes('pnpm check'))\nassert.ok(read('.config/wt.toml').includes('Generated by projen'))",
     }),
 )
+
+const refreshSchemas = project.addTask('schemas', {
+  description:
+    'Regenerate the types the packages derive from their JSON schemas',
+})
+for (const { cwd, command } of schemaCommands) {
+  refreshSchemas.exec(command, { cwd })
+}
 
 project.synth()
