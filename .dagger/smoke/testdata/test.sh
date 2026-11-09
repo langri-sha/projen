@@ -222,6 +222,25 @@ grouped_changes() {
   printf '{"changes": [{"type": "minor", "comment": "Change", "packageName": "projen-other"}, {"type": "%s", "comment": "Change", "packageName": "projen-readme"}]}\n' "$2" >"$scratch/$1/change/grouped-$2.json"
 }
 
+with_dependent() {
+  local name=$1 version=${2:-0.3.0} group=${3:-dependencies} extra=${4:-}
+  mkdir -p "$scratch/$name/packages/dependent"
+  printf '{"name": "smoke-fixture-dependent", "version": "%s", "%s": {"projen-readme": "workspace:*"}%s}\n' "$version" "$group" "$extra" >"$scratch/$name/packages/dependent/package.json"
+}
+
+change_file() {
+  mkdir -p "$scratch/$1/change"
+  printf '%s\n' "$3" >"$scratch/$1/change/$2.json"
+}
+
+readme_change() {
+  printf '{"type": "%s", "comment": "Change", "packageName": "projen-readme", "dependentChangeType": "%s"}' "$1" "$2"
+}
+
+dependent_change() {
+  printf '{"type": "%s", "comment": "Change", "packageName": "smoke-fixture-dependent"}' "$1"
+}
+
 api_diff() {
   (cd "$scratch/$1" && env ${registry:+npm_config_registry=$registry} API_DIFF_RETRY_DELAY=0 npm_config_fetch_retries=0 JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION=1 node "$module/api-diff.mjs" >"$scratch/$1.log" 2>&1)
 }
@@ -273,6 +292,109 @@ api_workspace grouped-patched-break
 removes_property grouped-patched-break
 grouped_changes grouped-patched-break patch
 api_fails grouped-patched-break 'Add a minor change file: pnpm change'
+
+api_workspace compatible-with-dependent
+with_dependent compatible-with-dependent
+api_passes compatible-with-dependent
+
+api_workspace uncovered-dependent
+removes_property uncovered-dependent
+with_dependent uncovered-dependent
+api_fails uncovered-dependent 'projen-readme: PROP projen-readme.ReadmeFileOptions.filename: has been removed. Add a minor change file that releases smoke-fixture-dependent as minor: pnpm exec beachball change --package projen-readme --dependent-change-type minor$'
+
+api_workspace patched-dependent
+removes_property patched-dependent
+with_dependent patched-dependent
+change_file patched-dependent readme "$(readme_change minor patch)"
+change_file patched-dependent dependent "$(dependent_change patch)"
+api_fails patched-dependent 'has been removed. Release smoke-fixture-dependent as minor too: pnpm exec beachball change --package projen-readme --dependent-change-type minor$'
+
+api_workspace unset-dependent-type
+removes_property unset-dependent-type
+with_dependent unset-dependent-type
+changes unset-dependent-type minor
+api_fails unset-dependent-type 'Release smoke-fixture-dependent as minor too'
+
+api_workspace dependent-with-own-minor
+removes_property dependent-with-own-minor
+with_dependent dependent-with-own-minor
+changes dependent-with-own-minor minor
+change_file dependent-with-own-minor dependent "$(dependent_change minor)"
+api_passes dependent-with-own-minor
+
+api_workspace dependent-with-own-major
+removes_property dependent-with-own-major
+with_dependent dependent-with-own-major
+changes dependent-with-own-major minor
+change_file dependent-with-own-major dependent "$(dependent_change major)"
+api_passes dependent-with-own-major
+
+api_workspace dependent-released-by-sibling
+removes_property dependent-released-by-sibling
+with_dependent dependent-released-by-sibling
+change_file dependent-released-by-sibling readme "$(readme_change minor minor)"
+api_passes dependent-released-by-sibling
+
+api_workspace dependent-released-by-grouped-sibling
+removes_property dependent-released-by-grouped-sibling
+with_dependent dependent-released-by-grouped-sibling
+change_file dependent-released-by-grouped-sibling grouped "{\"changes\": [$(dependent_change patch), $(readme_change minor minor)]}"
+api_passes dependent-released-by-grouped-sibling
+
+api_workspace dependent-with-own-minor-in-group
+removes_property dependent-with-own-minor-in-group
+with_dependent dependent-with-own-minor-in-group
+change_file dependent-with-own-minor-in-group grouped "{\"changes\": [$(dependent_change minor), $(readme_change minor patch)]}"
+api_passes dependent-with-own-minor-in-group
+
+api_workspace dependent-patched-in-group
+removes_property dependent-patched-in-group
+with_dependent dependent-patched-in-group
+change_file dependent-patched-in-group grouped "{\"changes\": [$(dependent_change patch), $(readme_change minor patch)]}"
+api_fails dependent-patched-in-group 'Release smoke-fixture-dependent as minor too'
+
+api_workspace peer-dependent
+removes_property peer-dependent
+with_dependent peer-dependent 0.3.0 peerDependencies
+changes peer-dependent minor
+api_fails peer-dependent 'Release smoke-fixture-dependent as minor too'
+
+api_workspace optional-dependent
+removes_property optional-dependent
+with_dependent optional-dependent 0.3.0 optionalDependencies
+changes optional-dependent minor
+api_fails optional-dependent 'Release smoke-fixture-dependent as minor too'
+
+api_workspace dev-dependent
+removes_property dev-dependent
+with_dependent dev-dependent 0.3.0 devDependencies
+changes dev-dependent minor
+api_passes dev-dependent
+
+api_workspace private-dependent
+removes_property private-dependent
+with_dependent private-dependent 0.3.0 dependencies ', "private": true'
+changes private-dependent minor
+api_passes private-dependent
+
+api_workspace stable-dependent
+removes_property stable-dependent
+with_dependent stable-dependent 1.2.0
+change_file stable-dependent readme "$(readme_change minor minor)"
+change_file stable-dependent dependent "$(dependent_change minor)"
+api_fails stable-dependent 'Release smoke-fixture-dependent as major too: pnpm exec beachball change --package projen-readme --dependent-change-type major$'
+
+api_workspace stable-dependent-with-major
+removes_property stable-dependent-with-major
+with_dependent stable-dependent-with-major 1.2.0
+change_file stable-dependent-with-major readme "$(readme_change minor major)"
+api_passes stable-dependent-with-major
+
+api_workspace unbuilt-dependent-released-by-sibling
+removes_property unbuilt-dependent-released-by-sibling
+with_dependent unbuilt-dependent-released-by-sibling 0.3.0 dependencies ', "jsii": {}'
+change_file unbuilt-dependent-released-by-sibling readme "$(readme_change minor minor)"
+api_fails unbuilt-dependent-released-by-sibling 'smoke-fixture-dependent: has a jsii configuration but no .jsii'
 
 api_workspace malformed-grouped-change
 printf '{"changes": [null]}\n' >"$scratch/malformed-grouped-change/change/grouped.json"
