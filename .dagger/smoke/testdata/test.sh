@@ -265,6 +265,9 @@ registry=http://127.0.0.1:9 api_fails unreachable-registry 'the registry did not
 api_workspace unreleased-version projen-readme 0.0.1
 api_fails unreleased-version 'projen-readme@0.0.1 is not among its'
 
+api_workspace unassembled projen-readme 0.1.16
+api_fails unassembled 'projen-readme@0.1.16 ships no .jsii'
+
 api_workspace never-published @langri-sha/smoke-fixture-never-published 1.0.0
 api_passes never-published
 

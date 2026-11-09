@@ -190,7 +190,7 @@ const cause = (error) => {
     lines[0] ??
     (error.signal
       ? `killed by ${error.signal}`
-      : error.code != null
+      : typeof error.code === 'number'
         ? `exited with ${error.code}`
         : error.message)
   )
@@ -198,18 +198,108 @@ const cause = (error) => {
 
 const everything = (error) => `${error.stdout ?? ''}${error.stderr ?? ''}`
 
-const compare = async ({ name, version }, staged) => {
+const npmEnv = {
+  ...process.env,
+  // A packument cached before a release does not list the release.
+  npm_config_prefer_online: 'true',
+}
+
+const fetchRelease = async ({ name, version, path: directory }, index) => {
+  const unpacked = path.join(scratch, `${index}-release`)
+  const root = path.join(unpacked, 'node_modules')
+  const staged = path.join(root, name)
+
+  try {
+    fs.rmSync(unpacked, { recursive: true, force: true })
+    fs.mkdirSync(path.dirname(staged), { recursive: true })
+
+    await exec(
+      'npm',
+      ['pack', `${name}@${version}`, '--pack-destination', unpacked],
+      { timeout, env: npmEnv },
+    )
+
+    const tarball = fs.readdirSync(unpacked).find((f) => f.endsWith('.tgz'))
+
+    await exec('tar', ['-xzf', path.join(unpacked, tarball), '-C', unpacked])
+    fs.renameSync(path.join(unpacked, 'package'), staged)
+
+    if (!fs.existsSync(path.join(staged, '.jsii'))) {
+      throw new Error(`${name}@${version} ships no .jsii`)
+    }
+
+    const manifestPath = path.join(staged, 'package.json')
+
+    fs.writeFileSync(
+      manifestPath,
+      withoutDependencies(fs.readFileSync(manifestPath, 'utf8'), directory),
+    )
+
+    const workingRoot = rootOf(index)
+    const link = (entry, ...scope) => {
+      const target = path.join(root, ...scope, entry)
+
+      if (!fs.existsSync(target)) {
+        fs.mkdirSync(path.dirname(target), { recursive: true })
+        fs.symlinkSync(
+          fs.realpathSync(path.join(workingRoot, ...scope, entry)),
+          target,
+        )
+      }
+    }
+
+    for (const entry of fs.readdirSync(workingRoot)) {
+      if (entry.startsWith('@')) {
+        for (const child of fs.readdirSync(path.join(workingRoot, entry))) {
+          link(child, entry)
+        }
+      } else {
+        link(entry)
+      }
+    }
+  } catch (error) {
+    return { error: cause(error) }
+  }
+
+  return { directory: staged }
+}
+
+const published = async ({ name }) => {
+  try {
+    const { stdout } = await exec('npm', ['view', name, 'versions', '--json'], {
+      timeout,
+      env: npmEnv,
+    })
+
+    return { versions: [JSON.parse(stdout)].flat() }
+  } catch (error) {
+    return /E404/.test(everything(error))
+      ? { versions: [] }
+      : { error: cause(error) }
+  }
+}
+
+// A prerelease such as 0.0.0-stage is what a package holds before its first release.
+const released = (versions) => versions.filter((v) => !v.includes('-'))
+
+// Without the release there is nothing to compare with, which passes for a
+// package that was never released, and only then.
+const attempt = async (subject, index) => {
+  const release = await fetchRelease(subject, index)
+
+  if (release.error) {
+    return { missing: release.error, registry: await published(subject) }
+  }
+
   try {
     const { stdout, stderr } = await exec(
       jsiiDiff,
-      [`npm:${name}@${version}`, staged],
+      [release.directory, stagedDirs[index]],
       {
         timeout,
         env: {
           ...process.env,
           JSII_SILENCE_WARNING_UNTESTED_NODE_VERSION: '1',
-          // A packument cached before a release does not list the release.
-          npm_config_prefer_online: 'true',
         },
       },
     )
@@ -224,62 +314,27 @@ const compare = async ({ name, version }, staged) => {
   }
 }
 
-const published = async ({ name }) => {
-  try {
-    const { stdout } = await exec('npm', ['view', name, 'versions', '--json'], {
-      timeout,
-    })
-
-    return { versions: [JSON.parse(stdout)].flat() }
-  } catch (error) {
-    return /E404/.test(everything(error))
-      ? { versions: [] }
-      : { error: cause(error) }
-  }
-}
-
-// A prerelease such as 0.0.0-stage is what a package holds before its first release.
-const released = (versions) => versions.filter((v) => !v.includes('-'))
-
-// jsii-diff skips the comparison, and succeeds, when it cannot find the
-// release. That is right for a package that was never released, and only then.
-const attempt = async (subject, staged) => {
-  const result = await compare(subject, staged)
-
-  return result.code === 0 && /Skipping analysis/.test(result.output)
-    ? { ...result, registry: await published(subject) }
-    : result
-}
-
 // The registry may lag right after a publish.
-const lagging = ({ version }, { code, registry }) =>
-  code === 100 ||
-  (registry?.versions &&
-    released(registry.versions).length > 0 &&
-    !registry.versions.includes(version))
+const lagging = ({ code, missing, registry }) =>
+  code === 100 || (missing && released(registry.versions ?? []).length > 0)
 
 const verdict = async (subject, index) => {
   const { name, version } = subject
-  const staged = stagedDirs[index]
 
-  if (!staged) {
+  if (!stagedDirs[index]) {
     return
   }
 
-  let result = await attempt(subject, staged)
+  let result = await attempt(subject, index)
 
-  if (lagging(subject, result)) {
+  if (lagging(result)) {
     await new Promise((resolve) => setTimeout(resolve, pause))
-    result = await attempt(subject, staged)
+    result = await attempt(subject, index)
   }
 
-  const { code, output, registry } = result
+  const { code, output, missing, registry } = result
 
-  if (code === 0 && !registry) {
-    return
-  }
-
-  if (code === 0) {
+  if (missing) {
     if (registry.error) {
       return `${name}: no comparison, since the registry did not answer: ${registry.error}`
     }
@@ -292,9 +347,13 @@ const verdict = async (subject, index) => {
 
     return `${name}: no comparison, since ${
       registry.versions.includes(version)
-        ? `jsii-diff skipped the published ${name}@${version}`
+        ? `the published ${name}@${version} cannot be used`
         : `${name}@${version} is not among its ${versions.length} published versions`
-    }`
+    } (${missing})`
+  }
+
+  if (code === 0) {
+    return
   }
 
   if (code === 1) {
