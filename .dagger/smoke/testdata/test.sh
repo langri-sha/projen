@@ -193,6 +193,8 @@ api_workspace() {
     fs.writeFileSync('$dir/packages/readme/package.json', JSON.stringify({ ...manifest, name: '$package', version: '$version' }))
   "
   sed "s|projen-readme|$package|g" "$release/package/.jsii" >"$dir/packages/readme/.jsii"
+  mkdir "$dir/packages/readme/dist"
+  : >"$dir/packages/readme/dist/index.js"
   cp "$repo/scripts/inline-manifest.mjs" "$dir/scripts/"
   ln -s "$repo/node_modules" "$dir/node_modules"
   for dependency in projen constructs; do
@@ -273,6 +275,10 @@ api_workspace unbuilt
 rm "$scratch/unbuilt/packages/readme/.jsii"
 api_fails unbuilt 'projen-readme: has a jsii configuration but no .jsii'
 
+api_workspace undistributed
+rm -r "$scratch/undistributed/packages/readme/dist"
+api_fails undistributed 'projen-readme: has a jsii configuration but no dist/index.js'
+
 api_workspace sibling-dependency
 sibling=$scratch/sibling-dependency/packages/constructs
 mkdir -p "$sibling/dist"
@@ -312,7 +318,7 @@ broken_release() {
       jsii: {},
       scripts: { prepublishOnly: 'node build.js' },
     }))
-    fs.writeFileSync(dir + '/packages/readme/build.js', \"import { copyFileSync } from 'node:fs'\\ncopyFileSync('assembly.json', '.jsii')\\n\")
+    fs.writeFileSync(dir + '/packages/readme/build.js', \"import { copyFileSync, mkdirSync, writeFileSync } from 'node:fs'\\nmkdirSync('dist', { recursive: true })\\nwriteFileSync('dist/index.js', '')\\ncopyFileSync('assembly.json', '.jsii')\\n\")
   "
   (cd "$scratch/$name" && pnpm install --lockfile-only --silent)
 }

@@ -41,8 +41,14 @@ const packages = JSON.parse(
     return false
   }
 
-  if (!fs.existsSync(path.join(directory, '.jsii'))) {
-    failures.push(`${name}: has a jsii configuration but no .jsii. Build it`)
+  const missing = ['.jsii', 'dist/index.js'].filter(
+    (file) => !fs.existsSync(path.join(directory, file)),
+  )
+
+  if (missing.length) {
+    failures.push(
+      `${name}: has a jsii configuration but no ${missing.join(' or ')}. Build it`,
+    )
     return false
   }
 
@@ -108,11 +114,9 @@ const place = ({ name, path: directory }, index) => {
 
   // jsii-reflect finds a dependency through the real path of its `main`, which
   // leads back to the workspace if `dist` is a link.
-  if (fs.existsSync(path.join(directory, 'dist'))) {
-    fs.cpSync(path.join(directory, 'dist'), path.join(staged, 'dist'), {
-      recursive: true,
-    })
-  }
+  fs.cpSync(path.join(directory, 'dist'), path.join(staged, 'dist'), {
+    recursive: true,
+  })
 
   return staged
 }
