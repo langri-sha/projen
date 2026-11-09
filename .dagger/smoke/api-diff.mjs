@@ -17,9 +17,6 @@ const { withoutDependencies } = await import(
   pathToFileURL(path.join(workspace, 'scripts', 'inline-manifest.mjs'))
 )
 
-// Its runtime dependencies are not jsii modules, so jsii-reflect cannot load it.
-const skipped = new Set(['@langri-sha/projen-project'])
-
 const failures = []
 
 const packages = JSON.parse(
@@ -29,7 +26,7 @@ const packages = JSON.parse(
     { encoding: 'utf8' },
   ),
 ).filter(({ name, version, path: directory, private: isPrivate }) => {
-  if (!name || !version || isPrivate || skipped.has(name)) {
+  if (!name || !version || isPrivate) {
     return false
   }
 
@@ -76,6 +73,21 @@ const releasing = (version) =>
 
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), 'api-diff-'))
 
+// jsii-reflect loads the peers like the dependencies, and only jsii modules.
+const withoutPeers = (manifest, directory) => {
+  for (const name of Object.keys(manifest.peerDependencies ?? {})) {
+    if (!fs.existsSync(path.join(directory, 'node_modules', name, '.jsii'))) {
+      delete manifest.peerDependencies[name]
+    }
+  }
+
+  if (!Object.keys(manifest.peerDependencies ?? {}).length) {
+    delete manifest.peerDependencies
+  }
+
+  return manifest
+}
+
 const rootOf = (index) => path.join(scratch, String(index), 'node_modules')
 
 // What a publish ships: the assembly, the build, and the manifest without the
@@ -98,6 +110,8 @@ const place = ({ name, path: directory }, index) => {
     ),
   )
   const { main, types } = manifest.publishConfig ?? {}
+
+  withoutPeers(manifest, directory)
 
   fs.writeFileSync(
     path.join(staged, 'package.json'),
@@ -232,7 +246,19 @@ const fetchRelease = async ({ name, version, path: directory }, index) => {
 
     fs.writeFileSync(
       manifestPath,
-      withoutDependencies(fs.readFileSync(manifestPath, 'utf8'), directory),
+      JSON.stringify(
+        withoutPeers(
+          JSON.parse(
+            withoutDependencies(
+              fs.readFileSync(manifestPath, 'utf8'),
+              directory,
+            ),
+          ),
+          directory,
+        ),
+        null,
+        2,
+      ),
     )
 
     const workingRoot = rootOf(index)
