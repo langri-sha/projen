@@ -281,6 +281,82 @@ describe('creates `.projenrc` Projen project configuration', () => {
   })
 })
 
+describe('with node package', () => {
+  const synth = (options: Partial<ConstructorParameters<typeof Project>[0]>) =>
+    synthSnapshot(new Project({ name: 'test-project', ...options }))
+
+  test('writes an ESM manifest', () => {
+    expect(synth({ nodePackage: true })['package.json'].type).toBe('module')
+  })
+
+  test('names the projenrc as a TypeScript module', () => {
+    expect(synth({ nodePackage: true })['.projenrc.ts']).toContain(
+      'nodePackage: true',
+    )
+  })
+
+  test('runs the projenrc with node', () => {
+    expect(
+      synth({ nodePackage: true })['.projen/tasks.json'].tasks.default.steps,
+    ).toStrictEqual([{ exec: 'node .projenrc.ts' }])
+  })
+
+  test('adds no tsx dependency', () => {
+    expect(
+      Object.keys(synth({ nodePackage: true })['package.json'].devDependencies),
+    ).not.toContain('tsx')
+  })
+
+  test('adds no pnpm workspace file', () => {
+    expect(synth({ nodePackage: true })).not.toHaveProperty(
+      'pnpm-workspace.yaml',
+    )
+  })
+
+  test('merges an explicit package', () => {
+    const files = synth({
+      nodePackage: true,
+      package: { repository: 'owner/repo' },
+    })
+
+    expect(files['package.json'].type).toBe('module')
+    expect(files['package.json'].repository.url).toContain('owner/repo')
+    expect(files['.projen/tasks.json'].tasks.default.steps).toStrictEqual([
+      { exec: 'node .projenrc.ts' },
+    ])
+    expect(files['package.json'].devDependencies).not.toHaveProperty('tsx')
+  })
+
+  test('rejects a commonjs package', () => {
+    expect(() =>
+      synth({ nodePackage: true, package: { type: 'commonjs' } }),
+    ).toThrow('nodePackage runs the projenrc as ESM')
+  })
+
+  test('only sets the module type on a subproject', () => {
+    const root = new Project({ name: 'test-project', package: {} })
+
+    new Project({
+      name: 'child',
+      parent: root,
+      outdir: 'child',
+      nodePackage: true,
+    })
+
+    const files = synthSnapshot(root)
+
+    expect(files['child/package.json'].type).toBe('module')
+    expect(files['.projen/tasks.json'].tasks.default.steps).toStrictEqual([
+      { exec: 'tsx .projenrc.mts' },
+    ])
+    expect(files['package.json'].devDependencies.tsx).toBeDefined()
+  })
+
+  test('is off by default', () => {
+    expect(synth({})).not.toHaveProperty('package.json')
+  })
+})
+
 describe('with Babel configuration', () => {
   test('defaults', () => {
     const project = new Project({
