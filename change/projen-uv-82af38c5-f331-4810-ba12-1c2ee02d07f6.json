@@ -1,7 +1,0 @@
-{
-  "type": "none",
-  "comment": "Track the generated schema types",
-  "packageName": "projen-uv",
-  "email": "filip.dupanovic@gmail.com",
-  "dependentChangeType": "none"
-}

@@ -2,6 +2,35 @@
   "name": "projen-ruff",
   "entries": [
     {
+      "date": "Tue, 10 Nov 2026 18:53:45 GMT",
+      "version": "0.2.2",
+      "tag": "projen-ruff_v0.2.2",
+      "comments": {
+        "none": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-ruff",
+            "commit": "b2ab15dd7b17880f2811110d63c0827cc8d85ad2",
+            "comment": "Track the generated schema types"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-ruff",
+            "commit": "b2ab15dd7b17880f2811110d63c0827cc8d85ad2",
+            "comment": "Update dependency schemastore-to-typescript to v1.5.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-ruff",
+            "commit": "b2ab15dd7b17880f2811110d63c0827cc8d85ad2",
+            "comment": "Update dependency schemastore-to-typescript to v1.4.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Nov 2026 08:29:08 GMT",
       "version": "0.2.1",
       "tag": "projen-ruff_v0.2.1",

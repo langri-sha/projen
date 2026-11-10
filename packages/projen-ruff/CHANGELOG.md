@@ -1,8 +1,17 @@
 # Change Log - projen-ruff
 
-<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Tue, 10 Nov 2026 18:53:45 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.2.2
+
+Tue, 10 Nov 2026 18:53:45 GMT
+
+### Patches
+
+- Update dependency schemastore-to-typescript to v1.5.0
+- Update dependency schemastore-to-typescript to v1.4.0
 
 ## 0.2.1
 
