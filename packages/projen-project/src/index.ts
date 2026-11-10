@@ -267,6 +267,17 @@ export interface ProjectOptions {
   readonly name: BaseProjectOptions['name']
 
   /**
+   * Manage an ESM package whose projenrc Node runs itself, without `tsx`.
+   * `package` is merged in, with `type: 'module'`. On a subproject, only
+   * `type: 'module'` applies. `projen new` sets it, since it can only pass
+   * primitive options.
+   *
+   * @default false
+   * @pjnew true
+   */
+  readonly nodePackage?: boolean
+
+  /**
    * Whether to commit the managed files by default.
    *
    * @default true
@@ -601,6 +612,18 @@ export class Project extends BaseProject {
   #synthesizingProjenVersion?: string
 
   constructor(options: ProjectOptions) {
+    const nodePackage = Boolean(options.nodePackage)
+
+    if (nodePackage) {
+      if (options.package?.type === 'commonjs') {
+        throw new Error(
+          'nodePackage runs the projenrc as ESM. Drop package.type, or drop nodePackage to run it with tsx.',
+        )
+      }
+
+      options = { ...options, package: { ...options.package, type: 'module' } }
+    }
+
     super({
       // Resolved from the options rather than `this.package`, which does not
       // exist until `#configurePackage` runs further down.
@@ -624,7 +647,7 @@ export class Project extends BaseProject {
     this.#configurePackage(options)
     this.#configureTypeScript(options)
     this.#configureSWC(options)
-    this.#configureProjenrc(options)
+    this.#configureProjenrc(options, nodePackage)
 
     if (this.parent) {
       this.tryRemoveFile('.gitattributes')
@@ -1486,16 +1509,17 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.prettier!.path)
   }
 
-  #configureProjenrc({ package: pkg }: ProjectOptions) {
+  #configureProjenrc({ package: pkg }: ProjectOptions, nodePackage: boolean) {
     this.projenrc = new ProjenrcFile(this, {
       filename: pkg?.type === 'module' ? '.projenrc.ts' : '.projenrc.mts',
       package: pkg,
+      nodePackage,
     })
 
     if (!this.parent) {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
 
-      if (this.package) {
+      if (this.package && !nodePackage) {
         this.#addDefaultDevDeps('tsx@4.23.15')
       }
     }
