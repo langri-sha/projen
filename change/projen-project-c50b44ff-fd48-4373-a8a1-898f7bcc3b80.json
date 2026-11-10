@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add a nodePackage option that makes new projects ESM packages run by Node",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
