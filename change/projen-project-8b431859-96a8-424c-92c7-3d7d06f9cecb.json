@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Run every projenrc with Node 22.18+, CommonJS and package-less ones too. Set projenrcTsx if it uses enums, extensionless imports or `.js` imports of `.ts` files.",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

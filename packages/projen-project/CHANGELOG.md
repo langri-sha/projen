@@ -1,8 +1,21 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 11 Nov 2026 08:00:16 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 11 Nov 2026 17:04:49 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.54.0
+
+Wed, 11 Nov 2026 17:04:49 GMT
+
+### Minor changes
+
+- Run every projenrc with Node 22.18+, CommonJS and package-less ones too. Set projenrcTsx if it uses enums, extensionless imports or `.js` imports of `.ts` files.
+- Run the projenrc of an ESM package with Node 22.18+ instead of tsx. Set projenrcTsx if it needs tsx (enums, `.js` imports of `.ts` files), declare tsx if your tasks run it, and regenerate pnpm-lock.yaml from a clean checkout to drop tsx and esbuild.
+
+### Patches
+
+- Update dependency vitest to v5.1.0
 
 ## 0.53.0
 

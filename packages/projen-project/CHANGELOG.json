@@ -2,6 +2,35 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Wed, 11 Nov 2026 17:04:49 GMT",
+      "version": "0.54.0",
+      "tag": "@langri-sha/projen-project_v0.54.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "20e27f71275d130382737e009df68ee0216c854b",
+            "comment": "Update dependency vitest to v5.1.0"
+          }
+        ],
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "20e27f71275d130382737e009df68ee0216c854b",
+            "comment": "Run every projenrc with Node 22.18+, CommonJS and package-less ones too. Set projenrcTsx if it uses enums, extensionless imports or `.js` imports of `.ts` files."
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "20e27f71275d130382737e009df68ee0216c854b",
+            "comment": "Run the projenrc of an ESM package with Node 22.18+ instead of tsx. Set projenrcTsx if it needs tsx (enums, `.js` imports of `.ts` files), declare tsx if your tasks run it, and regenerate pnpm-lock.yaml from a clean checkout to drop tsx and esbuild."
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 11 Nov 2026 08:00:16 GMT",
       "version": "0.53.0",
       "tag": "@langri-sha/projen-project_v0.53.0",
