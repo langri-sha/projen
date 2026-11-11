@@ -19,7 +19,8 @@ export interface ProjenrcOptions {
   readonly nodePackage?: boolean
 
   /**
-   * Whether the project runs the projenrc with `tsx` where Node would do.
+   * Whether the project runs the projenrc with `tsx` where Node would do, as
+   * an ESM package does.
    */
   readonly tsx?: boolean
 }
@@ -54,7 +55,7 @@ export class ProjenrcFile extends BaseProjenrcFile {
     }
 
     this.filePath = filename
-    this.runner = nodePackage && !tsx ? 'node' : 'tsx'
+    this.runner = pkg?.type === 'module' && !tsx ? 'node' : 'tsx'
 
     this.project.defaultTask?.exec(`${this.runner} ${filename}`)
 

@@ -44,7 +44,11 @@ describe('node package', () => {
   const synth = () => {
     const project = new Project({ name: 'test-project' })
 
-    new ProjenrcFile(project, { filename: '.projenrc.ts', nodePackage: true })
+    new ProjenrcFile(project, {
+      filename: '.projenrc.ts',
+      package: { type: 'module' },
+      nodePackage: true,
+    })
 
     return synthSnapshot(project)
   }
@@ -66,6 +70,7 @@ describe('node package', () => {
     const project = new Project({ name: 'test-project' })
     const projenrc = new ProjenrcFile(project, {
       filename: '.projenrc.ts',
+      package: { type: 'module' },
       nodePackage: true,
       tsx: true,
     })

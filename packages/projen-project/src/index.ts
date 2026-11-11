@@ -267,8 +267,7 @@ export interface ProjectOptions {
   readonly name: BaseProjectOptions['name']
 
   /**
-   * Manage an ESM package whose projenrc Node runs itself, unless `projenrcTsx`
-   * is set.
+   * Manage an ESM package.
    * `package` is merged in, with `type: 'module'`. On a subproject, only
    * `type: 'module'` applies. `projen new` sets it, since it can only pass
    * primitive options.
@@ -627,7 +626,7 @@ export class Project extends BaseProject {
     if (nodePackage) {
       if (options.package?.type === 'commonjs') {
         throw new Error(
-          'nodePackage runs the projenrc as ESM. Drop package.type, or drop nodePackage to run it with tsx.',
+          'nodePackage runs the projenrc as ESM. Drop package.type, or drop nodePackage.',
         )
       }
 
