@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Run the projenrc of an ESM package with Node 22.18+ instead of tsx. Set projenrcTsx if it needs tsx (enums, `.js` imports of `.ts` files), declare tsx if your tasks run it, and regenerate pnpm-lock.yaml from a clean checkout to drop tsx and esbuild.",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
