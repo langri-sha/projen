@@ -267,7 +267,8 @@ export interface ProjectOptions {
   readonly name: BaseProjectOptions['name']
 
   /**
-   * Manage an ESM package whose projenrc Node runs itself, without `tsx`.
+   * Manage an ESM package whose projenrc Node runs itself, unless `projenrcTsx`
+   * is set.
    * `package` is merged in, with `type: 'module'`. On a subproject, only
    * `type: 'module'` applies. `projen new` sets it, since it can only pass
    * primitive options.
@@ -276,6 +277,15 @@ export interface ProjectOptions {
    * @pjnew true
    */
   readonly nodePackage?: boolean
+
+  /**
+   * Run the projenrc with `tsx`, and depend on it, instead of Node. Applies to
+   * root projects only. Set it when the projenrc needs syntax Node cannot
+   * strip, such as enums or `.js` imports of `.ts` files.
+   *
+   * @default false
+   */
+  readonly projenrcTsx?: boolean
 
   /**
    * Whether to commit the managed files by default.
@@ -1509,17 +1519,21 @@ export class Project extends BaseProject {
     this.typeScriptConfig?.addFile(this.prettier!.path)
   }
 
-  #configureProjenrc({ package: pkg }: ProjectOptions, nodePackage: boolean) {
+  #configureProjenrc(
+    { package: pkg, projenrcTsx }: ProjectOptions,
+    nodePackage: boolean,
+  ) {
     this.projenrc = new ProjenrcFile(this, {
       filename: pkg?.type === 'module' ? '.projenrc.ts' : '.projenrc.mts',
       package: pkg,
       nodePackage,
+      tsx: projenrcTsx,
     })
 
     if (!this.parent) {
       this.typeScriptConfig?.addFile(this.projenrc.filePath)
 
-      if (this.package && !nodePackage) {
+      if (this.package && this.projenrc.runner === 'tsx') {
         this.#addDefaultDevDeps('tsx@4.23.15')
       }
     }
