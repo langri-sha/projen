@@ -19,8 +19,7 @@ export interface ProjenrcOptions {
   readonly nodePackage?: boolean
 
   /**
-   * Whether the project runs the projenrc with `tsx` where Node would do, as
-   * an ESM package does.
+   * Whether the project runs the projenrc with `tsx` rather than Node.
    */
   readonly tsx?: boolean
 }
@@ -49,13 +48,13 @@ export class ProjenrcFile extends BaseProjenrcFile {
       const parent = ProjenrcFile.of(project.parent) as ProjenrcFile | undefined
 
       this.filePath = parent?.filePath ?? filename
-      this.runner = parent?.runner ?? 'tsx'
+      this.runner = parent?.runner ?? 'node'
 
       return
     }
 
     this.filePath = filename
-    this.runner = pkg?.type === 'module' && !tsx ? 'node' : 'tsx'
+    this.runner = tsx ? 'tsx' : 'node'
 
     this.project.defaultTask?.exec(`${this.runner} ${filename}`)
 

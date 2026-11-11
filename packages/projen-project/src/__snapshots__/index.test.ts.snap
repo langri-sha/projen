@@ -51,7 +51,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -130,7 +130,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -367,7 +367,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -437,7 +437,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -514,7 +514,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -786,7 +786,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -1087,11 +1087,6 @@ CHANGELOG.md
         "version": "0.104.1",
       },
       {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
-      {
         "name": "typescript",
         "type": "build",
         "version": "6.0.3",
@@ -1130,7 +1125,7 @@ CHANGELOG.md
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -1190,7 +1185,6 @@ module.exports = {
       "beachball": "2.66.0",
       "prettier": "3.9.9",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
       "typescript": "6.0.3",
     },
     "license": "Apache-2.0",
@@ -1541,11 +1535,6 @@ CHANGELOG.md
         "type": "build",
         "version": "0.104.1",
       },
-      {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
     ],
   },
   ".projen/files.json": {
@@ -1579,7 +1568,7 @@ CHANGELOG.md
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -1624,7 +1613,6 @@ project.synth()
       "@langri-sha/projen-project": "*",
       "prettier": "3.9.9",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -1722,11 +1710,6 @@ node_modules/
         "version": "0.104.1",
       },
       {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
-      {
         "name": "typescript",
         "type": "build",
         "version": "6.0.3",
@@ -1754,7 +1737,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -1802,7 +1785,6 @@ export default [...defaults, {"ignores":["**/.*","**/dist/","!.projenrc.mts"]}]"
       "@langri-sha/tsconfig": "*",
       "eslint": "10.14.0",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
       "typescript": "6.0.3",
     },
     "license": "Apache-2.0",
@@ -2057,7 +2039,7 @@ dist/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -2495,11 +2477,6 @@ lint-staged
         "type": "build",
         "version": "0.104.1",
       },
-      {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
     ],
   },
   ".projen/files.json": {
@@ -2522,7 +2499,7 @@ lint-staged
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -2565,7 +2542,6 @@ project.synth()
       "@langri-sha/projen-project": "*",
       "husky": "9.1.7",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -2649,7 +2625,7 @@ tsconfig*.json
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -2758,7 +2734,7 @@ dist/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -2865,7 +2841,7 @@ dist/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -3118,7 +3094,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -3320,7 +3296,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -3418,11 +3394,6 @@ node_modules/
         "version": "0.104.1",
       },
       {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
-      {
         "name": "typescript",
         "type": "build",
         "version": "6.0.3",
@@ -3449,7 +3420,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -3492,7 +3463,6 @@ project.synth()
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
       "typescript": "6.0.3",
     },
     "license": "Apache-2.0",
@@ -3750,11 +3720,6 @@ node_modules/
         "version": "0.104.1",
       },
       {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
-      {
         "name": "typescript",
         "type": "build",
         "version": "6.0.3",
@@ -3781,7 +3746,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -3824,7 +3789,6 @@ project.synth()
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
       "typescript": "6.0.3",
     },
     "license": "Apache-2.0",
@@ -3922,11 +3886,6 @@ node_modules/
         "version": "0.104.1",
       },
       {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
-      {
         "name": "typescript",
         "type": "build",
         "version": "6.0.3",
@@ -3954,7 +3913,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -4013,7 +3972,6 @@ project.synth()
       "@swc-node/register": "1.12.1",
       "@swc/core": "1.16.2",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
       "typescript": "6.0.3",
     },
     "license": "Apache-2.0",
@@ -4099,11 +4057,6 @@ node_modules/
         "type": "build",
         "version": "0.104.1",
       },
-      {
-        "name": "tsx",
-        "type": "build",
-        "version": "4.23.15",
-      },
     ],
   },
   ".projen/files.json": {
@@ -4126,7 +4079,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -4189,7 +4142,6 @@ project.synth()
     "devDependencies": {
       "@langri-sha/projen-project": "*",
       "projen": "0.104.1",
-      "tsx": "4.23.15",
     },
     "license": "Apache-2.0",
     "main": "src/index.ts",
@@ -4262,7 +4214,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.mts",
+            "exec": "node .projenrc.mts",
           },
         ],
       },
@@ -4346,7 +4298,6 @@ exports[`with package > defaults 1`] = `
   "devDependencies": {
     "@langri-sha/projen-project": "*",
     "projen": "0.104.1",
-    "tsx": "4.23.15",
   },
   "license": "Apache-2.0",
   "main": "src/index.ts",

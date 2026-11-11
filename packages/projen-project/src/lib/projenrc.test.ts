@@ -92,4 +92,13 @@ describe('node package', () => {
       'node',
     )
   })
+
+  test('runs a subproject with node when the parent has no projenrc', () => {
+    const root = new Project({ name: 'test-project' })
+    const child = new Project({ name: 'child', parent: root, outdir: 'child' })
+
+    expect(new ProjenrcFile(child, { filename: '.projenrc.ts' }).runner).toBe(
+      'node',
+    )
+  })
 })

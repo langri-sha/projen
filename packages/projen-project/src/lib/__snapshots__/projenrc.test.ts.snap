@@ -60,7 +60,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projerc.ts",
+            "exec": "node .projerc.ts",
           },
         ],
       },
@@ -163,7 +163,7 @@ node_modules/
         "name": "default",
         "steps": [
           {
-            "exec": "tsx .projenrc.ts",
+            "exec": "node .projenrc.ts",
           },
         ],
       },

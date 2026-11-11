@@ -279,8 +279,9 @@ export interface ProjectOptions {
 
   /**
    * Run the projenrc with `tsx`, and depend on it, instead of Node. Applies to
-   * root projects only. Set it when the projenrc needs syntax Node cannot
-   * strip, such as enums or `.js` imports of `.ts` files.
+   * root projects only. Set it when the projenrc uses imports or syntax Node
+   * cannot run, such as enums, extensionless imports or `.js` imports of `.ts`
+   * files.
    *
    * @default false
    */
@@ -626,7 +627,7 @@ export class Project extends BaseProject {
     if (nodePackage) {
       if (options.package?.type === 'commonjs') {
         throw new Error(
-          'nodePackage runs the projenrc as ESM. Drop package.type, or drop nodePackage.',
+          'nodePackage makes the package ESM. Drop package.type, or drop nodePackage.',
         )
       }
 
