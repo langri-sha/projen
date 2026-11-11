@@ -14,32 +14,49 @@ export interface ProjenrcOptions {
   readonly package?: { readonly type?: 'commonjs' | 'module' }
 
   /**
-   * Whether the project is the ESM package `nodePackage` stands for, which
-   * Node runs without `tsx`.
+   * Whether the project is the ESM package `nodePackage` stands for.
    */
   readonly nodePackage?: boolean
+
+  /**
+   * Whether the project runs the projenrc with `tsx` where Node would do.
+   */
+  readonly tsx?: boolean
 }
 
 export class ProjenrcFile extends BaseProjenrcFile {
   public override readonly filePath: string
 
+  /**
+   * The program that runs the projenrc, which a subproject shares with its
+   * parent.
+   */
+  public readonly runner: 'node' | 'tsx'
+
   constructor(
     project: Project,
-    { filename = '.projenrc.ts', package: pkg, nodePackage }: ProjenrcOptions,
+    {
+      filename = '.projenrc.ts',
+      package: pkg,
+      nodePackage,
+      tsx,
+    }: ProjenrcOptions,
   ) {
     super(project)
 
     if (project.parent) {
-      this.filePath = ProjenrcFile.of(project.parent)?.filePath ?? filename
+      const parent = ProjenrcFile.of(project.parent) as ProjenrcFile | undefined
+
+      this.filePath = parent?.filePath ?? filename
+      this.runner = parent?.runner ?? 'tsx'
 
       return
     }
 
     this.filePath = filename
+    this.runner = nodePackage && !tsx ? 'node' : 'tsx'
 
-    this.project.defaultTask?.exec(
-      `${nodePackage ? 'node' : 'tsx'} ${filename}`,
-    )
+    this.project.defaultTask?.exec(`${this.runner} ${filename}`)
 
     const name = JSON.stringify(project.name)
       .slice(1, -1)
@@ -47,7 +64,7 @@ export class ProjenrcFile extends BaseProjenrcFile {
       .replace(/'/g, "\\'")
 
     const packageOption = nodePackage
-      ? 'nodePackage: true'
+      ? `nodePackage: true${tsx ? ',\n  projenrcTsx: true' : ''}`
       : !pkg
         ? undefined
         : pkg.type

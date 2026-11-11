@@ -61,4 +61,30 @@ describe('node package', () => {
     expect(sample).toContain('nodePackage: true')
     expect(sample).not.toContain('package:')
   })
+
+  test('runs tsx when asked to', () => {
+    const project = new Project({ name: 'test-project' })
+    const projenrc = new ProjenrcFile(project, {
+      filename: '.projenrc.ts',
+      nodePackage: true,
+      tsx: true,
+    })
+
+    expect(projenrc.runner).toBe('tsx')
+  })
+
+  test('shares the runner of the parent with a subproject', () => {
+    const root = new Project({ name: 'test-project' })
+    const child = new Project({ name: 'child', parent: root, outdir: 'child' })
+
+    new ProjenrcFile(root, {
+      filename: '.projenrc.ts',
+      package: { type: 'module' },
+      nodePackage: true,
+    })
+
+    expect(new ProjenrcFile(child, { filename: '.projenrc.ts' }).runner).toBe(
+      'node',
+    )
+  })
 })

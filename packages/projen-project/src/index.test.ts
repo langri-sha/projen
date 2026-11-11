@@ -313,6 +313,16 @@ describe('with node package', () => {
     )
   })
 
+  test('keeps tsx when asked to', () => {
+    const files = synth({ nodePackage: true, projenrcTsx: true })
+
+    expect(files['.projen/tasks.json'].tasks.default.steps).toStrictEqual([
+      { exec: 'tsx .projenrc.ts' },
+    ])
+    expect(files['package.json'].devDependencies.tsx).toBeDefined()
+    expect(files['.projenrc.ts']).toContain('projenrcTsx: true')
+  })
+
   test('merges an explicit package', () => {
     const files = synth({
       nodePackage: true,
