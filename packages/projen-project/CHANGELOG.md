@@ -1,8 +1,16 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Tue, 10 Nov 2026 18:53:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Wed, 11 Nov 2026 08:00:16 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.53.0
+
+Wed, 11 Nov 2026 08:00:16 GMT
+
+### Minor changes
+
+- Add a nodePackage option that makes new projects ESM packages run by Node
 
 ## 0.52.1
 

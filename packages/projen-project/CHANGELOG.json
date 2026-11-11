@@ -2,6 +2,21 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Wed, 11 Nov 2026 08:00:16 GMT",
+      "version": "0.53.0",
+      "tag": "@langri-sha/projen-project_v0.53.0",
+      "comments": {
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "e14410c1f4450bc17158c1a7a8b7322764386de1",
+            "comment": "Add a nodePackage option that makes new projects ESM packages run by Node"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Nov 2026 18:53:45 GMT",
       "version": "0.52.1",
       "tag": "@langri-sha/projen-project_v0.52.1",
