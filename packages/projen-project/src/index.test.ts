@@ -302,21 +302,32 @@ describe('projenrc runner', () => {
     expect(files['package.json'].devDependencies.tsx).toBeDefined()
   })
 
-  test('keeps tsx for a commonjs package', () => {
+  test('runs a commonjs package with node', () => {
     const files = synth({ package: { type: 'commonjs' } })
 
-    expect(steps(files)).toStrictEqual([{ exec: 'tsx .projenrc.mts' }])
-    expect(files['package.json'].devDependencies.tsx).toBeDefined()
+    expect(steps(files)).toStrictEqual([{ exec: 'node .projenrc.mts' }])
+    expect(files['package.json'].devDependencies).not.toHaveProperty('tsx')
   })
 
-  test('keeps tsx for a package without a type', () => {
-    expect(steps(synth({ package: {} }))).toStrictEqual([
-      { exec: 'tsx .projenrc.mts' },
-    ])
+  test('runs a package without a type with node', () => {
+    const files = synth({ package: {} })
+
+    expect(steps(files)).toStrictEqual([{ exec: 'node .projenrc.mts' }])
+    expect(files['package.json'].devDependencies).not.toHaveProperty('tsx')
   })
 
-  test('keeps tsx without a package', () => {
-    expect(steps(synth({}))).toStrictEqual([{ exec: 'tsx .projenrc.mts' }])
+  test.each([{ package: {} }, { package: { type: 'commonjs' as const } }])(
+    'keeps tsx for a package that opts out, as $package',
+    ({ package: pkg }) => {
+      const files = synth({ package: pkg, projenrcTsx: true })
+
+      expect(steps(files)).toStrictEqual([{ exec: 'tsx .projenrc.mts' }])
+      expect(files['package.json'].devDependencies.tsx).toBeDefined()
+    },
+  )
+
+  test('runs a project without a package with node', () => {
+    expect(steps(synth({}))).toStrictEqual([{ exec: 'node .projenrc.mts' }])
   })
 })
 
@@ -379,7 +390,7 @@ describe('with node package', () => {
   test('rejects a commonjs package', () => {
     expect(() =>
       synth({ nodePackage: true, package: { type: 'commonjs' } }),
-    ).toThrow('nodePackage runs the projenrc as ESM')
+    ).toThrow('nodePackage makes the package ESM')
   })
 
   test('only sets the module type on a subproject', () => {
@@ -396,9 +407,9 @@ describe('with node package', () => {
 
     expect(files['child/package.json'].type).toBe('module')
     expect(files['.projen/tasks.json'].tasks.default.steps).toStrictEqual([
-      { exec: 'tsx .projenrc.mts' },
+      { exec: 'node .projenrc.mts' },
     ])
-    expect(files['package.json'].devDependencies.tsx).toBeDefined()
+    expect(files['package.json'].devDependencies).not.toHaveProperty('tsx')
   })
 
   test('is off by default', () => {
@@ -4182,8 +4193,8 @@ describe('supplied development dependency versions', () => {
     { tool: '@swc/core', enabledBy: { swcrc: {} } },
     { tool: '@swc-node/register', enabledBy: { swcrc: {} } },
     { tool: 'projen', enabledBy: {} },
-    { tool: 'tsx', enabledBy: {} },
-    { tool: 'tsx', enabledBy: { swcrc: {} } },
+    { tool: 'tsx', enabledBy: { projenrcTsx: true } },
+    { tool: 'tsx', enabledBy: { projenrcTsx: true, swcrc: {} } },
   ]
 
   describe.each(TOOLS)('$tool', ({ tool, enabledBy }) => {
@@ -4269,7 +4280,7 @@ describe('supplied development dependency versions', () => {
   test('names only the packages it actually supplied', () => {
     const files = synthesize({})
 
-    expect(suppressedPackages(files)).toEqual(['projen', 'tsx'])
+    expect(suppressedPackages(files)).toEqual(['projen'])
   })
 
   test.each([
