@@ -31,6 +31,7 @@ const projenPeer = {
 
 const project = new Project({
   name: 'projen',
+  projenrcTsx: true,
   package: {
     ...pkg,
     copyrightYear: '2016',
