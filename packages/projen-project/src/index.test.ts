@@ -2814,7 +2814,7 @@ describe('with Renovate options, reading a projenrc that declares crates and npm
     const project = new Project({
       name: 'test-project',
       package: {
-        devDeps: ['vitest@5.0.5'],
+        devDeps: ['request@2.88.2'],
         dependencies: { express: '4.0.0' },
       },
       cargo: {
@@ -2897,7 +2897,7 @@ describe('with Renovate options, reading a projenrc that declares crates and npm
         currentValue,
       })),
     ).toEqual([
-      { depName: 'vitest', currentValue: '5.0.5' },
+      { depName: 'request', currentValue: '2.88.2' },
       { depName: 'left-pad', currentValue: '1.3.0' },
     ])
   })
@@ -2940,7 +2940,7 @@ describe('with Renovate options, reading a projenrc that declares Python require
   const projenrc = `
     const project = new Project({
       name: 'test-project',
-      package: { devDeps: ['vitest@5.0.5', 'left-pad@1.3.0'] },
+      package: { devDeps: ['request@2.88.2', 'left-pad@1.3.0'] },
       uv: {
         pythonVersion: '3.14',
         'dependency-groups': {
@@ -2980,7 +2980,7 @@ describe('with Renovate options, reading a projenrc that declares Python require
     expect(
       extractPythonRequirements(`
         new Project({
-          package: { devDeps: ['vitest@5.0.5', 'ruff>=0.15.10'] },
+          package: { devDeps: ['request@2.88.2', 'ruff>=0.15.10'] },
           uv: {
             project: {
               'requires-python': '>=3.14',
