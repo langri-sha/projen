@@ -38,9 +38,11 @@ pnpm dlx projen new --from @langri-sha/projen-project
 pnpm install && pnpm exec projen
 ```
 
-`projen new` sets `nodePackage`, which writes an ESM `package.json` and a
-`.projenrc.ts` that Node runs itself, so the project needs Node 22.18 or later
-and no `tsx`. Drop `nodePackage` to run the projenrc with `tsx`.
+`projen new` sets `nodePackage`, which writes an ESM `package.json`. Node runs
+the projenrc of any ESM package itself, so you need Node 22.18 or later and no
+`tsx`. Set `projenrcTsx` if the projenrc needs syntax Node cannot strip, such as
+enums or `.js` imports of `.ts` files, and declare `tsx` yourself if your tasks
+run it. A CommonJS package, or one with no `type`, always runs `tsx`.
 
 ## Changesets
 

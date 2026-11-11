@@ -281,6 +281,45 @@ describe('creates `.projenrc` Projen project configuration', () => {
   })
 })
 
+describe('projenrc runner', () => {
+  const synth = (options: Partial<ConstructorParameters<typeof Project>[0]>) =>
+    synthSnapshot(new Project({ name: 'test-project', ...options }))
+
+  const steps = (files: ReturnType<typeof synth>) =>
+    files['.projen/tasks.json'].tasks.default.steps
+
+  test('runs an ESM package with node', () => {
+    const files = synth({ package: { type: 'module' } })
+
+    expect(steps(files)).toStrictEqual([{ exec: 'node .projenrc.ts' }])
+    expect(files['package.json'].devDependencies).not.toHaveProperty('tsx')
+  })
+
+  test('keeps tsx for an ESM package that opts out', () => {
+    const files = synth({ package: { type: 'module' }, projenrcTsx: true })
+
+    expect(steps(files)).toStrictEqual([{ exec: 'tsx .projenrc.ts' }])
+    expect(files['package.json'].devDependencies.tsx).toBeDefined()
+  })
+
+  test('keeps tsx for a commonjs package', () => {
+    const files = synth({ package: { type: 'commonjs' } })
+
+    expect(steps(files)).toStrictEqual([{ exec: 'tsx .projenrc.mts' }])
+    expect(files['package.json'].devDependencies.tsx).toBeDefined()
+  })
+
+  test('keeps tsx for a package without a type', () => {
+    expect(steps(synth({ package: {} }))).toStrictEqual([
+      { exec: 'tsx .projenrc.mts' },
+    ])
+  })
+
+  test('keeps tsx without a package', () => {
+    expect(steps(synth({}))).toStrictEqual([{ exec: 'tsx .projenrc.mts' }])
+  })
+})
+
 describe('with node package', () => {
   const synth = (options: Partial<ConstructorParameters<typeof Project>[0]>) =>
     synthSnapshot(new Project({ name: 'test-project', ...options }))
@@ -4142,8 +4181,6 @@ describe('supplied development dependency versions', () => {
     { tool: 'vitest', enabledBy: { vitest: true } },
     { tool: '@swc/core', enabledBy: { swcrc: {} } },
     { tool: '@swc-node/register', enabledBy: { swcrc: {} } },
-    // Not features — every root project is given Projen itself, and `tsx` to
-    // run the projenrc.
     { tool: 'projen', enabledBy: {} },
     { tool: 'tsx', enabledBy: {} },
     { tool: 'tsx', enabledBy: { swcrc: {} } },
@@ -4230,13 +4267,29 @@ describe('supplied development dependency versions', () => {
   })
 
   test('names only the packages it actually supplied', () => {
-    // A project with no features enabled is still given Projen, `tsx` and
-    // `@langri-sha/projen-project`. Only the first two are literal versions,
-    // so only those are withheld.
     const files = synthesize({})
 
     expect(suppressedPackages(files)).toEqual(['projen', 'tsx'])
   })
+
+  test.each([
+    { options: { projenrcTsx: false }, expected: ['projen'] },
+    { options: { projenrcTsx: true }, expected: ['projen', 'tsx'] },
+  ])(
+    'names $expected for an ESM root with $options',
+    ({ options, expected }) => {
+      const files = synthSnapshot(
+        new Project({
+          name: 'test-project',
+          renovate: {},
+          package: { type: 'module' },
+          ...options,
+        }),
+      )
+
+      expect(suppressedPackages(files)).toEqual(expected)
+    },
+  )
 })
 
 describe('a subproject that peers projen', () => {
