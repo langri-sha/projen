@@ -44,7 +44,7 @@
     "eslint": "10.14.0",
     "husky": "9.1.7",
     "jsii-diff": "1.142.0",
-    "jsii-docgen": "10.12.8",
+    "jsii-docgen": "10.12.9",
     "jsii-rosetta": "6.0.22",
     "lint-staged": "17.6.0",
     "prettier": "3.9.9",
