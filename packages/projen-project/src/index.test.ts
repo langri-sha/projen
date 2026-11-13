@@ -1569,7 +1569,7 @@ describe('with skills options', () => {
       }),
     )
 
-    expect(pkg.devDependencies.skills).toMatchInlineSnapshot(`"1.7.6"`)
+    expect(pkg.devDependencies.skills).toMatchInlineSnapshot(`"1.8.0"`)
   })
 
   test('leaves skills-lock.json to the CLI', () => {
