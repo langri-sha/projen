@@ -23,7 +23,7 @@ jobs:
 
       - name: Resolve Dagger version
         id: dagger-version
-        uses: langri-sha/github/actions/dagger-version@v0.37.0
+        uses: langri-sha/github/actions/dagger-version@v0.37.1
 
       - name: Set up Dagger
         uses: dagger/dagger-for-github@v8.4.1
