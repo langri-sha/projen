@@ -29,7 +29,7 @@
     "@types/node": "24.19.2",
     "jsii": "6.0.20",
     "projen": "0.104.1",
-    "skills": "1.7.6"
+    "skills": "1.8.0"
   },
   "peerDependencies": {
     "constructs": "^10.5.0",
