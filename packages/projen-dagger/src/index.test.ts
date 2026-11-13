@@ -26,7 +26,7 @@ test('defaults', () => {
 test('with modules', () => {
   expect(
     synth({
-      engineVersion: 'v1.0.0-beta.25',
+      engineVersion: 'v1.0.0-beta.26',
       modules: {
         terraform: {},
         'terraform/e2e': {
@@ -51,7 +51,7 @@ test('with modules', () => {
 
 test('with a runtime other than Dang', () => {
   const files = synth({
-    engineVersion: 'v1.0.0-beta.25',
+    engineVersion: 'v1.0.0-beta.26',
     modules: {
       go: {
         runtime: 'go',
@@ -68,7 +68,7 @@ test('with a runtime other than Dang', () => {
 
   expect(parse(files['go/dagger-module.toml'])).toEqual({
     name: 'go',
-    engineVersion: 'v1.0.0-beta.25',
+    engineVersion: 'v1.0.0-beta.26',
     source: 'src',
     disableDefaultFunctionCaching: true,
     runtime: { source: 'go' },
@@ -86,14 +86,14 @@ test('with a module added after construction', () => {
     name: 'test-project',
   })
 
-  const dagger = new Dagger(project, { engineVersion: 'v1.0.0-beta.25' })
+  const dagger = new Dagger(project, { engineVersion: 'v1.0.0-beta.26' })
   dagger.addModule('.dagger/modules/ci')
 
   expect(
     parse(synthSnapshot(project)['.dagger/modules/ci/dagger-module.toml']),
   ).toEqual({
     name: 'ci',
-    engineVersion: 'v1.0.0-beta.25',
+    engineVersion: 'v1.0.0-beta.26',
     runtime: { source: 'dang' },
   })
 })
@@ -103,7 +103,7 @@ test('with a module at the project root', () => {
     name: 'test-project',
   })
 
-  const dagger = new Dagger(project, { engineVersion: 'v1.0.0-beta.25' })
+  const dagger = new Dagger(project, { engineVersion: 'v1.0.0-beta.26' })
 
   expect(() => dagger.addModule('.')).toThrow(/name/)
 
@@ -111,7 +111,7 @@ test('with a module at the project root', () => {
 
   expect(parse(synthSnapshot(project)['dagger-module.toml'])).toEqual({
     name: 'root',
-    engineVersion: 'v1.0.0-beta.25',
+    engineVersion: 'v1.0.0-beta.26',
     runtime: { source: 'dang' },
   })
 })
@@ -168,7 +168,7 @@ describe('workspace', () => {
   test('refuses an SDK scope over a synthesized module', () => {
     expect(() =>
       synth({
-        engineVersion: 'v1.0.0-beta.25',
+        engineVersion: 'v1.0.0-beta.26',
         modules: { '.dagger/modules/ci': {} },
         workspace: {
           sdks: {
@@ -185,7 +185,7 @@ describe('workspace', () => {
   test('with SDK scopes elsewhere', () => {
     expect(
       synth({
-        engineVersion: 'v1.0.0-beta.25',
+        engineVersion: 'v1.0.0-beta.26',
         modules: { '.dagger/modules/ci': {} },
         workspace: {
           sdks: {
@@ -216,7 +216,7 @@ describe('ignore file', () => {
       },
     })
 
-    new Dagger(project, { engineVersion: 'v1.0.0-beta.25', modules })
+    new Dagger(project, { engineVersion: 'v1.0.0-beta.26', modules })
 
     return project
   }

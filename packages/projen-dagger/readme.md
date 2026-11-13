@@ -26,7 +26,7 @@ const project = new Project({
 })
 
 const dagger = new Dagger(project, {
-  engineVersion: 'v1.0.0-beta.25',
+  engineVersion: 'v1.0.0-beta.26',
   modules: {
     terraform: {},
     'terraform/e2e': {
@@ -46,7 +46,7 @@ to [Dang]. A dependency given as a string is its source ref:
 
 ```js
 new Dagger(project, {
-  engineVersion: 'v1.0.0-beta.25',
+  engineVersion: 'v1.0.0-beta.26',
   modules: {
     ci: {
       runtime: 'go',
