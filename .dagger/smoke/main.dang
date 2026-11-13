@@ -96,7 +96,7 @@ type Smoke {
   root `schemas` task, which reads the live schemas. It is not a workspace
   generator, so that a schema that moved stays out of unrelated pull requests.
   """
-  pub generateSchemas: Changeset! @generate @cache(policy: FunctionCachePolicy.Never) {
+  pub generateSchemas: Changeset! @generate @cache(policy: FunctionCachePolicy.NEVER) {
     installed
       .withEnvVariable("CACHEBUST", UUID.v7)
       .withExec(["pnpm", "schemas"])
@@ -126,7 +126,7 @@ type Smoke {
     sha: String! = "",
     remote: String! = "",
     pullRequest: Boolean! = true,
-  ): String! @cache(policy: FunctionCachePolicy.Never) {
+  ): String! @cache(policy: FunctionCachePolicy.NEVER) {
     let git = container
       .from("alpine:3.22")
       .withExec(["apk", "add", "--no-cache", "bash", "curl", "git", "github-cli", "jq"])
