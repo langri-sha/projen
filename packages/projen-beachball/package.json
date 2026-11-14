@@ -27,7 +27,7 @@
     "@langri-sha/tsconfig": "3.0.0",
     "@langri-sha/vitest": "0.2.3",
     "beachball": "2.66.0",
-    "jsii": "6.0.20",
+    "jsii": "6.0.21",
     "projen": "0.104.1"
   },
   "peerDependencies": {
