@@ -2,7 +2,7 @@
   "dependencies": [
     {
       "name": "@babel/core",
-      "version": "8.1.0",
+      "version": "8.1.2",
       "type": "build"
     },
     {
