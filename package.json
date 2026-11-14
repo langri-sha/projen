@@ -50,7 +50,7 @@
     "prettier": "3.9.9",
     "projen": "0.104.1",
     "schemastore-to-typescript": "1.5.0",
-    "skills": "1.8.0",
+    "skills": "1.8.1",
     "tsx": "4.23.15",
     "typescript": "6.0.3",
     "vitest": "5.1.0",
