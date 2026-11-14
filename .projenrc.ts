@@ -47,7 +47,7 @@ const project = new Project({
       '@types/node@24.19.2',
       'jsii-diff@1.142.0',
       'jsii-docgen@10.12.9',
-      'jsii-rosetta@6.0.22',
+      'jsii-rosetta@6.0.23',
       'schemastore-to-typescript@1.5.0',
       'webpack@5.112.2',
     ],
