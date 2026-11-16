@@ -398,7 +398,7 @@ export type InternalChecksAsSuccess = boolean;
  */
 export type KeepUpdatedLabel = string;
 /**
- * Labels to set in Pull Request.
+ * Labels to set in Pull Request, or on the Dependency Dashboard issue when used in `dependencyDashboard`.
  * See also: https://docs.renovatebot.com/configuration-options/#labels
  */
 export type Labels = string[];
@@ -896,6 +896,7 @@ export type MatchDatasources =
           | "rust-version"
           | "sbt-package"
           | "sbt-plugin"
+          | "swift-package-registry"
           | "terraform-module"
           | "terraform-provider"
           | "typst"
@@ -985,6 +986,7 @@ export type MatchDatasources =
           | "rust-version"
           | "sbt-package"
           | "sbt-plugin"
+          | "swift-package-registry"
           | "terraform-module"
           | "terraform-provider"
           | "typst"
@@ -1068,6 +1070,7 @@ export type MatchManagers =
           | "fleet"
           | "flux"
           | "fvm"
+          | "gemspec"
           | "git-submodules"
           | "github-actions"
           | "gitlabci"
@@ -1195,6 +1198,7 @@ export type MatchManagers =
           | "fleet"
           | "flux"
           | "fvm"
+          | "gemspec"
           | "git-submodules"
           | "github-actions"
           | "gitlabci"
@@ -1536,6 +1540,16 @@ export type IncludePaths = string[];
  */
 export type ManagerFilePatterns = string[] | string;
 /**
+ * Lower bound for the minimum release age which Renovate passes to package managers if `minimumReleaseAgePackageManagerSync` is enabled.
+ * See also: https://docs.renovatebot.com/configuration-options/#minimumreleaseagepackagemanager
+ */
+export type MinimumReleaseAgePackageManager = string | null;
+/**
+ * Opt early into the new `minimumReleaseAge` behavior: Renovate uses the minimum release age of the package manager's config and passes `minimumReleaseAge` of the repository to the package manager.
+ * See also: https://docs.renovatebot.com/configuration-options/#minimumreleaseagepackagemanagersync
+ */
+export type MinimumReleaseAgePackageManagerSync = boolean;
+/**
  * Whether to merge `config.npmrc` with repo `.npmrc` content if both are found.
  * See also: https://docs.renovatebot.com/configuration-options/#npmrcmerge
  */
@@ -1646,45 +1660,40 @@ export type VersioningTemplate = string;
  */
 export type CustomManagers = CustomManagersItem[];
 /**
- * Whether to create a "Dependency Dashboard" issue in the repository.
- * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboard
- */
-export type DependencyDashboard = boolean;
-/**
  * Set to `true` to let Renovate close the Dependency Dashboard issue if there are no more updates.
  * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardautoclose
  */
-export type DependencyDashboardAutoclose = boolean;
+export type Autoclose = boolean;
 /**
  * Any text added here will be placed last in the Dependency Dashboard issue body, with a divider separator before it.
  * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardfooter
  */
-export type DependencyDashboardFooter = string;
+export type Footer = string;
 /**
  * Any text added here will be placed first in the Dependency Dashboard issue body.
  * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardheader
  */
-export type DependencyDashboardHeader = string;
-/**
- * These labels will always be applied on the Dependency Dashboard issue, even when they have been removed manually.
- * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardlabels
- */
-export type DependencyDashboardLabels = string[] | null;
+export type Header = string;
 /**
  * Control if the Dependency Dashboard issue lists CVEs supplied by [osv.dev](https://osv.dev).
  * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardosvvulnerabilitysummary
  */
-export type DependencyDashboardOSVVulnerabilitySummary = "none" | "all" | "unresolved";
+export type OsvVulnerabilitySummary = "none" | "all" | "unresolved";
 /**
- * Controls whether abandoned packages are reported in the dependency dashboard.
+ * Controls whether the Dependency Dashboard should be pinned.
+ * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardpinned
+ */
+export type Pinned = boolean;
+/**
+ * Controls whether abandoned packages are reported in the Dependency Dashboard issue.
  * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardreportabandonment
  */
-export type DependencyDashboardReportAbandonment = boolean;
+export type ReportAbandonment = boolean;
 /**
  * Title for the Dependency Dashboard issue.
  * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardtitle
  */
-export type DependencyDashboardTitle = string;
+export type Title = string;
 /**
  * A list of package managers to enable. Only managers on the list are enabled.
  * See also: https://docs.renovatebot.com/configuration-options/#enabledmanagers
@@ -1732,6 +1741,7 @@ export type EnabledManagers = (
   | "fleet"
   | "flux"
   | "fvm"
+  | "gemspec"
   | "git-submodules"
   | "github-actions"
   | "gitlabci"
@@ -1955,6 +1965,7 @@ export type HostType =
       | "rust-version"
       | "sbt-package"
       | "sbt-plugin"
+      | "swift-package-registry"
       | "terraform-module"
       | "terraform-provider"
       | "typst"
@@ -2160,25 +2171,11 @@ export interface RenovateSchema {
     [k: string]: RenovateSchemaCustomDatasourcesValue;
   };
   readonly customManagers?: CustomManagers;
-  /**
-   * Customize sections in the Dependency Dashboard issue.
-   * See also: https://docs.renovatebot.com/configuration-options/#customizedashboard
-   */
-  readonly customizeDashboard?: {
-    [k: string]: string;
-  };
   readonly defaultRegistryUrls?: DefaultRegistryUrls;
   readonly deno?: Deno;
   readonly dependencyDashboard?: DependencyDashboard;
   readonly dependencyDashboardApproval?: DependencyDashboardApproval;
-  readonly dependencyDashboardAutoclose?: DependencyDashboardAutoclose;
   readonly dependencyDashboardCategory?: DependencyDashboardCategory;
-  readonly dependencyDashboardFooter?: DependencyDashboardFooter;
-  readonly dependencyDashboardHeader?: DependencyDashboardHeader;
-  readonly dependencyDashboardLabels?: DependencyDashboardLabels;
-  readonly dependencyDashboardOSVVulnerabilitySummary?: DependencyDashboardOSVVulnerabilitySummary;
-  readonly dependencyDashboardReportAbandonment?: DependencyDashboardReportAbandonment;
-  readonly dependencyDashboardTitle?: DependencyDashboardTitle;
   /** @jsii ignore */
   readonly "deps-edn"?: DepsEdn;
   readonly description?: Description;
@@ -2212,6 +2209,7 @@ export interface RenovateSchema {
   readonly forkModeDisallowMaintainerEdits?: ForkModeDisallowMaintainerEdits;
   readonly forkProcessing?: ForkProcessing;
   readonly fvm?: Fvm;
+  readonly gemspec?: Gemspec;
   /** @jsii ignore */
   readonly "git-submodules"?: GitSubmodules;
   readonly gitAuthor?: GitAuthor;
@@ -2286,6 +2284,8 @@ export interface RenovateSchema {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mint?: Mint;
   readonly mise?: Mise;
@@ -2547,6 +2547,8 @@ export interface Ansible {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -3305,12 +3307,244 @@ export interface PostUpgradeTasks {
  * See also: https://docs.renovatebot.com/configuration-options/#postupgradetasksinstalltools
  */
 export interface InstallTools {
+  readonly apm?: InstallToolsApm;
+  readonly bazelisk?: InstallToolsBazelisk;
+  readonly bun?: InstallToolsBun;
+  readonly bundler?: InstallToolsBundler;
+  readonly cocoapods?: InstallToolsCocoapods;
+  readonly composer?: InstallToolsComposer;
+  readonly conan?: InstallToolsConan;
+  readonly copier?: InstallToolsCopier;
+  readonly corepack?: InstallToolsCorepack;
+  readonly deno?: InstallToolsDeno;
+  readonly devbox?: InstallToolsDevbox;
+  readonly dotnet?: InstallToolsDotnet;
+  readonly erlang?: InstallToolsErlang;
+  readonly elixir?: InstallToolsElixir;
+  readonly flux?: InstallToolsFlux;
+  readonly gh?: InstallToolsGh;
+  readonly gleam?: InstallToolsGleam;
+  readonly golang?: InstallToolsGolang;
+  readonly gradle?: InstallToolsGradle;
+  readonly hashin?: InstallToolsHashin;
+  readonly helm?: InstallToolsHelm;
+  readonly helmfile?: InstallToolsHelmfile;
+  readonly java?: InstallToolsJava;
+  readonly jb?: InstallToolsJb;
+  readonly kustomize?: InstallToolsKustomize;
+  readonly maven?: InstallToolsMaven;
+  readonly mise?: InstallToolsMise;
+  readonly nix?: InstallToolsNix;
+  readonly node?: InstallToolsNode;
+  readonly npm?: InstallToolsNpm;
+  readonly paket?: InstallToolsPaket;
+  readonly pdm?: InstallToolsPdm;
+  readonly php?: InstallToolsPhp;
+  /** @jsii ignore */
+  readonly "pip-tools"?: InstallToolsPipTools;
+  readonly pipenv?: InstallToolsPipenv;
+  readonly pnpm?: InstallToolsPnpm;
+  readonly pixi?: InstallToolsPixi;
+  readonly poetry?: InstallToolsPoetry;
+  readonly python?: InstallToolsPython;
   readonly ruby?: InstallToolsRuby;
+  readonly rust?: InstallToolsRust;
+  readonly uv?: InstallToolsUv;
+  readonly yarn?: InstallToolsYarn;
+  /** @jsii ignore */
+  readonly "yarn-slim"?: InstallToolsYarnSlim;
+  readonly dart?: InstallToolsDart;
+  readonly flutter?: InstallToolsFlutter;
+  readonly vendir?: InstallToolsVendir;
 }
+/**
+ * Install the `apm` Containerbase tool
+ */
+export interface InstallToolsApm {}
+/**
+ * Install the `bazelisk` Containerbase tool
+ */
+export interface InstallToolsBazelisk {}
+/**
+ * Install the `bun` Containerbase tool
+ */
+export interface InstallToolsBun {}
+/**
+ * Install the `bundler` Containerbase tool
+ */
+export interface InstallToolsBundler {}
+/**
+ * Install the `cocoapods` Containerbase tool
+ */
+export interface InstallToolsCocoapods {}
+/**
+ * Install the `composer` Containerbase tool
+ */
+export interface InstallToolsComposer {}
+/**
+ * Install the `conan` Containerbase tool
+ */
+export interface InstallToolsConan {}
+/**
+ * Install the `copier` Containerbase tool
+ */
+export interface InstallToolsCopier {}
+/**
+ * Install the `corepack` Containerbase tool
+ */
+export interface InstallToolsCorepack {}
+/**
+ * Install the `deno` Containerbase tool
+ */
+export interface InstallToolsDeno {}
+/**
+ * Install the `devbox` Containerbase tool
+ */
+export interface InstallToolsDevbox {}
+/**
+ * Install the `dotnet` Containerbase tool
+ */
+export interface InstallToolsDotnet {}
+/**
+ * Install the `erlang` Containerbase tool
+ */
+export interface InstallToolsErlang {}
+/**
+ * Install the `elixir` Containerbase tool
+ */
+export interface InstallToolsElixir {}
+/**
+ * Install the `flux` Containerbase tool
+ */
+export interface InstallToolsFlux {}
+/**
+ * Install the `gh` Containerbase tool
+ */
+export interface InstallToolsGh {}
+/**
+ * Install the `gleam` Containerbase tool
+ */
+export interface InstallToolsGleam {}
+/**
+ * Install the `golang` Containerbase tool
+ */
+export interface InstallToolsGolang {}
+/**
+ * Install the `gradle` Containerbase tool
+ */
+export interface InstallToolsGradle {}
+/**
+ * Install the `hashin` Containerbase tool
+ */
+export interface InstallToolsHashin {}
+/**
+ * Install the `helm` Containerbase tool
+ */
+export interface InstallToolsHelm {}
+/**
+ * Install the `helmfile` Containerbase tool
+ */
+export interface InstallToolsHelmfile {}
+/**
+ * Install the `java` Containerbase tool
+ */
+export interface InstallToolsJava {}
+/**
+ * Install the `jb` Containerbase tool
+ */
+export interface InstallToolsJb {}
+/**
+ * Install the `kustomize` Containerbase tool
+ */
+export interface InstallToolsKustomize {}
+/**
+ * Install the `maven` Containerbase tool
+ */
+export interface InstallToolsMaven {}
+/**
+ * Install the `mise` Containerbase tool
+ */
+export interface InstallToolsMise {}
+/**
+ * Install the `nix` Containerbase tool
+ */
+export interface InstallToolsNix {}
+/**
+ * Install the `node` Containerbase tool
+ */
+export interface InstallToolsNode {}
+/**
+ * Install the `npm` Containerbase tool
+ */
+export interface InstallToolsNpm {}
+/**
+ * Install the `paket` Containerbase tool
+ */
+export interface InstallToolsPaket {}
+/**
+ * Install the `pdm` Containerbase tool
+ */
+export interface InstallToolsPdm {}
+/**
+ * Install the `php` Containerbase tool
+ */
+export interface InstallToolsPhp {}
+/**
+ * Install the `pip-tools` Containerbase tool
+ */
+export interface InstallToolsPipTools {}
+/**
+ * Install the `pipenv` Containerbase tool
+ */
+export interface InstallToolsPipenv {}
+/**
+ * Install the `pnpm` Containerbase tool
+ */
+export interface InstallToolsPnpm {}
+/**
+ * Install the `pixi` Containerbase tool
+ */
+export interface InstallToolsPixi {}
+/**
+ * Install the `poetry` Containerbase tool
+ */
+export interface InstallToolsPoetry {}
+/**
+ * Install the `python` Containerbase tool
+ */
+export interface InstallToolsPython {}
 /**
  * Install the `ruby` Containerbase tool. Also used in the `rubygems` Datasource
  */
 export interface InstallToolsRuby {}
+/**
+ * Install the `rust` Containerbase tool
+ */
+export interface InstallToolsRust {}
+/**
+ * Install the `uv` Containerbase tool
+ */
+export interface InstallToolsUv {}
+/**
+ * Install the `yarn` Containerbase tool
+ */
+export interface InstallToolsYarn {}
+/**
+ * Install the `yarn-slim` Containerbase tool
+ */
+export interface InstallToolsYarnSlim {}
+/**
+ * Install the `dart` Containerbase tool
+ */
+export interface InstallToolsDart {}
+/**
+ * Install the `flutter` Containerbase tool
+ */
+export interface InstallToolsFlutter {}
+/**
+ * Install the `vendir` Containerbase tool
+ */
+export interface InstallToolsVendir {}
 /**
  * Custom strings to use as status check names.
  * See also: https://docs.renovatebot.com/configuration-options/#statuschecknames
@@ -4849,6 +5083,8 @@ export interface AnsibleGalaxy {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -5055,6 +5291,8 @@ export interface Ant {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -5261,6 +5499,8 @@ export interface Apm {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -5467,6 +5707,8 @@ export interface Argocd {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -5673,6 +5915,8 @@ export interface Asdf {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -5879,6 +6123,8 @@ export interface AzurePipelines {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -6085,6 +6331,8 @@ export interface Batect {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -6291,6 +6539,8 @@ export interface BatectWrapper {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -6497,6 +6747,8 @@ export interface Bazel {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -6703,6 +6955,8 @@ export interface BazelModule {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -6909,6 +7163,8 @@ export interface Bazelisk {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -7115,6 +7371,8 @@ export interface Bicep {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -7321,6 +7579,8 @@ export interface BitbucketPipelines {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -7527,6 +7787,8 @@ export interface Bitrise {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -7733,6 +7995,8 @@ export interface Buildkite {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -7939,6 +8203,8 @@ export interface Buildpacks {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -8145,6 +8411,8 @@ export interface Bun {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -8351,6 +8619,8 @@ export interface BunVersion {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -8557,6 +8827,8 @@ export interface Bundler {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -8763,6 +9035,8 @@ export interface Cake {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -8969,6 +9243,8 @@ export interface Cargo {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -9175,6 +9451,8 @@ export interface Cdnurl {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -9381,6 +9659,8 @@ export interface Circleci {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -9587,6 +9867,8 @@ export interface Cloudbuild {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -9793,6 +10075,8 @@ export interface Cocoapods {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -9999,6 +10283,8 @@ export interface Composer {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -10205,6 +10491,8 @@ export interface Conan {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -10411,6 +10699,8 @@ export interface Copier {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -10617,6 +10907,8 @@ export interface Cpanfile {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -10823,6 +11115,8 @@ export interface Crossplane {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -11029,6 +11323,8 @@ export interface Crow {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -11270,6 +11566,8 @@ export interface Deno {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -11378,6 +11676,33 @@ export interface DenoCustomDatasourcesValue {
   [k: string]: any;
 }
 /**
+ * Configuration for the "Dependency Dashboard" issue.
+ * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboard
+ */
+export interface DependencyDashboard {
+  readonly autoclose?: Autoclose;
+  /**
+   * Customize sections in the Dependency Dashboard issue.
+   * See also: https://docs.renovatebot.com/configuration-options/#dependencydashboardcustomize
+   */
+  readonly customize?: {
+    [k: string]: string;
+  };
+  readonly description?: Description;
+  readonly enabled?: Enabled;
+  readonly encrypted?: Encrypted;
+  readonly extends?: Extends;
+  readonly footer?: Footer;
+  readonly header?: Header;
+  readonly ignorePresets?: IgnorePresets;
+  readonly labels?: Labels;
+  readonly osvVulnerabilitySummary?: OsvVulnerabilitySummary;
+  readonly overrideDescription?: OverrideDescription;
+  readonly pinned?: Pinned;
+  readonly reportAbandonment?: ReportAbandonment;
+  readonly title?: Title;
+}
+/**
  * Configuration object for the deps.edn manager
  * See also: https://docs.renovatebot.com/modules/manager/deps-edn/
  */
@@ -11476,6 +11801,8 @@ export interface DepsEdn {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -11682,6 +12009,8 @@ export interface Devbox {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -11888,6 +12217,8 @@ export interface Devcontainer {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -12094,6 +12425,8 @@ export interface DockerCompose {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -12300,6 +12633,8 @@ export interface Dockerfile {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -12506,6 +12841,8 @@ export interface Droneci {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -12712,6 +13049,8 @@ export interface Fleet {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -12918,6 +13257,8 @@ export interface Flux {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -13124,6 +13465,8 @@ export interface Fvm {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -13220,6 +13563,214 @@ export interface Fvm {
   [k: string]: any;
 }
 export interface FvmCustomDatasourcesValue {
+  readonly defaultRegistryUrlTemplate?: DefaultRegistryUrlTemplate;
+  readonly description?: Description;
+  readonly encrypted?: Encrypted;
+  readonly extends?: Extends;
+  readonly format?: Format;
+  readonly ignorePresets?: IgnorePresets;
+  readonly overrideDescription?: OverrideDescription;
+  readonly transformTemplates?: TransformTemplates;
+  /** @jsii ignore */
+  [k: string]: any;
+}
+/**
+ * Configuration object for the gemspec manager
+ * See also: https://docs.renovatebot.com/modules/manager/gemspec/
+ */
+export interface Gemspec {
+  readonly abandonmentThreshold?: AbandonmentThreshold;
+  readonly addLabels?: AddLabels;
+  readonly additionalBranchPrefix?: AdditionalBranchPrefix;
+  readonly additionalReviewers?: AdditionalReviewers;
+  readonly assignAutomerge?: AssignAutomerge;
+  readonly assignees?: Assignees;
+  readonly assigneesFromCodeOwners?: AssigneesFromCodeOwners;
+  readonly assigneesSampleSize?: AssigneesSampleSize;
+  readonly autoApprove?: AutoApprove;
+  readonly autoReplaceGlobalMatch?: AutoReplaceGlobalMatch;
+  readonly automerge?: Automerge;
+  readonly automergeComment?: AutomergeComment;
+  readonly automergeLabel?: AutomergeLabel;
+  readonly automergeSchedule?: AutomergeSchedule;
+  readonly automergeStrategy?: AutomergeStrategy;
+  readonly automergeType?: AutomergeType;
+  readonly azureWorkItemId?: AzureWorkItemId;
+  readonly bbAutoResolvePrTasks?: BbAutoResolvePrTasks;
+  readonly bbUseDefaultReviewers?: BbUseDefaultReviewers;
+  readonly branchConcurrentLimit?: BranchConcurrentLimit;
+  readonly branchName?: BranchName;
+  readonly branchNameStrict?: BranchNameStrict;
+  readonly branchPrefix?: BranchPrefix;
+  readonly branchPrefixOld?: BranchPrefixOld;
+  readonly branchTopic?: BranchTopic;
+  readonly bumpVersion?: BumpVersion;
+  readonly bumpVersions?: BumpVersions;
+  readonly commitBody?: CommitBody;
+  readonly commitBodyTable?: CommitBodyTable;
+  readonly commitHourlyLimit?: CommitHourlyLimit;
+  readonly commitMessage?: CommitMessage;
+  readonly commitMessageAction?: CommitMessageAction;
+  readonly commitMessageExtra?: CommitMessageExtra;
+  readonly commitMessageLowerCase?: CommitMessageLowerCase;
+  readonly commitMessagePrefix?: CommitMessagePrefix;
+  readonly commitMessageSuffix?: CommitMessageSuffix;
+  readonly commitMessageTopic?: CommitMessageTopic;
+  readonly commitTrailers?: CommitTrailers;
+  readonly composerIgnorePlatformReqs?: ComposerIgnorePlatformReqs;
+  readonly constraints?: Constraints;
+  readonly constraintsFiltering?: ConstraintsFiltering;
+  readonly constraintsVersioning?: ConstraintsVersioning;
+  /**
+   * Defines custom datasources for usage by managers.
+   * See also: https://docs.renovatebot.com/configuration-options/#customdatasources
+   */
+  readonly customDatasources?: {
+    [k: string]: GemspecCustomDatasourcesValue;
+  };
+  readonly defaultRegistryUrls?: DefaultRegistryUrls;
+  readonly dependencyDashboardApproval?: DependencyDashboardApproval;
+  readonly dependencyDashboardCategory?: DependencyDashboardCategory;
+  readonly description?: Description;
+  readonly digest?: Digest;
+  readonly draftPR?: DraftPR;
+  readonly enabled?: Enabled;
+  readonly encrypted?: Encrypted;
+  readonly excludeCommitPaths?: ExcludeCommitPaths;
+  readonly expandCodeOwnersGroups?: ExpandCodeOwnersGroups;
+  readonly extends?: Extends;
+  readonly extractVersion?: ExtractVersion;
+  readonly filterUnavailableUsers?: FilterUnavailableUsers;
+  readonly followTag?: FollowTag;
+  readonly forkModeDisallowMaintainerEdits?: ForkModeDisallowMaintainerEdits;
+  readonly gitLabIgnoreApprovals?: GitLabIgnoreApprovals;
+  readonly goGetDirs?: GoGetDirs;
+  readonly group?: Group;
+  readonly groupName?: GroupName;
+  readonly groupSingleUpdates?: GroupSingleUpdates;
+  readonly groupSlug?: GroupSlug;
+  readonly hashedBranchLength?: HashedBranchLength;
+  readonly ignoreDeprecated?: IgnoreDeprecated;
+  readonly ignoreDeps?: IgnoreDeps;
+  readonly ignorePaths?: IgnorePaths;
+  readonly ignorePlugins?: IgnorePlugins;
+  readonly ignorePresets?: IgnorePresets;
+  readonly ignoreReviewers?: IgnoreReviewers;
+  readonly ignoreScripts?: IgnoreScripts;
+  readonly ignoreTests?: IgnoreTests;
+  readonly ignoreUnstable?: IgnoreUnstable;
+  readonly includePaths?: IncludePaths;
+  readonly internalChecksAsSuccess?: InternalChecksAsSuccess;
+  readonly internalChecksFilter?: InternalChecksFilter;
+  readonly keepUpdatedLabel?: KeepUpdatedLabel;
+  readonly labels?: Labels;
+  readonly lockFileMaintenance?: LockFileMaintenance;
+  readonly major?: Major;
+  readonly managerFilePatterns?: ManagerFilePatterns;
+  readonly maxMajorIncrement?: MaxMajorIncrement;
+  readonly milestone?: Milestone;
+  readonly minimumGroupSize?: MinimumGroupSize;
+  readonly minimumReleaseAge?: MinimumReleaseAge;
+  readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
+  readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
+  readonly minor?: Minor;
+  readonly mode?: Mode;
+  readonly npmrc?: Npmrc;
+  readonly npmrcMerge?: NpmrcMerge;
+  readonly overrideDescription?: OverrideDescription;
+  readonly packageRules?: PackageRules;
+  readonly patch?: Patch;
+  readonly pin?: Pin;
+  readonly pinDigest?: PinDigest;
+  readonly pinDigests?: PinDigests;
+  readonly platformAutomerge?: PlatformAutomerge;
+  readonly platformCommit?: PlatformCommit;
+  readonly postUpdateOptions?: PostUpdateOptions;
+  readonly postUpgradeTasks?: PostUpgradeTasks;
+  readonly prBodyColumns?: PrBodyColumns;
+  /**
+   * Table column definitions to use in PR tables.
+   * See also: https://docs.renovatebot.com/configuration-options/#prbodydefinitions
+   */
+  readonly prBodyDefinitions?: {
+    [k: string]: any;
+  };
+  /**
+   * Table header definitions to use in PR tables.
+   * See also: https://docs.renovatebot.com/configuration-options/#prbodyheadingdefinitions
+   */
+  readonly prBodyHeadingDefinitions?: {
+    [k: string]: any;
+  };
+  readonly prBodyNotes?: PrBodyNotes;
+  readonly prBodyTemplate?: PrBodyTemplate;
+  readonly prConcurrentLimit?: PrConcurrentLimit;
+  readonly prCreation?: PrCreation;
+  readonly prFooter?: PrFooter;
+  readonly prHeader?: PrHeader;
+  readonly prHourlyLimit?: PrHourlyLimit;
+  readonly prNotPendingHours?: PrNotPendingHours;
+  readonly prTitle?: PrTitle;
+  readonly prTitleStrict?: PrTitleStrict;
+  readonly pruneBranchAfterAutomerge?: PruneBranchAfterAutomerge;
+  readonly rangeStrategy?: RangeStrategy;
+  readonly rebaseLabel?: RebaseLabel;
+  readonly rebaseWhen?: RebaseWhen;
+  readonly recreateWhen?: RecreateWhen;
+  /**
+   * Aliases for registries.
+   * See also: https://docs.renovatebot.com/configuration-options/#registryaliases
+   */
+  readonly registryAliases?: {
+    [k: string]: string;
+  };
+  readonly registryUrls?: RegistryUrls;
+  readonly replacement?: Replacement;
+  readonly replacementApproach?: ReplacementApproach;
+  readonly respectLatest?: RespectLatest;
+  readonly reviewers?: Reviewers;
+  readonly reviewersFromCodeOwners?: ReviewersFromCodeOwners;
+  readonly reviewersSampleSize?: ReviewersSampleSize;
+  readonly rollback?: Rollback;
+  readonly rollbackPrs?: RollbackPrs;
+  readonly schedule?: Schedule;
+  readonly semanticCommitScope?: SemanticCommitScope;
+  readonly semanticCommitType?: SemanticCommitType;
+  readonly semanticCommits?: SemanticCommits;
+  readonly separateMajorMinor?: SeparateMajorMinor;
+  readonly separateMinorPatch?: SeparateMinorPatch;
+  readonly separateMultipleMajor?: SeparateMultipleMajor;
+  readonly separateMultipleMinor?: SeparateMultipleMinor;
+  readonly skipArtifactsUpdate?: SkipArtifactsUpdate;
+  readonly skipInstalls?: SkipInstalls;
+  readonly statusCheckNames?: StatusCheckNames;
+  readonly statusCheckWhen?: StatusCheckWhen;
+  readonly stopUpdatingLabel?: StopUpdatingLabel;
+  readonly suppressNotifications?: SuppressNotifications;
+  readonly timezone?: Timezone;
+  readonly toolSettings?: ToolSettings;
+  readonly updateInternalDeps?: UpdateInternalDeps;
+  readonly updateNotScheduled?: UpdateNotScheduled;
+  readonly updatePinnedDependencies?: UpdatePinnedDependencies;
+  /**
+   * User-facing strings for the Renovate comment when a PR is closed.
+   * See also: https://docs.renovatebot.com/configuration-options/#userstrings
+   */
+  readonly userStrings?: {
+    [k: string]: any;
+  };
+  readonly versionCompatibility?: VersionCompatibility;
+  /**
+   * Versioning to use for filtering and comparisons.
+   * See also: https://docs.renovatebot.com/configuration-options/#versioning
+   */
+  readonly versioning?: Versioning & Versioning1;
+  /** @jsii ignore */
+  [k: string]: any;
+}
+export interface GemspecCustomDatasourcesValue {
   readonly defaultRegistryUrlTemplate?: DefaultRegistryUrlTemplate;
   readonly description?: Description;
   readonly encrypted?: Encrypted;
@@ -13330,6 +13881,8 @@ export interface GitSubmodules {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -13536,6 +14089,8 @@ export interface GithubActions {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -13742,6 +14297,8 @@ export interface Gitlabci {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -13948,6 +14505,8 @@ export interface GitlabciInclude {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -14154,6 +14713,8 @@ export interface Glasskube {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -14360,6 +14921,8 @@ export interface Gleam {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -14566,6 +15129,8 @@ export interface Gomod {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -14772,6 +15337,8 @@ export interface Gradle {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -14978,6 +15545,8 @@ export interface GradleWrapper {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -15184,6 +15753,8 @@ export interface HaskellCabal {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -15390,6 +15961,8 @@ export interface HelmRequirements {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -15596,6 +16169,8 @@ export interface HelmValues {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -15802,6 +16377,8 @@ export interface Helmfile {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -16008,6 +16585,8 @@ export interface Helmsman {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -16214,6 +16793,8 @@ export interface Helmv3 {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -16420,6 +17001,8 @@ export interface Hermit {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -16626,6 +17209,8 @@ export interface HomeassistantManifest {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -16832,6 +17417,8 @@ export interface Homebrew {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -17077,6 +17664,8 @@ export interface Html {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -17283,6 +17872,8 @@ export interface Jenkins {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -17489,6 +18080,8 @@ export interface Jsonata {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -17695,6 +18288,8 @@ export interface JsonnetBundler {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -17901,6 +18496,8 @@ export interface Julia {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -18107,6 +18704,8 @@ export interface KotlinScript {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -18313,6 +18912,8 @@ export interface Kubernetes {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -18519,6 +19120,8 @@ export interface Kustomize {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -18725,6 +19328,8 @@ export interface Leiningen {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -18942,6 +19547,8 @@ export interface Maven {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -19148,6 +19755,8 @@ export interface MavenWrapper {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -19354,6 +19963,8 @@ export interface Meteor {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -19560,6 +20171,8 @@ export interface Mint {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -19766,6 +20379,8 @@ export interface Mise {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -19972,6 +20587,8 @@ export interface Mix {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -20178,6 +20795,8 @@ export interface Nix {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -20384,6 +21003,8 @@ export interface Nodenv {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -20590,6 +21211,8 @@ export interface Npm {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -20796,6 +21419,8 @@ export interface Nuget {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -21002,6 +21627,8 @@ export interface Nvm {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -21208,6 +21835,8 @@ export interface Ocb {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -21414,6 +22043,8 @@ export interface Osgi {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -21620,6 +22251,8 @@ export interface Paket {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -21826,6 +22459,8 @@ export interface Pep621 {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -22032,6 +22667,8 @@ export interface Pep723 {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -22238,6 +22875,8 @@ export interface PipCompile {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -22444,6 +23083,8 @@ export interface PipRequirements {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -22650,6 +23291,8 @@ export interface PipSetup {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -22856,6 +23499,8 @@ export interface Pipenv {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -23062,6 +23707,8 @@ export interface Pixi {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -23268,6 +23915,8 @@ export interface Poetry {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -23474,6 +24123,8 @@ export interface PreCommit {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -23680,6 +24331,8 @@ export interface Proto {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -23886,6 +24539,8 @@ export interface Pub {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -24092,6 +24747,8 @@ export interface Puppet {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -24298,6 +24955,8 @@ export interface Pyenv {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -24504,6 +25163,8 @@ export interface Quadlet {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -24710,6 +25371,8 @@ export interface Regex {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -24916,6 +25579,8 @@ export interface RenovateConfig {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -25122,6 +25787,8 @@ export interface RubyVersion {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -25328,6 +25995,8 @@ export interface RuntimeVersion {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -25534,6 +26203,8 @@ export interface RustToolchain {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -25740,6 +26411,8 @@ export interface Sbt {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -25946,6 +26619,8 @@ export interface Scalafmt {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -26152,6 +26827,8 @@ export interface SetupCfg {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -26358,6 +27035,8 @@ export interface Smithy {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -26564,6 +27243,8 @@ export interface Sveltos {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -26770,6 +27451,8 @@ export interface Swift {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -26976,6 +27659,8 @@ export interface Tekton {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -27182,6 +27867,8 @@ export interface Terraform {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -27388,6 +28075,8 @@ export interface TerraformVersion {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -27594,6 +28283,8 @@ export interface Terragrunt {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -27800,6 +28491,8 @@ export interface TerragruntVersion {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -28006,6 +28699,8 @@ export interface TflintPlugin {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -28212,6 +28907,8 @@ export interface Travis {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -28418,6 +29115,8 @@ export interface Typst {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -28624,6 +29323,8 @@ export interface Unity3D {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -28830,6 +29531,8 @@ export interface Velaci {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -29036,6 +29739,8 @@ export interface Vendir {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -29444,6 +30149,8 @@ export interface Woodpecker {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
@@ -29650,6 +30357,8 @@ export interface Xcodegen {
   readonly minimumReleaseAge?: MinimumReleaseAge;
   readonly minimumReleaseAgeBehaviour?: MinimumReleaseAgeBehaviour;
   readonly minimumReleaseAgeBuffer?: MinimumReleaseAgeBuffer;
+  readonly minimumReleaseAgePackageManager?: MinimumReleaseAgePackageManager;
+  readonly minimumReleaseAgePackageManagerSync?: MinimumReleaseAgePackageManagerSync;
   readonly minor?: Minor;
   readonly mode?: Mode;
   readonly npmrc?: Npmrc;
