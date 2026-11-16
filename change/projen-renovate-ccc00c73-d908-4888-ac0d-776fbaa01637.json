@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Follow the Renovate schema, which turns dependencyDashboard into an object and moves customizeDashboard and the dependencyDashboard* options into it",
+  "packageName": "projen-renovate",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "minor"
+}
