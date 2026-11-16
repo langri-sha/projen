@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Regenerate the types from their schemas",
+  "packageName": "projen-renovate",
+  "email": "288869059+mal-the-kron[bot]@users.noreply.github.com",
+  "dependentChangeType": "patch"
+}
