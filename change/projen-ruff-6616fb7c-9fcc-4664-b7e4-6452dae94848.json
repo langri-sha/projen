@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Follow the Ruff schema, which renames the missing-return-type-undocumented-public-function rule to missing-return-type-public-function",
+  "packageName": "projen-ruff",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "minor"
+}
