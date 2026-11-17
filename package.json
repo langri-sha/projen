@@ -41,7 +41,7 @@
     "@swc/core": "1.16.2",
     "@types/node": "24.19.2",
     "beachball": "2.66.0",
-    "eslint": "10.14.0",
+    "eslint": "10.15.0",
     "husky": "9.1.7",
     "jsii-diff": "1.142.0",
     "jsii-docgen": "10.12.9",
