@@ -681,7 +681,7 @@ project.addSubproject(
       deps: ['serialize-javascript@7.1.4'],
       devDeps: [
         '@types/serialize-javascript@5.0.4',
-        'eslint@10.14.0',
+        'eslint@10.15.0',
         'jsii@6.0.20',
       ],
       peerDeps: [...projenPeer.peerDeps],
