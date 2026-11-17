@@ -1702,7 +1702,7 @@ node_modules/
       {
         "name": "eslint",
         "type": "build",
-        "version": "10.14.0",
+        "version": "10.15.0",
       },
       {
         "name": "projen",
@@ -1783,7 +1783,7 @@ export default [...defaults, {"ignores":["**/.*","**/dist/","!.projenrc.mts"]}]"
       "@langri-sha/eslint-config": "0.13.0",
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "eslint": "10.14.0",
+      "eslint": "10.15.0",
       "projen": "0.104.1",
       "typescript": "6.0.3",
     },
@@ -1865,7 +1865,7 @@ node_modules/
       {
         "name": "eslint",
         "type": "build",
-        "version": "10.14.0",
+        "version": "10.15.0",
       },
       {
         "name": "projen",
@@ -1939,7 +1939,7 @@ export default [...defaults, {"ignores":["**/.*","**/dist/","!.projenrc.ts"]}]",
     "devDependencies": {
       "@langri-sha/eslint-config": "0.13.0",
       "@langri-sha/projen-project": "*",
-      "eslint": "10.14.0",
+      "eslint": "10.15.0",
       "projen": "0.104.1",
     },
     "license": "Apache-2.0",
