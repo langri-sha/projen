@@ -613,7 +613,7 @@ node_modules/
       {
         "name": "lint-staged",
         "type": "build",
-        "version": "17.6.0",
+        "version": "17.6.1",
       },
       {
         "name": "projen",
@@ -700,7 +700,7 @@ project.synth()
       "@langri-sha/lint-staged": "0.9.11",
       "@langri-sha/projen-project": "*",
       "@langri-sha/tsconfig": "*",
-      "lint-staged": "17.6.0",
+      "lint-staged": "17.6.1",
       "projen": "0.104.1",
       "typescript": "6.0.3",
     },
