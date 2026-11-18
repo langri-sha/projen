@@ -46,7 +46,7 @@
     "jsii-diff": "1.142.0",
     "jsii-docgen": "10.12.9",
     "jsii-rosetta": "6.0.24",
-    "lint-staged": "17.6.0",
+    "lint-staged": "17.6.1",
     "prettier": "3.9.9",
     "projen": "0.104.1",
     "schemastore-to-typescript": "1.5.0",
