@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Update the Dagger smoke fixture to beta.28",
+  "packageName": "projen-dagger",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "none"
+}
