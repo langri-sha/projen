@@ -2036,7 +2036,7 @@ export class Project extends BaseProject {
     }
 
     this.skills = new Skills(this, skills)
-    this.#addDefaultDevDeps('skills@1.8.1')
+    this.#addDefaultDevDeps('skills@1.9.0')
   }
 
   #configureSWC({ swcrc, typeScriptConfig }: ProjectOptions) {
