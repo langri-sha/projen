@@ -236,8 +236,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0(supports-color@8.1.1)
       skills:
-        specifier: 1.8.1
-        version: 1.8.1
+        specifier: 1.9.0
+        version: 1.9.0
       tsx:
         specifier: 4.23.15
         version: 4.23.15
@@ -806,7 +806,7 @@ importers:
         version: 7.8.6
       skills:
         specifier: ^1.7.2
-        version: 1.8.1
+        version: 1.9.0
       tsx:
         specifier: ^4.0.0
         version: 4.23.15
@@ -927,8 +927,8 @@ importers:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
       skills:
-        specifier: 1.8.1
-        version: 1.8.1
+        specifier: 1.9.0
+        version: 1.9.0
 
   packages/projen-swcrc:
     dependencies:
@@ -6296,8 +6296,8 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  skills@1.8.1:
-    resolution: {integrity: sha512-QK3wlZ5j8wcpLPUOXt7+1Gu1f9JKpv7lBpO0zmqKa5VBrt45/woVo8Max1x4wha3pCNafNHiiodYK6Xi/0alQQ==}
+  skills@1.9.0:
+    resolution: {integrity: sha512-8p27fa6SnpDLrGIpqbhNIHg8+uukR2lg/0qDoKPk85pU3/zyXiU67tEjvXHLrzybBefIAWpWZ2Oc+enlvSSVqg==}
     engines: {node: '>=22.20.0'}
     hasBin: true
 
@@ -12955,7 +12955,7 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  skills@1.8.1:
+  skills@1.9.0:
     dependencies:
       nostics: 1.3.0
       tar: 7.5.22
