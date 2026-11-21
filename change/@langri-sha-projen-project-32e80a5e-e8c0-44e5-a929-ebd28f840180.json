@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Add explicit package version, authorless license, and pnpm version metadata",
+  "packageName": "@langri-sha/projen-project",
+  "email": "filip.dupanovic@gmail.com",
+  "dependentChangeType": "patch"
+}
