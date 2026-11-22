@@ -49,7 +49,7 @@ const project = new Project({
       'jsii-docgen@10.13.0',
       'jsii-rosetta@6.0.25',
       'schemastore-to-typescript@1.5.0',
-      'webpack@5.112.2',
+      'webpack@5.113.0',
     ],
   },
   beachball: {
