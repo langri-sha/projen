@@ -4,6 +4,8 @@
 
 ### ReadmeFile <a name="ReadmeFile" id="projen-readme.ReadmeFile"></a>
 
+- *Implements:* constructs.IConstruct, constructs.IDependable
+
 Initial `README` for new packages.
 
 #### Initializers <a name="Initializers" id="projen-readme.ReadmeFile.Initializer"></a>

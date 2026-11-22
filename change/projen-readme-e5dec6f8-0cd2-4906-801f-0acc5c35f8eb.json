@@ -1,0 +1,7 @@
+{
+  "type": "patch",
+  "comment": "Update dependency jsii-docgen to v10.13.0",
+  "packageName": "projen-readme",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}
