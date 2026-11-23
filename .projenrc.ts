@@ -447,7 +447,7 @@ project.addSubproject(
       type: 'module',
       deps: ['serialize-javascript@7.1.4'],
       devDeps: [
-        '@babel/core@8.1.2',
+        '@babel/core@8.1.3',
         '@types/serialize-javascript@5.0.4',
         'jsii@6.0.20',
       ],
