@@ -63,6 +63,8 @@ export type Error = "error";
  * ```
  */
 export type OverridesOptions = OverrideOptions[];
+export type ScriptProjectManager = "none" | "uv";
+export type Boolean = boolean;
 /**
  * The diagnostic output format.
  */
@@ -91,6 +93,11 @@ export interface TySchema {
    */
   readonly overrides?: OverridesOptions;
   /**
+   * Configures the project manager ty uses.
+   * @jsii ignore
+   */
+  readonly "project-manager"?: ProjectManagerOptions;
+  /**
    * Configures the enabled rules and their severity.
    *
    * The keys are either rule names or `all` to set a default severity for all rules.
@@ -115,7 +122,10 @@ export interface TySchema {
 }
 export interface AnalysisOptions {
   /**
-   * A list of module glob patterns for which `import-not-found` diagnostics should be suppressed.
+   * A list of module glob patterns for which `import-not-found` and
+   * `missing-module-member` diagnostics should be suppressed.
+   * For `from pkg import name`, ty matches against `pkg` if the module cannot be resolved,
+   * and against `pkg.name` if the module resolves but the name cannot be imported.
    *
    * Details on supported glob patterns:
    * - `*` matches zero or more characters except `.`. For example, `foo.*` matches `foo.bar` but
@@ -442,6 +452,28 @@ export interface OverrideOptions {
     [k: string]: Level;
   };
 }
+export interface ProjectManagerOptions {
+  /**
+   * The project manager to use for scripts with PEP 723 inline metadata.
+   *
+   * - With `"none"` (the default), ty looks for imported packages in your Python environment.
+   *   Install any third-party packages the script needs in that environment.
+   * - With `"uv"`, each script gets its own Python environment. ty uses
+   *   [uv](https://docs.astral.sh/uv/) to install the script's declared dependencies there
+   *   and resolves imports from that environment. This requires uv 0.12.3 or newer.
+   *
+   * If a script has an inline `[tool.ty]` table, its `project-manager.script` setting
+   * takes precedence. Otherwise, the script inherits the project's value.
+   *
+   * When checking untrusted code with `ty check`, pass `--config 'project-manager.script="none"'`
+   * to disable script synchronization. To disable both script synchronization and uv workspace
+   * discovery, set the `TY_UV` environment variable to `off`. `TY_UV` takes precedence over
+   * `--config`. If your editor marks the workspace as untrusted, ty disables both automatically.
+   *
+   * `uv check` sets `TY_UV=1`, so it always enables script synchronization.
+   */
+  readonly script?: ScriptProjectManager;
+}
 export interface SrcOptions {
   /**
    * A list of file and directory patterns to exclude from type checking.
@@ -496,7 +528,7 @@ export interface SrcOptions {
    * explicitly passed on the command line.
    * @jsii ignore
    */
-  readonly "exclude-scripts"?: boolean;
+  readonly "exclude-scripts"?: Boolean;
   /**
    * A list of files and directories to check. The `include` option
    * follows a similar syntax to `.gitignore` but reversed:

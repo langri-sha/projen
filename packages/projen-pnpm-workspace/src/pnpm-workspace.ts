@@ -75,6 +75,10 @@ export interface PnpmWorkspaceSchema {
     [k: string]: unknown;
   };
   /**
+   * When true, an install that resolves the whole dependency graph warns about every entry in overrides that matched no dependency. Only overrides declared in pnpm-workspace.yaml are checked; entries added by a config dependency or an updateConfig hook are not. Added in pnpm v12.23.0.
+   */
+  readonly warnUnusedOverrides?: boolean;
+  /**
    * Used to extend the existing package definitions with additional information.
    */
   readonly packageExtensions?: {
@@ -188,9 +192,15 @@ export interface PnpmWorkspaceSchema {
    */
   readonly modulesDir?: string;
   /**
-   * Defines what linker should be used for installing Node packages. loaded is an experimental linker that loads packages directly from the content-addressable store, without placing them in node_modules; it also accepts an object with type: loaded and an optional excluded list. Configuration sources replace the whole nodeLinker value: a higher-priority scalar, or an object without excluded, clears exclusions from lower-priority sources. The environment variable PNPM_CONFIG_NODE_LINKER and --config.node-linker accept the object as JSON.
+   * Defines what linker should be used for installing Node packages. Scalar values remain supported. The object form selects a linker with type and groups linker-specific options with it: isolated accepts hoist, hoisted accepts hoistingLimits, and loaded accepts excluded. Configuration sources replace the selected linker; options from a higher-priority object override the same options from lower-priority sources. PNPM_CONFIG_NODE_LINKER and --config.node-linker accept the object as JSON.
    */
-  readonly nodeLinker?: ("isolated" | "hoisted" | "pnp" | "loaded") | PnpmWorkspaceSchemaNodeLinker;
+  readonly nodeLinker?:
+    | ("isolated" | "hoisted" | "pnp" | "loaded")
+    | (
+        | PnpmWorkspaceSchemaNodeLinkerOption1
+        | PnpmWorkspaceSchemaNodeLinkerOption2
+        | PnpmWorkspaceSchemaNodeLinkerOption3
+      );
   /**
    * When true, pnpm injects the generated node_modules/.package-map.json into pnpm-managed Node.js script environments by adding Node's --experimental-package-map option to NODE_OPTIONS. see https://pnpm.io/settings/node-modules#nodeexperimentalpackagemap. Deprecated since pnpm v12.13.0: use nodePackageMap.mode instead. true is the same as mode: load and false the same as mode: off; nodePackageMap wins when both are set in the same place.
    */
@@ -345,9 +355,9 @@ export interface PnpmWorkspaceSchema {
    */
   readonly maxsockets?: number;
   /**
-   * A comma-separated string of domain extensions that a proxy should not be used for.
+   * A comma-separated string of domain extensions that a proxy should not be used for, or a boolean. A null value leaves the setting unset. Since pnpm v12.23.0, any other type fails validation.
    */
-  readonly noProxy?: string;
+  readonly noProxy?: string | boolean;
   /**
    * Whether or not to do SSL key validation when making requests to the registry via HTTPS.
    */
@@ -600,7 +610,7 @@ export interface PnpmWorkspaceSchema {
    */
   readonly saveTypes?: boolean;
   /**
-   * If you pnpm add a package and you don't provide a specific version, then it will install the package at the version registered under the tag from this setting.
+   * If you pnpm add a package and you don't provide a specific version, then it will install the package at the version registered under the tag from this setting. Since pnpm v12.23.0, pnpm publish also reads it from pnpm-workspace.yaml, the global config.yaml, or PNPM_CONFIG_TAG when --tag is not passed.
    */
   readonly tag?: string;
   /**
@@ -689,13 +699,17 @@ export interface PnpmWorkspaceSchema {
    */
   readonly embedReadme?: boolean;
   /**
-   * The primary branch of the repository which is used for publishing the latest changes.
+   * The primary branch of the repository which is used for publishing the latest changes. Since pnpm v12.23.0, an empty value allows both master and main.
    */
   readonly publishBranch?: string;
   /**
    * After uploading a package, wait up to this many milliseconds for the published version and its tarball to become available from the registry. If they are not available in time, the command fails. 0 disables the check. When publishing recursively, pnpm confirms that a package is available before it publishes the packages that depend on it. Added in pnpm v12.7.0.
    */
   readonly publishWaitTimeout?: number;
+  /**
+   * Sets the default for pnpm publish --access. When set, it takes precedence over publishConfig.access. Configure it in pnpm-workspace.yaml or the global config.yaml, or with PNPM_CONFIG_ACCESS. Read from configuration since pnpm v12.23.0.
+   */
+  readonly access?: "public" | "restricted";
   readonly versioning?: PnpmWorkspaceSchemaVersioning;
   /**
    * When publishing from a supported cloud CI/CD system, the package will be publicly linked to where it was built and published from.
@@ -734,13 +748,17 @@ export interface PnpmWorkspaceSchema {
    */
   readonly saveExact?: boolean;
   /**
-   * minimumReleaseAge defines the minimum number of minutes that must pass after a version is published before pnpm will install it. This applies to all dependencies, including transitive ones.
+   * minimumReleaseAge defines the minimum number of minutes that must pass after a version is published before pnpm will install it. This applies to all dependencies, including transitive ones. The age is counted back from referenceTime when that setting is set.
    */
   readonly minimumReleaseAge?: number;
   /**
    * If you set `minimumReleaseAge` but need certain dependencies to always install the newest version immediately, you can list them under `minimumReleaseAgeExclude`. The exclusion works by `package name` and applies to all versions of that package.
    */
   readonly minimumReleaseAgeExclude?: string[];
+  /**
+   * The reference time, as an RFC 3339 timestamp, used to evaluate time-dependent settings. minimumReleaseAge and trustPolicyIgnoreAfter count back from this time during resolution and lockfile verification. When unset, pnpm uses the current time. Set it in pnpm-workspace.yaml or with PNPM_CONFIG_REFERENCE_TIME; the global config.yaml does not apply it. A value that is not a timestamp, or is more than 10 minutes in the future, fails the command. Added in pnpm v12.23.0.
+   */
+  readonly referenceTime?: string;
   /**
    * Controls how pnpm behaves when no version of a dependency satisfies the minimumReleaseAge constraint within the requested range.
    * https://pnpm.io/settings#minimumreleaseagestrict
@@ -777,7 +795,7 @@ export interface PnpmWorkspaceSchema {
    */
   readonly blockExoticSubdeps?: boolean;
   /**
-   * Allows ignoring the trust policy check for packages published more than the specified number of minutes ago. This is useful when enabling strict trust policies, as it allows older versions of packages (which may lack a process for publishing with signatures or provenance) to be installed without manual exclusion, assuming they are safe due to their age.
+   * Allows ignoring the trust policy check for packages published more than the specified number of minutes ago. This is useful when enabling strict trust policies, as it allows older versions of packages (which may lack a process for publishing with signatures or provenance) to be installed without manual exclusion, assuming they are safe due to their age. The age is counted back from referenceTime when that setting is set.
    */
   readonly trustPolicyIgnoreAfter?: number;
   /**
@@ -984,10 +1002,25 @@ export interface PnpmWorkspaceSchemaExecutionEnv {
    */
   readonly nodeVersion?: string;
 }
-export interface PnpmWorkspaceSchemaNodeLinker {
+export interface PnpmWorkspaceSchemaNodeLinkerOption1 {
+  readonly type: "isolated";
   /**
-   * The linker type. Only the experimental loaded linker accepts the object form; other linker object forms are not supported yet.
+   * true selects the defaults: public: [] and private: ['*']. false disables both. An object sets the public and private pattern lists; public patterns take precedence when both match.
    */
+  readonly hoist?: boolean | PnpmWorkspaceSchemaNodeLinkerOption1Hoist;
+}
+export interface PnpmWorkspaceSchemaNodeLinkerOption1Hoist {
+  readonly public?: string[];
+  readonly private?: string[];
+}
+export interface PnpmWorkspaceSchemaNodeLinkerOption2 {
+  readonly type: "hoisted";
+  /**
+   * none hoists as far as possible, workspaces only as far as each workspace package, dependencies only up to each workspace package's direct dependencies.
+   */
+  readonly hoistingLimits?: "none" | "workspaces" | "dependencies";
+}
+export interface PnpmWorkspaceSchemaNodeLinkerOption3 {
   readonly type: "loaded";
   /**
    * With nodeLinker.type: loaded, materialize these package names and their complete dependency trees in the global virtual store. Names match all installed versions and peer contexts. Packages outside these trees load directly from the store. Build approval settings still apply.
@@ -1131,6 +1164,10 @@ export interface PnpmWorkspaceSchemaVersioning {
    */
   readonly ignore?: string[];
   /**
+   * When false, pnpm change leaves private packages out of the packages it offers, and naming one on the command line fails. A private package can still be bumped as a dependent. Added in pnpm v12.23.0.
+   */
+  readonly includePrivatePackages?: boolean;
+  /**
    * Caps the bump that a release from the current checkout may apply, after dependent propagation and fixed-group resolution.
    */
   readonly maxBump?: "patch" | "minor" | "major";
@@ -1197,9 +1234,9 @@ export interface PnpmWorkspaceSchemaPermissionsValue {
    */
   readonly build?: boolean | string;
   /**
-   * pnpm may link the agent skills the package ships into the project's agent skill directories.
+   * pnpm may link the agent skills the package ships into the project's agent skill directories. true links every skill the package ships, false links none, and a list of skill names links exactly those. A skill outside the list is not offered for approval again. The list form was added in pnpm v12.18.0.
    */
-  readonly skills?: boolean | string;
+  readonly skills?: boolean | string | string[];
 }
 /**
  * Agent skills that approved dependencies ship. Added in pnpm v12.11.0.
