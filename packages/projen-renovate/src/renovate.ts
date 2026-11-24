@@ -876,6 +876,7 @@ export type MatchDatasources =
           | "java-version"
           | "jenkins-plugins"
           | "jsr"
+          | "julia"
           | "julia-general-metadata"
           | "kubernetes-api"
           | "maven"
@@ -966,6 +967,7 @@ export type MatchDatasources =
           | "java-version"
           | "jenkins-plugins"
           | "jsr"
+          | "julia"
           | "julia-general-metadata"
           | "kubernetes-api"
           | "maven"
@@ -1945,6 +1947,7 @@ export type HostType =
       | "java-version"
       | "jenkins-plugins"
       | "jsr"
+      | "julia"
       | "julia-general-metadata"
       | "kubernetes-api"
       | "maven"
@@ -2824,6 +2827,10 @@ export interface Constraints {
    */
   readonly python?: string;
   /**
+   * A constraint for the `renovate` Containerbase tool
+   */
+  readonly renovate?: string;
+  /**
    * A constraint for the `ruby` Containerbase tool. Also used in the `rubygems` Datasource
    */
   readonly ruby?: string;
@@ -3347,6 +3354,7 @@ export interface InstallTools {
   readonly pixi?: InstallToolsPixi;
   readonly poetry?: InstallToolsPoetry;
   readonly python?: InstallToolsPython;
+  readonly renovate?: InstallToolsRenovate;
   readonly ruby?: InstallToolsRuby;
   readonly rust?: InstallToolsRust;
   readonly uv?: InstallToolsUv;
@@ -3513,6 +3521,10 @@ export interface InstallToolsPoetry {}
  * Install the `python` Containerbase tool
  */
 export interface InstallToolsPython {}
+/**
+ * Install the `renovate` Containerbase tool
+ */
+export interface InstallToolsRenovate {}
 /**
  * Install the `ruby` Containerbase tool. Also used in the `rubygems` Datasource
  */
