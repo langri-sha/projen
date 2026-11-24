@@ -183,10 +183,10 @@ new Project({
 - `prepublishOnly` runs `jsii --silence-warnings JSII6`, unless the project sets
   that script itself. A project that does can build its own command from the
   exported `jsiiCommand`.
-- `constructs` is peered at `^10.5.0`, projen's own range, unless the project
-  declares that peer, since jsii asks for one on every module that exposes its
-  types. Projen pins a development copy at the floor unless
-  `peerDependencyOptions.pinnedDevDependency` is `false`.
+- jsii requires a `constructs` peer for modules that expose its types. The
+  preset supplies a [default peer range](./src/index.ts) unless the project
+  declares its own. Projen pins a development dependency at the bottom of the
+  peer range unless `peerDependencyOptions.pinnedDevDependency` is `false`.
 - `npmIgnore` is required, and the assembly is kept out of the patterns that
   would drop it. Without a `.npmignore`, npm falls back to `.gitignore` and
   leaves `.jsii` out of the tarball.
