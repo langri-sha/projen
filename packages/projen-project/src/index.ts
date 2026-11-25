@@ -1330,7 +1330,7 @@ export class Project extends BaseProject {
     }
 
     if (!this.parent) {
-      this.#addDefaultDevDeps('lint-staged@17.6.1')
+      this.#addDefaultDevDeps('lint-staged@17.6.2')
 
       if (this.name !== '@langri-sha/lint-staged') {
         this.#addDefaultDevDeps('@langri-sha/lint-staged@0.9.11')

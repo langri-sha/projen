@@ -854,7 +854,7 @@ project.addSubproject(
       devDeps: [
         '@types/serialize-javascript@5.0.4',
         'jsii@6.0.20',
-        'lint-staged@17.6.1',
+        'lint-staged@17.6.2',
       ],
       peerDeps: [...projenPeer.peerDeps],
     },
