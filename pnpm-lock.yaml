@@ -183,7 +183,7 @@ importers:
         version: 0.13.0(@typescript-eslint/utils@8.72.1(eslint@10.15.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.15.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@6.0.3)
       '@langri-sha/lint-staged':
         specifier: 0.9.11
-        version: 0.9.11(eslint@10.15.0(supports-color@8.1.1))(lint-staged@17.6.1)(prettier@3.9.9)
+        version: 0.9.11(eslint@10.15.0(supports-color@8.1.1))(lint-staged@17.6.2)(prettier@3.9.9)
       '@langri-sha/prettier':
         specifier: 0.4.11
         version: 0.4.11(prettier@3.9.9)
@@ -224,8 +224,8 @@ importers:
         specifier: 6.0.25
         version: 6.0.25(supports-color@8.1.1)
       lint-staged:
-        specifier: 17.6.1
-        version: 17.6.1
+        specifier: 17.6.2
+        version: 17.6.2
       prettier:
         specifier: 3.9.9
         version: 3.9.9
@@ -577,8 +577,8 @@ importers:
         specifier: 6.0.20
         version: 6.0.20(patch_hash=8fa12d1287ecfffb2452352ad1104c033d7586cdc73383c38163757b713b09fe)(supports-color@8.1.1)
       lint-staged:
-        specifier: 17.6.1
-        version: 17.6.1
+        specifier: 17.6.2
+        version: 17.6.2
       projen:
         specifier: 0.104.1
         version: 0.104.1(constructs@10.8.1)
@@ -686,7 +686,7 @@ importers:
         version: 0.13.0(@typescript-eslint/utils@8.72.1(eslint@10.15.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3))(eslint@10.15.0(supports-color@8.1.1))(prettier@3.9.9)(supports-color@8.1.1)(typescript@6.0.3)
       '@langri-sha/lint-staged':
         specifier: ^0.9.0
-        version: 0.9.11(eslint@10.15.0(supports-color@8.1.1))(lint-staged@17.6.1)(prettier@3.9.9)
+        version: 0.9.11(eslint@10.15.0(supports-color@8.1.1))(lint-staged@17.6.2)(prettier@3.9.9)
       '@langri-sha/prettier':
         specifier: ^0.4.0
         version: 0.4.11(prettier@3.9.9)
@@ -716,7 +716,7 @@ importers:
         version: 30.5.2(@types/node@24.19.2)(babel-plugin-macros@3.1.0)(supports-color@8.1.1)
       lint-staged:
         specifier: ^17.0.0
-        version: 17.6.1
+        version: 17.6.2
       prettier:
         specifier: ^3.0.0
         version: 3.9.9
@@ -5356,8 +5356,8 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
-  lint-staged@17.6.1:
-    resolution: {integrity: sha512-3MXgVN7BERDR/6CXZs2fDHGc+r0+hlvGAa9wqMlVbIS6RVRuaPOnb5SnN6wMXulwfEy9DXVkMVUN/8cUlpPDnw==}
+  lint-staged@17.6.2:
+    resolution: {integrity: sha512-c/JaXaXmleubmKUwwp4OAcq55RV9Z3HTUNdqdqPh2srtmP9Of3bcR6o00GoWDUye+9JhMuoYkhYqAVPIOZKcsw==}
     engines: {node: '>=22.22.1'}
     hasBin: true
 
@@ -8669,9 +8669,9 @@ snapshots:
       - supports-color
       - typescript
 
-  '@langri-sha/lint-staged@0.9.11(eslint@10.15.0(supports-color@8.1.1))(lint-staged@17.6.1)(prettier@3.9.9)':
+  '@langri-sha/lint-staged@0.9.11(eslint@10.15.0(supports-color@8.1.1))(lint-staged@17.6.2)(prettier@3.9.9)':
     dependencies:
-      lint-staged: 17.6.1
+      lint-staged: 17.6.2
     optionalDependencies:
       eslint: 10.15.0(supports-color@8.1.1)
       prettier: 3.9.9
@@ -11958,7 +11958,7 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
-  lint-staged@17.6.1:
+  lint-staged@17.6.2:
     dependencies:
       picomatch: 4.0.7
       string-argv: 0.4.0
