@@ -1,0 +1,7 @@
+{
+  "type": "none",
+  "comment": "Snapshot the jsii and constructs fixture versions so Renovate bumps regenerate them",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "none"
+}
