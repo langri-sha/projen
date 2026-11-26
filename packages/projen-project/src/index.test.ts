@@ -1957,7 +1957,7 @@ describe('with jsii', () => {
 
     const manifest = synthSnapshot(project)['package.json']
 
-    expect(manifest.devDependencies.jsii).toMatchInlineSnapshot(`"5.9.57"`)
+    expect(manifest.devDependencies.jsii).toMatchInlineSnapshot(`"5.9.62"`)
   })
 
   test('runs jsii before publishing', () => {
