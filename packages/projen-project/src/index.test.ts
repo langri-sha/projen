@@ -1957,7 +1957,7 @@ describe('with jsii', () => {
 
     const manifest = synthSnapshot(project)['package.json']
 
-    expect(manifest.devDependencies.jsii).toBe('5.9.57')
+    expect(manifest.devDependencies.jsii).toMatchInlineSnapshot(`"5.9.57"`)
   })
 
   test('runs jsii before publishing', () => {
@@ -2021,7 +2021,9 @@ describe('with jsii', () => {
     const manifest = synthSnapshot(project)['package.json']
 
     expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.5.0' })
-    expect(manifest.devDependencies).toMatchObject({ constructs: '10.8.1' })
+    expect(manifest.devDependencies.constructs).toMatchInlineSnapshot(
+      `"10.8.1"`,
+    )
   })
 
   test('keeps a declared constructs peer beside its development copy', () => {
@@ -2039,8 +2041,12 @@ describe('with jsii', () => {
 
     const manifest = synthSnapshot(project)['package.json']
 
-    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.0.0' })
-    expect(manifest.devDependencies).toMatchObject({ constructs: '10.8.1' })
+    expect(manifest.peerDependencies.constructs).toMatchInlineSnapshot(
+      `"^10.0.0"`,
+    )
+    expect(manifest.devDependencies.constructs).toMatchInlineSnapshot(
+      `"10.8.1"`,
+    )
   })
 
   test('keeps the constructs range the project declares', () => {
@@ -2053,7 +2059,9 @@ describe('with jsii', () => {
 
     const manifest = synthSnapshot(project)['package.json']
 
-    expect(manifest.peerDependencies).toMatchObject({ constructs: '^10.0.0' })
+    expect(manifest.peerDependencies.constructs).toMatchInlineSnapshot(
+      `"^10.0.0"`,
+    )
   })
 
   test('yields the publishing script to the project', () => {
