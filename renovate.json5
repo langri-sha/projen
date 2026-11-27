@@ -180,5 +180,17 @@
       ],
       depTypeTemplate: 'dependencies',
     },
+    {
+      customType: 'regex',
+      datasourceTemplate: 'github-tags',
+      versioningTemplate: 'semver',
+      managerFilePatterns: ['/^packages/projen-project/src/lib/dagger\\.ts$/'],
+      matchStrings: [
+        "'github\\.com/(?<repo>langri-sha/dagger)/(?<subdir>\\w+)@v(?<currentValue>\\d[^']*)'",
+      ],
+      depNameTemplate: 'github.com/{{{repo}}}/{{{subdir}}}',
+      packageNameTemplate: '{{{repo}}}',
+      extractVersionTemplate: '^v(?<version>.+)$',
+    },
   ],
 }
