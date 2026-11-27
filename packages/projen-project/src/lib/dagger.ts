@@ -1,4 +1,7 @@
-import type { DaggerWorkspaceConfig } from 'projen-dagger'
+import type {
+  DaggerWorkspaceConfig,
+  DaggerWorkspaceModule,
+} from 'projen-dagger'
 
 /**
  * The langri-sha/dagger modules the derived workspace installs. Renovate bumps
@@ -23,6 +26,16 @@ export interface DaggerWorkspaceFeatures {
   readonly prettier?: boolean
   readonly typescript?: boolean
   readonly vitest?: boolean
+}
+
+/**
+ * Overrides for the derived workspace. A module that is `null` is dropped.
+ */
+export type DaggerWorkspaceOverrides = Omit<
+  DaggerWorkspaceConfig,
+  'modules'
+> & {
+  modules?: Record<string, DaggerWorkspaceModule | null>
 }
 
 const node = () => ({
@@ -57,3 +70,62 @@ export const deriveDaggerWorkspace = ({
     ...(changesets && { changesets: { source: DAGGER_MODULES.changesets } }),
   },
 })
+
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null && !Array.isArray(value)
+
+const merge = (base: unknown, override: unknown): unknown => {
+  if (!isRecord(base) || !isRecord(override)) {
+    return override
+  }
+
+  const merged = { ...base }
+
+  for (const [key, value] of Object.entries(override)) {
+    if (value !== undefined) {
+      merged[key] = merge(base[key], value)
+    }
+  }
+
+  return merged
+}
+
+/**
+ * Merges overrides into the derived workspace. Objects merge key by key and
+ * arrays are replaced, except for `ignore`, which adds to the derived
+ * patterns. A `null` module is dropped, and modules the derived set lacks
+ * follow it. A module needs a source, from the derived set or the override.
+ */
+export const mergeDaggerWorkspace = (
+  derived: DaggerWorkspaceConfig,
+  { ignore = [], modules = {}, ...rest }: DaggerWorkspaceOverrides = {},
+): DaggerWorkspaceConfig => {
+  const merged: Record<string, DaggerWorkspaceModule> = {
+    ...derived.modules,
+  }
+
+  for (const [name, override] of Object.entries(modules)) {
+    if (override === null) {
+      delete merged[name]
+    } else {
+      const module = merge(merged[name], override) as DaggerWorkspaceModule
+
+      if (!module.source) {
+        throw new Error(
+          `The Dagger module "${name}" has no source. Name one in \`dagger.workspace\`, or set the module to null to drop it.`,
+        )
+      }
+
+      merged[name] = module
+    }
+  }
+
+  return merge(
+    {
+      ...derived,
+      ignore: [...new Set([...(derived.ignore ?? []), ...ignore])],
+      modules: merged,
+    },
+    rest,
+  ) as DaggerWorkspaceConfig
+}

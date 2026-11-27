@@ -1,6 +1,10 @@
-import { expect, test } from '@langri-sha/vitest'
+import { describe, expect, test } from '@langri-sha/vitest'
 
-import { DAGGER_MODULES, deriveDaggerWorkspace } from './dagger'
+import {
+  DAGGER_MODULES,
+  deriveDaggerWorkspace,
+  mergeDaggerWorkspace,
+} from './dagger'
 
 test('derives the modules every project gets', () => {
   expect(deriveDaggerWorkspace({})).toEqual({
@@ -56,4 +60,119 @@ test('pins every langri-sha module to a release tag', () => {
   for (const ref of Object.values(DAGGER_MODULES)) {
     expect(ref).toMatch(/^github\.com\/langri-sha\/dagger\/\w+@v\d+\.\d+\.\d+$/)
   }
+})
+
+describe('merging overrides', () => {
+  const derived = deriveDaggerWorkspace({ eslint: true, typescript: true })
+
+  test('leaves the derived workspace as it is without overrides', () => {
+    expect(mergeDaggerWorkspace(derived)).toEqual(derived)
+  })
+
+  test('merges settings into a derived module', () => {
+    const { modules } = mergeDaggerWorkspace(derived, {
+      modules: { eslint: { settings: { installFlags: ['--ignore-scripts'] } } },
+    })
+
+    expect(modules?.eslint).toEqual({
+      source: 'dagger.io/js/eslint',
+      settings: {
+        packageManager: 'pnpm',
+        baseImageAddress: 'node:24-slim',
+        installFlags: ['--ignore-scripts'],
+      },
+    })
+  })
+
+  test('replaces an array in a derived module', () => {
+    const { modules } = mergeDaggerWorkspace(derived, {
+      modules: { ci: { generate: { skip: ['lock'] } } },
+    })
+
+    expect(modules?.ci?.generate).toEqual({ skip: ['lock'] })
+  })
+
+  test('replaces the source of a derived module and keeps its settings', () => {
+    const { modules } = mergeDaggerWorkspace(derived, {
+      modules: { eslint: { source: 'github.com/dagger/eslint@v0.3.0' } },
+    })
+
+    expect(modules?.eslint).toEqual({
+      source: 'github.com/dagger/eslint@v0.3.0',
+      settings: { packageManager: 'pnpm', baseImageAddress: 'node:24-slim' },
+    })
+  })
+
+  test('drops a module set to null', () => {
+    const { modules } = mergeDaggerWorkspace(derived, {
+      modules: { eslint: null, projen: null },
+    })
+
+    expect(Object.keys(modules ?? {})).toEqual(['ci', 'typescript'])
+  })
+
+  test('appends modules the derived set lacks, in the order given', () => {
+    const { modules } = mergeDaggerWorkspace(derived, {
+      modules: {
+        zig: { source: 'zig' },
+        ci: { source: 'ci' },
+        next: { source: 'next' },
+      },
+    })
+
+    expect(Object.keys(modules ?? {})).toEqual([
+      'eslint',
+      'ci',
+      'projen',
+      'typescript',
+      'zig',
+      'next',
+    ])
+  })
+
+  test('adds ignore patterns after the derived ones without repeating them', () => {
+    const { ignore } = mergeDaggerWorkspace(derived, {
+      ignore: ['**/target', '**/dist'],
+    })
+
+    expect(ignore).toEqual([
+      '**/node_modules',
+      '**/dist',
+      '**/*.tsbuildinfo',
+      '**/target',
+    ])
+  })
+
+  test('adds settings the derived workspace has none of', () => {
+    const sdks = { typescript: { module: 'dagger-typescript-sdk' } }
+
+    expect(mergeDaggerWorkspace(derived, { sdks }).sdks).toEqual(sdks)
+  })
+
+  test('throws for a module added without a source', () => {
+    expect(() =>
+      mergeDaggerWorkspace(derived, {
+        modules: { terraform: { settings: { rootModule: 'terraform' } } },
+      }),
+    ).toThrow('The Dagger module "terraform" has no source')
+  })
+
+  test('keeps the source of a derived module that the override leaves out', () => {
+    const { modules } = mergeDaggerWorkspace(derived, {
+      modules: { ci: { settings: {} } },
+    })
+
+    expect(modules?.ci?.source).toBe(DAGGER_MODULES.ci)
+  })
+
+  test('does not change the derived workspace', () => {
+    const before = structuredClone(derived)
+
+    mergeDaggerWorkspace(derived, {
+      ignore: ['**/target'],
+      modules: { eslint: { settings: { installFlags: [] } }, ci: null },
+    })
+
+    expect(derived).toEqual(before)
+  })
 })
