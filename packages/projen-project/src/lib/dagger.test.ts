@@ -6,6 +6,7 @@ import { afterEach, describe, expect, test } from '@langri-sha/vitest'
 
 import {
   DAGGER_MODULES,
+  assertDaggerWorkspaceIsGenerated,
   deriveDaggerWorkspace,
   hasGitHubWorkflows,
   mergeDaggerWorkspace,
@@ -222,5 +223,78 @@ describe('GitHub workflows', () => {
     expect(hasGitHubWorkflows(projectWith('.github/workflows/readme.md'))).toBe(
       false,
     )
+  })
+})
+
+describe('a dagger.toml on disk', () => {
+  const directories: string[] = []
+
+  afterEach(() => {
+    for (const directory of directories.splice(0)) {
+      fs.rmSync(directory, { recursive: true, force: true })
+    }
+  })
+
+  const projectWith = (files: Record<string, string>) => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dagger-'))
+
+    directories.push(directory)
+
+    for (const [file, contents] of Object.entries(files)) {
+      fs.mkdirSync(path.join(directory, path.dirname(file)), {
+        recursive: true,
+      })
+      fs.writeFileSync(path.join(directory, file), contents)
+    }
+
+    return directory
+  }
+
+  const generated = (...files: string[]) =>
+    JSON.stringify({ files, '//': 'Written by projen' })
+
+  test('is refused when projen does not list it', () => {
+    const directory = projectWith({
+      'dagger.toml': '[modules.ci]\nsource = "ci"\n',
+      '.projen/files.json': generated('.gitignore'),
+    })
+
+    expect(() => assertDaggerWorkspaceIsGenerated(directory)).toThrow(
+      'dagger.workspace',
+    )
+  })
+
+  test('is refused in a project projen has not synthesized', () => {
+    const directory = projectWith({ 'dagger.toml': '' })
+
+    expect(() => assertDaggerWorkspaceIsGenerated(directory)).toThrow(
+      'Refusing to overwrite dagger.toml',
+    )
+  })
+
+  test('is refused when the record of generated files is not readable', () => {
+    const directory = projectWith({
+      'dagger.toml': '',
+      '.projen/files.json': '{',
+    })
+
+    expect(() => assertDaggerWorkspaceIsGenerated(directory)).toThrow(
+      'Refusing to overwrite dagger.toml',
+    )
+  })
+
+  test('is kept when projen lists it', () => {
+    const directory = projectWith({
+      'dagger.toml': '',
+      '.projen/files.json': generated('dagger.toml'),
+    })
+
+    expect(() => assertDaggerWorkspaceIsGenerated(directory)).not.toThrow()
+  })
+
+  test('is not needed for a project that has none', () => {
+    expect(() =>
+      assertDaggerWorkspaceIsGenerated(projectWith({ 'readme.md': '' })),
+    ).not.toThrow()
   })
 })

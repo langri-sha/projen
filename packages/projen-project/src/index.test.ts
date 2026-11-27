@@ -1177,6 +1177,17 @@ describe('with Dagger options', () => {
       `)
   })
 
+  test('refuses to overwrite a dagger.toml that projen does not write', () => {
+    const outdir = mkdtempSync(path.join(tmpdir(), 'dagger-'))
+
+    onTestFinished(() => rmSync(outdir, { recursive: true, force: true }))
+    writeFileSync(path.join(outdir, 'dagger.toml'), '[modules.ci]\n')
+
+    expect(
+      () => new Project({ name: 'test-project', dagger: {}, outdir }),
+    ).toThrow('Move what it has beyond the derived modules')
+  })
+
   test('is a root project property', () => {
     const project = new Project({
       name: 'test-project',
