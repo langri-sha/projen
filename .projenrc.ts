@@ -46,7 +46,7 @@ const project = new Project({
       '@langri-sha/webpack@0.8.2',
       '@types/node@24.19.2',
       'jsii-diff@1.143.0',
-      'jsii-docgen@10.13.4',
+      'jsii-docgen@10.13.5',
       'jsii-rosetta@6.0.26',
       'schemastore-to-typescript@1.5.0',
       'webpack@5.113.0',
