@@ -160,6 +160,24 @@ const project = new Project({
   },
   renovate: {
     extends: ['github>langri-sha/renovate-config'],
+    customManagers: [
+      {
+        // The preset reads module refs from the projenrc and the Dagger config
+        // files, which is not where this repository keeps the ones it derives.
+        customType: 'regex',
+        datasourceTemplate: 'github-tags',
+        versioningTemplate: 'semver',
+        managerFilePatterns: [
+          '/^packages/projen-project/src/lib/dagger\\.ts$/',
+        ],
+        matchStrings: [
+          "'github\\.com/(?<repo>langri-sha/dagger)/(?<subdir>\\w+)@v(?<currentValue>\\d[^']*)'",
+        ],
+        depNameTemplate: 'github.com/{{{repo}}}/{{{subdir}}}',
+        packageNameTemplate: '{{{repo}}}',
+        extractVersionTemplate: '^v(?<version>.+)$',
+      },
+    ],
     packageRules: [
       {
         description:
