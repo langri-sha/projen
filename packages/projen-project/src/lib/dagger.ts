@@ -1,3 +1,6 @@
+import { readdirSync } from 'node:fs'
+import * as path from 'node:path'
+
 import type {
   DaggerWorkspaceConfig,
   DaggerWorkspaceModule,
@@ -8,6 +11,7 @@ import type {
  * the refs, and a project gets them through the next release of the preset.
  */
 export const DAGGER_MODULES = {
+  actionlint: 'github.com/langri-sha/dagger/actionlint@v2.4.1',
   beachball: 'github.com/langri-sha/dagger/beachball@v2.4.1',
   changesets: 'github.com/langri-sha/dagger/changesets@v2.4.1',
   ci: 'github.com/langri-sha/dagger/ci@v2.4.1',
@@ -20,6 +24,7 @@ export const DAGGER_MODULES = {
  * What a project enables that has a Dagger module.
  */
 export interface DaggerWorkspaceFeatures {
+  readonly actionlint?: boolean
   readonly beachball?: boolean
   readonly changesets?: boolean
   readonly eslint?: boolean
@@ -47,6 +52,7 @@ const node = () => ({
  * `dagger.toml` for the modules a project's features call for.
  */
 export const deriveDaggerWorkspace = ({
+  actionlint,
   beachball,
   changesets,
   eslint,
@@ -68,6 +74,7 @@ export const deriveDaggerWorkspace = ({
     ...(vitest && { vitest: { source: DAGGER_MODULES.vitest } }),
     ...(beachball && { beachball: { source: DAGGER_MODULES.beachball } }),
     ...(changesets && { changesets: { source: DAGGER_MODULES.changesets } }),
+    ...(actionlint && { actionlint: { source: DAGGER_MODULES.actionlint } }),
   },
 })
 
@@ -128,4 +135,17 @@ export const mergeDaggerWorkspace = (
     },
     rest,
   ) as DaggerWorkspaceConfig
+}
+
+/**
+ * Whether a project directory has GitHub workflows to lint.
+ */
+export const hasGitHubWorkflows = (directory: string): boolean => {
+  try {
+    return readdirSync(path.join(directory, '.github', 'workflows')).some(
+      (file) => /\.ya?ml$/.test(file),
+    )
+  } catch {
+    return false
+  }
 }

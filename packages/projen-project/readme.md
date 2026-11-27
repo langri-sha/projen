@@ -66,9 +66,10 @@ new Project({
 A `dagger` option writes `dagger.toml` for the features the project enables:
 `ci` and `projen`, plus `eslint`, `prettier`, `typescript` (with
 `typeScriptConfig`), `vitest`, `beachball` and `changesets` for the option of
-that name. `ci` skips the `projen` generator. Versions of the
-[`langri-sha/dagger`] modules live in the preset and move with each release.
-With those options on, a plain TypeScript library needs only:
+that name, and `actionlint` when `.github/workflows` has workflows. `ci` skips
+the `projen` generator. Versions of the [`langri-sha/dagger`] modules live in
+the preset and move with each release. With those options on, a plain TypeScript
+library needs only:
 
 ```ts
 new Project({
