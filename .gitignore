@@ -25,6 +25,7 @@ node_modules/
 !/package.json
 !/tsconfig.json
 !/.swcrc
+!/dagger.toml
 !/.dagger/smoke/dagger-module.toml
 !/.dagger
 !/eslint.config.js

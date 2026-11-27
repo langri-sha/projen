@@ -10,7 +10,8 @@ projects.
   packages Beachball would not
 - configures [PNPM] [workspaces]
 - configures [Cargo] workspaces with [`projen-cargo`]
-- configures [Dagger] modules with [`projen-dagger`]
+- configures [Dagger] modules with [`projen-dagger`], and derives the
+  workspace's `dagger.toml` from the features a project enables
 - configures [uv] workspaces with [`projen-uv`]
 - configures [Ruff] with [`projen-ruff`]
 - configures [ty] with [`projen-ty`]
@@ -59,6 +60,51 @@ new Project({
   },
 })
 ```
+
+## Dagger
+
+A `dagger` option writes `dagger.toml` for the features the project enables:
+`ci` and `projen`, plus `eslint`, `prettier`, `typescript` (with
+`typeScriptConfig`), `vitest`, `beachball` and `changesets` for the option of
+that name. `ci` skips the `projen` generator. Versions of the
+[`langri-sha/dagger`] modules live in the preset and move with each release.
+With those options on, a plain TypeScript library needs only:
+
+```ts
+new Project({
+  name: 'my-project',
+  dagger: {},
+  eslint: {},
+  prettier: {},
+  typeScriptConfig: {},
+})
+```
+
+`dagger.workspace` holds what the preset doesn't derive. Objects merge into the
+derived ones and arrays replace them. `ignore` adds to the derived patterns, and
+a module set to `null` is dropped. Modules the preset doesn't derive follow the
+derived ones.
+
+```ts
+new Project({
+  name: 'my-project',
+  dagger: {
+    workspace: {
+      ignore: ['**/target'],
+      modules: {
+        terraform: { source: 'terraform' },
+        prettier: { settings: { installFlags: ['--ignore-scripts'] } },
+        eslint: null,
+      },
+    },
+  },
+})
+```
+
+The file is the projenrc's alone: `dagger install` and `dagger settings` write
+to it, and the next synthesis reverts them. `dagger.lock` stays the CLI's: after
+the modules move, `dagger check -l` records the new refs in it, and the file is
+yours to commit.
 
 ## Claude Code
 
@@ -244,6 +290,7 @@ new Project({
 [code owners]:
   https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 [dagger]: https://dagger.io/
+[`langri-sha/dagger`]: https://github.com/langri-sha/dagger
 [pnpm]: https://pnpm.io
 [projen]: https://projen.io/
 [jsii]: https://aws.github.io/jsii/
