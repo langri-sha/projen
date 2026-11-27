@@ -3575,7 +3575,6 @@ test('with Renovate options, reading Dagger module refs pinned to a tag', () => 
       "extractVersionTemplate": "^{{#if tagDir}}{{{tagDir}}}{{else}}{{#if subdir}}{{#unless (includes (toArray 'dagger/python' 'langri-sha/dagger') repo)}}{{{subdir}}}/{{/unless}}{{/if}}{{/if}}v(?<version>.+)$",
       "managerFilePatterns": [
         "/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/",
-        "/(^|/)dagger\\.toml$/",
         "/(^|/)dagger-module\\.toml$/",
       ],
       "matchStrings": [
@@ -4077,7 +4076,7 @@ describe('with Renovate options, the custom managers', () => {
     const matchString = new RegExp(manager.matchStrings[0]!)
 
     expect(covers(manager, '.projenrc.ts')).toBe(true)
-    expect(covers(manager, 'dagger.toml')).toBe(true)
+    expect(covers(manager, 'dagger.toml')).toBe(false)
     expect(covers(manager, '.dagger/modules/ci/dagger-module.toml')).toBe(true)
     expect(covers(manager, 'packages/projen-dagger/src/index.test.ts')).toBe(
       false,
