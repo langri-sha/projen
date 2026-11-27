@@ -229,10 +229,10 @@ importers:
         version: 1.143.0(supports-color@8.1.1)
       jsii-docgen:
         specifier: 10.13.6
-        version: 10.13.6(jsii-rosetta@6.0.26(supports-color@8.1.1))
+        version: 10.13.6(jsii-rosetta@6.0.27(supports-color@8.1.1))
       jsii-rosetta:
-        specifier: 6.0.26
-        version: 6.0.26(supports-color@8.1.1)
+        specifier: 6.0.27
+        version: 6.0.27(supports-color@8.1.1)
       lint-staged:
         specifier: 17.6.2
         version: 17.6.2
@@ -5208,8 +5208,8 @@ packages:
     engines: {node: '>= 14.17.0'}
     hasBin: true
 
-  jsii-rosetta@6.0.26:
-    resolution: {integrity: sha512-m2TEWN85n8MJQln9dF9SojBREb2goOhG3McWK4pzrC5q2iHEiP5PK5Y7B7lTfgAYoUO5MJI6dxvVVImEH171uw==}
+  jsii-rosetta@6.0.27:
+    resolution: {integrity: sha512-+f/YJd4dO48AzPW9SS0ZEtabAEDbvmRbZUFsbC32pszMpF7nF5Qk/cs05DefhZALrh0NV/E9VSy5tFpHsmX9TQ==}
     engines: {node: '>= 22.13.0'}
     hasBin: true
 
@@ -11788,14 +11788,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  jsii-docgen@10.13.6(jsii-rosetta@6.0.26(supports-color@8.1.1)):
+  jsii-docgen@10.13.6(jsii-rosetta@6.0.27(supports-color@8.1.1)):
     dependencies:
       '@jsii/spec': 1.143.0
       case: 1.6.3
       fast-glob: 3.3.3
       fs-extra: 10.1.0
       jsii-reflect: 1.143.0
-      jsii-rosetta: 6.0.26(supports-color@8.1.1)
+      jsii-rosetta: 6.0.27(supports-color@8.1.1)
       json-stream-stringify: 3.1.7
       semver: 7.8.6
       yargs: 16.2.2
@@ -11809,7 +11809,7 @@ snapshots:
       oo-ascii-tree: 1.143.0
       yargs: 17.7.3
 
-  jsii-rosetta@6.0.26(supports-color@8.1.1):
+  jsii-rosetta@6.0.27(supports-color@8.1.1):
     dependencies:
       '@jsii/check-node': 1.143.0
       '@jsii/spec': 1.143.0
