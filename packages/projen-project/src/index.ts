@@ -57,6 +57,11 @@ import { Worktrunk, type WorktrunkOptions, pipeline } from 'projen-worktrunk'
 import * as R from 'ramda'
 import { satisfies, valid, validRange } from 'semver'
 
+import {
+  type DaggerWorkspaceOverrides,
+  deriveDaggerWorkspace,
+  mergeDaggerWorkspace,
+} from './lib/dagger.js'
 import { GitAttributesFile } from './lib/gitattributes.js'
 import { parseGitHubRepository } from './lib/github-repository.js'
 import { defaultTemplates } from './lib/github-templates.js'
@@ -198,7 +203,40 @@ const ROOT_TAGGED_DAGGER_REPOSITORIES: readonly string[] = [
 /**
  * Dagger options, with how Renovate reads the module refs.
  */
-export interface ProjectDaggerOptions extends DaggerOptions {
+export interface ProjectDaggerOptions {
+  /**
+   * Engine version recorded in every module manifest, e.g. `v1.0.0-beta.26`.
+   *
+   * Required to declare a module. Renovate moves the pin here rather than in
+   * the manifests, so this is the one place the repository names an engine.
+   */
+  readonly engineVersion?: DaggerOptions['engineVersion']
+
+  /**
+   * Module manifests to synthesize, keyed by the module directory.
+   *
+   * @default {}
+   */
+  readonly modules?: DaggerOptions['modules']
+
+  /**
+   * Overrides for the `dagger.toml` the preset derives from the options the
+   * project enables: `ci` and `projen`, with `eslint`, `prettier`,
+   * `typescript` (from `typeScriptConfig`), `vitest`, `beachball` and
+   * `changesets` for the option of that name. Objects merge into the derived
+   * ones and arrays replace them, except `ignore`, whose patterns add to the
+   * derived ones. A module set to `null` is dropped, and one the preset does
+   * not derive is added after the derived modules.
+   *
+   * Once synthesized, the projenrc is the only place to edit the file:
+   * `dagger install`, `dagger settings` and the like still write to it, and
+   * the next synthesis reverts them. `dagger.lock` stays the CLI's.
+   *
+   * @jsii ignore
+   * @default - the derived workspace
+   */
+  readonly workspace?: DaggerWorkspaceOverrides
+
   /**
    * Repositories that tag a release of all their modules at the root,
    * `v<version>`, rather than each module as `<module>/v<version>`. Renovate
@@ -1110,12 +1148,33 @@ export class Project extends BaseProject {
     this.codeowners = new Codeowners(this, codeownersOptions)
   }
 
-  #configureDagger({ dagger }: ProjectOptions) {
+  #configureDagger({
+    beachball,
+    changesets,
+    dagger,
+    eslint,
+    prettier,
+    typeScriptConfig,
+    vitest,
+  }: ProjectOptions) {
     if (!dagger || this.parent) {
       return
     }
 
-    this.dagger = new Dagger(this, dagger)
+    this.dagger = new Dagger(this, {
+      ...dagger,
+      workspace: mergeDaggerWorkspace(
+        deriveDaggerWorkspace({
+          beachball: Boolean(beachball),
+          changesets: Boolean(changesets),
+          eslint: Boolean(eslint),
+          prettier: Boolean(prettier),
+          typescript: Boolean(typeScriptConfig),
+          vitest: Boolean(vitest),
+        }),
+        dagger.workspace,
+      ),
+    })
   }
 
   #configureEditorConfig({

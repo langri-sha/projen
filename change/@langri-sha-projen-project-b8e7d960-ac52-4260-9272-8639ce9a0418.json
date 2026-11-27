@@ -1,0 +1,7 @@
+{
+  "type": "minor",
+  "comment": "Derive dagger.toml from the options a project enables, with dagger.workspace as overrides. A project that already passes dagger.workspace gains the derived modules (eslint, prettier, ci, actionlint and the rest) merged into its file, so drop the ones it lacks with null",
+  "packageName": "@langri-sha/projen-project",
+  "email": "email not defined",
+  "dependentChangeType": "patch"
+}

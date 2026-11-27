@@ -70,6 +70,19 @@ const project = new Project({
         dependencies: ['github.com/langri-sha/dagger/typescript@v2.4.1'],
       },
     },
+    workspace: {
+      ignore: ['**/.tsbuild'],
+      modules: {
+        eslint: { settings: { installFlags: ['--ignore-scripts'] } },
+        prettier: { settings: { installFlags: ['--ignore-scripts'] } },
+        typescript: { settings: { prepublish: true } },
+        vitest: { settings: { baseImageAddress: 'node:24' } },
+        smoke: {
+          source: '.dagger/smoke',
+          check: { skip: ['generate-schemas/stale'] },
+        },
+      },
+    },
   },
   editorConfig: {},
   eslint: {
