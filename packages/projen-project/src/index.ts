@@ -1938,9 +1938,12 @@ export class Project extends BaseProject {
         // in a repository named in `rootTaggedRepositories` is read against
         // the root tags instead, and its older `<module>/v…` tags never match.
         //
-        // The Dagger config files are read whether or not synthesis writes
-        // them: a ref there is the same string as in the projenrc, so both
-        // move in one branch and the next synthesis leaves the bump in place.
+        // The module manifests are read whether or not synthesis writes them:
+        // a ref there is the same string as in the projenrc, so both move in
+        // one branch and the next synthesis leaves the bump in place.
+        // `dagger.toml` is not read, as synthesis always writes it: the refs
+        // it derives come with the preset's release, and the next synthesis
+        // would put a bump of them back. An override's ref is in the projenrc.
         // A ref has to be a whole quoted string, which keeps out a task's
         // `go install github.com/…@v1.2.3`.
         ...(dagger
@@ -1951,7 +1954,6 @@ export class Project extends BaseProject {
                 versioningTemplate: 'semver',
                 managerFilePatterns: [
                   '/(^|/)\\.?projenrc\\.(js|cjs|mjs|ts|mts|cts)$/',
-                  '/(^|/)dagger\\.toml$/',
                   '/(^|/)dagger-module\\.toml$/',
                 ],
                 matchStrings: [
