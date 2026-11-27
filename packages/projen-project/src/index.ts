@@ -59,6 +59,7 @@ import { satisfies, valid, validRange } from 'semver'
 
 import {
   type DaggerWorkspaceOverrides,
+  assertDaggerWorkspaceIsGenerated,
   deriveDaggerWorkspace,
   hasGitHubWorkflows,
   mergeDaggerWorkspace,
@@ -1162,6 +1163,8 @@ export class Project extends BaseProject {
     if (!dagger || this.parent) {
       return
     }
+
+    assertDaggerWorkspaceIsGenerated(this.outdir)
 
     this.dagger = new Dagger(this, {
       ...dagger,

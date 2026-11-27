@@ -1,4 +1,4 @@
-import { readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import * as path from 'node:path'
 
 import type {
@@ -148,4 +148,34 @@ export const hasGitHubWorkflows = (directory: string): boolean => {
   } catch {
     return false
   }
+}
+
+/**
+ * Throws when a project directory has a `dagger.toml` that projen does not
+ * write: one `.projen/files.json` doesn't list, as that of a project that
+ * keeps it by hand. Synthesis would replace it with the derived workspace and
+ * lose what it has beyond that.
+ */
+export const assertDaggerWorkspaceIsGenerated = (directory: string): void => {
+  if (!existsSync(path.join(directory, 'dagger.toml'))) {
+    return
+  }
+
+  let generated: unknown
+
+  try {
+    generated = JSON.parse(
+      readFileSync(path.join(directory, '.projen', 'files.json'), 'utf8'),
+    ).files
+  } catch {
+    generated = undefined
+  }
+
+  if (Array.isArray(generated) && generated.includes('dagger.toml')) {
+    return
+  }
+
+  throw new Error(
+    'Refusing to overwrite dagger.toml, which projen did not write. Move what it has beyond the derived modules into `dagger.workspace`, and delete the file.',
+  )
 }

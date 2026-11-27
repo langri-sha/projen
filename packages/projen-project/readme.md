@@ -102,6 +102,10 @@ new Project({
 })
 ```
 
+Synthesis refuses to overwrite a `dagger.toml` that projen doesn't write. Move
+what it has beyond the derived modules into `dagger.workspace` and delete the
+file.
+
 The file is the projenrc's alone: `dagger install` and `dagger settings` write
 to it, and the next synthesis reverts them. `dagger.lock` stays the CLI's: after
 the modules move, `dagger check -l` records the new refs in it, and the file is
