@@ -60,6 +60,7 @@ import { satisfies, valid, validRange } from 'semver'
 import {
   type DaggerWorkspaceOverrides,
   deriveDaggerWorkspace,
+  hasGitHubWorkflows,
   mergeDaggerWorkspace,
 } from './lib/dagger.js'
 import { GitAttributesFile } from './lib/gitattributes.js'
@@ -223,7 +224,8 @@ export interface ProjectDaggerOptions {
    * Overrides for the `dagger.toml` the preset derives from the options the
    * project enables: `ci` and `projen`, with `eslint`, `prettier`,
    * `typescript` (from `typeScriptConfig`), `vitest`, `beachball` and
-   * `changesets` for the option of that name. Objects merge into the derived
+   * `changesets` for the option of that name, and `actionlint` when
+   * `.github/workflows` has workflows. Objects merge into the derived
    * ones and arrays replace them, except `ignore`, whose patterns add to the
    * derived ones. A module set to `null` is dropped, and one the preset does
    * not derive is added after the derived modules.
@@ -1165,6 +1167,7 @@ export class Project extends BaseProject {
       ...dagger,
       workspace: mergeDaggerWorkspace(
         deriveDaggerWorkspace({
+          actionlint: hasGitHubWorkflows(this.outdir),
           beachball: Boolean(beachball),
           changesets: Boolean(changesets),
           eslint: Boolean(eslint),

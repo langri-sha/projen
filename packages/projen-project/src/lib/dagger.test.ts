@@ -1,8 +1,13 @@
-import { describe, expect, test } from '@langri-sha/vitest'
+import * as fs from 'node:fs'
+import * as os from 'node:os'
+import * as path from 'node:path'
+
+import { afterEach, describe, expect, test } from '@langri-sha/vitest'
 
 import {
   DAGGER_MODULES,
   deriveDaggerWorkspace,
+  hasGitHubWorkflows,
   mergeDaggerWorkspace,
 } from './dagger'
 
@@ -23,6 +28,7 @@ test('derives a module for each enabled feature, in a fixed order', () => {
     prettier: true,
     typescript: true,
     vitest: true,
+    actionlint: true,
   })
 
   expect(Object.keys(workspace.modules ?? {})).toEqual([
@@ -33,6 +39,7 @@ test('derives a module for each enabled feature, in a fixed order', () => {
     'typescript',
     'vitest',
     'beachball',
+    'actionlint',
   ])
 })
 
@@ -174,5 +181,46 @@ describe('merging overrides', () => {
     })
 
     expect(derived).toEqual(before)
+  })
+})
+
+describe('GitHub workflows', () => {
+  const directories: string[] = []
+
+  afterEach(() => {
+    for (const directory of directories.splice(0)) {
+      fs.rmSync(directory, { recursive: true, force: true })
+    }
+  })
+
+  const projectWith = (...files: string[]) => {
+    const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'dagger-'))
+
+    directories.push(directory)
+
+    for (const file of files) {
+      fs.mkdirSync(path.join(directory, path.dirname(file)), {
+        recursive: true,
+      })
+      fs.writeFileSync(path.join(directory, file), '')
+    }
+
+    return directory
+  }
+
+  test.each(['check.yml', 'check.yaml'])('are found in %s', (workflow) => {
+    expect(
+      hasGitHubWorkflows(projectWith(`.github/workflows/${workflow}`)),
+    ).toBe(true)
+  })
+
+  test('are not found in a project without a workflows directory', () => {
+    expect(hasGitHubWorkflows(projectWith('readme.md'))).toBe(false)
+  })
+
+  test('are not found among files that are not workflows', () => {
+    expect(hasGitHubWorkflows(projectWith('.github/workflows/readme.md'))).toBe(
+      false,
+    )
   })
 })
