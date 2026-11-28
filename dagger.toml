@@ -47,6 +47,9 @@ source = "github.com/langri-sha/dagger/vitest@v2.4.1"
 [modules.beachball]
 source = "github.com/langri-sha/dagger/beachball@v2.4.1"
 
+[modules.actionlint]
+source = "github.com/langri-sha/dagger/actionlint@v2.4.1"
+
 [modules.smoke]
 source = ".dagger/smoke"
 

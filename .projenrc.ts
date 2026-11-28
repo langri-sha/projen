@@ -81,7 +81,6 @@ const project = new Project({
           source: '.dagger/smoke',
           check: { skip: ['generate-schemas/stale'] },
         },
-        actionlint: null,
       },
     },
   },
