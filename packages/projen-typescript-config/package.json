@@ -29,7 +29,7 @@
   "devDependencies": {
     "@langri-sha/tsconfig": "3.0.0",
     "@langri-sha/vitest": "0.2.3",
-    "@types/node": "24.19.2",
+    "@types/node": "24.19.3",
     "jsii": "6.0.20",
     "projen": "0.104.1"
   },
