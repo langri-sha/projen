@@ -2192,7 +2192,7 @@ describe('with jsii', () => {
   test('keeps a jsii version the project declares', () => {
     const project = new Project({
       name: 'test-project',
-      package: { ...identified, devDeps: ['jsii@5.9.62'] },
+      package: { ...identified, devDeps: ['jsii@6.0.25'] },
       npmIgnore: {},
       jsii: { tsconfig: 'tsconfig.build.json' },
     })
