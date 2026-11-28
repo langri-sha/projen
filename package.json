@@ -39,7 +39,7 @@
     "@langri-sha/webpack": "0.8.2",
     "@swc-node/register": "1.12.1",
     "@swc/core": "1.16.2",
-    "@types/node": "24.19.2",
+    "@types/node": "24.19.3",
     "beachball": "2.66.0",
     "eslint": "10.15.0",
     "husky": "9.1.7",
