@@ -1,0 +1,8 @@
+# actionlint's bundled data for actions/create-github-app-token@v3 is stale: v3
+# takes `client-id` instead of `app-id`. Remove these once actionlint catches up.
+# https://github.com/rhysd/actionlint/issues/669
+paths:
+  .github/workflows/schemas.yml:
+    ignore:
+      - 'input "client-id" is not defined in action "actions/create-github-app-token@v3"'
+      - 'missing input "app-id" which is required by action "actions/create-github-app-token@v3"'
