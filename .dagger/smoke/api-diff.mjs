@@ -376,9 +376,25 @@ const attempt = async (subject, index) => {
   }
 }
 
-// The registry may lag right after a publish.
-const lagging = ({ code, missing, registry }) =>
-  code === 100 || (missing && released(registry.versions ?? []).length > 0)
+// The registry may lag right after a publish: minutes to list a release, and up
+// to five more while its CDN serves an older packument.
+const retriesFor = ({ version }, { code, missing, registry }) => {
+  if (!missing) {
+    return code === 100 ? 1 : 0
+  }
+
+  const versions = released(registry.versions ?? [])
+
+  if (!versions.length) {
+    return 0
+  }
+
+  const superseded = versions.some(
+    (other) => other.localeCompare(version, 'en', { numeric: true }) > 0,
+  )
+
+  return /E404|ETARGET/.test(missing) && !superseded ? 20 : 1
+}
 
 const verdict = async (subject, index) => {
   const { name, version } = subject
@@ -389,7 +405,7 @@ const verdict = async (subject, index) => {
 
   let result = await attempt(subject, index)
 
-  if (lagging(result)) {
+  for (let retry = 0; retry < retriesFor(subject, result); retry++) {
     await new Promise((resolve) => setTimeout(resolve, pause))
     result = await attempt(subject, index)
   }

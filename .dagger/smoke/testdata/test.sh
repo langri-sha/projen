@@ -403,11 +403,54 @@ api_fails malformed-grouped-change 'change/grouped.json: has an entry that is no
 api_workspace unreachable-registry
 registry=http://127.0.0.1:9 api_fails unreachable-registry 'the registry did not answer'
 
+lagging_npm() {
+  local dir=$scratch/$1/npm
+  mkdir -p "$dir"
+  cat >"$dir/npm" <<SH
+#!/bin/sh
+echo "\$1" >>"$dir/\$1.calls"
+if [ "\$(wc -l <"$dir/\$1.calls")" -le $2 ]; then
+  if [ "\$1" = view ]; then
+    echo '${3:-[]}'
+    exit 0
+  fi
+  echo 'npm error code ${4:-ETARGET}' >&2
+  exit 1
+fi
+exec "$(command -v npm)" "\$@"
+SH
+  chmod +x "$dir/npm"
+  PATH=$dir:$PATH
+}
+
+packs() {
+  local count
+  count=$(wc -l <"$scratch/$1/npm/pack.calls")
+  [ "$count" -eq "$2" ] || {
+    echo "$1 packed the release $count times, not $2" >&2
+    return 1
+  }
+}
+
 api_workspace unreleased-version projen-readme 0.0.1
-api_fails unreleased-version 'projen-readme@0.0.1 is not among its'
+(lagging_npm unreleased-version 0 && api_fails unreleased-version 'projen-readme@0.0.1 is not among its')
+packs unreleased-version 2
+
+api_workspace late-release
+(lagging_npm late-release 10 '["0.0.1"]' && api_passes late-release)
+packs late-release 11
+
+api_workspace stale-packument
+(lagging_npm stale-packument 10 '["0.0.1", "0.1.17"]' && api_passes stale-packument)
+packs stale-packument 11
+
+api_workspace corrupt-release
+(lagging_npm corrupt-release 10 '["0.1.17"]' EINTEGRITY && api_fails corrupt-release 'projen-readme@0.1.17 cannot be used (npm error code EINTEGRITY)')
+packs corrupt-release 2
 
 api_workspace unassembled projen-readme 0.1.16
-api_fails unassembled 'projen-readme@0.1.16 ships no .jsii'
+(lagging_npm unassembled 0 && api_fails unassembled 'projen-readme@0.1.16 ships no .jsii')
+packs unassembled 2
 
 api_workspace never-published @langri-sha/smoke-fixture-never-published 1.0.0
 api_passes never-published
