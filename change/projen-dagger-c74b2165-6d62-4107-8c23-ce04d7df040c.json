@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency dagger/dagger to v1.0.0-beta.26",
-  "packageName": "projen-dagger",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

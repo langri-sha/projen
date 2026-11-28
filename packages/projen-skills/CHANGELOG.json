@@ -2,6 +2,51 @@
   "name": "projen-skills",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.3.6",
+      "tag": "projen-skills_v0.3.6",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency vercel-labs/skills to v1.8.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency skills to v1.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency skills to v1.9.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency vercel-labs/skills to v1.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency skills to v1.8.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-skills",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency vercel-labs/skills to v1.9.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Nov 2026 08:29:08 GMT",
       "version": "0.3.5",
       "tag": "projen-skills_v0.3.5",

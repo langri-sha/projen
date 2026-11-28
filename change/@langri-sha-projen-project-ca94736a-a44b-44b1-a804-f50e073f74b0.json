@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Derive the actionlint Dagger module for a project with GitHub workflows",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

@@ -1,8 +1,17 @@
 # Change Log - projen-lint-staged
 
-<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 28 Nov 2026 04:33:32 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.25
+
+Sat, 28 Nov 2026 04:33:32 GMT
+
+### Patches
+
+- Update dependency lint-staged to v17.6.1
+- Update dependency lint-staged to v17.6.2
 
 ## 0.3.24
 

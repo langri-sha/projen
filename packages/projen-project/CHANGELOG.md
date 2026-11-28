@@ -1,8 +1,41 @@
 # Change Log - @langri-sha/projen-project
 
-<!-- This log was last generated on Wed, 11 Nov 2026 17:04:49 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 28 Nov 2026 04:33:32 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.55.0
+
+Sat, 28 Nov 2026 04:33:32 GMT
+
+### Minor changes
+
+- Refuse to overwrite a dagger.toml that projen does not write
+- Derive dagger.toml from the options a project enables, with dagger.workspace as overrides. A project that already passes dagger.workspace gains the derived modules (eslint, prettier, ci, actionlint and the rest) merged into its file, so drop the ones it lacks with null
+- Derive the actionlint Dagger module for a project with GitHub workflows
+- Bump projen-babel-config to v0.5.24
+- Bump projen-cargo to v0.3.3
+- Bump projen-dagger to v0.5.3
+- Bump projen-eslint to v0.3.25
+- Bump projen-lint-staged to v0.3.25
+- Bump projen-pnpm-workspace to v0.6.2
+- Bump projen-readme to v0.1.19
+- Bump projen-renovate to v0.6.0
+- Bump projen-ruff to v0.3.0
+- Bump projen-skills to v0.3.6
+
+### Patches
+
+- Update dependency skills to v1.8.0
+- Update dependency @babel/core to v8.1.2
+- Update dependency eslint to v10.15.0
+- Update dependency lint-staged to v17.6.2
+- Stop Renovate reading the synthesized dagger.toml, whose derived refs come with the preset
+- Update dependency skills to v1.8.1
+- Update dependency lint-staged to v17.6.1
+- Update dependency @babel/core to v8.1.3
+- Update dependency vitest to v5.1.1
+- Update dependency skills to v1.9.0
 
 ## 0.54.0
 

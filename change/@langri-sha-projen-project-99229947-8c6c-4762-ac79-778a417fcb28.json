@@ -1,7 +1,0 @@
-{
-  "type": "minor",
-  "comment": "Refuse to overwrite a dagger.toml that projen does not write",
-  "packageName": "@langri-sha/projen-project",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

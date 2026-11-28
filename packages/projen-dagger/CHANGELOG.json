@@ -2,6 +2,35 @@
   "name": "projen-dagger",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.5.3",
+      "tag": "projen-dagger_v0.5.3",
+      "comments": {
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "projen-dagger",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Use Dagger v1.0.0-beta.26 in the examples"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-dagger",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update the Dagger smoke fixture to beta.28"
+          }
+        ],
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-dagger",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency dagger/dagger to v1.0.0-beta.26"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Nov 2026 18:53:45 GMT",
       "version": "0.5.2",
       "tag": "projen-dagger_v0.5.2",

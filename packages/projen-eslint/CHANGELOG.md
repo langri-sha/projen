@@ -1,8 +1,16 @@
 # Change Log - projen-eslint
 
-<!-- This log was last generated on Mon, 09 Nov 2026 08:29:08 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 28 Nov 2026 04:33:32 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.25
+
+Sat, 28 Nov 2026 04:33:32 GMT
+
+### Patches
+
+- Update dependency eslint to v10.15.0
 
 ## 0.3.24
 

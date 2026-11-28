@@ -2,6 +2,27 @@
   "name": "projen-babel-config",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.5.24",
+      "tag": "projen-babel-config_v0.5.24",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-babel-config",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency @babel/core to v8.1.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-babel-config",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency @babel/core to v8.1.3"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Nov 2026 08:29:08 GMT",
       "version": "0.5.23",
       "tag": "projen-babel-config_v0.5.23",

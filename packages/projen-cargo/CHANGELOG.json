@@ -2,6 +2,21 @@
   "name": "projen-cargo",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.3.3",
+      "tag": "projen-cargo_v0.3.3",
+      "comments": {
+        "patch": [
+          {
+            "author": "288869059+mal-the-kron[bot]@users.noreply.github.com",
+            "package": "projen-cargo",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Regenerate the types from their schemas"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Nov 2026 18:53:45 GMT",
       "version": "0.3.2",
       "tag": "projen-cargo_v0.3.2",

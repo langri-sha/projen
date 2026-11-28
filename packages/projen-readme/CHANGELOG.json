@@ -2,6 +2,21 @@
   "name": "projen-readme",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.1.19",
+      "tag": "projen-readme_v0.1.19",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-readme",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency jsii-docgen to v10.13.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Nov 2026 08:29:08 GMT",
       "version": "0.1.18",
       "tag": "projen-readme_v0.1.18",

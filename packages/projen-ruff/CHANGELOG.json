@@ -2,6 +2,29 @@
   "name": "projen-ruff",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.3.0",
+      "tag": "projen-ruff_v0.3.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "288869059+mal-the-kron[bot]@users.noreply.github.com",
+            "package": "projen-ruff",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Regenerate the types from their schemas"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-ruff",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Follow the Ruff schema, which renames the missing-return-type-undocumented-public-function rule to missing-return-type-public-function"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Nov 2026 18:53:45 GMT",
       "version": "0.2.2",
       "tag": "projen-ruff_v0.2.2",

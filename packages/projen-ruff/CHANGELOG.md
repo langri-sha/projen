@@ -1,8 +1,20 @@
 # Change Log - projen-ruff
 
-<!-- This log was last generated on Tue, 10 Nov 2026 18:53:45 GMT and should not be manually modified. -->
+<!-- This log was last generated on Sat, 28 Nov 2026 04:33:32 GMT and should not be manually modified. -->
 
 <!-- Start content -->
+
+## 0.3.0
+
+Sat, 28 Nov 2026 04:33:32 GMT
+
+### Minor changes
+
+- Follow the Ruff schema, which renames the missing-return-type-undocumented-public-function rule to missing-return-type-public-function (filip.dupanovic@gmail.com)
+
+### Patches
+
+- Regenerate the types from their schemas (288869059+mal-the-kron[bot]@users.noreply.github.com)
 
 ## 0.2.2
 

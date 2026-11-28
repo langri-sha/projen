@@ -2,6 +2,27 @@
   "name": "projen-lint-staged",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.3.25",
+      "tag": "projen-lint-staged_v0.3.25",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-lint-staged",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency lint-staged to v17.6.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "projen-lint-staged",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency lint-staged to v17.6.2"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Nov 2026 08:29:08 GMT",
       "version": "0.3.24",
       "tag": "projen-lint-staged_v0.3.24",

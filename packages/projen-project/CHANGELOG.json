@@ -2,6 +2,169 @@
   "name": "@langri-sha/projen-project",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.55.0",
+      "tag": "@langri-sha/projen-project_v0.55.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency skills to v1.8.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency @babel/core to v8.1.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency eslint to v10.15.0"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency lint-staged to v17.6.2"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Stop Renovate reading the synthesized dagger.toml, whose derived refs come with the preset"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency skills to v1.8.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency lint-staged to v17.6.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency @babel/core to v8.1.3"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency vitest to v5.1.1"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency skills to v1.9.0"
+          }
+        ],
+        "none": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Snapshot the jsii and constructs fixture versions so Renovate bumps regenerate them"
+          },
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Link to the default constructs peer range"
+          }
+        ],
+        "minor": [
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Refuse to overwrite a dagger.toml that projen does not write"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Derive dagger.toml from the options a project enables, with dagger.workspace as overrides. A project that already passes dagger.workspace gains the derived modules (eslint, prettier, ci, actionlint and the rest) merged into its file, so drop the ones it lacks with null"
+          },
+          {
+            "author": "email not defined",
+            "package": "@langri-sha/projen-project",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Derive the actionlint Dagger module for a project with GitHub workflows"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-babel-config to v0.5.24",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-cargo to v0.3.3",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-dagger to v0.5.3",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-eslint to v0.3.25",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-lint-staged to v0.3.25",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-pnpm-workspace to v0.6.2",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-readme to v0.1.19",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-renovate to v0.6.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-ruff to v0.3.0",
+            "commit": "not available"
+          },
+          {
+            "author": "beachball",
+            "package": "@langri-sha/projen-project",
+            "comment": "Bump projen-skills to v0.3.6",
+            "commit": "not available"
+          }
+        ]
+      }
+    },
+    {
       "date": "Wed, 11 Nov 2026 17:04:49 GMT",
       "version": "0.54.0",
       "tag": "@langri-sha/projen-project_v0.54.0",

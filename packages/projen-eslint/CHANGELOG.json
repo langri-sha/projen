@@ -2,6 +2,21 @@
   "name": "projen-eslint",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.3.25",
+      "tag": "projen-eslint_v0.3.25",
+      "comments": {
+        "patch": [
+          {
+            "author": "email not defined",
+            "package": "projen-eslint",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Update dependency eslint to v10.15.0"
+          }
+        ]
+      }
+    },
+    {
       "date": "Mon, 09 Nov 2026 08:29:08 GMT",
       "version": "0.3.24",
       "tag": "projen-eslint_v0.3.24",

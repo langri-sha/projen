@@ -1,7 +1,0 @@
-{
-  "type": "patch",
-  "comment": "Update dependency lint-staged to v17.6.1",
-  "packageName": "projen-lint-staged",
-  "email": "email not defined",
-  "dependentChangeType": "patch"
-}

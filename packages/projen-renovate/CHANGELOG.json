@@ -2,6 +2,29 @@
   "name": "projen-renovate",
   "entries": [
     {
+      "date": "Sat, 28 Nov 2026 04:33:32 GMT",
+      "version": "0.6.0",
+      "tag": "projen-renovate_v0.6.0",
+      "comments": {
+        "patch": [
+          {
+            "author": "288869059+mal-the-kron[bot]@users.noreply.github.com",
+            "package": "projen-renovate",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Regenerate the types from their schemas"
+          }
+        ],
+        "minor": [
+          {
+            "author": "filip.dupanovic@gmail.com",
+            "package": "projen-renovate",
+            "commit": "7135e25af45075d796d05edb00ae78d6b3dae431",
+            "comment": "Follow the Renovate schema, which turns dependencyDashboard into an object and moves customizeDashboard and the dependencyDashboard* options into it"
+          }
+        ]
+      }
+    },
+    {
       "date": "Tue, 10 Nov 2026 18:53:45 GMT",
       "version": "0.5.2",
       "tag": "projen-renovate_v0.5.2",
