@@ -2241,7 +2241,7 @@ export class Project extends BaseProject {
       return
     }
 
-    this.#addDefaultDevDeps('vitest@5.1.1')
+    this.#addDefaultDevDeps('vitest@5.1.2')
 
     this.package?.setScript('test', 'vitest')
   }
